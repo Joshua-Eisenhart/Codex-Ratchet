@@ -6,6 +6,12 @@ Adds spectral triple entropy H_spectral_triple_50 to the 49-shell Q product.
 classification: classical_baseline
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json, os, math
 import torch
 

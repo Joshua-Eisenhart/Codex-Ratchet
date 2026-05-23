@@ -7,7 +7,6 @@ family improves ordering translation beyond the scalar-only push lanes.
 """
 
 from __future__ import annotations
-
 import json
 import pathlib
 

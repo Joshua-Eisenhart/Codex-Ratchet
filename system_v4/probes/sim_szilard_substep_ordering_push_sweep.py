@@ -7,7 +7,6 @@ see whether ordering can be pushed further without losing the low-noise gains.
 """
 
 from __future__ import annotations
-
 import json
 import pathlib
 

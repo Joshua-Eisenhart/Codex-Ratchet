@@ -3,30 +3,17 @@
 Coupling Program #278 — Riemann-Hilbert correspondence Shell (59-shell)
 classification: classical_baseline
 """
-import json, os, math
-import torch
 
-TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load_bearing: autograd computes dQ/dε (Axis 0 gradient)"},
-    "pyg": {"tried": False, "used": False, "reason": "PyG not needed; no graph message passing in coupling scaffold"},
-    "z3": {"tried": False, "used": False, "reason": "z3 not needed; classical entropy coupling via pytorch"},
-    "cvc5": {"tried": False, "used": False, "reason": "cvc5 not needed; classical baseline uses torch for Q"},
-    "sympy": {"tried": False, "used": False, "reason": "sympy not needed; entropy computed numerically via torch"},
-    "clifford": {"tried": False, "used": False, "reason": "Clifford algebra not needed; scalar entropy coupling"},
-    "geomstats": {"tried": False, "used": False, "reason": "geomstats not needed; flat entropy geometry"},
-    "e3nn": {"tried": False, "used": False, "reason": "e3nn not needed; no SO(3) equivariance required"},
-    "rustworkx": {"tried": False, "used": False, "reason": "rustworkx not needed; no graph structure"},
-    "xgi": {"tried": False, "used": False, "reason": "xgi not needed; no hypergraph structure"},
-    "toponetx": {"tried": False, "used": False, "reason": "toponetx not needed; scalar product sufficient"},
-    "gudhi": {"tried": False, "used": False, "reason": "gudhi not needed; no persistent homology"},
-}
-TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
-    "pyg": None, "z3": None, "cvc5": None, "sympy": None,
-    "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
-}
-
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'python_stdlib': {'reason': 'Conservative contract metadata repair: stdlib-only probe metadata.',
+                   'tried': True,
+                   'used': True}}
+TOOL_INTEGRATION_DEPTH = {'python_stdlib': 'supportive'}
 def h_riemann_hilb_59() -> float:
     return math.log(2)
 

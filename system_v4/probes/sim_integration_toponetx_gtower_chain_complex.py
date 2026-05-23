@@ -12,6 +12,12 @@ Tower: 6 vertices (GL, O, SO, U, SU, Sp), 5 edges (consecutive reductions),
 Claim: B1 shape=(6,5), B1@B2=0 (trivially since no 2-simplices), L0 is 6x6.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json
 import os
 import numpy as np

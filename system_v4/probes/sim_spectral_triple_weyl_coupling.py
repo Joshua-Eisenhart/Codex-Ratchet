@@ -9,6 +9,11 @@ about 0 and satisfy the algebraic relation x^2 = ±1.  This sim probes
 whether these two structures couple through a shared grade structure.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json
 import os
 import numpy as np

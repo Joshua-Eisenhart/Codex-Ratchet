@@ -23,7 +23,6 @@ Also: fidelity vs N pulses -- does it saturate?  At what N?
 Mark pytorch=used. Classification: canonical.
 Output: sim_results/lego_dynamical_decoupling_results.json
 """
-
 import json
 import os
 import traceback

@@ -10,6 +10,46 @@ Every tool does real work. No numpy-only stubs.
 Outputs 6 JSON files to a2_state/sim_results/.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+TOOL_MANIFEST = {'clifford': {'reason': 'Conservative contract metadata repair: source imports this tool, but no '
+                        'direct call site was found; kept as unused/supportive pending review.',
+              'tried': True,
+              'used': False},
+ 'numpy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'pyg': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                   'role is marked supportive pending claim-specific review.',
+         'tried': True,
+         'used': True},
+ 'pytorch': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                       'role is marked supportive pending claim-specific review.',
+             'tried': True,
+             'used': True},
+ 'sympy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'toponetx': {'reason': 'Conservative contract metadata repair: source imports and calls this '
+                        'tool; role is marked supportive pending claim-specific review.',
+              'tried': True,
+              'used': True},
+ 'z3': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; role '
+                  'is marked supportive pending claim-specific review.',
+        'tried': True,
+        'used': True}}
+TOOL_INTEGRATION_DEPTH = {'clifford': 'supportive',
+ 'numpy': 'supportive',
+ 'pyg': 'supportive',
+ 'pytorch': 'supportive',
+ 'sympy': 'supportive',
+ 'toponetx': 'supportive',
+ 'z3': 'supportive'}
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import sys
 import os
 import json

@@ -4,7 +4,6 @@ PURE LEGO: Transport-Weighted Entropy
 =====================================
 Direct local row for weighted entropy change along a bounded channel path.
 """
-
 import json
 import pathlib
 

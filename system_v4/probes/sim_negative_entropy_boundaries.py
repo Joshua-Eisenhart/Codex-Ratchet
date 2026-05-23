@@ -18,7 +18,6 @@ numerically wrong answers.  Ten sections:
   T9  Entropy of non-density-matrices
   T10 Shannon vs vN: maximal disagreement
 """
-
 import json
 import os
 import sys

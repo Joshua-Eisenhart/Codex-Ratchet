@@ -14,6 +14,20 @@ Sections
 5. z3 proof surface: gate entangling power structural proofs
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+TOOL_MANIFEST = {'numpy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'z3': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; role '
+                  'is marked supportive pending claim-specific review.',
+        'tried': True,
+        'used': True}}
+TOOL_INTEGRATION_DEPTH = {'numpy': 'supportive', 'z3': 'supportive'}
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json, pathlib, time
 import numpy as np
 from scipy.linalg import expm, svd, sqrtm

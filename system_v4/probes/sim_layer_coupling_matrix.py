@@ -25,7 +25,6 @@ Test 10:     sympy symbolic derivation: fiber entropy after Z-dephasing
 Classification: canonical
 Token: T_LAYER_COUPLING_MATRIX
 """
-
 import json
 import os
 import sys

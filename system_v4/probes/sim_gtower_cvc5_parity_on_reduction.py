@@ -6,9 +6,6 @@ solver-independent. Load-bearing: cvc5 reproduces the UNSAT verdicts that
 z3 returns on the same forbidden-reduction encodings (orientation fence,
 Sp-det fence). Mismatch => fence not solver-invariant => flagged.
 """
-import json, os
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

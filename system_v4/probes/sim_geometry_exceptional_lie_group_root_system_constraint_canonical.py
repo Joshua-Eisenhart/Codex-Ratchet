@@ -13,6 +13,20 @@ F4: 48 roots, rank 4, Cartan matrix 4x4 positive definite
 G2: 12 roots, rank 2, Cartan matrix 2x2 positive definite
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'cvc5': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                    'role is marked supportive pending claim-specific review.',
+          'tried': True,
+          'used': True},
+ 'sympy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True}}
 import json
 import os
 import sympy as sp

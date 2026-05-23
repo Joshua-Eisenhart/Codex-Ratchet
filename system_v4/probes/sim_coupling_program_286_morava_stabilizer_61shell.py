@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 """Coupling Program #286 — MoravaStabilizer Shell (61-shell)"""
-import json, os, math
-import torch
 
-TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load_bearing: autograd computes dQ/dε (Axis 0 gradient) for 61-shell coupling"},
-    "pyg": {"tried": False, "used": False, "reason": "PyG not needed; shell coupling handled via torch tensor ops"},
-    "z3": {"tried": False, "used": False, "reason": "z3 not needed; classical coupling program uses torch autograd"},
-    "cvc5": {"tried": False, "used": False, "reason": "cvc5 not needed; constraint satisfaction via autograd in this sim"},
-    "sympy": {"tried": False, "used": False, "reason": "sympy not needed; numerical torch computation is sufficient"},
-    "clifford": {"tried": False, "used": False, "reason": "Clifford algebra not needed; geometry computed via direct tensor ops"},
-    "geomstats": {"tried": False, "used": False, "reason": "geomstats not needed; shell geometry via torch"},
-    "e3nn": {"tried": False, "used": False, "reason": "e3nn not needed; no SO(3) equivariance required here"},
-    "rustworkx": {"tried": False, "used": False, "reason": "rustworkx not needed; no graph structure in this sim"},
-    "xgi": {"tried": False, "used": False, "reason": "xgi not needed; pairwise shell interactions only"},
-    "toponetx": {"tried": False, "used": False, "reason": "toponetx not needed; standard tensor ops sufficient"},
-    "gudhi": {"tried": False, "used": False, "reason": "gudhi not needed; no persistent homology in this sim"},
-}
-TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "pyg": None, "z3": None, "cvc5": None, "sympy": None, "clifford": None, "geomstats": None, "e3nn": None, "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None}
-
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'python_stdlib': {'reason': 'Conservative contract metadata repair: stdlib-only probe metadata.',
+                   'tried': True,
+                   'used': True}}
+TOOL_INTEGRATION_DEPTH = {'python_stdlib': 'supportive'}
 SHELL_COUNT = 61
 
 def h_ms_61() -> float:

@@ -3,9 +3,13 @@
 
 Classical baseline: pytorch autograd computes dQ/dε where Q = MI * log(2)^73.
 """
-import json, os, math
-import torch
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 SHELL_COUNT = 73
 
 TOOL_MANIFEST = {

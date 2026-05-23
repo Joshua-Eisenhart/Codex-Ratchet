@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Coupling Program #462 — HomotopyHypothesis Shell (105-shell classical baseline)"""
-import json, os, math, torch
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 SHELL_COUNT = 105
 DOMAIN = "HomotopyHypothesis"
 

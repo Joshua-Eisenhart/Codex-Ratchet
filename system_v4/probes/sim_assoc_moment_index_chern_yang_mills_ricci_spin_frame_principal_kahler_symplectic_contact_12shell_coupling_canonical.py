@@ -22,6 +22,12 @@ Q_AMCYRSFPKSC = MI × H_assoc × H_moment × H_chern × H_yang_mills × H_ricci 
 classification: classical_baseline
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json
 import math
 import os

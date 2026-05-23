@@ -5,10 +5,6 @@ Scope note: LADDERS_FENCES_ADMISSION_REFERENCE.md: SO(3) fence preserves
 irrep structure. Load-bearing: e3nn Irreps D-matrix verifies that a
 random SO(3) element acts consistently on l=1 vectors (equivariance).
 """
-import json, os
-import numpy as np
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

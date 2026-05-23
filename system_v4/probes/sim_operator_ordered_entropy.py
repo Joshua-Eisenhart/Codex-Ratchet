@@ -4,7 +4,6 @@ PURE LEGO: Operator-Ordered Entropy
 ===================================
 Direct local row for entropy response under noncommuting operator order.
 """
-
 import json
 import pathlib
 

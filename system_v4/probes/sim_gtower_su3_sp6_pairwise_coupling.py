@@ -9,6 +9,11 @@ both act on a shared 2D subspace embedded in the 3D C3 root space.
 Non-commutativity norm is the primary observable.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json
 import os
 import numpy as np

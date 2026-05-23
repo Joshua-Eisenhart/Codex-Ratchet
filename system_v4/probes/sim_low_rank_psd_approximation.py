@@ -7,7 +7,6 @@ Direct local compression lego.
 Construct low-rank trace-renormalized PSD approximations of bounded density operators
 and verify PSD preservation, trace normalization, and monotone reconstruction quality.
 """
-
 import json
 import pathlib
 

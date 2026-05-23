@@ -4,7 +4,6 @@ PURE LEGO: Loop-Order Family
 ============================
 Direct local row for noncommuting loop-step order on a bounded loop carrier.
 """
-
 import json
 import pathlib
 

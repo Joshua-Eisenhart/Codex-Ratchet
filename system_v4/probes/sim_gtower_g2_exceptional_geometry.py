@@ -16,6 +16,25 @@ scope_note: G2 is the automorphism group of the octonions; rank 2, dim 14;
 smallest exceptional Lie group; pendant in G-tower topology.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'numpy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'sympy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'z3': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; role '
+                  'is marked supportive pending claim-specific review.',
+        'tried': True,
+        'used': True}}
+TOOL_INTEGRATION_DEPTH = {'numpy': 'supportive', 'sympy': 'supportive', 'z3': 'supportive'}
 import json
 import os
 import numpy as np

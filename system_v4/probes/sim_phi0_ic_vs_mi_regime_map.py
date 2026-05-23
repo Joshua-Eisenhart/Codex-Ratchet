@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-classification = "classical_baseline"  # auto-backfill
 r"""
 PURE LEGO: Phi0 Ic-vs-MI Regime Map
 ===================================

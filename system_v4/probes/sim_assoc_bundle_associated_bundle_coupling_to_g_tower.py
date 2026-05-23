@@ -8,11 +8,6 @@ We probe this with a toy: sections of a rank-2 complex bundle where the
 structure group is variously GL(2,C), U(2), SU(2), Sp(1)=SU(2).
 Admissibility = does the section's transition satisfy the G-cocycle condition?
 """
-import json
-import os
-import numpy as np
-classification = "classical_baseline"
-
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},
     "geomstats": {"tried": False, "used": False, "reason": ""},

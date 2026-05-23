@@ -12,6 +12,11 @@ Pairwise coupling tests:
   Topology T1/T2/T3 stable: H_weyl, H_dirac, H_mera do not vary across topologies
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json, math, os
 import numpy as np
 

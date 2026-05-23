@@ -4,7 +4,6 @@ PURE LEGO: Loop Vector Fields
 =============================
 Direct local row for tangent vector fields along a bounded phase loop.
 """
-
 import json
 import math
 import pathlib

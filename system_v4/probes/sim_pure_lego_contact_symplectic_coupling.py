@@ -28,7 +28,6 @@ Machine-readable coupling verdict at top level:
 Classification: canonical
 Started from SIM_TEMPLATE.py
 """
-
 import datetime
 import json
 import os

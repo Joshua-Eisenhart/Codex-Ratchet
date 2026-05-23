@@ -7,11 +7,6 @@ Hopf projection p:S^3 -> S^2 to a 2-cochain on an S^3 surrogate. The
 pulled-back cohomology class must match the original (functoriality).
 Includes chirality: orientation-reversal of S^2 negates the class.
 """
-import json, os
-import numpy as np
-
-classification = "classical_baseline"
-
 TOOL_MANIFEST = {
     "numpy":    {"tried": True, "used": True, "reason": "pullback cochain arithmetic"},
     "toponetx": {"tried": False,"used": False, "reason": "toponetx topological networks not needed; standard tensor ops sufficient"},

@@ -4,7 +4,6 @@ PURE LEGO: Schmidt-Mode Truncation
 =================================
 Direct local compression lego for truncating a bipartite pure state to leading Schmidt modes.
 """
-
 import json
 import pathlib
 

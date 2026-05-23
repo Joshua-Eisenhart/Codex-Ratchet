@@ -7,7 +7,6 @@ high-strength low-noise edge and scores directly for controller closeness.
 """
 
 from __future__ import annotations
-
 import json
 import pathlib
 

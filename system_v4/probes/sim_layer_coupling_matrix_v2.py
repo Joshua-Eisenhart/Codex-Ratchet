@@ -19,7 +19,6 @@ Previously measured (carried forward, not re-run):
 Classification: canonical
 Token: T_LAYER_COUPLING_MATRIX_V2
 """
-
 import json
 import os
 import sys

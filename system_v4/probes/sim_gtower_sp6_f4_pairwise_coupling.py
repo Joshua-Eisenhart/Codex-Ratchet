@@ -7,6 +7,11 @@ Sp(6) ~ C3 (rank 3, Weyl order 48, 18 roots) and F4 (rank 4, Weyl order 1152,
 F4 Weyl reflections survive as a compatible pair on the shared rank-3 subspace.
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
 import json
 import os
 import itertools

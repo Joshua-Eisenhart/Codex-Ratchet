@@ -7,10 +7,6 @@ of standard symplectic form J with J^2 = -I).
 Load-bearing: sympy proves A^T J A = J is preserved symbolically for a
 generic Sp(2) element and fails for a generic SU(2) element.
 """
-import json, os
-import numpy as np
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

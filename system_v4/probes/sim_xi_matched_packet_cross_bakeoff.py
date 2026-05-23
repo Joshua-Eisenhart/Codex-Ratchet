@@ -14,7 +14,6 @@ This probe is designed to answer a sharper question than average ranking:
 """
 
 from __future__ import annotations
-
 import json
 import math
 import os

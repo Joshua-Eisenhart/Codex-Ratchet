@@ -9,9 +9,6 @@ det=-1 (Sp(2,R) = SL(2,R) requires det=+1).
 
 Load-bearing: z3 returns UNSAT for both forbidden reductions.
 """
-import json, os
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

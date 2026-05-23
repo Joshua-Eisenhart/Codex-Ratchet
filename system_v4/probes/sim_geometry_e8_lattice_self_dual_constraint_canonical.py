@@ -13,6 +13,24 @@ The E8 lattice is defined by:
 - Contains 240 roots at distance sqrt(2) from origin
 """
 
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'cvc5': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                    'role is marked supportive pending claim-specific review.',
+          'tried': True,
+          'used': True},
+ 'numpy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True},
+ 'sympy': {'reason': 'Conservative contract metadata repair: source imports and calls this tool; '
+                     'role is marked supportive pending claim-specific review.',
+           'tried': True,
+           'used': True}}
 import json
 import os
 import numpy as np

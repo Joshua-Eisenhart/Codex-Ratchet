@@ -45,7 +45,6 @@ Tools:
 
 Output: system_v4/probes/a2_state/sim_results/gstructure_compatibility_coupling_results.json
 """
-
 import json
 import math
 import os

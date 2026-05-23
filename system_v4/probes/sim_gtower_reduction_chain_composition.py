@@ -8,10 +8,6 @@ Load-bearing: sympy composes the fences symbolically and checks the
 identity element is the unique trivial composite admission; a concrete
 J-compatible unitary candidate (block-diagonal) is tracked across tiers.
 """
-import json, os
-import numpy as np
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

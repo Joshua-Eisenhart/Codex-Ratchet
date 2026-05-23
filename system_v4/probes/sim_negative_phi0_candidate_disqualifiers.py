@@ -18,7 +18,6 @@ bridge-built density matrices.
 
 Classification: canonical
 """
-
 import json
 import math
 import os

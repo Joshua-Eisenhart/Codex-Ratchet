@@ -6,10 +6,6 @@ Hopf fibration; U(1) fibers quotient to points. Load-bearing: Cl(3) rotor
 of form exp(theta e1 e2) acts on R^3 preserving the e3 axis (U(1) fiber
 stabilizer maps to an SO(3) rotation around e3).
 """
-import json, os
-import numpy as np
-
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

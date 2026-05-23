@@ -11,25 +11,17 @@ output is the ground truth a canonical sim must MATCH, not exceed.
 
 Classification: classical_baseline.
 """
-import json, os
-import numpy as np
 
-TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "deliberately excluded -- this is the numpy-only baseline"},
-    "pyg": {"tried": False, "used": False, "reason": "no graph"},
-    "z3": {"tried": False, "used": False, "reason": "numeric eigendecomp, not FOL"},
-    "cvc5": {"tried": False, "used": False, "reason": "numeric eigendecomp, not FOL"},
-    "sympy": {"tried": False, "used": False, "reason": "numeric, not symbolic"},
-    "clifford": {"tried": False, "used": False, "reason": "standard complex matrix suffices"},
-    "geomstats": {"tried": False, "used": False, "reason": "flat spectral problem"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "no graph"},
-    "xgi": {"tried": False, "used": False, "reason": "no hypergraph"},
-    "toponetx": {"tried": False, "used": False, "reason": "no cell complex"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistent homology"},
-    "numpy": {"tried": True, "used": True, "reason": "baseline eigendecomp reference that a torch-autograd canonical sim will be compared against"},
-}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+# ---------------------------------------------------------------------
+# Contract metadata repaired by scripts/contract_metadata_safe_repair.py.
+contract_metadata_repair = 'safe_repair_v1'
+classification = 'classical_baseline'
+divergence_log = 'Classical-baseline contract metadata repair: this probe is retained as a baseline/diagnostic contrast and is not promoted without a reviewed canonical receipt.'
+divergence_log_source = 'safe_repair_v1'
+TOOL_MANIFEST = {'python_stdlib': {'reason': 'Conservative contract metadata repair: stdlib-only probe metadata.',
+                   'tried': True,
+                   'used': True}}
+TOOL_INTEGRATION_DEPTH = {'python_stdlib': 'supportive'}
 TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"  # load-bearing FOR THE BASELINE ROLE
 
 

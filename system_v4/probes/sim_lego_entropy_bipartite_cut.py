@@ -20,7 +20,6 @@ Test states:
 This sim keeps to standard QIT notation only.
 Classification: canonical
 """
-
 import json
 import math
 import os

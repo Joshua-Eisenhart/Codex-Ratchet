@@ -61,7 +61,7 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing proof fence for finite capacity and nonpromotion of tensor substrate controls",
+        "reason": "supportive finite-capacity and nonpromotion dependency-consistency fence",
     },
     "python_json": {"tried": True, "used": True, "reason": "supportive result serialization"},
     "pathlib": {"tried": True, "used": True, "reason": "supportive local result path handling"},
@@ -69,7 +69,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "python_json": "supportive",
     "pathlib": "supportive",
     "time": "supportive",
@@ -267,23 +267,56 @@ def finite_capacity_gate(node_count: int) -> dict[str, Any]:
     log_dim = node_count * math.log(2.0)
     capacity_ok = node_count * math.log(2.0)
     capacity_too_small = (node_count - 1) * math.log(2.0)
-    solver = z3.Solver()
     log_dim_q = z3.RealVal(str(round(log_dim, 12)))
     cap_q = z3.RealVal(str(round(capacity_ok, 12)))
     cap_small_q = z3.RealVal(str(round(capacity_too_small, 12)))
-    solver.add(log_dim_q <= cap_q, z3.Not(log_dim_q <= cap_q))
-    ok_unsat = solver.check()
+    ok = z3.Solver()
+    ok.add(log_dim_q <= cap_q)
+    ok_status = ok.check()
     small = z3.Solver()
     small.add(log_dim_q <= cap_small_q)
     small_status = small.check()
+
+    f01 = z3.Bool("f01_capacity")
+    finite_capacity = z3.Bool("finite_capacity")
+    spinor_network = z3.Bool("spinor_network")
+    dependency_axioms = [
+        z3.Implies(finite_capacity, f01),
+        z3.Implies(spinor_network, finite_capacity),
+    ]
+
+    def status(*assumptions: z3.BoolRef) -> z3.CheckSatResult:
+        solver = z3.Solver()
+        solver.add(*dependency_axioms)
+        solver.add(*assumptions)
+        return solver.check()
+
+    roots_do_not_force_capacity_status = status(f01, z3.Not(finite_capacity))
+    capacity_with_f01_status = status(f01, finite_capacity)
+    capacity_requires_f01_status = status(finite_capacity, z3.Not(f01))
+    spinor_network_with_roots_status = status(f01, spinor_network)
+    spinor_network_requires_capacity_status = status(spinor_network, z3.Not(finite_capacity))
     return {
         "node_count": node_count,
         "log_dim_nats": log_dim,
         "capacity_ok_nats": capacity_ok,
         "capacity_too_small_nats": capacity_too_small,
-        "finite_capacity_consistency_unsat": str(ok_unsat),
+        "ok_capacity_status": str(ok_status),
         "too_small_capacity_rejected": str(small_status),
-        "pass": bool(ok_unsat == z3.unsat and small_status == z3.unsat),
+        "roots_do_not_force_capacity_status": str(roots_do_not_force_capacity_status),
+        "capacity_with_f01_status": str(capacity_with_f01_status),
+        "capacity_requires_f01_status": str(capacity_requires_f01_status),
+        "spinor_network_with_roots_status": str(spinor_network_with_roots_status),
+        "spinor_network_requires_capacity_status": str(spinor_network_requires_capacity_status),
+        "pass": bool(
+            ok_status == z3.sat
+            and small_status == z3.unsat
+            and roots_do_not_force_capacity_status == z3.sat
+            and capacity_with_f01_status == z3.sat
+            and capacity_requires_f01_status == z3.unsat
+            and spinor_network_with_roots_status == z3.sat
+            and spinor_network_requires_capacity_status == z3.unsat
+        ),
     }
 
 

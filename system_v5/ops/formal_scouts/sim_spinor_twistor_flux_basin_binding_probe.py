@@ -50,7 +50,7 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing root nonpromotion and flux-factorization admissibility fence",
+        "reason": "supportive root-nonpromotion and flux-factorization dependency-consistency fence",
     },
     "python_json": {"tried": True, "used": True, "reason": "supportive result serialization"},
     "pathlib": {"tried": True, "used": True, "reason": "supportive local result path handling"},
@@ -58,7 +58,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "python_json": "supportive",
     "pathlib": "supportive",
     "time": "supportive",
@@ -347,20 +347,26 @@ def flux_factorization_gate() -> dict[str, Any]:
         return solver.check()
 
     roots_do_not_force_flux_status = status(f01, n01, z3.Not(flux_binding))
+    flux_with_roots_status = status(f01, n01, flux_binding)
     flux_requires_roots_status = status(flux_binding, z3.Or(z3.Not(f01), z3.Not(n01)))
+    engine_binding_with_roots_status = status(f01, n01, engine_binding)
     per_stage_under_engine_binding_status = status(engine_binding, per_stage_free_axis)
     per_stage_without_engine_binding_status = status(f01, n01, z3.Not(engine_binding), per_stage_free_axis)
     return {
         "rows": rows,
         "raw_geometry_mismatch_count": raw_mismatches,
         "roots_do_not_force_flux_status": str(roots_do_not_force_flux_status),
+        "flux_with_roots_status": str(flux_with_roots_status),
         "flux_requires_roots_status": str(flux_requires_roots_status),
+        "engine_binding_with_roots_status": str(engine_binding_with_roots_status),
         "per_stage_axis_under_engine_binding_status": str(per_stage_under_engine_binding_status),
         "per_stage_axis_without_engine_binding_status": str(per_stage_without_engine_binding_status),
         "pass": bool(
             raw_mismatches == 4
             and roots_do_not_force_flux_status == z3.sat
+            and flux_with_roots_status == z3.sat
             and flux_requires_roots_status == z3.unsat
+            and engine_binding_with_roots_status == z3.sat
             and per_stage_under_engine_binding_status == z3.unsat
             and per_stage_without_engine_binding_status == z3.sat
         ),
@@ -391,6 +397,8 @@ def capacity_gate() -> dict[str, Any]:
     capacity_requires_f01.add(dependency, finite_capacity, z3.Not(f01))
     roots_do_not_force_capacity = z3.Solver()
     roots_do_not_force_capacity.add(dependency, f01, z3.Not(finite_capacity))
+    capacity_with_f01 = z3.Solver()
+    capacity_with_f01.add(dependency, f01, finite_capacity)
     return {
         "node_budget_nats": node_budget,
         "edge_budget_nats": edge_budget,
@@ -399,21 +407,24 @@ def capacity_gate() -> dict[str, Any]:
         "too_small_capacity_status": str(small.check()),
         "capacity_requires_f01_status": str(capacity_requires_f01.check()),
         "roots_do_not_force_capacity_status": str(roots_do_not_force_capacity.check()),
+        "capacity_with_f01_status": str(capacity_with_f01.check()),
         "pass": bool(
             ok.check() == z3.sat
             and small.check() == z3.unsat
             and capacity_requires_f01.check() == z3.unsat
             and roots_do_not_force_capacity.check() == z3.sat
+            and capacity_with_f01.check() == z3.sat
         ),
     }
 
 
 def negative_control_section(positive: dict[str, Any]) -> dict[str, Any]:
     plus_centroid = positive["spinor_twistor_global_flux_basin_binding"]["global_plus_centroid"]
-    duplicate_distance = float(
+    plus_same_mode_control = run_mode("global_plus", seed_shift=0.04)
+    same_mode_seed_distance = float(
         torch.linalg.vector_norm(
             plus_centroid.detach().clone().to(DTYPE)
-            - plus_centroid.detach().clone().to(DTYPE)
+            - plus_same_mode_control["centroid"].detach().clone().to(DTYPE)
         ).item()
     )
     rows = {
@@ -445,11 +456,15 @@ def negative_control_section(positive: dict[str, Any]) -> dict[str, Any]:
             "pass": positive["flux_factorization_not_raw_geometry_axis"]["per_stage_axis_under_engine_binding_status"] == "unsat",
             "summary": "under engine-binding assumptions, a free per-stage flux axis is contradictory",
         },
-        "NC5_duplicate_basin_split_control_is_zero": {
+        "NC5_same_mode_seed_control_is_small": {
             "expected_to_fail": True,
-            "duplicate_plus_distance": duplicate_distance,
-            "pass": duplicate_distance < 1e-12,
-            "summary": "the measured basin split is not a distance artifact; duplicate run comparison is zero",
+            "same_mode_seed_distance": same_mode_seed_distance,
+            "global_basin_distance": positive["spinor_twistor_global_flux_basin_binding"]["global_basin_distance"],
+            "pass": bool(
+                same_mode_seed_distance < 0.01
+                and positive["spinor_twistor_global_flux_basin_binding"]["global_basin_distance"] > 0.85
+            ),
+            "summary": "same-flux seed variation is tiny relative to the plus/minus basin split",
         },
     }
     fired = sum(1 for row in rows.values() if row["pass"])

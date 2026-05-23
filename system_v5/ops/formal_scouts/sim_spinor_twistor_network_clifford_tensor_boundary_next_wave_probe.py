@@ -60,7 +60,7 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite-capacity proof fence and root nonpromotion gate",
+        "reason": "supportive finite-capacity and root-nonpromotion dependency-consistency fence",
     },
     "python_json": {"tried": True, "used": True, "reason": "supportive result serialization"},
     "pathlib": {"tried": True, "used": True, "reason": "supportive local result path handling"},
@@ -69,7 +69,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
     "clifford": "supportive",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "python_json": "supportive",
     "pathlib": "supportive",
     "time": "supportive",
@@ -222,6 +222,19 @@ def network_edges(net: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def clifford_rotor_gate() -> dict[str, Any]:
+    """Correctness verification, not load-bearing audit.
+
+    Cl(3) and SU(2) are isomorphic at the group level (both are double covers
+    of SO(3)). The agreement-to-machine-epsilon test below confirms the Clifford
+    rotor implementation correctly reproduces SU(2) spinor transport on this
+    carrier. It does NOT establish that Clifford carries information SU(2)
+    matrices alone cannot — at this scope, Clifford is faithful notation, not
+    additional structure. The noncommuting order gap is a textbook SU(2)
+    property that both representations must reproduce.
+
+    Pass means: rotor implementation matches SU(2) implementation, noncommutativity
+    is observable, and Bloch norm is preserved — all expected by the isomorphism.
+    """
     layout, blades = Cl(3)
     del layout
     e1 = blades["e1"]
@@ -356,9 +369,13 @@ def boundary_capacity_graph_gate(net: dict[str, Any]) -> dict[str, Any]:
         return solver.check()
 
     roots_do_not_force_capacity_status = status(f01, n01, z3.Not(capacity_bound))
+    capacity_with_roots_status = status(f01, n01, capacity_bound)
     capacity_requires_f01_status = status(capacity_bound, z3.Not(f01))
+    twistor_with_roots_status = status(f01, n01, twistor_incidence)
     twistor_requires_roots_status = status(twistor_incidence, z3.Or(z3.Not(f01), z3.Not(n01)))
+    clifford_order_with_n01_status = status(n01, clifford_order_probe)
     clifford_order_requires_n01_status = status(clifford_order_probe, z3.Not(n01))
+    holography_with_capacity_status = status(f01, capacity_bound, holographic_spacetime)
     holography_requires_capacity_status = status(holographic_spacetime, z3.Not(capacity_bound))
 
     return {
@@ -368,17 +385,25 @@ def boundary_capacity_graph_gate(net: dict[str, Any]) -> dict[str, Any]:
         "ok_capacity_status": str(ok_status),
         "too_small_capacity_status": str(small_status),
         "roots_do_not_force_capacity_status": str(roots_do_not_force_capacity_status),
+        "capacity_with_roots_status": str(capacity_with_roots_status),
         "capacity_requires_f01_status": str(capacity_requires_f01_status),
+        "twistor_with_roots_status": str(twistor_with_roots_status),
         "twistor_requires_roots_status": str(twistor_requires_roots_status),
+        "clifford_order_with_n01_status": str(clifford_order_with_n01_status),
         "clifford_order_requires_n01_status": str(clifford_order_requires_n01_status),
+        "holography_with_capacity_status": str(holography_with_capacity_status),
         "holography_requires_capacity_status": str(holography_requires_capacity_status),
         "pass": bool(
             ok_status == z3.sat
             and small_status == z3.unsat
             and roots_do_not_force_capacity_status == z3.sat
+            and capacity_with_roots_status == z3.sat
             and capacity_requires_f01_status == z3.unsat
+            and twistor_with_roots_status == z3.sat
             and twistor_requires_roots_status == z3.unsat
+            and clifford_order_with_n01_status == z3.sat
             and clifford_order_requires_n01_status == z3.unsat
+            and holography_with_capacity_status == z3.sat
             and holography_requires_capacity_status == z3.unsat
         ),
     }
@@ -404,9 +429,16 @@ def negative_control_section(positive: dict[str, Any]) -> dict[str, Any]:
         + (float((same_axis_ab - same_axis_ba) | e3)) ** 2
     )
 
-    wrong_axis_gap = abs(
-        positive["clifford_rotor_spinor_transport"]["rotor_noncommuting_order_gap"]
-        - same_axis_gap
+    bad_rotor = 1.08 * rz_a
+    bad_rotor_image = bad_rotor * v * ~bad_rotor
+    bad_rotor_vec = torch.tensor(
+        [float(bad_rotor_image | e1), float(bad_rotor_image | e2), float(bad_rotor_image | e3)],
+        dtype=DTYPE,
+    )
+    original_vec = torch.tensor([float(v | e1), float(v | e2), float(v | e3)], dtype=DTYPE)
+    nonunit_rotor_norm_gap = abs(
+        float(torch.linalg.vector_norm(bad_rotor_vec).item())
+        - float(torch.linalg.vector_norm(original_vec).item())
     )
     rows = {
         "NC1_commuting_rotor_pair_collapses_order_gap": {
@@ -419,11 +451,11 @@ def negative_control_section(positive: dict[str, Any]) -> dict[str, Any]:
             ),
             "summary": "same-plane Clifford rotors commute; the nonzero order gap requires different generator planes",
         },
-        "NC2_wrong_rotor_order_not_same_witness": {
+        "NC2_nonunit_rotor_breaks_norm_preservation": {
             "expected_to_fail": True,
-            "wrong_axis_gap_against_true_noncommuting_gap": wrong_axis_gap,
-            "pass": bool(wrong_axis_gap > 1e-3),
-            "summary": "commuting same-axis rotor control is not equivalent to the true noncommuting spinor transport witness",
+            "nonunit_rotor_norm_gap": nonunit_rotor_norm_gap,
+            "pass": bool(nonunit_rotor_norm_gap > 1e-2),
+            "summary": "scaling a Clifford rotor away from unit norm breaks Bloch-vector norm preservation",
         },
         "NC3_entropy_only_probe_collides_under_twistor_rephase": {
             "expected_to_fail": True,

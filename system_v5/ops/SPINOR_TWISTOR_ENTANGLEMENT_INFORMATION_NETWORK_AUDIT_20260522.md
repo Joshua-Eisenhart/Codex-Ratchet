@@ -436,13 +436,13 @@ What it tested:
 
 | Gate | Meaning |
 |---|---|
-| z3 semantic entailment gate (rewritten) | tests dependency direction with real predicates: each derived constraint requires the relevant root (UNSAT without it) but is not entailed by that root alone (SAT with the constraint negated). The earlier counting-based fence (`exactly_two_roots ∧ third_root` → unsat by arithmetic) was retired |
+| z3 dependency-consistency fence (rewritten) | documents stated dependency direction with predicates and satisfiable witnesses: each derived constraint is consistent with its required roots and inconsistent without them. This is no longer the old counting fence, but it is still an assumption-consistency check, not an independent derivation from numeric witnesses |
 | finite capacity | log dimension must fit finite capacity |
 | no Cartesian center | origin/centroid controls fail as primitives; relational readout survives |
 | Axis3/flux factorization | raw fiber/base XOR fails; chart-role factoring can repair parity |
 | chiral entanglement carrier | sheet-entangled carrier is finite and admissible |
 
-**Derived-constraint dependency verdicts (from the z3 entailment gate):**
+**Derived-constraint dependency verdicts (from the z3 consistency fence):**
 
 | Derived constraint | F01 alone forces it | Requires at least one root | Verdict |
 |---|---|---|---|
@@ -481,7 +481,7 @@ Positive gates:
 
 | Gate | Result |
 |---|---|
-| finite_capacity_bekenstein_gate | passed |
+| finite_capacity_bekenstein_gate | ok capacity `sat`; too-small capacity `unsat`; roots do not force capacity `sat`; capacity-with-F01 witness `sat`; capacity requires F01 `unsat`; spinor-network-with-roots witness `sat`; spinor network requires capacity `unsat` |
 | spinor_twistor_readout_global_su2_invariant | passed |
 | spinor_network_relabel_invariant | passed |
 | noncommuting_spinor_transport | passed |
@@ -554,22 +554,23 @@ all_pass = true
 nearby_variants = 11 / 11 passed
 ```
 
-Load-bearing result summary:
+Gate-by-gate result summary (with honest classification):
 
-| Gate | Earned result |
-|---|---|
-| Clifford rotor spinor transport | rotor/SU(2) agreement gap `2.2887833992611187e-16`; rotor order gap `0.16735344299025126` |
-| Twistor incidence hardening | entropy gap after local twistor rephase `3.510833468576701e-16`; incidence phase gap `3.2154466655046847` |
-| Bounded tensor contraction tool | dense vs bounded entropy gap `2.220446049250313e-16` |
-| Raw tensor-index substrate rejection | raw weighted tensor-index readout gap under relabel `5.246561341152059` |
-| Boundary capacity graph | total edge cut entropy `1.4837807659258322`; too-small capacity rejected |
+| Gate | Earned result | Honest classification |
+|---|---|---|
+| Clifford rotor spinor transport | rotor/SU(2) agreement gap `2.2887833992611187e-16`; rotor order gap `0.16735344299025126` | **correctness verification** — Cl(3) and SU(2) are isomorphic at the group level, so the agreement to machine epsilon is expected. Clifford is a faithful representation of the same transport, not an additional load-bearing structure |
+| Twistor incidence hardening | entropy gap after local twistor rephase `3.510833468576701e-16`; incidence phase gap `3.2154466655046847` | **construction check** — the phase-sensitive readout moves while entropy is phase-flat by construction; Scout 2's basis-sensitive F2 is the stronger load-bearing witness |
+| Bounded tensor contraction tool | dense vs bounded entropy gap `2.220446049250313e-16` | **tool-faithful** — bounded contraction matches dense within precision; this validates the tool, not a substrate claim |
+| Raw tensor-index substrate rejection | raw weighted tensor-index readout gap under relabel `5.246561341152059` | **load-bearing rejection** — substrate-as-ontology fails relabel |
+| Boundary capacity graph | total edge cut entropy `1.4837807659258322`; ok capacity `sat`; too-small capacity `unsat` | **numeric capacity check plus dependency fence** — capacity comparison bites; z3 dependency rows document assumptions rather than deriving them |
+| Semantic dependency fence | roots do not force capacity `sat`; capacity-with-roots witness `sat`; capacity requires F01 `unsat`; twistor-with-roots witness `sat`; twistor requires F01+N01 `unsat`; Clifford-order-with-N01 witness `sat`; Clifford order requires N01 `unsat`; holography-with-capacity witness `sat`; holography requires capacity `unsat` | **supportive consistency content** — these are stated-dependency checks with satisfiable antecedent witnesses, not root derivations |
 
 Negative controls:
 
 | Control | Measured result |
 |---|---|
 | commuting rotor pair | same-axis rotor order gap `5.551115123125783e-17` while true noncommuting gap `0.16735344299025126` |
-| wrong rotor order | gap against true noncommuting witness `0.1673534429902512` |
+| nonunit rotor | norm gap `0.14676253603696043` |
 | entropy-only twistor collision | entropy gap `3.510833468576701e-16`; incidence phase gap `3.2154466655046847` |
 | random phase vs twistor incidence | twistor/random score gap `0.25150389609880325` |
 | too-small boundary capacity | `unsat` |
@@ -577,13 +578,14 @@ Negative controls:
 Interpretation:
 
 ```text
-Clifford is load-bearing for rotor transport.
-Twistor-like incidence is load-bearing beyond entropy-only equality.
+Clifford is faithful for rotor/SU(2) transport in this scout.
+It is not yet proven load-bearing beyond the SU(2) matrix form.
+Twistor-like incidence is phase-sensitive beyond entropy-only equality, but this specific gate is construction-bound.
 Bounded tensor contraction is admissible as a tool.
 Raw tensor index substrate remains rejected.
 ```
 
-### Scout 4: Flux Basin Binding
+### Scout 4: Flux Basin Binding Toy Probe
 
 Script:
 
@@ -598,7 +600,7 @@ all_pass = true
 nearby_variants = 10 / 10 passed
 ```
 
-Load-bearing result summary:
+Result summary with scope:
 
 | Gate | Earned result |
 |---|---|
@@ -608,14 +610,16 @@ Load-bearing result summary:
 | Per-stage flux flip control | centroid norm `0.04384336042353561`, collapsing toward weak/neutral basin |
 | Flux-erased control | centroid norm `0.07724181022798664`, no strong basin |
 | Raw fiber/base XOR rejection | mismatch count `4` |
-| Engine-binding vs per-stage flux axis | per-stage free-axis contradiction status `unsat` |
-| Duplicate basin split control | duplicate plus distance `0.0` |
+| Engine-binding vs per-stage flux axis | roots do not force flux `sat`; flux-with-roots witness `sat`; flux requires F01+N01 `unsat`; engine-binding-with-roots witness `sat`; per-stage axis under engine binding `unsat`; per-stage axis without engine binding `sat` |
+| Finite flux capacity | ok capacity `sat`; too-small capacity `unsat`; capacity-with-F01 witness `sat`; capacity requires F01 `unsat`; F01 does not force capacity `sat` |
+| Same-mode seed control | same-mode seed distance `7.435284766989797e-05` versus plus/minus basin distance `1.608458914112709` |
 
 Interpretation:
 
 ```text
-Flux currently looks more like a global manifold/engine-binding candidate
-than a free per-stage operator-internal axis.
+Flux currently looks more like a global-binding hypothesis inside this toy
+basin than a free per-stage bit. This is not decisive against every Axis 3
+placement; it is a scoped discriminator for the tested dynamics.
 ```
 
 This does not canonize flux as a root, Axis 3, or final engine-type law. It only says the next live hypothesis should treat flux as global binding unless a stronger per-stage factoring law survives later controls.
@@ -632,7 +636,7 @@ Fresh result:
 
 ```text
 all_pass = true
-nearby_variants = 9 / 9 passed
+nearby_variants = 10 / 10 passed
 verdict = naive raw incidence-phase bridge rejected
 ```
 
@@ -655,13 +659,25 @@ Earned result:
 | candidate minus erased | `0.6363417909912967` |
 | candidate minus zero-phase | `-0.2055120865021629` |
 | candidate minus random-phase | `0.2945792762910695` |
-| canon nonpromotion | `unsat` |
+| semantic dependency fence | roots do not force Axis0 `sat`; cut-capacity-with-F01 witness `sat`; cut capacity requires F01 `unsat`; ER=EPR-with-roots/capacity witness `sat`; ER=EPR requires F01+N01 `unsat`; holography-with-ER=EPR/capacity witness `sat`; holography requires ER=EPR `unsat`; raw-bridge Axis0 canon rejected `unsat` because the empirical raw bridge gate was killed |
+
+Bridge-mode sweep:
+
+| Mode | `I_c(A -> B)` | Status |
+|---|---:|---|
+| raw incidence phase | `-0.05680538956864856` | rejected |
+| absolute incidence phase | `0.142201` | near tie, still below zero-phase control |
+| oriented phase class | `-0.024039` | rejected |
+| incidence magnitude lambda | `0.076142` | below zero-phase control |
+| inverse magnitude lambda | `0.137683` | near tie, still below zero-phase control |
+| history-coupled edge weight | `-0.023933` | rejected |
 
 Interpretation:
 
 ```text
 The finite cut-state construction is healthy and rejects product/history-erased
-controls, but raw phase(I_ij) is not the right Xi bridge. Zero-phase beats it.
+controls, but no tested phase/magnitude/history bridge mode beat the zero-phase
+control. Raw phase(I_ij) is killed; the broader bridge family remains open.
 ```
 
 This is a useful kill. It narrows the bridge search:
@@ -750,7 +766,7 @@ Rejected substrate:
 Allowed tools:
   PyTorch complex tensors
   bounded tensor contraction
-  z3 finite gates
+  z3 dependency-consistency gates (supportive, not derivational)
   future Clifford/SymPy/geomstats/e3nn/TopoNetX/GUDHI/PyG as load-bearing rows when matched to claims
 ```
 
@@ -939,10 +955,71 @@ flux as Axis 3 vs flux as engine binding
     per-stage flux flip fails the coherence gate. Not canonized; further
     controls needed before either placement is admitted.
 
-Phi_0 final form
-  — raw phase(I_ij) bridge was killed (Scout 5). Coherent information,
-    conditional entropy, and mutual information remain candidates; none
-    are admitted yet.
+Phi_0 final form — TWO Xi families now rejected
+  ============================================================================
+
+  Family 1: edge-mixture Xi (six candidates killed)
+  — Scout 5's bridge_gate evaluates six edge-mixture bridge candidates against
+    zero-phase baseline (I_c = +0.149) and random/product/history-erased
+    controls. Admission threshold: I_c > 0 AND I_c > zero+0.02 AND
+    I_c > random+0.02 AND I_c > product+0.5 AND I_c > erased+0.5.
+  — candidate_modes_admitted = [] (count = 0)
+  — measured per-mode I_c:
+      raw incidence phase           : -0.057
+      absolute_incidence_phase      : +0.142 (loses to zero by ~0.007)
+      oriented_phase_class          : -0.024
+      incidence_magnitude_lambda    : +0.076
+      inverse_magnitude_lambda      : +0.138 (loses to zero by ~0.011)
+      history_coupled_edge_weight   : -0.024
+  — verdict: edge-mixture-then-coherent-information has zero-phase as its
+    best tested member. Every attempt to inject incidence-derived structure
+    leaves I_c at or below the structureless zero-phase construction.
+
+  Family 2: joint-graph partition Xi (new construction, also killed)
+  — Scout 5's joint_graph_partition_bridge_gate (added after family 1 kill)
+    builds a single 4-qubit pure state by applying per-edge XY entanglers
+    `exp(-i (λ·X_i X_j + φ·Y_i Y_j))` to a product of node spinors, then
+    partitions A={0,1}, B={2,3}. This is structurally distinct from the
+    edge-mixture family.
+  — Modes: incidence_derived, random_seeded, product_baseline, uniform.
+  — Admission requires: nontrivial pure I_c, beats product by >0.1,
+    survives 30% dephasing, beats random_seeded under noise by >0.02.
+  — incidence_admitted = False.
+  — measured I_c values:
+      pure incidence_derived       : +0.222
+      pure random_seeded           : +0.468  (RANDOM BEATS INCIDENCE BY 0.246)
+      pure product_baseline        : +0.000  (no entangler applied)
+      pure uniform_lambda          : +0.172
+      dephased incidence_derived   : -0.714
+      dephased random_seeded       : -0.598  (random still beats incidence)
+      dephased product_baseline    : -0.636
+      dephased uniform_lambda      : -0.719
+  — verdict: across both pure and dephased readouts, RANDOM parameters
+    produce more bipartite entanglement than incidence-derived parameters
+    under the same entangler structure.
+
+  Cross-family pattern (the real audit signal)
+  — Across two structurally distinct Xi constructions (edge-mixture and
+    joint-graph), the result is the same: geometry-derived (twistor
+    incidence) parameters consistently fail to beat baseline noise.
+    Random or zero-phase controls match or exceed every incidence-derived
+    candidate tested.
+  — possible structural reasons:
+      (a) the twistor incidence `<π_i|ω_j> − <π_j|ω_i>` may carry less
+          discriminating information than uncorrelated random parameters
+          because the twistor nodes are themselves derived from correlated
+          spinors, so incidence values cluster in a narrow range;
+      (b) the phase φ_ij from incidence may correlate across edges in ways
+          that create destructive interference under both summation and
+          serial application;
+      (c) coherent information of a bipartite cut from a graph-derived
+          mixture or partition is not the right Phi_0 functional —
+          something else (relative-entropy asymmetry, squashed entanglement,
+          log-negativity, or a non-cut readout) may be needed.
+  — implication: do NOT try a third edge-pattern variation. The next move
+    needs to be at a different layer: change either (i) the Xi -> ρ_AB
+    construction altogether (e.g., spectral/operator-based, not state-based),
+    or (ii) the Phi_0 functional (away from coherent information), or both.
 
 holographic spacetime / ER=EPR
   — still claim-ceiling-fenced. Not tested by any scout in this set.

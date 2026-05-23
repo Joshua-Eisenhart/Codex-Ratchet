@@ -55,7 +55,7 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite-capacity and nonpromotion proof fence",
+        "reason": "supportive finite-capacity and nonpromotion dependency-consistency fence",
     },
     "python_json": {"tried": True, "used": True, "reason": "supportive result serialization"},
     "pathlib": {"tried": True, "used": True, "reason": "supportive local result path handling"},
@@ -63,7 +63,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "python_json": "supportive",
     "pathlib": "supportive",
     "time": "supportive",
@@ -306,7 +306,7 @@ def bridge_gate() -> dict[str, Any]:
     }
 
 
-def capacity_and_nonpromotion_gate() -> dict[str, Any]:
+def capacity_and_nonpromotion_gate(raw_phase_bridge_rejected: bool) -> dict[str, Any]:
     log_dim_ab = math.log(4.0)
     cap_ok = log_dim_ab
     cap_small = math.log(3.0)
@@ -330,8 +330,9 @@ def capacity_and_nonpromotion_gate() -> dict[str, Any]:
         z3.Implies(er_epr_canon, z3.And(f01, n01, cut_capacity)),
         z3.Implies(holography_canon, z3.And(cut_capacity, er_epr_canon)),
         z3.Implies(axis0_canon, raw_phase_bridge_survives),
-        z3.Not(raw_phase_bridge_survives),
     ]
+    if raw_phase_bridge_rejected:
+        dependency_axioms.append(z3.Not(raw_phase_bridge_survives))
 
     def status(*assumptions: z3.BoolRef) -> z3.CheckSatResult:
         solver = z3.Solver()
@@ -340,8 +341,11 @@ def capacity_and_nonpromotion_gate() -> dict[str, Any]:
         return solver.check()
 
     roots_do_not_force_axis0_status = status(f01, n01, z3.Not(axis0_canon))
+    cut_capacity_with_f01_status = status(f01, cut_capacity)
     cut_capacity_requires_f01_status = status(cut_capacity, z3.Not(f01))
+    er_epr_with_roots_and_capacity_status = status(f01, n01, cut_capacity, er_epr_canon)
     er_epr_requires_roots_status = status(er_epr_canon, z3.Or(z3.Not(f01), z3.Not(n01)))
+    holography_with_er_epr_capacity_status = status(f01, n01, cut_capacity, er_epr_canon, holography_canon)
     holography_requires_er_epr_status = status(holography_canon, z3.Not(er_epr_canon))
     axis0_canon_rejected_by_raw_bridge_status = status(axis0_canon)
 
@@ -352,20 +356,220 @@ def capacity_and_nonpromotion_gate() -> dict[str, Any]:
         "ok_capacity_status": str(ok.check()),
         "too_small_capacity_status": str(small.check()),
         "roots_do_not_force_axis0_status": str(roots_do_not_force_axis0_status),
+        "cut_capacity_with_f01_status": str(cut_capacity_with_f01_status),
         "cut_capacity_requires_f01_status": str(cut_capacity_requires_f01_status),
+        "er_epr_with_roots_and_capacity_status": str(er_epr_with_roots_and_capacity_status),
         "er_epr_requires_roots_status": str(er_epr_requires_roots_status),
+        "holography_with_er_epr_capacity_status": str(holography_with_er_epr_capacity_status),
         "holography_requires_er_epr_status": str(holography_requires_er_epr_status),
+        "raw_phase_bridge_rejected_empirical": bool(raw_phase_bridge_rejected),
         "axis0_canon_rejected_by_raw_bridge_status": str(axis0_canon_rejected_by_raw_bridge_status),
         "canon_nonpromotion_status": str(axis0_canon_rejected_by_raw_bridge_status),
         "pass": bool(
             ok.check() == z3.sat
             and small.check() == z3.unsat
             and roots_do_not_force_axis0_status == z3.sat
+            and cut_capacity_with_f01_status == z3.sat
             and cut_capacity_requires_f01_status == z3.unsat
+            and er_epr_with_roots_and_capacity_status == z3.sat
             and er_epr_requires_roots_status == z3.unsat
+            and holography_with_er_epr_capacity_status == z3.sat
             and holography_requires_er_epr_status == z3.unsat
+            and raw_phase_bridge_rejected
             and axis0_canon_rejected_by_raw_bridge_status == z3.unsat
         ),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Joint-graph partition Xi — structurally different from edge-mixture family.
+# Build one pure 4-qubit (16-d) state by applying graph-edge entanglers to a
+# product of node spinors, then partition into A = {0, 1}, B = {2, 3} and
+# compute cut readouts. The previous family summed per-edge density
+# contributions; this family threads a single global wavefunction through the
+# graph topology. Different construction → potentially different verdicts.
+# ---------------------------------------------------------------------------
+
+
+def two_qubit_xy_entangler(lam: float, phi: float) -> torch.Tensor:
+    """Hermitian-generator entangler exp(-i (lam·XX + phi·YY)). 4x4 unitary."""
+    sx = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=CDTYPE)
+    sy = torch.tensor([[0.0, -1.0j], [1.0j, 0.0]], dtype=CDTYPE)
+    xx = torch.kron(sx, sx)
+    yy = torch.kron(sy, sy)
+    gen = lam * xx + phi * yy
+    return torch.linalg.matrix_exp(-1.0j * gen)
+
+
+def apply_two_qubit_to_4qubit(state: torch.Tensor, gate: torch.Tensor, qa: int, qb: int) -> torch.Tensor:
+    state_4d = state.reshape(2, 2, 2, 2)
+    gate_4d = gate.reshape(2, 2, 2, 2)  # (a_out, b_out, a_in, b_in)
+    other = [k for k in range(4) if k not in (qa, qb)]
+    perm = [qa, qb, *other]
+    state_perm = state_4d.permute(*perm)
+    new_perm = torch.einsum("abij,ijcd->abcd", gate_4d, state_perm)
+    inv = [0] * 4
+    for new_idx, old_idx in enumerate(perm):
+        inv[old_idx] = new_idx
+    return new_perm.permute(*inv).reshape(16)
+
+
+def joint_graph_state(graph: dict[str, Any], mode: str, rng_seed: int = 20260522) -> torch.Tensor:
+    state = graph["spinors"][0]
+    for k in range(1, 4):
+        state = torch.kron(state, graph["spinors"][k])
+    state = normalize(state.to(CDTYPE))
+
+    if mode == "incidence_derived":
+        edge_params = []
+        for i, j in graph["edges"]:
+            inc = incidence(graph["twistors"][i], graph["twistors"][j])
+            lam = 0.20 + 0.40 * float(torch.abs(inc).item())
+            phi = float(torch.angle(inc).item())
+            edge_params.append((lam, phi))
+    elif mode == "random_seeded":
+        gen = torch.Generator()
+        gen.manual_seed(rng_seed)
+        edge_params = []
+        for _ in graph["edges"]:
+            lam = float((0.20 + 0.40 * torch.rand((), generator=gen)).item())
+            phi = float(((torch.rand((), generator=gen) - 0.5) * 2 * math.pi).item())
+            edge_params.append((lam, phi))
+    elif mode == "product_baseline":
+        edge_params = [(0.0, 0.0) for _ in graph["edges"]]
+    elif mode == "uniform_lambda_zero_phase":
+        edge_params = [(0.30, 0.0) for _ in graph["edges"]]
+    else:
+        raise ValueError(mode)
+
+    for (i, j), (lam, phi) in zip(graph["edges"], edge_params):
+        if lam == 0.0 and phi == 0.0:
+            continue
+        gate = two_qubit_xy_entangler(lam, phi)
+        state = apply_two_qubit_to_4qubit(state, gate, i, j)
+    return state / torch.linalg.vector_norm(state)
+
+
+def partial_trace_qubits_23(rho_16: torch.Tensor) -> torch.Tensor:
+    """Trace out qubits 2, 3 from a 16x16 density matrix. Returns 4x4 rho_A on qubits {0, 1}."""
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    rho_a = torch.einsum("abcdefcd->abef", rho_8d)
+    return rho_a.reshape(4, 4)
+
+
+def partial_trace_qubits_01(rho_16: torch.Tensor) -> torch.Tensor:
+    """Trace out qubits 0, 1. Returns 4x4 rho_B on qubits {2, 3}."""
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    rho_b = torch.einsum("abcdabgh->cdgh", rho_8d)
+    return rho_b.reshape(4, 4)
+
+
+def joint_graph_readouts(rho_ab: torch.Tensor) -> dict[str, float]:
+    rho_a = partial_trace_qubits_23(rho_ab)
+    rho_b = partial_trace_qubits_01(rho_ab)
+    s_ab = entropy(rho_ab)
+    s_a = entropy(rho_a)
+    s_b = entropy(rho_b)
+    return {
+        "S_AB": s_ab,
+        "S_A": s_a,
+        "S_B": s_b,
+        "I_c_A_to_B": s_b - s_ab,
+        "S_A_given_B": s_ab - s_b,
+        "I_A_B": s_a + s_b - s_ab,
+    }
+
+
+def dephase_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
+    """Independent z-dephasing on each of 4 qubits, strength gamma per qubit.
+    Sends off-diagonals in computational basis to (1 - gamma)^k times original,
+    where k = Hamming distance of basis indices (number of qubits flipped)."""
+    n = 16
+    out = rho.clone()
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                continue
+            hd = bin(i ^ j).count("1")
+            out[i, j] = rho[i, j] * ((1.0 - gamma) ** hd)
+    return out
+
+
+def joint_graph_partition_bridge_gate() -> dict[str, Any]:
+    """Build the joint-graph Xi candidate and compare to controls.
+
+    For each mode, the pure-state I_c is the bipartite entanglement entropy
+    S(rho_A), since for pure rho_AB we have S(rho_AB) = 0 and I_c(A → B) =
+    S(rho_B) - 0 = S(rho_B) = S(rho_A) (Schmidt). To make I_c discriminate
+    geometry from noise, we ALSO compute I_c after independent z-dephasing
+    noise (gamma = 0.30 per qubit), which can either preserve or destroy the
+    coherent-information signal depending on basis alignment of the entangler.
+
+    Admission requires the incidence-derived mode to:
+      1. Produce a nontrivial pure I_c (entanglement is being generated),
+      2. Pure I_c > product baseline by > 0.1 (entanglers actually changed state),
+      3. Dephased I_c > 0 (signal survives noise),
+      4. Dephased I_c > random_seeded dephased I_c by > 0.02 (geometry beats random).
+    """
+    graph = build_graph()
+    modes = ["incidence_derived", "random_seeded", "product_baseline", "uniform_lambda_zero_phase"]
+    pure: dict[str, Any] = {}
+    dephased: dict[str, Any] = {}
+    for mode in modes:
+        state = joint_graph_state(graph, mode)
+        rho = density(state)
+        rho_health = {
+            "trace": float(torch.real(torch.trace(rho)).item()),
+            "hermiticity_gap": float(torch.linalg.matrix_norm(rho - torch.conj(rho).T).item()),
+        }
+        rho_dephased = dephase_16dim(rho, gamma=0.30)
+        # renormalize dephased rho to ensure trace = 1 within precision
+        rho_dephased = rho_dephased / torch.real(torch.trace(rho_dephased))
+        pure[mode] = {"readout": joint_graph_readouts(rho), "health": rho_health}
+        dephased[mode] = {"readout": joint_graph_readouts(rho_dephased)}
+
+    inc_pure = pure["incidence_derived"]["readout"]["I_c_A_to_B"]
+    prod_pure = pure["product_baseline"]["readout"]["I_c_A_to_B"]
+    inc_deph = dephased["incidence_derived"]["readout"]["I_c_A_to_B"]
+    rand_deph = dephased["random_seeded"]["readout"]["I_c_A_to_B"]
+    prod_deph = dephased["product_baseline"]["readout"]["I_c_A_to_B"]
+    uniform_pure = pure["uniform_lambda_zero_phase"]["readout"]["I_c_A_to_B"]
+    uniform_deph = dephased["uniform_lambda_zero_phase"]["readout"]["I_c_A_to_B"]
+
+    nontrivial_entanglement = inc_pure > 0.05
+    beats_product_pure = inc_pure - prod_pure > 0.1
+    survives_noise = inc_deph > 0.0
+    beats_random_under_noise = inc_deph - rand_deph > 0.02
+
+    admitted = bool(
+        nontrivial_entanglement
+        and beats_product_pure
+        and survives_noise
+        and beats_random_under_noise
+    )
+
+    return {
+        "construction": (
+            "single 4-qubit pure state via per-edge XY entanglers on product "
+            "of node spinors; bipartition A={0,1} B={2,3}"
+        ),
+        "pure_readouts": pure,
+        "dephased_gamma_0p30_readouts": dephased,
+        "delta_summary": {
+            "incidence_minus_product_pure_Ic": inc_pure - prod_pure,
+            "incidence_minus_random_dephased_Ic": inc_deph - rand_deph,
+            "incidence_minus_product_dephased_Ic": inc_deph - prod_deph,
+            "incidence_minus_uniform_pure_Ic": inc_pure - uniform_pure,
+            "incidence_minus_uniform_dephased_Ic": inc_deph - uniform_deph,
+        },
+        "incidence_admission_conditions": {
+            "nontrivial_pure_entanglement": nontrivial_entanglement,
+            "beats_product_pure_by_0p1": beats_product_pure,
+            "survives_dephasing": survives_noise,
+            "beats_random_under_noise_by_0p02": beats_random_under_noise,
+        },
+        "incidence_admitted": admitted,
+        "pass": True,  # this is a scout — passing means "the test was completed honestly", not that incidence is admitted
     }
 
 
@@ -423,8 +627,11 @@ def main() -> int:
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     positive = {
         "xi_bridge_candidate_phi0_coherent_information": bridge_gate(),
-        "finite_capacity_and_nonpromotion": capacity_and_nonpromotion_gate(),
+        "joint_graph_partition_xi": joint_graph_partition_bridge_gate(),
     }
+    positive["finite_capacity_and_nonpromotion"] = capacity_and_nonpromotion_gate(
+        bool(positive["xi_bridge_candidate_phi0_coherent_information"]["naive_raw_incidence_phase_bridge_rejected"])
+    )
     negative_controls = negative_control_section(
         positive["xi_bridge_candidate_phi0_coherent_information"],
         positive["finite_capacity_and_nonpromotion"],

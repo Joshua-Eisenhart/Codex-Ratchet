@@ -59,7 +59,7 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing proof fence that derived constraints cannot be promoted to extra roots",
+        "reason": "supportive dependency-consistency fence for stated derived-constraint assumptions",
     },
     "python_json": {"tried": True, "used": True, "reason": "supportive receipt serialization"},
     "pathlib": {"tried": True, "used": True, "reason": "supportive local result path handling"},
@@ -67,7 +67,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
     "python_json": "supportive",
     "pathlib": "supportive",
     "time": "supportive",
@@ -93,10 +93,11 @@ def as_jsonable(value: Any) -> Any:
 
 
 def two_root_z3_gate() -> dict[str, Any]:
-    """Real semantic entailment between roots and candidate extended constraints.
+    """Dependency-consistency fence for roots and candidate extended constraints.
 
     Instead of counting (which is a tautology), this builds a finite admissibility
-    model with real predicates and asks z3 whether each derived candidate is:
+    model with explicit dependency assumptions and asks z3 whether each derived
+    candidate is:
       - implied by F01 alone (would be redundant as root),
       - depends on F01 but adds content (true extended constraint),
       - independent of both roots (would have to be a new root).
@@ -108,6 +109,9 @@ def two_root_z3_gate() -> dict[str, Any]:
       relational_only    : admissibility invariant under recentering     (EC02 no_cartesian_center)
       order_observable   : noncommuting probes preserve sequence info    (EC03 no_global_total_order)
       finite_orientation : sheet/loop orientation lives in finite set    (EC05 flux/chiral candidate)
+
+    These SAT/UNSAT rows document consistency of the stated dependencies; they
+    do not independently derive those dependencies from numerical witnesses.
     """
     f01 = z3.Bool("finite_dim")
     n01 = z3.Bool("noncommuting")

@@ -53,7 +53,11 @@ AXIS0_RESULT_CANDIDATES: dict[str, tuple[str, ...]] = {
         "axis0_iscalar_sweep_results.json",
     ),
     "axis0_kernel_phi0_results.json": (
-        "sim_axis0_kernel_phi0_results.json",
+        "phi0_signed_kernel_bounded_point_family_results.json",
+        "axis0_kernel_phi0_results.json",
+    ),
+    "phi0_signed_kernel_bounded_point_family_results.json": (
+        "phi0_signed_kernel_bounded_point_family_results.json",
         "axis0_kernel_phi0_results.json",
     ),
     "axis0_orbit_phase_alignment_results.json": (

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-PURE LEGO: Axis-0 Kernel Phi0
-=============================
+PURE LEGO: Phi0 Signed Kernel Bounded Point Family
+==================================================
 Direct late-layer signed kernel row on one bounded point-bridge family.
 """
 
@@ -34,9 +34,9 @@ from z3 import Real, RealVal, Solver, Sum, sat
 
 classification = "classical_baseline"  # auto-backfill
 divergence_log = (
-    "Canonical late-layer Axis 0 kernel Phi0 remains isolated to one bounded point-bridge family. "
-    "The legacy signed-kernel claims are preserved, and the same bounded family is now bound to the "
-    "deep Axis 0 shell/topology/symbolic/solver/manifold contract instead of living as a shallow leaf."
+    "The late-layer signed Phi0 kernel remains isolated to one bounded point-bridge family. "
+    "The legacy signed-kernel checks are preserved, and the same bounded family is now bound to the "
+    "deep shell/topology/symbolic/solver/manifold contract instead of living as a shallow leaf."
 )
 
 EPS = 1e-10
@@ -45,11 +45,11 @@ CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
-    "axis0_kernel_phi0",
+    "phi0_signed_kernel_bounded_point_family",
 ]
 
 PRIMARY_LEGO_IDS = [
-    "axis0_kernel_phi0",
+    "phi0_signed_kernel_bounded_point_family",
 ]
 
 TOOL_MANIFEST = {
@@ -563,7 +563,7 @@ def main() -> None:
     overall_pass = bool(legacy_all_pass and deep_contract["pass"])
 
     results = {
-        "name": "axis0_kernel_phi0",
+        "name": "phi0_signed_kernel_bounded_point_family",
         "classification": CLASSIFICATION if overall_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
@@ -594,19 +594,17 @@ def main() -> None:
 
     results = apply_default_receipt_boundary(results, source_name=pathlib.Path(__file__).stem)
 
-    legacy_out_path = (
+    out_path = (
         pathlib.Path(__file__).resolve().parent
         / "a2_state"
         / "sim_results"
-        / "axis0_kernel_phi0_results.json"
+        / "phi0_signed_kernel_bounded_point_family_results.json"
     )
-    canonical_out_path = legacy_out_path.with_name(f"{pathlib.Path(__file__).stem}_results.json")
-    legacy_out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(results, indent=2, default=str)
-    for target in (canonical_out_path, legacy_out_path):
-        target.write_text(payload)
+    out_path.write_text(payload)
 
-    print(f"Results written to {canonical_out_path}")
+    print(f"Results written to {out_path}")
     print("\n=== LEGACY KERNEL ===")
     print(f"Legacy pass: {legacy_all_pass}")
     print(f"Phi0 symmetric case: {phi0_same:.6f}")

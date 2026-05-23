@@ -527,8 +527,8 @@ TOOL_BUNDLES = {
         ],
         "sim_name_contains": ["axis0_attractor_basin_boundary"],
     },
-    "axis0_kernel_phi0_deep_stack": {
-        "goal": "Axis 0 kernel Phi0 foundation lane grounded in the deep shell contract",
+    "phi0_signed_kernel_bounded_point_family_deep_stack": {
+        "goal": "Phi0 signed-kernel bounded point-family lane grounded in the deep shell contract",
         "tools": [
             "numpy",
             "scipy",
@@ -543,7 +543,7 @@ TOOL_BUNDLES = {
             "z3",
             "geomstats",
         ],
-        "sim_name_contains": ["axis0_kernel_phi0"],
+        "sim_name_contains": ["phi0_signed_kernel_bounded_point_family"],
     },
     "axis0_cut_kernel_sweep_deep_stack": {
         "goal": "Axis 0 cut-kernel sweep grounded in the deep shell contract",

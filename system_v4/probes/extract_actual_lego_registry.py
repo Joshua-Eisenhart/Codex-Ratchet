@@ -74,7 +74,7 @@ DIRECT_PROBE_PREFERENCES = {
     "shell_indexed_tensor_network": "sim_shell_indexed_tensor_network.py",
     "discrete_axis0_field": "sim_discrete_axis0_field.py",
     "bridge_family_xi_point": "sim_bridge_family_xi_point.py",
-    "axis0_kernel_phi0": "sim_axis0_kernel_phi0.py",
+    "phi0_signed_kernel_bounded_point_family": "sim_phi0_signed_kernel_bounded_point_family.py",
     "unsigned_entropy_family": "sim_unsigned_entropy_family.py",
     "shell_weighted_entropy_field": "sim_shell_weighted_entropy_field.py",
     "shell_window_support": "sim_shell_window_support.py",

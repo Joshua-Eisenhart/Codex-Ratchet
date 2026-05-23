@@ -292,8 +292,8 @@ NORMALIZATION_TARGETS = {
         "confidence": "high",
         "note": "Direct local point-bridge row on one bounded packet family, without selector or search claims.",
     },
-    "axis0_kernel_phi0": {
-        "probe": "sim_axis0_kernel_phi0.py",
+    "phi0_signed_kernel_bounded_point_family": {
+        "probe": "sim_phi0_signed_kernel_bounded_point_family.py",
         "confidence": "high",
         "note": "Direct late-layer signed kernel row on one bounded point-bridge family with MI kept as an unsigned companion.",
     },

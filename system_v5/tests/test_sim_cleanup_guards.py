@@ -5250,7 +5250,7 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
         + "\n",
         encoding="utf-8",
     )
-    (probes / "sim_axis0_kernel_phi0.py").write_text(
+    (probes / "sim_phi0_signed_kernel_bounded_point_family.py").write_text(
         "\n".join(
             [
                 "import gudhi",
@@ -5741,11 +5741,11 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
         for witness in axis0_attractor_boundary_bundle["best_existing_witnesses"]
     )
 
-    axis0_kernel_phi0_bundle = report["bundles"]["axis0_kernel_phi0_deep_stack"]
+    axis0_kernel_phi0_bundle = report["bundles"]["phi0_signed_kernel_bounded_point_family_deep_stack"]
     assert axis0_kernel_phi0_bundle["capability_gap_tools"] == []
     assert axis0_kernel_phi0_bundle["full_bundle_witness_count"] >= 1
     assert any(
-        witness["sim"] == "sim_axis0_kernel_phi0.py"
+        witness["sim"] == "sim_phi0_signed_kernel_bounded_point_family.py"
         for witness in axis0_kernel_phi0_bundle["best_existing_witnesses"]
     )
 
@@ -6605,7 +6605,7 @@ def test_queue_claim_demotes_axis_stage_within_core_ladder(tmp_path) -> None:
     module.QUEUE_ROOT = queue_root
     axis = lane / "a.json"
     axis.write_text(
-        '{"sim_path":"sim_axis0_kernel_phi0.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
+        '{"sim_path":"sim_axis0_attractor_basin_boundary.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
         encoding="utf-8",
     )
     early = lane / "b.json"

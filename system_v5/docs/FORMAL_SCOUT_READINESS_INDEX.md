@@ -1,20 +1,20 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-23T09:48:18.462709+00:00`
+Generated: `2026-05-23T10:02:34.766495+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
 ## Summary
 
-- Result receipts indexed: `397`
-- Source harnesses indexed: `397`
+- Result receipts indexed: `398`
+- Source harnesses indexed: `398`
 - Source harnesses without result receipt: `0`
-- Validator pass: `382`
+- Validator pass: `383`
 - Formal-scout validator fail: `14`
 - Preserved validator-red rows: `14`
 - Actionable validator-red rows: `0`
 - Non-formal boundary rows: `1`
-- README indexed receipts: `397`
+- README indexed receipts: `398`
 - README missing receipts: `0`
 - README explicit-status mismatches: `0`
 - Fresh-rerun mapping defects: `0`
@@ -24,12 +24,12 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - Provider JSON sidecars skipped: `6`
 - Provider receipt validator pass: `782`
 - Provider receipt validator fail: `0`
-- Provider strict-live validator pass: `627`
-- Provider strict-live validator fail: `155`
+- Provider strict-live validator pass: `633`
+- Provider strict-live validator fail: `149`
 
 ## Readiness Status Counts
 
-- `schema_ready`: 382
+- `schema_ready`: 383
 - `validator_failed`: 14
 - `non_formal_boundary`: 1
 
@@ -65,15 +65,15 @@ Preserved red rows are intentionally retained as negative, nonclearance, or over
 
 ## Promotion Blocker Counts
 
-- `formal_scout_noncanonical`: 397
-- `fresh_rerun_not_performed`: 397
+- `formal_scout_noncanonical`: 398
+- `fresh_rerun_not_performed`: 398
 - `validator_failed`: 14
 - `classification_not_formal_scout`: 1
 - `non_formal_boundary`: 1
 
 ## Pass Source Counts
 
-- `all_pass`: 284
+- `all_pass`: 285
 - `summary.all_pass`: 78
 - `derived_formal_scout_sections`: 35
 
@@ -82,13 +82,13 @@ Preserved red rows are intentionally retained as negative, nonclearance, or over
 ### TOOL_MANIFEST
 
 - `upper`: 224
-- `both`: 110
+- `both`: 111
 - `lower`: 63
 
 ### TOOL_INTEGRATION_DEPTH
 
 - `upper`: 225
-- `both`: 109
+- `both`: 110
 - `lower`: 63
 
 ## Provider Receipt Validation
@@ -99,13 +99,13 @@ Preserved red rows are intentionally retained as negative, nonclearance, or over
 ### Strict-Live Provider Provenance
 
 Normal provider validation is schema/proposal-boundary validation. Strict-live validation is the provenance check for completed live-provider receipts.
-- `pass`: 627
-- `fail`: 155
+- `pass`: 633
+- `fail`: 149
 
 ### Strict-Live Provider Error Counts
 
-- `strict-live completed provider receipt missing raw_response or live_api_proof`: 151
-- `strict-live normalized receipt source_raw_receipt path missing`: 8
+- `strict-live completed provider receipt missing raw_response or live_api_proof`: 147
+- `strict-live normalized receipt source_raw_receipt path missing`: 2
 
 ## Validator Failed Rows
 

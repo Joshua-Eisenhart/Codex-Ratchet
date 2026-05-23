@@ -88,6 +88,7 @@ ACTIVE_RECEIPTS = {
     "xi_runtime_tensor_bridge": "two_root_constraint_flux_recovery_runtime_tensor_bridge_classifier_probe_results.json",
     "xi_runtime_embed": "two_root_constraint_flux_recovery_coupled_runtime_embed_probe_results.json",
     "xi_process_signature": "two_root_constraint_process_signature_vector_phi0_candidate_probe_results.json",
+    "xi_process_bundle": "two_root_constraint_process_signature_bundle_admission_rule_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -141,6 +142,21 @@ def has_phrase(receipt: dict[str, Any], phrase: str) -> bool:
     return phrase in blob
 
 
+def observed_receipt_keys(
+    *,
+    positive: set[str] | None = None,
+    graveyard: set[str] | None = None,
+    boundary: set[str] | None = None,
+    active_receipts: set[str] | None = None,
+) -> dict[str, list[str]]:
+    return {
+        "positive_keys": sorted(positive or set()),
+        "graveyard_keys": sorted(graveyard or set()),
+        "boundary_keys": sorted(boundary or set()),
+        "active_receipt_keys": sorted(active_receipts or set()),
+    }
+
+
 def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
     source_runtime = receipts["source_runtime"]
     coupled_e16_runtime = receipts["coupled_e16_runtime"]
@@ -164,6 +180,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_runtime_tensor_bridge = receipts["xi_runtime_tensor_bridge"]
     xi_runtime_embed = receipts["xi_runtime_embed"]
     xi_process_signature = receipts["xi_process_signature"]
+    xi_process_bundle = receipts["xi_process_bundle"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -224,6 +241,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_process_signature_keys = section_keys(xi_process_signature, "positive")
     xi_process_signature_graveyard = section_keys(xi_process_signature, "graveyard_companions")
     xi_process_signature_boundary = section_keys(xi_process_signature, "boundary")
+    xi_process_bundle_keys = section_keys(xi_process_bundle, "positive")
+    xi_process_bundle_graveyard = section_keys(xi_process_bundle, "graveyard_companions")
+    xi_process_bundle_boundary = section_keys(xi_process_bundle, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -272,7 +292,10 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and {"coupled_e16_receipt_integrated", "admission_guard_blocks_final_promotion"} <= full_trace_keys
                 and "weak_phi0_not_promoted" not in full_trace_graveyard
             ),
-            "evidence": sorted(runtime_keys | coupled_runtime_keys | full_trace_keys | full_trace_boundary),
+            "receipt_keys_observed": observed_receipt_keys(
+                positive=runtime_keys | coupled_runtime_keys | full_trace_keys,
+                boundary=full_trace_boundary,
+            ),
             "limit": "source-aligned one-qubit runtime plus bounded E16 first rung; not PEPS/PEPS3D, not L32/L64, not final full coupled dynamics",
         },
         "flux_manifold_binding": {
@@ -285,7 +308,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "not_flux_axis3_identity" in section_keys(geometric_flux, "boundary")
                 and "flux_not_admitted_as_axis3" in section_keys(spinor_flux, "boundary")
             ),
-            "evidence": sorted(flux_keys),
+            "receipt_keys_observed": observed_receipt_keys(positive=flux_keys),
             "limit": "classified as manifold-derived candidate; not root, not Axis 3 identity, not final law",
         },
         "axis0_candidate_space": {
@@ -303,7 +326,11 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "path_entropy_and_holographic_controls_remain_blocked" in axis0_graveyard
                 and "claim_ceiling_blocks_axis0_maturity" in axis0_boundary
             ),
-            "evidence": sorted(axis0_keys | axis0_graveyard | axis0_boundary),
+            "receipt_keys_observed": observed_receipt_keys(
+                positive=axis0_keys,
+                graveyard=axis0_graveyard,
+                boundary=axis0_boundary,
+            ),
             "limit": "Axis0 candidate/control family is stronger than the initial bakeoff, but final Axis0 maturity and final Xi/Phi0 remain open",
         },
         "spinor_twistor_carrier": {
@@ -319,7 +346,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 <= spinor_keys
                 and "raw_tensor_index_substrate_rejected" in section_keys(spinor_root, "graveyard_companions")
             ),
-            "evidence": sorted(spinor_keys),
+            "receipt_keys_observed": observed_receipt_keys(positive=spinor_keys),
             "limit": "supports spinor/twistor-like finite carrier controls; not full twistor theory",
         },
         "tensor_scaling_status": {
@@ -334,11 +361,15 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "robust_phi0_and_scale_basin_still_missing" in tensor_scaling_graveyard
                 and "final_tensor_scaling_not_admitted" in tensor_scaling_boundary
             ),
-            "evidence": sorted(tensor_scaling_keys | tensor_scaling_graveyard | tensor_scaling_boundary),
+            "receipt_keys_observed": observed_receipt_keys(
+                positive=tensor_scaling_keys,
+                graveyard=tensor_scaling_graveyard,
+                boundary=tensor_scaling_boundary,
+            ),
             "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
-            "status": "process_signature_vector_candidate_open",
+            "status": "vector_bundle_candidate_open",
             "pass": bool(
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
@@ -352,6 +383,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_runtime_tensor_bridge.get("all_pass")
                 and xi_runtime_embed.get("all_pass")
                 and xi_process_signature.get("all_pass")
+                and xi_process_bundle.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -439,6 +471,14 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "single_feature_phi0_rejected" in xi_process_signature_graveyard
                 and "runtime_embedding_demotion_remains_binding" in xi_process_signature_graveyard
                 and "final_xi_phi0_not_admitted" in xi_process_signature_boundary
+                and "finite_bundle_section_built" in xi_process_bundle_keys
+                and "base_resolved_section_separates_controls" in xi_process_bundle_keys
+                and "leave_one_feature_ablation_stable" in xi_process_bundle_keys
+                and "base_collapsed_mean_rejected" in xi_process_bundle_graveyard
+                and "single_feature_scalarization_rejected" in xi_process_bundle_graveyard
+                and "scalar_mutual_information_rejected" in xi_process_bundle_graveyard
+                and "final_phi0_not_admitted" in xi_process_bundle_graveyard
+                and "vector_bundle_candidate_only" in xi_process_bundle_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -468,71 +508,80 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "weak_phi0_not_promoted" in full_trace_after_stress_graveyard
                 and "final_manifold_admission_allowed" in full_trace_after_stress_boundary
             ),
-            "evidence": sorted(
-                xi_graveyard
-                | xi_boundary
-                | xi_path_graveyard
-                | xi_path_boundary
-                | xi_capacity_graveyard
-                | xi_capacity_boundary
-                | xi_free_energy_keys
-                | xi_free_energy_graveyard
-                | xi_free_energy_boundary
-                | xi_qci_keys
-                | xi_qci_graveyard
-                | xi_qci_boundary
-                | xi_petz_keys
-                | xi_petz_graveyard
-                | xi_petz_boundary
-                | xi_oriented_recovery_keys
-                | xi_oriented_recovery_graveyard
-                | xi_oriented_recovery_boundary
-                | xi_flux_coherent_keys
-                | xi_flux_coherent_graveyard
-                | xi_flux_coherent_boundary
-                | xi_flux_stress_keys
-                | xi_flux_stress_graveyard
-                | xi_flux_stress_boundary
-                | xi_runtime_tensor_keys
-                | xi_runtime_tensor_graveyard
-                | xi_runtime_tensor_boundary
-                | xi_runtime_embed_keys
-                | xi_runtime_embed_graveyard
-                | xi_runtime_embed_boundary
-                | xi_process_signature_keys
-                | xi_process_signature_graveyard
-                | xi_process_signature_boundary
-                | xi_l7_keys
-                | xi_l7_graveyard
-                | xi_l7_boundary
-                | xi_causal_keys
-                | xi_causal_graveyard
-                | xi_causal_boundary
-                | xi_mps_keys
-                | xi_mps_graveyard
-                | xi_mps_boundary
-                | xi_slow_keys
-                | xi_slow_graveyard
-                | xi_slow_boundary
-                | coupled_runtime_keys
-                | section_keys(coupled_e16_runtime, "boundary")
-                | phi0_stress_keys
-                | phi0_stress_graveyard
-                | phi0_stress_boundary
-                | phi0_response_keys
-                | phi0_response_graveyard
-                | phi0_response_boundary
-                | scale_basin_keys
-                | scale_basin_graveyard
-                | scale_basin_boundary
-                | full_trace_keys
-                | full_trace_graveyard
-                | full_trace_boundary
-                | full_trace_after_stress_keys
-                | full_trace_after_stress_graveyard
-                | full_trace_after_stress_boundary
+            "receipt_keys_observed": observed_receipt_keys(
+                positive=(
+                    xi_free_energy_keys
+                    | xi_qci_keys
+                    | xi_petz_keys
+                    | xi_oriented_recovery_keys
+                    | xi_flux_coherent_keys
+                    | xi_flux_stress_keys
+                    | xi_runtime_tensor_keys
+                    | xi_runtime_embed_keys
+                    | xi_process_signature_keys
+                    | xi_process_bundle_keys
+                    | xi_l7_keys
+                    | xi_causal_keys
+                    | xi_mps_keys
+                    | xi_slow_keys
+                    | coupled_runtime_keys
+                    | phi0_stress_keys
+                    | phi0_response_keys
+                    | scale_basin_keys
+                    | full_trace_keys
+                    | full_trace_after_stress_keys
+                ),
+                graveyard=(
+                    xi_graveyard
+                    | xi_path_graveyard
+                    | xi_capacity_graveyard
+                    | xi_free_energy_graveyard
+                    | xi_qci_graveyard
+                    | xi_petz_graveyard
+                    | xi_oriented_recovery_graveyard
+                    | xi_flux_coherent_graveyard
+                    | xi_flux_stress_graveyard
+                    | xi_runtime_tensor_graveyard
+                    | xi_runtime_embed_graveyard
+                    | xi_process_signature_graveyard
+                    | xi_process_bundle_graveyard
+                    | xi_l7_graveyard
+                    | xi_causal_graveyard
+                    | xi_mps_graveyard
+                    | xi_slow_graveyard
+                    | phi0_stress_graveyard
+                    | phi0_response_graveyard
+                    | scale_basin_graveyard
+                    | full_trace_graveyard
+                    | full_trace_after_stress_graveyard
+                ),
+                boundary=(
+                    xi_boundary
+                    | xi_path_boundary
+                    | xi_capacity_boundary
+                    | xi_free_energy_boundary
+                    | xi_qci_boundary
+                    | xi_petz_boundary
+                    | xi_oriented_recovery_boundary
+                    | xi_flux_coherent_boundary
+                    | xi_flux_stress_boundary
+                    | xi_runtime_tensor_boundary
+                    | xi_runtime_embed_boundary
+                    | xi_process_signature_boundary
+                    | xi_process_bundle_boundary
+                    | xi_l7_boundary
+                    | xi_causal_boundary
+                    | xi_mps_boundary
+                    | xi_slow_boundary
+                    | section_keys(coupled_e16_runtime, "boundary")
+                    | phi0_stress_boundary
+                    | phi0_response_boundary
+                    | scale_basin_boundary
+                    | full_trace_boundary
+                    | full_trace_after_stress_boundary
+                ),
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; a vector process signature separates coupled-runtime controls but does not repair scalar Phi0; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; a base-resolved vector-bundle process signature is admitted for further stress while scalar, single-feature, and base-collapsed reductions are rejected; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -543,7 +592,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and bool(str(r.get("claim_ceiling", "")).strip())
                 for r in receipts.values()
             ),
-            "evidence": sorted(ACTIVE_RECEIPTS.keys()),
+            "receipt_keys_observed": observed_receipt_keys(active_receipts=set(ACTIVE_RECEIPTS.keys())),
             "limit": "all active receipts are green, formal-scout only, nonpromotional, and carry an explicit claim ceiling",
         },
     }
@@ -581,6 +630,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(0.66)
         elif status == "process_signature_vector_candidate_open":
             values.append(0.72)
+        elif status == "vector_bundle_candidate_open":
+            values.append(0.76)
         elif status == "bounded_flux_coherent_first_rung_open_blocker":
             values.append(0.62)
         elif status == "weak_first_rung_open_blocker":
@@ -737,8 +788,8 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "derive a principled scalarization or vector-bundle Axis0 admission rule for the process-signature vector before any Xi/Phi0 promotion",
-                "try another scalar Phi0 candidate only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, and single-feature process-signature failures",
+                "stress the admitted base-resolved vector-bundle process signature across broader coupled-runtime and tensor-scaling surfaces before any Xi/Phi0 promotion",
+                "derive a scalar kernel only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, single-feature process-signature, and base-collapsed bundle failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -761,8 +812,9 @@ def main() -> int:
                 "flux_coherent_stress_survived_open_blocker",
                 "coupled_runtime_embed_demoted_open_blocker",
                 "process_signature_vector_candidate_open",
+                "vector_bundle_candidate_open",
             },
-            "summary": "current Xi bridge evidence includes a separating vector process signature, but direct flux-recovery embedding demotes the scalar candidate and no final Xi/Phi0 is admitted",
+            "summary": "current Xi bridge evidence includes a base-resolved vector-bundle process signature admitted for further stress, but scalar/base-collapsed reductions fail and no final Xi/Phi0 is admitted",
         },
         "full_runtime_and_final_manifold_open": {
             "pass": True,
@@ -779,13 +831,13 @@ def main() -> int:
         "pass": True,
     }
     open_gaps = [
-        "final Xi/Phi0 remains open; current strongest replacement is a vector process signature without a scalar admission rule",
+        "final Xi/Phi0 remains open; current strongest replacement is a base-resolved vector-bundle process signature admitted only for further stress",
         "energy-corrected QIT-FEP Phi0 candidate is load-bearing but nonseparating against beta-zero/control rows",
         "tripartite quantum conditional-information Phi0 candidate is load-bearing but nonseparating against collapsed-register/control rows",
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
         "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
         "flux-coherent recovery Phi0 candidate survived standalone bounded deterministic stress but failed direct coupled-runtime embedding",
-        "process-signature vector separates coupled-runtime controls but does not repair scalar Phi0",
+        "base-resolved process-signature vector bundle separates coupled-runtime controls, but scalar, single-feature, and base-collapsed reductions fail",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",
@@ -808,6 +860,8 @@ def main() -> int:
         "nearby_variants": nearby_variants,
         "why_not_v4_probes": why_not_v4_probes,
         "open_gaps": open_gaps,
+        "promotion_blockers": open_gaps,
+        "execution_blockers": [],
         "blockers": [],
         "all_pass": all(section_passes(section) for section in (positive, graveyard_companions, boundary))
         and nearby_variants["passed"] == nearby_variants["total"]

@@ -41,6 +41,12 @@ def counts_by(rows: list[Any], key: str) -> dict[str, int]:
     return dict(sorted(counts.items()))
 
 
+def proposal_counts(name: str, rows: list[Any]) -> tuple[str, dict[str, int]]:
+    if name == "c1":
+        return "proposed_classification", counts_by(rows, "proposed_classification")
+    return "proposal_kind", counts_by(rows, "proposal_kind")
+
+
 def next_action_for(name: str, rows: list[Any]) -> str:
     if name == "c4":
         kinds = counts_by(rows, "proposal_kind")
@@ -63,11 +69,13 @@ def main() -> int:
             sections[name] = {"present": False}
             continue
         rows = data.get("proposals") or data.get("rows") or []
+        proposal_count_field, proposal_kind_counts = proposal_counts(name, rows)
         sections[name] = {
             "present": True,
             "path": str(path.relative_to(ROOT)),
             "row_count": len(rows),
-            "proposal_kind_counts": counts_by(rows, "proposal_kind"),
+            "proposal_count_field": proposal_count_field,
+            "proposal_kind_counts": proposal_kind_counts,
             "runner_class_counts": counts_by(rows, "runner_class"),
             "sample": rows[:20],
         }

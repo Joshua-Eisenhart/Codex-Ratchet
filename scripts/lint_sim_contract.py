@@ -13,6 +13,8 @@ Checks, by AST parse only (no import side-effects):
       (self-probe exception: a capability probe is trivially its own evidence)
   C7: bridge or nonclassical sims may not use numpy as a load-bearing tool.
   C8: nonclassical sims require locally load-bearing pytorch.
+  C9: safe-repair metadata sentinel may not coexist with promoted
+      classification.
 
 Emits a JSON report to stdout with:
   - checked
@@ -37,6 +39,7 @@ REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 FORMAL_SCOUT_RESULTS_DIR = REPO / "system_v5" / "ops" / "formal_scouts" / "results"
+SAFE_REPAIR_SENTINEL = "safe_repair_v1"
 
 VALID_CLASSIFICATIONS = {
     "audit",
@@ -360,6 +363,36 @@ def _module_level_assignments(tree: ast.Module) -> dict:
     return out
 
 
+def _classification_assignments(assigns: dict) -> dict[str, object]:
+    values: dict[str, object] = {}
+    for key in ("classification", "CLASSIFICATION"):
+        if key in assigns:
+            values[key] = assigns[key]
+    return values
+
+
+def _effective_classification(assigns: dict) -> object:
+    values = _classification_assignments(assigns)
+    if "classification" in values:
+        return values["classification"]
+    if "CLASSIFICATION" in values:
+        return values["CLASSIFICATION"]
+    return "__MISSING__"
+
+
+def _emitted_classification_literals(tree: ast.Module) -> set[str]:
+    values: set[str] = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Dict):
+            continue
+        for key, value in zip(node.keys, node.values):
+            if not (isinstance(key, ast.Constant) and key.value == "classification"):
+                continue
+            if isinstance(value, ast.Constant) and isinstance(value.value, str):
+                values.add(value.value)
+    return values
+
+
 def _role_sources(assigns: dict) -> dict[str, str]:
     raw = assigns.get("TOOL_ROLE_SOURCE") or assigns.get("tool_role_source") or {}
     manifest = assigns.get("TOOL_MANIFEST") or {}
@@ -469,12 +502,35 @@ def lint_sim(path: Path) -> list[dict]:
     assigns = _module_level_assignments(tree)
 
     # C1: classification
-    cls = assigns.get("classification", assigns.get("CLASSIFICATION", "__MISSING__"))
+    cls = _effective_classification(assigns)
     if cls == "__MISSING__":
         violations.append({"sim": rel, "rule": "C1_classification_missing", "detail": None})
     elif cls not in VALID_CLASSIFICATIONS:
         violations.append({"sim": rel, "rule": "C1_classification_invalid",
                            "detail": repr(cls)})
+
+    repair_marker = assigns.get("contract_metadata_repair")
+    if repair_marker == SAFE_REPAIR_SENTINEL:
+        promoted = {
+            key: value
+            for key, value in _classification_assignments(assigns).items()
+            if value != "classical_baseline"
+        }
+        promoted.update(
+            {
+                f"emitted:{value}": value
+                for value in _emitted_classification_literals(tree)
+                if value != "classical_baseline"
+            }
+        )
+    else:
+        promoted = {}
+    if promoted:
+        violations.append({
+            "sim": rel,
+            "rule": "C9_safe_repair_sentinel_blocks_promotion",
+            "detail": repr(promoted),
+        })
 
     # C2: TOOL_MANIFEST
     manifest = assigns.get("TOOL_MANIFEST", "__MISSING__")

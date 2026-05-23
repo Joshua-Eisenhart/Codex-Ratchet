@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-sim_rosetta_su2_so3_double_cover_invariant.py
+sim_su2_so3_double_cover_entropy_gap.py
 
-Rosetta R4 harvest sim: SU(2)->SO(3) double cover creates a log(2) entropy gap.
+SU(2)->SO(3) double-cover entropy-gap baseline sim.
 
 Three independent evidence paths from separate sims all converge on the same
-invariant — confirmed here by running all three simultaneously and cross-checking
+bounded gap, confirmed here by running all three simultaneously and cross-checking
 that they agree to within 1e-3.
 
 Evidence paths:
@@ -13,7 +13,7 @@ Evidence paths:
   Path 2 (clifford): Clifford bivector rotor path over [0,4pi] vs SO(3) identification
   Path 3 (sympy): spectral triple entropy — SU(2) spectral states vs SO(3) spectral states
 
-All three paths yield gap = log(2). Rosetta R4 is confirmed when all three agree.
+All three paths yield gap = log(2). The fixture passes when all three agree.
 
 Classification: classical_baseline
 """
@@ -22,6 +22,13 @@ import json
 import os
 import math
 import numpy as np
+
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: scipy, Clifford, SymPy, and z3 numerically/symbolically cross-check "
+    "a bounded SU(2)->SO(3) double-cover entropy-gap invariant; this does not promote "
+    "nonclassical, bridge, axis, or coupling claims."
+)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -255,8 +262,8 @@ def run_positive_tests():
         results["P3_sympy_spectral"] = {"pass": False, "error": "sympy not available"}
 
     # ------------------------------------------------------------------
-    # P4: Cross-check — all three paths agree to 3 decimal places
-    # Rosetta R4 is confirmed iff |gap_1 - gap_2| < 1e-3 AND
+    # P4: Cross-check — all three paths agree to 3 decimal places.
+    # The bounded fixture passes iff |gap_1 - gap_2| < 1e-3 AND
     # |gap_1 - gap_3| < 1e-3 AND |gap_2 - gap_3| < 1e-3
     # ------------------------------------------------------------------
     p1_ok = results.get("P1_orbit_quotient", {}).get("pass", False)
@@ -272,24 +279,24 @@ def run_positive_tests():
         d13 = abs(gap_1 - gap_3)
         d23 = abs(gap_2 - gap_3)
 
-        rosetta_confirmed = d12 < 1e-3 and d13 < 1e-3 and d23 < 1e-3
-        results["P4_rosetta_cross_check"] = {
+        bounded_fixture_agreement = d12 < 1e-3 and d13 < 1e-3 and d23 < 1e-3
+        results["P4_su2_so3_double_cover_cross_check"] = {
             "gap_path1": gap_1,
             "gap_path2": gap_2,
             "gap_path3": gap_3,
             "d12": d12,
             "d13": d13,
             "d23": d23,
-            "bounded_fixture_agreement": rosetta_confirmed,
-            "pass": rosetta_confirmed,
+            "bounded_fixture_agreement": bounded_fixture_agreement,
+            "pass": bounded_fixture_agreement,
             "interpretation": (
                 "Three independent paths (scipy orbit, clifford bivector, sympy spectral) "
                 "all agree on the log(2) entropy gap for this bounded SU(2)->SO(3) double-cover fixture. "
-                "This remains classical-baseline evidence and does not promote a higher-stage Rosetta claim."
+                "This remains classical-baseline evidence and does not promote a higher-stage claim."
             ),
         }
     else:
-        results["P4_rosetta_cross_check"] = {
+        results["P4_su2_so3_double_cover_cross_check"] = {
             "pass": False,
             "error": "One or more prerequisite paths failed",
             "p1_ok": p1_ok,
@@ -420,11 +427,11 @@ if __name__ == "__main__":
     all_pass = len(failed) == 0
 
     results = {
-        "name": "sim_rosetta_su2_so3_double_cover_invariant",
-        "classification": "classical_baseline",
+        "name": "sim_su2_so3_double_cover_entropy_gap",
+        "classification": classification,
         "status": "PASS" if all_pass else "FAIL",
         "all_pass": all_pass,
-        "divergence_log": "Classical baseline: scipy, Clifford, SymPy, and z3 numerically/symbolically cross-check a bounded SU(2)->SO(3) double-cover entropy-gap invariant; this does not promote nonclassical, bridge, axis, or coupling claims.",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "demotion_condition": (
@@ -456,7 +463,7 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_rosetta_su2_so3_double_cover_invariant_results.json")
+    out_path = os.path.join(out_dir, "sim_su2_so3_double_cover_entropy_gap_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

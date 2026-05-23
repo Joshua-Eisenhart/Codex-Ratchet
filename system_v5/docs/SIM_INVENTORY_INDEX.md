@@ -5139,7 +5139,7 @@ These use the repo runner contract vocabulary while detailed lane labels remain 
 - `sim_rayleigh_quotient_extremum_classical`
 - `sim_record_reset_population_map_survivor_classes`
 - `sim_renyi_alpha_sweep_classical`
-- `sim_rosetta_su2_so3_double_cover_invariant`
+- `sim_su2_so3_double_cover_entropy_gap`
 - `sim_rsa_correctness_constraint_canonical`
 - `sim_rustworkx_capability`
 - `sim_rustworkx_component_condensation_count_gap_survivor_classes`

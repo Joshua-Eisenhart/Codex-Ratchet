@@ -1,5 +1,5 @@
 {
-  "name": "sim_rosetta_su2_so3_double_cover_invariant",
+  "name": "sim_su2_so3_double_cover_entropy_gap",
   "classification": "classical_baseline",
   "status": "PASS",
   "all_pass": true,
@@ -131,7 +131,7 @@
       "pass": true,
       "interpretation": "Sympy confirms symbolically: S(SU2) - S(SO3) = log(N) - log(N/2) = log(2) regardless of N. The gap is structural, not a numerical artifact."
     },
-    "P4_rosetta_cross_check": {
+    "P4_su2_so3_double_cover_cross_check": {
       "gap_path1": 0.6931471805599463,
       "gap_path2": 0.6931471805599463,
       "gap_path3": 0.6931471805599453,
@@ -140,7 +140,7 @@
       "d23": 9.992007221626409e-16,
       "bounded_fixture_agreement": true,
       "pass": true,
-      "interpretation": "Three independent paths (scipy orbit, clifford bivector, sympy spectral) all agree on the log(2) entropy gap for this bounded SU(2)->SO(3) double-cover fixture. This remains classical-baseline evidence and does not promote a higher-stage Rosetta claim."
+      "interpretation": "Three independent paths (scipy orbit, clifford bivector, sympy spectral) all agree on the log(2) entropy gap for this bounded SU(2)->SO(3) double-cover fixture. This remains classical-baseline evidence and does not promote a higher-stage claim."
     }
   },
   "negative": {

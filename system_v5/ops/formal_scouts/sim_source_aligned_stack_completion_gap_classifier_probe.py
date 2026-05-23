@@ -85,6 +85,7 @@ ACTIVE_RECEIPTS = {
     "xi_oriented_recovery": "two_root_constraint_oriented_recovery_phi0_candidate_probe_results.json",
     "xi_flux_coherent_recovery": "two_root_constraint_flux_coherent_recovery_phi0_candidate_probe_results.json",
     "xi_flux_coherent_stress": "two_root_constraint_flux_coherent_recovery_stress_probe_results.json",
+    "xi_runtime_tensor_bridge": "two_root_constraint_flux_recovery_runtime_tensor_bridge_classifier_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -158,6 +159,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_oriented_recovery = receipts["xi_oriented_recovery"]
     xi_flux_coherent_recovery = receipts["xi_flux_coherent_recovery"]
     xi_flux_coherent_stress = receipts["xi_flux_coherent_stress"]
+    xi_runtime_tensor_bridge = receipts["xi_runtime_tensor_bridge"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -209,6 +211,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_flux_stress_keys = section_keys(xi_flux_coherent_stress, "positive")
     xi_flux_stress_graveyard = section_keys(xi_flux_coherent_stress, "graveyard_companions")
     xi_flux_stress_boundary = section_keys(xi_flux_coherent_stress, "boundary")
+    xi_runtime_tensor_keys = section_keys(xi_runtime_tensor_bridge, "positive")
+    xi_runtime_tensor_graveyard = section_keys(xi_runtime_tensor_bridge, "graveyard_companions")
+    xi_runtime_tensor_boundary = section_keys(xi_runtime_tensor_bridge, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -334,6 +339,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_oriented_recovery.get("all_pass")
                 and xi_flux_coherent_recovery.get("all_pass")
                 and xi_flux_coherent_stress.get("all_pass")
+                and xi_runtime_tensor_bridge.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -402,6 +408,12 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "stress_survival_is_not_final_phi0" in xi_flux_stress_graveyard
                 and "full_scale_tensor_runtime_still_missing" in xi_flux_stress_graveyard
                 and "final_xi_phi0_not_admitted" in xi_flux_stress_boundary
+                and "local_flux_recovery_stress_survived" in xi_runtime_tensor_keys
+                and "runtime_tensor_bridge_status_classified" in xi_runtime_tensor_keys
+                and "coupled_runtime_phi0_stress_not_robust" in xi_runtime_tensor_graveyard
+                and "tensor_scaling_still_blocks_admission" in xi_runtime_tensor_graveyard
+                and "final_trace_still_blocks_admission" in xi_runtime_tensor_graveyard
+                and "final_xi_phi0_not_admitted" in xi_runtime_tensor_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -456,6 +468,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | xi_flux_stress_keys
                 | xi_flux_stress_graveyard
                 | xi_flux_stress_boundary
+                | xi_runtime_tensor_keys
+                | xi_runtime_tensor_graveyard
+                | xi_runtime_tensor_boundary
                 | xi_l7_keys
                 | xi_l7_graveyard
                 | xi_l7_boundary
@@ -486,7 +501,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | full_trace_after_stress_graveyard
                 | full_trace_after_stress_boundary
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives bounded deterministic stress but lacks full runtime/tensor-scale stress; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives bounded deterministic stress but runtime/tensor bridge classifier keeps coupled-runtime and tensor-scale admission open; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -687,7 +702,7 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "extend flux-coherent recovery stress into full coupled runtime and tensor-scaling surfaces",
+                "embed flux-coherent recovery directly into coupled runtime stress rows rather than classifying it beside existing coupled stress",
                 "try another Phi0 candidate only if it beats the stress-survived flux-coherent recovery baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, and dephased-history/oriented-recovery failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
@@ -733,6 +748,7 @@ def main() -> int:
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
         "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
         "flux-coherent recovery Phi0 candidate survived bounded deterministic stress but is not final",
+        "flux-coherent recovery is not yet embedded into coupled runtime/tensor stress surfaces",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

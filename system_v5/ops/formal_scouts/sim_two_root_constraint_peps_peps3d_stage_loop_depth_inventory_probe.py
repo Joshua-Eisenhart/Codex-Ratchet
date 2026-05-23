@@ -599,6 +599,12 @@ def main() -> int:
             "passed": sum(1 for item in graveyard.values() if item["pass"]),
             "variants": sorted(graveyard),
         },
+        "why_not_v4_probes": (
+            "This is a v5 formal-scout depth inventory for tiny PEPS/PEPS3D "
+            "stage and loop execution. It is not a promoted v4 probe and does "
+            "not admit MPDO Lindblad, full tensor convergence, L32/L64 scaling, "
+            "scale-level basin evidence, or final manifold closure."
+        ),
         "boundary": {
             "promotion_allowed": PROMOTION_ALLOWED,
             "tiny_peps_2x4_stage_loop_inventory": True,

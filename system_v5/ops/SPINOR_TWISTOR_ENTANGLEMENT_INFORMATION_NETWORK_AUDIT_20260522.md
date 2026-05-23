@@ -446,9 +446,20 @@ What it tested:
 
 | Derived constraint | F01 alone forces it | Requires at least one root | Verdict |
 |---|---|---|---|
-| Bekenstein finite-capacity | no (SAT with `F01 ∧ ¬Bekenstein`) | yes (UNSAT with `¬F01 ∧ Bekenstein`) | `derived_from_F01_with_additional_capacity_content` |
-| no Cartesian center | no (SAT with `F01 ∧ N01 ∧ ¬no_center`) | yes, both (UNSAT with `¬N01 ∧ no_center`) | `derived_from_F01_and_N01_with_relational_invariance_content` |
-| no global total order | no (SAT with `N01 ∧ ¬no_total_order`) | yes (UNSAT with `¬N01 ∧ no_total_order`) | `derived_from_N01_with_order_observability_content` |
+| Bekenstein finite-capacity | no (SAT with `F01 ∧ ¬Bekenstein`) | yes (UNSAT with `¬F01 ∧ Bekenstein`) | `consistent_with_F01_dependence_and_additional_capacity_content_under_stated_axioms` |
+| no Cartesian center | no (SAT with `F01 ∧ N01 ∧ ¬no_center`) | yes, both (UNSAT with `¬N01 ∧ no_center`) | `consistent_with_F01_and_N01_dependence_and_relational_invariance_content_under_stated_axioms` |
+| no global total order | no (SAT with `N01 ∧ ¬no_total_order`) | yes (UNSAT with `¬N01 ∧ no_total_order`) | `consistent_with_N01_dependence_and_order_observability_content_under_stated_axioms` |
+
+**Important caveat (added post-3-model-audit):** The "yes (UNSAT)" entries in
+the third column above follow by modus tollens from axioms hand-encoded into
+the scout (`z3.Implies(bekenstein, f01)` etc. at `sim_two_root_constraint_
+extended_stack_validity_probe.py:132-137`). The z3 check verifies that the
+stated dependency axioms are internally consistent and that they entail the
+expected SAT/UNSAT pattern. It does NOT independently derive those dependencies
+from external semantics or numerical witnesses. The scout's own docstring at
+lines 113-115 says this explicitly. Headline-1 framing as "semantic-entailment-
+verified" was overclaim; the correct framing is "dependency-consistency-verified
+under hand-encoded axioms."
 | flux/chiral orientation | (not tested as direct entailment) | yes (UNSAT with `¬F01 ∧ flux`) | `open_candidate_dependent_on_F01_for_finite_sheet_count` |
 
 **Negative-control section (5 expected-to-fail ablations, all fired):**
@@ -955,7 +966,30 @@ flux as Axis 3 vs flux as engine binding
     per-stage flux flip fails the coherence gate. Not canonized; further
     controls needed before either placement is admitted.
 
-Phi_0 final form — TWO Xi families now rejected
+Phi_0 cross-family pressure — what receipts honestly support (rev. post-3-model-audit)
+
+  Counting honestly:
+  — 6 incidence-derived edge-mixture candidates (Family 1)
+  — 1 incidence-derived joint-graph candidate (Family 2)
+  — Total: **7** incidence-derived candidates tested, not 10. The four
+    Family-2 modes include product_baseline, random_seeded, and
+    uniform_lambda_zero_phase — those are controls and baselines, not
+    candidates. Earlier "10 Φ_0 candidates killed" framing was overcount.
+
+  All 7 incidence-derived candidates lose admission against zero-phase or
+  random baselines under the **single tested configuration** (XY entangler,
+  z-dephasing γ=0.30, partition A={0,1}/B={2,3}, coherent information,
+  N=4, 4-node ring, π built from spinors).
+
+  This is NOT yet a "Φ_0 family killed" verdict. Three-model independent
+  cross-audit (Gemini 2.5 Pro, Claude Opus, Grok-4) converged that
+  within-family pressure was not exhausted. The previous draft of this
+  section said "do NOT try a third edge-pattern variation" — that strategic
+  call has been **retracted** as premature pending the Open Within-Family
+  Tests below.
+
+Phi_0 cross-family — earlier draft (kept for trail, marked retracted)
+  ============================================================================
   ============================================================================
 
   Family 1: edge-mixture Xi (six candidates killed)
@@ -1016,10 +1050,76 @@ Phi_0 final form — TWO Xi families now rejected
           mixture or partition is not the right Phi_0 functional —
           something else (relative-entropy asymmetry, squashed entanglement,
           log-negativity, or a non-cut readout) may be needed.
-  — implication: do NOT try a third edge-pattern variation. The next move
-    needs to be at a different layer: change either (i) the Xi -> ρ_AB
-    construction altogether (e.g., spectral/operator-based, not state-based),
-    or (ii) the Phi_0 functional (away from coherent information), or both.
+  — implication (RETRACTED post-3-model-audit): the original draft said
+    "do NOT try a third edge-pattern variation; change either the Xi
+    construction altogether or the Phi_0 functional." All three external
+    audits (Gemini, Opus, Grok) independently flagged this as premature
+    because the following within-family axes were never varied:
+    partition, entangler family, dephasing channel, Phi_0 functional, scale.
+
+Open Within-Family Tests (added post-3-model-audit, what must be done before
+any "family killed" conclusion is admissible):
+
+  Convergent recommendations from 3-model audit (Gemini 2.5 Pro + Claude
+  Opus code-reviewer + Grok-4) — each item flagged by ≥2 of 3 models:
+
+  1. Alternative partition: A={0,2}, B={1,3} interleaved (cuts all 4 ring
+     edges, not just 2). All three models name this. Cheap test (~10 lines).
+  2. Alternative entangler: Heisenberg (XX+YY+ZZ) or Ising (ZZ) replacing
+     current XY (cos(λ)XX + sin(φ)YY).
+  3. Alternative noise channel: x-dephasing, depolarizing, amplitude damping
+     — current z-only γ=0.30 is structurally orthogonal to XY entangler basis
+     and may bias the kill.
+  4. Alternative Phi_0 functional: log-negativity, squashed entanglement,
+     relative entropy of entanglement. Coherent information rewards generic
+     bipartite entanglement, which random params produce by default.
+  5. Scale: N=6, N=8 nodes (currently fixed N=4).
+  6. Topology: complete graph K_4, star, path (currently fixed 4-node ring).
+  7. RNG ensemble: replace fixed pseudo-random formulas with 30+ realization
+     statistics. The Family-1 "random_fixed" uses formula `1.7 * (idx+1)`,
+     not a sampled distribution.
+
+  Until at least items 1-4 are tested, the cross-family kill verdict
+  remains: "7 incidence-derived candidates lose under the single tested
+  configuration," not "Φ_0 family is dead."
+
+  Round-1 fix: items 1 and 4 now tested. Joint-graph Xi was extended to
+  evaluate two partitions and two Phi_0 functionals — 4 cells total.
+
+  Admission matrix (Round 1):
+
+  | Functional | Partition         | Inc pure | Rand pure | Inc-Rand pure | Admitted |
+  |------------|-------------------|----------|-----------|---------------|----------|
+  | I_c        | block {0,1}|{2,3} | 0.222    | 0.468     | -0.246        | False    |
+  | I_c        | interleaved {0,2}|{1,3} | 0.686 | 0.727 | -0.041     | False    |
+  | log-neg    | block             | 0.681    | 0.998     | -0.317        | False    |
+  | log-neg    | interleaved       | 1.155    | 1.403     | -0.248        | False    |
+
+  Interpretation:
+  — In all 4 cells, random_seeded parameters give larger entanglement-cut
+    readouts than incidence_derived parameters; admission fails.
+  — The interleaved-partition × I_c cell is the CLOSEST to admission
+    (Inc-Rand = -0.041, within 6% of the 0.02 admission threshold band).
+    This is informative: cutting all 4 ring edges instead of 2 increases
+    sensitivity, but incidence still doesn't beat random.
+  — Log-negativity behaves similarly to I_c — random wins by a larger margin
+    under both partitions. The functional change does not save geometry.
+
+  Remaining items from the 7-item list (items 2, 3, 5, 6, 7 still untested):
+    2. Alternative entangler (Heisenberg / Ising replacing XY)
+    3. Alternative noise channel (x-dephasing / depolarizing / amplitude damping)
+    5. Scale: N=6, N=8
+    6. Topology: K_4, star, path
+    7. RNG ensemble: 30+ realizations for random baseline
+
+  After Round 1 (partition × functional tested), the audit verdict is
+  STRENGTHENED, not weakened: across 2 partitions × 2 functionals × 4 modes
+  = 16 readouts, geometry-derived parameters lose to random in every
+  comparison. The kill is more robust than the single-cell test suggested.
+
+  However, items 2, 3, 5, 6, 7 remain open. The verdict is still
+  configuration-conditioned: it has been falsified across 2 partitions and
+  2 functionals at N=4 with XY entangler + z-dephasing on a 4-node ring.
 
 holographic spacetime / ER=EPR
   — still claim-ceiling-fenced. Not tested by any scout in this set.

@@ -474,10 +474,15 @@ def negative_control_section(positive: dict[str, Any]) -> dict[str, Any]:
             "summary": "random phase label does not replace the finite twistor-like incidence probe",
         },
         "NC5_too_small_boundary_capacity_rejected": {
+            "control_type": "relay_of_constructive_gate",
             "expected_to_fail": True,
             "too_small_capacity_status": positive["boundary_capacity_graph"]["too_small_capacity_status"],
             "pass": positive["boundary_capacity_graph"]["too_small_capacity_status"] == "unsat",
             "summary": "boundary capacity below total edge cut entropy is rejected",
+            "audit_note": (
+                "Relay-type check: reads z3 status from boundary_capacity_graph_gate; "
+                "not an independent ablation. Flagged in 3-model audit."
+            ),
         },
     }
     fired = sum(1 for row in rows.values() if row["pass"])

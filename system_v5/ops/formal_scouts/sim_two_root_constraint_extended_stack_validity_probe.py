@@ -190,7 +190,7 @@ def two_root_z3_gate() -> dict[str, Any]:
             "f01_alone_does_not_force_it_sat": f01_does_not_force_bekenstein["status"] == "sat",
             "requires_f01_unsat": no_f01_blocks_bekenstein["status"] == "unsat",
             "verdict": (
-                "derived_from_F01_with_additional_capacity_content"
+                "consistent_with_F01_dependence_and_additional_capacity_content_under_stated_axioms"
                 if f01_does_not_force_bekenstein["status"] == "sat"
                 and no_f01_blocks_bekenstein["status"] == "unsat"
                 else "INCONSISTENT_DEPENDENCY"
@@ -200,7 +200,7 @@ def two_root_z3_gate() -> dict[str, Any]:
             "roots_alone_do_not_force_it_sat": f01_does_not_force_no_center["status"] == "sat",
             "requires_n01_unsat": no_n01_blocks_no_center["status"] == "unsat",
             "verdict": (
-                "derived_from_F01_and_N01_with_relational_invariance_content"
+                "consistent_with_F01_and_N01_dependence_and_relational_invariance_content_under_stated_axioms"
                 if f01_does_not_force_no_center["status"] == "sat"
                 and no_n01_blocks_no_center["status"] == "unsat"
                 else "INCONSISTENT_DEPENDENCY"
@@ -210,7 +210,7 @@ def two_root_z3_gate() -> dict[str, Any]:
             "n01_alone_does_not_force_it_sat": n01_does_not_force_no_total_order["status"] == "sat",
             "requires_n01_unsat": no_n01_blocks_no_total_order["status"] == "unsat",
             "verdict": (
-                "derived_from_N01_with_order_observability_content"
+                "consistent_with_N01_dependence_and_order_observability_content_under_stated_axioms"
                 if n01_does_not_force_no_total_order["status"] == "sat"
                 and no_n01_blocks_no_total_order["status"] == "unsat"
                 else "INCONSISTENT_DEPENDENCY"
@@ -237,7 +237,7 @@ def two_root_z3_gate() -> dict[str, Any]:
     flux_ok = derived_status["flux_orientation"]["requires_f01_unsat"]
 
     return {
-        "gate_kind": "semantic_entailment_under_finite_admissibility_predicates",
+        "gate_kind": "dependency_consistency_under_finite_admissibility_predicates",
         "consistency_of_two_root_model": consistent,
         "independence_tests": {
             "F01_alone_does_not_entail_Bekenstein": f01_does_not_force_bekenstein,
@@ -616,10 +616,16 @@ def negative_control_section(sections: dict[str, Any]) -> dict[str, Any]:
     # reject the row. If it doesn't, the gate isn't testing capacity at all.
     over_capacity_rejected = not sections["bekenstein_capacity_gate"]["rows"][1]["admissible"]
     rows["NC3_overcapacity_row_must_be_rejected"] = {
+        "control_type": "relay_of_constructive_gate",
         "ablation": "5 qubits trying to fit inside a 4-qubit boundary capacity",
         "row_admissible": sections["bekenstein_capacity_gate"]["rows"][1]["admissible"],
         "ablation_collapsed_distinction": over_capacity_rejected,
         "expected_to_fail": True,
+        "audit_note": (
+            "This row reads the admissibility boolean from "
+            "bekenstein_capacity_gate; it is a relay-type check, not an "
+            "independent ablation. Flagged in 3-model audit."
+        ),
         "pass": over_capacity_rejected,
     }
 
@@ -697,7 +703,7 @@ def main() -> int:
     graveyard_companions = {
         "bekenstein_not_independent_root": {
             "pass": derived["bekenstein"]["verdict"]
-            == "derived_from_F01_with_additional_capacity_content",
+            == "consistent_with_F01_dependence_and_additional_capacity_content_under_stated_axioms",
             "summary": (
                 "Bekenstein independence test: F01 alone does not entail it (SAT), "
                 "and Bekenstein requires F01 (UNSAT without F01). It is derived/extended, "
@@ -707,7 +713,7 @@ def main() -> int:
         },
         "no_cartesian_center_not_independent_root": {
             "pass": derived["no_cartesian_center"]["verdict"]
-            == "derived_from_F01_and_N01_with_relational_invariance_content",
+            == "consistent_with_F01_and_N01_dependence_and_relational_invariance_content_under_stated_axioms",
             "summary": (
                 "no-Cartesian-center independence test: roots alone do not entail it "
                 "(SAT), and it requires N01 (UNSAT without N01). It is derived/extended."
@@ -716,7 +722,7 @@ def main() -> int:
         },
         "no_global_total_order_not_independent_root": {
             "pass": derived["no_global_total_order"]["verdict"]
-            == "derived_from_N01_with_order_observability_content",
+            == "consistent_with_N01_dependence_and_order_observability_content_under_stated_axioms",
             "summary": (
                 "no-global-total-order independence test: N01 alone leaves it open "
                 "(SAT), and it requires N01 (UNSAT without N01). It is derived/extended."

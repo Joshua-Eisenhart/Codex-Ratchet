@@ -464,20 +464,94 @@ def partial_trace_qubits_01(rho_16: torch.Tensor) -> torch.Tensor:
     return rho_b.reshape(4, 4)
 
 
-def joint_graph_readouts(rho_ab: torch.Tensor) -> dict[str, float]:
-    rho_a = partial_trace_qubits_23(rho_ab)
-    rho_b = partial_trace_qubits_01(rho_ab)
+def partial_trace_qubits_13(rho_16: torch.Tensor) -> torch.Tensor:
+    """Trace out qubits 1, 3 (interleaved partition). Returns 4x4 rho on {0, 2}.
+
+    rho_16 reshaped as (2,2,2,2,2,2,2,2) with indices
+    (a, b, c, d) for row qubits (q0, q1, q2, q3) and
+    (e, f, g, h) for col qubits (q0, q1, q2, q3).
+    Trace q1 (b = f) and q3 (d = h).
+    """
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    out = torch.zeros((2, 2, 2, 2), dtype=rho_16.dtype)
+    for a in range(2):
+        for c in range(2):
+            for e in range(2):
+                for g in range(2):
+                    val = 0.0 + 0.0j
+                    for b in range(2):
+                        for d in range(2):
+                            val = val + rho_8d[a, b, c, d, e, b, g, d]
+                    out[a, c, e, g] = val
+    return out.reshape(4, 4)
+
+
+def partial_trace_qubits_02(rho_16: torch.Tensor) -> torch.Tensor:
+    """Trace out qubits 0, 2 (interleaved partition). Returns 4x4 rho on {1, 3}."""
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    out = torch.zeros((2, 2, 2, 2), dtype=rho_16.dtype)
+    for b in range(2):
+        for d in range(2):
+            for f in range(2):
+                for h in range(2):
+                    val = 0.0 + 0.0j
+                    for a in range(2):
+                        for c in range(2):
+                            val = val + rho_8d[a, b, c, d, a, f, c, h]
+                    out[b, d, f, h] = val
+    return out.reshape(4, 4)
+
+
+def joint_graph_readouts(rho_ab: torch.Tensor, partition: str = "block") -> dict[str, float]:
+    """Compute cut readouts under a chosen 4-qubit bipartition.
+
+    partition='block':    A = {q0, q1}, B = {q2, q3}  (cuts 2 of 4 ring edges)
+    partition='interleaved': A = {q0, q2}, B = {q1, q3}  (cuts all 4 edges)
+    """
+    if partition == "block":
+        rho_a = partial_trace_qubits_23(rho_ab)
+        rho_b = partial_trace_qubits_01(rho_ab)
+    elif partition == "interleaved":
+        rho_a = partial_trace_qubits_13(rho_ab)
+        rho_b = partial_trace_qubits_02(rho_ab)
+    else:
+        raise ValueError(partition)
     s_ab = entropy(rho_ab)
     s_a = entropy(rho_a)
     s_b = entropy(rho_b)
+    log_neg = log_negativity_4d_partition(rho_ab, partition)
     return {
+        "partition": partition,
         "S_AB": s_ab,
         "S_A": s_a,
         "S_B": s_b,
         "I_c_A_to_B": s_b - s_ab,
         "S_A_given_B": s_ab - s_b,
         "I_A_B": s_a + s_b - s_ab,
+        "log_negativity": log_neg,
     }
+
+
+def log_negativity_4d_partition(rho_16: torch.Tensor, partition: str) -> float:
+    """Log-negativity LN = log2(||rho^{T_B}||_1), where T_B is partial transpose over B.
+
+    Defined for 4-qubit rho on the requested 4-d × 4-d bipartition.
+    """
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    if partition == "block":
+        # Swap col indices for qubits 2,3 with row indices for qubits 2,3.
+        # That is, T_B over q2,q3: index pattern (a,b,c,d,e,f,g,h) -> (a,b,g,h,e,f,c,d).
+        rho_pt_8d = rho_8d.permute(0, 1, 6, 7, 4, 5, 2, 3)
+    elif partition == "interleaved":
+        # T_B over q1,q3: (a,b,c,d,e,f,g,h) -> (a,f,c,h,e,b,g,d).
+        rho_pt_8d = rho_8d.permute(0, 5, 2, 7, 4, 1, 6, 3)
+    else:
+        raise ValueError(partition)
+    rho_pt = rho_pt_8d.reshape(16, 16)
+    # Nuclear norm = sum of singular values; for Hermitian, = sum |eigenvalues|.
+    svals = torch.linalg.svdvals(rho_pt).real
+    trace_norm = float(torch.sum(svals).item())
+    return math.log2(max(trace_norm, 1e-30))
 
 
 def dephase_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
@@ -496,25 +570,20 @@ def dephase_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
 
 
 def joint_graph_partition_bridge_gate() -> dict[str, Any]:
-    """Build the joint-graph Xi candidate and compare to controls.
+    """Build the joint-graph Xi candidate and compare across TWO partitions
+    (block A={0,1}/B={2,3} and interleaved A={0,2}/B={1,3}) and TWO functionals
+    (coherent information I_c and log-negativity LN).
 
-    For each mode, the pure-state I_c is the bipartite entanglement entropy
-    S(rho_A), since for pure rho_AB we have S(rho_AB) = 0 and I_c(A → B) =
-    S(rho_B) - 0 = S(rho_B) = S(rho_A) (Schmidt). To make I_c discriminate
-    geometry from noise, we ALSO compute I_c after independent z-dephasing
-    noise (gamma = 0.30 per qubit), which can either preserve or destroy the
-    coherent-information signal depending on basis alignment of the entangler.
-
-    Admission requires the incidence-derived mode to:
-      1. Produce a nontrivial pure I_c (entanglement is being generated),
-      2. Pure I_c > product baseline by > 0.1 (entanglers actually changed state),
-      3. Dephased I_c > 0 (signal survives noise),
-      4. Dephased I_c > random_seeded dephased I_c by > 0.02 (geometry beats random).
+    For each mode, pure-state and z-dephased (gamma=0.30) readouts are computed
+    under each partition. Admission is checked for each (partition, functional)
+    combination separately. The three-model audit flagged the single-partition
+    + single-functional configuration as undertested.
     """
     graph = build_graph()
     modes = ["incidence_derived", "random_seeded", "product_baseline", "uniform_lambda_zero_phase"]
-    pure: dict[str, Any] = {}
-    dephased: dict[str, Any] = {}
+    partitions = ["block", "interleaved"]
+    pure: dict[str, Any] = {mode: {} for mode in modes}
+    dephased: dict[str, Any] = {mode: {} for mode in modes}
     for mode in modes:
         state = joint_graph_state(graph, mode)
         rho = density(state)
@@ -523,53 +592,78 @@ def joint_graph_partition_bridge_gate() -> dict[str, Any]:
             "hermiticity_gap": float(torch.linalg.matrix_norm(rho - torch.conj(rho).T).item()),
         }
         rho_dephased = dephase_16dim(rho, gamma=0.30)
-        # renormalize dephased rho to ensure trace = 1 within precision
         rho_dephased = rho_dephased / torch.real(torch.trace(rho_dephased))
-        pure[mode] = {"readout": joint_graph_readouts(rho), "health": rho_health}
-        dephased[mode] = {"readout": joint_graph_readouts(rho_dephased)}
+        pure[mode]["health"] = rho_health
+        for partition in partitions:
+            pure[mode][partition] = joint_graph_readouts(rho, partition=partition)
+            dephased[mode][partition] = joint_graph_readouts(rho_dephased, partition=partition)
 
-    inc_pure = pure["incidence_derived"]["readout"]["I_c_A_to_B"]
-    prod_pure = pure["product_baseline"]["readout"]["I_c_A_to_B"]
-    inc_deph = dephased["incidence_derived"]["readout"]["I_c_A_to_B"]
-    rand_deph = dephased["random_seeded"]["readout"]["I_c_A_to_B"]
-    prod_deph = dephased["product_baseline"]["readout"]["I_c_A_to_B"]
-    uniform_pure = pure["uniform_lambda_zero_phase"]["readout"]["I_c_A_to_B"]
-    uniform_deph = dephased["uniform_lambda_zero_phase"]["readout"]["I_c_A_to_B"]
+    def admission_check(functional_key: str, partition: str) -> dict[str, Any]:
+        inc_pure = pure["incidence_derived"][partition][functional_key]
+        prod_pure = pure["product_baseline"][partition][functional_key]
+        rand_pure = pure["random_seeded"][partition][functional_key]
+        unif_pure = pure["uniform_lambda_zero_phase"][partition][functional_key]
+        inc_deph = dephased["incidence_derived"][partition][functional_key]
+        rand_deph = dephased["random_seeded"][partition][functional_key]
+        prod_deph = dephased["product_baseline"][partition][functional_key]
+        unif_deph = dephased["uniform_lambda_zero_phase"][partition][functional_key]
+        nontrivial = inc_pure > 0.05
+        beats_product_pure = inc_pure - prod_pure > 0.1
+        # For log_negativity, "survives noise" means > 0; for I_c, same.
+        survives = inc_deph > 0.0
+        beats_random_under_noise = inc_deph - rand_deph > 0.02
+        admitted = bool(nontrivial and beats_product_pure and survives and beats_random_under_noise)
+        return {
+            "incidence_pure": inc_pure,
+            "random_pure": rand_pure,
+            "product_pure": prod_pure,
+            "uniform_pure": unif_pure,
+            "incidence_dephased": inc_deph,
+            "random_dephased": rand_deph,
+            "product_dephased": prod_deph,
+            "uniform_dephased": unif_deph,
+            "incidence_minus_product_pure": inc_pure - prod_pure,
+            "incidence_minus_random_pure": inc_pure - rand_pure,
+            "incidence_minus_random_dephased": inc_deph - rand_deph,
+            "nontrivial_pure_entanglement": nontrivial,
+            "beats_product_pure_by_0p1": beats_product_pure,
+            "survives_dephasing": survives,
+            "beats_random_under_noise_by_0p02": beats_random_under_noise,
+            "admitted": admitted,
+        }
 
-    nontrivial_entanglement = inc_pure > 0.05
-    beats_product_pure = inc_pure - prod_pure > 0.1
-    survives_noise = inc_deph > 0.0
-    beats_random_under_noise = inc_deph - rand_deph > 0.02
+    admission_matrix: dict[str, dict[str, Any]] = {}
+    for functional_key in ["I_c_A_to_B", "log_negativity"]:
+        admission_matrix[functional_key] = {}
+        for partition in partitions:
+            admission_matrix[functional_key][partition] = admission_check(functional_key, partition)
 
-    admitted = bool(
-        nontrivial_entanglement
-        and beats_product_pure
-        and survives_noise
-        and beats_random_under_noise
+    any_admitted = any(
+        admission_matrix[fk][p]["admitted"]
+        for fk in admission_matrix
+        for p in admission_matrix[fk]
     )
+    admitted_cells = [
+        (fk, p)
+        for fk in admission_matrix
+        for p in admission_matrix[fk]
+        if admission_matrix[fk][p]["admitted"]
+    ]
 
     return {
         "construction": (
             "single 4-qubit pure state via per-edge XY entanglers on product "
-            "of node spinors; bipartition A={0,1} B={2,3}"
+            "of node spinors; two partitions tested (block, interleaved); "
+            "two functionals tested (coherent information, log-negativity)"
         ),
+        "partitions_tested": partitions,
+        "functionals_tested": ["I_c_A_to_B", "log_negativity"],
         "pure_readouts": pure,
         "dephased_gamma_0p30_readouts": dephased,
-        "delta_summary": {
-            "incidence_minus_product_pure_Ic": inc_pure - prod_pure,
-            "incidence_minus_random_dephased_Ic": inc_deph - rand_deph,
-            "incidence_minus_product_dephased_Ic": inc_deph - prod_deph,
-            "incidence_minus_uniform_pure_Ic": inc_pure - uniform_pure,
-            "incidence_minus_uniform_dephased_Ic": inc_deph - uniform_deph,
-        },
-        "incidence_admission_conditions": {
-            "nontrivial_pure_entanglement": nontrivial_entanglement,
-            "beats_product_pure_by_0p1": beats_product_pure,
-            "survives_dephasing": survives_noise,
-            "beats_random_under_noise_by_0p02": beats_random_under_noise,
-        },
-        "incidence_admitted": admitted,
-        "pass": True,  # this is a scout — passing means "the test was completed honestly", not that incidence is admitted
+        "admission_matrix": admission_matrix,
+        "admitted_cells": admitted_cells,
+        "any_incidence_admission": any_admitted,
+        "pass": True,  # scout pass = test completed honestly, not that incidence is admitted
     }
 
 

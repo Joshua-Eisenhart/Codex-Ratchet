@@ -49,7 +49,7 @@ window.ENGINE_LAB_OPEN_ROW_AUDIT_DATA = {
         {
           "row_id": "carnot_entropy_family_open_split",
           "exists": true,
-          "classification": "exploratory",
+          "classification": "audit",
           "all_pass": true,
           "scope_note": "Open-carrier successor for the Carnot entropy-family readout split. The source row compared exact QIT anchors and open stochastic/topology rows; this recheck asks only whether open carriers disagree across performance, closure, return, and bath-entropy readouts. It does not claim QIT, GStack, axis, or engine admission."
         }
@@ -183,7 +183,7 @@ window.ENGINE_LAB_OPEN_ROW_AUDIT_DATA = {
           "scope_note": "Row-local reset-swing sensitivity recheck for the Szilard record ordering refinement. It emits the original reset_swing_gap observable instead of substituting residual reset entropy."
         },
         {
-          "row_id": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+          "row_id": "measurement_record_reset_parameter_sweep",
           "exists": true,
           "classification": "exploratory",
           "all_pass": true,

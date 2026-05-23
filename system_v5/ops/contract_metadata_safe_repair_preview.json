@@ -6,9 +6,9 @@
   "blocked": 9221,
   "action_counts": {},
   "blocked_counts": {
-    "assigned_promoted_classification_needs_review": 8029,
+    "assigned_promoted_classification_needs_review": 8030,
     "emitted_promoted_classification_needs_review": 649,
-    "direct_sim_semantic_guard_name_blocked": 534,
+    "direct_sim_semantic_guard_name_blocked": 533,
     "C1_classification_missing_needs_review": 5,
     "C1_canonical_needs_review": 4
   },
@@ -72410,6 +72410,18 @@
       "blocked": []
     },
     {
+      "sim": "system_v4/probes/sim_measurement_record_reset_parameter_sweep.py",
+      "rules": [],
+      "actions": [],
+      "blocked": [
+        "assigned_promoted_classification_needs_review"
+      ],
+      "assigned_classifications": {
+        "classification": "audit",
+        "CLASSIFICATION": "audit"
+      }
+    },
+    {
       "sim": "system_v4/probes/sim_mechanism_design_constraint_canonical.py",
       "rules": [],
       "actions": [],
@@ -104205,8 +104217,8 @@
         "assigned_promoted_classification_needs_review"
       ],
       "assigned_classifications": {
-        "classification": "diagnostic_only",
-        "CLASSIFICATION": "diagnostic_only"
+        "classification": "audit",
+        "CLASSIFICATION": "audit"
       }
     },
     {
@@ -104231,17 +104243,6 @@
         "classification": "diagnostic_only",
         "CLASSIFICATION": "diagnostic_only"
       }
-    },
-    {
-      "sim": "system_v4/probes/sim_szilard_record_ordering_refinement_reset_axis_widened_sweep.py",
-      "actions": [],
-      "blocked": [
-        "direct_sim_semantic_guard_name_blocked"
-      ],
-      "matched_claim_labels": [
-        "axis"
-      ],
-      "reason": "Rename or quarantine this executable sim before applying mechanical metadata repair; claim-layer basenames must not be made stageable."
     },
     {
       "sim": "system_v4/probes/sim_szilard_record_ordering_refinement_reset_swing_sweep.py",

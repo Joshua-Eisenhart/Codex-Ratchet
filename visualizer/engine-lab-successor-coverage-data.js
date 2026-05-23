@@ -189,7 +189,7 @@ window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA = {
     {
       "row_id": "szilard_record_ordering_refinement_reset_swing_sweep",
       "audit_class": "repair_gap",
-      "recommended_lane": "superseded_by_reset_axis_widened_recheck_keep_as_negative",
+      "recommended_lane": "superseded_by_reset_parameter_recheck_keep_as_negative",
       "covered": true,
       "passing_successor_count": 0,
       "consolidated_admission_status": "not_run",

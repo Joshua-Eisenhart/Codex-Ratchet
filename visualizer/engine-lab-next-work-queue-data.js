@@ -303,7 +303,7 @@ window.ENGINE_LAB_NEXT_WORK_QUEUE_DATA = {
       "engine_family": "szilard",
       "level": "record_reset_array",
       "next_allowed_action": "tighten_exact_translation_metrics_before_admission",
-      "recommended_lane": "superseded_by_reset_axis_widened_recheck_keep_as_negative",
+      "recommended_lane": "superseded_by_reset_parameter_recheck_keep_as_negative",
       "graveyard_covered": false,
       "graveyard_variant_count": 0,
       "graveyard_killed_count": 0,

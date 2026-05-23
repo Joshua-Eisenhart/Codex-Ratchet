@@ -17,15 +17,12 @@
     "blocked_labels": [
       "bridge"
     ],
-    "still_guard_clean_proposed_names": [
-      "system_v4/probes/sim_measurement_record_reset_parameter_sweep.py",
-      "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py"
-    ]
+    "still_guard_clean_proposed_names": []
   },
   "current_audit_status": {
     "path": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
     "live_matched_after_refresh": true,
-    "source_match_count": 570,
+    "source_match_count": 569,
     "result_match_count": 58,
     "stage_as_named_artifact_only": true,
     "do_not_rerun_for_timestamp_only": true
@@ -66,6 +63,30 @@
       "receipt_validation": "blocked_result_not_all_pass",
       "result_sha256": "d34056131f108ad7614cd1e6f95ba73b4517e4775432129a848299360459a4b7",
       "claim_ceiling": "Rename cleanup only. Generated result is a gap/index receipt, not proof of completion or admission."
+    },
+    {
+      "family": "measurement_record_reset_parameter_sweep",
+      "completed_at": "2026-05-23T08:20:00Z",
+      "old_source": "system_v4/probes/sim_szilard_record_ordering_refinement_reset_axis_widened_sweep.py",
+      "new_source": "system_v4/probes/sim_measurement_record_reset_parameter_sweep.py",
+      "new_result": "system_v4/probes/a2_state/sim_results/measurement_record_reset_parameter_sweep_results.json",
+      "direct_loader_updates": 6,
+      "visualizer_payload_updates": 3,
+      "new_source_guard": "passed",
+      "result_rerun": "ALL PASS: True",
+      "receipt_validation": "passed_without_warnings",
+      "result_sha256": "4616f5f77ea0308ae765d29ddc145a01a7a67707ecc7b584f3cb958877fe4eb7",
+      "downstream_receipt_validation": {
+        "szilard_record_lifetime_repair_successor": "passed_without_warnings",
+        "szilard_record_lifetime_repair_successor_sha256": "d62c2128d59c82c70ac8c23b12d7054e1ba28d899c2890b84e73d9b8ba7a7757",
+        "cycle_protocol_receipt_status_matrix": "reran_but_receipt_validation_blocked_result_not_all_pass",
+        "engine_lab_guard_blocked_loaders": [
+          "sim_engine_lab_open_row_audit.py",
+          "sim_engine_lab_next_work_queue.py",
+          "sim_engine_lab_repair_gap_consolidated_admission.py"
+        ]
+      },
+      "claim_ceiling": "Classical audit-only reset-parameter cleanup. NumPy is load-bearing but allowed for this classical audit receipt; no QIT, GStack, Axis0, engine, or manifold claim is admitted."
     }
   ],
   "required_named_paths_for_next_patch": [
@@ -84,5 +105,5 @@
     "Patch must update source/result names plus direct loaders and indexes in one named-path change.",
     "Run only the selected renamed sim and its narrow inventory/admission checks before staging."
   ],
-  "next_admissible_step": "The remaining guard-clean semantic-name family from the stale May 14 plan is sim_measurement_record_reset_parameter_sweep.py; audit its wider direct-loader and visualizer footprint before patching."
+  "next_admissible_step": "No guard-clean proposed rename remains from the stale May 14 plan. The remaining May 14 blocked family needs a separate guard-blocked source audit before any rename."
 }

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "3.0"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-23T06:30:37.064207+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_claude_bridge/20260523T062833Z-fresh-context-round-8-cold-audit-of-the-codex-ra-f21ca2f1e2de.json",
+  "parsed": {
+    "duration_ms": 122074,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "Confound code verified. Computed full-20-cell test. Now compiling audit.\n\n## R8 Cold Audit \u2014 Spinor/Twistor \u03a6\u2080 Bridge Probe\n\n### Section A \u2014 Confirmed-real findings (P0)\n\n**A1. Lambda-magnitude confound exists and is correctly characterized in code.** `sim_spinor_twistor_xi_cut_phi0_bridge_candidate_probe.py:597-611` confirms: `incidence_derived` uses `lam = 0.20 + 0.40\u00b7|I_ij|`; `random_seeded` uses `lam ~ U[0.20, 0.60]`. The `lambda_matched_random_phi` mode at line 612-629 correctly replicates `lam = 0.20 + 0.40\u00b7|I_ij|` (line 627) while drawing \u03c6 uniformly. The confound characterization in \u00a715.0.0 is mechanically correct.\n\n**A2. Ising \"admission\" was 100% confound.** Re-derived from JSON: Ising headline cell pure_z_vs_rand was the source of the +7.16 claim; under matched control the z collapses near zero. \u00a715.0.0 framing matches the receipts.\n\n**A3. B.1 pure-half residual signal survives the broader 20-cell test.** I ran the full-20-cell version of the B.1 sign-reversal test under mat",
+    "result_subtype": "success",
+    "total_cost_usd": 1.02203175
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260523T062833Z-fresh-context-round-8-cold-audit-of-the-codex-ra-f21ca2f1e2de.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260523T062833Z-fresh-context-round-8-cold-audit-of-the-codex-ra-f21ca2f1e2de.receipt.json",
+  "returncode": 0,
+  "stream": false
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "3.0"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-23T05:55:22.231797+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_claude_bridge/20260523T055409Z-external-audit-prompt-qit-fep-axis0-spinor-path--c9839bc103a3.json",
+  "parsed": {
+    "duration_ms": 70877,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "# Audit verdict: **REVISE**\n\nSubstantive scout, honest scoping, but three checks are weaker than they read.\n\n## 1. Pass conditions \u2014 mostly real falsifiers, three soft spots\n\n\ud83d\udd2c **Tautological / weak:**\n\n- `posterior_free_energy \u2248 f_min` (`core_finite_path_integral_qvfe`, line 330, 674). By definition `posterior_free_energy = D(posterior\u2016posterior) + f_min = 0 + f_min`. Relative entropy of a state with itself is exactly zero up to numerical noise. This is a sanity check on `relative_entropy`, not a property of QVFE. Either drop it or replace with a genuine QVFE inequality (e.g. `D(\u03c3\u2016\u03c4/Z) \u2265 D(\u03c3_A\u2016\u03c4_A/Z)` data-processing on partial trace).\n- `formal_scout_only_no_axis0_promotion` (line 687\u2013691) is a string-match on `CLAIM_CEILING` against itself \u2014 metadata guardrail, not a math falsifier. Fine to keep but should not count toward `all_pass`.\n- `run_z3_dependency_fence` (line 594\u2013622): the axioms `qfep \u21d2 f01`, `qfep \u21d2 n01`, `qfep \u21d2 capacity` are hand-written and then immediately checked \u2014 U",
+    "result_subtype": "success",
+    "total_cost_usd": 0.45938799999999996
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260523T055409Z-external-audit-prompt-qit-fep-axis0-spinor-path--c9839bc103a3.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260523T055409Z-external-audit-prompt-qit-fep-axis0-spinor-path--c9839bc103a3.receipt.json",
+  "returncode": 0,
+  "stream": false
+}

@@ -1,0 +1,22 @@
+{
+  "usage": {
+    "prompt_tokens": 60011,
+    "completion_tokens": 540,
+    "total_tokens": 61022,
+    "prompt_tokens_details": {
+      "text_tokens": 60011,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 471,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0,
+    "cost_in_usd_ticks": 774068500
+  },
+  "content": "**Section A: confirmed-real findings (P0)**\n\n- All 5 R8 fixes are present and correctly implemented: \"most consequential\" replaced by \"load-bearing scope-specific\" in \u00a715.0.0; one-sided (p\u22480.021) + two-sided (p\u22480.041) annotation added with R5 pre-specification documented; explicit RETRACTED tag on the \u00a715.0 Ising paragraph; 15/20 pure-half flips + p-values reconcile with the JSON `per_cell_statistics` under `pure_z_vs_lammatch`; I(A:B:C:D) multipartite information and amplitude_damping channel are wired and exercised in the probe.\n- The lambda-matched control (`lambda_matched_random_phi`) collapses Ising z to \u2248\u22120.16 (and similarly for XY/Heisenberg/random_unitary), confirming the confound pattern holds for the new multipartite functional and non-unital noise channel.\n- n_cells=36 and z_FWE=2.991 are correctly computed (Bonferroni for FWE \u03b1=0.05); 0/36 cells admit under the corrected threshold in the structured entanglers.\n- Analytic baselines (Bell, GHZ4, product states) continue to match machine precision; negative-control suite (NC1\u2013NC5) fires as designed.\n\n**Section B: overclaims (P1)**\n\nNone. The new I_ABCD / amplitude_damping sections use appropriately scoped language (\"does not escape the confound\", \"doesn't help\"). The \u00a715.0.0 framing (\"post-hoc XY-vs-Heisenberg pure-half basis-direction effect at p\u22480.021 \u2026 Not robust to multi-pair Bonferroni\") is honest and matches the JSON.\n\n**Section C: gaps (P2)**\n\n- Power remains low at K=30 for the residual 0.02-scale effect; the K_required fields in the JSON correctly flag this.\n- The two-consecutive-clean criterion still requires an R10 verification pass.\n\n**Section D: severity-ranked recommendations**\n\n1. (P2) Keep the current honest framing; no language rollback.\n2. (P2) Continue to surface the per-cell `pure_z_vs_lammatch` / `noisy_z_vs_lammatch` columns in future reruns.\n3. (P3) Optional: add a one-line note that the 15/20 count is the full pure-half superset (not a subset) to forestall future cherry-pick questions.\n\n**Section E: FIXED-POINT VERDICT (loop converged: YES / NO)**\n\nYES (R9 returns zero P1; two-consecutive-clean now requires only R10 confirmation)."
+}

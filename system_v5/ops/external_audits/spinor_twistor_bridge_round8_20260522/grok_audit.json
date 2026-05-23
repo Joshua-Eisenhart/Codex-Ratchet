@@ -1,0 +1,22 @@
+{
+  "usage": {
+    "prompt_tokens": 57861,
+    "completion_tokens": 629,
+    "total_tokens": 59287,
+    "prompt_tokens_details": {
+      "text_tokens": 57861,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 797,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0,
+    "cost_in_usd_ticks": 757568500
+  },
+  "content": "**Section A: confirmed-real findings (P0)**\n- The lambda-magnitude confound is real and correctly diagnosed. `lambda_matched_random_phi` in `joint_graph_state` uses exactly `lam = 0.20 + 0.40\u00b7|I_ij|` (identical to `incidence_derived`), with only phi randomized. This isolates the previously undetected distribution mismatch (mean \u0394\u03bb \u2248 +0.176).\n- Ising admission (+7.16 z) collapses to z \u2248 0 under the matched control; this was entirely a confound.\n- Noisy-half B.1 sign-reversal effect is chance-level (5/12 flips) under matched control.\n- The 7-round failure to detect the confound is explained by the phi-dominated nature of XY/Heisenberg entanglers and the absence of any matched-lambda control mode until R7-prep.\n\n**Section B: overclaims (P1)**\n- \"The most consequential finding of the entire 7-round audit loop\" is an overclaim. The confound is consequential for the bridge probe but does not automatically rank above root-stack, carrier, or capacity findings across the full audit.\n- Residual B.1 claim (10/12 pure flips, p \u2248 0.019) is overclaimed. It cherry-picks a 3-functional subset from a 20-cell space (5 functionals \u00d7 4 cells) without Bonferroni/FDR correction or explicit selection-bias acknowledgment. Effect-size collapse (~5\u00d7) and noisy-half null make the \"residual phi-structure component\" framing unsupported.\n- Implicit absolute verdict \"no signal under matched control\" overstates the result; K=30 SE leaves room for undetected small effects.\n\n**Section C: gaps (P2)**\n- No explicit multiple-testing correction or full 20-cell re-analysis for the residual B.1 p-value.\n- No power/SE caveat attached to the matched-control null (small signals remain possible below K=30 detection threshold).\n- Silent retractions (Ising admission, noisy-half B.1, prior z=+7.16 claims) are not exhaustively flagged in every prior-round reference.\n- No systematic check for analogous unmatched-parameter confounds in earlier rounds.\n\n**Section D: severity-ranked recommendations**\n1. (P1) Retract or heavily qualify the residual B.1 claim; report only the full 20-cell corrected result or drop the \"phi-structure component\" language.\n2. (P1) Remove or downgrade the \"most consequential finding of the entire 7-round audit loop\" sentence.\n3. (P2) Add explicit power/SE language to the \"no signal under matched control\" verdict.\n4. (P2) Add a one-paragraph \"silent retractions\" subsection listing exactly which prior claims are invalidated by the confound fix.\n5. (P2) Run a quick audit pass on R1\u2013R6 for any other unmatched entangler-parameter distributions.\n\n**Section E: FIXED-POINT VERDICT (loop converged: YES / NO)**  \nNO\n\nR8 returns P1 overclaims; two-consecutive-clean criterion not met."
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "3.0"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-23T06:03:05.070054+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_claude_bridge/20260523T060053Z-fresh-context-round-7-cold-audit-of-the-codex-ra-21ee10820a45.json",
+  "parsed": {
+    "duration_ms": 129330,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "I verified the JSON receipts against the \u00a715.0 claims and the constants wiring.\n\n# Section A \u2014 Confirmed-real findings (P0)\n\n- **P1a fix is real.** `0.5^8 = 3.90625e-3` matches the corrected \"8/8 pure \u21d2 p \u2248 3.9e-3\" headline. Verified per-cell: of the 8 paired (XY, Heisenberg) pure-cell pairs at the R6 baseline (n_cells=8 before M_2/M_3), the receipt shows 20/20 pure flips at R7-prep across the full 5 functionals \u00d7 4 cells, and 15/20 noisy flips (R6 reported 5/8 noisy; consistent direction).\n- **P1b constants wiring is real, not cosmetic.** `ADMISSION_THRESHOLD`, `PRODUCT_GAP_THRESHOLD`, `NONTRIVIAL_PURE_THRESHOLD`, `BEATS_PRODUCT_MARGIN`, `NC1/2/2b/3_PURE_FLOOR`, `HAAR_NUM_SEEDS` defined `sim:100-114`, used at the bridge-gate, joint-graph gate, ensemble loop, and final admission rows. No raw literals remain at the call sites named in R6.\n- **P1c MI / M_2 / M_3 / D(\u03c1\u2016\u03c3) / random_unitary are wired end-to-end.** JSON has all three ensembles (`rng_ensemble_haar_K30_{xy,heisenberg,random_un",
+    "result_subtype": "success",
+    "total_cost_usd": 1.1443997499999998
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260523T060053Z-fresh-context-round-7-cold-audit-of-the-codex-ra-21ee10820a45.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260523T060053Z-fresh-context-round-7-cold-audit-of-the-codex-ra-21ee10820a45.receipt.json",
+  "returncode": 0,
+  "stream": false
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "2.0"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-23T05:29:18.799668+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_claude_bridge/20260523T052810Z-audit-a-new-codex-ratchet-formal-scout-design-it-29fbd9fcc2ca.json",
+  "parsed": {
+    "duration_ms": 66273,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "**Verdict: REVISE.** Real signal in the noncommutativity and entanglement gaps; tautological checks mislabeled as evidence; \u03a6_QFEP construction unmotivated; key controls missing.\n\n---\n\n**What's actually load-bearing in the receipt**\n\n- **Noncommuting order gap 0.0271 vs classical-Markov 0.0** \u2014 this is the one discriminating result. The scalar is sensitive to instrument noncommutativity and the classical control collapses it. Genuine signal.\n- **Entangled vs product gap (I_c 0.086, \u03a6 0.042)** \u2014 also discriminating, conditional on the control being a true product-state baseline with matched marginals (not just unentangled).\n\n**What's tautological and should be relabeled, not counted as evidence**\n\n- \"Finite path sum equals closed channel evidence, gap < 1e-9\" is `\u03a3_h Tr[E\u00b7K_h \u03c1 K_h\u2020] = Tr[E\u00b7\u03a6(\u03c1)]` by linearity of \u03a6. Implementation-correctness check, not a passed test. Demote.\n- \"Posterior F equals F_min\" is the Gibbs identity `D(\u03c3\u2016\u03c4) = D(\u03c3\u2016\u03c4/Z) \u2212 log Z`. Tautology under the definitions ",
+    "result_subtype": "success",
+    "total_cost_usd": 0.32448699999999997
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260523T052810Z-audit-a-new-codex-ratchet-formal-scout-design-it-29fbd9fcc2ca.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260523T052810Z-audit-a-new-codex-ratchet-formal-scout-design-it-29fbd9fcc2ca.receipt.json",
+  "returncode": 0,
+  "stream": false
+}

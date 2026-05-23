@@ -1,0 +1,32 @@
+{
+  "command": [
+    "claude",
+    "-p",
+    "--model",
+    "claude-opus-4-7",
+    "--output-format",
+    "json",
+    "--no-session-persistence",
+    "--max-budget-usd",
+    "2.0"
+  ],
+  "cwd": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "generated_at": "2026-05-23T05:00:07.411903+00:00",
+  "model": "claude-opus-4-7",
+  "output_path": "/tmp/codex_claude_bridge/20260523T045909Z-audit-this-codex-ratchet-metadata-repair-decisio-cd8e1fda0c76.json",
+  "parsed": {
+    "duration_ms": 55869,
+    "is_error": false,
+    "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-opus-4-7"
+    ],
+    "result_preview": "## Verdict: APPLY_WITH_CONDITIONS\n\nThe design is conservative in the right places, but two leakage paths need to be closed before `--apply` runs.\n\n### Why it's largely safe\n- **Hard gate on canonical**: `infer_classification` returning `\"canonical\"` is forced into `blocked` (`C1_canonical_needs_review`), and `--apply` excludes any plan with non-empty `blocked`. The 477 canonical-suspect files cannot be silently promoted. (`scripts/contract_metadata_safe_repair.py:208`)\n- **Divergence log gated on classification**: only inserted when `cls == \"classical_baseline\"`; otherwise `C4_requires_classification_or_stage_review` blocks the plan. No fabricated divergence text gets attached to canonical claims.\n- **Tool manifest never load-bearing**: every inserted manifest entry is supportive; `TOOL_INTEGRATION_DEPTH` maps every tool to `\"supportive\"`. The \"at least one load_bearing\" canonical requirement cannot be falsely satisfied by this script.\n- **Used-flag tied to call site**: `used=True` req",
+    "result_subtype": "success",
+    "total_cost_usd": 0.4539685
+  },
+  "prompt_path": "/tmp/codex_claude_bridge/20260523T045909Z-audit-this-codex-ratchet-metadata-repair-decisio-cd8e1fda0c76.prompt.txt",
+  "receipt_path": "/tmp/codex_claude_bridge/20260523T045909Z-audit-this-codex-ratchet-metadata-repair-decisio-cd8e1fda0c76.receipt.json",
+  "returncode": 0,
+  "stream": false
+}

@@ -1,0 +1,2999 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "jax.scipy.linalg": "load_bearing",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SMT check over the same bound Pit/Source generator entries",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64 finite channel, Choi, projector, placement, and pair-separation arithmetic; substrate demoted under capability-probe doctrine",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive 2x2 density, Bloch, superoperator, entropy, and trace-norm calculations; substrate demoted under capability-probe doctrine",
+      "tried": true,
+      "used": true
+    },
+    "jax.scipy.linalg": {
+      "reason": "load-bearing matrix exponential for Phi=expm(0.4 X)",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive paths, timestamps, hashing, and JSON receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing in-solver equality/inequality check over bound Pit/Source generator entries",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "jax.scipy.linalg",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "axis0_response": {
+    "delta_rho": {
+      "definition": "0.01 * normalized(0.90*sigma_x - 0.33*sigma_y + 0.30*sigma_z)",
+      "matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0032854123009922443
+          ],
+          [
+            -0.0032854123009922443,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.002986738455447495,
+            0.008960215366342483
+          ],
+          [
+            0.008960215366342483,
+            -0.002986738455447495
+          ]
+        ]
+      },
+      "pauli_vector_normalized": [
+        0.8960215366342483,
+        -0.3285412300992244,
+        0.29867384554474946
+      ],
+      "pin_status": "PINNED-CHOICE not source-forced"
+    },
+    "doctrine_family_sign_table": {
+      "observable_spread_entropy": {
+        "Ne": "-",
+        "Ni": "-",
+        "Se": "-",
+        "Si": "-"
+      },
+      "pauli_participation_ratio": {
+        "Ne": "+",
+        "Ni": "+",
+        "Se": "-",
+        "Si": "-"
+      },
+      "trace_norm": {
+        "Ne": "-",
+        "Ni": "-",
+        "Se": "-",
+        "Si": "-"
+      }
+    },
+    "doctrine_pattern_match": {
+      "observable_spread_entropy": false,
+      "pauli_participation_ratio": true,
+      "trace_norm": false
+    },
+    "doctrine_prediction": {
+      "Ne": "+",
+      "Ni": "+",
+      "Se": "-",
+      "Si": "-"
+    },
+    "functional_definitions": {
+      "observable_spread_entropy": "Shannon entropy of normalized c_i^2 over {sigma_x,sigma_y,sigma_z}",
+      "pauli_participation_ratio": "(sum_i c_i^2)^2 / sum_i c_i^4 for c_i=Tr(delta_rho(t) sigma_i)",
+      "trace_norm": "||delta_rho(t)||_1"
+    },
+    "groups": {
+      "Ne": {
+        "members": [
+          "Vortex:pure_hamiltonian",
+          "Spiral:pure_hamiltonian",
+          "Vortex:weak_dissipator",
+          "Spiral:weak_dissipator"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.06888904163355822,
+          "pauli_participation_ratio": 0.08037043685314521,
+          "trace_norm": -0.001593282486865192
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Ne:pure_hamiltonian": {
+        "members": [
+          "Vortex:pure_hamiltonian",
+          "Spiral:pure_hamiltonian"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.06365985739669455,
+          "pauli_participation_ratio": 0.0957592063719398,
+          "trace_norm": -1.734723475976807e-18
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "0"
+        }
+      },
+      "Ne:weak_dissipator": {
+        "members": [
+          "Vortex:weak_dissipator",
+          "Spiral:weak_dissipator"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.07411822587042188,
+          "pauli_participation_ratio": 0.06498166733435062,
+          "trace_norm": -0.003186564973730382
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Ni": {
+        "members": [
+          "Pit",
+          "Source"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.04083791708134471,
+          "pauli_participation_ratio": 0.022295432763571155,
+          "trace_norm": -0.0020574176000777208
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Se": {
+        "members": [
+          "Funnel",
+          "Cannon"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.05599030832150023,
+          "pauli_participation_ratio": -0.0018131249410586747,
+          "trace_norm": -0.003177169999830195
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      },
+      "Si": {
+        "members": [
+          "Hill",
+          "Citadel"
+        ],
+        "responses": {
+          "observable_spread_entropy": -0.12265725204642547,
+          "pauli_participation_ratio": -0.14498657127090941,
+          "trace_norm": -0.0016100958817524044
+        },
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      }
+    },
+    "initial_metrics": {
+      "observable_spread_entropy": 0.6321789550900954,
+      "pauli_coefficients": {
+        "sx": 0.017920430732684966,
+        "sy": -0.006570824601984489,
+        "sz": 0.00597347691089499
+      },
+      "pauli_participation_ratio": 1.5056066021199535,
+      "pauli_weight_sum": 0.0004,
+      "trace_norm": 0.02
+    },
+    "pass": true,
+    "primary_functional": "pauli_participation_ratio",
+    "rows": {
+      "Cannon": {
+        "family": "Se",
+        "group": "Se",
+        "responses": {
+          "observable_spread_entropy": 0.15659684151376818,
+          "pauli_participation_ratio": 0.2923107533354994,
+          "trace_norm": -0.003256705449768759
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.6739450573117767,
+            "pauli_coefficients": {
+              "sx": 0.016932838833376998,
+              "sy": -0.006571424328907704,
+              "sz": 0.006046659434145725
+            },
+            "pauli_participation_ratio": 1.5723801529408503,
+            "pauli_weight_sum": 0.00036646673898022366,
+            "time": 0.1,
+            "trace_norm": 0.0191433210018592
+          },
+          {
+            "observable_spread_entropy": 0.7140268854109053,
+            "pauli_coefficients": {
+              "sx": 0.015982887331324636,
+              "sy": -0.0065487326965660685,
+              "sz": 0.006092467198627346
+            },
+            "pauli_participation_ratio": 1.643438611271988,
+            "pauli_weight_sum": 0.0003354567439432412,
+            "time": 0.2,
+            "trace_norm": 0.018315478261384306
+          },
+          {
+            "observable_spread_entropy": 0.7887757966038635,
+            "pauli_coefficients": {
+              "sx": 0.01419427874578981,
+              "sy": -0.006442730663469133,
+              "sz": 0.006111594299412998
+            },
+            "pauli_participation_ratio": 1.7979173554554528,
+            "pauli_weight_sum": 0.0002803379123958032,
+            "time": 0.4,
+            "trace_norm": 0.01674329455023124
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "+",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Citadel": {
+        "family": "Si",
+        "group": "Si",
+        "responses": {
+          "observable_spread_entropy": -0.11495029074908969,
+          "pauli_participation_ratio": -0.1423892708828205,
+          "trace_norm": -0.0005473750793248237
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.6038437180548467,
+            "pauli_coefficients": {
+              "sx": 0.01792043073268497,
+              "sy": -0.006537637941804817,
+              "sz": 0.0054822029201611
+            },
+            "pauli_participation_ratio": 1.4659297387932217,
+            "pauli_weight_sum": 0.0003939370963609088,
+            "time": 0.1,
+            "trace_norm": 0.019847848658252832
+          },
+          {
+            "observable_spread_entropy": 0.5750444180103411,
+            "pauli_coefficients": {
+              "sx": 0.01792043073268497,
+              "sy": -0.006486902653995288,
+              "sz": 0.005011844692099454
+            },
+            "pauli_participation_ratio": 1.4290046958625318,
+            "pauli_weight_sum": 0.00038834033090509655,
+            "time": 0.2,
+            "trace_norm": 0.019706352552035004
+          },
+          {
+            "observable_spread_entropy": 0.5172286643410057,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684962,
+              "sy": -0.006338740555307723,
+              "sz": 0.004133176361106592
+            },
+            "pauli_participation_ratio": 1.363217331237133,
+            "pauli_weight_sum": 0.0003784046163044729,
+            "time": 0.4,
+            "trace_norm": 0.019452624920675177
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      },
+      "Funnel": {
+        "family": "Se",
+        "group": "Se",
+        "responses": {
+          "observable_spread_entropy": -0.26857745815676864,
+          "pauli_participation_ratio": -0.29593700321761673,
+          "trace_norm": -0.0030976345498916306
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.5636497640787306,
+            "pauli_coefficients": {
+              "sx": 0.01748413837760416,
+              "sy": -0.00603616422003358,
+              "sz": 0.004981546921225779
+            },
+            "pauli_participation_ratio": 1.4115262140498983,
+            "pauli_weight_sum": 0.0003669461830267983,
+            "time": 0.1,
+            "trace_norm": 0.019155839397604013
+          },
+          {
+            "observable_spread_entropy": 0.49513642648824485,
+            "pauli_coefficients": {
+              "sx": 0.01703163032474791,
+              "sy": -0.005511210174783837,
+              "sz": 0.0040875129923179584
+            },
+            "pauli_participation_ratio": 1.331933857752082,
+            "pauli_weight_sum": 0.0003371576315718817,
+            "time": 0.2,
+            "trace_norm": 0.01836185261818321
+          },
+          {
+            "observable_spread_entropy": 0.3636014969333267,
+            "pauli_coefficients": {
+              "sx": 0.016089771189757893,
+              "sy": -0.004498439948190498,
+              "sz": 0.0025638367543152412
+            },
+            "pauli_participation_ratio": 1.2096695989023367,
+            "pauli_weight_sum": 0.00028568995780901694,
+            "time": 0.4,
+            "trace_norm": 0.01690236545010837
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      },
+      "Hill": {
+        "family": "Si",
+        "group": "Si",
+        "responses": {
+          "observable_spread_entropy": -0.13036421334376125,
+          "pauli_participation_ratio": -0.14758387165899833,
+          "trace_norm": -0.002672816684179985
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.5976278326551503,
+            "pauli_coefficients": {
+              "sx": 0.017456448041189843,
+              "sy": -0.005619602232071595,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.4546131415824688,
+            "pauli_weight_sum": 0.0003719899338664603,
+            "time": 0.1,
+            "trace_norm": 0.01928704056786474
+          },
+          {
+            "observable_spread_entropy": 0.5636696488637567,
+            "pauli_coefficients": {
+              "sx": 0.016974467726894694,
+              "sy": -0.00472423569890771,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.4129719927500886,
+            "pauli_weight_sum": 0.00034613338395521906,
+            "time": 0.2,
+            "trace_norm": 0.01860466027518963
+          },
+          {
+            "observable_spread_entropy": 0.5018147417463341,
+            "pauli_coefficients": {
+              "sx": 0.015967802773635645,
+              "sy": -0.0030948553822932943,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.3580227304609551,
+            "pauli_weight_sum": 0.00030023128166003154,
+            "time": 0.4,
+            "trace_norm": 0.017327183315820015
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      },
+      "Pit": {
+        "family": "Ni",
+        "group": "Ni",
+        "responses": {
+          "observable_spread_entropy": -0.2548615158490972,
+          "pauli_participation_ratio": -0.28606526839680924,
+          "trace_norm": -0.0020016956018876347
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.5682513324909667,
+            "pauli_coefficients": {
+              "sx": 0.01774934078058619,
+              "sy": -0.00612833772808857,
+              "sz": 0.005137365875486878
+            },
+            "pauli_participation_ratio": 1.4170945758633466,
+            "pauli_weight_sum": 0.0003789881495935108,
+            "time": 0.1,
+            "trace_norm": 0.019467617974305712
+          },
+          {
+            "observable_spread_entropy": 0.5037418540116458,
+            "pauli_coefficients": {
+              "sx": 0.017553904321420486,
+              "sy": -0.0056825234166526465,
+              "sz": 0.004356175250879006
+            },
+            "pauli_participation_ratio": 1.3406285669501057,
+            "pauli_weight_sum": 0.00035940689212276124,
+            "time": 0.2,
+            "trace_norm": 0.018958029753187992
+          },
+          {
+            "observable_spread_entropy": 0.37731743924099814,
+            "pauli_coefficients": {
+              "sx": 0.017097041765017904,
+              "sy": -0.0047881617630556195,
+              "sz": 0.0029501916926119396
+            },
+            "pauli_participation_ratio": 1.2195413337231442,
+            "pauli_weight_sum": 0.00032393896120711094,
+            "time": 0.4,
+            "trace_norm": 0.017998304398112366
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      },
+      "Source": {
+        "family": "Ni",
+        "group": "Ni",
+        "responses": {
+          "observable_spread_entropy": 0.1731856816864078,
+          "pauli_participation_ratio": 0.33065613392395155,
+          "trace_norm": -0.002113139598267807
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.6786134329997301,
+            "pauli_coefficients": {
+              "sx": 0.017187735053034656,
+              "sy": -0.006669712173929673,
+              "sz": 0.006226671167716276
+            },
+            "pauli_participation_ratio": 1.580034232649141,
+            "pauli_weight_sum": 0.0003786747305672511,
+            "time": 0.1,
+            "trace_norm": 0.01945956655651022
+          },
+          {
+            "observable_spread_entropy": 0.7230782893610459,
+            "pauli_coefficients": {
+              "sx": 0.01646569154857959,
+              "sy": -0.006744101223622373,
+              "sz": 0.0064530779817349795
+            },
+            "pauli_participation_ratio": 1.6600918628820642,
+            "pauli_weight_sum": 0.00035824411492578294,
+            "time": 0.2,
+            "trace_norm": 0.018927337766463166
+          },
+          {
+            "observable_spread_entropy": 0.8053646367765032,
+            "pauli_coefficients": {
+              "sx": 0.015056996325748528,
+              "sy": -0.006825172800856307,
+              "sz": 0.006829615868839314
+            },
+            "pauli_participation_ratio": 1.836262736043905,
+            "pauli_weight_sum": 0.00031993977503105516,
+            "time": 0.4,
+            "trace_norm": 0.017886860401732194
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "+",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Spiral:pure_hamiltonian": {
+        "family": "Ne",
+        "group": "Ne:pure_hamiltonian",
+        "responses": {
+          "observable_spread_entropy": 0.2609784113844069,
+          "pauli_participation_ratio": 0.577657636162894,
+          "trace_norm": 0.0
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.8747219306790697,
+            "pauli_coefficients": {
+              "sx": 0.016239464139333377,
+              "sy": -0.007695079813167564,
+              "sz": 0.008778698715429651
+            },
+            "pauli_participation_ratio": 2.0254762247148927,
+            "pauli_weight_sum": 0.0003999999999999999,
+            "time": 0.1,
+            "trace_norm": 0.019999999999999997
+          },
+          {
+            "observable_spread_entropy": 1.0146707195097249,
+            "pauli_coefficients": {
+              "sx": 0.014141286908911989,
+              "sy": -0.008282350923855321,
+              "sz": 0.011464147056538799
+            },
+            "pauli_participation_ratio": 2.5819376974777417,
+            "pauli_weight_sum": 0.0003999999999999999,
+            "time": 0.2,
+            "trace_norm": 0.019999999999999997
+          },
+          {
+            "observable_spread_entropy": 0.8931573664745023,
+            "pauli_coefficients": {
+              "sx": 0.009041189458325976,
+              "sy": -0.00777463150982329,
+              "sz": 0.01605652509309278
+            },
+            "pauli_participation_ratio": 2.0832642382828475,
+            "pauli_weight_sum": 0.00039999999999999996,
+            "time": 0.4,
+            "trace_norm": 0.02
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "+",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "0"
+        }
+      },
+      "Spiral:weak_dissipator": {
+        "family": "Ne",
+        "group": "Ne:weak_dissipator",
+        "responses": {
+          "observable_spread_entropy": 0.2321935581868606,
+          "pauli_participation_ratio": 0.5134641962832938,
+          "trace_norm": -0.003329603798013902
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.8621593504253484,
+            "pauli_coefficients": {
+              "sx": 0.015618542301641529,
+              "sy": -0.007124014075000871,
+              "sz": 0.008419807449549142
+            },
+            "pauli_participation_ratio": 1.9915941712184502,
+            "pauli_weight_sum": 0.0003655835976564596,
+            "time": 0.1,
+            "trace_norm": 0.019120240522976156
+          },
+          {
+            "observable_spread_entropy": 0.9936254919801567,
+            "pauli_coefficients": {
+              "sx": 0.013118667531128472,
+              "sy": -0.007113949719013849,
+              "sz": 0.010527271557807256
+            },
+            "pauli_participation_ratio": 2.5020222290101795,
+            "pauli_weight_sum": 0.0003335311648487592,
+            "time": 0.2,
+            "trace_norm": 0.018262835619058698
+          },
+          {
+            "observable_spread_entropy": 0.864372513276956,
+            "pauli_coefficients": {
+              "sx": 0.0079574248312782,
+              "sy": -0.005691893588432287,
+              "sz": 0.013497549665169343
+            },
+            "pauli_participation_ratio": 2.019070798403247,
+            "pauli_weight_sum": 0.0002779021095311925,
+            "time": 0.4,
+            "trace_norm": 0.0166703962019861
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "+",
+          "pauli_participation_ratio": "+",
+          "trace_norm": "-"
+        }
+      },
+      "Vortex:pure_hamiltonian": {
+        "family": "Ne",
+        "group": "Ne:pure_hamiltonian",
+        "responses": {
+          "observable_spread_entropy": -0.388298126177796,
+          "pauli_participation_ratio": -0.3861392234190144,
+          "trace_norm": -3.469446951953614e-18
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.34589919146052783,
+            "pauli_coefficients": {
+              "sx": 0.019117171855486656,
+              "sy": -0.004954405797783487,
+              "sz": 0.003160316983892294
+            },
+            "pauli_participation_ratio": 1.1916478705136082,
+            "pauli_weight_sum": 0.0003999999999999998,
+            "time": 0.1,
+            "trace_norm": 0.019999999999999997
+          },
+          {
+            "observable_spread_entropy": 0.10693432171876559,
+            "pauli_coefficients": {
+              "sx": 0.019781977215707354,
+              "sy": -0.00291026491738355,
+              "sz": 0.00045137074327166273
+            },
+            "pauli_participation_ratio": 1.0443298310136662,
+            "pauli_weight_sum": 0.0003999999999999999,
+            "time": 0.2,
+            "trace_norm": 0.019999999999999997
+          },
+          {
+            "observable_spread_entropy": 0.24388082891229934,
+            "pauli_coefficients": {
+              "sx": 0.01943202910000473,
+              "sy": 0.002121406244156474,
+              "sz": -0.004230352302565738
+            },
+            "pauli_participation_ratio": 1.119467378700939,
+            "pauli_weight_sum": 0.00039999999999999996,
+            "time": 0.4,
+            "trace_norm": 0.019999999999999997
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "0"
+        }
+      },
+      "Vortex:weak_dissipator": {
+        "family": "Ne",
+        "group": "Ne:weak_dissipator",
+        "responses": {
+          "observable_spread_entropy": -0.38043000992770437,
+          "pauli_participation_ratio": -0.3835008616145925,
+          "trace_norm": -0.0030435261494468624
+        },
+        "series": [
+          {
+            "observable_spread_entropy": 0.6321789550900954,
+            "pauli_coefficients": {
+              "sx": 0.017920430732684966,
+              "sy": -0.006570824601984489,
+              "sz": 0.00597347691089499
+            },
+            "pauli_participation_ratio": 1.5056066021199535,
+            "pauli_weight_sum": 0.0004,
+            "time": 0.0,
+            "trace_norm": 0.02
+          },
+          {
+            "observable_spread_entropy": 0.33328018664563597,
+            "pauli_coefficients": {
+              "sx": 0.01835485727613166,
+              "sy": -0.004542829773977014,
+              "sz": 0.003050165257205002
+            },
+            "pauli_participation_ratio": 1.1803116884334222,
+            "pauli_weight_sum": 0.0003668415960787559,
+            "time": 0.1,
+            "trace_norm": 0.019153109305769543
+          },
+          {
+            "observable_spread_entropy": 0.08876771633062105,
+            "pauli_coefficients": {
+              "sx": 0.01821984572698883,
+              "sy": -0.002348920269697967,
+              "sz": 0.0004652693644736581
+            },
+            "pauli_participation_ratio": 1.034557567241936,
+            "pauli_weight_sum": 0.00033769668033018874,
+            "time": 0.2,
+            "trace_norm": 0.018376525251803968
+          },
+          {
+            "observable_spread_entropy": 0.251748945162391,
+            "pauli_coefficients": {
+              "sx": 0.01646589834622366,
+              "sy": 0.0020892627855040175,
+              "sz": -0.003468598868337089
+            },
+            "pauli_participation_ratio": 1.122105740505361,
+            "pauli_weight_sum": 0.0002875220054444925,
+            "time": 0.4,
+            "trace_norm": 0.016956473850553138
+          }
+        ],
+        "signs": {
+          "observable_spread_entropy": "-",
+          "pauli_participation_ratio": "-",
+          "trace_norm": "-"
+        }
+      }
+    },
+    "sign_table": {
+      "observable_spread_entropy": {
+        "Ne:pure_hamiltonian": "-",
+        "Ne:weak_dissipator": "-",
+        "Ni": "-",
+        "Se": "-",
+        "Si": "-"
+      },
+      "pauli_participation_ratio": {
+        "Ne:pure_hamiltonian": "+",
+        "Ne:weak_dissipator": "+",
+        "Ni": "+",
+        "Se": "-",
+        "Si": "-"
+      },
+      "trace_norm": {
+        "Ne:pure_hamiltonian": "0",
+        "Ne:weak_dissipator": "-",
+        "Ni": "-",
+        "Se": "-",
+        "Si": "-"
+      }
+    },
+    "spec_ref": "system_v6/foundations/working_math_scaffold_20260609.md:270-276"
+  },
+  "claim_path_tools": [
+    "jax.scipy.linalg",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "axis0_response_computed": true,
+    "classification_ceiling_held": true,
+    "cptp_pass": true,
+    "fixed_pass": true,
+    "negative_pass": true,
+    "pair_pass": true,
+    "placement_pass": true,
+    "smt_pass": true,
+    "source_lock_pass": true,
+    "state_pass": true,
+    "unitality_pass": true
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "binds_generator_entries": 16,
+      "claim": "Pit and Source full generator entries are not equal under entry-binding SMT; forced equality is UNSAT.",
+      "entry_binding_honesty_label": "ENTRY-BINDING SMT: generator formulas are constructed outside the solver; the solver binds scaled generator entries and checks equality/inequality.",
+      "load_bearing": true,
+      "pass": true,
+      "proof_kind": "entry_binding_smt",
+      "ran": true,
+      "scale": 1000000000,
+      "sigma_swapped_pit_source_convention_equality": "sat",
+      "sigma_swapped_pit_source_convention_inequality": "unsat",
+      "solver": "cvc5",
+      "symbolic_derivation_in_solver": false,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "binds_generator_entries": 16,
+      "claim": "Pit and Source full generator entries are not equal under entry-binding SMT; forced equality is UNSAT.",
+      "entry_binding_honesty_label": "ENTRY-BINDING SMT: generator formulas are constructed outside the solver; the solver binds scaled generator entries and checks equality/inequality.",
+      "load_bearing": true,
+      "pass": true,
+      "proof_kind": "entry_binding_smt",
+      "ran": true,
+      "scale": 1000000000,
+      "sigma_swapped_pit_source_convention_equality": "sat",
+      "sigma_swapped_pit_source_convention_inequality": "unsat",
+      "solver": "z3",
+      "symbolic_derivation_in_solver": false,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "entropy_columns": {
+    "definition": "Delta-S_system is von Neumann entropy after-before; bath exchange is Delta Tr[H rho]; Delta-S(A|B) applies E tensor I to a pinned partially entangled system-ancilla state.",
+    "rows": {
+      "Cannon": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              -0.0,
+              0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              -0.0
+            ]
+          ],
+          "real": [
+            [
+              -0.5773502691896258,
+              -0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.5209831366972861,
+          "S_A_given_B_after": -0.13797254398577663,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.06136143386708792,
+            "bath_exchange_energy_delta_TrHrho": 0.10604230634130762,
+            "energy_after_TrHrho": -0.4597609574645257,
+            "energy_before_TrHrho": -0.5658032638058333,
+            "system_entropy_after": 0.5766879373955586,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.04111004859676204,
+            "bath_exchange_energy_delta_TrHrho": -0.08352306674089127,
+            "energy_after_TrHrho": 0.4014511593783944,
+            "energy_before_TrHrho": 0.48497422611928565,
+            "system_entropy_after": 0.5992636605984509,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Citadel": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.0,
+              0.2
+            ],
+            [
+              0.2,
+              0.0
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.26368321943891737,
+          "S_A_given_B_after": -0.3952724612441454,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.024374303471832337,
+            "bath_exchange_energy_delta_TrHrho": 0.0,
+            "energy_after_TrHrho": 0.084,
+            "energy_before_TrHrho": 0.084,
+            "system_entropy_after": 0.539700807000303,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.019174391551715964,
+            "bath_exchange_energy_delta_TrHrho": 0.0,
+            "energy_after_TrHrho": -0.072,
+            "energy_before_TrHrho": -0.072,
+            "system_entropy_after": 0.5773280035534049,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Funnel": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              -0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.5773502691896258,
+              0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              -0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.5209831366972858,
+          "S_A_given_B_after": -0.13797254398577696,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.06040633389368055,
+            "bath_exchange_energy_delta_TrHrho": -0.1049408450098388,
+            "energy_after_TrHrho": 0.46086241879599454,
+            "energy_before_TrHrho": 0.5658032638058333,
+            "system_entropy_after": 0.5757328374221512,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.04098433125788148,
+            "bath_exchange_energy_delta_TrHrho": 0.08324770140802407,
+            "energy_after_TrHrho": -0.4017265247112616,
+            "energy_before_TrHrho": -0.48497422611928565,
+            "system_entropy_after": 0.5991379432595704,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Hill": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              -0.2
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.24982289374042999,
+          "S_A_given_B_after": -0.4091327869426328,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.03753640419354076,
+            "bath_exchange_energy_delta_TrHrho": 0.0,
+            "energy_after_TrHrho": 0.06000000000000001,
+            "energy_before_TrHrho": 0.06000000000000001,
+            "system_entropy_after": 0.5528629077220114,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.03454930489668062,
+            "bath_exchange_energy_delta_TrHrho": 0.0,
+            "energy_after_TrHrho": -0.03199999999999999,
+            "energy_before_TrHrho": -0.03199999999999999,
+            "system_entropy_after": 0.5927029168983695,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Pit": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              -0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.5773502691896258,
+              0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              -0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.2465921530962628,
+          "S_A_given_B_after": -0.41236352758679995,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.07061198300059224,
+            "bath_exchange_energy_delta_TrHrho": -0.17305468611948305,
+            "energy_after_TrHrho": 0.3927485776863503,
+            "energy_before_TrHrho": 0.5658032638058333,
+            "system_entropy_after": 0.5859384865290629,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": -0.016357309377666218,
+            "bath_exchange_energy_delta_TrHrho": -0.05062408530087348,
+            "energy_after_TrHrho": -0.5355983114201591,
+            "energy_before_TrHrho": -0.48497422611928565,
+            "system_entropy_after": 0.5417963026240227,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Source": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              -0.0,
+              0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              -0.0
+            ]
+          ],
+          "real": [
+            [
+              -0.5773502691896258,
+              -0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.35556652754891527,
+          "S_A_given_B_after": -0.3033891531341475,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": -0.028590598783098387,
+            "bath_exchange_energy_delta_TrHrho": -0.03552614178039115,
+            "energy_after_TrHrho": -0.6013294055862245,
+            "energy_before_TrHrho": -0.5658032638058333,
+            "system_entropy_after": 0.48673590474537226,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.03586790433962339,
+            "bath_exchange_energy_delta_TrHrho": -0.15888852874497728,
+            "energy_after_TrHrho": 0.32608569737430837,
+            "energy_before_TrHrho": 0.48497422611928565,
+            "system_entropy_after": 0.5940215163413123,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Spiral:pure_hamiltonian": {
+        "dissipative_component_present": false,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              -0.0,
+              0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              -0.0
+            ]
+          ],
+          "real": [
+            [
+              -0.5773502691896258,
+              -0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 1.1102230246251565e-16,
+          "S_A_given_B_after": -0.6589556806830627,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 1.1102230246251565e-16,
+            "bath_exchange_energy_delta_TrHrho": 0.0,
+            "energy_after_TrHrho": -0.5658032638058333,
+            "energy_before_TrHrho": -0.5658032638058333,
+            "system_entropy_after": 0.5153265035284708,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": -1.1102230246251565e-16,
+            "bath_exchange_energy_delta_TrHrho": 5.551115123125783e-17,
+            "energy_after_TrHrho": 0.4849742261192857,
+            "energy_before_TrHrho": 0.48497422611928565,
+            "system_entropy_after": 0.5581536120016888,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Spiral:weak_dissipator": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              -0.0,
+              0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              -0.0
+            ]
+          ],
+          "real": [
+            [
+              -0.5773502691896258,
+              -0.5773502691896258
+            ],
+            [
+              -0.5773502691896258,
+              0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.519399660398297,
+          "S_A_given_B_after": -0.13955602028476577,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.0574379877784994,
+            "bath_exchange_energy_delta_TrHrho": 0.10118379457436216,
+            "energy_after_TrHrho": -0.4646194692314712,
+            "energy_before_TrHrho": -0.5658032638058333,
+            "system_entropy_after": 0.57276449130697,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.04630511551345984,
+            "bath_exchange_energy_delta_TrHrho": -0.0914679947464001,
+            "energy_after_TrHrho": 0.39350623137288554,
+            "energy_before_TrHrho": 0.48497422611928565,
+            "system_entropy_after": 0.6044587275151487,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Vortex:pure_hamiltonian": {
+        "dissipative_component_present": false,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              -0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.5773502691896258,
+              0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              -0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 1.1102230246251565e-16,
+          "S_A_given_B_after": -0.6589556806830627,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 2.220446049250313e-16,
+            "bath_exchange_energy_delta_TrHrho": -1.1102230246251565e-16,
+            "energy_after_TrHrho": 0.5658032638058332,
+            "energy_before_TrHrho": 0.5658032638058333,
+            "system_entropy_after": 0.5153265035284709,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": -1.1102230246251565e-16,
+            "bath_exchange_energy_delta_TrHrho": -2.220446049250313e-16,
+            "energy_after_TrHrho": -0.48497422611928587,
+            "energy_before_TrHrho": -0.48497422611928565,
+            "system_entropy_after": 0.5581536120016888,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      },
+      "Vortex:weak_dissipator": {
+        "dissipative_component_present": true,
+        "hamiltonian_for_energy_bookkeeping": {
+          "imag": [
+            [
+              0.0,
+              -0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              0.5773502691896258,
+              0.5773502691896258
+            ],
+            [
+              0.5773502691896258,
+              -0.5773502691896258
+            ]
+          ]
+        },
+        "pinned_bipartite_extension": {
+          "Delta_S_A_given_B": 0.5190612336393043,
+          "S_A_given_B_after": -0.13989444704375842,
+          "S_A_given_B_before": -0.6589556806830628,
+          "lambda": 0.37,
+          "phase": 0.41,
+          "state": "sqrt(lambda)|00> + exp(i phase)*sqrt(1-lambda)|11>"
+        },
+        "system_entropy": {
+          "rho_0": {
+            "Delta_S_system_von_neumann": 0.0605257368711859,
+            "bath_exchange_energy_delta_TrHrho": -0.10510701946410889,
+            "energy_after_TrHrho": 0.46069624434172446,
+            "energy_before_TrHrho": 0.5658032638058333,
+            "system_entropy_after": 0.5758522403996565,
+            "system_entropy_before": 0.5153265035284706
+          },
+          "rho_1": {
+            "Delta_S_system_von_neumann": 0.05212390942496126,
+            "bath_exchange_energy_delta_TrHrho": 0.09800670289597818,
+            "energy_after_TrHrho": -0.38696752322330746,
+            "energy_before_TrHrho": -0.48497422611928565,
+            "system_entropy_after": 0.6102775214266501,
+            "system_entropy_before": 0.5581536120016889
+          }
+        }
+      }
+    }
+  },
+  "fixed_point_and_strata_checks": {
+    "Citadel": {
+      "commutator_K_P_minus_norm": 0.0,
+      "commutator_K_P_plus_norm": 0.0,
+      "frame": "x-axis",
+      "pure_projector_control_delta": 5.594315114139762e-17,
+      "sensitive_coherence_after": 0.28972888824851184,
+      "sensitive_coherence_before": 0.34,
+      "sensitive_state_control_pass": true
+    },
+    "Hill": {
+      "commutator_K_P_minus_norm": 0.0,
+      "commutator_K_P_plus_norm": 0.0,
+      "frame": "z-axis",
+      "pure_projector_control_delta": 0.0,
+      "sensitive_coherence_after": 0.48743816523792194,
+      "sensitive_coherence_before": 0.5720139858430037,
+      "sensitive_state_control_pass": true
+    },
+    "Pit": {
+      "attractor_side_pass": true,
+      "dissipator_target": "terrain |0><0|",
+      "dissipator_target_residual": 0.0,
+      "full_generator_hamiltonian_tilt_recorded": true,
+      "full_generator_target_residual": 0.23094010767585035,
+      "sensitive_state_rz_drift": -0.5277128129211021,
+      "source_jump": "sigma_-"
+    },
+    "Source": {
+      "attractor_side_pass": true,
+      "dissipator_target": "terrain |1><1|",
+      "dissipator_target_residual": 0.0,
+      "full_generator_hamiltonian_tilt_recorded": true,
+      "full_generator_target_residual": 0.23094010767585035,
+      "sensitive_state_rz_drift": 0.5277128129211021,
+      "source_jump": "sigma_+"
+    },
+    "basis_label_policy": {
+      "note": "Labels follow the locked sigma convention: D[sigma_-] fixes the second matrix-basis projector.",
+      "terrain_label_one_projector_matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "terrain_label_zero_projector_matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:40:41Z",
+  "negative_controls": {
+    "commuting_frame_Si_control_collapses_Hill_Citadel": true,
+    "erased_weyl_sign_collapses_Funnel_Cannon": true,
+    "erased_weyl_sign_collapses_Vortex_Spiral_pure": true,
+    "erased_weyl_sign_collapses_Vortex_Spiral_weak": true,
+    "sigma_only_swap_full_generator_still_differs_due_H_sign": true,
+    "sigma_only_swap_gives_source_jump_direction": true,
+    "sigma_swapped_pit_source_convention_equals_source": true
+  },
+  "object_id": "terrain_generator_sheet_packet_jax",
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "jax.scipy.linalg",
+    "z3",
+    "cvc5",
+    "json",
+    "hashlib",
+    "pathlib"
+  ],
+  "pair_separation_table": {
+    "Funnel_vs_Cannon": {
+      "erased_weyl_trace_distance_rho_0": 0.0,
+      "source_table_claim": "opposite Weyl sign plus pinned coefficient-distinct dissipator family",
+      "trace_distance_rho_0": 0.016169408011912894,
+      "trace_distance_rho_1": 0.021614191162160266
+    },
+    "Hill_vs_Citadel": {
+      "commuting_frame_control_trace_distance_rho_0": 0.0,
+      "distinct_strata_pass": true,
+      "post_channel_trace_distance_rho_0": 0.07089495133514156,
+      "projector_overlap_matrix_z_vs_x": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    "Pit_vs_Source": {
+      "finite_channel_trace_distance_rho_0": 0.19375766463215224,
+      "opposite_sink_source_directions": true,
+      "pit_sensitive_rz_drift": -0.5277128129211021,
+      "source_sensitive_rz_drift": 0.5277128129211021
+    },
+    "Vortex_vs_Spiral": {
+      "erased_weyl_pure_trace_distance_rho_0": 0.0,
+      "erased_weyl_weak_trace_distance_rho_0": 0.0,
+      "pure_trace_distance_rho_0": 0.0844735660110443,
+      "spiral_rotation_direction_pure": -0.009947337793806727,
+      "spiral_rotation_direction_weak": -0.011148240812835,
+      "vortex_rotation_direction_pure": 0.009947337793806705,
+      "vortex_rotation_direction_weak": 0.007084073787697212,
+      "weak_trace_distance_rho_0": 0.07801143145402245
+    }
+  },
+  "pauli_expansion_families": {
+    "Ne_Spiral_R": [
+      {
+        "I": 0.0,
+        "sx": -1.0,
+        "sy": 0.0,
+        "sz": 0.0
+      },
+      {
+        "I": 0.0,
+        "sx": 0.0,
+        "sy": 0.0,
+        "sz": "1j"
+      }
+    ],
+    "Ne_Vortex_L": [
+      {
+        "I": 0.0,
+        "sx": 1.0,
+        "sy": 0.0,
+        "sz": 0.0
+      },
+      {
+        "I": 0.0,
+        "sx": 0.0,
+        "sy": 0.0,
+        "sz": 1.0
+      }
+    ],
+    "Se_Cannon_R": [
+      {
+        "I": 0.0,
+        "sx": -0.4472135954999579,
+        "sy": 0.0,
+        "sz": 0.0
+      },
+      {
+        "I": 0.0,
+        "sx": 0.0,
+        "sy": "0.4472135954999579j",
+        "sz": 0.0
+      }
+    ],
+    "Se_Funnel_L": [
+      {
+        "I": 0.0,
+        "sx": 0.4472135954999579,
+        "sy": 0.0,
+        "sz": 0.0
+      },
+      {
+        "I": 0.0,
+        "sx": 0.0,
+        "sy": 0.4472135954999579,
+        "sz": 0.0
+      }
+    ],
+    "family_note": "Coefficient rows are distinct but phase/sign gauge-equivalent within each L/R pair so Weyl erasure can be a decisive control."
+  },
+  "pauli_expansion_family_pin_metadata": {
+    "Ne_Spiral_R": {
+      "reason": "pure Ne is source-forced; weak-dissipator Ne uses this exploratory coefficient set as a pinned variant",
+      "source_refs": [
+        "system_v5/READ ONLY Reference Docs/terrain math.md:79",
+        "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:56"
+      ],
+      "status": "PINNED-CHOICE not source-forced"
+    },
+    "Ne_Vortex_L": {
+      "reason": "pure Ne is source-forced; weak-dissipator Ne uses this exploratory coefficient set as a pinned variant",
+      "source_refs": [
+        "system_v5/READ ONLY Reference Docs/terrain math.md:78",
+        "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:55"
+      ],
+      "status": "PINNED-CHOICE not source-forced"
+    },
+    "Se_Cannon_R": {
+      "reason": "source fixes the Se dissipator family shape but not this finite Pauli coefficient set",
+      "source_refs": [
+        "system_v5/READ ONLY Reference Docs/terrain math.md:77",
+        "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:54"
+      ],
+      "status": "PINNED-CHOICE not source-forced"
+    },
+    "Se_Funnel_L": {
+      "reason": "source fixes the Se dissipator family shape but not this finite Pauli coefficient set",
+      "source_refs": [
+        "system_v5/READ ONLY Reference Docs/terrain math.md:76",
+        "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:53"
+      ],
+      "status": "PINNED-CHOICE not source-forced"
+    }
+  },
+  "pin_spec": {
+    "H_0": "(sigma_x + sigma_y + sigma_z) / sqrt(3)",
+    "H_L": "+H_0",
+    "H_R": "-H_0",
+    "Phi": "expm(0.4 * X)",
+    "Si_frames": {
+      "m_L": "z-axis",
+      "m_R": "x-axis",
+      "status": "PINNED-CHOICE not source-forced"
+    },
+    "eps_all": 0.2,
+    "gamma_Ni": 0.5,
+    "kappa_Si": 0.4,
+    "omega_Si": {
+      "reason": "source leaves omega/K frame magnitude free; set equal to eps for this bounded packet",
+      "status": "PINNED-CHOICE",
+      "value": 0.2
+    },
+    "rho_0_rho_1": {
+      "reason": "source_locked_operator_base_packet is not present in this checkout; states instantiate the operator packet density constraints",
+      "status": "PINNED-FALLBACK"
+    },
+    "se_lambda": {
+      "reason": "source gives a Se dissipator family but no numeric lambda in the requested line refs",
+      "status": "PINNED-CHOICE",
+      "value": 0.2
+    }
+  },
+  "placements_16": [
+    {
+      "density_delta": 0.13478844710529678,
+      "index": 1,
+      "label": "Se / Funnel / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.763348180982605e-16,
+      "placement": "(X_Funnel,gamma_in)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:122",
+      "terrain": "Funnel"
+    },
+    {
+      "density_delta": 0.13478844710529678,
+      "index": 2,
+      "label": "Se / Funnel / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865475,
+      "placement": "(X_Funnel,gamma_out)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:123",
+      "terrain": "Funnel"
+    },
+    {
+      "density_delta": 0.3038989899926484,
+      "density_delta_weak_dissipator": 0.2899119132446658,
+      "index": 3,
+      "label": "Ne / Vortex / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.763348180982605e-16,
+      "placement": "(X_Vortex,gamma_in)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:124",
+      "terrain": "Vortex"
+    },
+    {
+      "density_delta": 0.3038989899926484,
+      "density_delta_weak_dissipator": 0.2899119132446658,
+      "index": 4,
+      "label": "Ne / Vortex / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865475,
+      "placement": "(X_Vortex,gamma_out)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:125",
+      "terrain": "Vortex"
+    },
+    {
+      "density_delta": 0.1940476699320351,
+      "index": 5,
+      "label": "Ni / Pit / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.763348180982605e-16,
+      "placement": "(X_Pit,gamma_in)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:126",
+      "terrain": "Pit"
+    },
+    {
+      "density_delta": 0.1940476699320351,
+      "index": 6,
+      "label": "Ni / Pit / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865475,
+      "placement": "(X_Pit,gamma_out)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:127",
+      "terrain": "Pit"
+    },
+    {
+      "density_delta": 0.07384937493018998,
+      "index": 7,
+      "label": "Si / Hill / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.763348180982605e-16,
+      "placement": "(X_Hill,gamma_in)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:128",
+      "terrain": "Hill"
+    },
+    {
+      "density_delta": 0.07384937493018998,
+      "index": 8,
+      "label": "Si / Hill / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865475,
+      "placement": "(X_Hill,gamma_out)",
+      "sheet": "L",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:129",
+      "terrain": "Hill"
+    },
+    {
+      "density_delta": 0.10696686625798386,
+      "index": 9,
+      "label": "Se / Cannon / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.626220679274882e-16,
+      "placement": "(X_Cannon,gamma_in)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:130",
+      "terrain": "Cannon"
+    },
+    {
+      "density_delta": 0.10696686625798386,
+      "index": 10,
+      "label": "Se / Cannon / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865476,
+      "placement": "(X_Cannon,gamma_out)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:131",
+      "terrain": "Cannon"
+    },
+    {
+      "density_delta": 0.1293202396983394,
+      "density_delta_weak_dissipator": 0.14315925088100373,
+      "index": 11,
+      "label": "Ne / Spiral / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.626220679274882e-16,
+      "placement": "(X_Spiral,gamma_in)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:132",
+      "terrain": "Spiral"
+    },
+    {
+      "density_delta": 0.1293202396983394,
+      "density_delta_weak_dissipator": 0.14315925088100373,
+      "index": 12,
+      "label": "Ne / Spiral / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865476,
+      "placement": "(X_Spiral,gamma_out)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:133",
+      "terrain": "Spiral"
+    },
+    {
+      "density_delta": 0.06630492799055487,
+      "index": 13,
+      "label": "Ni / Source / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.626220679274882e-16,
+      "placement": "(X_Source,gamma_in)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:134",
+      "terrain": "Source"
+    },
+    {
+      "density_delta": 0.06630492799055487,
+      "index": 14,
+      "label": "Ni / Source / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865476,
+      "placement": "(X_Source,gamma_out)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:135",
+      "terrain": "Source"
+    },
+    {
+      "density_delta": 0.07925130953823536,
+      "index": 15,
+      "label": "Si / Citadel / inner",
+      "loop": "inner",
+      "loop_class": "fiber_density_stationary",
+      "loop_coordinate_density_delta_max": 1.626220679274882e-16,
+      "placement": "(X_Citadel,gamma_in)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:136",
+      "terrain": "Citadel"
+    },
+    {
+      "density_delta": 0.07925130953823536,
+      "index": 16,
+      "label": "Si / Citadel / outer",
+      "loop": "outer",
+      "loop_class": "base_density_visible",
+      "loop_coordinate_density_delta_max": 0.7071067811865476,
+      "placement": "(X_Citadel,gamma_out)",
+      "sheet": "R",
+      "source_line_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:137",
+      "terrain": "Citadel"
+    }
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/terrain_generator_sheet_packet/results/terrain_generator_sheet_packet_jax_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "shared_scalars": {
+    "axis0_pr_sign_Ne": 1.0,
+    "axis0_pr_sign_Ni": 1.0,
+    "axis0_pr_sign_Se": -1.0,
+    "axis0_pr_sign_Si": -1.0,
+    "base_visible_count": 8.0,
+    "choi_min_eigenvalue_min": -1.8550453020427275e-16,
+    "fiber_stationary_count": 8.0,
+    "pair_funnel_cannon_erased_trace_distance_rho_0": 0.0,
+    "pair_funnel_cannon_trace_distance_rho_0": 0.016169408011912894,
+    "pair_hill_citadel_post_channel_trace_distance_rho_0": 0.07089495133514156,
+    "pair_pit_rz_drift": -0.5277128129211021,
+    "pair_source_rz_drift": 0.5277128129211021,
+    "pair_vortex_spiral_erased_pure_trace_distance_rho_0": 0.0,
+    "pair_vortex_spiral_pure_trace_distance_rho_0": 0.0844735660110443,
+    "pair_vortex_spiral_weak_trace_distance_rho_0": 0.07801143145402245,
+    "placement_count": 16.0,
+    "smt_pit_source_forced_equal_unsat": 1.0,
+    "smt_sigma_swapped_valid": 1.0,
+    "source_lock_fresh": 1.0,
+    "tp_residual_max": 2.220446049250313e-16,
+    "unitality_max_non_ni_E_I_minus_I_fro_norm": 3.248996863875653e-16,
+    "unitality_min_ni_E_I_minus_I_fro_norm": 0.2561889764682542
+  },
+  "sigma_swap_control_detail": {
+    "interpretation": "sigma-only Pit swap matches the Source jump direction; full equality also requires the R-sheet Hamiltonian sign, which is checked separately.",
+    "pit_sigma_only_swap_sensitive_rz_drift": 0.472287187078898,
+    "source_sensitive_rz_drift": 0.5277128129211021
+  },
+  "sim_id": "terrain_generator_sheet_packet",
+  "smt": {
+    "agreement": true,
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "binds_generator_entries": 16,
+      "claim": "Pit and Source full generator entries are not equal under entry-binding SMT; forced equality is UNSAT.",
+      "entry_binding_honesty_label": "ENTRY-BINDING SMT: generator formulas are constructed outside the solver; the solver binds scaled generator entries and checks equality/inequality.",
+      "pass": true,
+      "proof_kind": "entry_binding_smt",
+      "scale": 1000000000,
+      "sigma_swapped_pit_source_convention_equality": "sat",
+      "sigma_swapped_pit_source_convention_inequality": "unsat",
+      "solver": "cvc5",
+      "symbolic_derivation_in_solver": false,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "binds_generator_entries": 16,
+      "claim": "Pit and Source full generator entries are not equal under entry-binding SMT; forced equality is UNSAT.",
+      "entry_binding_honesty_label": "ENTRY-BINDING SMT: generator formulas are constructed outside the solver; the solver binds scaled generator entries and checks equality/inequality.",
+      "pass": true,
+      "proof_kind": "entry_binding_smt",
+      "scale": 1000000000,
+      "sigma_swapped_pit_source_convention_equality": "sat",
+      "sigma_swapped_pit_source_convention_inequality": "unsat",
+      "solver": "z3",
+      "symbolic_derivation_in_solver": false,
+      "verdict": "unsat"
+    }
+  },
+  "source_line_refs": {
+    "operator_state_matrix": "system_v5/READ ONLY Reference Docs/operator math explicit.md:8-30",
+    "rosetta_lk_projectors": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:53-58",
+    "rosetta_placements": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:151-183",
+    "rosetta_stage_channel": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md:63-71",
+    "scaffold_terrain_section": "system_v6/foundations/working_math_scaffold_20260609.md:77-101",
+    "terrain_math_generators": "system_v5/READ ONLY Reference Docs/terrain math.md:76-83",
+    "terrain_math_loops": "system_v5/READ ONLY Reference Docs/terrain math.md:30-33",
+    "terrain_math_placements": "system_v5/READ ONLY Reference Docs/terrain math.md:122-150",
+    "terrain_math_projectors": "system_v5/READ ONLY Reference Docs/terrain math.md:89-90",
+    "terrain_math_sigma": "system_v5/READ ONLY Reference Docs/terrain math.md:23-24"
+  },
+  "source_lock_freshness": {
+    "all_fresh": true,
+    "lock_kind": "exact_source_line_range_sha256",
+    "rows": {
+      "rosetta_placements_151_183": {
+        "current_sha256": "251b15eb6f7623c5ccb9ddbd4757e111649801322a768c884379d3bf3c61365c",
+        "end_line": 183,
+        "expected_sha256": "251b15eb6f7623c5ccb9ddbd4757e111649801322a768c884379d3bf3c61365c",
+        "fresh": true,
+        "path": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md",
+        "stale_red": false,
+        "start_line": 151
+      },
+      "rosetta_si_projectors_57_58": {
+        "current_sha256": "fdb1447de960e2dabc406777b939018b7a15bfa135083be62a7145c248d75a83",
+        "end_line": 58,
+        "expected_sha256": "fdb1447de960e2dabc406777b939018b7a15bfa135083be62a7145c248d75a83",
+        "fresh": true,
+        "path": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md",
+        "stale_red": false,
+        "start_line": 57
+      },
+      "rosetta_stage_channel_71": {
+        "current_sha256": "85d126c9ffeea7ea2babe2a3764252a177530e974c20a81715b6514839799545",
+        "end_line": 71,
+        "expected_sha256": "85d126c9ffeea7ea2babe2a3764252a177530e974c20a81715b6514839799545",
+        "fresh": true,
+        "path": "system_v5/READ ONLY Reference Docs/terrain rosetta strong math.md",
+        "stale_red": false,
+        "start_line": 71
+      },
+      "terrain_math_generators_78_83": {
+        "current_sha256": "1c2041062a386ac505aa1d18f2fdc85a304a1f99515e5ad67c56b7a6aed9a1c8",
+        "end_line": 83,
+        "expected_sha256": "1c2041062a386ac505aa1d18f2fdc85a304a1f99515e5ad67c56b7a6aed9a1c8",
+        "fresh": true,
+        "path": "system_v5/READ ONLY Reference Docs/terrain math.md",
+        "stale_red": false,
+        "start_line": 78
+      },
+      "terrain_math_placements_122_137": {
+        "current_sha256": "0a890e6a0363eae5e96ac85793655d2222456ddba4d0380bdb36fbb0c8df3c53",
+        "end_line": 137,
+        "expected_sha256": "0a890e6a0363eae5e96ac85793655d2222456ddba4d0380bdb36fbb0c8df3c53",
+        "fresh": true,
+        "path": "system_v5/READ ONLY Reference Docs/terrain math.md",
+        "stale_red": false,
+        "start_line": 122
+      }
+    },
+    "stale_red": false
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/terrain_generator_sheet_packet/terrain_generator_sheet_packet_jax.py",
+  "source_sha256": "08ee2ab762c75cba800addd676e3555013e1150fe20f04c26fcce74664b768a7",
+  "states": {
+    "rho_0": {
+      "imag": [
+        [
+          0.0,
+          -0.13
+        ],
+        [
+          0.13,
+          0.0
+        ]
+      ],
+      "real": [
+        [
+          0.65,
+          0.21
+        ],
+        [
+          0.21,
+          0.35
+        ]
+      ]
+    },
+    "rho_0_valid": {
+      "hermitian_residual": 0.0,
+      "min_eigenvalue": 0.2110363344640022,
+      "pass": true,
+      "trace_residual": 0.0
+    },
+    "rho_1": {
+      "imag": [
+        [
+          0.0,
+          0.16
+        ],
+        [
+          -0.16,
+          0.0
+        ]
+      ],
+      "real": [
+        [
+          0.42,
+          -0.18
+        ],
+        [
+          -0.18,
+          0.58
+        ]
+      ]
+    },
+    "rho_1_valid": {
+      "hermitian_residual": 0.0,
+      "min_eigenvalue": 0.24622844919100959,
+      "pass": true,
+      "trace_residual": 0.0
+    },
+    "sensitive_rho": {
+      "imag": [
+        [
+          0.0,
+          -0.17
+        ],
+        [
+          0.17,
+          0.0
+        ]
+      ],
+      "real": [
+        [
+          0.5,
+          0.23
+        ],
+        [
+          0.23,
+          0.5
+        ]
+      ]
+    },
+    "sensitive_rho_valid": {
+      "hermitian_residual": 0.0,
+      "min_eigenvalue": 0.2139930070784981,
+      "pass": true,
+      "trace_residual": 0.0
+    }
+  },
+  "terrain_certificates": {
+    "Cannon": {
+      "cptp": {
+        "choi_min_eigenvalue": 0.011109642127190738,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 2.220446049250313e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5766879373955586,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.06136143386708792,
+          "purity_after": 0.6118627760504106,
+          "purity_before": 0.667,
+          "purity_delta": -0.05513722394958942,
+          "trace_distance_from_input": 0.053584939290447026
+        },
+        "rho_1": {
+          "entropy_after": 0.5992636605984509,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.04111004859676204,
+          "purity_after": 0.590906488003318,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.037893511996681895,
+          "trace_distance_from_input": 0.04292464467820865
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              7.114438004250989e-20,
+              -1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              -2.485958395321204e-19
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              -6.938893903907228e-18
+            ],
+            [
+              -6.938893903907228e-18,
+              0.9999999999999998
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.231263227945647e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Citadel": {
+      "cptp": {
+        "choi_min_eigenvalue": -1.6253910948453857e-16,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 0.0
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.539700807000303,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.024374303471832337,
+          "purity_after": 0.6454205441214067,
+          "purity_before": 0.667,
+          "purity_delta": -0.021579455878593334,
+          "trace_distance_from_input": 0.04146101484494976
+        },
+        "rho_1": {
+          "entropy_after": 0.5773280035534049,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.019174391551715964,
+          "purity_after": 0.6112735383727161,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.017526461627283774,
+          "trace_distance_from_input": 0.0373651565694622
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              0.0,
+              -1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.962615573354719e-17,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Funnel": {
+      "cptp": {
+        "choi_min_eigenvalue": 0.011109642127190702,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 2.220446049250313e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5757328374221512,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.06040633389368055,
+          "purity_after": 0.6127414949138625,
+          "purity_before": 0.667,
+          "purity_delta": -0.0542585050861375,
+          "trace_distance_from_input": 0.05753872739717894
+        },
+        "rho_1": {
+          "entropy_after": 0.5991379432595704,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.04098433125788148,
+          "purity_after": 0.5910241714790241,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.03777582852097583,
+          "trace_distance_from_input": 0.04360466556004669
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -6.559452786266278e-20,
+              6.938893903907228e-18
+            ],
+            [
+              -6.938893903907228e-18,
+              1.5319087903004884e-19
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              0.9999999999999998
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.231262351954551e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Hill": {
+      "cptp": {
+        "choi_min_eigenvalue": 4.044452883213195e-33,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 0.0
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5528629077220114,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.03753640419354076,
+          "purity_after": 0.6335901825229904,
+          "purity_before": 0.667,
+          "purity_delta": -0.03340981747700966,
+          "trace_distance_from_input": 0.05158895547167948
+        },
+        "rho_1": {
+          "entropy_after": 0.5927029168983695,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.03454930489668062,
+          "purity_after": 0.597033288300548,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.03176671169945189,
+          "trace_distance_from_input": 0.05030438154273459
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.0,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Pit": {
+      "cptp": {
+        "choi_min_eigenvalue": 1.830716664087739e-08,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 2.220446049250313e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5859384865290629,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.07061198300059224,
+          "purity_after": 0.6033188832235294,
+          "purity_before": 0.667,
+          "purity_delta": -0.06368111677647059,
+          "trace_distance_from_input": 0.12601033930649003
+        },
+        "rho_1": {
+          "entropy_after": 0.5417963026240227,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": -0.016357309377666218,
+          "purity_after": 0.6435453592115618,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": 0.014745359211561837,
+          "trace_distance_from_input": 0.07843871192767984
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -1.3867218362228708e-19,
+              -0.008090730165809426
+            ],
+            [
+              0.008090730165809433,
+              2.3769558591604116e-19
+            ]
+          ],
+          "real": [
+            [
+              0.8192325018827512,
+              -0.00860508813088963
+            ],
+            [
+              -0.00860508813088963,
+              1.1807674981172491
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.2561889764682545,
+        "expected_non_unital": true,
+        "unital_within_tolerance": false
+      }
+    },
+    "Source": {
+      "cptp": {
+        "choi_min_eigenvalue": 1.8307166751789657e-08,
+        "choi_psd": true,
+        "choi_trace": 1.9999999999999998,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 1.1102230246251565e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.48673590474537226,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": -0.028590598783098387,
+          "purity_after": 0.691761253481959,
+          "purity_before": 0.667,
+          "purity_delta": 0.02476125348195901,
+          "trace_distance_from_input": 0.07546296838880395
+        },
+        "rho_1": {
+          "entropy_after": 0.5940215163413123,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.03586790433962339,
+          "purity_after": 0.5958043104522475,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.03299568954775245,
+          "trace_distance_from_input": 0.10667609177366558
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -1.8558813717878163e-19,
+              -0.00860508813088963
+            ],
+            [
+              0.008605088130889622,
+              -4.588706634233062e-21
+            ]
+          ],
+          "real": [
+            [
+              1.1807674981172487,
+              -0.00809073016580944
+            ],
+            [
+              -0.00809073016580944,
+              0.8192325018827511
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.2561889764682542,
+        "expected_non_unital": true,
+        "unital_within_tolerance": false
+      }
+    },
+    "Spiral:pure_hamiltonian": {
+      "cptp": {
+        "choi_min_eigenvalue": -1.8550453020427275e-16,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 1.1102230246251565e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5153265035284708,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 1.1102230246251565e-16,
+          "purity_after": 0.6669999999999998,
+          "purity_before": 0.667,
+          "purity_delta": -2.220446049250313e-16,
+          "trace_distance_from_input": 0.04585666234975731
+        },
+        "rho_1": {
+          "entropy_after": 0.5581536120016888,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": -1.1102230246251565e-16,
+          "purity_after": 0.6288,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": 1.1102230246251565e-16,
+          "trace_distance_from_input": 0.05828280068177706
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -5.363602123032311e-20,
+              5.551115123125783e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              5.031119375922643e-19
+            ]
+          ],
+          "real": [
+            [
+              0.9999999999999999,
+              2.7755575615628914e-17
+            ],
+            [
+              2.7755575615628914e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.4152712609274512e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Spiral:weak_dissipator": {
+      "cptp": {
+        "choi_min_eigenvalue": 0.015283709464263814,
+        "choi_psd": true,
+        "choi_trace": 2.0000000000000004,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 2.220446049250313e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.57276449130697,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.0574379877784994,
+          "purity_after": 0.6154683611279067,
+          "purity_before": 0.667,
+          "purity_delta": -0.05153163887209333,
+          "trace_distance_from_input": 0.07206242580357715
+        },
+        "rho_1": {
+          "entropy_after": 0.6044587275151487,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.04630511551345984,
+          "purity_after": 0.5860338115578054,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.042766188442194486,
+          "trace_distance_from_input": 0.08224521928849171
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -3.2846358830426232e-18,
+              5.551115123125783e-17
+            ],
+            [
+              -2.7755575615628914e-17,
+              2.838385004466645e-18
+            ]
+          ],
+          "real": [
+            [
+              1.0000000000000002,
+              0.0
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0000000000000002
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 3.248996863875653e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Vortex:pure_hamiltonian": {
+      "cptp": {
+        "choi_min_eigenvalue": -1.8020814121357384e-16,
+        "choi_psd": true,
+        "choi_trace": 2.0,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 1.1102230246251565e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5153265035284709,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 2.220446049250313e-16,
+          "purity_after": 0.667,
+          "purity_before": 0.667,
+          "purity_delta": 0.0,
+          "trace_distance_from_input": 0.04585666234975734
+        },
+        "rho_1": {
+          "entropy_after": 0.5581536120016888,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": -1.1102230246251565e-16,
+          "purity_after": 0.6288,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": 1.1102230246251565e-16,
+          "trace_distance_from_input": 0.05828280068177705
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              -5.7724623819611956e-18,
+              0.0
+            ],
+            [
+              2.7755575615628914e-17,
+              -4.590095094696647e-19
+            ]
+          ],
+          "real": [
+            [
+              0.9999999999999999,
+              -5.551115123125783e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.388986373423199e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    },
+    "Vortex:weak_dissipator": {
+      "cptp": {
+        "choi_min_eigenvalue": 0.015283709464263684,
+        "choi_psd": true,
+        "choi_trace": 2.0000000000000004,
+        "pass": true,
+        "tp": true,
+        "tp_residual": 2.220446049250313e-16
+      },
+      "state_deltas": {
+        "rho_0": {
+          "entropy_after": 0.5758522403996565,
+          "entropy_before": 0.5153265035284706,
+          "entropy_delta": 0.0605257368711859,
+          "purity_after": 0.6126316758873093,
+          "purity_before": 0.667,
+          "purity_delta": -0.05436832411269077,
+          "trace_distance_from_input": 0.0614381851326786
+        },
+        "rho_1": {
+          "entropy_after": 0.6102775214266501,
+          "entropy_before": 0.5581536120016889,
+          "entropy_delta": 0.05212390942496126,
+          "purity_after": 0.5805539063880915,
+          "purity_before": 0.6287999999999999,
+          "purity_delta": -0.04824609361190846,
+          "trace_distance_from_input": 0.06343755599765093
+        }
+      },
+      "unitality": {
+        "E_I": {
+          "imag": [
+            [
+              2.0313887453221645e-19,
+              0.0
+            ],
+            [
+              0.0,
+              1.6843509605723218e-18
+            ]
+          ],
+          "real": [
+            [
+              1.0000000000000002,
+              -2.7755575615628914e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.3056136876902954e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    }
+  },
+  "unitality_column": {
+    "definition": "unital iff E(I)=I for the finite channel exp(tX)",
+    "max_non_ni_E_I_minus_I_fro_norm": 3.248996863875653e-16,
+    "min_ni_E_I_minus_I_fro_norm": 0.2561889764682542,
+    "ni_pair_non_unital": true,
+    "non_ni_unital": true,
+    "pass": true,
+    "rows": {
+      "Cannon": {
+        "E_I": {
+          "imag": [
+            [
+              7.114438004250989e-20,
+              -1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              -2.485958395321204e-19
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              -6.938893903907228e-18
+            ],
+            [
+              -6.938893903907228e-18,
+              0.9999999999999998
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.231263227945647e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Citadel": {
+        "E_I": {
+          "imag": [
+            [
+              0.0,
+              -1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.962615573354719e-17,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Funnel": {
+        "E_I": {
+          "imag": [
+            [
+              -6.559452786266278e-20,
+              6.938893903907228e-18
+            ],
+            [
+              -6.938893903907228e-18,
+              1.5319087903004884e-19
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              1.3877787807814457e-17
+            ],
+            [
+              1.3877787807814457e-17,
+              0.9999999999999998
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.231262351954551e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Hill": {
+        "E_I": {
+          "imag": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "real": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.0,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Pit": {
+        "E_I": {
+          "imag": [
+            [
+              -1.3867218362228708e-19,
+              -0.008090730165809426
+            ],
+            [
+              0.008090730165809433,
+              2.3769558591604116e-19
+            ]
+          ],
+          "real": [
+            [
+              0.8192325018827512,
+              -0.00860508813088963
+            ],
+            [
+              -0.00860508813088963,
+              1.1807674981172491
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.2561889764682545,
+        "expected_non_unital": true,
+        "unital_within_tolerance": false
+      },
+      "Source": {
+        "E_I": {
+          "imag": [
+            [
+              -1.8558813717878163e-19,
+              -0.00860508813088963
+            ],
+            [
+              0.008605088130889622,
+              -4.588706634233062e-21
+            ]
+          ],
+          "real": [
+            [
+              1.1807674981172487,
+              -0.00809073016580944
+            ],
+            [
+              -0.00809073016580944,
+              0.8192325018827511
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 0.2561889764682542,
+        "expected_non_unital": true,
+        "unital_within_tolerance": false
+      },
+      "Spiral:pure_hamiltonian": {
+        "E_I": {
+          "imag": [
+            [
+              -5.363602123032311e-20,
+              5.551115123125783e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              5.031119375922643e-19
+            ]
+          ],
+          "real": [
+            [
+              0.9999999999999999,
+              2.7755575615628914e-17
+            ],
+            [
+              2.7755575615628914e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.4152712609274512e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Spiral:weak_dissipator": {
+        "E_I": {
+          "imag": [
+            [
+              -3.2846358830426232e-18,
+              5.551115123125783e-17
+            ],
+            [
+              -2.7755575615628914e-17,
+              2.838385004466645e-18
+            ]
+          ],
+          "real": [
+            [
+              1.0000000000000002,
+              0.0
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0000000000000002
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 3.248996863875653e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Vortex:pure_hamiltonian": {
+        "E_I": {
+          "imag": [
+            [
+              -5.7724623819611956e-18,
+              0.0
+            ],
+            [
+              2.7755575615628914e-17,
+              -4.590095094696647e-19
+            ]
+          ],
+          "real": [
+            [
+              0.9999999999999999,
+              -5.551115123125783e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 1.388986373423199e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      },
+      "Vortex:weak_dissipator": {
+        "E_I": {
+          "imag": [
+            [
+              2.0313887453221645e-19,
+              0.0
+            ],
+            [
+              0.0,
+              1.6843509605723218e-18
+            ]
+          ],
+          "real": [
+            [
+              1.0000000000000002,
+              -2.7755575615628914e-17
+            ],
+            [
+              -5.551115123125783e-17,
+              1.0
+            ]
+          ]
+        },
+        "E_I_minus_I_fro_norm": 2.3056136876902954e-16,
+        "expected_non_unital": false,
+        "unital_within_tolerance": true
+      }
+    }
+  }
+}

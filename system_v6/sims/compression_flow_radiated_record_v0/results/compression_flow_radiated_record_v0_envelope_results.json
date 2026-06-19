@@ -1,0 +1,1153 @@
+{
+  "PIN_SPEC": {
+    "candidate_math_source": "system_v6/receipts/shell_flow_radiated_information_mine_20260610.md §B-C",
+    "carrier": {
+      "carrier_lineage": "f64f2c3624658fb522c8e5363ae2bb1a38b2a626d9da5e283ef05025a0e13161",
+      "carrier_support_table_hash": "5727f366d2e4081549095d62741e25179aa6e561042617ba70970173b74bc2a8",
+      "chart_formula": "psi_s(phi_i,chi_j;eta_k)=(exp(i(phi_i+chi_j))*cos(eta_k), exp(i(phi_i-chi_j))*sin(eta_k))",
+      "grid": {
+        "chi_j": "2*pi*j/8 for j=0..7",
+        "eta_k": [
+          "pi/8",
+          "pi/4",
+          "3*pi/8"
+        ],
+        "phi_i": "2*pi*i/8 for i=0..7",
+        "sheets": [
+          "L",
+          "R"
+        ],
+        "support_size": 384
+      },
+      "reuse_policy": "committed carrier consumed as input; no new carrier formula is introduced",
+      "source_result_path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/results/mct_dynamic_admissibility_packet_v0_julia_results.json",
+      "source_sim": "system_v6/sims/mct_dynamic_admissibility_packet_v0"
+    },
+    "entropy_objects": {
+      "H_live": "class-distribution entropy of live set under P_density, base e",
+      "H_record": "class-distribution entropy of append-only record composition, base e",
+      "erasure_charge": "bits_erased * ln2, reported in nats"
+    },
+    "flow": {
+      "G4_name_note": "build card says P_2; this receipt reports P_T after all three pinned predicates and aliases it in G4 fields",
+      "b0_outer_to_inner": [
+        -1,
+        0,
+        1
+      ],
+      "initial_live_set": "all 384 committed carrier rows at outer stage",
+      "shell_coordinate": "eta_k",
+      "shells_outer_to_inner": [
+        "3*pi/8",
+        "pi/4",
+        "pi/8"
+      ],
+      "steps": [
+        {
+          "keep_rule": "P_density[0] >= 2",
+          "predicate_id": "c0_density_x_bin_ge_2",
+          "source_probe_family": "P_density",
+          "source_quote": "P_density (binned Bloch components)",
+          "status": "PINNED-CHOICE",
+          "step": 0
+        },
+        {
+          "keep_rule": "P_shell != 2",
+          "predicate_id": "c1_shell_not_outer_eta",
+          "source_probe_family": "P_shell",
+          "source_quote": "P_shell (eta index)",
+          "status": "PINNED-CHOICE",
+          "step": 1
+        },
+        {
+          "keep_rule": "P_phase in {0,1,2,3}",
+          "predicate_id": "c2_phase_lower_half",
+          "source_probe_family": "P_phase",
+          "source_quote": "P_phase (phase-sensitive non-density probe)",
+          "status": "PINNED-CHOICE",
+          "step": 2
+        }
+      ],
+      "terminal_state_name": "P_T after steps t=0,1,2"
+    },
+    "record_modes": {
+      "quotient_class": "emitted rows carry density-only quotient class ids",
+      "raw_row": "emitted rows carry full canonical support and probe rows"
+    },
+    "sim_id": "compression_flow_radiated_record_v0",
+    "status": "PINNED",
+    "variants": [
+      "radiative",
+      "erasure_boundary_baseline",
+      "lossy_record_counts_only"
+    ]
+  },
+  "acceptance_summary": {
+    "G1_G8_named_computed_fields": true,
+    "PIN_identical": true,
+    "candidate_math_labels_present": true,
+    "carrier_lineage_cited": true,
+    "ceiling_fields_exact": true,
+    "controls_fired": true,
+    "erasure_register_basis_pinned": true,
+    "legs_exit_0_when_run": {
+      "jax": true,
+      "julia": true,
+      "pytorch": true
+    },
+    "payload_bound_z3_cvc5_flip": true,
+    "pytorch_independent_of_jax_core": true
+  },
+  "all_controls_fired": true,
+  "all_gates_pass": true,
+  "all_gates_present": true,
+  "all_pass": true,
+  "all_shared_comparator_values_match": true,
+  "all_shared_values_match": true,
+  "allowed_claims": [
+    "scratch_diagnostic finite set/record conservation receipt",
+    "candidate-math conservation/reconstruction receipt",
+    "record-granularity killed-information measurement"
+  ],
+  "candidate_math_labels": {
+    "conservation": "CANDIDATE MATH -- first receipt for candidate conservation formalization",
+    "doctrine_promotion": "not promoted to standing doctrine",
+    "reconstruction": "CANDIDATE MATH -- first receipt for candidate reconstruction formalization",
+    "source": "system_v6/receipts/shell_flow_radiated_information_mine_20260610.md §B-C"
+  },
+  "candidate_math_labels_present": true,
+  "carrier_lineage": "f64f2c3624658fb522c8e5363ae2bb1a38b2a626d9da5e283ef05025a0e13161",
+  "carrier_support_hash_recomputation_citation": {
+    "jax": {
+      "claim_scope": "carrier_support_table_hash recomputation citation only",
+      "line_range": "315-329",
+      "serialization": "state_id|psi0_real|psi0_imag|psi1_real|psi1_imag, joined with newlines plus final newline",
+      "source_path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/mct_dynamic_admissibility_packet_v0_jax.py"
+    },
+    "julia": {
+      "claim_scope": "carrier_support_table_hash recomputation citation only",
+      "line_range": "243-256",
+      "serialization": "state_id|psi0_real|psi0_imag|psi1_real|psi1_imag, joined with newlines plus final newline",
+      "source_path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/mct_dynamic_admissibility_packet_v0_julia.jl"
+    },
+    "pytorch": {
+      "claim_scope": "carrier_support_table_hash recomputation citation only",
+      "line_range": "382-396",
+      "serialization": "state_id|psi0_real|psi0_imag|psi1_real|psi1_imag, joined with newlines plus final newline",
+      "source_path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/mct_dynamic_admissibility_packet_v0_pytorch.py"
+    }
+  },
+  "carrier_support_table_hash": "5727f366d2e4081549095d62741e25179aa6e561042617ba70970173b74bc2a8",
+  "ceilings_exact": true,
+  "claim": "a first finite compression-flow/radiated-record packet",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3",
+    "jax",
+    "z3",
+    "cvc5",
+    "torch",
+    "torch_geometric"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "jax": {
+      "erasure variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "injected conservation violation": {
+        "caught_by_ledger": true,
+        "dropped_midflight_state_id": "L:eta0:phi0:chi0",
+        "fired": true,
+        "ledger_defect": 1
+      },
+      "label shuffle": {
+        "fired": true,
+        "ledger_sizes_preserved": [
+          96,
+          96,
+          96
+        ],
+        "raw_reconstruction_mismatch_after_relabel": 0,
+        "verdict_preserved": true
+      },
+      "lossy-record variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "record-shuffle": {
+        "control_changed_result": true,
+        "fired": true,
+        "original_step_consistency_errors": 0,
+        "shuffled_step_consistency_errors": 192
+      },
+      "trivial-predicate control": {
+        "excluded_count": 0,
+        "fired": true,
+        "flagged_not_silently_passed": true,
+        "kept_count": 384,
+        "predicate_id": "trivial_loop_outer_visible"
+      }
+    },
+    "julia": {
+      "erasure variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "injected conservation violation": {
+        "caught_by_ledger": true,
+        "dropped_midflight_state_id": "L:eta0:phi0:chi0",
+        "fired": true,
+        "ledger_defect": 1
+      },
+      "label shuffle": {
+        "fired": true,
+        "ledger_sizes_preserved": [
+          96,
+          96,
+          96
+        ],
+        "raw_reconstruction_mismatch_after_relabel": 0,
+        "verdict_preserved": true
+      },
+      "lossy-record variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "record-shuffle": {
+        "control_changed_result": true,
+        "fired": true,
+        "original_step_consistency_errors": 0,
+        "shuffled_step_consistency_errors": 192
+      },
+      "trivial-predicate control": {
+        "excluded_count": 0,
+        "fired": true,
+        "flagged_not_silently_passed": true,
+        "kept_count": 384,
+        "predicate_id": "trivial_loop_outer_visible"
+      }
+    },
+    "pytorch": {
+      "erasure variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "injected conservation violation": {
+        "caught_by_ledger": true,
+        "dropped_midflight_state_id": "L:eta0:phi0:chi0",
+        "fired": true,
+        "ledger_defect": 1
+      },
+      "label shuffle": {
+        "fired": true,
+        "ledger_sizes_preserved": [
+          96,
+          96,
+          96
+        ],
+        "raw_reconstruction_mismatch_after_relabel": 0,
+        "verdict_preserved": true
+      },
+      "lossy-record variant": {
+        "fired": true,
+        "raw_reconstruction_mismatch_count": 288
+      },
+      "record-shuffle": {
+        "control_changed_result": true,
+        "fired": true,
+        "original_step_consistency_errors": 0,
+        "shuffled_step_consistency_errors": 192
+      },
+      "trivial-predicate control": {
+        "excluded_count": 0,
+        "fired": true,
+        "flagged_not_silently_passed": true,
+        "kept_count": 384,
+        "predicate_id": "trivial_loop_outer_visible"
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+      "hardcoded_literals": false,
+      "load_bearing": true,
+      "model_false_state_ids_sample": [],
+      "observed_rows_bound": 384,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "erased_control": {
+      "cvc5": {
+        "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "observed_rows_bound": 342,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "z3": {
+        "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "observed_rows_bound": 342,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      }
+    },
+    "julia_z3": {
+      "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+      "hardcoded_literals": false,
+      "load_bearing": true,
+      "model_false_state_ids_sample": [],
+      "observed_rows_bound": 384,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+      "hardcoded_literals": false,
+      "load_bearing": true,
+      "model_false_state_ids_sample": [],
+      "observed_rows_bound": 384,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "manifold algorithm proven",
+    "QIT separation",
+    "axis/bridge/physics claim",
+    "formal admission"
+  ],
+  "divergence": {
+    "engine_values": {
+      "jax": 0,
+      "julia": 0,
+      "pytorch": 0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "observable": "raw_reconstruction_mismatch_count",
+    "shared_comparator_value_deltas": {
+      "charge_emitted_step_register": 0.0,
+      "charge_full_support_identity": 0.0,
+      "charge_pre_step_live": 0.0,
+      "charge_remaining_live_after_step": 0.0
+    },
+    "shared_value_deltas": {
+      "P_T_size": 0.0,
+      "erasure_environment_charge_nats": 0.0,
+      "injected_conservation_defect": 0.0,
+      "max_conservation_defect": 0.0,
+      "quotient_level_mismatch_count": 0.0,
+      "quotient_raw_reconstruction_mismatch_count": 0.0,
+      "raw_reconstruction_mismatch_count": 0.0,
+      "support_size": 0.0,
+      "total_emitted_rows": 0.0
+    }
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/compression_flow_radiated_record_v0/results/compression_flow_radiated_record_v0_jax_results.json",
+      "source_path": "system_v6/sims/compression_flow_radiated_record_v0/compression_flow_radiated_record_v0_jax.py",
+      "source_sha256": "2dfbc7158de8af37f6db23ada85fe35b48053128290bb59522404cb1d940aab0"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+      ],
+      "all_pass": true,
+      "packages_used": [
+        "JSON",
+        "QuantumOptics",
+        "Z3"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/compression_flow_radiated_record_v0/results/compression_flow_radiated_record_v0_julia_results.json",
+      "source_path": "system_v6/sims/compression_flow_radiated_record_v0/compression_flow_radiated_record_v0_julia.jl",
+      "source_sha256": "594a619a3313b1b9465bf00f43788aca392cd85a2aaab4e469f4f0f6dda5b8a8"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch",
+        "torch_geometric",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "packages_used": [
+        "torch",
+        "torch_geometric",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/compression_flow_radiated_record_v0/results/compression_flow_radiated_record_v0_pytorch_results.json",
+      "source_path": "system_v6/sims/compression_flow_radiated_record_v0/compression_flow_radiated_record_v0_pytorch.py",
+      "source_sha256": "2db355cde83fad3434893edd093c2c0f3a9605fa81e4a1ae4f0b275b1dfbe47e"
+    }
+  },
+  "erasure_register_basis": {
+    "jax": "full_support_identity",
+    "julia": "full_support_identity",
+    "pytorch": "full_support_identity"
+  },
+  "formal_admission_allowed": false,
+  "gate_matrix": {
+    "jax": {
+      "G1": true,
+      "G2": true,
+      "G3": true,
+      "G4": true,
+      "G5": true,
+      "G6": true,
+      "G7": true,
+      "G8": true
+    },
+    "julia": {
+      "G1": true,
+      "G2": true,
+      "G3": true,
+      "G4": true,
+      "G5": true,
+      "G6": true,
+      "G7": true,
+      "G8": true
+    },
+    "pytorch": {
+      "G1": true,
+      "G2": true,
+      "G3": true,
+      "G4": true,
+      "G5": true,
+      "G6": true,
+      "G7": true,
+      "G8": true
+    }
+  },
+  "generated_at": "2026-06-10T03:54:17.893807+00:00",
+  "jax_batched_receipt": {
+    "batched_predicate_counts": [
+      {
+        "jax_emitted_count": 96,
+        "jax_live_after": 288,
+        "predicate_id": "c0_density_x_bin_ge_2"
+      },
+      {
+        "jax_emitted_count": 96,
+        "jax_live_after": 192,
+        "predicate_id": "c1_shell_not_outer_eta"
+      },
+      {
+        "jax_emitted_count": 96,
+        "jax_live_after": 96,
+        "predicate_id": "c2_phase_lower_half"
+      }
+    ],
+    "jax_enable_x64": true
+  },
+  "julia_native_checks": {
+    "quantumoptics_density_trace": {
+      "trace": 1.0,
+      "trace_one_pass": true
+    },
+    "z3_backend": "Z3.jl"
+  },
+  "payload_bound_proof_ok": true,
+  "pin_block_sha256": "d8acfdd16ad97ddf5fe8209b0b3fceba176ce130b24d087e083617c729d67fda",
+  "pin_identical_across_legs": true,
+  "pin_specs_identical_across_legs": true,
+  "promotion_allowed": false,
+  "proof_payload_bound_cvc5": {
+    "jax": {
+      "dropped_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 342,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 384,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      }
+    },
+    "pytorch": {
+      "dropped_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 342,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 384,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      }
+    }
+  },
+  "proof_payload_bound_z3": {
+    "jax": {
+      "dropped_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 342,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 384,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "julia": {
+      "dropped_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "observed_rows_bound": 342,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [],
+        "observed_rows_bound": 384,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "unsat"
+      }
+    },
+    "pytorch": {
+      "dropped_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [
+          "L:eta0:phi0:chi2",
+          "L:eta0:phi1:chi4",
+          "L:eta0:phi3:chi4",
+          "L:eta0:phi3:chi6",
+          "L:eta0:phi6:chi0",
+          "L:eta0:phi7:chi2",
+          "L:eta1:phi0:chi5",
+          "L:eta1:phi2:chi5"
+        ],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 342,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "candidate_differs_constraint": "exists row where presence is false or canonical payload-hash code differs",
+        "hardcoded_literals": false,
+        "load_bearing": true,
+        "model_false_state_ids_sample": [],
+        "model_payload_mismatch_state_ids_sample": [],
+        "observed_rows_bound": 384,
+        "payload_bound": true,
+        "payload_digest_sample": {
+          "L:eta0:phi0:chi0": "0c6c862049d7dc7b448d6667c012f7c772ccd4773900e8be957d02de9c8f036e",
+          "L:eta0:phi0:chi1": "90a721fcabb6a624ee8e7d3617b049adf38a61a2c0d40a1e74d53c0cfa3ad85c",
+          "L:eta0:phi0:chi2": "e90b68dad8585e34eae4c580e538165016977957bc4fe3c2947a07c02909b103"
+        },
+        "payload_hash_function": "sha256(canonical_json({state_id,support,probe}))",
+        "payload_hash_integer_code": "first_15_hex_digits_base16",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    }
+  },
+  "proof_rowset_coverage": {
+    "jax": {
+      "erased_control": {
+        "cvc5": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [
+            "L:eta0:phi0:chi2",
+            "L:eta0:phi1:chi4",
+            "L:eta0:phi3:chi4",
+            "L:eta0:phi3:chi6",
+            "L:eta0:phi6:chi0",
+            "L:eta0:phi7:chi2",
+            "L:eta1:phi0:chi5",
+            "L:eta1:phi2:chi5"
+          ],
+          "observed_rows_bound": 342,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "sat"
+        },
+        "drop_rule": "drop every 7th emitted raw record row in solver erased-control",
+        "dropped_record_rows": 42,
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [
+            "L:eta0:phi0:chi2",
+            "L:eta0:phi1:chi4",
+            "L:eta0:phi3:chi4",
+            "L:eta0:phi3:chi6",
+            "L:eta0:phi6:chi0",
+            "L:eta0:phi7:chi2",
+            "L:eta1:phi0:chi5",
+            "L:eta1:phi2:chi5"
+          ],
+          "observed_rows_bound": 342,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "sat"
+        }
+      },
+      "raw_uniqueness": {
+        "cvc5": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [],
+          "observed_rows_bound": 384,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "unsat"
+        },
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [],
+          "observed_rows_bound": 384,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "unsat"
+        }
+      }
+    },
+    "julia": {
+      "erased_control": {
+        "drop_rule": "drop every 7th emitted raw record row in solver erased-control",
+        "dropped_record_rows": 42,
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [
+            "L:eta0:phi0:chi2",
+            "L:eta0:phi1:chi4",
+            "L:eta0:phi3:chi4",
+            "L:eta0:phi3:chi6",
+            "L:eta0:phi6:chi0",
+            "L:eta0:phi7:chi2",
+            "L:eta1:phi0:chi5",
+            "L:eta1:phi2:chi5"
+          ],
+          "observed_rows_bound": 342,
+          "ran": true,
+          "solver": "Z3.jl",
+          "verdict": "sat"
+        }
+      },
+      "raw_uniqueness": {
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [],
+          "observed_rows_bound": 384,
+          "ran": true,
+          "solver": "Z3.jl",
+          "verdict": "unsat"
+        }
+      }
+    },
+    "pytorch": {
+      "erased_control": {
+        "cvc5": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [
+            "L:eta0:phi0:chi2",
+            "L:eta0:phi1:chi4",
+            "L:eta0:phi3:chi4",
+            "L:eta0:phi3:chi6",
+            "L:eta0:phi6:chi0",
+            "L:eta0:phi7:chi2",
+            "L:eta1:phi0:chi5",
+            "L:eta1:phi2:chi5"
+          ],
+          "observed_rows_bound": 342,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "sat"
+        },
+        "drop_rule": "drop every 7th emitted raw record row in solver erased-control",
+        "dropped_record_rows": 42,
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [
+            "L:eta0:phi0:chi2",
+            "L:eta0:phi1:chi4",
+            "L:eta0:phi3:chi4",
+            "L:eta0:phi3:chi6",
+            "L:eta0:phi6:chi0",
+            "L:eta0:phi7:chi2",
+            "L:eta1:phi0:chi5",
+            "L:eta1:phi2:chi5"
+          ],
+          "observed_rows_bound": 342,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "sat"
+        }
+      },
+      "raw_uniqueness": {
+        "cvc5": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [],
+          "observed_rows_bound": 384,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "unsat"
+        },
+        "z3": {
+          "candidate_differs_constraint": "exists row where P_0_prime[row] is false while P_0[row] is true",
+          "hardcoded_literals": false,
+          "load_bearing": true,
+          "model_false_state_ids_sample": [],
+          "observed_rows_bound": 384,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "unsat"
+        }
+      }
+    }
+  },
+  "pytorch_graph_receipt": {
+    "append_only_record_chain_forward_only": true,
+    "edge_count": 582,
+    "edge_index_shape": [
+      2,
+      582
+    ],
+    "emitted_record_node_count": 288,
+    "graph_role": "append-only record/flow DAG lane",
+    "load_bearing_for_gates": [
+      "G3",
+      "G7"
+    ],
+    "max_in_degree": 97.0,
+    "max_out_degree": 97.0,
+    "mutation_edges_to_prior_records": 0,
+    "node_count": 299,
+    "record_state_node_count": 4,
+    "tool": "torch_geometric.utils.degree"
+  },
+  "pytorch_independence_receipt": {
+    "graph_only_scalars": [],
+    "imports_jax_core": false,
+    "pytorch_role": "independent_torch_flow_and_graph",
+    "torch_native_scalars": [
+      "support_size",
+      "P_T_size",
+      "total_emitted_rows",
+      "raw_reconstruction_mismatch_count",
+      "quotient_raw_reconstruction_mismatch_count",
+      "quotient_level_mismatch_count",
+      "max_conservation_defect",
+      "injected_conservation_defect",
+      "erasure_environment_charge_nats",
+      "per_step_ledger",
+      "reconstruction_mismatches",
+      "telescoped_totals"
+    ]
+  },
+  "record_mode_comparison": {
+    "quotient_mode": {
+      "killed_information_ledger": {
+        "emitted_rows": 288,
+        "formula": "sum_emitted ln(|P_density_class|)",
+        "killed_information_nats": 998.1319400063212,
+        "object": "raw-row identity within P_density quotient classes"
+      },
+      "quotient_level_mismatch_count": 0,
+      "quotient_level_reconstruction_succeeds": true,
+      "raw_reconstruction_fails": true,
+      "raw_reconstruction_mismatch_count": 48
+    },
+    "raw_mode": {
+      "P_T_size": 96,
+      "raw_reconstruction_mismatch_count": 0,
+      "reconstructed_count": 384,
+      "reconstructed_from_P_T_and_full_raw_record": true,
+      "record_row_count": 288
+    }
+  },
+  "result_path": "system_v6/sims/compression_flow_radiated_record_v0/results/compression_flow_radiated_record_v0_envelope_results.json",
+  "schema": "compression_flow_radiated_record_envelope_v0",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_comparator_values": {
+    "charge_emitted_step_register": {
+      "jax": 13.693044574403508,
+      "julia": 13.693044574403508,
+      "pytorch": 13.693044574403508
+    },
+    "charge_full_support_identity": {
+      "jax": 1713.7850551452655,
+      "julia": 1713.7850551452655,
+      "pytorch": 1713.7850551452655
+    },
+    "charge_pre_step_live": {
+      "jax": 1619.6254468561397,
+      "julia": 1619.6254468561397,
+      "pytorch": 1619.6254468561397
+    },
+    "charge_remaining_live_after_step": {
+      "jax": 1486.54118818863,
+      "julia": 1486.54118818863,
+      "pytorch": 1486.54118818863
+    }
+  },
+  "shared_values": {
+    "P_T_size": {
+      "jax": 96,
+      "julia": 96,
+      "pytorch": 96
+    },
+    "erasure_environment_charge_nats": {
+      "jax": 1713.7850551452655,
+      "julia": 1713.7850551452655,
+      "pytorch": 1713.7850551452655
+    },
+    "injected_conservation_defect": {
+      "jax": 1,
+      "julia": 1,
+      "pytorch": 1
+    },
+    "max_conservation_defect": {
+      "jax": 0,
+      "julia": 0,
+      "pytorch": 0
+    },
+    "quotient_level_mismatch_count": {
+      "jax": 0,
+      "julia": 0,
+      "pytorch": 0
+    },
+    "quotient_raw_reconstruction_mismatch_count": {
+      "jax": 48,
+      "julia": 48,
+      "pytorch": 48
+    },
+    "raw_reconstruction_mismatch_count": {
+      "jax": 0,
+      "julia": 0,
+      "pytorch": 0
+    },
+    "support_size": {
+      "jax": 384,
+      "julia": 384,
+      "pytorch": 384
+    },
+    "total_emitted_rows": {
+      "jax": 288,
+      "julia": 288,
+      "pytorch": 288
+    }
+  },
+  "sim_id": "compression_flow_radiated_record_v0",
+  "source_path": "system_v6/sims/compression_flow_radiated_record_v0/compression_flow_radiated_record_v0_envelope.py",
+  "source_sha256": "dcc8fc022f58949470298daa7ce226e1e0078c19ab154e8549929facdd5330be",
+  "variants": {
+    "erasure": {
+      "arithmetic": "2472.469200207693 bits * ln2 = 1713.785055145265 nats",
+      "bits_erased": 2472.469200207693,
+      "charge_adjudication": "named alternatives preserved; no comparator is promoted as the charge",
+      "charge_comparators": {
+        "charge_emitted_step_register": {
+          "charge_nats": 13.693044574403508,
+          "formula": "sum_t ln(Delta_R_t_size)",
+          "register_semantics": "blind-card per-step-register comparator; one emitted-step register per step, not per emitted row"
+        },
+        "charge_full_support_identity": {
+          "charge_nats": 1713.7850551452655,
+          "formula": "total_emitted_rows * ln(support_size)",
+          "register_semantics": "each erased raw row is charged against the full 384-row support identity register"
+        },
+        "charge_pre_step_live": {
+          "charge_nats": 1619.6254468561397,
+          "formula": "sum_t Delta_R_t_size * ln(P_t_size)",
+          "register_semantics": "each step charges erased rows against the pre-step live set"
+        },
+        "charge_remaining_live_after_step": {
+          "charge_nats": 1486.54118818863,
+          "formula": "sum_t Delta_R_t_size * ln(P_t_plus_1_size)",
+          "register_semantics": "each step charges erased rows against the remaining live set after that step"
+        }
+      },
+      "charge_divergence_source": "/tmp/cfr_advisory_crosscheck_20260610.md#D1",
+      "charge_emitted_step_register": 13.693044574403508,
+      "charge_full_support_identity": 1713.7850551452655,
+      "charge_pre_step_live": 1619.6254468561397,
+      "charge_remaining_live_after_step": 1486.54118818863,
+      "environment_charge_label": "headline charge under erasure_register_basis=full_support_identity",
+      "environment_charge_nats": 1713.7850551452655,
+      "erasure_register_basis": "full_support_identity",
+      "fired": true,
+      "internal_ledger_balances_without_environment": false,
+      "internal_ledgers": [
+        {
+          "P_t_plus_1_size": 288,
+          "P_t_size": 384,
+          "internal_Delta_R_t_size_after_reset": 0,
+          "internal_cardinality_defect_without_environment": 96,
+          "step": 0
+        },
+        {
+          "P_t_plus_1_size": 192,
+          "P_t_size": 288,
+          "internal_Delta_R_t_size_after_reset": 0,
+          "internal_cardinality_defect_without_environment": 96,
+          "step": 1
+        },
+        {
+          "P_t_plus_1_size": 96,
+          "P_t_size": 192,
+          "internal_Delta_R_t_size_after_reset": 0,
+          "internal_cardinality_defect_without_environment": 96,
+          "step": 2
+        }
+      ],
+      "raw_reconstruction_mismatch_count": 288,
+      "reconstruction_fails": true,
+      "record_register_policy": "reset_each_step_content_destroyed",
+      "variant": "erasure_boundary_baseline"
+    },
+    "lossy": {
+      "fired": true,
+      "raw_reconstruction_fails": true,
+      "raw_reconstruction_mismatch_count": 288,
+      "reason": "counts contain no row identity and no quotient class id",
+      "record_payload": {
+        "per_step_counts_only": [
+          96,
+          96,
+          96
+        ]
+      },
+      "variant": "lossy_record_counts_only"
+    }
+  }
+}

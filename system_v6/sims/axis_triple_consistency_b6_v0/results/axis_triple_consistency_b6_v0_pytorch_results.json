@@ -1,0 +1,247 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "jax.scipy.linalg": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia finite Hopf sample graph and row counts",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia SMT computed count identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard envelope construction; this packet does not hand-roll three_engine_sim_result_v1",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent Python SMT computed count identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "JAX x64 independent vector recomputation",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "JAX finite sign arithmetic over Hopf rows",
+      "tried": true,
+      "used": true
+    },
+    "jax.scipy.linalg": {
+      "reason": "JAX matrix exponential for pinned terrain flow",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact panel arithmetic rows",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch vectorized precedence recomputation",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "PyTorch finite relation graph carrier",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT computed count identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "receipt_id": "pytorch_axis_triple_vmap_recompute",
+      "status": "used",
+      "tool": "torch.func"
+    },
+    {
+      "receipt_id": "pytorch_axis_triple_sample_graph",
+      "status": "used",
+      "tool": "torch_geometric"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only + consistency_row_only",
+  "claim_path_tools": [
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "agreement_count": 16,
+    "b6_negative_count": 24,
+    "b6_positive_count": 24,
+    "nonneutral_agreement_count": 16,
+    "nonneutral_total": 32,
+    "sample_total": 48,
+    "torch_geometric_edge_count": 48,
+    "torch_geometric_num_nodes": 48,
+    "violation_count": 32,
+    "weighted_z_sha256": "b6d120a4e101d4a1b82978d82fb0d6da74033cf34c080f5cba007e3d3e931d2c"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "engine_mode": "all_three_full_sims",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T07:36:00Z",
+  "object_id": "axis_triple_consistency_b6_v0_pytorch",
+  "package_observables": {
+    "cvc5": "cvc5.Solver independently binds the same count row and erased flip",
+    "sympy": "sp.symbols/sp.Matrix panel arithmetic check for q2 signs",
+    "torch.func": "torch.func.vmap vectorizes the precedence row computation over 48 Hopf states",
+    "torch_geometric": "torch_geometric.data.Data edge_index carries the finite sample/control graph",
+    "z3": "z3.Solver binds computed agreement/violation counts and erased flip"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json"
+  ],
+  "panel_point_checks": [
+    {
+      "b0_sign": 1,
+      "b3_sign": 1,
+      "computed_b6_sign": -1,
+      "expected_b6_negative_b0_b3": -1,
+      "matches_panel_expected": true,
+      "panel_expected_b6": -1,
+      "panel_point_id": "panel6_q2_eta_pi_over_6_fiber"
+    },
+    {
+      "b0_sign": -1,
+      "b3_sign": -1,
+      "computed_b6_sign": -1,
+      "expected_b6_negative_b0_b3": -1,
+      "matches_panel_expected": true,
+      "panel_expected_b6": -1,
+      "panel_point_id": "panel6_q2_eta_pi_over_3_base"
+    }
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/axis_triple_consistency_b6_v0/results/axis_triple_consistency_b6_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "axis_triple_consistency_b6_v0",
+  "source_backing_probe": {
+    "cvc5_erased_flip_verdict": "sat",
+    "cvc5_verdict": "unsat",
+    "pass": true,
+    "sympy_panel_probe": {
+      "expected_b6_base": -1,
+      "expected_b6_fiber": -1,
+      "pass": true
+    },
+    "torch_dtype": "torch.float64",
+    "torch_func_vmap_rows": 48,
+    "torch_geometric_edge_count": 48,
+    "torch_geometric_num_nodes": 48,
+    "z3_erased_flip_verdict": "sat",
+    "z3_verdict": "unsat"
+  },
+  "source_path": "system_v6/sims/axis_triple_consistency_b6_v0/axis_triple_consistency_b6_v0_pytorch.py",
+  "source_sha256": "9d56b482c692aea1e7de3b3db4b7eccce8f8a6261e20ae8c576efaed95afd2bf",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "torch.func.vmap / vmap(row_precedence)",
+      "tool": "torch.func"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "torch_geometric.data.Data(edge_index)",
+      "tool": "torch_geometric"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "sp.symbols, sp.Matrix, sp.simplify",
+      "tool": "sympy"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "z3.Solver, z3.Int, solver.add, solver.check",
+      "tool": "z3"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "cvc5.Solver, mkConst, mkTerm, assertFormula, checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "tool_intent": {
+    "claim_classes": [
+      "axis0_axis3_axis6_computed_consistency_row",
+      "hopf_carrier_axis_readout_candidate_only",
+      "computed_panel_point_check",
+      "computed_negative_controls_only"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independently bind the same computed count row and erased flip",
+        "jax": "enable x64 and device-get the independently recomputed Hopf table counts",
+        "jax.numpy": "vectorize b0, b3, and b6 sign computations over the Hopf sample",
+        "jax.scipy.linalg": "compute the Ne flow matrix from the pinned generator by expm",
+        "sympy": "exactly check the panel arithmetic signs before numeric JAX evaluation",
+        "z3": "bind computed agreement and violation counts with an erased-flip satisfiable control"
+      },
+      "julia": {
+        "Graphs": "build a finite Hopf sample graph whose rows carry independently computed b0, b3, b6 signs",
+        "Z3": "bind computed agreement and violation counts with an erased-flip satisfiable control"
+      },
+      "pytorch": {
+        "cvc5": "independently bind the same computed count row and erased flip",
+        "sympy": "exactly check the panel arithmetic signs mirrored in the PyTorch lane",
+        "torch.func": "torch-native vmap recomputation of the D_z/Ne precedence sign over Hopf rows",
+        "torch_geometric": "Data edge_index carrier for the finite sample/control relation graph",
+        "z3": "bind computed agreement and violation counts with an erased-flip satisfiable control"
+      }
+    }
+  }
+}

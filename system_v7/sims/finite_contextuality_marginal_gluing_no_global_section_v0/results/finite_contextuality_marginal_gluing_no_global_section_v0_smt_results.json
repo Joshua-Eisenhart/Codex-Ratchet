@@ -1,0 +1,93 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "finite_contextuality_marginal_gluing_no_global_section_v0",
+  "engine": "smt",
+  "computation_style": "marginal_gluing_no_global_section_z3_cvc5",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-15T03:41:34Z",
+  "source_sha256": "0a55181f8545a25b8a3b1fbaabe1412d364b4f47a266f57222f33e434f7130a4",
+  "result_path": "system_v7/sims/finite_contextuality_marginal_gluing_no_global_section_v0/results/finite_contextuality_marginal_gluing_no_global_section_v0_smt_results.json",
+  "lineage": "sharpens finite_contextuality_assignment_smt_lift_discriminator_v0; built per the codex2-xhigh next_required_discriminator from MASS run wf wohhmsn1o.",
+  "contextual_peres_mermin": {
+    "per_context_marginals": {
+      "R1": "sat",
+      "R2": "sat",
+      "R3": "sat",
+      "C1": "sat",
+      "C2": "sat",
+      "C3": "sat"
+    },
+    "all_marginals_feasible": true,
+    "global_z3": "unsat",
+    "global_cvc5": "unsat",
+    "global_infeasible": true,
+    "contextual": true,
+    "nonclassical_carrier_required_on_fixed_cover": true
+  },
+  "noncontextual_control": {
+    "per_context_marginals": {
+      "R1": "sat",
+      "R2": "sat",
+      "R3": "sat",
+      "C1": "sat",
+      "C2": "sat",
+      "C3": "sat"
+    },
+    "all_marginals_feasible": true,
+    "global_z3": "sat",
+    "global_cvc5": "sat",
+    "global_infeasible": false,
+    "contextual": false,
+    "nonclassical_carrier_required_on_fixed_cover": false
+  },
+  "marginal_gluing_flip": {
+    "rule": "all 6 context marginals feasible AND no global section (gluing infeasible) == contextual == rho forced; global feasible == noncontextual == rho rejected.",
+    "peres_mermin_all_marginals_feasible": true,
+    "peres_mermin_global_infeasible": true,
+    "control_all_marginals_feasible": true,
+    "control_global_feasible": true,
+    "flip_confirmed": true,
+    "interpretation": "Each of the 6 measurement contexts is INDEPENDENTLY satisfiable (the weaker carrier / a classical measure on each context's quotient works), so no single context forces rho. Yet there is NO global {-1,+1} assignment gluing them (z3+cvc5 UNSAT) -> no global classical joint distribution (Fine's theorem) -> the statistics are contextual -> rho is FORCED, located purely in the GLUING. The control (frustrating sign removed) keeps all marginals feasible AND admits a global section (SAT) -> rho rejected. This is the executable density_rho evidence the mass-run ledger asked for: same marginals, global gluing flips."
+  },
+  "claims": {
+    "nonclassical_carrier_forced_for_contextuality_class": true,
+    "nonclassical_carrier_rejected_when_global_section_exists": true,
+    "obstruction_is_in_the_gluing_not_a_single_context": true,
+    "load_bearing_smt_flip": true,
+    "NOTE_rho_specifically": "OVERCLAIM per fleet wlibwq2pd (6/7): this forces SOME non-classical/contextual carrier, NOT specifically a density matrix rho (rho is one realization).",
+    "NOTE_beyond_quotient": "NOT established per fleet (4/7): rules out NONCONTEXTUAL models on the FIXED cover; does NOT exclude context-indexed or refined/enlarged-quotient classical encodings.",
+    "NOTE_marginal_tautology": "DEEP AUDIT w2qgptvqb: the per-context marginal SAT checks are TAUTOLOGIES (a 3-var product=+/-1 system is SAT for every sign assignment, all 64 combos). 'Obstruction is in the gluing not a single context' is framed on a check that cannot fail. The ONLY load-bearing content is the global UNSAT -- which is IDENTICAL to finite_contextuality_assignment_smt_lift_discriminator_v0 (this sim is largely a re-wrap of that one)."
+  },
+  "honest_scope": {
+    "earns": "a genuine, non-circular (5/7), unanimously-real executable flip: a Peres-Mermin contextuality witness (marginal-SAT + global-UNSAT, z3+cvc5) forcing a NON-CLASSICAL carrier on the FIXED measurement cover; the noncontextual control glues (SAT).",
+    "does_not_earn": "(1) specifically a density matrix rho (only some non-classical carrier); (2) 'beyond every quotient' -- context-indexed / refined-quotient classical models are NOT excluded; (3) any claim a generic probe set IS contextual. Cite FLEET_VERDICT_20260615.md. scratch_diagnostic."
+  },
+  "packages_used": [
+    "z3",
+    "cvc5"
+  ],
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "TOOL_MANIFEST": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing per-context marginal SAT + global gluing UNSAT/SAT flip"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "independent second solver confirming the global gluing flip"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "z3": "load_bearing",
+    "cvc5": "load_bearing"
+  }
+}

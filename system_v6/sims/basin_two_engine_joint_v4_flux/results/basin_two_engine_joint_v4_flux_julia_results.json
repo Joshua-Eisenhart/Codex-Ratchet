@@ -1,0 +1,783 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing independent Graphs.jl SCC and terminal-count recomputation for flux rows",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive serialization, timestamps, and hashing",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing computed-count identity proof with flipped control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "flux-carrying engine and joint coupling SCC/terminal counts",
+      "receipt_id": "julia_Graphs_flux_partition",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "measured count identity UNSAT with flipped expected-count SAT",
+      "receipt_id": "julia_Z3_computed_count_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "flipped_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "flipped_control": "first expected count incremented by one",
+        "measured_counts": {
+          "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+          "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+          "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+          "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+          "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+          "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+          "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+          "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+          "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+        }
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:16:43Z",
+  "joint_signature_sha256": "f337d012e635752de8d4a9b77525804f44c3894d8f4cc87019e6c2e72b6fd034",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "object_id": "basin_two_engine_joint_v4_flux_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_observables": {
+    "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components terminal-count recomputation for flux rows",
+    "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check computed count-identity UNSAT with flipped control SAT"
+  },
+  "package_versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "parent_lineage": {
+    "note": "Julia leg recomputes finite transition graphs locally through Graphs.jl and does not read Python/JAX/PyTorch leg results."
+  },
+  "primary_terminal_counts": {
+    "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+    "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+    "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+    "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+    "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+    "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+    "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+    "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+    "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+    "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+    "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+    "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+    "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+    "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+    "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+    "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+    "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+    "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_two_engine_joint_v4_flux/results/basin_two_engine_joint_v4_flux_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "deterministic_graph_order": "lexicographic finite states",
+    "rng": "none"
+  },
+  "sim_id": "basin_two_engine_joint_v4_flux",
+  "source_path": "system_v6/sims/basin_two_engine_joint_v4_flux/basin_two_engine_joint_v4_flux_julia.jl",
+  "source_sha256": "d85dfc37cf1229e5ffb5c8722357e4be1e0d4a42615dbb16d2d992828bd4fcf7",
+  "source_valid_primary_64_level_count": 0,
+  "stage1_graph_summaries": {
+    "A_readout_transition_dwell": {
+      "L": {
+        "flux_carried": {
+          "class_size_count": 9,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            56
+          ],
+          "class_sizes_sha256": "8e8daaeb665a43d74ebc1a99d30db017b66322f2c280b9ec27cdb66ae8b1ea05",
+          "edge_count": 64,
+          "partition_signature_sha256": "5d2b56c298acc4b3fef7ca6a85e8eb00aa41e58b8b22b36b82fd3177cf2bff68",
+          "scc_count": 9,
+          "state_count": 64,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            56
+          ]
+        },
+        "flux_erased": {
+          "class_size_count": 5,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            28
+          ],
+          "class_sizes_sha256": "54e7b60e2f0448da38cd45e2b18c63996fb01845ad24bc5a3944531927bb18cd",
+          "edge_count": 32,
+          "partition_signature_sha256": "7d3d98a59b2bcd595515f7bfc867bf61e29cf88a64d523e85fd77e370c219c24",
+          "scc_count": 5,
+          "state_count": 32,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            28
+          ]
+        }
+      },
+      "R": {
+        "flux_carried": {
+          "class_size_count": 9,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            56
+          ],
+          "class_sizes_sha256": "8e8daaeb665a43d74ebc1a99d30db017b66322f2c280b9ec27cdb66ae8b1ea05",
+          "edge_count": 64,
+          "partition_signature_sha256": "5d2b56c298acc4b3fef7ca6a85e8eb00aa41e58b8b22b36b82fd3177cf2bff68",
+          "scc_count": 9,
+          "state_count": 64,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            56
+          ]
+        },
+        "flux_erased": {
+          "class_size_count": 5,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            28
+          ],
+          "class_sizes_sha256": "54e7b60e2f0448da38cd45e2b18c63996fb01845ad24bc5a3944531927bb18cd",
+          "edge_count": 32,
+          "partition_signature_sha256": "7d3d98a59b2bcd595515f7bfc867bf61e29cf88a64d523e85fd77e370c219c24",
+          "scc_count": 5,
+          "state_count": 32,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            28
+          ]
+        }
+      }
+    },
+    "D_matrix64_b_order_overlay": {
+      "L": {
+        "flux_carried": {
+          "class_size_count": 17,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "class_sizes_sha256": "99a5b7143d9c6bddca2f92e9005057d8cb8e03928bf600ef2f0c986f93fc7383",
+          "edge_count": 64,
+          "partition_signature_sha256": "1a6a3996ecd4c8e29263053d491fe7eda9340fa247ac12dee2939c212b6839f8",
+          "scc_count": 17,
+          "state_count": 64,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            48
+          ]
+        },
+        "flux_erased": {
+          "class_size_count": 9,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            24
+          ],
+          "class_sizes_sha256": "c91cd22df9ebadb15151e31fe573c2f213e7e9a5b1cb81c419bcbd8fba1c30f7",
+          "edge_count": 32,
+          "partition_signature_sha256": "c46b85ae658297e8b75de0d9cd0c25e1452975fe644c8d8027dee1d63d35a1e4",
+          "scc_count": 9,
+          "state_count": 32,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            24
+          ]
+        }
+      },
+      "R": {
+        "flux_carried": {
+          "class_size_count": 18,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "class_sizes_sha256": "aef500b287aed59e95f2238c321414e4ef7021f3d410565842831f0dc124f94c",
+          "edge_count": 64,
+          "partition_signature_sha256": "701f31066c7b5dc8d9205c1cf9ed3c51b010b1f043ed5a0307b02c6572e1a1fc",
+          "scc_count": 18,
+          "state_count": 64,
+          "terminal_class_count": 2,
+          "terminal_sizes": [
+            24,
+            24
+          ]
+        },
+        "flux_erased": {
+          "class_size_count": 9,
+          "class_size_sample": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            24
+          ],
+          "class_sizes_sha256": "c91cd22df9ebadb15151e31fe573c2f213e7e9a5b1cb81c419bcbd8fba1c30f7",
+          "edge_count": 32,
+          "partition_signature_sha256": "c46b85ae658297e8b75de0d9cd0c25e1452975fe644c8d8027dee1d63d35a1e4",
+          "scc_count": 9,
+          "state_count": 32,
+          "terminal_class_count": 1,
+          "terminal_sizes": [
+            24
+          ]
+        }
+      }
+    }
+  },
+  "stage2_graph_summaries": {
+    "A_readout_transition_dwell": {
+      "C1_constrained_fibered_placement": {
+        "class_size_count": 976,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "a6863f2c7729704318d32be29075e3537aa4df5374be82f193a27c1bf4d6f648",
+        "edge_count": 6032,
+        "partition_signature_sha256": "77064600caa4c87e31be3f95b64050f649e66db5d108c258e5f0aa0be90a0a6b",
+        "scc_count": 976,
+        "state_count": 4096,
+        "terminal_class_count": 16,
+        "terminal_sizes": [
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          200,
+          200,
+          200,
+          200,
+          208,
+          208
+        ]
+      },
+      "C2_fibered_system": {
+        "class_size_count": 81,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "02a85eae92b3d09a1c98090b71d21828850b7ed9e535b70174a02681e048e404",
+        "edge_count": 8192,
+        "partition_signature_sha256": "b1035195eb7c291770e55cd0101e8b9e007cbc5598cdc80cd8526cfc8ab52b35",
+        "scc_count": 81,
+        "state_count": 4096,
+        "terminal_class_count": 1,
+        "terminal_sizes": [
+          3136
+        ]
+      },
+      "C5_strategy_alternating_period2": {
+        "class_size_count": 988,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "1b947522fad0a52e62c3b749238dbefbf465b9a78a34b397806160379b8f3503",
+        "edge_count": 4096,
+        "partition_signature_sha256": "8fb6c7be4c401d610e671080242b5399d3b80167bfaecb247832ca82a3dc0978",
+        "scc_count": 988,
+        "state_count": 4096,
+        "terminal_class_count": 28,
+        "terminal_sizes": [
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "C5_strategy_paired_period4": {
+        "class_size_count": 2764,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "ba62180f3a4c4a6cc91aa20f0c44d9e81e642e4a30edb2a7704cc3b68a2f1531",
+        "edge_count": 4096,
+        "partition_signature_sha256": "a89811478bd9a67c3584993ea97d7a895a2f963b2a379639f33b488ae25ace15",
+        "scc_count": 2764,
+        "state_count": 4096,
+        "terminal_class_count": 12,
+        "terminal_sizes": [
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112,
+          112
+        ]
+      },
+      "O6_720_double_cover": {
+        "class_size_count": 3763,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "5012f654568845900b5a96925034b5a510f0dcfe5b9c3de021f8601a507d8d4a",
+        "edge_count": 4096,
+        "partition_signature_sha256": "98b7ab195cc05e65bfe070c27869871521a465ca0e9d45a2ab7e01a70bc4b09c",
+        "scc_count": 3763,
+        "state_count": 4096,
+        "terminal_class_count": 3,
+        "terminal_sizes": [
+          112,
+          112,
+          112
+        ]
+      }
+    },
+    "D_matrix64_b_order_overlay": {
+      "C1_constrained_fibered_placement": {
+        "class_size_count": 1804,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "c4658ea6c14079771aa6cab4f8cfb80d6d598715f9695abd55ba38a558d183e3",
+        "edge_count": 6400,
+        "partition_signature_sha256": "490da4ce8c6d072969bc3329116f5d63f894ce83e6dc937549da5c8b0198d8b4",
+        "scc_count": 1804,
+        "state_count": 4096,
+        "terminal_class_count": 12,
+        "terminal_sizes": [
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192,
+          192
+        ]
+      },
+      "C2_fibered_system": {
+        "class_size_count": 306,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "5c636c2cbe213def2a4e30abb40b43f9eebcf32bd9015469749801d31bd5c34b",
+        "edge_count": 8192,
+        "partition_signature_sha256": "ba866c5f600cffb6ed6a5b57a3e1975fca8d8541edcc83228a61f979245b60f9",
+        "scc_count": 306,
+        "state_count": 4096,
+        "terminal_class_count": 2,
+        "terminal_sizes": [
+          1152,
+          1152
+        ]
+      },
+      "C5_strategy_alternating_period2": {
+        "class_size_count": 1816,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "a02ebbf2bc64f4bc10934d0bdfdffc3342936c8d58797451a9f64bcd61b52f5d",
+        "edge_count": 4096,
+        "partition_signature_sha256": "99f32be8b01bc5b192b24639fb660f161cbb51e2038aa630ab089cb7cc1456b6",
+        "scc_count": 1816,
+        "state_count": 4096,
+        "terminal_class_count": 24,
+        "terminal_sizes": [
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96
+        ]
+      },
+      "C5_strategy_paired_period4": {
+        "class_size_count": 2956,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "d2cf190177351da6af8abc119335054609d38256870df54ba2ab370635a183ee",
+        "edge_count": 4096,
+        "partition_signature_sha256": "653de2698b5e62da25198da6a5216b485c3011798d957265453c174f5306fea1",
+        "scc_count": 2956,
+        "state_count": 4096,
+        "terminal_class_count": 12,
+        "terminal_sizes": [
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96,
+          96
+        ]
+      },
+      "O6_720_double_cover": {
+        "class_size_count": 3858,
+        "class_size_sample": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "class_sizes_sha256": "d584dfd21de0db4e05c2c217a35bdc167fa95cab4089a080adc6c7618a2bb6cf",
+        "edge_count": 4096,
+        "partition_signature_sha256": "73e6f762d7d3c048061fda7c04187ae4223b27618d9f7cbcf61226d90f17a2af",
+        "scc_count": 3858,
+        "state_count": 4096,
+        "terminal_class_count": 2,
+        "terminal_sizes": [
+          120,
+          120
+        ]
+      }
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "O2 sync/full-interleave excluded from primary evidence",
+      "demotion_condition": "demote if terminal counts come from Python payload or product factors",
+      "gates": [
+        "joint_partition",
+        "all_pass"
+      ],
+      "input_object": "flux-carrying finite transition rows",
+      "negative/erased_control": "flux-erased baseline and fenced product/one-sided controls",
+      "output_object": "terminal classes and SCC counts",
+      "positive_case": "source-faithful rows compute graph dynamics",
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_flux_partition",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "scratch diagnostic only",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "proof",
+        "flipped_control",
+        "all_pass"
+      ],
+      "input_object": "measured stage-1 and stage-2 terminal counts",
+      "negative/erased_control": "first expected count incremented by one flips to SAT",
+      "output_object": "UNSAT negated count-identity mismatch and SAT flipped control",
+      "positive_case": "all measured counts match identity row",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_computed_count_identity",
+      "tool": "Z3"
+    }
+  ]
+}

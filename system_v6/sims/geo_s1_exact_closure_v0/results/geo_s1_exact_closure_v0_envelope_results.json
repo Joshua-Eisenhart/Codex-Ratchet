@@ -1,0 +1,1575 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source and PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from fresh leg receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "X_receipts": {
+    "X1": {
+      "jax": {
+        "all_zero": true,
+        "bloch_from_trace_expanded": [
+          "2*a*c + 2*b*d",
+          "-2*a*d + 2*b*c",
+          "a**2 + b**2 - c**2 - d**2"
+        ],
+        "bloch_minus_hopf_expanded": [
+          "0",
+          "0",
+          "0"
+        ],
+        "convention_pin": {
+          "bloch_basis": [
+            "sigma_x",
+            "-sigma_y_standard",
+            "sigma_z"
+          ],
+          "component_rule": "r_i = Tr(rho * basis_i)",
+          "density_matrix": "rho = psi * psi^dagger",
+          "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+          "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+          "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+          "pin_name": "X1_option_A_pinned_minus_sigma_y",
+          "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+          "sigma_y_standard": "[[0,-i],[i,0]]",
+          "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+        },
+        "corrupted_identity_control_differences": [
+          "0",
+          "-a*d + b*c",
+          "0"
+        ],
+        "corrupted_identity_control_pass": true,
+        "hopf_components_expanded": [
+          "2*a*c + 2*b*d",
+          "-2*a*d + 2*b*c",
+          "a**2 + b**2 - c**2 - d**2"
+        ],
+        "phase_invariance_symbolic": true,
+        "phase_raw_differences_factorized": [
+          "2*(a*c + b*d)*(u**2 + v**2 - 1)",
+          "-2*(a*d - b*c)*(u**2 + v**2 - 1)",
+          "(u**2 + v**2 - 1)*(a**2 + b**2 - c**2 - d**2)"
+        ],
+        "phase_reduced_differences": [
+          "0",
+          "0",
+          "0"
+        ],
+        "phase_side_relation": "u^2 + v^2 = 1 for e^{i alpha}=u+iv",
+        "pinned_pauli_basis": {
+          "minus_sigma_y_standard": [
+            [
+              "0",
+              "I"
+            ],
+            [
+              "-I",
+              "0"
+            ]
+          ],
+          "sigma_x": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "sigma_z": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "-1"
+            ]
+          ]
+        },
+        "rho_from_psi_psidagger": [
+          [
+            "a**2 + b**2",
+            "(a + I*b)*(c - I*d)"
+          ],
+          [
+            "(a - I*b)*(c + I*d)",
+            "c**2 + d**2"
+          ]
+        ],
+        "standard_sigma_y_trace_expanded": "2*a*d - 2*b*c",
+        "standard_sigma_y_trace_plus_hopf_y_expanded": "0",
+        "unit_image_difference": "0",
+        "unit_image_symbolic": true,
+        "variables": [
+          "a=Re(z1)",
+          "b=Im(z1)",
+          "c=Re(z2)",
+          "d=Im(z2)"
+        ]
+      },
+      "julia": {
+        "all_zero": true,
+        "bloch_from_trace_expanded": [
+          "2a*c + 2b*d",
+          "-2a*d + 2b*c",
+          "a^2 + b^2 - (c^2) - (d^2)"
+        ],
+        "bloch_minus_hopf_expanded": [
+          "0",
+          "0",
+          "0"
+        ],
+        "convention_pin": {
+          "bloch_basis": [
+            "sigma_x",
+            "-sigma_y_standard",
+            "sigma_z"
+          ],
+          "component_rule": "r_i = Tr(rho * basis_i)",
+          "density_matrix": "rho = psi * psi^dagger",
+          "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+          "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+          "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+          "pin_name": "X1_option_A_pinned_minus_sigma_y",
+          "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+          "sigma_y_standard": "[[0,-i],[i,0]]",
+          "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+        },
+        "corrupted_identity_control_differences": [
+          "0",
+          "-a*d + b*c",
+          "0"
+        ],
+        "corrupted_identity_control_pass": true,
+        "hopf_components_expanded": [
+          "2a*c + 2b*d",
+          "-2a*d + 2b*c",
+          "a^2 + b^2 - (c^2) - (d^2)"
+        ],
+        "phase_invariance_symbolic": true,
+        "phase_raw_differences": [
+          "-2a*c - 2b*d + 2a*c*(u^2) + 2a*c*(v^2) + 2b*d*(u^2) + 2b*d*(v^2)",
+          "2a*d - 2b*c - 2a*d*(u^2) - 2a*d*(v^2) + 2b*c*(u^2) + 2b*c*(v^2)",
+          "c^2 + d^2 + (a^2 + b^2)*(-1 + u^2 + v^2) - (c^2 + d^2)*(u^2 + v^2)"
+        ],
+        "phase_reduced_differences": [
+          "0",
+          "0",
+          "0"
+        ],
+        "phase_side_relation": "u^2 + v^2 = 1",
+        "pinned_pauli_basis": {
+          "minus_sigma_y_standard": [
+            [
+              "0",
+              "im"
+            ],
+            [
+              "-im",
+              "0"
+            ]
+          ],
+          "sigma_x": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "sigma_z": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "-1"
+            ]
+          ]
+        },
+        "rho_from_psi_psidagger": [
+          [
+            "a^2 + b^2",
+            "a*c + b*d + (-a*d + b*c)*im"
+          ],
+          [
+            "a*c + b*d + (a*d - b*c)*im",
+            "c^2 + d^2"
+          ]
+        ],
+        "standard_sigma_y_trace_expanded": "2a*d - 2b*c",
+        "standard_sigma_y_trace_plus_hopf_y_expanded": "0",
+        "unit_image_difference": "0",
+        "unit_image_symbolic": true,
+        "variables": [
+          "a=Re(z1)",
+          "b=Im(z1)",
+          "c=Re(z2)",
+          "d=Im(z2)"
+        ]
+      },
+      "strength": "symbolic"
+    },
+    "X2": {
+      "jax": {
+        "phase_invariance_symbolic": true,
+        "phase_raw_differences_factorized": [
+          "2*(a*c + b*d)*(u**2 + v**2 - 1)",
+          "-2*(a*d - b*c)*(u**2 + v**2 - 1)",
+          "(u**2 + v**2 - 1)*(a**2 + b**2 - c**2 - d**2)"
+        ],
+        "phase_reduced_differences": [
+          "0",
+          "0",
+          "0"
+        ],
+        "phase_side_relation": "u^2 + v^2 = 1 for e^{i alpha}=u+iv",
+        "unit_image_difference": "0",
+        "unit_image_symbolic": true
+      },
+      "julia": {
+        "phase_invariance_symbolic": true,
+        "phase_raw_differences": [
+          "-2a*c - 2b*d + 2a*c*(u^2) + 2a*c*(v^2) + 2b*d*(u^2) + 2b*d*(v^2)",
+          "2a*d - 2b*c - 2a*d*(u^2) - 2a*d*(v^2) + 2b*c*(u^2) + 2b*c*(v^2)",
+          "c^2 + d^2 + (a^2 + b^2)*(-1 + u^2 + v^2) - (c^2 + d^2)*(u^2 + v^2)"
+        ],
+        "phase_reduced_differences": [
+          "0",
+          "0",
+          "0"
+        ],
+        "phase_side_relation": "u^2 + v^2 = 1",
+        "unit_image_difference": "0",
+        "unit_image_symbolic": true
+      },
+      "strength": "symbolic"
+    },
+    "X3": {
+      "jax": {
+        "area_s2": "4*pi",
+        "broken_chart_metric_control_matrix": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "0",
+            "1",
+            "1"
+          ]
+        ],
+        "broken_chart_metric_control_pass": true,
+        "closed_form_pass": true,
+        "determinant": "-(cos(4*eta) - 1)/2",
+        "line_element": "deta^2 + dphi^2 + dchi^2 + 2*cos(2*eta)*dphi*dchi",
+        "metric_matrix": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "cos(2*eta)"
+          ],
+          [
+            "0",
+            "cos(2*eta)",
+            "1"
+          ]
+        ],
+        "metric_minus_expected": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "sqrt_det_on_eta_0_pi_over_2": "sin(2*eta)",
+        "torus_area_eta": "2*pi**2*sin(2*eta)",
+        "torus_chart_integral_before_double_cover_division": "4*pi**2*sin(2*eta)",
+        "torus_double_cover_divisor": "2",
+        "volume_chart_integral_before_double_cover_division": "4*pi**2",
+        "volume_double_cover_divisor": "2",
+        "volume_s3": "2*pi**2"
+      },
+      "strength": "closed-form"
+    },
+    "X4": {
+      "jax_exact": {
+        "crossing_count_exact_integer": {
+          "all_projection_matches_exact": true,
+          "pass": true,
+          "records": [
+            {
+              "circle_parameter": "pi/3",
+              "circle_point": [
+                "1/2",
+                "sqrt(3)/2",
+                "0"
+              ],
+              "circle_projected_tangent": [
+                "-sqrt(3)/2",
+                "1/2"
+              ],
+              "computed_sign": 1,
+              "index": 0,
+              "line_parameter": "sqrt(3)/2",
+              "line_point": [
+                "1/2",
+                "sqrt(3)/2",
+                "sqrt(3)/2"
+              ],
+              "line_projected_tangent": [
+                "0",
+                "1"
+              ],
+              "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+              "over_curve_from_z_order": "line",
+              "projection": "xy",
+              "projection_match_exact": true,
+              "segment_pair": [
+                "C(t)=(cos(t),sin(t),0)",
+                "L(u)=(1/2,u,u)"
+              ],
+              "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+              "under_curve_from_z_order": "circle",
+              "z_delta_line_minus_circle": "sqrt(3)/2"
+            },
+            {
+              "circle_parameter": "5*pi/3",
+              "circle_point": [
+                "1/2",
+                "-sqrt(3)/2",
+                "0"
+              ],
+              "circle_projected_tangent": [
+                "sqrt(3)/2",
+                "1/2"
+              ],
+              "computed_sign": 1,
+              "index": 1,
+              "line_parameter": "-sqrt(3)/2",
+              "line_point": [
+                "1/2",
+                "-sqrt(3)/2",
+                "-sqrt(3)/2"
+              ],
+              "line_projected_tangent": [
+                "0",
+                "1"
+              ],
+              "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+              "over_curve_from_z_order": "circle",
+              "projection": "xy",
+              "projection_match_exact": true,
+              "segment_pair": [
+                "C(t)=(cos(t),sin(t),0)",
+                "L(u)=(1/2,u,u)"
+              ],
+              "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+              "under_curve_from_z_order": "line",
+              "z_delta_line_minus_circle": "-sqrt(3)/2"
+            }
+          ],
+          "scrambled_control_signed_sum": 0,
+          "scrambled_control_signs": [
+            1,
+            -1
+          ],
+          "signed_sum": 2,
+          "signed_sum_over_2": "1"
+        },
+        "gauss_closed_form": {
+          "denominator_squared": "u**2 + 1",
+          "fiber_a_stereographic_image": "(cos(t), sin(t), 0), a compact Hopf fiber circle",
+          "fiber_b_stereographic_image": "(0, 0, u) with u in R plus infinity, the compactified Hopf fiber through the projection point",
+          "gauss_value": "1",
+          "integrand": "(u**2 + 1)**(-3/2)",
+          "numerator": "1",
+          "orientation_reversal_control": {
+            "pass": true,
+            "reversed_fiber": "fiber_b",
+            "reversed_gauss_value": "-1",
+            "reversed_integrand": "-1/(u**2 + 1)**(3/2)",
+            "reversed_numerator": "-1"
+          },
+          "pass": true,
+          "s3_hopf_fibers": {
+            "F_E(s)": "(exp(i*s)/sqrt(2), exp(-i*s)/sqrt(2)), Hopf base equator point",
+            "F_N(t)": "(exp(i*t), 0), Hopf base north pole",
+            "stereographic_pair_used_for_gauss": "standard linked circle plus compactified line model of two Hopf fibers"
+          },
+          "u_integral": "2"
+        }
+      },
+      "julia_interval": {
+        "interval_blowup_control": {
+          "absolute_error_bound_from_enclosure": 0.37645739058809113,
+          "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+          "contains_exact_one": true,
+          "cutoff_A": 1,
+          "enclosure": "[0.623542, 1.28516]_com_NG",
+          "finite_integral_interval": "[0.623542, 0.785155]_com_NG",
+          "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+          "label": "coarse_quadrature_wide_control",
+          "lower": 0.6235426094119089,
+          "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+          "proves_abs_error_below_emitted_bound": true,
+          "subinterval_count": 4,
+          "tail_interval": "[0//1, 1//2]_com",
+          "upper": 1.285154261763591,
+          "wide_interval_width": 0.6616116523516821
+        },
+        "tight_interval": {
+          "absolute_error_bound_from_enclosure": 0.0025499937518576044,
+          "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+          "contains_exact_one": true,
+          "cutoff_A": 100,
+          "enclosure": "[0.99745, 1.00251]_com_NG",
+          "finite_integral_interval": "[0.99745, 1.00246]_com_NG",
+          "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+          "label": "claim_path_interval_quadrature",
+          "lower": 0.9974500062481424,
+          "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+          "proves_abs_error_below_emitted_bound": true,
+          "subinterval_count": 20000,
+          "tail_interval": "[0//1, 1//20000]_com",
+          "upper": 1.0025000012520549,
+          "wide_interval_width": 0.005049995003912455
+        }
+      },
+      "pytorch_crossing": {
+        "all_circle_equation_residuals_zero": true,
+        "all_projection_matches_exact": true,
+        "crossing_sign_source": "computed from exact projected tangent orientation determinant plus exact z-order",
+        "pass": true,
+        "records": [
+          {
+            "circle_parameter": "pi/3",
+            "circle_point": [
+              "1/2",
+              "sqrt(3)/2",
+              "0"
+            ],
+            "circle_projected_tangent": [
+              "-sqrt(3)/2",
+              "1/2"
+            ],
+            "circle_unit_equation_residual": "0",
+            "computed_sign": 1,
+            "index": 0,
+            "line_parameter": "sqrt(3)/2",
+            "line_point": [
+              "1/2",
+              "sqrt(3)/2",
+              "sqrt(3)/2"
+            ],
+            "line_projected_tangent": [
+              "0",
+              "1"
+            ],
+            "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+            "over_curve_from_z_order": "line",
+            "projection": "xy",
+            "projection_match": true,
+            "segment_pair": [
+              "C(t)=(cos(t),sin(t),0)",
+              "L(u)=(1/2,u,u)"
+            ],
+            "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+            "under_curve_from_z_order": "circle",
+            "z_delta_line_minus_circle": "sqrt(3)/2"
+          },
+          {
+            "circle_parameter": "5*pi/3",
+            "circle_point": [
+              "1/2",
+              "-sqrt(3)/2",
+              "0"
+            ],
+            "circle_projected_tangent": [
+              "sqrt(3)/2",
+              "1/2"
+            ],
+            "circle_unit_equation_residual": "0",
+            "computed_sign": 1,
+            "index": 1,
+            "line_parameter": "-sqrt(3)/2",
+            "line_point": [
+              "1/2",
+              "-sqrt(3)/2",
+              "-sqrt(3)/2"
+            ],
+            "line_projected_tangent": [
+              "0",
+              "1"
+            ],
+            "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+            "over_curve_from_z_order": "circle",
+            "projection": "xy",
+            "projection_match": true,
+            "segment_pair": [
+              "C(t)=(cos(t),sin(t),0)",
+              "L(u)=(1/2,u,u)"
+            ],
+            "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+            "under_curve_from_z_order": "line",
+            "z_delta_line_minus_circle": "-sqrt(3)/2"
+          }
+        ],
+        "scrambled_control_signed_sum": 0,
+        "scrambled_control_signs": [
+          1,
+          -1
+        ],
+        "signed_sum": 2,
+        "signed_sum_over_2": "1",
+        "torch_integer_signs": [
+          1,
+          1
+        ]
+      },
+      "strength": "closed-form+rigorous-bound"
+    },
+    "X5": {
+      "jax": {
+        "formula": "U(theta)=exp(-i*theta*sigma_z/2)",
+        "generator": "sigma_z",
+        "pass": true,
+        "path_rows": [
+          {
+            "matrix": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "theta_over_pi": "0"
+          },
+          {
+            "matrix": [
+              [
+                "exp(-I*pi/4)",
+                "0"
+              ],
+              [
+                "0",
+                "exp(I*pi/4)"
+              ]
+            ],
+            "theta_over_pi": "1/2"
+          },
+          {
+            "matrix": [
+              [
+                "-I",
+                "0"
+              ],
+              [
+                "0",
+                "I"
+              ]
+            ],
+            "theta_over_pi": "1"
+          },
+          {
+            "matrix": [
+              [
+                "exp(-3*I*pi/4)",
+                "0"
+              ],
+              [
+                "0",
+                "exp(3*I*pi/4)"
+              ]
+            ],
+            "theta_over_pi": "3/2"
+          },
+          {
+            "matrix": [
+              [
+                "-1",
+                "0"
+              ],
+              [
+                "0",
+                "-1"
+              ]
+            ],
+            "theta_over_pi": "2"
+          }
+        ],
+        "u_2pi": [
+          [
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "-1"
+          ]
+        ],
+        "u_2pi_equals_minus_identity": true,
+        "u_4pi": [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        "u_4pi_equals_identity": true
+      },
+      "strength": "symbolic"
+    },
+    "X6": {
+      "jax": {
+        "haar_joint_sample_statistic": {
+          "count": 20000,
+          "expected_values_exact": "mean=0, second_moment=I/3; exact derivation above",
+          "max_second_moment_deviation_from_one_third": 0.005186390775681615,
+          "mean_vector": [
+            -0.002237704086114704,
+            -0.008331307815089601,
+            0.0029978377399429885
+          ],
+          "pass": true,
+          "pass_threshold": "max eigenvalue deviation < 0.02",
+          "second_moment_eigenvalues": [
+            0.32883053263098927,
+            0.33256633821939463,
+            0.33851972410901493
+          ],
+          "second_moment_matrix": [
+            [
+              0.336159810811002,
+              -0.002223581437295374,
+              -0.00197088826402377
+            ],
+            [
+              -0.002223581437295374,
+              0.333354966879494,
+              0.002600142847489942
+            ],
+            [
+              -0.00197088826402377,
+              0.002600142847489942,
+              0.3304018172689027
+            ]
+          ],
+          "strength": "statistical-redundant"
+        },
+        "non_haar_control": {
+          "count": 20000,
+          "max_second_moment_deviation_from_one_third": 0.33331876518351217,
+          "mean_vector": [
+            0.00041293595402564496,
+            -0.00033428842792357675,
+            0.9957232272697608
+          ],
+          "must_fail_threshold": "max eigenvalue deviation >= 0.02",
+          "pass": true,
+          "second_moment_eigenvalues": [
+            1.456814982114968e-05,
+            0.004238205841487837,
+            0.004282198419328519
+          ],
+          "second_moment_matrix": [
+            [
+              0.004242449462819775,
+              -1.2988958601932704e-05,
+              -2.3093705899505482e-06
+            ],
+            [
+              -1.2988958601932704e-05,
+              0.004277953390027718,
+              7.974931630760723e-07
+            ],
+            [
+              -2.3093705899505482e-06,
+              7.974931630760723e-07,
+              1.4569557790012139e-05
+            ]
+          ]
+        },
+        "ott_wasserstein_distance_to_uniform": {
+          "calibrated_bar": {
+            "clustered_reg_ot_cost_gt": 1.0,
+            "haar_reg_ot_cost_lt": 0.35
+          },
+          "clustered_control": {
+            "converged": true,
+            "epsilon": 0.05,
+            "max_iterations": 200,
+            "n_iters": 10,
+            "ott_geometry": "ott.geometry.pointcloud.PointCloud",
+            "ott_problem": "ott.problems.linear.linear_problem.LinearProblem",
+            "ott_solver": "ott.solvers.linear.sinkhorn.Sinkhorn",
+            "reg_ot_cost": 1.9302514046178747,
+            "sample_count": 256,
+            "target_count": 256,
+            "threshold": 0.001
+          },
+          "clustered_control_fails_uniformity": true,
+          "haar": {
+            "converged": true,
+            "epsilon": 0.05,
+            "max_iterations": 200,
+            "n_iters": 100,
+            "ott_geometry": "ott.geometry.pointcloud.PointCloud",
+            "ott_problem": "ott.problems.linear.linear_problem.LinearProblem",
+            "ott_solver": "ott.solvers.linear.sinkhorn.Sinkhorn",
+            "reg_ot_cost": 0.23625525451293983,
+            "sample_count": 256,
+            "target_count": 256,
+            "threshold": 0.001
+          },
+          "id": "X6_ott_wasserstein_distance_to_uniform",
+          "pass": true,
+          "route": "ott Sinkhorn distance from Hopf pushforward samples to deterministic Fibonacci-sphere uniform proxy",
+          "seed_ledger": {
+            "clustered_chi": 60613,
+            "clustered_eta": 60611,
+            "haar": 60610,
+            "target": "deterministic_fibonacci_sphere"
+          },
+          "strength": "statistical-redundant-diagnostic"
+        },
+        "pairwise_cosine_density": "1/2 on [-1,1]",
+        "pairwise_cosine_second_moment": "1/3",
+        "pairwise_density_integral": "1",
+        "pass": true,
+        "sphere_second_moment_matrix": [
+          [
+            "1/3",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1/3",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/3"
+          ]
+        ]
+      },
+      "strength": "statistical-redundant"
+    },
+    "X7": {
+      "jax": {
+        "all_zero": true,
+        "bloch_UrhoUdagger_minus_R_bloch_rho": [
+          "0",
+          "0",
+          "0"
+        ],
+        "rotation_matrix_from_bloch_action": [
+          [
+            "a**2 - b**2 - c**2 + d**2",
+            "-2*a*b + 2*c*d",
+            "2*a*c + 2*b*d"
+          ],
+          [
+            "2*a*b + 2*c*d",
+            "a**2 - b**2 + c**2 - d**2",
+            "-2*a*d + 2*b*c"
+          ],
+          [
+            "-2*a*c + 2*b*d",
+            "2*a*d + 2*b*c",
+            "a**2 + b**2 - c**2 - d**2"
+          ]
+        ],
+        "unitary_parameterization": "[[a+ib, -c+id], [c+id, a-ib]]"
+      },
+      "strength": "symbolic"
+    },
+    "X8": {
+      "bare_float_row_labels": [],
+      "bare_float_rows": 0,
+      "classification_table": [
+        {
+          "achieved_strength": "symbolic",
+          "bare_float_tolerance": false,
+          "exact_value": "x^2+y^2+z^2=(|z1|^2+|z2|^2)^2, hence 1 on S3",
+          "reason": null,
+          "s1_claim": "Spinor chart lies on S3 and Hopf image lies on unit S2",
+          "upgrade_ids": [
+            "X2"
+          ]
+        },
+        {
+          "achieved_strength": "symbolic",
+          "bare_float_tolerance": false,
+          "exact_value": "With sigma_y_standard=[[0,-i],[i,0]] and Bloch basis (sigma_x,-sigma_y_standard,sigma_z), Tr(rho basis_i)-Hopf_i=(0,0,0); standard Bloch would be (x,-y,z)",
+          "reason": "explicit convention PIN selects the -sigma_y_standard basis so Hopf_y=+2Im(z1*conj(z2)) is coherent",
+          "s1_claim": "Bloch density quotient equals the pinned Hopf map",
+          "upgrade_ids": [
+            "X1"
+          ]
+        },
+        {
+          "achieved_strength": "symbolic",
+          "bare_float_tolerance": false,
+          "exact_value": "differences factor through u^2+v^2-1 for e^{i alpha}=u+iv",
+          "reason": null,
+          "s1_claim": "Global phase leaves the Hopf base point unchanged",
+          "upgrade_ids": [
+            "X2"
+          ]
+        },
+        {
+          "achieved_strength": "closed-form",
+          "bare_float_tolerance": false,
+          "exact_value": "ds^2=deta^2+dphi^2+dchi^2+2cos(2eta)dphi dchi; Vol(S3)=2pi^2; Area(S2)=4pi; Area(T_eta)=2pi^2 sin(2eta)",
+          "reason": null,
+          "s1_claim": "S3 chart metric and S3/S2/torus measures",
+          "upgrade_ids": [
+            "X3"
+          ]
+        },
+        {
+          "achieved_strength": "closed-form+rigorous-bound",
+          "bare_float_tolerance": false,
+          "exact_value": "computed crossing signs have signed_sum/2=1; compactified-line Gauss integral=1 and fiber-orientation reversal=-1; interval quadrature enclosure contains 1",
+          "reason": "crossing signs are computed from exact tangent determinant plus z-order; interval row propagates interval subdomains through the integrand",
+          "s1_claim": "Hopf fibers have linking number 1",
+          "upgrade_ids": [
+            "X4"
+          ]
+        },
+        {
+          "achieved_strength": "symbolic",
+          "bare_float_tolerance": false,
+          "exact_value": "exp(-i*pi*sigma_z)=-I; exp(-i*2pi*sigma_z)=I",
+          "reason": null,
+          "s1_claim": "SU(2) double cover returns -I at 2pi and +I at 4pi",
+          "upgrade_ids": [
+            "X5"
+          ]
+        },
+        {
+          "achieved_strength": "statistical-redundant",
+          "bare_float_tolerance": false,
+          "exact_value": "rotation-invariant expectations derived exactly: E[X]=0, E[XX^T]=I/3, pairwise cos density=1/2",
+          "reason": "sample rows remain diagnostics, but the expected values are exact and the non-Haar control fails the joint statistic",
+          "s1_claim": "Haar pushforward sanity checks",
+          "upgrade_ids": [
+            "X6"
+          ]
+        },
+        {
+          "achieved_strength": "statistical-redundant-diagnostic",
+          "bare_float_tolerance": false,
+          "exact_value": "new diagnostic row only: ott Sinkhorn distance compares Haar samples to a deterministic Fibonacci-sphere uniform proxy; clustered north-pole control must fail the calibrated bar",
+          "reason": "does not modify exact rows; it is a byte-stable capability receipt and stronger sample-uniformity diagnostic",
+          "s1_claim": "ott-Wasserstein distance-to-uniform diagnostic for Haar pushforward",
+          "upgrade_ids": [
+            "X6"
+          ]
+        },
+        {
+          "achieved_strength": "symbolic",
+          "bare_float_tolerance": false,
+          "exact_value": "Bloch(U rho U^dagger)-R(U)Bloch(rho)=(0,0,0) as a CAS identity",
+          "reason": null,
+          "s1_claim": "SU(2) action commutes with quotient/Hopf map",
+          "upgrade_ids": [
+            "X7"
+          ]
+        },
+        {
+          "achieved_strength": "statistical-redundant",
+          "bare_float_tolerance": false,
+          "exact_value": "retained only as redundant diagnostics behind exact symbolic/closed-form routes",
+          "reason": "not promoted as independent claim strength",
+          "s1_claim": "Prior Monte Carlo/convergence rows in the committed S1 packet",
+          "upgrade_ids": [
+            "X6",
+            "X8"
+          ]
+        }
+      ],
+      "strength": "classification"
+    }
+  },
+  "all_pass": true,
+  "bare_float_rows": {
+    "count": 0,
+    "labels": []
+  },
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "not_applicable_pure_S1_geometry",
+    "consumer_policy": "independent engine recomputation; no peer-result reads",
+    "julia_project": "/Users/joshuaeisenhart/.julia/environments/codex-ratchet-tensorkit-v1.12/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "S1_exact_closure_symbolics_interval_z3",
+    "receipt_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "f7e6e58e4317cc7b617d108ecaef9dd4d92bbdd438975f9b0f4dc201dc525181",
+    "table_version": null
+  },
+  "claim": "Every S1 claim of committed geo_s1_spinor_hopf_free_v0 is upgraded to symbolic, closed-form, rigorous-bound, or statistical-redundant exact-route status with zero bare-float rows.",
+  "claim_path_tools": [
+    "IntervalArithmetic",
+    "Symbolics",
+    "Z3",
+    "cvc5",
+    "ott",
+    "sympy",
+    "torch",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "classification_table": [
+    {
+      "achieved_strength": "symbolic",
+      "bare_float_tolerance": false,
+      "exact_value": "x^2+y^2+z^2=(|z1|^2+|z2|^2)^2, hence 1 on S3",
+      "reason": null,
+      "s1_claim": "Spinor chart lies on S3 and Hopf image lies on unit S2",
+      "upgrade_ids": [
+        "X2"
+      ]
+    },
+    {
+      "achieved_strength": "symbolic",
+      "bare_float_tolerance": false,
+      "exact_value": "With sigma_y_standard=[[0,-i],[i,0]] and Bloch basis (sigma_x,-sigma_y_standard,sigma_z), Tr(rho basis_i)-Hopf_i=(0,0,0); standard Bloch would be (x,-y,z)",
+      "reason": "explicit convention PIN selects the -sigma_y_standard basis so Hopf_y=+2Im(z1*conj(z2)) is coherent",
+      "s1_claim": "Bloch density quotient equals the pinned Hopf map",
+      "upgrade_ids": [
+        "X1"
+      ]
+    },
+    {
+      "achieved_strength": "symbolic",
+      "bare_float_tolerance": false,
+      "exact_value": "differences factor through u^2+v^2-1 for e^{i alpha}=u+iv",
+      "reason": null,
+      "s1_claim": "Global phase leaves the Hopf base point unchanged",
+      "upgrade_ids": [
+        "X2"
+      ]
+    },
+    {
+      "achieved_strength": "closed-form",
+      "bare_float_tolerance": false,
+      "exact_value": "ds^2=deta^2+dphi^2+dchi^2+2cos(2eta)dphi dchi; Vol(S3)=2pi^2; Area(S2)=4pi; Area(T_eta)=2pi^2 sin(2eta)",
+      "reason": null,
+      "s1_claim": "S3 chart metric and S3/S2/torus measures",
+      "upgrade_ids": [
+        "X3"
+      ]
+    },
+    {
+      "achieved_strength": "closed-form+rigorous-bound",
+      "bare_float_tolerance": false,
+      "exact_value": "computed crossing signs have signed_sum/2=1; compactified-line Gauss integral=1 and fiber-orientation reversal=-1; interval quadrature enclosure contains 1",
+      "reason": "crossing signs are computed from exact tangent determinant plus z-order; interval row propagates interval subdomains through the integrand",
+      "s1_claim": "Hopf fibers have linking number 1",
+      "upgrade_ids": [
+        "X4"
+      ]
+    },
+    {
+      "achieved_strength": "symbolic",
+      "bare_float_tolerance": false,
+      "exact_value": "exp(-i*pi*sigma_z)=-I; exp(-i*2pi*sigma_z)=I",
+      "reason": null,
+      "s1_claim": "SU(2) double cover returns -I at 2pi and +I at 4pi",
+      "upgrade_ids": [
+        "X5"
+      ]
+    },
+    {
+      "achieved_strength": "statistical-redundant",
+      "bare_float_tolerance": false,
+      "exact_value": "rotation-invariant expectations derived exactly: E[X]=0, E[XX^T]=I/3, pairwise cos density=1/2",
+      "reason": "sample rows remain diagnostics, but the expected values are exact and the non-Haar control fails the joint statistic",
+      "s1_claim": "Haar pushforward sanity checks",
+      "upgrade_ids": [
+        "X6"
+      ]
+    },
+    {
+      "achieved_strength": "statistical-redundant-diagnostic",
+      "bare_float_tolerance": false,
+      "exact_value": "new diagnostic row only: ott Sinkhorn distance compares Haar samples to a deterministic Fibonacci-sphere uniform proxy; clustered north-pole control must fail the calibrated bar",
+      "reason": "does not modify exact rows; it is a byte-stable capability receipt and stronger sample-uniformity diagnostic",
+      "s1_claim": "ott-Wasserstein distance-to-uniform diagnostic for Haar pushforward",
+      "upgrade_ids": [
+        "X6"
+      ]
+    },
+    {
+      "achieved_strength": "symbolic",
+      "bare_float_tolerance": false,
+      "exact_value": "Bloch(U rho U^dagger)-R(U)Bloch(rho)=(0,0,0) as a CAS identity",
+      "reason": null,
+      "s1_claim": "SU(2) action commutes with quotient/Hopf map",
+      "upgrade_ids": [
+        "X7"
+      ]
+    },
+    {
+      "achieved_strength": "statistical-redundant",
+      "bare_float_tolerance": false,
+      "exact_value": "retained only as redundant diagnostics behind exact symbolic/closed-form routes",
+      "reason": "not promoted as independent claim strength",
+      "s1_claim": "Prior Monte Carlo/convergence rows in the committed S1 packet",
+      "upgrade_ids": [
+        "X6",
+        "X8"
+      ]
+    }
+  ],
+  "controls": {
+    "broken_chart_metric_control": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "1"
+      ],
+      [
+        "0",
+        "1",
+        "1"
+      ]
+    ],
+    "corrupted_identity_control": [
+      "0",
+      "-a*d + b*c",
+      "0"
+    ],
+    "interval_blowup_control": {
+      "absolute_error_bound_from_enclosure": 0.37645739058809113,
+      "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+      "contains_exact_one": true,
+      "cutoff_A": 1,
+      "enclosure": "[0.623542, 1.28516]_com_NG",
+      "finite_integral_interval": "[0.623542, 0.785155]_com_NG",
+      "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+      "label": "coarse_quadrature_wide_control",
+      "lower": 0.6235426094119089,
+      "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+      "proves_abs_error_below_emitted_bound": true,
+      "subinterval_count": 4,
+      "tail_interval": "[0//1, 1//2]_com",
+      "upper": 1.285154261763591,
+      "wide_interval_width": 0.6616116523516821
+    },
+    "non_haar_sample_control": {
+      "count": 20000,
+      "max_second_moment_deviation_from_one_third": 0.33331876518351217,
+      "mean_vector": [
+        0.00041293595402564496,
+        -0.00033428842792357675,
+        0.9957232272697608
+      ],
+      "must_fail_threshold": "max eigenvalue deviation >= 0.02",
+      "pass": true,
+      "second_moment_eigenvalues": [
+        1.456814982114968e-05,
+        0.004238205841487837,
+        0.004282198419328519
+      ],
+      "second_moment_matrix": [
+        [
+          0.004242449462819775,
+          -1.2988958601932704e-05,
+          -2.3093705899505482e-06
+        ],
+        [
+          -1.2988958601932704e-05,
+          0.004277953390027718,
+          7.974931630760723e-07
+        ],
+        [
+          -2.3093705899505482e-06,
+          7.974931630760723e-07,
+          1.4569557790012139e-05
+        ]
+      ]
+    },
+    "ott_wasserstein_clustered_control": {
+      "converged": true,
+      "epsilon": 0.05,
+      "max_iterations": 200,
+      "n_iters": 10,
+      "ott_geometry": "ott.geometry.pointcloud.PointCloud",
+      "ott_problem": "ott.problems.linear.linear_problem.LinearProblem",
+      "ott_solver": "ott.solvers.linear.sinkhorn.Sinkhorn",
+      "reg_ot_cost": 1.9302514046178747,
+      "sample_count": 256,
+      "target_count": 256,
+      "threshold": 0.001
+    },
+    "scrambled_crossing_control": {
+      "must_not_equal_two": true,
+      "pass": true,
+      "signed_sum": 0
+    }
+  },
+  "convention_pin": {
+    "bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "density_matrix": "rho = psi * psi^dagger",
+    "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+    "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+    "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+    "pin_name": "X1_option_A_pinned_minus_sigma_y",
+    "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+    "sigma_y_standard": "[[0,-i],[i,0]]",
+    "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "P1_corrupted_control": "sat",
+      "P1_identity_nonzero_assertion": "unsat",
+      "P2_scrambled_control_not_two": "sat",
+      "P2_signed_sum_not_two": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "P1_corrupted_control": "sat",
+      "P1_identity_nonzero_assertion": "unsat",
+      "P2_scrambled_control_not_two": "sat",
+      "P2_signed_sum_not_two": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "ott"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "density_matrix": "rho = psi * psi^dagger",
+        "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+        "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+        "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+        "pin_name": "X1_option_A_pinned_minus_sigma_y",
+        "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+        "sigma_y_standard": "[[0,-i],[i,0]]",
+        "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5",
+        "ott"
+      ],
+      "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_jax_results.json",
+      "role_id": "jax_rich_mirror_sim_builder",
+      "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_jax.py",
+      "source_sha256": "ef1a597baf084e206949f8ebdff71522a1343b6be6987602fd278af4e7fb2514",
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "ott": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent NRA/LIA solver flips for P1 and P2",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive deterministic Haar and non-Haar sample statistic computation for redundant X6 rows",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive array substrate for X6 sample statistics only",
+          "tried": true,
+          "used": true
+        },
+        "ott": {
+          "reason": "load-bearing Sinkhorn/PointCloud distance-to-uniform diagnostic for X6 Haar-vs-cluster control",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing second CAS route for X1, X2, X3, X5, X6 exact expectations, and X7",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing real/integer exact solver flips for P1 and P2",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Symbolics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "density_matrix": "rho = psi * psi^dagger",
+        "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+        "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+        "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+        "pin_name": "X1_option_A_pinned_minus_sigma_y",
+        "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+        "sigma_y_standard": "[[0,-i],[i,0]]",
+        "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Symbolics",
+        "IntervalArithmetic",
+        "Z3",
+        "JSON",
+        "Dates",
+        "LinearAlgebra",
+        "SHA"
+      ],
+      "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_julia_results.json",
+      "role_id": "julia_authoritative_sim_builder",
+      "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_julia.jl",
+      "source_sha256": "f7e6e58e4317cc7b617d108ecaef9dd4d92bbdd438975f9b0f4dc201dc525181",
+      "tool_integration_depth": {
+        "IntervalArithmetic": "load_bearing",
+        "JSON/Dates/SHA": "supportive",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "IntervalArithmetic": {
+          "reason": "load-bearing interval enclosure for X4(c) Gauss integral tail bound",
+          "tried": true,
+          "used": true
+        },
+        "JSON/Dates/SHA": {
+          "reason": "supportive result serialization, timestamping, and source hashing",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing Julia CAS expansion for X1 and X2",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side exact integer solver flip for P2 crossing count",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "density_matrix": "rho = psi * psi^dagger",
+        "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+        "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+        "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+        "pin_name": "X1_option_A_pinned_minus_sigma_y",
+        "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+        "sigma_y_standard": "[[0,-i],[i,0]]",
+        "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_pytorch_results.json",
+      "role_id": "pytorch_graph_network_sim_builder",
+      "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_pytorch.py",
+      "source_sha256": "f9e9eb3ebf4f2441529ed33ec961c1c0cfa1284396ccc57df6aa2b61b03f147c",
+      "tool_integration_depth": {
+        "sympy": "load_bearing",
+        "torch": "load_bearing",
+        "torch.func": "supportive"
+      },
+      "tool_manifest": {
+        "sympy": {
+          "reason": "load-bearing exact algebraic crossing sample coordinates and circle/line incidence checks",
+          "tried": true,
+          "used": true
+        },
+        "torch": {
+          "reason": "load-bearing integer tensor recomputation of the exact crossing signs",
+          "tried": true,
+          "used": true
+        },
+        "torch.func": {
+          "reason": "load-bearing vmap application over the integer crossing-sign tensor",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5",
+        "ott"
+      ],
+      "role": "second CAS route plus z3/cvc5 exact solver proofs"
+    },
+    "julia": {
+      "packages": [
+        "Symbolics",
+        "IntervalArithmetic",
+        "Z3",
+        "JSON",
+        "Dates",
+        "LinearAlgebra",
+        "SHA"
+      ],
+      "project": "/Users/joshuaeisenhart/.julia/environments/codex-ratchet-tensorkit-v1.12/Project.toml",
+      "role": "symbolic and interval exact closure"
+    },
+    "pytorch": {
+      "packages": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "role": "integer-tensor exact crossing-count recomputation"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "gates": {
+    "V1_V6_repair_gates_pass": true,
+    "X1_X8_receipts_pass": true,
+    "ceiling_exact": true,
+    "classification_table_zero_bare_float_rows": true,
+    "legs_exit_0_by_receipt": true,
+    "lineage_cited_without_modification": true,
+    "pin_identical": true,
+    "solver_proofs_flip": true,
+    "structured_convention_pin_identical": true
+  },
+  "generated_at": "2026-06-10T21:27:05.089161+00:00",
+  "lineage": {
+    "commit": "013fb0fa1",
+    "modified_lineage_packet": false,
+    "packet": "system_v6/sims/geo_s1_spinor_hopf_free_v0"
+  },
+  "object_id": "geo_s1_exact_closure_v0",
+  "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+  "pin_spec": "geo_s1_exact_closure_v0|lineage=geo_s1_spinor_hopf_free_v0@013fb0fa1|convention_pin=X1_option_A_pinned_minus_sigma_y|sigma_y_standard=[[0,-i],[i,0]]|bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|r_i=Tr(rho*basis_i)|rho=psi*psi_dagger|Hopf_y=+2Im(z1*conj(z2))|derived_standard_y=-Hopf_y|derived_pinned_identity=Bloch_pinned(rho)=(x,y,z)|exact_strength=symbolic_closed_form_interval|seed_ledger=jax.random.PRNGKey[60610:haar_joint_n20000,60611:nonhaar_eta_n20000,60612:nonhaar_phi_n20000,60613:nonhaar_chi_n20000]|rerun=SIM_PY geo_s1_exact_closure_v0_{jax,julia,pytorch,envelope}|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seed_ledger": {
+    "deterministic_legs": [
+      "julia_symbolic_interval",
+      "pytorch_exact_crossing"
+    ],
+    "rerun_command": "SIM_PY=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3; $SIM_PY system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_jax.py && JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_julia.jl && $SIM_PY system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_pytorch.py && $SIM_PY system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_envelope.py",
+    "rng_api": [
+      "jax.random.PRNGKey"
+    ],
+    "seeds": [
+      {
+        "engine": "jax",
+        "sample_count": 20000,
+        "seed": 60610,
+        "use": "haar_joint_sample_statistic"
+      },
+      {
+        "engine": "jax",
+        "sample_count": 20000,
+        "seed": 60611,
+        "use": "non_haar_eta_control"
+      },
+      {
+        "engine": "jax",
+        "sample_count": 20000,
+        "seed": 60612,
+        "use": "non_haar_phi_control"
+      },
+      {
+        "engine": "jax",
+        "sample_count": 20000,
+        "seed": 60613,
+        "use": "non_haar_chi_control"
+      }
+    ],
+    "status": "declared_recompute_metadata_only"
+  },
+  "sim_id": "geo_s1_exact_closure_v0",
+  "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_envelope.py",
+  "source_sha256": "bee190c2f49915ddeee3aabbeceb35d1ec0b8c769580a2e81d9e8e7048156178",
+  "summary": {
+    "V1_V6_repair_gates_pass": true,
+    "X1_X8_complete": true,
+    "bare_float_row_labels": [],
+    "bare_float_rows": 0,
+    "ceiling": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "ott_wasserstein_clustered_reg_ot_cost": 1.9302514046178747,
+    "ott_wasserstein_haar_reg_ot_cost": 0.23625525451293983,
+    "promotion_allowed": false,
+    "proofs_flip": true
+  },
+  "v2_repair_gates": {
+    "V1_explicit_convention_pin": true,
+    "V2_julia_and_sympy_derive_from_rho": true,
+    "V3_crossing_signs_computed": true,
+    "V4_gauss_orientation_reversal_minus_one": true,
+    "V5_genuine_interval_path": true,
+    "V6_honest_classification_table": true
+  }
+}

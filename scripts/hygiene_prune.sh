@@ -2,7 +2,7 @@
 # Hygiene: prune legacy, compress old results, keep working set lean.
 # Local, zero tokens. Safe to run alongside perpetual_runner.
 set -u
-ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
 cd "$ROOT"
 LOG="$ROOT/overnight_logs/hygiene_$(date +%Y%m%d_%H%M%S).log"
 exec >> "$LOG" 2>&1

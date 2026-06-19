@@ -1,0 +1,335 @@
+{
+  "CONTROL_FLIP_1_lossy_record": {
+    "derived_orientation_lossy_record": "INWARD",
+    "derived_orientation_not_outward": true,
+    "lossy_record_kills_memory": true,
+    "lossy_record_map": {
+      "e0": "C0",
+      "e1": "C0",
+      "e2": "C0",
+      "e3": "C1",
+      "e4": "C1",
+      "e5": "C1",
+      "e6": "C2",
+      "e7": "C2"
+    },
+    "measure_lossy_record": {
+      "bits_lost": 1.415037499278844,
+      "distinct_images": 3,
+      "domain_size": 8,
+      "fiber_counts": {
+        "C0": 3,
+        "C1": 3,
+        "C2": 2
+      },
+      "injective": false,
+      "many_to_one": true,
+      "max_fiber": 3
+    },
+    "mechanism": "collapse the record to the coarse class only (many-to-one lossy record)",
+    "memory_leaks_bits_lost_gt_0": true,
+    "no_longer_injective": true,
+    "reconstruction_fails": true
+  },
+  "CONTROL_FLIP_2_reversible_compression": {
+    "derived_orientation_not_inward": true,
+    "derived_orientation_reversible_compression": "OUTWARD",
+    "max_fiber_is_one": true,
+    "measure_reversible_compression": {
+      "bits_lost": 0.0,
+      "distinct_images": 8,
+      "domain_size": 8,
+      "fiber_counts": {
+        "C0@0": 1,
+        "C0@1": 1,
+        "C0@2": 1,
+        "C1@0": 1,
+        "C1@1": 1,
+        "C1@2": 1,
+        "C2@0": 1,
+        "C2@1": 1
+      },
+      "injective": true,
+      "many_to_one": false,
+      "max_fiber": 1
+    },
+    "mechanism": "make compression keep the fine tag too (injective / reversible compression)",
+    "no_information_lost_bits_lost_eq_0": true,
+    "no_longer_many_to_one": true,
+    "record_now_redundant_phi_reconstructs_domain": true,
+    "reversible_compression_kills_positive_entropy": true,
+    "reversible_compression_map": {
+      "e0": "C0@0",
+      "e1": "C0@1",
+      "e2": "C0@2",
+      "e3": "C1@0",
+      "e4": "C1@1",
+      "e5": "C1@2",
+      "e6": "C2@0",
+      "e7": "C2@1"
+    }
+  },
+  "IRREVERSIBILITY_PAIR_TEST": {
+    "derived_orientation_inward": "INWARD",
+    "derived_orientation_outward": "OUTWARD",
+    "fibers_detail": {
+      "all_inward_fibers_recovered": true,
+      "recovered_inward_fibers": {
+        "C0": [
+          "e0",
+          "e1",
+          "e2"
+        ],
+        "C1": [
+          "e3",
+          "e4",
+          "e5"
+        ],
+        "C2": [
+          "e6",
+          "e7"
+        ]
+      },
+      "true_inward_fibers": {
+        "C0": [
+          "e0",
+          "e1",
+          "e2"
+        ],
+        "C1": [
+          "e3",
+          "e4",
+          "e5"
+        ],
+        "C2": [
+          "e6",
+          "e7"
+        ]
+      }
+    },
+    "honest_message": "EARNED: the outward record is a MEASURED injective memory (bits_lost==0) that reconstructs the domain and every fiber the MEASURED many-to-one inward compression (bits_lost>0) destroyed; opposite orientation is derived from the measured cardinalities, not labeled",
+    "inward_bits_lost": 1.415037499278844,
+    "inward_compression_map": {
+      "e0": "C0",
+      "e1": "C0",
+      "e2": "C0",
+      "e3": "C1",
+      "e4": "C1",
+      "e5": "C1",
+      "e6": "C2",
+      "e7": "C2"
+    },
+    "inward_is_positive_entropy_lossy": true,
+    "inward_max_fiber": 3,
+    "irreversibility_pair_earned": true,
+    "joint_detail": {
+      "joint_distinct_images": 8,
+      "joint_domain_size": 8,
+      "joint_pair_injective": true
+    },
+    "measure_inward": {
+      "bits_lost": 1.415037499278844,
+      "distinct_images": 3,
+      "domain_size": 8,
+      "fiber_counts": {
+        "C0": 3,
+        "C1": 3,
+        "C2": 2
+      },
+      "injective": false,
+      "many_to_one": true,
+      "max_fiber": 3
+    },
+    "measure_outward": {
+      "bits_lost": 0.0,
+      "distinct_images": 8,
+      "domain_size": 8,
+      "fiber_counts": {
+        "C0#0": 1,
+        "C0#1": 1,
+        "C0#2": 1,
+        "C1#0": 1,
+        "C1#1": 1,
+        "C1#2": 1,
+        "C2#0": 1,
+        "C2#1": 1
+      },
+      "injective": true,
+      "many_to_one": false,
+      "max_fiber": 1
+    },
+    "opposite_orientation_by_measurement": true,
+    "outward_bits_lost": 0.0,
+    "outward_is_negative_entropy_preserving": true,
+    "outward_max_fiber": 1,
+    "outward_record_map": {
+      "e0": "C0#0",
+      "e1": "C0#1",
+      "e2": "C0#2",
+      "e3": "C1#0",
+      "e4": "C1#1",
+      "e5": "C1#2",
+      "e6": "C2#0",
+      "e7": "C2#1"
+    },
+    "reconstruction_detail": {
+      "record_inverse_well_defined": true,
+      "record_reconstructs_domain": true,
+      "recovered_domain": [
+        "e0",
+        "e1",
+        "e2",
+        "e3",
+        "e4",
+        "e5",
+        "e6",
+        "e7"
+      ]
+    },
+    "record_is_structural_inverse_direction": true
+  },
+  "all_invariants_hold": true,
+  "all_pass": true,
+  "blocked_downstream_consumers": [
+    "Axis0 claim",
+    "flux claim",
+    "physics / dark-sector claim",
+    "thermodynamic entropy claim",
+    "temporal-arrow claim",
+    "formal manifold admission",
+    "claim that this trivial carrier IS the owner model's outward record / dark matter",
+    "claim that bits_lost is physical entropy"
+  ],
+  "both_flips_discriminate": true,
+  "carrier_uncontaminated_after_controls": true,
+  "claim_ceiling": "EARNS only a finite-set INFORMATION-BOOKKEEPING irreversibility pair: a measured many-to-one compression (positive bits_lost) and a measured injective record (zero bits_lost) that is the structural inverse-direction (right-section) recovering the compression's destroyed fibers, with two control flips that each break exactly the entropy face whose direction is broken. NOT physics, NOT dark matter/energy, NOT thermodynamic entropy, NOT a temporal arrow, NOT Axis0, NOT a manifold, NOT canonical.",
+  "classification": "scratch_diagnostic",
+  "criteria_checked": [
+    "INWARD_bits_lost_gt_0",
+    "INWARD_is_many_to_one_measured",
+    "INWARD_max_fiber_gt_1",
+    "IRREVERSIBILITY_PAIR_EARNED",
+    "OUTWARD_bits_lost_eq_0",
+    "OUTWARD_is_injective_measured",
+    "inward_and_outward_are_distinct_maps",
+    "joint_pair_injective",
+    "maps_share_domain",
+    "orientations_opposite_by_measurement",
+    "record_is_structural_inverse_direction",
+    "record_reconstructs_domain",
+    "record_recovers_every_inward_fiber"
+  ],
+  "domain_events": {
+    "e0": {
+      "coarse_class": "C0",
+      "fine_tag": 0
+    },
+    "e1": {
+      "coarse_class": "C0",
+      "fine_tag": 1
+    },
+    "e2": {
+      "coarse_class": "C0",
+      "fine_tag": 2
+    },
+    "e3": {
+      "coarse_class": "C1",
+      "fine_tag": 0
+    },
+    "e4": {
+      "coarse_class": "C1",
+      "fine_tag": 1
+    },
+    "e5": {
+      "coarse_class": "C1",
+      "fine_tag": 2
+    },
+    "e6": {
+      "coarse_class": "C2",
+      "fine_tag": 0
+    },
+    "e7": {
+      "coarse_class": "C2",
+      "fine_tag": 1
+    }
+  },
+  "domain_size": 8,
+  "formal_admission_allowed": false,
+  "honest_caveat_reconstruction_certifies_injectivity_not_encoding": "the record_is_structural_inverse_direction test certifies the record is an injective right-section of phi (a vacuous id->id record would also pass it); the load-bearing object is the MEASURED pair (lossy phi + injective rho on one carrier) and the two control flips, not the specific record encoding",
+  "honest_self_assessment": "EARNED on this carrier, in a PRECISE and LIMITED sense: 'inherited memory / negative entropy' is earned only as 'an injective right-section rho that MEASURABLY recovers the domain and every fiber that a MEASURED many-to-one compression phi destroyed (inward bits_lost=1.415037499278844>0, outward bits_lost=0.0==0), with opposite orientation DERIVED from the measured fiber cardinalities, and with both discriminating flips firing (collapsing rho kills the memory property; making phi injective kills the positive-entropy property).' This is finite-set information bookkeeping. It is NOT thermodynamic entropy, NOT physical dark matter/energy, NOT a temporal arrow, NOT a demonstration that this carrier IS the owner model's dark sector. The owner-model words (negative entropy, preserved information, inherited memory, irreversibility pair) are the OBJECT SOURCE, held as target/excavation, not admitted physics.",
+  "invariants": {
+    "INWARD_bits_lost_gt_0": true,
+    "INWARD_is_many_to_one_measured": true,
+    "INWARD_max_fiber_gt_1": true,
+    "IRREVERSIBILITY_PAIR_EARNED": true,
+    "OUTWARD_bits_lost_eq_0": true,
+    "OUTWARD_is_injective_measured": true,
+    "inward_and_outward_are_distinct_maps": true,
+    "joint_pair_injective": true,
+    "maps_share_domain": true,
+    "orientations_opposite_by_measurement": true,
+    "record_is_structural_inverse_direction": true,
+    "record_reconstructs_domain": true,
+    "record_recovers_every_inward_fiber": true
+  },
+  "irreversibility_pair_earned": true,
+  "lossy_record_kills_memory": true,
+  "name": "rpf_outward_record_memory_v0",
+  "object_name": "OutwardRecordMemory_IrreversibilityPair",
+  "probe_family": "M_fiber_cardinality_plus_bits_lost_plus_reconstruction_plus_derived_orientation",
+  "promotion_allowed": false,
+  "reversible_compression_kills_positive_entropy": true,
+  "structure": "finite carrier D of distinct events; inward compression phi:D->coarse_class (many-to-one, lossy); outward record rho:D->full_event_identity (injective, the structural inverse-direction / right-section recovering phi's loss)",
+  "tool_integration_depth": {
+    "copy": "load_bearing",
+    "jax": null,
+    "json": "supportive",
+    "julia": null,
+    "math": "load_bearing",
+    "numpy": null,
+    "pytorch": null,
+    "z3": null
+  },
+  "tool_manifest": {
+    "copy": {
+      "reason": "copy.deepcopy isolates the carrier maps before the control flips MUTATE them (lossy-record / reversible-compression), so the serialized canonical object is never contaminated. Load-bearing for the flip controls' honesty (no mutation leaks into the result JSON).",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "not needed: trivial finite carrier; no batched/exhaustive sweep.",
+      "tried": false,
+      "used": false
+    },
+    "json": {
+      "reason": "result-JSON serialization; supportive (serialization, not the claim).",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "not needed: no Canon algebra artifact is consumed.",
+      "tried": false,
+      "used": false
+    },
+    "math": {
+      "reason": "math.log2 computes the exact information change bits_lost(f) = log2|domain| - log2|image| for each map. This is the load-bearing measured quantity that separates the positive-entropy (lossy, bits_lost>0) inward face from the negative-entropy (preserving, bits_lost==0) outward face. Without it the entropy orientation would be a label, not a measurement.",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "available but deliberately NOT used: the carrier is a tiny finite set of integer events and the entropy bookkeeping is exact log2 over integer fiber counts; pure Python keeps the irreversibility-pair measurement auditable. A numeric substrate would be decorative and re-enter the proxy basin.",
+      "tried": true,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not needed: no density matrix / network / autograd carrier.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "not needed: this is a measured information-bookkeeping separation by direct fiber counting and reconstruction, not a structural-impossibility (UNSAT) proof. No formal admission is claimed.",
+      "tried": false,
+      "used": false
+    }
+  }
+}

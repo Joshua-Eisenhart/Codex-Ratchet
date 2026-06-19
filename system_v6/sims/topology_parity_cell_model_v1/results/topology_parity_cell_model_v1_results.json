@@ -1,0 +1,575 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "fiber_augmented_cover_v1_common": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "G.2a builder/audit boundary check so this builder does not claim its own audit verdict",
+      "tried": true,
+      "used": true
+    },
+    "fiber_augmented_cover_v1_common": {
+      "reason": "load-bearing source of the committed 33-cell cover, fiber count, and clutching transition rows",
+      "tried": true,
+      "used": true
+    },
+    "gudhi": {
+      "reason": "load-bearing independent Betti checks for the v0 simplicial controls",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing integer boundary-matrix rank and Smith normal form torsion checks",
+      "tried": true,
+      "used": true
+    },
+    "toponetx": {
+      "reason": "load-bearing 0-2 cell-complex sanity checks for the v0 torus/sphere/disk controls",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "reference-fixture-gated cellular homology computation for the cover topology guard",
+    "degree extracted from committed cover transition rows, not target Betti values",
+    "scratch-diagnostic parity adjudication between degree-one and zero-shift cover chain models"
+  ],
+  "builder_gates": {
+    "boundary_helper_path": "system_v6/sims/topology_parity_cell_model_v1/topology_parity_cell_model_v1_boundary.py",
+    "g2a_boundary_from_birth": true,
+    "no_git_add_or_commit_required": true,
+    "shared_boundary_helper": "scripts/builder_audit_boundary.py"
+  },
+  "cell_rules_pinned_before_computation": {
+    "base_rule": "33 base faces around one cellular latitude with south/north endpoints, derived from committed 33-cell S2 bundle surface",
+    "fiber_rule": "one directed S1 fiber cell pair per base cell, |F|=3 source phases",
+    "gluing_rule": "seam edge a->b with shift s glues phase p to p+s mod |F|; chain twist is accumulated lifted seam degree",
+    "no_target_betti_fitting": true
+  },
+  "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+  "classification": "scratch_diagnostic",
+  "complexes": {
+    "v1_degree_one_cover": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "boundary_ranks": {
+        "1": 1,
+        "2": 34,
+        "3": 32
+      },
+      "chain_dims_c0_to_cmax": [
+        2,
+        35,
+        66,
+        33
+      ],
+      "chain_sha256": "eec1c3b1b2071ff563c534c9513d074cee75291ccf38294dacce0937aa0428ac",
+      "d_squared_errors": [],
+      "d_squared_zero": true,
+      "label": "v1_degree_one_cover",
+      "metadata": {
+        "base_face_count": 33,
+        "cell_rule": "33_face_base_s2_times_three_phase_circle_with_clutching_entry",
+        "clutching_source": {
+          "base_loop_cell_ids": [
+            20,
+            17,
+            12,
+            15
+          ],
+          "base_loop_edge_pairs": [
+            [
+              20,
+              17
+            ],
+            [
+              17,
+              12
+            ],
+            [
+              12,
+              15
+            ],
+            [
+              15,
+              20
+            ]
+          ],
+          "degree": 1,
+          "degree_source": "sum committed chart_transition_rows on equatorial loop divided by |F|",
+          "fiber_phase_count": 3,
+          "loop_name": "committed_equatorial_loop",
+          "seam_lifted_shift_steps": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "total_lifted_shift_steps": 3
+        },
+        "euler_degree": 1
+      }
+    },
+    "zero_shift_product_cover": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "boundary_ranks": {
+        "1": 1,
+        "2": 33,
+        "3": 32
+      },
+      "chain_dims_c0_to_cmax": [
+        2,
+        35,
+        66,
+        33
+      ],
+      "chain_sha256": "0a953faac2477bf9917ab9d04974633a223f1d104b28d0be76aac77aeb062f31",
+      "d_squared_errors": [],
+      "d_squared_zero": true,
+      "label": "zero_shift_product_cover",
+      "metadata": {
+        "base_face_count": 33,
+        "cell_rule": "33_face_base_s2_times_three_phase_circle_with_clutching_entry",
+        "clutching_source": {
+          "base_loop_cell_ids": [
+            20,
+            17,
+            12,
+            15
+          ],
+          "base_loop_edge_pairs": [
+            [
+              20,
+              17
+            ],
+            [
+              17,
+              12
+            ],
+            [
+              12,
+              15
+            ],
+            [
+              15,
+              20
+            ]
+          ],
+          "degree": 0,
+          "degree_source": "sum committed chart_transition_rows on equatorial loop divided by |F|",
+          "fiber_phase_count": 3,
+          "loop_name": "committed_equatorial_loop",
+          "seam_lifted_shift_steps": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_lifted_shift_steps": 0
+        },
+        "euler_degree": 0
+      }
+    }
+  },
+  "controls": {
+    "all_reference_controls_pass": true,
+    "disk_reference": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_betti": [
+        1,
+        0,
+        0
+      ],
+      "gudhi_toponetx_agree_through_b2": true,
+      "label": "disk_reference",
+      "pass": true,
+      "toponetx_hodge_betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "mislabeled_torus_as_sphere_negative": {
+      "actual_betti_b0_b1_b2_b3": [
+        1,
+        2,
+        1,
+        0
+      ],
+      "claimed_expected_betti": [
+        1,
+        0,
+        1
+      ],
+      "input_complex": "torus_reference",
+      "label": "mislabeled_torus_as_sphere_negative",
+      "pass": true
+    },
+    "sphere_reference": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "expected_betti": [
+        1,
+        0,
+        1
+      ],
+      "gudhi_toponetx_agree_through_b2": true,
+      "label": "sphere_reference",
+      "pass": true,
+      "toponetx_hodge_betti_b0_b1_b2_b3": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    "torsion_trap_degree_2": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "betti_only_underpowered": true,
+      "degree": 2,
+      "homology_torsion": {
+        "H1": [
+          2
+        ],
+        "H1_description": "Z/2"
+      },
+      "label": "lens_space_torsion_trap_degree_2",
+      "pass": true
+    },
+    "torus_reference": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        2,
+        1,
+        0
+      ],
+      "expected_betti": [
+        1,
+        2,
+        1
+      ],
+      "gudhi_toponetx_agree_through_b2": true,
+      "label": "torus_reference",
+      "pass": true,
+      "toponetx_hodge_betti_b0_b1_b2_b3": [
+        1,
+        2,
+        1,
+        0
+      ]
+    },
+    "wrong_gluing_erased_v1_seam": {
+      "label": "wrong_gluing_erased_v1_seam",
+      "pass": true,
+      "wrong_betti_b0_b1_b2_b3": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "wrong_degree": 0
+    }
+  },
+  "cover_inputs": {
+    "v1": {
+      "base_loop_cell_ids": [
+        20,
+        17,
+        12,
+        15
+      ],
+      "base_loop_edge_pairs": [
+        [
+          20,
+          17
+        ],
+        [
+          17,
+          12
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          15,
+          20
+        ]
+      ],
+      "degree": 1,
+      "degree_source": "sum committed chart_transition_rows on equatorial loop divided by |F|",
+      "fiber_phase_count": 3,
+      "loop_name": "committed_equatorial_loop",
+      "seam_lifted_shift_steps": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "total_lifted_shift_steps": 3
+    },
+    "zero_shift_product": {
+      "base_loop_cell_ids": [
+        20,
+        17,
+        12,
+        15
+      ],
+      "base_loop_edge_pairs": [
+        [
+          20,
+          17
+        ],
+        [
+          17,
+          12
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          15,
+          20
+        ]
+      ],
+      "degree": 0,
+      "degree_source": "sum committed chart_transition_rows on equatorial loop divided by |F|",
+      "fiber_phase_count": 3,
+      "loop_name": "committed_equatorial_loop",
+      "seam_lifted_shift_steps": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "total_lifted_shift_steps": 0
+    }
+  },
+  "disallowed_claims": [
+    "new bundle claim",
+    "formal admission",
+    "canonical by process",
+    "axis-level closure",
+    "bridge claim",
+    "physics/manifold claim",
+    "cover-v1 audit replacement"
+  ],
+  "expected_profiles_preregistered_from_math": {
+    "v1_degree_one_cover": {
+      "expected_betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "ideal_space": "S3_like_total_space",
+      "math_reason": "oriented circle bundle over S2 with Euler class +/-1 has S3-like homology"
+    },
+    "zero_shift_product_cover": {
+      "expected_betti_b0_b1_b2_b3": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "ideal_space": "S2xS1_product_total_space",
+      "math_reason": "zero Euler class gives the product S2xS1 homology profile"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T11:16:30Z",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "parity_adjudication": {
+    "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+    "computed_product_betti": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "computed_profiles_differ": true,
+    "computed_v1_betti": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "cover_rows_ran": true,
+    "finding": "expanded cellular chain model recovers the preregistered degree-one versus product Betti distinction",
+    "guard_status": "distinction_resolved_degree_one_side",
+    "ideal_profiles_match": true,
+    "independent_guard_earned": true
+  },
+  "preregistration_order": "cell_rules_and_expected_profiles_declared_before_computation",
+  "promotion_allowed": false,
+  "reference_gate": {
+    "explicit_s2xs1": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "betti_only_underpowered": false,
+      "boundary_ranks": {
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "chain_dims_c0_to_cmax": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "chain_sha256": "13275ab3b25263e8015f91eadabe47420b60fe401e8ff75f2ad06049046772af",
+      "d_squared_errors": [],
+      "d_squared_zero": true,
+      "homology_torsion": {
+        "H1": [],
+        "H1_description": "free"
+      },
+      "label": "explicit_s2xs1",
+      "metadata": {
+        "cell_rule": "homology_reduced_oriented_circle_bundle_over_s2",
+        "euler_degree": 0
+      }
+    },
+    "explicit_s3": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "betti_only_underpowered": false,
+      "boundary_ranks": {
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "chain_dims_c0_to_cmax": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "chain_sha256": "9d5b9112c9bc82374b3d0485310701327d6d3845c2a72a3297c8a8527c36ebd2",
+      "d_squared_errors": [],
+      "d_squared_zero": true,
+      "homology_torsion": {
+        "H1": [],
+        "H1_description": "free"
+      },
+      "label": "explicit_s3",
+      "metadata": {
+        "cell_rule": "homology_reduced_oriented_circle_bundle_over_s2",
+        "euler_degree": 1
+      }
+    },
+    "explicit_s3_orientation_negative": {
+      "betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "betti_only_underpowered": false,
+      "boundary_ranks": {
+        "1": 0,
+        "2": 1,
+        "3": 0
+      },
+      "chain_dims_c0_to_cmax": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "chain_sha256": "22e48d0312a4ae3433d63a1b3b0194709cd797fc60456f9ab4a40ede61ea9fd4",
+      "d_squared_errors": [],
+      "d_squared_zero": true,
+      "homology_torsion": {
+        "H1": [],
+        "H1_description": "free"
+      },
+      "label": "explicit_s3_orientation_negative",
+      "metadata": {
+        "cell_rule": "homology_reduced_oriented_circle_bundle_over_s2",
+        "euler_degree": -1
+      }
+    },
+    "gate_rule": "cover rows are skipped unless explicit S3 and S2xS1 reference profiles pass first",
+    "reference_gate_passed": true
+  },
+  "result_summary": {
+    "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+    "guard_status": "distinction_resolved_degree_one_side",
+    "independent_guard_earned": true,
+    "reference_gate_passed": true
+  },
+  "sim_id": "topology_parity_cell_model_v1",
+  "source_cover": {
+    "fiber_augmented_cover_v1_result": {
+      "exists": true,
+      "git_last_commit": "80860aa4f",
+      "path": "system_v6/sims/fiber_augmented_cover_v1/results/fiber_augmented_cover_v1_results.json",
+      "role": "primary_cover_result_artifact",
+      "sha256": "8419f986b9b27fd80f038dc281eb9b116dab1fd42d99cd858bd0e01834293081"
+    },
+    "fiber_augmented_cover_v1_source": {
+      "exists": true,
+      "git_last_commit": "80860aa4f",
+      "path": "system_v6/sims/fiber_augmented_cover_v1/fiber_augmented_cover_v1_common.py",
+      "role": "committed_cover_construction_and_clutching_rows",
+      "sha256": "9b13a8f50c98d6f9d3b2f3cd77a4e85a29590087d7c8d749eb627b2807e931c0"
+    },
+    "topology_parity_micro_v0_result": {
+      "exists": true,
+      "git_last_commit": "ce9628302",
+      "path": "system_v6/sims/topology_parity_micro_v0/results/topology_parity_micro_v0_results.json",
+      "role": "v0_honest_null_resolution_indicted",
+      "sha256": "3b92ed70cc9ac7c8b080465f35a3953102396427e9fcfff3b966ffa3fcce6ad1"
+    },
+    "topology_parity_micro_v0_source": {
+      "exists": true,
+      "git_last_commit": "ce9628302",
+      "path": "system_v6/sims/topology_parity_micro_v0/topology_parity_micro_v0_common.py",
+      "role": "v0_controls_and_preregistered_profiles",
+      "sha256": "cae085b524248ea3755084e6d366f7b0f5c79506f5e2073860baf6634e9f4363"
+    },
+    "v1_cover_sha256": "618678a9cfb00ec88a722faa7fe5f2111145e5a9385bab8e6987b1949e53f696",
+    "zero_shift_cover_sha256": "c37c45e644ad421ff3c28b36267fae951bd5e56c5afcdd17eacbeb32735a5763"
+  }
+}

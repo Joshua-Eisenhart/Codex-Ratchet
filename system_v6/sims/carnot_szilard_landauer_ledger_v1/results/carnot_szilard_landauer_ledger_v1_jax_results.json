@@ -1,0 +1,1260 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SAT/UNSAT and model witnesses over ledger constraints",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive exact integer ledger tensor and N01 adjacency computation",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact ln(2) typed bit-to-nat ledger convention",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SAT/UNSAT and persisted model witnesses over ledger constraints",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "common_source_path": "system_v6/sims/carnot_szilard_landauer_ledger_v1/carnot_szilard_landauer_ledger_v1_common.py",
+  "controls": {
+    "misledgered_control": {
+      "derived": {
+        "energy_residual": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "entropy_production": {
+          "den": 1,
+          "float": -1.0,
+          "num": -1,
+          "string": "-1/1"
+        }
+      },
+      "errors": [
+        "missing_strokes:too_small_cold_rejection",
+        "first_law_energy_residual_nonzero"
+      ],
+      "omitted_entry": "too_small_cold_rejection",
+      "status": "caught"
+    },
+    "n01_order": {
+      "computed_by": "jax boolean adjacency transitive closure",
+      "n01_order_gap": 1,
+      "normal": {
+        "adjacency": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "feedback_before_erase": true,
+        "measure_before_feedback": true,
+        "order": [
+          "measure",
+          "feedback",
+          "erase"
+        ],
+        "path_measure_to_erase": true,
+        "transitive_reachability": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "verdict": "sat"
+      },
+      "permuted": {
+        "adjacency": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "feedback_before_erase": true,
+        "measure_before_feedback": false,
+        "order": [
+          "feedback",
+          "measure",
+          "erase"
+        ],
+        "path_measure_to_erase": true,
+        "transitive_reachability": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "verdict": "unsat"
+      }
+    }
+  },
+  "cycle_rows": {
+    "broken_fence_drop_entropy_constraint_super_carnot": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "entropy_production_nonnegative": false,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "model": {
+          "entropy_production": "(/ (- 1) 2)",
+          "eta": "(/ 3 4)",
+          "q_cold": "(/ (- 1) 2)",
+          "q_hot": "2.0",
+          "work_out": "(/ 3 2)"
+        },
+        "status": "sat"
+      },
+      "description": "same super-Carnot ledger with entropy-production constraint dropped",
+      "expected": "sat",
+      "name": "broken_fence_drop_entropy_constraint_super_carnot",
+      "numeric_eta_gt_eta_c": true,
+      "z3": {
+        "constraints": {
+          "entropy_production_nonnegative": false,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "derived": {
+          "energy_residual": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "entropy_production": {
+            "den": 2,
+            "float": -0.5,
+            "num": -1,
+            "string": "-1/2"
+          },
+          "eta": {
+            "den": 4,
+            "float": 0.75,
+            "num": 3,
+            "string": "3/4"
+          },
+          "eta_c": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        "model": {
+          "entropy_production": "-1/2",
+          "eta": "3/4",
+          "q_cold": "-1/2",
+          "q_hot": "2",
+          "work_out": "3/2"
+        },
+        "status": "sat"
+      }
+    },
+    "candidate_super_carnot_cycle": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "status": "unsat"
+      },
+      "derived": {
+        "energy_residual": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "entropy_production": {
+          "den": 2,
+          "float": -0.5,
+          "num": -1,
+          "string": "-1/2"
+        },
+        "eta": {
+          "den": 4,
+          "float": 0.75,
+          "num": 3,
+          "string": "3/4"
+        },
+        "eta_c": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta_relation": "above_eta_C",
+        "q_cold_total": {
+          "den": 2,
+          "float": -0.5,
+          "num": -1,
+          "string": "-1/2"
+        },
+        "q_hot_total": {
+          "den": 1,
+          "float": 2.0,
+          "num": 2,
+          "string": "2/1"
+        },
+        "work_out_total": {
+          "den": 2,
+          "float": 1.5,
+          "num": 3,
+          "string": "3/2"
+        }
+      },
+      "description": "ledger that would be needed for eta 3/4; entropy production is negative",
+      "expected": "unsat",
+      "name": "candidate_super_carnot_cycle",
+      "strokes": [
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 2.0,
+            "num": 2,
+            "string": "2/1"
+          },
+          "stroke": "hot_contact",
+          "work_out": {
+            "den": 2,
+            "float": 1.5,
+            "num": 3,
+            "string": "3/2"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 2,
+            "float": -0.5,
+            "num": -1,
+            "string": "-1/2"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "too_small_cold_rejection",
+          "work_out": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        }
+      ],
+      "z3": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "derived": {
+          "energy_residual": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "entropy_production": {
+            "den": 2,
+            "float": -0.5,
+            "num": -1,
+            "string": "-1/2"
+          },
+          "eta": {
+            "den": 4,
+            "float": 0.75,
+            "num": 3,
+            "string": "3/4"
+          },
+          "eta_c": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        "status": "unsat"
+      }
+    },
+    "reversible_carnot_cycle": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "model": {
+          "entropy_production": "0.0",
+          "eta": "(/ 1 2)",
+          "q_cold": "(- 1.0)",
+          "q_hot": "2.0",
+          "work_out": "1.0"
+        },
+        "status": "sat"
+      },
+      "derived": {
+        "energy_residual": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "entropy_production": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "eta": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta_c": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta_relation": "equal_to_eta_C",
+        "q_cold_total": {
+          "den": 1,
+          "float": -1.0,
+          "num": -1,
+          "string": "-1/1"
+        },
+        "q_hot_total": {
+          "den": 1,
+          "float": 2.0,
+          "num": 2,
+          "string": "2/1"
+        },
+        "work_out_total": {
+          "den": 1,
+          "float": 1.0,
+          "num": 1,
+          "string": "1/1"
+        }
+      },
+      "description": "four-stroke reversible boundary ledger",
+      "expected": "sat",
+      "name": "reversible_carnot_cycle",
+      "strokes": [
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 2.0,
+            "num": 2,
+            "string": "2/1"
+          },
+          "stroke": "hot_isothermal_expansion",
+          "work_out": {
+            "den": 2,
+            "float": 1.5,
+            "num": 3,
+            "string": "3/2"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "adiabatic_expansion",
+          "work_out": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 1,
+            "float": -1.0,
+            "num": -1,
+            "string": "-1/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "cold_isothermal_compression",
+          "work_out": {
+            "den": 1,
+            "float": -1.0,
+            "num": -1,
+            "string": "-1/1"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "adiabatic_compression",
+          "work_out": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        }
+      ],
+      "z3": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "derived": {
+          "energy_residual": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "entropy_production": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "eta": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          },
+          "eta_c": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        "model": {
+          "entropy_production": "0",
+          "eta": "1/2",
+          "q_cold": "-1",
+          "q_hot": "2",
+          "work_out": "1"
+        },
+        "status": "sat"
+      }
+    },
+    "sub_carnot_irreversible_cycle": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "model": {
+          "entropy_production": "(/ 1 2)",
+          "eta": "(/ 1 4)",
+          "q_cold": "(/ (- 3) 2)",
+          "q_hot": "2.0",
+          "work_out": "(/ 1 2)"
+        },
+        "status": "sat"
+      },
+      "derived": {
+        "energy_residual": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "entropy_production": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta": {
+          "den": 4,
+          "float": 0.25,
+          "num": 1,
+          "string": "1/4"
+        },
+        "eta_c": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta_relation": "below_eta_C",
+        "q_cold_total": {
+          "den": 2,
+          "float": -1.5,
+          "num": -3,
+          "string": "-3/2"
+        },
+        "q_hot_total": {
+          "den": 1,
+          "float": 2.0,
+          "num": 2,
+          "string": "2/1"
+        },
+        "work_out_total": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        }
+      },
+      "description": "finite loss row; positive entropy production lowers eta",
+      "expected": "sat",
+      "name": "sub_carnot_irreversible_cycle",
+      "strokes": [
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 2.0,
+            "num": 2,
+            "string": "2/1"
+          },
+          "stroke": "hot_contact",
+          "work_out": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 2,
+            "float": -0.5,
+            "num": -1,
+            "string": "-1/2"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "finite_loss_internal",
+          "work_out": {
+            "den": 2,
+            "float": -0.5,
+            "num": -1,
+            "string": "-1/2"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 1,
+            "float": -1.0,
+            "num": -1,
+            "string": "-1/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "cold_rejection",
+          "work_out": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        }
+      ],
+      "z3": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "derived": {
+          "energy_residual": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "entropy_production": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          },
+          "eta": {
+            "den": 4,
+            "float": 0.25,
+            "num": 1,
+            "string": "1/4"
+          },
+          "eta_c": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        "model": {
+          "entropy_production": "1/2",
+          "eta": "1/4",
+          "q_cold": "-3/2",
+          "q_hot": "2",
+          "work_out": "1/2"
+        },
+        "status": "sat"
+      }
+    },
+    "trivial_zero_work_cycle": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "model": {
+          "entropy_production": "0.0",
+          "eta": "0.0",
+          "q_cold": "0.0",
+          "q_hot": "0.0",
+          "work_out": "0.0"
+        },
+        "status": "sat"
+      },
+      "derived": {
+        "energy_residual": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "entropy_production": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "eta": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "eta_c": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "eta_relation": "below_eta_C",
+        "q_cold_total": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "q_hot_total": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "work_out_total": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        }
+      },
+      "description": "boundary control with no work extraction",
+      "expected": "sat",
+      "name": "trivial_zero_work_cycle",
+      "strokes": [
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "idle_hot",
+          "work_out": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        },
+        {
+          "q_cold": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "q_hot": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "idle_cold",
+          "work_out": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        }
+      ],
+      "z3": {
+        "constraints": {
+          "entropy_production_nonnegative": true,
+          "first_law_q_hot_plus_q_cold_minus_work_eq_0": true,
+          "no_asserted_eta_bound": true
+        },
+        "derived": {
+          "energy_residual": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "entropy_production": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "eta": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "eta_c": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          }
+        },
+        "model": {
+          "entropy_production": "0",
+          "eta": "0",
+          "q_cold": "0",
+          "q_hot": "0",
+          "work_out": "0"
+        },
+        "status": "sat"
+      }
+    }
+  },
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T19:43:17Z",
+  "ledger_tensor": [
+    [
+      2,
+      1,
+      0,
+      1,
+      3,
+      2
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      2
+    ],
+    [
+      0,
+      1,
+      -1,
+      1,
+      -1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      -1,
+      2,
+      -1,
+      2
+    ],
+    [
+      0,
+      1,
+      -1,
+      1,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      1,
+      3,
+      2
+    ],
+    [
+      0,
+      1,
+      -1,
+      2,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ]
+  ],
+  "ledger_tensor_columns": [
+    "q_hot_num",
+    "q_hot_den",
+    "q_cold_num",
+    "q_cold_den",
+    "work_out_num",
+    "work_out_den"
+  ],
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "sympy": "1.14.0",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "pinned_temperatures": {
+    "T_c": {
+      "den": 1,
+      "float": 1.0,
+      "num": 1,
+      "string": "1/1"
+    },
+    "T_h": {
+      "den": 1,
+      "float": 2.0,
+      "num": 2,
+      "string": "2/1"
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/carnot_szilard_landauer_ledger_v1/results/carnot_szilard_landauer_ledger_v1_jax_results.json",
+  "row_classification": "classical_baseline",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "carnot_szilard_landauer_ledger_v1",
+  "source_path": "system_v6/sims/carnot_szilard_landauer_ledger_v1/carnot_szilard_landauer_ledger_v1_jax.py",
+  "source_sha256": "81819210cd5c1cd2338462ac46893cf94bb5490f7d5a08be644674f9c282053a",
+  "szilard_landauer_rows": {
+    "below_landauer_half_paid": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "status": "unsat"
+      },
+      "derived": {
+        "paid_erasure_ln2_coeff": {
+          "den": 2,
+          "float": 0.5,
+          "num": 1,
+          "string": "1/2"
+        },
+        "required_erasure_ln2_coeff": {
+          "den": 1,
+          "float": 1.0,
+          "num": 1,
+          "string": "1/1"
+        }
+      },
+      "expected": "unsat",
+      "z3": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "derived": {
+          "paid_ln2_coeff": {
+            "den": 2,
+            "float": 0.5,
+            "num": 1,
+            "string": "1/2"
+          },
+          "required_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          }
+        },
+        "status": "unsat"
+      }
+    },
+    "szilard_paid_measure_feedback_erase": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "model": {
+          "paid_ln2": "1.0",
+          "required_ln2": "1.0",
+          "surplus_ln2": "0.0"
+        },
+        "status": "sat"
+      },
+      "derived": {
+        "net_after_paid_erasure_ln2_coeff": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "required_erasure": "k*T*ln(2)",
+        "work_out": "k*T*ln(2)"
+      },
+      "expected": "sat",
+      "ledger": [
+        {
+          "erasure_paid_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "nats_recorded_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          },
+          "stroke": "measure_record_one_bit",
+          "work_out_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        },
+        {
+          "erasure_paid_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "nats_recorded_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "stroke": "feedback_isothermal_expansion",
+          "work_out_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          }
+        },
+        {
+          "erasure_paid_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          },
+          "nats_recorded_ln2_coeff": {
+            "den": 1,
+            "float": -1.0,
+            "num": -1,
+            "string": "-1/1"
+          },
+          "stroke": "erase_record",
+          "work_out_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          }
+        }
+      ],
+      "z3": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "derived": {
+          "paid_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          },
+          "required_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          }
+        },
+        "model": {
+          "paid_ln2": "1",
+          "required_ln2": "1",
+          "surplus_ln2": "0"
+        },
+        "status": "sat"
+      }
+    },
+    "szilard_unpaid_erasure_variant": {
+      "classification": "classical_baseline",
+      "cvc5": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "status": "unsat"
+      },
+      "derived": {
+        "paid_erasure_ln2_coeff": {
+          "den": 1,
+          "float": 0.0,
+          "num": 0,
+          "string": "0/1"
+        },
+        "required_erasure_ln2_coeff": {
+          "den": 1,
+          "float": 1.0,
+          "num": 1,
+          "string": "1/1"
+        },
+        "work_out": "k*T*ln(2)"
+      },
+      "expected": "unsat",
+      "z3": {
+        "constraints": {
+          "paid_erasure_cost_gte_required_landauer_cost": true
+        },
+        "derived": {
+          "paid_ln2_coeff": {
+            "den": 1,
+            "float": 0.0,
+            "num": 0,
+            "string": "0/1"
+          },
+          "required_ln2_coeff": {
+            "den": 1,
+            "float": 1.0,
+            "num": 1,
+            "string": "1/1"
+          }
+        },
+        "status": "unsat"
+      }
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "eta = eta_C reversible row",
+      "demotion_condition": "demote if eta bound is asserted directly instead of derived from ledger constraints",
+      "gates": [
+        "all_pass",
+        "persisted_witnesses",
+        "ledger_constraints"
+      ],
+      "input_object": "explicit finite heat/work and Szilard erasure ledgers",
+      "negative/erased_control": "super-Carnot entropy violation, unpaid erasure, below-Landauer",
+      "output_object": "SAT/UNSAT statuses with persisted SAT models",
+      "positive_case": "Carnot boundary, sub-Carnot, paid erasure, broken-fence control",
+      "qualified_api/function": "z3.Solver/check/model",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "eta = eta_C reversible row",
+      "demotion_condition": "demote if cvc5 does not bind the ledger variables",
+      "gates": [
+        "all_pass",
+        "solver_parity"
+      ],
+      "input_object": "same finite ledger constraints",
+      "negative/erased_control": "same UNSAT rows as z3",
+      "output_object": "independent SAT/UNSAT statuses and SAT model values",
+      "positive_case": "same SAT rows as z3",
+      "qualified_api/function": "cvc5.Solver/checkSat/getValue",
+      "tool": "cvc5"
+    }
+  ],
+  "typed_entropy": {
+    "bits": {
+      "den": 1,
+      "float": 1.0,
+      "num": 1,
+      "string": "1/1"
+    },
+    "conversion": "1 bit * ln(2) = ln(2) nats",
+    "landauer_one_bit_cost": "k*T*ln(2)",
+    "nats_exact": "ln(2)",
+    "units_policy": "bit counts are converted to nats before ledger rows are compared"
+  },
+  "typed_entropy_violations": []
+}

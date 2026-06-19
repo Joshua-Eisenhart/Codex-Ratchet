@@ -1,0 +1,2782 @@
+{
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "Z3",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch.func",
+    "torch_geometric"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "row-local b0/b3/b6 values are bound; forcing the opposite relation status is unsat, while erased flips are sat",
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "rows": [
+        {
+          "b0_sign": 1,
+          "b3_panel_relation_sign": -1,
+          "b6_sign": 1,
+          "cell_id": 4,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": 1,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": true,
+          "row_id": "family_a_33_cell:04"
+        },
+        {
+          "b0_sign": -1,
+          "b3_panel_relation_sign": -1,
+          "b6_sign": 1,
+          "cell_id": 0,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": -1,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": false,
+          "row_id": "family_a_33_cell:00"
+        },
+        {
+          "b0_sign": 0,
+          "b3_panel_relation_sign": 0,
+          "b6_sign": 0,
+          "cell_id": 16,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": 0,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": true,
+          "row_id": "family_a_33_cell:16"
+        }
+      ],
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "row-local b0/b3/b6 values are bound; forcing the opposite relation status is unsat, while erased flips are sat",
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "rows": [
+        {
+          "b0_sign": 1,
+          "b3_panel_relation_sign": -1,
+          "b6_sign": 1,
+          "cell_id": 4,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": 1,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": true,
+          "row_id": "family_a_33_cell:04"
+        },
+        {
+          "b0_sign": -1,
+          "b3_panel_relation_sign": -1,
+          "b6_sign": 1,
+          "cell_id": 0,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": -1,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": false,
+          "row_id": "family_a_33_cell:00"
+        },
+        {
+          "b0_sign": 0,
+          "b3_panel_relation_sign": 0,
+          "b6_sign": 0,
+          "cell_id": 16,
+          "erased_flip_verdict": "sat",
+          "expected_b6_negative_b0_b3": 0,
+          "real_contradiction_verdict": "unsat",
+          "relation_holds": true,
+          "row_id": "family_a_33_cell:16"
+        }
+      ],
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "exact shared-carrier blocker status, count rows, and per-row sign-vector hash equality across Julia/JAX/PyTorch",
+    "engine_values": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "pytorch": 1.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "tolerance": 0.0
+  },
+  "expected_lanes": [
+    "julia",
+    "jax",
+    "pytorch"
+  ],
+  "extra_fields": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "Graphs": "load_bearing",
+      "Z3": "load_bearing",
+      "build_three_engine_envelope": "load_bearing",
+      "cvc5": "load_bearing",
+      "networkx": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "torch_geometric": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_INTENT_MATRIX": {
+      "build_three_engine_envelope": {
+        "helper_path": "scripts/build_three_engine_envelope.py",
+        "reason": "load-bearing standard envelope construction"
+      },
+      "builder_audit_boundary": {
+        "helper_path": "scripts/builder_audit_boundary.py",
+        "reason": "builder does not emit audit_verdict.md"
+      },
+      "jax": {
+        "cvc5": "independently bind the same row-local contradictions and erased flips",
+        "networkx": "build the directed 33-cell graph from source carrier edges and count nodes/edges",
+        "sympy": "exactly evaluate the panel 6 q2 sign arithmetic and convention flip target",
+        "z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+      },
+      "julia": {
+        "Graphs": "build a finite 33-node graph from the parent carrier rows and hash per-cell sign vectors",
+        "Z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+      },
+      "pytorch": {
+        "cvc5": "independently bind the same row-local contradictions and erased flips",
+        "sympy": "exactly evaluate the panel 6 q2 sign arithmetic mirrored in the PyTorch lane",
+        "torch.func": "vmap a row-local relation kernel over b0/b3/b6 sign tensors",
+        "torch_geometric": "Data edge_index carrier for the 33-cell proxy table",
+        "z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+      }
+    },
+    "TOOL_MANIFEST": {
+      "Graphs": {
+        "reason": "Julia finite 33-cell carrier graph and sign-vector hash",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "Julia row-local SMT contradiction/erased-flip gate",
+        "tried": true,
+        "used": true
+      },
+      "build_three_engine_envelope": {
+        "reason": "load-bearing standard envelope construction",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "independent Python row-local SMT contradiction/erased-flip gate",
+        "tried": true,
+        "used": true
+      },
+      "networkx": {
+        "reason": "JAX-slot directed graph carrier rebuild",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "exact panel/convention arithmetic",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "PyTorch vectorized relation recomputation",
+        "tried": true,
+        "used": true
+      },
+      "torch_geometric": {
+        "reason": "PyTorch 33-cell edge_index carrier",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "Python row-local SMT contradiction/erased-flip gate",
+        "tried": true,
+        "used": true
+      }
+    },
+    "all_pass": true,
+    "allowed_claims": [
+      "faithful-carrier gate is blocked in current sources",
+      "33-cell proxy consistency table computed as contrast only",
+      "v0 Hopf transplant failure reproduced as regression contrast"
+    ],
+    "blocked_consumers": [
+      "axis_triple_relation_admission",
+      "scientific_lego_coupling",
+      "bridge_or_axis_level_claim"
+    ],
+    "build_helper_path": "scripts/build_three_engine_envelope.py",
+    "builder_gates": {
+      "file_disjoint_packet": true,
+      "no_builder_audit_verdict": true,
+      "no_builder_audit_verdict_envelope_gate": true
+    },
+    "capability_receipts": {
+      "jax": [
+        {
+          "computed_what": "nx.DiGraph rebuilds the finite 33-cell carrier graph from source edges",
+          "receipt_id": "jax_networkx_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "sp.Rational/sp.Matrix computes exact panel and convention-flip signs",
+          "receipt_id": "jax_sympy_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_cvc5_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "julia": [
+        {
+          "computed_what": "33-cell graph rebuild",
+          "receipt_id": "julia_Graphs_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "blocker/count gate",
+          "receipt_id": "julia_Z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "pytorch": [
+        {
+          "computed_what": "torch.func.vmap vectorizes the row-local relation kernel over b0/b3/b6 signs",
+          "receipt_id": "pytorch_torch.func_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "torch_geometric.data.Data carries the 33-cell edge_index carrier",
+          "receipt_id": "pytorch_torch_geometric_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "sp.symbols/sp.Matrix computes exact panel signs",
+          "receipt_id": "pytorch_sympy_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_cvc5_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "carrier_faithfulness_audit": {
+      "axis0_axis6_same_carrier": true,
+      "carrier_adjudication": {
+        "current_repo_carrier_that_hosts_all_three_faithfully": null,
+        "family_a_33_cell": "hosts committed Axis0 and Axis6 faithfully; hosts only the proxy Axis3 inner/outer readout in this packet",
+        "family_b_hopf": "hosts committed Axis3 gamma_in/gamma_out faithfully; Axis0/Axis6 there would be a transplant/proxy as in v0",
+        "manifold_super_sim_v2_weld": "records related/quotient accounting and B3 conservation accounts, not a shared Axis3 placement adapter",
+        "next_admissible_carrier": "a proof-backed fiber-augmented 33-cell cover or explicit adapter carrying Hopf gamma_in/gamma_out predicates per 33-cell row"
+      },
+      "committed_axis3_semantics_required": {
+        "gamma_in": "density-stationary inner/fiber loop",
+        "gamma_out": "density-traversing outer/base loop with A(dot gamma)=0"
+      },
+      "edge_count": 198,
+      "faithful_33_cell_placement_possible_from_current_sources": false,
+      "faithful_33_cell_placement_status": "blocked_no_source_backed_gamma_in_gamma_out_adapter_on_33_cell",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "observed_33_cell_surface": {
+        "cell_keys": [
+          "Adm_C",
+          "cell_id",
+          "conditioned_shell_member",
+          "coord",
+          "coord_scaled",
+          "radius_squared"
+        ],
+        "edge_keys": [
+          "dst",
+          "edge_id",
+          "generator",
+          "image_before_quantization",
+          "src"
+        ],
+        "missing_semantic_fields": [
+          "hidden_u1_fiber_phase",
+          "connection_form_A_dot_gamma",
+          "gamma_in_formula",
+          "gamma_out_formula",
+          "horizontal_condition_A_dot_gamma_zero",
+          "density_stationary_loop_samples"
+        ]
+      },
+      "preferred_carrier": "Family_A_33_cell_carrier",
+      "state_count": 33,
+      "transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0",
+      "why_self_edges_are_not_enough": "self or generator-labelled transitions on the quotient carrier do not by themselves provide the hidden Hopf fiber phase or the connection-form computation needed to certify density-stationary gamma_in and horizontal gamma_out."
+    },
+    "ceiling": {
+      "claim_ceiling": "axis_readout_candidate_only + shared_carrier_blocker_and_proxy_consistency_row_only",
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "promotion_allowed": false
+    },
+    "claim_ceiling": "axis_readout_candidate_only + shared_carrier_blocker_and_proxy_consistency_row_only",
+    "claim_sections": {
+      "boundary": [
+        "axis_readout_candidate_only + shared_carrier_blocker_and_proxy_consistency_row_only",
+        "proxy consistency is not axis independence; agreement or failure here is below faithful-carrier adjudication."
+      ],
+      "negative": [
+        "no faithful all-three shared-carrier relation result",
+        "no Axis3-on-33 admission",
+        "no restoration or killing of Reading A from the proxy table"
+      ],
+      "positive": [
+        "Axis0 and Axis6 are recomputed on the same committed Family A 33-cell carrier",
+        "the faithful Axis3-on-33 gate is explicit and currently blocks",
+        "the proxy table includes independent b0/proxy-b3/b6 signs, controls, panel anchors, and v0 regression contrast"
+      ]
+    },
+    "consistency_summary": {
+      "agreement_count": 16,
+      "agreement_fraction": 0.48484848484848486,
+      "claim_language": "proxy contrast only; because the faithful b3 adapter is blocked, this table cannot restore or kill Reading A",
+      "neutral_expected_count": 1,
+      "nonneutral_agreement_count": 15,
+      "nonneutral_agreement_fraction": 0.46875,
+      "nonneutral_total": 32,
+      "nonneutral_violation_count": 17,
+      "relation_can_fail": true,
+      "sample_total": 33,
+      "table_kind": "33_cell_axis3_proxy_contrast_not_faithful_shared_carrier_adjudication",
+      "violation_count": 17
+    },
+    "consistency_table": [
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 0,
+        "coord": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "coord_scaled": [
+          -2,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:00",
+        "weighted_z_difference": 0.036755338799217
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 1,
+        "coord": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:01",
+        "weighted_z_difference": 0.005398450397768
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 2,
+        "coord": [
+          -0.5,
+          -0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:02",
+        "weighted_z_difference": 0.002113219699901
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 3,
+        "coord": [
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:03",
+        "weighted_z_difference": 0.005398450397768
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 4,
+        "coord": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "coord_scaled": [
+          -1,
+          0,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:04",
+        "weighted_z_difference": 0.013846993909558
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 5,
+        "coord": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "coord_scaled": [
+          -1,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:05",
+        "weighted_z_difference": 0.009188834699804
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 6,
+        "coord": [
+          -0.5,
+          0.0,
+          0.5
+        ],
+        "coord_scaled": [
+          -1,
+          0,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:06",
+        "weighted_z_difference": 0.013846993909558
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 7,
+        "coord": [
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:07",
+        "weighted_z_difference": 0.026444119839686
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 8,
+        "coord": [
+          -0.5,
+          0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:08",
+        "weighted_z_difference": 0.021242202548207
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 9,
+        "coord": [
+          -0.5,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:09",
+        "weighted_z_difference": 0.026444119839686
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 10,
+        "coord": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "coord_scaled": [
+          0,
+          -2,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:10",
+        "weighted_z_difference": -0.009955505697
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 11,
+        "coord": [
+          0.0,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          0,
+          -1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:11",
+        "weighted_z_difference": -0.00593791931244
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 12,
+        "coord": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          0,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:12",
+        "weighted_z_difference": -0.00248887642425
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 13,
+        "coord": [
+          0.0,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          0,
+          -1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:13",
+        "weighted_z_difference": -0.00593791931244
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "neutral_commuting_or_zero_projection",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 0,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 14,
+        "coord": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "coord_scaled": [
+          0,
+          0,
+          -2
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:14",
+        "weighted_z_difference": 0.0
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "neutral_commuting_or_zero_projection",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 0,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 15,
+        "coord": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "coord_scaled": [
+          0,
+          0,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:15",
+        "weighted_z_difference": 0.0
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "neutral_no_polarity",
+        "axis3_committed_placement_sign_proxy": 0,
+        "axis3_proxy_class": "neutral_center_no_hopf_phase",
+        "axis6_label": "neutral_commuting_or_zero_projection",
+        "b0_sign": 0,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 0,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 0,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 16,
+        "coord": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coord_scaled": [
+          0,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 0,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 0,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:16",
+        "weighted_z_difference": 0.0
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "neutral_commuting_or_zero_projection",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 0,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 17,
+        "coord": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "coord_scaled": [
+          0,
+          0,
+          1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:17",
+        "weighted_z_difference": 0.0
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "neutral_commuting_or_zero_projection",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 0,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 18,
+        "coord": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "coord_scaled": [
+          0,
+          0,
+          2
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:18",
+        "weighted_z_difference": 0.0
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 19,
+        "coord": [
+          0.0,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          0,
+          1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:19",
+        "weighted_z_difference": 0.00593791931244
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 20,
+        "coord": [
+          0.0,
+          0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          0,
+          1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:20",
+        "weighted_z_difference": 0.00248887642425
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 21,
+        "coord": [
+          0.0,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          0,
+          1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:21",
+        "weighted_z_difference": 0.00593791931244
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "operator_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": 1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 22,
+        "coord": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "coord_scaled": [
+          0,
+          2,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:22",
+        "weighted_z_difference": 0.009955505697
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 23,
+        "coord": [
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:23",
+        "weighted_z_difference": -0.026444119839686
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 24,
+        "coord": [
+          0.5,
+          -0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:24",
+        "weighted_z_difference": -0.021242202548207
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 25,
+        "coord": [
+          0.5,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:25",
+        "weighted_z_difference": -0.026444119839686
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 26,
+        "coord": [
+          0.5,
+          0.0,
+          -0.5
+        ],
+        "coord_scaled": [
+          1,
+          0,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:26",
+        "weighted_z_difference": -0.013846993909558
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": -1,
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": 1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 27,
+        "coord": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "coord_scaled": [
+          1,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 1,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:27",
+        "weighted_z_difference": -0.009188834699804
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 28,
+        "coord": [
+          0.5,
+          0.0,
+          0.5
+        ],
+        "coord_scaled": [
+          1,
+          0,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:28",
+        "weighted_z_difference": -0.013846993909558
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 29,
+        "coord": [
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:29",
+        "weighted_z_difference": -0.005398450397768
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_plus_allo_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": 1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 30,
+        "coord": [
+          0.5,
+          0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 2,
+        "relation_can_fail_here": true,
+        "relation_holds": false,
+        "row_id": "family_a_33_cell:30",
+        "weighted_z_difference": -0.002113219699901
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 31,
+        "coord": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 3,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:31",
+        "weighted_z_difference": -0.005398450397768
+      },
+      {
+        "anti_by_construction_guard": "b0, b3 proxy, and b6 are computed before relation evaluation; b3 is not read from b0*b6.",
+        "axis0_polarity": "axis0_minus_homeostatic_response",
+        "axis3_committed_placement_sign_proxy": 1,
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "axis6_label": "terrain_first_precedence",
+        "b0_sign": -1,
+        "b0_source": "committed Axis0 signed outgoing generator-gradient flux over Family A 33-cell carrier",
+        "b3_panel_relation_sign": -1,
+        "b3_source": "Axis3 inner/outer placement proxy on Family A 33-cell shells; not faithful gamma_in/gamma_out",
+        "b6_sign": -1,
+        "b6_source": "committed Axis6 D_z/Ne_Spiral_R h=1/2 precedence functional over the same Family A 33-cell carrier",
+        "cell_id": 32,
+        "coord": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "coord_scaled": [
+          2,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "faithful_axis3_on_33_cell": false,
+        "neutral_semantics": "rows with expected_b6=0 are excluded from non-neutral agreement; b6=0 is still recorded",
+        "proxy_rule": "inner shell r2<=1 maps to gamma_in/fiber sign; outer shell maps to gamma_out/base sign; center neutral",
+        "r2_scaled": 4,
+        "relation_can_fail_here": false,
+        "relation_holds": true,
+        "row_id": "family_a_33_cell:32",
+        "weighted_z_difference": -0.036755338799217
+      }
+    ],
+    "controls": {
+      "convention_flip_control": {
+        "all_flipped_expected_equals_positive_product": true,
+        "description": "global b3 convention flip changes the algebraic target to b6=+b0*b3; it is not a repair",
+        "flipped_relation_agreement_count": 14,
+        "flipped_relation_agreement_fraction": 0.42424242424242425,
+        "panel8_expected_target_after_flip": "b6=+b0*b3"
+      },
+      "independence_reminder": "proxy consistency is not axis independence; agreement or failure here is below faithful-carrier adjudication.",
+      "relation_can_fail_control": {
+        "relation_can_fail": true,
+        "violation_count": 17,
+        "why_it_matters": "the proxy table is not forced by construction and still contains violations"
+      },
+      "scrambled_b6_control": {
+        "agreement_count_nonzero_expected": 19,
+        "agreement_fraction_nonzero_expected": 0.59375,
+        "description": "replace computed b6 with deterministic sha256 signs; panel 8 pins chance expectation at 1/2",
+        "nonzero_expected_total": 32,
+        "panel8_expected_chance": 0.5,
+        "rows": [
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:00",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:01",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:02",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:03",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:04",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:05",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:06",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:07",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:08",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:09",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:10",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:11",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:12",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:13",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:14",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:15",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 0,
+            "row_id": "family_a_33_cell:16",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:17",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:18",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:19",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:20",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:21",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:22",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:23",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:24",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:25",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:26",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:27",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:28",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:29",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": false
+          },
+          {
+            "expected_b6_negative_b0_b3": 1,
+            "row_id": "family_a_33_cell:30",
+            "scrambled_b6_sign": 1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:31",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          },
+          {
+            "expected_b6_negative_b0_b3": -1,
+            "row_id": "family_a_33_cell:32",
+            "scrambled_b6_sign": -1,
+            "scrambled_matches_expected": true
+          }
+        ]
+      },
+      "v0_regression_contrast": {
+        "contrast_row": "v0_hopf_transplant_failure_reproduced_from_f2b16cbf5",
+        "expected_values": {
+          "agreement_count": 16,
+          "chance": 0.5,
+          "nonneutral_agreement_count": 16,
+          "nonneutral_total": 32,
+          "sample_total": 48,
+          "violation_count": 32
+        },
+        "matches_expected_v0_negative": true,
+        "nonneutral_agreement": 16,
+        "nonneutral_agreement_fraction": 0.5,
+        "nonneutral_total": 32,
+        "source_path": "system_v6/sims/axis_triple_consistency_b6_v0/results/axis_triple_consistency_b6_v0_envelope_results.json",
+        "source_sha256": "8705d4c44b094ec6bb04fd95ff473a06402cc09a7ca8ea323024c6cb9a33248e",
+        "total_agreement": 16,
+        "total_rows": 48,
+        "total_violations": 32
+      }
+    },
+    "disallowed_claims": [
+      "faithful all-three shared-carrier theorem",
+      "Axis3 placement on 33-cell admitted",
+      "Reading A killed",
+      "Reading A restored by proxy",
+      "axis independence proof",
+      "physics/manifold claim"
+    ],
+    "divergence_log": "Classical finite 33-cell computations are used only to expose the missing faithful Axis3 adapter and a proxy contrast; the proxy contrast is not a shared-carrier proof.",
+    "engine_count_comparison": {
+      "engine_values": {
+        "jax": {
+          "agreement_count": 16,
+          "consistency_table_sha256": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+          "faithful_33_cell_placement_possible": false,
+          "nonneutral_agreement_count": 15,
+          "nonneutral_total": 32,
+          "panel_pass_count": 2,
+          "sample_total": 33,
+          "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+          "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+          "violation_count": 17,
+          "violation_rows_sha256": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0"
+        },
+        "julia": {
+          "agreement_count": 16,
+          "faithful_33_cell_placement_possible": false,
+          "nonneutral_agreement_count": 15,
+          "nonneutral_total": 32,
+          "panel_pass_count": 2,
+          "sample_total": 33,
+          "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+          "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+          "violation_count": 17
+        },
+        "pytorch": {
+          "agreement_count": 16,
+          "consistency_table_sha256": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+          "faithful_33_cell_placement_possible": false,
+          "nonneutral_agreement_count": 15,
+          "nonneutral_total": 32,
+          "panel_pass_count": 2,
+          "sample_total": 33,
+          "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+          "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+          "violation_count": 17,
+          "violation_rows_sha256": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0"
+        }
+      },
+      "engine_values_match": true,
+      "expected_values": {
+        "agreement_count": 16,
+        "consistency_table_sha256": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+        "faithful_33_cell_placement_possible": false,
+        "nonneutral_agreement_count": 15,
+        "nonneutral_total": 32,
+        "panel_pass_count": 2,
+        "sample_total": 33,
+        "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "violation_count": 17,
+        "violation_rows_sha256": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0"
+      }
+    },
+    "envelope_built_with_helper": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "panel_anchor_checks": [
+      {
+        "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": 1,
+        "computed_b6_sign": -1,
+        "expected_b6_negative_b0_b3": -1,
+        "matches_panel_expected": true,
+        "matches_relation_expected": true,
+        "panel_expected_b6": -1,
+        "panel_point_id": "panel6_q2_eta_pi_over_6_fiber",
+        "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+      },
+      {
+        "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "computed_b6_sign": -1,
+        "expected_b6_negative_b0_b3": -1,
+        "matches_panel_expected": true,
+        "matches_relation_expected": true,
+        "panel_expected_b6": -1,
+        "panel_point_id": "panel6_q2_eta_pi_over_3_base",
+        "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+      }
+    ],
+    "per_lane_sign_vector_hashes": {
+      "jax": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+      "julia": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+      "pytorch": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117"
+    },
+    "reading_A_adjudication": {
+      "answer": "neither_restored_nor_killed",
+      "reading_A_status": "still_live_strongest_current_reading",
+      "reason": "the requested faithful shared-carrier version is blocked because Axis3 gamma_in/gamma_out is not faithfully realized on the 33-cell carrier in current sources",
+      "what_would_kill_reading_A": "a proof-backed faithful all-three carrier table that still violates b6=-b0*b3 under the controls",
+      "what_would_restore_relation_under_reading_A": "a proof-backed faithful all-three carrier table that satisfies b6=-b0*b3 while v0 Hopf transplant remains the contrast failure"
+    },
+    "result_path": "system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_envelope_results.json",
+    "schema": "axis_triple_consistency_b6_v1.envelope.v1",
+    "shared_carrier_decision": {
+      "axis0_axis6_shared_carrier": true,
+      "decision": "No current repo carrier can host all three axes faithfully; do not restore or kill Reading A from the proxy table.",
+      "faithful_axis3_on_preferred_carrier": false,
+      "faithful_consistency_table_status": "not_run",
+      "preferred_carrier": "Family_A_33_cell_carrier",
+      "proxy_table_status": "computed_contrast_only",
+      "status": "blocked_open_no_faithful_axis3_on_33_cell_adapter"
+    },
+    "sign_convention_ledger": {
+      "committed_axis3_placement_sign": {
+        "gamma_in_fiber": -1,
+        "gamma_out_base": 1,
+        "neutral": 0
+      },
+      "conversion": "panel_relation_b3_sign = - committed_axis3_placement_sign for non-neutral rows",
+      "panel6_q2": {
+        "eta_pi_over_3_base": {
+          "b0": -1,
+          "b3_panel": -1,
+          "target_b6": -1
+        },
+        "eta_pi_over_6_fiber": {
+          "b0": 1,
+          "b3_panel": 1,
+          "target_b6": -1
+        }
+      },
+      "panel8_q1": {
+        "global_b_convention_flip_target": "b6 = +b0*b3 under the original b3 labels",
+        "scrambled_chance_agreement": 0.5
+      },
+      "panel_relation_b3_sign_used_for_b6_equals_minus_b0_b3": {
+        "gamma_in_fiber": 1,
+        "gamma_out_base": -1,
+        "neutral": 0
+      }
+    },
+    "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+    "smt_rows": {
+      "cvc5": {
+        "asserted_precomputed_boolean": false,
+        "claim": "row-local b0/b3/b6 values are bound; forcing the opposite relation status is unsat, while erased flips are sat",
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "ran": true,
+        "rows": [
+          {
+            "b0_sign": 1,
+            "b3_panel_relation_sign": -1,
+            "b6_sign": 1,
+            "cell_id": 4,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": 1,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": true,
+            "row_id": "family_a_33_cell:04"
+          },
+          {
+            "b0_sign": -1,
+            "b3_panel_relation_sign": -1,
+            "b6_sign": 1,
+            "cell_id": 0,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": -1,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": false,
+            "row_id": "family_a_33_cell:00"
+          },
+          {
+            "b0_sign": 0,
+            "b3_panel_relation_sign": 0,
+            "b6_sign": 0,
+            "cell_id": 16,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": 0,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": true,
+            "row_id": "family_a_33_cell:16"
+          }
+        ],
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "asserted_precomputed_boolean": false,
+        "claim": "row-local b0/b3/b6 values are bound; forcing the opposite relation status is unsat, while erased flips are sat",
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "ran": true,
+        "rows": [
+          {
+            "b0_sign": 1,
+            "b3_panel_relation_sign": -1,
+            "b6_sign": 1,
+            "cell_id": 4,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": 1,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": true,
+            "row_id": "family_a_33_cell:04"
+          },
+          {
+            "b0_sign": -1,
+            "b3_panel_relation_sign": -1,
+            "b6_sign": 1,
+            "cell_id": 0,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": -1,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": false,
+            "row_id": "family_a_33_cell:00"
+          },
+          {
+            "b0_sign": 0,
+            "b3_panel_relation_sign": 0,
+            "b6_sign": 0,
+            "cell_id": 16,
+            "erased_flip_verdict": "sat",
+            "expected_b6_negative_b0_b3": 0,
+            "real_contradiction_verdict": "unsat",
+            "relation_holds": true,
+            "row_id": "family_a_33_cell:16"
+          }
+        ],
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "source_import_audit": {
+      "anti_by_construction_rule": "b0, proxy-b3, and b6 are computed and stored before the relation row; the faithful gate is independent of the proxy relation result.",
+      "authority_and_context": {
+        "axis_work_order": {
+          "commit_hint": "f6112e407",
+          "exists": true,
+          "git_last_commit": "49fb35cd8",
+          "path": "system_v6/receipts/axis_work_order_20260612.md",
+          "role": "axis_order_and_v1_binding_next_step",
+          "sha256": "70edd197f6c593faa922fa689fa272b0e0e38d992aaab2e177c3eface418fba7"
+        },
+        "panel6": {
+          "commit_hint": "eba5fdca0",
+          "exists": true,
+          "git_last_commit": "eba5fdca0",
+          "path": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md",
+          "role": "panel_6_q2_anchor_expected_b6_minus_one",
+          "sha256": "46e84c44ba12af4a169bed215d269053195a621c5ce2017adb5025b56a07bc58"
+        },
+        "panel8": {
+          "exists": true,
+          "git_last_commit": "bba04c9c4",
+          "path": "system_v6/receipts/cross_model_anchor_recompute_panel8_20260612.md",
+          "role": "panel_8_q1_control_baselines_chance_and_flip",
+          "sha256": "e2d9b311ca4877cf61feee166f9ea71a86178baba1d97ea5023aaf2d31646f6c"
+        },
+        "v0_audit": {
+          "commit_hint": "f2b16cbf5",
+          "exists": true,
+          "git_last_commit": "f2b16cbf5",
+          "path": "system_v6/sims/axis_triple_consistency_b6_v0/audit_verdict.md",
+          "role": "v0_negative_audit_reading_A_authority",
+          "sha256": "bce2104dab1a5955182af897511f6bac14c85b22bdbf1b0a00349339c03f5848"
+        },
+        "v0_build_card": {
+          "commit_hint": "f2b16cbf5",
+          "exists": true,
+          "git_last_commit": "f2b16cbf5",
+          "path": "system_v6/sims/axis_triple_consistency_b6_v0/build_card.md",
+          "role": "v0_negative_build_card",
+          "sha256": "c263a55214d753f4317be250deaff53d1b5ea21e32ccb9b7f553f68593c25d43"
+        }
+      },
+      "parent_hash_pins": {
+        "axis0_common": {
+          "commit_hint": "5d330b427",
+          "exists": true,
+          "git_last_commit": "5d330b427",
+          "path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_common.py",
+          "role": "committed_axis0_source_rebuild",
+          "sha256": "5b13716283cf32031995c513a0dec597c00c23a3d5fbf97726e9aba12b5eb9be"
+        },
+        "axis0_envelope": {
+          "commit_hint": "5d330b427",
+          "exists": true,
+          "git_last_commit": "5d330b427",
+          "path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+          "role": "committed_axis0_family_a_33_cell_rows",
+          "sha256": "960bdd0b056ef8bf174561f30c52fc41d488614d917a50e1ae256ee30e2ab8ce"
+        },
+        "axis3_audit": {
+          "exists": true,
+          "git_last_commit": "ce8c77355",
+          "path": "system_v6/sims/discrete_axis3_placement_v0/audit_verdict.md",
+          "role": "axis3_family_b_hopf_caveats",
+          "sha256": "9e59086d5f8a953fb16b945118611f448b9aa0945951d7ca02bc02088f5430ee"
+        },
+        "axis3_common": {
+          "commit_hint": "ce8c77355",
+          "exists": true,
+          "git_last_commit": "ce8c77355",
+          "path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_common.py",
+          "role": "committed_axis3_source_semantics",
+          "sha256": "1da72335c342a73f23a693aed5535176165ab8a6bcc7d32e8f63412cfcb7c710"
+        },
+        "axis3_envelope": {
+          "commit_hint": "ce8c77355",
+          "exists": true,
+          "git_last_commit": "ce8c77355",
+          "path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_envelope_results.json",
+          "role": "committed_axis3_hopf_gamma_in_gamma_out_semantics",
+          "sha256": "b3423b77ac4b703bcff3847922cfe41af2e9c343cc9332be8e42ad2708f736b3"
+        },
+        "axis6_audit": {
+          "exists": true,
+          "git_last_commit": "b6fafc67f",
+          "path": "system_v6/sims/discrete_axis6_precedence_v0/audit_verdict.md",
+          "role": "axis6_same_carrier_follow_on_requirement",
+          "sha256": "ac5ac485e96b7a56301f65cd84183d14f9bd0713e09604d088f5ee1a1c61f743"
+        },
+        "axis6_common": {
+          "commit_hint": "b6fafc67f",
+          "exists": true,
+          "git_last_commit": "b6fafc67f",
+          "path": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_common.py",
+          "role": "committed_axis6_source_rebuild",
+          "sha256": "bad941530f967f83e5f44084aadeecf871322d1ca337febd6e73c0ddc2dc531f"
+        },
+        "axis6_envelope": {
+          "commit_hint": "b6fafc67f",
+          "exists": true,
+          "git_last_commit": "b6fafc67f",
+          "path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
+          "role": "committed_axis6_family_a_33_cell_rows",
+          "sha256": "82edf1eec990f123174f75dd9dd8d84a86af80848d2b386343e35b167a184ba1"
+        },
+        "v0_envelope": {
+          "commit_hint": "f2b16cbf5",
+          "exists": true,
+          "git_last_commit": "f2b16cbf5",
+          "path": "system_v6/sims/axis_triple_consistency_b6_v0/results/axis_triple_consistency_b6_v0_envelope_results.json",
+          "role": "v0_hopf_transplant_negative_result",
+          "sha256": "8705d4c44b094ec6bb04fd95ff473a06402cc09a7ca8ea323024c6cb9a33248e"
+        },
+        "weld_envelope": {
+          "exists": true,
+          "git_last_commit": "d6815079e",
+          "path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+          "role": "weld_context_related_not_shared",
+          "sha256": "d934e97b94164fcf21447f6f4eb91eec36e0d44013dcce30c77813ad22b7ed63"
+        }
+      },
+      "raw_parent_result_rows_imported_as_classification": false
+    },
+    "source_path": "system_v6/sims/axis_triple_consistency_b6_v1/write_envelope_spec.py",
+    "source_sha256": "08a8e658a7a3fa0f5e0bcde9da8dfa59fcf9aea4d505e10342508ad387e91d7f",
+    "state_object_id": "axis_triple_consistency_b6_v1:7ca0587a806f8cac2d3f9d0971dad7d7ab6f6b5fafbb51f2495873f91b8c5b7a",
+    "tool_intent": {
+      "claim_classes": [
+        "faithful_shared_carrier_gate",
+        "axis0_axis6_family_a_33_cell_recompute",
+        "axis3_on_33_blocker_diagnostic",
+        "proxy_consistency_can_fail_contrast_only",
+        "computed_panel_anchor_and_controls_only"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "cvc5": "independently bind the same row-local contradictions and erased flips",
+          "networkx": "build the directed 33-cell graph from source carrier edges and count nodes/edges",
+          "sympy": "exactly evaluate the panel 6 q2 sign arithmetic and convention flip target",
+          "z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+        },
+        "julia": {
+          "Graphs": "build a finite 33-node graph from the parent carrier rows and hash per-cell sign vectors",
+          "Z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+        },
+        "pytorch": {
+          "cvc5": "independently bind the same row-local contradictions and erased flips",
+          "sympy": "exactly evaluate the panel 6 q2 sign arithmetic mirrored in the PyTorch lane",
+          "torch.func": "vmap a row-local relation kernel over b0/b3/b6 sign tensors",
+          "torch_geometric": "Data edge_index carrier for the 33-cell proxy table",
+          "z3": "bind row-local b0/b3/b6 relation contradictions and erased flips for selected cells"
+        }
+      }
+    },
+    "v0_hopf_transplant_regression": {
+      "contrast_row": "v0_hopf_transplant_failure_reproduced_from_f2b16cbf5",
+      "expected_values": {
+        "agreement_count": 16,
+        "chance": 0.5,
+        "nonneutral_agreement_count": 16,
+        "nonneutral_total": 32,
+        "sample_total": 48,
+        "violation_count": 32
+      },
+      "matches_expected_v0_negative": true,
+      "nonneutral_agreement": 16,
+      "nonneutral_agreement_fraction": 0.5,
+      "nonneutral_total": 32,
+      "source_path": "system_v6/sims/axis_triple_consistency_b6_v0/results/axis_triple_consistency_b6_v0_envelope_results.json",
+      "source_sha256": "8705d4c44b094ec6bb04fd95ff473a06402cc09a7ca8ea323024c6cb9a33248e",
+      "total_agreement": 16,
+      "total_rows": 48,
+      "total_violations": 32
+    },
+    "validator_expected_commands": [
+      "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_julia.jl",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_jax.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_pytorch.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/axis_triple_consistency_b6_v1/write_envelope_spec.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/build_three_engine_envelope.py system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_envelope_spec.json > system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/axis_triple_consistency_b6_v1/validate_axis_triple_consistency_b6_v1.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/axis_triple_consistency_b6_v1/tests"
+    ],
+    "violation_rows": [
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 0,
+        "coord_scaled": [
+          -2,
+          0,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:00"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 1,
+        "coord_scaled": [
+          -1,
+          -1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:01"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 2,
+        "coord_scaled": [
+          -1,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:02"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 3,
+        "coord_scaled": [
+          -1,
+          -1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:03"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 6,
+        "coord_scaled": [
+          -1,
+          0,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:06"
+      },
+      {
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": 1,
+        "b6_sign": -1,
+        "cell_id": 12,
+        "coord_scaled": [
+          0,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:12"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 0,
+        "cell_id": 14,
+        "coord_scaled": [
+          0,
+          0,
+          -2
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:14"
+      },
+      {
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": 1,
+        "b6_sign": 0,
+        "cell_id": 15,
+        "coord_scaled": [
+          0,
+          0,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:15"
+      },
+      {
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": 1,
+        "b6_sign": 0,
+        "cell_id": 17,
+        "coord_scaled": [
+          0,
+          0,
+          1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:17"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 0,
+        "cell_id": 18,
+        "coord_scaled": [
+          0,
+          0,
+          2
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:18"
+      },
+      {
+        "axis3_proxy_class": "gamma_in_like_inner_fiber_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": 1,
+        "b6_sign": 1,
+        "cell_id": 20,
+        "coord_scaled": [
+          0,
+          1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:20"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": -1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": 1,
+        "cell_id": 21,
+        "coord_scaled": [
+          0,
+          1,
+          1
+        ],
+        "expected_b6_negative_b0_b3": -1,
+        "row_id": "family_a_33_cell:21"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": -1,
+        "cell_id": 23,
+        "coord_scaled": [
+          1,
+          -1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:23"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": -1,
+        "cell_id": 24,
+        "coord_scaled": [
+          1,
+          -1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:24"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": -1,
+        "cell_id": 26,
+        "coord_scaled": [
+          1,
+          0,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:26"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": -1,
+        "cell_id": 29,
+        "coord_scaled": [
+          1,
+          1,
+          -1
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:29"
+      },
+      {
+        "axis3_proxy_class": "gamma_out_like_outer_base_proxy",
+        "b0_sign": 1,
+        "b3_panel_relation_sign": -1,
+        "b6_sign": -1,
+        "cell_id": 30,
+        "coord_scaled": [
+          1,
+          1,
+          0
+        ],
+        "expected_b6_negative_b0_b3": 1,
+        "row_id": "family_a_33_cell:30"
+      }
+    ]
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "nx.DiGraph rebuilds the finite 33-cell carrier graph from source edges",
+          "receipt_id": "jax_networkx_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "sp.Rational/sp.Matrix computes exact panel and convention-flip signs",
+          "receipt_id": "jax_sympy_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_cvc5_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "computed_values": {
+        "agreement_count": 16,
+        "consistency_table_sha256": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+        "faithful_33_cell_placement_possible": false,
+        "nonneutral_agreement_count": 15,
+        "nonneutral_total": 32,
+        "panel_pass_count": 2,
+        "sample_total": 33,
+        "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "violation_count": 17,
+        "violation_rows_sha256": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0"
+      },
+      "engine_mode": "three_engine_axis_triple_shared_family_a_33_cell_carrier_blocked_faithful_b3_adapter",
+      "package_observables": {
+        "cvc5": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+        "networkx": "nx.DiGraph rebuilds the finite 33-cell carrier graph from source edges",
+        "sympy": "sp.Rational/sp.Matrix computes exact panel and convention-flip signs",
+        "z3": "z3.Solver binds proxy violations and faithful-adapter blocker"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "panel_anchor_checks": [
+        {
+          "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+          "b0_sign": 1,
+          "b3_panel_relation_sign": 1,
+          "computed_b6_sign": -1,
+          "expected_b6_negative_b0_b3": -1,
+          "matches_panel_expected": true,
+          "matches_relation_expected": true,
+          "panel_expected_b6": -1,
+          "panel_point_id": "panel6_q2_eta_pi_over_6_fiber",
+          "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+        },
+        {
+          "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+          "b0_sign": -1,
+          "b3_panel_relation_sign": -1,
+          "computed_b6_sign": -1,
+          "expected_b6_negative_b0_b3": -1,
+          "matches_panel_expected": true,
+          "matches_relation_expected": true,
+          "panel_expected_b6": -1,
+          "panel_point_id": "panel6_q2_eta_pi_over_3_base",
+          "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+        }
+      ],
+      "per_row_sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_jax_results.json",
+      "source_backing_probe": {
+        "cvc5_gate_status": "sat",
+        "graph_probe": {
+          "carrier_edge_count": 198,
+          "edge_count": 116,
+          "has_33_nodes": true,
+          "node_count": 33
+        },
+        "pass": true,
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "sympy_panel_probe": {
+          "expected_b6_base": -1,
+          "expected_b6_fiber": -1,
+          "flipped_target_base": 1,
+          "flipped_target_fiber": 1,
+          "pass": true
+        },
+        "z3_gate_status": "sat"
+      },
+      "source_path": "system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_jax.py",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "nx.DiGraph rebuilds the finite 33-cell carrier graph from source edges",
+          "receipt_id": "jax_networkx_axis_triple_consistency_b6_v1",
+          "tool": "networkx"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "sp.Rational/sp.Matrix computes exact panel and convention-flip signs",
+          "receipt_id": "jax_sympy_axis_triple_consistency_b6_v1",
+          "tool": "sympy"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_z3_axis_triple_consistency_b6_v1",
+          "tool": "z3"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "jax_cvc5_axis_triple_consistency_b6_v1",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "33-cell graph rebuild",
+          "receipt_id": "julia_Graphs_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "blocker/count gate",
+          "receipt_id": "julia_Z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "computed_values": {
+        "agreement_count": 16,
+        "faithful_33_cell_placement_possible": false,
+        "nonneutral_agreement_count": 15,
+        "nonneutral_total": 32,
+        "panel_pass_count": 2,
+        "sample_total": 33,
+        "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "violation_count": 17
+      },
+      "engine_mode": "three_engine_axis_triple_shared_family_a_33_cell_carrier_blocked_faithful_b3_adapter",
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph rebuilds the 33-cell carrier from parent carrier_edges",
+        "Z3": "Z3.Solver binds proxy violations and the faithful-adapter blocker"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "panel_anchor_checks": [],
+      "per_row_sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_julia_results.json",
+      "source_backing_probe": {
+        "Graphs_edge_count_simple": 116,
+        "Graphs_vertex_count": 33,
+        "Z3_gate_status": "sat",
+        "carrier_edge_count": 198,
+        "pass": true,
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117"
+      },
+      "source_path": "system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_julia.jl",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!",
+          "receipt_id": "julia_Graphs_axis_triple_consistency_b6_v1",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+          "receipt_id": "julia_Z3_axis_triple_consistency_b6_v1",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "torch.func.vmap vectorizes the row-local relation kernel over b0/b3/b6 signs",
+          "receipt_id": "pytorch_torch.func_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "torch_geometric.data.Data carries the 33-cell edge_index carrier",
+          "receipt_id": "pytorch_torch_geometric_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "sp.symbols/sp.Matrix computes exact panel signs",
+          "receipt_id": "pytorch_sympy_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_z3_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_cvc5_axis_triple_consistency_b6_v1",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "computed_values": {
+        "agreement_count": 16,
+        "consistency_table_sha256": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+        "faithful_33_cell_placement_possible": false,
+        "nonneutral_agreement_count": 15,
+        "nonneutral_total": 32,
+        "panel_pass_count": 2,
+        "sample_total": 33,
+        "shared_carrier_status": "blocked_open_no_faithful_axis3_on_33_cell_adapter",
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "violation_count": 17,
+        "violation_rows_sha256": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0"
+      },
+      "engine_mode": "three_engine_axis_triple_shared_family_a_33_cell_carrier_blocked_faithful_b3_adapter",
+      "package_observables": {
+        "cvc5": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+        "sympy": "sp.symbols/sp.Matrix computes exact panel signs",
+        "torch.func": "torch.func.vmap vectorizes the row-local relation kernel over b0/b3/b6 signs",
+        "torch_geometric": "torch_geometric.data.Data carries the 33-cell edge_index carrier",
+        "z3": "z3.Solver binds proxy violations and faithful-adapter blocker"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "panel_anchor_checks": [
+        {
+          "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+          "b0_sign": 1,
+          "b3_panel_relation_sign": 1,
+          "computed_b6_sign": -1,
+          "expected_b6_negative_b0_b3": -1,
+          "matches_panel_expected": true,
+          "matches_relation_expected": true,
+          "panel_expected_b6": -1,
+          "panel_point_id": "panel6_q2_eta_pi_over_6_fiber",
+          "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+        },
+        {
+          "anchor_surface": "Hopf panel anchor, not Family A 33-cell row",
+          "b0_sign": -1,
+          "b3_panel_relation_sign": -1,
+          "computed_b6_sign": -1,
+          "expected_b6_negative_b0_b3": -1,
+          "matches_panel_expected": true,
+          "matches_relation_expected": true,
+          "panel_expected_b6": -1,
+          "panel_point_id": "panel6_q2_eta_pi_over_3_base",
+          "source": "system_v6/receipts/cross_model_anchor_recompute_panel6_20260612.md"
+        }
+      ],
+      "per_row_sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/axis_triple_consistency_b6_v1/results/axis_triple_consistency_b6_v1_pytorch_results.json",
+      "source_backing_probe": {
+        "cvc5_gate_status": "sat",
+        "pass": true,
+        "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+        "sympy_panel_probe": {
+          "expected_b6_base": -1,
+          "expected_b6_fiber": -1,
+          "pass": true
+        },
+        "torch_relation_probe": {
+          "agreement_count": 16,
+          "sign_vector_sha256": "26f03a05fb511dffc4f88af86d41553d249d1e87f65e3b1943dad358c46a2117",
+          "torch_geometric_edge_count": 198,
+          "torch_geometric_num_nodes": 33,
+          "violation_count": 17
+        },
+        "z3_gate_status": "sat"
+      },
+      "source_path": "system_v6/sims/axis_triple_consistency_b6_v1/axis_triple_consistency_b6_v1_pytorch.py",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "torch.func.vmap vectorizes the row-local relation kernel over b0/b3/b6 signs",
+          "receipt_id": "pytorch_torch.func_axis_triple_consistency_b6_v1",
+          "tool": "torch.func"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "torch_geometric.data.Data carries the 33-cell edge_index carrier",
+          "receipt_id": "pytorch_torch_geometric_axis_triple_consistency_b6_v1",
+          "tool": "torch_geometric"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "sp.symbols/sp.Matrix computes exact panel signs",
+          "receipt_id": "pytorch_sympy_axis_triple_consistency_b6_v1",
+          "tool": "sympy"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "z3.Solver binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_z3_axis_triple_consistency_b6_v1",
+          "tool": "z3"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "cvc5.Solver independently binds proxy violations and faithful-adapter blocker",
+          "receipt_id": "pytorch_cvc5_axis_triple_consistency_b6_v1",
+          "tool": "cvc5"
+        }
+      ]
+    }
+  },
+  "mode": "three_engine_axis_triple_shared_family_a_33_cell_carrier_blocked_faithful_b3_adapter",
+  "parent_lineage": {
+    "axis0_common": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_common.py",
+    "axis0_envelope": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+    "axis3_audit": "system_v6/sims/discrete_axis3_placement_v0/audit_verdict.md",
+    "axis3_common": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_common.py",
+    "axis3_envelope": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_envelope_results.json",
+    "axis6_audit": "system_v6/sims/discrete_axis6_precedence_v0/audit_verdict.md",
+    "axis6_common": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_common.py",
+    "axis6_envelope": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
+    "v0_envelope": "system_v6/sims/axis_triple_consistency_b6_v0/results/axis_triple_consistency_b6_v0_envelope_results.json",
+    "weld_envelope": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json"
+  },
+  "promotion_allowed": false,
+  "sim_id": "axis_triple_consistency_b6_v1",
+  "stability_pairs": [
+    {
+      "hash": "fd91c8c485bda7668b8ead3adffb78e88e384462a64b40a926adec3416c196d9",
+      "subtree": "consistency_table"
+    },
+    {
+      "hash": "7c8a7547a1cce508ded99d11fe4c1043e85f46e2ccf05c4b9c76f61ad5d929a0",
+      "subtree": "violation_rows"
+    },
+    {
+      "hash": "6a1860a300d80c215649c301c6ce2082fecc4ff72aa6847d3b5107e8b1d61854",
+      "subtree": "controls"
+    },
+    {
+      "hash": "a4b80c6e3b466487c5470aacbd7ed8c296a85487ade4cf7d396066e67c8690d7",
+      "subtree": "carrier_faithfulness_audit"
+    }
+  ]
+}

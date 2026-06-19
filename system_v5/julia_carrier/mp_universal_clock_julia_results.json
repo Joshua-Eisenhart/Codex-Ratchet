@@ -1,0 +1,658 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror": "load_bearing",
+    "system_v5/julia_carrier carrier objects": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates": {
+      "reason": "supportive exact receipt writing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite density-state evolution, von Neumann entropy, extent readout, frame/relabel controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror": {
+      "reason": "load-bearing mirrored schedule, H0 sign, perceptions, operator slots, topology rates, and 32-substage per-engine structure",
+      "tried": true,
+      "used": true
+    },
+    "system_v5/julia_carrier carrier objects": {
+      "reason": "load-bearing carrier anchors for division ladder, Clifford ladder, G2 octonion derivation, sedenion break, density spinor lift, Hopf torus, and golden Weyl controls",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia_linearalgebra",
+  "blocked_consumers": [
+    "physics",
+    "Standard Model",
+    "M(C)",
+    "Axis0",
+    "dark energy admission",
+    "cosmology",
+    "bridge",
+    "formal manifold admission"
+  ],
+  "boundary": {
+    "finite_dimension": {
+      "hilbert_dimension": 8,
+      "pass": true,
+      "qubits": 3
+    },
+    "no_numpy_compute": {
+      "numpy_imported": false,
+      "pass": true
+    },
+    "no_promotion": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    }
+  },
+  "canonical_qit_engine": {
+    "H0": "0.77*SZ + 0.13*SX mirrored from canonical_qit_engine_specs.py",
+    "engine_types": [
+      "Type 1: +H0",
+      "Type 2: -H0"
+    ],
+    "operators": [
+      "Ti",
+      "Te",
+      "Fi",
+      "Fe"
+    ],
+    "per_engine_substages": 32,
+    "perceptions": [
+      "Se",
+      "Ne",
+      "Ni",
+      "Si"
+    ],
+    "substage_count": 64
+  },
+  "carrier_anchors": {
+    "julia_source_paths_used": [
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json"
+    ],
+    "source_contract_paths": [
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py"
+    ]
+  },
+  "claim_ceiling": "finite witness only: global entropy/extent readout versus local entropy-density readouts; NO physics, Standard Model, M(C), Axis0, dark-energy, cosmology, bridge, or formal admission",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erased_structure": {
+      "description": "canonical operator/topology structure erased: same extent ramp on a symmetric product state",
+      "global_entropy_min_step_delta": 0.01748820930622097,
+      "local_entropy_final_spread": 0.0,
+      "local_t_varies": false,
+      "pass": true
+    },
+    "wrong_scalar": {
+      "anti_tautology": "same final density state is read with a local Z scalar, then transformed by real local unitary and subsystem relabeling",
+      "pass": true,
+      "wrong_scalar_frame_fails": true,
+      "wrong_scalar_nonmonotone": true
+    }
+  },
+  "created_at": "2026-06-07T03:52:27Z",
+  "eligible_consumers": [
+    "scratch diagnostic audits",
+    "dual-backend parity checks",
+    "finite readout follow-up scouts"
+  ],
+  "formal_admission_allowed": false,
+  "name": "mp_universal_clock",
+  "object_id": "mp_universal_clock",
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "carrier.golden_weyl_flat_control_delta",
+    "missing_keys": [],
+    "parity_max_diff": 2.3314683517128287e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_universal_clock_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.832945453291064,
+        "julia": 0.8329454532910638,
+        "key": "control.wrong_scalar.initial"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 50.0,
+        "julia": 50.0,
+        "key": "carrier.g2_constraint_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 65.0,
+        "julia": 65.0,
+        "key": "carrier.golden_weyl_eta_count"
+      },
+      {
+        "abs_diff": 1.3877787807814457e-17,
+        "jax": 0.004129998017798939,
+        "julia": 0.004129998017798925,
+        "key": "local_t.final_spread"
+      },
+      {
+        "abs_diff": 1.3877787807814457e-17,
+        "jax": 0.12227261167846303,
+        "julia": 0.12227261167846304,
+        "key": "local_t.q0_final"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 2.220446049250313e-16,
+        "julia": 4.440892098500626e-16,
+        "key": "frame.local_unitary_entropy_abs_diff"
+      },
+      {
+        "abs_diff": 1.7763568394002505e-15,
+        "jax": 3.7952387758415886,
+        "julia": 3.795238775841587,
+        "key": "global_extent.delta"
+      },
+      {
+        "abs_diff": 7.216449660063518e-16,
+        "jax": 0.11592521786449751,
+        "julia": 0.11592521786449823,
+        "key": "global_entropy.initial"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.12640260969626196,
+        "julia": 0.12640260969626196,
+        "key": "local_t.q2_final"
+      },
+      {
+        "abs_diff": 1.6653345369377348e-16,
+        "jax": 0.3473759611528817,
+        "julia": 0.3473759611528819,
+        "key": "control.wrong_scalar.relabel_abs_diff"
+      },
+      {
+        "abs_diff": 6.661338147750939e-16,
+        "jax": 0.017488209306221414,
+        "julia": 0.017488209306220748,
+        "key": "global_entropy.min_step_delta"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 4.91815067108539,
+        "julia": 4.918150671085389,
+        "key": "global_extent.final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.hopf_s3_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 50.0,
+        "julia": 50.0,
+        "key": "control.wrong_scalar.negative_delta_count"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 2.220446049250313e-16,
+        "julia": 4.440892098500626e-16,
+        "key": "frame.subsystem_relabel_entropy_abs_diff"
+      },
+      {
+        "abs_diff": 2.3314683517128287e-15,
+        "jax": 0.9999999998157121,
+        "julia": 0.9999999998157144,
+        "key": "carrier.golden_weyl_flat_control_delta"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 1.477007362118484,
+        "julia": 1.4770073621184832,
+        "key": "global_entropy.delta"
+      },
+      {
+        "abs_diff": 4.440892098500626e-16,
+        "jax": 0.017488209306221414,
+        "julia": 0.01748820930622097,
+        "key": "control.erased.global_entropy_min_step_delta"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.31348467548450387,
+        "julia": 0.31348467548450376,
+        "key": "control.wrong_scalar.local_unitary_abs_diff"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 1.1229118952438009,
+        "julia": 1.1229118952438017,
+        "key": "global_extent.initial"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.1245427740534362,
+        "julia": 0.12454277405343622,
+        "key": "local_t.q1_final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "schedule.substage_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.quaternion_ij_minus_k_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "carrier.cl30_even_dim"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 1.5929325799829817,
+        "julia": 1.5929325799829814,
+        "key": "global_entropy.final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "control.erased.local_entropy_final_spread"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.gamma_relation_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 13.0,
+        "julia": 13.0,
+        "key": "control.wrong_scalar.positive_delta_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.sedenion_zero_product_norm"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.37134024182422193,
+        "julia": 0.3713402418242218,
+        "key": "control.wrong_scalar.final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "carrier.g2_derivation_dim"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_universal_clock_results.json",
+  "plain_sentence": "Finite witness only: the whole-state entropy/extent scalar is monotone and frame-invariant, local entropy-density t varies by subsystem, and the wrong local scalar control fails.",
+  "positive": {
+    "frame_invariant": {
+      "local_unitary_entropy_abs_diff": 4.440892098500626e-16,
+      "pass": true,
+      "subsystem_relabel_entropy_abs_diff": 4.440892098500626e-16,
+      "wrong_scalar_local_unitary_abs_diff": 0.31348467548450376,
+      "wrong_scalar_relabel_abs_diff": 0.3473759611528819
+    },
+    "global_monotone": {
+      "min_step_delta": 0.017488209306220748,
+      "pass": true
+    },
+    "local_t_varies": {
+      "local_t_final": [
+        0.12227261167846304,
+        0.12454277405343622,
+        0.12640260969626196
+      ],
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_universal_clock_julia_results.json",
+  "rung_spec": {
+    "control": "wrong locally-resettable scalar on the same state is nonmonotone and fails frame/relabel invariance; erased-structure schedule loses local t variation",
+    "i": "global von Neumann entropy / total finite extent scalar of the whole density state",
+    "positive": "i monotone along canonical paired-engine 32-substage schedules and invariant under local unitaries/subsystem relabeling while local t differs",
+    "t": "subsystem-local entropy density readout, allowed to differ by qubit"
+  },
+  "schedule_trace_head": [
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.018806403812997516,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Ti",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 0,
+      "sign": 1,
+      "substage_index": 0,
+      "token": "TiSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.023624427081346735,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Fi",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 1,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "FiSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.028916112798515525,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Te",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 2,
+      "sign": 1,
+      "substage_index": 2,
+      "token": "TeSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.034540948920732784,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Fe",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 3,
+      "sign": -1,
+      "substage_index": 3,
+      "token": "SeFe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.040427254205088255,
+      "loop_class": "outer",
+      "main_stage_index": 1,
+      "operator": "Ti",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 4,
+      "sign": -1,
+      "substage_index": 0,
+      "token": "NeTi",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "global_depolarizing_extent_fraction": 0.046530679870793706,
+      "loop_class": "outer",
+      "main_stage_index": 1,
+      "operator": "Fi",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 5,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "FiNe",
+      "type_label": "type_one_left_weyl"
+    }
+  ],
+  "schedule_trace_tail": [
+    {
+      "dynamics_family": "raising_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.4828646506649476,
+      "loop_class": "inner",
+      "main_stage_index": 6,
+      "operator": "Ti",
+      "perception": "Ni",
+      "projector_axis": "x",
+      "rate": 0.27,
+      "realization": "Source",
+      "record_index": 58,
+      "sign": -1,
+      "substage_index": 2,
+      "token": "NiTi",
+      "type_label": "type_two_right_weyl"
+    },
+    {
+      "dynamics_family": "raising_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.4922361518928094,
+      "loop_class": "inner",
+      "main_stage_index": 6,
+      "operator": "Fi",
+      "perception": "Ni",
+      "projector_axis": "x",
+      "rate": 0.27,
+      "realization": "Source",
+      "record_index": 59,
+      "sign": 1,
+      "substage_index": 3,
+      "token": "FiNi",
+      "type_label": "type_two_right_weyl"
+    },
+    {
+      "dynamics_family": "pinching_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.5016358110264477,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Fe",
+      "perception": "Si",
+      "projector_axis": "z",
+      "rate": 0.21,
+      "realization": "Citadel",
+      "record_index": 60,
+      "sign": -1,
+      "substage_index": 0,
+      "token": "SiFe",
+      "type_label": "type_two_right_weyl"
+    },
+    {
+      "dynamics_family": "pinching_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.5110632489564407,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Te",
+      "perception": "Si",
+      "projector_axis": "z",
+      "rate": 0.21,
+      "realization": "Citadel",
+      "record_index": 61,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "TeSi",
+      "type_label": "type_two_right_weyl"
+    },
+    {
+      "dynamics_family": "pinching_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.5205180977197535,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Ti",
+      "perception": "Si",
+      "projector_axis": "z",
+      "rate": 0.21,
+      "realization": "Citadel",
+      "record_index": 62,
+      "sign": -1,
+      "substage_index": 2,
+      "token": "SiTi",
+      "type_label": "type_two_right_weyl"
+    },
+    {
+      "dynamics_family": "pinching_dissipator",
+      "engine_type": 1,
+      "global_depolarizing_extent_fraction": 0.53,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Fi",
+      "perception": "Si",
+      "projector_axis": "z",
+      "rate": 0.21,
+      "realization": "Citadel",
+      "record_index": 63,
+      "sign": 1,
+      "substage_index": 3,
+      "token": "FiSi",
+      "type_label": "type_two_right_weyl"
+    }
+  ],
+  "schema": "MP_UNIVERSAL_CLOCK_DUAL_BACKEND_FINITE_SCOUT_v1",
+  "shared_booleans": {
+    "broken_control_fails": true,
+    "carrier.clifford_even_dim_real": true,
+    "carrier.golden_weyl_control_real": true,
+    "carrier.hopf_torus_real": true,
+    "carrier.octonion_g2_derivation_dim_real": true,
+    "carrier.quaternion_table_real": true,
+    "carrier.sedenion_break_real": true,
+    "control.erased_structure_flip_fires": true,
+    "control.wrong_scalar_frame_fails": true,
+    "control.wrong_scalar_nonmonotone": true,
+    "frame_invariant": true,
+    "global_monotone": true,
+    "local_t_varies": true
+  },
+  "shared_scalars": {
+    "carrier.cl30_even_dim": 4.0,
+    "carrier.g2_constraint_rank": 50.0,
+    "carrier.g2_derivation_dim": 14.0,
+    "carrier.gamma_relation_residual": 0.0,
+    "carrier.golden_weyl_eta_count": 65.0,
+    "carrier.golden_weyl_flat_control_delta": 0.9999999998157144,
+    "carrier.hopf_s3_residual": 0.0,
+    "carrier.quaternion_ij_minus_k_residual": 0.0,
+    "carrier.sedenion_zero_product_norm": 0.0,
+    "control.erased.global_entropy_min_step_delta": 0.01748820930622097,
+    "control.erased.local_entropy_final_spread": 0.0,
+    "control.wrong_scalar.final": 0.3713402418242218,
+    "control.wrong_scalar.initial": 0.8329454532910638,
+    "control.wrong_scalar.local_unitary_abs_diff": 0.31348467548450376,
+    "control.wrong_scalar.negative_delta_count": 50.0,
+    "control.wrong_scalar.positive_delta_count": 13.0,
+    "control.wrong_scalar.relabel_abs_diff": 0.3473759611528819,
+    "frame.local_unitary_entropy_abs_diff": 4.440892098500626e-16,
+    "frame.subsystem_relabel_entropy_abs_diff": 4.440892098500626e-16,
+    "global_entropy.delta": 1.4770073621184832,
+    "global_entropy.final": 1.5929325799829814,
+    "global_entropy.initial": 0.11592521786449823,
+    "global_entropy.min_step_delta": 0.017488209306220748,
+    "global_extent.delta": 3.795238775841587,
+    "global_extent.final": 4.918150671085389,
+    "global_extent.initial": 1.1229118952438017,
+    "local_t.final_spread": 0.004129998017798925,
+    "local_t.q0_final": 0.12227261167846304,
+    "local_t.q1_final": 0.12454277405343622,
+    "local_t.q2_final": 0.12640260969626196,
+    "schedule.substage_count": 64.0
+  },
+  "sim_class": "finite_dual_backend_clock_witness",
+  "sim_execution_kind": "nonclassical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_universal_clock.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "summary": {
+    "all_pass": true,
+    "broken_control_fails": true,
+    "frame_invariant": true,
+    "global_monotone": true,
+    "local_t_varies": true,
+    "parity_max_diff": 2.3314683517128287e-15,
+    "parity_within_1e_9": true
+  },
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror": "load_bearing",
+    "system_v5/julia_carrier carrier objects": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/Dates": {
+      "reason": "supportive exact receipt writing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite density-state evolution, von Neumann entropy, extent readout, frame/relabel controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror": {
+      "reason": "load-bearing mirrored schedule, H0 sign, perceptions, operator slots, topology rates, and 32-substage per-engine structure",
+      "tried": true,
+      "used": true
+    },
+    "system_v5/julia_carrier carrier objects": {
+      "reason": "load-bearing carrier anchors for division ladder, Clifford ladder, G2 octonion derivation, sedenion break, density spinor lift, Hopf torus, and golden Weyl controls",
+      "tried": true,
+      "used": true
+    }
+  }
+}

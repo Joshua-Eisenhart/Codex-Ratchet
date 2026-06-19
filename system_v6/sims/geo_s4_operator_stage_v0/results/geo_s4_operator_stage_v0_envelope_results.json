@@ -1,0 +1,7478 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source, copied-input, result, and PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from fresh engine receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "affine_channel_table": {
+    "D_x": {
+      "basis": "source_locked_standard_bloch",
+      "derived_from": "source Kraus/unitary form over standard Bloch basis",
+      "matches_expected_formula": true,
+      "matches_s1_pinned_conversion": true,
+      "pinned": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "s1_pinned_basis": {
+        "basis": "sigma_x,-sigma_y_standard,sigma_z",
+        "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+        "matches_direct_density_derivation": true,
+        "pinned": {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1 - q_x",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1 - q_x"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "symbolic": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "unital_derived": true
+    },
+    "D_z": {
+      "basis": "source_locked_standard_bloch",
+      "derived_from": "source Kraus/unitary form over standard Bloch basis",
+      "matches_expected_formula": true,
+      "matches_s1_pinned_conversion": true,
+      "pinned": {
+        "M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "s1_pinned_basis": {
+        "basis": "sigma_x,-sigma_y_standard,sigma_z",
+        "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+        "matches_direct_density_derivation": true,
+        "pinned": {
+          "M": [
+            [
+              "7/10",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "M": [
+            [
+              "1 - q_z",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1 - q_z",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "symbolic": {
+        "M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "unital_derived": true
+    },
+    "R_x": {
+      "basis": "source_locked_standard_bloch",
+      "derived_from": "source Kraus/unitary form over standard Bloch basis",
+      "matches_expected_formula": true,
+      "matches_s1_pinned_conversion": true,
+      "pinned": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "s1_pinned_basis": {
+        "basis": "sigma_x,-sigma_y_standard,sigma_z",
+        "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+        "matches_direct_density_derivation": true,
+        "pinned": {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "0",
+              "-1",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "cos(theta_x)",
+              "sin(theta_x)"
+            ],
+            [
+              "0",
+              "-sin(theta_x)",
+              "cos(theta_x)"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "symbolic": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "-sin(theta_x)"
+          ],
+          [
+            "0",
+            "sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "unital_derived": true
+    },
+    "R_z": {
+      "basis": "source_locked_standard_bloch",
+      "derived_from": "source Kraus/unitary form over standard Bloch basis",
+      "matches_expected_formula": true,
+      "matches_s1_pinned_conversion": true,
+      "pinned": {
+        "M": [
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "s1_pinned_basis": {
+        "basis": "sigma_x,-sigma_y_standard,sigma_z",
+        "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+        "matches_direct_density_derivation": true,
+        "pinned": {
+          "M": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "M": [
+            [
+              "cos(phi_z)",
+              "sin(phi_z)",
+              "0"
+            ],
+            [
+              "-sin(phi_z)",
+              "cos(phi_z)",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "symbolic": {
+        "M": [
+          [
+            "cos(phi_z)",
+            "-sin(phi_z)",
+            "0"
+          ],
+          [
+            "sin(phi_z)",
+            "cos(phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "unital_derived": true
+    }
+  },
+  "all_pass": true,
+  "basin_classes": {
+    "D_x": {
+      "basin_slice_for_fixed_point": {
+        "fixed_point": [
+          "xi",
+          "0",
+          "0"
+        ],
+        "slice": "xi^2 + y_0^2 + z_0^2 <= 1"
+      },
+      "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+      "closed_form_limit": {
+        "condition": "0<q_x<1",
+        "limit_n_to_infinity": [
+          "x_0",
+          "0",
+          "0"
+        ],
+        "reason": "0 < 1-q_x < 1 implies (1-q_x)^n -> 0"
+      },
+      "computed_pin_limit_receipt": {
+        "limit": [
+          "1/5",
+          "0",
+          "0"
+        ],
+        "q_x": "3/10",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "1/5",
+          "-7/25",
+          "7/30"
+        ],
+        "r_2": [
+          "1/5",
+          "-49/250",
+          "49/300"
+        ],
+        "r_5": [
+          "1/5",
+          "-16807/250000",
+          "16807/300000"
+        ]
+      },
+      "iteration_formula": {
+        "matrix_power": "diag(1,(1-q_x)^n,(1-q_x)^n)",
+        "r_n": [
+          "x_0",
+          "(1-q_x)^n*y_0",
+          "(1-q_x)^n*z_0"
+        ]
+      },
+      "one_step_projection": {
+        "condition": "q_x=1",
+        "r_1": [
+          "x_0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    "D_z": {
+      "basin_slice_for_fixed_point": {
+        "fixed_point": [
+          "0",
+          "0",
+          "zeta"
+        ],
+        "slice": "x_0^2 + y_0^2 + zeta^2 <= 1"
+      },
+      "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+      "closed_form_limit": {
+        "condition": "0<q_z<1",
+        "limit_n_to_infinity": [
+          "0",
+          "0",
+          "z_0"
+        ],
+        "reason": "0 < 1-q_z < 1 implies (1-q_z)^n -> 0"
+      },
+      "computed_pin_limit_receipt": {
+        "limit": [
+          "0",
+          "0",
+          "1/3"
+        ],
+        "q_z": "3/10",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "7/50",
+          "-7/25",
+          "1/3"
+        ],
+        "r_2": [
+          "49/500",
+          "-49/250",
+          "1/3"
+        ],
+        "r_5": [
+          "16807/500000",
+          "-16807/250000",
+          "1/3"
+        ]
+      },
+      "iteration_formula": {
+        "matrix_power": "diag((1-q_z)^n,(1-q_z)^n,1)",
+        "r_n": [
+          "(1-q_z)^n*x_0",
+          "(1-q_z)^n*y_0",
+          "z_0"
+        ]
+      },
+      "one_step_projection": {
+        "condition": "q_z=1",
+        "r_1": [
+          "0",
+          "0",
+          "z_0"
+        ]
+      }
+    },
+    "R_x": {
+      "computed_pin_orbit_receipt": {
+        "nonlimit_check": "r_1-r_0=(0,1/15,-11/15) != 0",
+        "period_check": "r_4-r_0=(0,0,0)",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "1/5",
+          "-1/3",
+          "-2/5"
+        ],
+        "r_2": [
+          "1/5",
+          "2/5",
+          "-1/3"
+        ],
+        "r_3": [
+          "1/5",
+          "1/3",
+          "2/5"
+        ],
+        "r_4": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "theta_x": "pi/2"
+      },
+      "invariant": "y_n^2 + z_n^2 = y_0^2 + z_0^2",
+      "limit_receipt": {
+        "irrational_theta_over_2pi": "nonconvergent dense orbit on transverse circle",
+        "limit_exists_if": "theta_x=0 mod 2pi or y_0=z_0=0; theta_x=pi with nonzero transverse part is period-two and nonconvergent",
+        "rational_theta_over_2pi": "periodic orbit on transverse circle"
+      },
+      "power_formula": {
+        "M^n": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(n*theta_x)",
+            "-sin(n*theta_x)"
+          ],
+          [
+            "0",
+            "sin(n*theta_x)",
+            "cos(n*theta_x)"
+          ]
+        ],
+        "r_n": [
+          "x_0",
+          "cos(n*theta_x)*y_0 - sin(n*theta_x)*z_0",
+          "sin(n*theta_x)*y_0 + cos(n*theta_x)*z_0"
+        ]
+      }
+    },
+    "R_z": {
+      "computed_pin_orbit_receipt": {
+        "nonlimit_check": "r_1-r_0=(1/5,3/5,0) != 0",
+        "period_check": "r_4-r_0=(0,0,0)",
+        "phi_z": "pi/2",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "2/5",
+          "1/5",
+          "1/3"
+        ],
+        "r_2": [
+          "-1/5",
+          "2/5",
+          "1/3"
+        ],
+        "r_3": [
+          "-2/5",
+          "-1/5",
+          "1/3"
+        ],
+        "r_4": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ]
+      },
+      "invariant": "x_n^2 + y_n^2 = x_0^2 + y_0^2",
+      "limit_receipt": {
+        "irrational_phi_over_2pi": "nonconvergent dense orbit on transverse circle",
+        "limit_exists_if": "phi_z=0 mod 2pi or x_0=y_0=0; phi_z=pi with nonzero transverse part is period-two and nonconvergent",
+        "rational_phi_over_2pi": "periodic orbit on transverse circle"
+      },
+      "power_formula": {
+        "M^n": [
+          [
+            "cos(n*phi_z)",
+            "-sin(n*phi_z)",
+            "0"
+          ],
+          [
+            "sin(n*phi_z)",
+            "cos(n*phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "r_n": [
+          "cos(n*phi_z)*x_0 - sin(n*phi_z)*y_0",
+          "sin(n*phi_z)*x_0 + cos(n*phi_z)*y_0",
+          "z_0"
+        ]
+      }
+    }
+  },
+  "basin_iteration_receipts": {
+    "D_x": {
+      "basin_slice_for_fixed_point": {
+        "fixed_point": [
+          "xi",
+          "0",
+          "0"
+        ],
+        "slice": "xi^2 + y_0^2 + z_0^2 <= 1"
+      },
+      "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+      "closed_form_limit": {
+        "condition": "0<q_x<1",
+        "limit_n_to_infinity": [
+          "x_0",
+          "0",
+          "0"
+        ],
+        "reason": "0 < 1-q_x < 1 implies (1-q_x)^n -> 0"
+      },
+      "computed_pin_limit_receipt": {
+        "limit": [
+          "1/5",
+          "0",
+          "0"
+        ],
+        "q_x": "3/10",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "1/5",
+          "-7/25",
+          "7/30"
+        ],
+        "r_2": [
+          "1/5",
+          "-49/250",
+          "49/300"
+        ],
+        "r_5": [
+          "1/5",
+          "-16807/250000",
+          "16807/300000"
+        ]
+      },
+      "iteration_formula": {
+        "matrix_power": "diag(1,(1-q_x)^n,(1-q_x)^n)",
+        "r_n": [
+          "x_0",
+          "(1-q_x)^n*y_0",
+          "(1-q_x)^n*z_0"
+        ]
+      },
+      "one_step_projection": {
+        "condition": "q_x=1",
+        "r_1": [
+          "x_0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    "D_z": {
+      "basin_slice_for_fixed_point": {
+        "fixed_point": [
+          "0",
+          "0",
+          "zeta"
+        ],
+        "slice": "x_0^2 + y_0^2 + zeta^2 <= 1"
+      },
+      "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+      "closed_form_limit": {
+        "condition": "0<q_z<1",
+        "limit_n_to_infinity": [
+          "0",
+          "0",
+          "z_0"
+        ],
+        "reason": "0 < 1-q_z < 1 implies (1-q_z)^n -> 0"
+      },
+      "computed_pin_limit_receipt": {
+        "limit": [
+          "0",
+          "0",
+          "1/3"
+        ],
+        "q_z": "3/10",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "7/50",
+          "-7/25",
+          "1/3"
+        ],
+        "r_2": [
+          "49/500",
+          "-49/250",
+          "1/3"
+        ],
+        "r_5": [
+          "16807/500000",
+          "-16807/250000",
+          "1/3"
+        ]
+      },
+      "iteration_formula": {
+        "matrix_power": "diag((1-q_z)^n,(1-q_z)^n,1)",
+        "r_n": [
+          "(1-q_z)^n*x_0",
+          "(1-q_z)^n*y_0",
+          "z_0"
+        ]
+      },
+      "one_step_projection": {
+        "condition": "q_z=1",
+        "r_1": [
+          "0",
+          "0",
+          "z_0"
+        ]
+      }
+    },
+    "R_x": {
+      "computed_pin_orbit_receipt": {
+        "nonlimit_check": "r_1-r_0=(0,1/15,-11/15) != 0",
+        "period_check": "r_4-r_0=(0,0,0)",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "1/5",
+          "-1/3",
+          "-2/5"
+        ],
+        "r_2": [
+          "1/5",
+          "2/5",
+          "-1/3"
+        ],
+        "r_3": [
+          "1/5",
+          "1/3",
+          "2/5"
+        ],
+        "r_4": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "theta_x": "pi/2"
+      },
+      "invariant": "y_n^2 + z_n^2 = y_0^2 + z_0^2",
+      "limit_receipt": {
+        "irrational_theta_over_2pi": "nonconvergent dense orbit on transverse circle",
+        "limit_exists_if": "theta_x=0 mod 2pi or y_0=z_0=0; theta_x=pi with nonzero transverse part is period-two and nonconvergent",
+        "rational_theta_over_2pi": "periodic orbit on transverse circle"
+      },
+      "power_formula": {
+        "M^n": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(n*theta_x)",
+            "-sin(n*theta_x)"
+          ],
+          [
+            "0",
+            "sin(n*theta_x)",
+            "cos(n*theta_x)"
+          ]
+        ],
+        "r_n": [
+          "x_0",
+          "cos(n*theta_x)*y_0 - sin(n*theta_x)*z_0",
+          "sin(n*theta_x)*y_0 + cos(n*theta_x)*z_0"
+        ]
+      }
+    },
+    "R_z": {
+      "computed_pin_orbit_receipt": {
+        "nonlimit_check": "r_1-r_0=(1/5,3/5,0) != 0",
+        "period_check": "r_4-r_0=(0,0,0)",
+        "phi_z": "pi/2",
+        "r_0": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "r_1": [
+          "2/5",
+          "1/5",
+          "1/3"
+        ],
+        "r_2": [
+          "-1/5",
+          "2/5",
+          "1/3"
+        ],
+        "r_3": [
+          "-2/5",
+          "-1/5",
+          "1/3"
+        ],
+        "r_4": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ]
+      },
+      "invariant": "x_n^2 + y_n^2 = x_0^2 + y_0^2",
+      "limit_receipt": {
+        "irrational_phi_over_2pi": "nonconvergent dense orbit on transverse circle",
+        "limit_exists_if": "phi_z=0 mod 2pi or x_0=y_0=0; phi_z=pi with nonzero transverse part is period-two and nonconvergent",
+        "rational_phi_over_2pi": "periodic orbit on transverse circle"
+      },
+      "power_formula": {
+        "M^n": [
+          [
+            "cos(n*phi_z)",
+            "-sin(n*phi_z)",
+            "0"
+          ],
+          [
+            "sin(n*phi_z)",
+            "cos(n*phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "r_n": [
+          "cos(n*phi_z)*x_0 - sin(n*phi_z)*y_0",
+          "sin(n*phi_z)*x_0 + cos(n*phi_z)*y_0",
+          "z_0"
+        ]
+      }
+    }
+  },
+  "basis_conversion_layer": {
+    "J_standard_to_s1_pinned": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ],
+    "all_pass": true,
+    "rows": {
+      "D_x": {
+        "conversion_pass": true,
+        "converted_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ],
+        "direct_s1_pinned_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ],
+        "standard_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ]
+      },
+      "D_z": {
+        "conversion_pass": true,
+        "converted_symbolic_M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "direct_s1_pinned_symbolic_M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "standard_symbolic_M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "R_x": {
+        "conversion_pass": true,
+        "converted_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "sin(theta_x)"
+          ],
+          [
+            "0",
+            "-sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ],
+        "direct_s1_pinned_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "sin(theta_x)"
+          ],
+          [
+            "0",
+            "-sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ],
+        "standard_symbolic_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "-sin(theta_x)"
+          ],
+          [
+            "0",
+            "sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ]
+      },
+      "R_z": {
+        "conversion_pass": true,
+        "converted_symbolic_M": [
+          [
+            "cos(phi_z)",
+            "sin(phi_z)",
+            "0"
+          ],
+          [
+            "-sin(phi_z)",
+            "cos(phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "direct_s1_pinned_symbolic_M": [
+          [
+            "cos(phi_z)",
+            "sin(phi_z)",
+            "0"
+          ],
+          [
+            "-sin(phi_z)",
+            "cos(phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "standard_symbolic_M": [
+          [
+            "cos(phi_z)",
+            "-sin(phi_z)",
+            "0"
+          ],
+          [
+            "sin(phi_z)",
+            "cos(phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      }
+    },
+    "rule": "M_s1_pinned = J * M_source_locked_standard * J",
+    "s1_pinned_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "source_locked_standard_basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ]
+  },
+  "build_gates": {
+    "affine_shifts_all_zero": true,
+    "basis_conversion_layer_pass": true,
+    "ceilings_preserved": true,
+    "commutator_table_exact_16_pairs": true,
+    "control_only_tools_absent_from_claim_path": true,
+    "copied_spec_and_directive_present": true,
+    "engine_legs_pass": true,
+    "identical_pin_sha256": true,
+    "identical_structured_convention_pin": true,
+    "julia_density_channel_derivation_pass": true,
+    "julia_quantumoptics_superoperator_route_load_bearing": true,
+    "negative_controls_executed_can_fail": true,
+    "negative_controls_selective": true,
+    "no_peer_result_reads": true,
+    "python_qutip_superoperator_route_load_bearing": true,
+    "pytorch_declared_non_cas_mirror": true,
+    "quotient_erasure_boundary_present": true,
+    "required_positive_receipts_pass": true,
+    "required_positive_receipts_present": true,
+    "smt_agreement_and_can_fail_controls": true,
+    "smt_scope_honest_pinned_entry_only": true,
+    "source_sha256_current": true,
+    "symbolic_not_numeric_only": true
+  },
+  "canon_runtime": {
+    "artifact_path": "system_v6/sims/geo_s4_operator_stage_v0",
+    "artifact_sha256": null,
+    "bracket_convention": "ordinary associative M2(C) channel composition; affine Bloch composition order explicit",
+    "consumer_policy": "independent engine recomputation; no peer-result reads",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "S4_operator_channel_julia_density_channel_symbolics_z3_pinned_entry",
+    "receipt_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "9bbc6ddb7cf720d6916d70b4bf278b5a9f926e32ab915fb58862a022b45365a2",
+    "table_version": "geo_s4_operator_stage_v0_pinned_s1_bloch_channel_table"
+  },
+  "claim": "Bounded S4 one-qubit operator-channel geometry packet for D_z, D_x, R_x, and R_z over the source-locked standard density/Bloch quotient, with an explicit S1 pinned-y conversion layer.",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Symbolics",
+    "Z3",
+    "cvc5",
+    "qutip",
+    "sympy",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "commutator_table": {
+    "older_numeric_cross_check": "prior rho_0 trace-norm table cited as sparse numeric prior only; this table is symbolic over affine Bloch maps",
+    "ordered_pair_count": 16,
+    "rows": [
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "structural_reason": "same channel",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "structural_reason": "diagonal Bloch contractions commute",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "q_z*sin(theta_x)"
+          ],
+          [
+            "0",
+            "q_z*sin(theta_x)",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "3/10"
+          ],
+          [
+            "0",
+            "3/10",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "structural_reason": "x-rotation mixes the z fixed axis with a D_z-contracted transverse component; zero only if q_z=0 or sin(theta_x)=0",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "structural_reason": "z-dephase has equal transverse x/y scaling and commutes with z-axis rotation",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "structural_reason": "diagonal Bloch contractions commute",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "structural_reason": "same channel",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "structural_reason": "x-dephase has equal transverse y/z scaling and commutes with x-axis rotation",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "D_x",
+        "linear_commutator": [
+          [
+            "0",
+            "-q_x*sin(phi_z)",
+            "0"
+          ],
+          [
+            "-q_x*sin(phi_z)",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "-3/10",
+            "0"
+          ],
+          [
+            "-3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "structural_reason": "z-rotation mixes the x fixed axis with a D_x-contracted transverse component; zero only if q_x=0 or sin(phi_z)=0",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-q_z*sin(theta_x)"
+          ],
+          [
+            "0",
+            "-q_z*sin(theta_x)",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-3/10"
+          ],
+          [
+            "0",
+            "-3/10",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "structural_reason": "x-rotation mixes the z fixed axis with a D_z-contracted transverse component; zero only if q_z=0 or sin(theta_x)=0",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "structural_reason": "x-dephase has equal transverse y/z scaling and commutes with x-axis rotation",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_x",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "structural_reason": "same channel",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_x",
+        "linear_commutator": [
+          [
+            "0",
+            "(cos(theta_x) - 1)*sin(phi_z)",
+            "-sin(phi_z)*sin(theta_x)"
+          ],
+          [
+            "(cos(theta_x) - 1)*sin(phi_z)",
+            "0",
+            "(cos(phi_z) - 1)*sin(theta_x)"
+          ],
+          [
+            "sin(phi_z)*sin(theta_x)",
+            "(cos(phi_z) - 1)*sin(theta_x)",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "-1",
+            "-1"
+          ],
+          [
+            "-1",
+            "0",
+            "-1"
+          ],
+          [
+            "1",
+            "-1",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "structural_reason": "rotations about distinct axes do not commute generically; zero for identity cases or both angles integer multiples of pi",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "structural_reason": "z-dephase has equal transverse x/y scaling and commutes with z-axis rotation",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_z",
+        "linear_commutator": [
+          [
+            "0",
+            "q_x*sin(phi_z)",
+            "0"
+          ],
+          [
+            "q_x*sin(phi_z)",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "3/10",
+            "0"
+          ],
+          [
+            "3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "structural_reason": "z-rotation mixes the x fixed axis with a D_x-contracted transverse component; zero only if q_x=0 or sin(phi_z)=0",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_z",
+        "linear_commutator": [
+          [
+            "0",
+            "(1 - cos(theta_x))*sin(phi_z)",
+            "sin(phi_z)*sin(theta_x)"
+          ],
+          [
+            "(1 - cos(theta_x))*sin(phi_z)",
+            "0",
+            "(1 - cos(phi_z))*sin(theta_x)"
+          ],
+          [
+            "-sin(phi_z)*sin(theta_x)",
+            "(1 - cos(phi_z))*sin(theta_x)",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "0",
+            "1"
+          ],
+          [
+            "-1",
+            "1",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "structural_reason": "rotations about distinct axes do not commute generically; zero for identity cases or both angles integer multiples of pi",
+        "zero_pinned": false,
+        "zero_symbolic": false
+      },
+      {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "left": "R_z",
+        "linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "pinned_affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pinned_linear_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "structural_reason": "same channel",
+        "zero_pinned": true,
+        "zero_symbolic": true
+      }
+    ],
+    "special_zero_cases": {
+      "D_x_with_R_z": "zero iff q_x=0 or sin(phi_z)=0",
+      "D_z_with_R_x": "zero iff q_z=0 or sin(theta_x)=0",
+      "R_x_with_R_z": "zero if theta_x=0 mod 2pi, or phi_z=0 mod 2pi, or both theta_x and phi_z are integer multiples of pi"
+    }
+  },
+  "convention_pin": {
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+    "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+    "operator_channel_stage": "S4 density/Bloch quotient only",
+    "primary_table_basis": "source_locked_standard_bloch",
+    "rho_rule": "rho(r) = (I + r.basis) / 2",
+    "s1_pinned_bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "sigma_y_standard": [
+      [
+        "0",
+        "-i"
+      ],
+      [
+        "i",
+        "0"
+      ]
+    ],
+    "source_locked_bloch_basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ],
+    "standard_to_s1_pinned_J": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ]
+  },
+  "copied_inputs": {
+    "directive_addendum": {
+      "copy_path": "system_v6/sims/geo_s4_operator_stage_v0/directive_addendum.md",
+      "copy_sha256": "80c5676561bc1f9539b5d2f9756dd2d4a758903b631886392768ce4bd2937e4b",
+      "exists": true,
+      "matches_source": true,
+      "source_path": "/tmp/claude_s1_qubit_ladder_corrected_message_20260610.md",
+      "source_sha256": "80c5676561bc1f9539b5d2f9756dd2d4a758903b631886392768ce4bd2937e4b"
+    },
+    "s4_build_spec": {
+      "copy_path": "system_v6/sims/geo_s4_operator_stage_v0/s4_build_spec_20260610.md",
+      "copy_sha256": "658cc0a0084cbf87c0ea23bf981cd554e225430e7b87406b50b686024a439be7",
+      "exists": true,
+      "matches_source": true,
+      "source_path": "system_v6/receipts/s4_build_spec_20260610.md",
+      "source_sha256": "658cc0a0084cbf87c0ea23bf981cd554e225430e7b87406b50b686024a439be7"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "independent pinned-entry contradiction check; not a full symbolic commutator-table proof",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "pinned-entry contradiction only: source-locked [D_z,R_x] has scaled entry +3, so the zero-commutator echo is false",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "Z3.jl",
+      "source_route": "QuantumOptics pinned D_z/R_x superoperator commutator",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    },
+    "pytorch_cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "independent cvc5 pinned-entry contradiction check of torch commutator row",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "cvc5",
+      "source_route": "qutip-derived D_z/R_x affine commutator entry",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    },
+    "pytorch_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "torch pinned-entry contradiction only: source-locked D_z/R_x commutator row has scaled entry +3",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "z3",
+      "source_route": "qutip-derived D_z/R_x affine commutator entry",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "pinned-entry contradiction only: source-locked [D_z,R_x] has entry +3/10, so the zero-commutator echo is rejected on the pin row",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "meaning": "engine divergence over the pinned acceptance gates and scaled D_z/R_x commutator witness; symbolic parameter table authority remains in JAX/SymPy, Julia/Python channel mechanics now run through QuantumOptics/qutip, and hand tensor rows remain mirrors"
+  },
+  "ellipsoid_images": {
+    "D_x": {
+      "axis_directions": {
+        "x": "sigma_x",
+        "y": "sigma_y_standard",
+        "z": "sigma_z"
+      },
+      "determinant": "(1-q_x)^2",
+      "image_classification": {
+        "0<q_x<1": "x-axis spheroid",
+        "q_x=0": "sphere_identity",
+        "q_x=1": "line_limit_x_axis"
+      },
+      "pinned": {
+        "determinant": "49/100",
+        "rank": 3,
+        "semi_axes": [
+          "1",
+          "7/10",
+          "7/10"
+        ]
+      },
+      "rank": {
+        "0<q_x<1": 3,
+        "q_x=0": 3,
+        "q_x=1": 1
+      },
+      "semi_axes": {
+        "x": "1",
+        "y": "1-q_x",
+        "z": "1-q_x"
+      }
+    },
+    "D_z": {
+      "axis_directions": {
+        "x": "sigma_x",
+        "y": "sigma_y_standard",
+        "z": "sigma_z"
+      },
+      "determinant": "(1-q_z)^2",
+      "image_classification": {
+        "0<q_z<1": "z-axis spheroid",
+        "q_z=0": "sphere_identity",
+        "q_z=1": "line_limit_z_axis"
+      },
+      "pinned": {
+        "determinant": "49/100",
+        "rank": 3,
+        "semi_axes": [
+          "7/10",
+          "7/10",
+          "1"
+        ]
+      },
+      "rank": {
+        "0<q_z<1": 3,
+        "q_z=0": 3,
+        "q_z=1": 1
+      },
+      "semi_axes": {
+        "x": "1-q_z",
+        "y": "1-q_z",
+        "z": "1"
+      }
+    },
+    "R_x": {
+      "axis_directions": {
+        "fixed_axis": "sigma_x",
+        "rotated_plane": [
+          "sigma_y_standard",
+          "sigma_z"
+        ]
+      },
+      "determinant": "1",
+      "image_classification": {
+        "generic": "sphere_rotation",
+        "theta_x=0": "sphere_identity",
+        "theta_x=pi": "sphere_half_turn",
+        "theta_x=pi/2": "sphere_quarter_turn"
+      },
+      "pinned": {
+        "determinant": "1",
+        "rank": 3,
+        "semi_axes": [
+          "1",
+          "1",
+          "1"
+        ]
+      },
+      "rank": {
+        "all_angles": 3
+      },
+      "semi_axes": {
+        "all_angles": [
+          "1",
+          "1",
+          "1"
+        ]
+      }
+    },
+    "R_z": {
+      "axis_directions": {
+        "fixed_axis": "sigma_z",
+        "rotated_plane": [
+          "sigma_x",
+          "sigma_y_standard"
+        ]
+      },
+      "determinant": "1",
+      "image_classification": {
+        "generic": "sphere_rotation",
+        "phi_z=0": "sphere_identity",
+        "phi_z=pi": "sphere_half_turn",
+        "phi_z=pi/2": "sphere_quarter_turn"
+      },
+      "pinned": {
+        "determinant": "1",
+        "rank": 3,
+        "semi_axes": [
+          "1",
+          "1",
+          "1"
+        ]
+      },
+      "rank": {
+        "all_angles": 3
+      },
+      "semi_axes": {
+        "all_angles": [
+          "1",
+          "1",
+          "1"
+        ]
+      }
+    }
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_jax_results.json",
+      "result_sha256": "fdee0e2e12c4480ca1d96f36cc34b72c309ff45a88e2779420fe7fc4e1dde7e0",
+      "role_id": "jax_sympy_symbolic_operator_channel_builder",
+      "source_path": "system_v6/sims/geo_s4_operator_stage_v0/geo_s4_operator_stage_v0_jax.py",
+      "source_sha256": "40429d2337195257589ca6ec547d55e6b4e7691ed9b670ddea2b456440b607f0",
+      "tool_calls": [
+        {
+          "boundary_case": "q=0/q=1 and angle 0/pi/2/pi/generic rows",
+          "demotion_condition": "if symbolic rows are removed, packet becomes numeric diagnostic only",
+          "gates": [
+            "all_pass",
+            "P2_affine_channel_table_exact",
+            "P6_commutator_table_symbolic"
+          ],
+          "input_object": "source Kraus/unitary forms, source-locked standard Bloch basis, and S1 pinned-y conversion layer",
+          "negative/erased_control": "numeric-only and fake nonunital controls fail",
+          "output_object": "exact M,c, commutator, fixed-set, and case-classification receipts",
+          "positive_case": "four named source-locked channels derive unital affine maps",
+          "qualified_api/function": "sympy.Matrix/simplify/trigsimp/diff",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "q_z=3/10, theta_x=pi/2",
+          "demotion_condition": "if raw scaled entry is replaced by a boolean, proof is decorative",
+          "gates": [
+            "all_pass",
+            "smt_can_fail_controls"
+          ],
+          "input_object": "pinned D_z/R_x commutator entry scaled by 10",
+          "negative/erased_control": "wrong zero entry is SAT and therefore caught",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "10*entry": 3
+            },
+            "claim": "pinned-entry contradiction only: source-locked [D_z,R_x] has entry +3/10, so the zero-commutator echo is rejected on the pin row",
+            "load_bearing": true,
+            "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "sat"
+          },
+          "positive_case": "entry=+3 and entry=0 is UNSAT",
+          "qualified_api/function": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "q_z=3/10, theta_x=pi/2",
+          "demotion_condition": "if cvc5 does not bind the raw scaled entry, proof is decorative",
+          "gates": [
+            "all_pass",
+            "smt_can_fail_controls"
+          ],
+          "input_object": "same pinned D_z/R_x commutator entry scaled by 10",
+          "negative/erased_control": "wrong zero entry is SAT and therefore caught",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "10*entry": 3
+            },
+            "claim": "independent pinned-entry contradiction check; not a full symbolic commutator-table proof",
+            "load_bearing": true,
+            "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "sat"
+          },
+          "positive_case": "independent UNSAT on false commute assertion",
+          "qualified_api/function": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT pinned-entry contradiction check for the same raw value",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 numeric pin-row mirror only; not the symbolic proof path",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive pin-row matrix mirror",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact symbolic derivation of affine channel M,c, ellipsoid, fixed set, iterated basin/orbit, commutator, and executed mutation-control rows",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing SMT pinned-entry contradiction check with can-fail control; not a full symbolic table proof",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Symbolics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "QuantumOptics",
+        "Symbolics",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_julia_results.json",
+      "result_sha256": "cb9b9dd96c5d658b7c7fdbb5ae2dd72e6ba86015e37115de4809a521c07ceb6b",
+      "role_id": "julia_quantumoptics_symbolics_z3_operator_channel_builder",
+      "source_path": "system_v6/sims/geo_s4_operator_stage_v0/geo_s4_operator_stage_v0_julia.jl",
+      "source_sha256": "9bbc6ddb7cf720d6916d70b4bf278b5a9f926e32ab915fb58862a022b45365a2",
+      "tool_calls": [
+        {
+          "boundary_case": "pin row q_z=q_x=3/10, theta_x=phi_z=pi/2",
+          "demotion_condition": "if QuantumOptics superoperators are removed, Julia channel mechanics are only Symbolics/hand-matrix derivation",
+          "gates": [
+            "P2_affine_channel_table_exact",
+            "P6_commutator_table_symbolic",
+            "all_pass"
+          ],
+          "input_object": "pinned D_z, D_x, R_x, R_z channel superoperators over one-qubit density operators",
+          "negative/erased_control": "zero-commutator echo fails through the QuantumOptics-derived raw entry",
+          "output_object": {
+            "all_pass": true,
+            "basis": [
+              "sigma_x",
+              "sigma_y_standard",
+              "sigma_z"
+            ],
+            "dz_rx_commutator_entry_times_10": 3,
+            "route": "QuantumOptics.sprepost channel superoperators applied to QuantumOptics density operators",
+            "rows": {
+              "D_x": {
+                "M": [
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "7/10",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "7/10"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "pass": true,
+                "qobj_type": "SparseSuperOpType{Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+              },
+              "D_z": {
+                "M": [
+                  [
+                    "7/10",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "7/10",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "pass": true,
+                "qobj_type": "SparseSuperOpType{Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+              },
+              "R_x": {
+                "M": [
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "pass": true,
+                "qobj_type": "DenseSuperOpType{Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Matrix{ComplexF64}}"
+              },
+              "R_z": {
+                "M": [
+                  [
+                    "0",
+                    "-1",
+                    "0"
+                  ],
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "pass": true,
+                "qobj_type": "DenseSuperOpType{Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Matrix{ComplexF64}}"
+              }
+            }
+          },
+          "positive_case": "QuantumOptics superoperators derive the pinned affine rows and D_z/R_x commutator witness",
+          "qualified_api/function": "QuantumOptics.SpinBasis/QuantumOptics.DenseOperator/QuantumOptics.sprepost/QuantumOptics.expect",
+          "tool": "QuantumOptics"
+        },
+        {
+          "boundary_case": "q=0/q=1 and angle special rows delegated to envelope table",
+          "demotion_condition": "if density/channel forms or half-angle reduction receipt is removed, Julia leg is only an honest split mirror",
+          "gates": [
+            "P2_affine_channel_table_exact",
+            "all_pass"
+          ],
+          "input_object": "density matrix rho=(I+xX+yY+zZ)/2 plus projector Kraus and half-angle unitary channel forms",
+          "negative/erased_control": "fake affine c shift would violate c=0 row",
+          "output_object": {
+            "all_pass": true,
+            "basis": [
+              "sigma_x",
+              "sigma_y_standard",
+              "sigma_z"
+            ],
+            "half_angle_symbols": {
+              "R_x": [
+                "cx=cos(theta_x/2)",
+                "sx=sin(theta_x/2)"
+              ],
+              "R_z": [
+                "cz=cos(phi_z/2)",
+                "sz=sin(phi_z/2)"
+              ]
+            },
+            "reduction_identities": [
+              "cx^2+sx^2=1",
+              "cx^2-sx^2=cos(theta_x)",
+              "2cx*sx=sin(theta_x)",
+              "cz^2+sz^2=1",
+              "cz^2-sz^2=cos(phi_z)",
+              "2cz*sz=sin(phi_z)"
+            ],
+            "rows": {
+              "D_x": {
+                "M": [
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1 - q_x",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1 - q_x"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "raw_density_components": [
+                  "x",
+                  "y - q_x*y",
+                  "z - q_x*z"
+                ],
+                "raw_half_angle_M": [
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1 - q_x",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1 - q_x"
+                  ]
+                ],
+                "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+                "unital_derived": true
+              },
+              "D_z": {
+                "M": [
+                  [
+                    "1 - q_z",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1 - q_z",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "raw_density_components": [
+                  "x - q_z*x",
+                  "y - q_z*y",
+                  "z"
+                ],
+                "raw_half_angle_M": [
+                  [
+                    "1 - q_z",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1 - q_z",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+                "unital_derived": true
+              },
+              "R_x": {
+                "M": [
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "cos(theta_x)",
+                    "-sin(theta_x)"
+                  ],
+                  [
+                    "0",
+                    "sin(theta_x)",
+                    "cos(theta_x)"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "raw_density_components": [
+                  "(cx^2 + sx^2)*x",
+                  "(cx^2)*y - (2//1)*cx*sx*z - (sx^2)*y",
+                  "(cx^2)*z + (2//1)*cx*sx*y - (sx^2)*z"
+                ],
+                "raw_half_angle_M": [
+                  [
+                    "cx^2 + sx^2",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "cx^2 - (sx^2)",
+                    "(-2//1)*cx*sx"
+                  ],
+                  [
+                    "0",
+                    "(2//1)*cx*sx",
+                    "cx^2 - (sx^2)"
+                  ]
+                ],
+                "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+                "unital_derived": true
+              },
+              "R_z": {
+                "M": [
+                  [
+                    "cos(phi_z)",
+                    "-sin(phi_z)",
+                    "0"
+                  ],
+                  [
+                    "sin(phi_z)",
+                    "cos(phi_z)",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "c": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "raw_density_components": [
+                  "(cz^2)*x - (2//1)*cz*sz*y - (sz^2)*x",
+                  "(cz^2)*y + (2//1)*cz*sz*x - (sz^2)*y",
+                  "(cz^2 + sz^2)*z"
+                ],
+                "raw_half_angle_M": [
+                  [
+                    "cz^2 - (sz^2)",
+                    "(-2//1)*cz*sz",
+                    "0"
+                  ],
+                  [
+                    "(2//1)*cz*sz",
+                    "cz^2 - (sz^2)",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "cz^2 + sz^2"
+                  ]
+                ],
+                "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+                "unital_derived": true
+              }
+            }
+          },
+          "positive_case": "four current channels derive symbolic M rows and c=0 from channel forms",
+          "qualified_api/function": "Symbolics.@variables/Symbolics.substitute/Symbolics.simplify",
+          "tool": "Symbolics"
+        },
+        {
+          "boundary_case": "q_z=3/10, theta_x=pi/2",
+          "demotion_condition": "if raw scaled entry is replaced by boolean, proof is decorative",
+          "gates": [
+            "P6_commutator_table_symbolic",
+            "all_pass"
+          ],
+          "input_object": "pinned D_z/R_x commutator entry scaled by 10",
+          "negative/erased_control": "wrong zero entry is SAT",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "10*entry": 3
+            },
+            "claim": "pinned-entry contradiction only: source-locked [D_z,R_x] has scaled entry +3, so the zero-commutator echo is false",
+            "load_bearing": true,
+            "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+            "ran": true,
+            "solver": "Z3.jl",
+            "source_route": "QuantumOptics pinned D_z/R_x superoperator commutator",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "sat"
+          },
+          "positive_case": "entry=+3 and entry=0 is UNSAT",
+          "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+          "tool": "Z3"
+        }
+      ],
+      "tool_integration_depth": {
+        "JSON": "supportive",
+        "LinearAlgebra": "supportive",
+        "QuantumOptics": "load_bearing",
+        "SHA": "supportive",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "JSON": {
+          "reason": "supportive receipt serialization",
+          "tried": true,
+          "used": true
+        },
+        "LinearAlgebra": {
+          "reason": "supportive pinned Pauli/Bloch mirror for QuantumOptics channel rows",
+          "tried": true,
+          "used": true
+        },
+        "QuantumOptics": {
+          "reason": "load-bearing Julia carrier route for density operators and channel superoperators at the pinned S4 row",
+          "tried": true,
+          "used": true
+        },
+        "SHA": {
+          "reason": "supportive source and PIN hashing",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing Julia-side derivation from density, Kraus, and unitary channel forms with explicit half-angle trig reduction",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side SMT pinned-entry contradiction check; not a full symbolic table proof",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "qutip",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "qutip",
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_pytorch_results.json",
+      "result_sha256": "7c5d57e8bc4c2123b30a44ad4c881f49588cb86868dce06c3c64372c48b3fe03",
+      "role_id": "python_qutip_operator_channel_with_pytorch_tensor_mirror",
+      "source_path": "system_v6/sims/geo_s4_operator_stage_v0/geo_s4_operator_stage_v0_pytorch.py",
+      "source_sha256": "769f2121c5a0e3173e6309a00e13ee59d76eec38f6b1f19a90f145ee22e82df4",
+      "tool_calls": [
+        {
+          "boundary_case": "pin row q_z=q_x=3/10, theta_x=phi_z=pi/2",
+          "demotion_condition": "if qutip channel objects are removed, Python channel evidence is only a tensor mirror",
+          "gates": [
+            "P2_affine_channel_table_pinned_tensor_mirror",
+            "P3_ellipsoid_image_pinned_tensor_mirror",
+            "P6_commutator_table_pinned_tensor_mirror",
+            "all_pass"
+          ],
+          "input_object": "pinned D_z, D_x, R_x, R_z qutip superoperators and Qobj density matrices",
+          "negative/erased_control": "zero-commutator echo fails through qutip-derived raw entry",
+          "output_object": {
+            "affine_rows": {
+              "all_pass": true,
+              "method": "qutip.sprepost superoperators applied to Qobj density matrices, then qutip.expect component readout",
+              "rows": {
+                "D_x": {
+                  "M": [
+                    [
+                      "1",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "7/10",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "7/10"
+                    ]
+                  ],
+                  "c": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "pass": true,
+                  "qutip_dims": [
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ],
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ]
+                  ]
+                },
+                "D_z": {
+                  "M": [
+                    [
+                      "7/10",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "7/10",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "1"
+                    ]
+                  ],
+                  "c": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "pass": true,
+                  "qutip_dims": [
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ],
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ]
+                  ]
+                },
+                "R_x": {
+                  "M": [
+                    [
+                      "1",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "-1"
+                    ],
+                    [
+                      "0",
+                      "1",
+                      "0"
+                    ]
+                  ],
+                  "c": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "pass": true,
+                  "qutip_dims": [
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ],
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ]
+                  ]
+                },
+                "R_z": {
+                  "M": [
+                    [
+                      "0",
+                      "-1",
+                      "0"
+                    ],
+                    [
+                      "1",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "1"
+                    ]
+                  ],
+                  "c": [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "pass": true,
+                  "qutip_dims": [
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ],
+                    [
+                      [
+                        2
+                      ],
+                      [
+                        2
+                      ]
+                    ]
+                  ]
+                }
+              }
+            },
+            "commutators": {
+              "dz_rx_entry_times_10": 3,
+              "method": "torch.func.vmap over qutip-derived affine channel matrices",
+              "ordered_pair_count": 16,
+              "pass": true,
+              "rows": [
+                {
+                  "left": "D_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_z",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_x",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "3/10"
+                    ],
+                    [
+                      "0",
+                      "3/10",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_x",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "D_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_z",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_z",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_x",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_x",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "D_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "-3/10",
+                      "0"
+                    ],
+                    [
+                      "-3/10",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_z",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "R_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "-3/10"
+                    ],
+                    [
+                      "0",
+                      "-3/10",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_z",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "R_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_x",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "R_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_x",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "R_x",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "-1",
+                      "-1"
+                    ],
+                    [
+                      "-1",
+                      "0",
+                      "-1"
+                    ],
+                    [
+                      "1",
+                      "-1",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_z",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "R_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_z",
+                  "zero_pinned": true
+                },
+                {
+                  "left": "R_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "3/10",
+                      "0"
+                    ],
+                    [
+                      "3/10",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "D_x",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "R_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "1",
+                      "1"
+                    ],
+                    [
+                      "1",
+                      "0",
+                      "1"
+                    ],
+                    [
+                      "-1",
+                      "1",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_x",
+                  "zero_pinned": false
+                },
+                {
+                  "left": "R_z",
+                  "pinned_linear_commutator_fractional": [
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    [
+                      "0",
+                      "0",
+                      "0"
+                    ]
+                  ],
+                  "right": "R_z",
+                  "zero_pinned": true
+                }
+              ]
+            },
+            "ellipsoids": {
+              "D_x": {
+                "determinant_fractional": "49/100",
+                "rank": 3,
+                "singular_values_fractional": [
+                  "1",
+                  "7/10",
+                  "7/10"
+                ]
+              },
+              "D_z": {
+                "determinant_fractional": "49/100",
+                "rank": 3,
+                "singular_values_fractional": [
+                  "1",
+                  "7/10",
+                  "7/10"
+                ]
+              },
+              "R_x": {
+                "determinant_fractional": "1",
+                "rank": 3,
+                "singular_values_fractional": [
+                  "1",
+                  "1",
+                  "1"
+                ]
+              },
+              "R_z": {
+                "determinant_fractional": "1",
+                "rank": 3,
+                "singular_values_fractional": [
+                  "1",
+                  "1",
+                  "1"
+                ]
+              }
+            }
+          },
+          "positive_case": "qutip superoperators derive pinned affine rows, ellipsoid rows, and nonzero D_z/R_x commutator",
+          "qualified_api/function": "qutip.Qobj/qutip.sprepost/qutip.operator_to_vector/qutip.vector_to_operator/qutip.expect",
+          "tool": "qutip"
+        },
+        {
+          "boundary_case": "pin row q_z=q_x=3/10, theta_x=phi_z=pi/2",
+          "demotion_condition": "passing torch.func capability probe required before this can gate claim metadata",
+          "gates": [],
+          "input_object": "16 ordered qutip-derived channel-matrix pairs plus hand tensor mirror pairs",
+          "negative/erased_control": "D_z/R_x zero-commutator echo fails",
+          "output_object": {
+            "dz_rx_entry_times_10": 3,
+            "method": "torch.func.vmap over qutip-derived affine channel matrices",
+            "ordered_pair_count": 16,
+            "pass": true,
+            "rows": [
+              {
+                "left": "D_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_z",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_x",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "3/10"
+                  ],
+                  [
+                    "0",
+                    "3/10",
+                    "0"
+                  ]
+                ],
+                "right": "R_x",
+                "zero_pinned": false
+              },
+              {
+                "left": "D_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "R_z",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_z",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_x",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "R_x",
+                "zero_pinned": true
+              },
+              {
+                "left": "D_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "-3/10",
+                    "0"
+                  ],
+                  [
+                    "-3/10",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "R_z",
+                "zero_pinned": false
+              },
+              {
+                "left": "R_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "-3/10"
+                  ],
+                  [
+                    "0",
+                    "-3/10",
+                    "0"
+                  ]
+                ],
+                "right": "D_z",
+                "zero_pinned": false
+              },
+              {
+                "left": "R_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_x",
+                "zero_pinned": true
+              },
+              {
+                "left": "R_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "R_x",
+                "zero_pinned": true
+              },
+              {
+                "left": "R_x",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "-1",
+                    "-1"
+                  ],
+                  [
+                    "-1",
+                    "0",
+                    "-1"
+                  ],
+                  [
+                    "1",
+                    "-1",
+                    "0"
+                  ]
+                ],
+                "right": "R_z",
+                "zero_pinned": false
+              },
+              {
+                "left": "R_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_z",
+                "zero_pinned": true
+              },
+              {
+                "left": "R_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "3/10",
+                    "0"
+                  ],
+                  [
+                    "3/10",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "D_x",
+                "zero_pinned": false
+              },
+              {
+                "left": "R_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "-1",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "right": "R_x",
+                "zero_pinned": false
+              },
+              {
+                "left": "R_z",
+                "pinned_linear_commutator_fractional": [
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "right": "R_z",
+                "zero_pinned": true
+              }
+            ]
+          },
+          "positive_case": "batched commutator table distinguishes commuting and noncommuting qutip-derived pinned pairs",
+          "qualified_api/function": "torch.func.vmap",
+          "role": "supportive",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "pin row",
+          "demotion_condition": "if raw entry is replaced by a boolean, proof is decorative",
+          "gates": [
+            "smt_can_fail_controls",
+            "all_pass"
+          ],
+          "input_object": "torch pinned D_z/R_x commutator entry scaled by 10",
+          "negative/erased_control": "wrong zero entry is SAT",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "10*entry": 3
+            },
+            "claim": "torch pinned-entry contradiction only: source-locked D_z/R_x commutator row has scaled entry +3",
+            "load_bearing": true,
+            "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+            "ran": true,
+            "solver": "z3",
+            "source_route": "qutip-derived D_z/R_x affine commutator entry",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "sat"
+          },
+          "positive_case": "entry=+3 and entry=0 is UNSAT",
+          "qualified_api/function": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "pin row",
+          "demotion_condition": "if cvc5 does not bind the raw entry, proof is decorative",
+          "gates": [
+            "smt_can_fail_controls",
+            "all_pass"
+          ],
+          "input_object": "same torch pinned D_z/R_x commutator entry scaled by 10",
+          "negative/erased_control": "wrong zero entry is SAT",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "10*entry": 3
+            },
+            "claim": "independent cvc5 pinned-entry contradiction check of torch commutator row",
+            "load_bearing": true,
+            "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+            "ran": true,
+            "solver": "cvc5",
+            "source_route": "qutip-derived D_z/R_x affine commutator entry",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "sat"
+          },
+          "positive_case": "entry=+3 and entry=0 is UNSAT",
+          "qualified_api/function": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "qutip": "load_bearing",
+        "torch": "supportive",
+        "torch.func": "supportive",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT pinned-entry contradiction check for the same raw value",
+          "tried": true,
+          "used": true
+        },
+        "qutip": {
+          "reason": "load-bearing Python quantum-object route for channel superoperators, density operators, affine rows, and pinned commutators",
+          "tried": true,
+          "used": true
+        },
+        "torch": {
+          "reason": "supportive pinned tensor substrate for exact rational/integer mirror rows",
+          "tried": true,
+          "used": true
+        },
+        "torch.func": {
+          "reason": "supportive vmap mirror over qutip-derived and hand-control pinned ordered commutator pairs",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing SMT pinned-entry contradiction check; not a full symbolic table proof",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "fixed_sets": {
+    "D_x": {
+      "0<q_x<1": "x-axis fixed; transverse y/z components contracted",
+      "equations": [
+        "0=0",
+        "-q_x*r_y=0",
+        "-q_x*r_z=0"
+      ],
+      "fixed_axis": "sigma_x",
+      "q_x=0": "full Bloch ball fixed; identity channel",
+      "q_x=1": "x-axis fixed; transverse y/z erased in one step"
+    },
+    "D_z": {
+      "0<q_z<1": "z-axis fixed; transverse x/y components contracted",
+      "equations": [
+        "-q_z*r_x=0",
+        "-q_z*r_y=0",
+        "0=0"
+      ],
+      "fixed_axis": "sigma_z",
+      "q_z=0": "full Bloch ball fixed; identity channel",
+      "q_z=1": "z-axis fixed; transverse x/y erased in one step"
+    },
+    "R_x": {
+      "equations": [
+        "0=0",
+        "(cos(theta_x)-1)*r_y - sin(theta_x)*r_z=0",
+        "sin(theta_x)*r_y + (cos(theta_x)-1)*r_z=0"
+      ],
+      "fixed_axis": "sigma_x",
+      "generic_non_identity": "x-axis fixed; non-axis points are not attracting",
+      "theta_x=0 mod 2pi": "full Bloch ball fixed; identity channel",
+      "theta_x=pi": "x-axis fixed; transverse plane sign flip",
+      "theta_x=pi/2": "x-axis fixed; transverse plane quarter-turn orbit"
+    },
+    "R_z": {
+      "equations": [
+        "(cos(phi_z)-1)*r_x - sin(phi_z)*r_y=0",
+        "sin(phi_z)*r_x + (cos(phi_z)-1)*r_y=0",
+        "0=0"
+      ],
+      "fixed_axis": "sigma_z",
+      "generic_non_identity": "z-axis fixed; non-axis points are not attracting",
+      "phi_z=0 mod 2pi": "full Bloch ball fixed; identity channel",
+      "phi_z=pi": "z-axis fixed; transverse plane sign flip",
+      "phi_z=pi/2": "z-axis fixed; transverse plane quarter-turn orbit"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "SymPy exact symbolic CAS derivation plus SMT controls"
+    },
+    "julia": {
+      "packages": [
+        "QuantumOptics",
+        "Symbolics",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "QuantumOptics channel superoperators plus Symbolics/Z3 semantics; hand Pauli rows retained as mirrors"
+    },
+    "pytorch": {
+      "packages": [
+        "qutip",
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "qutip Python channel superoperator route with PyTorch tensor mirrors and SMT controls"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:10:20Z",
+  "julia_density_channel_derivation": {
+    "all_pass": true,
+    "basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ],
+    "half_angle_symbols": {
+      "R_x": [
+        "cx=cos(theta_x/2)",
+        "sx=sin(theta_x/2)"
+      ],
+      "R_z": [
+        "cz=cos(phi_z/2)",
+        "sz=sin(phi_z/2)"
+      ]
+    },
+    "reduction_identities": [
+      "cx^2+sx^2=1",
+      "cx^2-sx^2=cos(theta_x)",
+      "2cx*sx=sin(theta_x)",
+      "cz^2+sz^2=1",
+      "cz^2-sz^2=cos(phi_z)",
+      "2cz*sz=sin(phi_z)"
+    ],
+    "rows": {
+      "D_x": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "raw_density_components": [
+          "x",
+          "y - q_x*y",
+          "z - q_x*z"
+        ],
+        "raw_half_angle_M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_x",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1 - q_x"
+          ]
+        ],
+        "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+        "unital_derived": true
+      },
+      "D_z": {
+        "M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "raw_density_components": [
+          "x - q_z*x",
+          "y - q_z*y",
+          "z"
+        ],
+        "raw_half_angle_M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+        "unital_derived": true
+      },
+      "R_x": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "-sin(theta_x)"
+          ],
+          [
+            "0",
+            "sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "raw_density_components": [
+          "(cx^2 + sx^2)*x",
+          "(cx^2)*y - (2//1)*cx*sx*z - (sx^2)*y",
+          "(cx^2)*z + (2//1)*cx*sx*y - (sx^2)*z"
+        ],
+        "raw_half_angle_M": [
+          [
+            "cx^2 + sx^2",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cx^2 - (sx^2)",
+            "(-2//1)*cx*sx"
+          ],
+          [
+            "0",
+            "(2//1)*cx*sx",
+            "cx^2 - (sx^2)"
+          ]
+        ],
+        "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+        "unital_derived": true
+      },
+      "R_z": {
+        "M": [
+          [
+            "cos(phi_z)",
+            "-sin(phi_z)",
+            "0"
+          ],
+          [
+            "sin(phi_z)",
+            "cos(phi_z)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "raw_density_components": [
+          "(cz^2)*x - (2//1)*cz*sz*y - (sz^2)*x",
+          "(cz^2)*y + (2//1)*cz*sz*x - (sz^2)*y",
+          "(cz^2 + sz^2)*z"
+        ],
+        "raw_half_angle_M": [
+          [
+            "cz^2 - (sz^2)",
+            "(-2//1)*cz*sz",
+            "0"
+          ],
+          [
+            "(2//1)*cz*sz",
+            "cz^2 - (sz^2)",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "cz^2 + sz^2"
+          ]
+        ],
+        "source": "derived from Julia density matrix plus Kraus/projector or unitary channel form",
+        "unital_derived": true
+      }
+    }
+  },
+  "negative_controls": {
+    "C1_wrong_bloch_convention": {
+      "conversion_layer": "M_s1_pinned = J * M_source_locked_standard * J",
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "gate_passed_after_mutation": false,
+      "mutation": "use the S1 pinned-y matrix as if it were the source-locked standard-basis R_x row",
+      "observed_mutated_value": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "-1",
+          "0"
+        ]
+      ],
+      "rerun_surface": "basis conversion check on R_x",
+      "selectivity_pass": true
+    },
+    "C2_wrong_basis_dephase": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "fixed_axis": "sigma_z",
+        "pinned_M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "replace D_z with y-axis dephase diag(1-q_z,1,1-q_z)",
+      "observed_mutated_value": {
+        "fixed_axis": "sigma_y_standard",
+        "pinned_M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ]
+      },
+      "rerun_surface": "fixed-axis and affine-table rerun",
+      "selectivity_pass": true
+    },
+    "C3_fake_nonunital_shift": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "affine_shift_commutator": [
+          "0",
+          "0",
+          "0"
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "inject c=(0,epsilon,0) into D_z",
+      "observed_mutated_value": {
+        "D_z_R_x_shift_commutator": [
+          "0",
+          "epsilon*(1 - cos(theta_x))",
+          "-epsilon*sin(theta_x)"
+        ],
+        "c": [
+          "0",
+          "epsilon",
+          "0"
+        ]
+      },
+      "rerun_surface": "unital and affine-shift commutator rerun",
+      "selectivity_pass": true
+    },
+    "C4_rotation_as_contraction_error": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "R_x_gram": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "determinant": "1"
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "force R_x transverse semi-axis length to 7/10",
+      "observed_mutated_value": {
+        "R_x_gram": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "49/100",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "49/100"
+          ]
+        ],
+        "determinant": "49/100"
+      },
+      "rerun_surface": "ellipsoid spectrum rerun",
+      "selectivity_pass": true
+    },
+    "C5_dephase_as_rotation_error": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "pinned_det": "49/100",
+        "pinned_limit": [
+          "0",
+          "0",
+          "z_0"
+        ]
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "force D_z to preserve all radii for 0<q_z<1 by replacing it with identity",
+      "observed_mutated_value": {
+        "pinned_det": "1",
+        "pinned_limit": [
+          "x_0",
+          "y_0",
+          "z_0"
+        ]
+      },
+      "rerun_surface": "ellipsoid determinant and basin-limit rerun",
+      "selectivity_pass": true
+    },
+    "C6_commutator_echo_error": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "pinned_D_z_R_x_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "assert D_z commutes with R_x at the source-locked pin row",
+      "observed_mutated_value": {
+        "pinned_D_z_R_x_commutator": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "3/10"
+          ],
+          [
+            "0",
+            "3/10",
+            "0"
+          ]
+        ]
+      },
+      "rerun_surface": "commutator-table rerun",
+      "selectivity_pass": true
+    },
+    "C7_numeric_only_table_error": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "exact_strength": "exact_symbolic_matrix_table",
+        "has_symbolic_entries": true
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "remove symbolic entries and keep only pinned floating trace norms",
+      "observed_mutated_value": {
+        "exact_strength": "exact_integer_rational_pin",
+        "has_symbolic_entries": false
+      },
+      "rerun_surface": "exactness ledger rerun",
+      "selectivity_pass": true
+    },
+    "C8_terrain_leakage_error": {
+      "executed": true,
+      "expected_failure_observed": true,
+      "expected_value": {
+        "scope": "S4_density_bloch_operator_channels",
+        "terrain_rows_admitted": false
+      },
+      "gate_passed_after_mutation": false,
+      "mutation": "use S5 terrain fixed rows as the S4 operator basin proof",
+      "observed_mutated_value": {
+        "scope": "S5_terrain_generator_rows",
+        "terrain_rows_admitted": true
+      },
+      "rerun_surface": "quotient-boundary rerun",
+      "selectivity_pass": true
+    },
+    "all_selectivity_pass": true
+  },
+  "object_id": "geo_s4_operator_stage_v0",
+  "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+  "pin_spec": "geo_s4_operator_stage_v0|sigma_y_standard=[[0,-i],[i,0]]|primary_bloch_basis=(sigma_x,sigma_y_standard,sigma_z)|s1_pinned_bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|standard_to_s1_pinned_J=diag(1,-1,1)|component_rule=r_i=Tr(rho*basis_i)|channels=(D_z,D_x,R_x,R_z)|source_forms=(Ti=z_dephase,Te=x_dephase,Fi=x_rotation,Fe=z_rotation)|symbolic_parameters=(q_z,q_x,theta_x,phi_z)|pin_row=(q_z=3/10,q_x=3/10,theta_x=pi/2,phi_z=pi/2)|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "positive_ledger": {
+    "P1_pauli_table_exact": {
+      "exact_strength": "exact_symbolic_matrix_table",
+      "pass": true
+    },
+    "P2_affine_channel_table_exact": {
+      "exact_strength": "exact_symbolic_matrix_table",
+      "pass": true
+    },
+    "P3_ellipsoid_image_exact": {
+      "exact_strength": "exact_case_classification",
+      "pass": true
+    },
+    "P4_fixed_sets_exact": {
+      "exact_strength": "exact_case_classification",
+      "pass": true
+    },
+    "P5_basin_classes_exact": {
+      "exact_strength": "exact_case_classification",
+      "pass": true
+    },
+    "P6_commutator_table_symbolic": {
+      "exact_strength": "exact_symbolic_matrix_table",
+      "pass": true
+    },
+    "P7_prior_reuse_lineage": {
+      "exact_strength": "lineage_citation_only",
+      "pass": true
+    },
+    "P8_claim_ceiling": {
+      "exact_strength": "quotient_boundary_statement",
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "quotient_erasure_note": {
+    "boundary": "Spinor/Hopf and nonassociative structure may be cited as lower/higher-stage boundaries but is not claimed by this S4 packet.",
+    "erases": [
+      "global phase",
+      "spinor path lift",
+      "Hopf fiber holonomy",
+      "three-slot bracketing",
+      "algebra-level nonassociativity"
+    ],
+    "scope": "density/Bloch quotient channels only",
+    "sees": [
+      "Bloch vector affine maps",
+      "density channel action",
+      "fixed axes",
+      "ellipsoid images",
+      "channel commutators"
+    ]
+  },
+  "receipts": {
+    "P1_pauli_table_exact": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "anticommutator_table": [
+          {
+            "anticommutator": [
+              [
+                "2",
+                "0"
+              ],
+              [
+                "0",
+                "2"
+              ]
+            ],
+            "left": "X",
+            "right": "X",
+            "zero": false
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "X",
+            "right": "Y_standard",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "X",
+            "right": "Z",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "X",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "2",
+                "0"
+              ],
+              [
+                "0",
+                "2"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "Y_standard",
+            "zero": false
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "Z",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Z",
+            "right": "X",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Z",
+            "right": "Y_standard",
+            "zero": true
+          },
+          {
+            "anticommutator": [
+              [
+                "2",
+                "0"
+              ],
+              [
+                "0",
+                "2"
+              ]
+            ],
+            "left": "Z",
+            "right": "Z",
+            "zero": false
+          }
+        ],
+        "basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "commutator_table": [
+          {
+            "commutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "X",
+            "right": "X",
+            "zero": true
+          },
+          {
+            "commutator": [
+              [
+                "2*I",
+                "0"
+              ],
+              [
+                "0",
+                "-2*I"
+              ]
+            ],
+            "left": "X",
+            "right": "Y_standard",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "-2"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "left": "X",
+            "right": "Z",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "-2*I",
+                "0"
+              ],
+              [
+                "0",
+                "2*I"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "X",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "Y_standard",
+            "zero": true
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "2*I"
+              ],
+              [
+                "2*I",
+                "0"
+              ]
+            ],
+            "left": "Y_standard",
+            "right": "Z",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "2"
+              ],
+              [
+                "-2",
+                "0"
+              ]
+            ],
+            "left": "Z",
+            "right": "X",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "-2*I"
+              ],
+              [
+                "-2*I",
+                "0"
+              ]
+            ],
+            "left": "Z",
+            "right": "Y_standard",
+            "zero": false
+          },
+          {
+            "commutator": [
+              [
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "left": "Z",
+            "right": "Z",
+            "zero": true
+          }
+        ],
+        "expected_products": {
+          "X*X": "I",
+          "X*Y_standard": "I*Z",
+          "X*Z": "-I*Y_standard",
+          "Y_standard*X": "-I*Z",
+          "Y_standard*Y_standard": "I",
+          "Y_standard*Z": "I*X",
+          "Z*X": "I*Y_standard",
+          "Z*Y_standard": "-I*X",
+          "Z*Z": "I"
+        },
+        "multiplication_table": [
+          {
+            "left": "X",
+            "product": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "right": "X"
+          },
+          {
+            "left": "X",
+            "product": [
+              [
+                "I",
+                "0"
+              ],
+              [
+                "0",
+                "-I"
+              ]
+            ],
+            "right": "Y_standard"
+          },
+          {
+            "left": "X",
+            "product": [
+              [
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "0"
+              ]
+            ],
+            "right": "Z"
+          },
+          {
+            "left": "Y_standard",
+            "product": [
+              [
+                "-I",
+                "0"
+              ],
+              [
+                "0",
+                "I"
+              ]
+            ],
+            "right": "X"
+          },
+          {
+            "left": "Y_standard",
+            "product": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "right": "Y_standard"
+          },
+          {
+            "left": "Y_standard",
+            "product": [
+              [
+                "0",
+                "I"
+              ],
+              [
+                "I",
+                "0"
+              ]
+            ],
+            "right": "Z"
+          },
+          {
+            "left": "Z",
+            "product": [
+              [
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "0"
+              ]
+            ],
+            "right": "X"
+          },
+          {
+            "left": "Z",
+            "product": [
+              [
+                "0",
+                "-I"
+              ],
+              [
+                "-I",
+                "0"
+              ]
+            ],
+            "right": "Y_standard"
+          },
+          {
+            "left": "Z",
+            "product": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "right": "Z"
+          }
+        ],
+        "orientation": "source-locked standard Pauli orientation; S1 pinned-y basis is carried by the explicit J conversion layer",
+        "pass": true,
+        "s1_pinned_conversion": "M_s1_pinned = J * M_source_locked_standard * J"
+      },
+      "exact_strength": "exact_symbolic_matrix_table",
+      "id": "P1_pauli_table_exact",
+      "pass": true
+    },
+    "P2_affine_channel_table_exact": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "D_x": {
+          "basis": "source_locked_standard_bloch",
+          "derived_from": "source Kraus/unitary form over standard Bloch basis",
+          "matches_expected_formula": true,
+          "matches_s1_pinned_conversion": true,
+          "pinned": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "7/10",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "7/10"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "s1_pinned_basis": {
+            "basis": "sigma_x,-sigma_y_standard,sigma_z",
+            "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+            "matches_direct_density_derivation": true,
+            "pinned": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "7/10",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "7/10"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "symbolic": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1 - q_x",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1 - q_x"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          "symbolic": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1 - q_x",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1 - q_x"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "unital_derived": true
+        },
+        "D_z": {
+          "basis": "source_locked_standard_bloch",
+          "derived_from": "source Kraus/unitary form over standard Bloch basis",
+          "matches_expected_formula": true,
+          "matches_s1_pinned_conversion": true,
+          "pinned": {
+            "M": [
+              [
+                "7/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "7/10",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "s1_pinned_basis": {
+            "basis": "sigma_x,-sigma_y_standard,sigma_z",
+            "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+            "matches_direct_density_derivation": true,
+            "pinned": {
+              "M": [
+                [
+                  "7/10",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "7/10",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "symbolic": {
+              "M": [
+                [
+                  "1 - q_z",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1 - q_z",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          "symbolic": {
+            "M": [
+              [
+                "1 - q_z",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1 - q_z",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "unital_derived": true
+        },
+        "R_x": {
+          "basis": "source_locked_standard_bloch",
+          "derived_from": "source Kraus/unitary form over standard Bloch basis",
+          "matches_expected_formula": true,
+          "matches_s1_pinned_conversion": true,
+          "pinned": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-1"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "s1_pinned_basis": {
+            "basis": "sigma_x,-sigma_y_standard,sigma_z",
+            "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+            "matches_direct_density_derivation": true,
+            "pinned": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ],
+                [
+                  "0",
+                  "-1",
+                  "0"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "symbolic": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "cos(theta_x)",
+                  "sin(theta_x)"
+                ],
+                [
+                  "0",
+                  "-sin(theta_x)",
+                  "cos(theta_x)"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          "symbolic": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "cos(theta_x)",
+                "-sin(theta_x)"
+              ],
+              [
+                "0",
+                "sin(theta_x)",
+                "cos(theta_x)"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "unital_derived": true
+        },
+        "R_z": {
+          "basis": "source_locked_standard_bloch",
+          "derived_from": "source Kraus/unitary form over standard Bloch basis",
+          "matches_expected_formula": true,
+          "matches_s1_pinned_conversion": true,
+          "pinned": {
+            "M": [
+              [
+                "0",
+                "-1",
+                "0"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "s1_pinned_basis": {
+            "basis": "sigma_x,-sigma_y_standard,sigma_z",
+            "conversion": "M_s1_pinned = J * M_source_locked_standard * J",
+            "matches_direct_density_derivation": true,
+            "pinned": {
+              "M": [
+                [
+                  "0",
+                  "1",
+                  "0"
+                ],
+                [
+                  "-1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            "symbolic": {
+              "M": [
+                [
+                  "cos(phi_z)",
+                  "sin(phi_z)",
+                  "0"
+                ],
+                [
+                  "-sin(phi_z)",
+                  "cos(phi_z)",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          },
+          "symbolic": {
+            "M": [
+              [
+                "cos(phi_z)",
+                "-sin(phi_z)",
+                "0"
+              ],
+              [
+                "sin(phi_z)",
+                "cos(phi_z)",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "unital_derived": true
+        }
+      },
+      "exact_strength": "exact_symbolic_matrix_table",
+      "id": "P2_affine_channel_table_exact",
+      "pass": true
+    },
+    "P3_ellipsoid_image_exact": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "D_x": {
+          "axis_directions": {
+            "x": "sigma_x",
+            "y": "sigma_y_standard",
+            "z": "sigma_z"
+          },
+          "determinant": "(1-q_x)^2",
+          "image_classification": {
+            "0<q_x<1": "x-axis spheroid",
+            "q_x=0": "sphere_identity",
+            "q_x=1": "line_limit_x_axis"
+          },
+          "pinned": {
+            "determinant": "49/100",
+            "rank": 3,
+            "semi_axes": [
+              "1",
+              "7/10",
+              "7/10"
+            ]
+          },
+          "rank": {
+            "0<q_x<1": 3,
+            "q_x=0": 3,
+            "q_x=1": 1
+          },
+          "semi_axes": {
+            "x": "1",
+            "y": "1-q_x",
+            "z": "1-q_x"
+          }
+        },
+        "D_z": {
+          "axis_directions": {
+            "x": "sigma_x",
+            "y": "sigma_y_standard",
+            "z": "sigma_z"
+          },
+          "determinant": "(1-q_z)^2",
+          "image_classification": {
+            "0<q_z<1": "z-axis spheroid",
+            "q_z=0": "sphere_identity",
+            "q_z=1": "line_limit_z_axis"
+          },
+          "pinned": {
+            "determinant": "49/100",
+            "rank": 3,
+            "semi_axes": [
+              "7/10",
+              "7/10",
+              "1"
+            ]
+          },
+          "rank": {
+            "0<q_z<1": 3,
+            "q_z=0": 3,
+            "q_z=1": 1
+          },
+          "semi_axes": {
+            "x": "1-q_z",
+            "y": "1-q_z",
+            "z": "1"
+          }
+        },
+        "R_x": {
+          "axis_directions": {
+            "fixed_axis": "sigma_x",
+            "rotated_plane": [
+              "sigma_y_standard",
+              "sigma_z"
+            ]
+          },
+          "determinant": "1",
+          "image_classification": {
+            "generic": "sphere_rotation",
+            "theta_x=0": "sphere_identity",
+            "theta_x=pi": "sphere_half_turn",
+            "theta_x=pi/2": "sphere_quarter_turn"
+          },
+          "pinned": {
+            "determinant": "1",
+            "rank": 3,
+            "semi_axes": [
+              "1",
+              "1",
+              "1"
+            ]
+          },
+          "rank": {
+            "all_angles": 3
+          },
+          "semi_axes": {
+            "all_angles": [
+              "1",
+              "1",
+              "1"
+            ]
+          }
+        },
+        "R_z": {
+          "axis_directions": {
+            "fixed_axis": "sigma_z",
+            "rotated_plane": [
+              "sigma_x",
+              "sigma_y_standard"
+            ]
+          },
+          "determinant": "1",
+          "image_classification": {
+            "generic": "sphere_rotation",
+            "phi_z=0": "sphere_identity",
+            "phi_z=pi": "sphere_half_turn",
+            "phi_z=pi/2": "sphere_quarter_turn"
+          },
+          "pinned": {
+            "determinant": "1",
+            "rank": 3,
+            "semi_axes": [
+              "1",
+              "1",
+              "1"
+            ]
+          },
+          "rank": {
+            "all_angles": 3
+          },
+          "semi_axes": {
+            "all_angles": [
+              "1",
+              "1",
+              "1"
+            ]
+          }
+        }
+      },
+      "exact_strength": "exact_case_classification",
+      "id": "P3_ellipsoid_image_exact",
+      "pass": true
+    },
+    "P4_fixed_sets_exact": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "D_x": {
+          "0<q_x<1": "x-axis fixed; transverse y/z components contracted",
+          "equations": [
+            "0=0",
+            "-q_x*r_y=0",
+            "-q_x*r_z=0"
+          ],
+          "fixed_axis": "sigma_x",
+          "q_x=0": "full Bloch ball fixed; identity channel",
+          "q_x=1": "x-axis fixed; transverse y/z erased in one step"
+        },
+        "D_z": {
+          "0<q_z<1": "z-axis fixed; transverse x/y components contracted",
+          "equations": [
+            "-q_z*r_x=0",
+            "-q_z*r_y=0",
+            "0=0"
+          ],
+          "fixed_axis": "sigma_z",
+          "q_z=0": "full Bloch ball fixed; identity channel",
+          "q_z=1": "z-axis fixed; transverse x/y erased in one step"
+        },
+        "R_x": {
+          "equations": [
+            "0=0",
+            "(cos(theta_x)-1)*r_y - sin(theta_x)*r_z=0",
+            "sin(theta_x)*r_y + (cos(theta_x)-1)*r_z=0"
+          ],
+          "fixed_axis": "sigma_x",
+          "generic_non_identity": "x-axis fixed; non-axis points are not attracting",
+          "theta_x=0 mod 2pi": "full Bloch ball fixed; identity channel",
+          "theta_x=pi": "x-axis fixed; transverse plane sign flip",
+          "theta_x=pi/2": "x-axis fixed; transverse plane quarter-turn orbit"
+        },
+        "R_z": {
+          "equations": [
+            "(cos(phi_z)-1)*r_x - sin(phi_z)*r_y=0",
+            "sin(phi_z)*r_x + (cos(phi_z)-1)*r_y=0",
+            "0=0"
+          ],
+          "fixed_axis": "sigma_z",
+          "generic_non_identity": "z-axis fixed; non-axis points are not attracting",
+          "phi_z=0 mod 2pi": "full Bloch ball fixed; identity channel",
+          "phi_z=pi": "z-axis fixed; transverse plane sign flip",
+          "phi_z=pi/2": "z-axis fixed; transverse plane quarter-turn orbit"
+        }
+      },
+      "exact_strength": "exact_case_classification",
+      "id": "P4_fixed_sets_exact",
+      "pass": true
+    },
+    "P5_basin_classes_exact": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "D_x": {
+          "basin_slice_for_fixed_point": {
+            "fixed_point": [
+              "xi",
+              "0",
+              "0"
+            ],
+            "slice": "xi^2 + y_0^2 + z_0^2 <= 1"
+          },
+          "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+          "closed_form_limit": {
+            "condition": "0<q_x<1",
+            "limit_n_to_infinity": [
+              "x_0",
+              "0",
+              "0"
+            ],
+            "reason": "0 < 1-q_x < 1 implies (1-q_x)^n -> 0"
+          },
+          "computed_pin_limit_receipt": {
+            "limit": [
+              "1/5",
+              "0",
+              "0"
+            ],
+            "q_x": "3/10",
+            "r_0": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ],
+            "r_1": [
+              "1/5",
+              "-7/25",
+              "7/30"
+            ],
+            "r_2": [
+              "1/5",
+              "-49/250",
+              "49/300"
+            ],
+            "r_5": [
+              "1/5",
+              "-16807/250000",
+              "16807/300000"
+            ]
+          },
+          "iteration_formula": {
+            "matrix_power": "diag(1,(1-q_x)^n,(1-q_x)^n)",
+            "r_n": [
+              "x_0",
+              "(1-q_x)^n*y_0",
+              "(1-q_x)^n*z_0"
+            ]
+          },
+          "one_step_projection": {
+            "condition": "q_x=1",
+            "r_1": [
+              "x_0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        "D_z": {
+          "basin_slice_for_fixed_point": {
+            "fixed_point": [
+              "0",
+              "0",
+              "zeta"
+            ],
+            "slice": "x_0^2 + y_0^2 + zeta^2 <= 1"
+          },
+          "boundary": "operator-channel convergence only; no S5 terrain-attractor claim",
+          "closed_form_limit": {
+            "condition": "0<q_z<1",
+            "limit_n_to_infinity": [
+              "0",
+              "0",
+              "z_0"
+            ],
+            "reason": "0 < 1-q_z < 1 implies (1-q_z)^n -> 0"
+          },
+          "computed_pin_limit_receipt": {
+            "limit": [
+              "0",
+              "0",
+              "1/3"
+            ],
+            "q_z": "3/10",
+            "r_0": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ],
+            "r_1": [
+              "7/50",
+              "-7/25",
+              "1/3"
+            ],
+            "r_2": [
+              "49/500",
+              "-49/250",
+              "1/3"
+            ],
+            "r_5": [
+              "16807/500000",
+              "-16807/250000",
+              "1/3"
+            ]
+          },
+          "iteration_formula": {
+            "matrix_power": "diag((1-q_z)^n,(1-q_z)^n,1)",
+            "r_n": [
+              "(1-q_z)^n*x_0",
+              "(1-q_z)^n*y_0",
+              "z_0"
+            ]
+          },
+          "one_step_projection": {
+            "condition": "q_z=1",
+            "r_1": [
+              "0",
+              "0",
+              "z_0"
+            ]
+          }
+        },
+        "R_x": {
+          "computed_pin_orbit_receipt": {
+            "nonlimit_check": "r_1-r_0=(0,1/15,-11/15) != 0",
+            "period_check": "r_4-r_0=(0,0,0)",
+            "r_0": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ],
+            "r_1": [
+              "1/5",
+              "-1/3",
+              "-2/5"
+            ],
+            "r_2": [
+              "1/5",
+              "2/5",
+              "-1/3"
+            ],
+            "r_3": [
+              "1/5",
+              "1/3",
+              "2/5"
+            ],
+            "r_4": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ],
+            "theta_x": "pi/2"
+          },
+          "invariant": "y_n^2 + z_n^2 = y_0^2 + z_0^2",
+          "limit_receipt": {
+            "irrational_theta_over_2pi": "nonconvergent dense orbit on transverse circle",
+            "limit_exists_if": "theta_x=0 mod 2pi or y_0=z_0=0; theta_x=pi with nonzero transverse part is period-two and nonconvergent",
+            "rational_theta_over_2pi": "periodic orbit on transverse circle"
+          },
+          "power_formula": {
+            "M^n": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "cos(n*theta_x)",
+                "-sin(n*theta_x)"
+              ],
+              [
+                "0",
+                "sin(n*theta_x)",
+                "cos(n*theta_x)"
+              ]
+            ],
+            "r_n": [
+              "x_0",
+              "cos(n*theta_x)*y_0 - sin(n*theta_x)*z_0",
+              "sin(n*theta_x)*y_0 + cos(n*theta_x)*z_0"
+            ]
+          }
+        },
+        "R_z": {
+          "computed_pin_orbit_receipt": {
+            "nonlimit_check": "r_1-r_0=(1/5,3/5,0) != 0",
+            "period_check": "r_4-r_0=(0,0,0)",
+            "phi_z": "pi/2",
+            "r_0": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ],
+            "r_1": [
+              "2/5",
+              "1/5",
+              "1/3"
+            ],
+            "r_2": [
+              "-1/5",
+              "2/5",
+              "1/3"
+            ],
+            "r_3": [
+              "-2/5",
+              "-1/5",
+              "1/3"
+            ],
+            "r_4": [
+              "1/5",
+              "-2/5",
+              "1/3"
+            ]
+          },
+          "invariant": "x_n^2 + y_n^2 = x_0^2 + y_0^2",
+          "limit_receipt": {
+            "irrational_phi_over_2pi": "nonconvergent dense orbit on transverse circle",
+            "limit_exists_if": "phi_z=0 mod 2pi or x_0=y_0=0; phi_z=pi with nonzero transverse part is period-two and nonconvergent",
+            "rational_phi_over_2pi": "periodic orbit on transverse circle"
+          },
+          "power_formula": {
+            "M^n": [
+              [
+                "cos(n*phi_z)",
+                "-sin(n*phi_z)",
+                "0"
+              ],
+              [
+                "sin(n*phi_z)",
+                "cos(n*phi_z)",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "r_n": [
+              "cos(n*phi_z)*x_0 - sin(n*phi_z)*y_0",
+              "sin(n*phi_z)*x_0 + cos(n*phi_z)*y_0",
+              "z_0"
+            ]
+          }
+        }
+      },
+      "exact_strength": "exact_case_classification",
+      "id": "P5_basin_classes_exact",
+      "pass": true
+    },
+    "P6_commutator_table_symbolic": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "older_numeric_cross_check": "prior rho_0 trace-norm table cited as sparse numeric prior only; this table is symbolic over affine Bloch maps",
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "structural_reason": "same channel",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "structural_reason": "diagonal Bloch contractions commute",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "q_z*sin(theta_x)"
+              ],
+              [
+                "0",
+                "q_z*sin(theta_x)",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "structural_reason": "x-rotation mixes the z fixed axis with a D_z-contracted transverse component; zero only if q_z=0 or sin(theta_x)=0",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "structural_reason": "z-dephase has equal transverse x/y scaling and commutes with z-axis rotation",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "structural_reason": "diagonal Bloch contractions commute",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "structural_reason": "same channel",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "structural_reason": "x-dephase has equal transverse y/z scaling and commutes with x-axis rotation",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "linear_commutator": [
+              [
+                "0",
+                "-q_x*sin(phi_z)",
+                "0"
+              ],
+              [
+                "-q_x*sin(phi_z)",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "structural_reason": "z-rotation mixes the x fixed axis with a D_x-contracted transverse component; zero only if q_x=0 or sin(phi_z)=0",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-q_z*sin(theta_x)"
+              ],
+              [
+                "0",
+                "-q_z*sin(theta_x)",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "structural_reason": "x-rotation mixes the z fixed axis with a D_z-contracted transverse component; zero only if q_z=0 or sin(theta_x)=0",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "structural_reason": "x-dephase has equal transverse y/z scaling and commutes with x-axis rotation",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "structural_reason": "same channel",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "linear_commutator": [
+              [
+                "0",
+                "(cos(theta_x) - 1)*sin(phi_z)",
+                "-sin(phi_z)*sin(theta_x)"
+              ],
+              [
+                "(cos(theta_x) - 1)*sin(phi_z)",
+                "0",
+                "(cos(phi_z) - 1)*sin(theta_x)"
+              ],
+              [
+                "sin(phi_z)*sin(theta_x)",
+                "(cos(phi_z) - 1)*sin(theta_x)",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "structural_reason": "rotations about distinct axes do not commute generically; zero for identity cases or both angles integer multiples of pi",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "structural_reason": "z-dephase has equal transverse x/y scaling and commutes with z-axis rotation",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "linear_commutator": [
+              [
+                "0",
+                "q_x*sin(phi_z)",
+                "0"
+              ],
+              [
+                "q_x*sin(phi_z)",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "structural_reason": "z-rotation mixes the x fixed axis with a D_x-contracted transverse component; zero only if q_x=0 or sin(phi_z)=0",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "linear_commutator": [
+              [
+                "0",
+                "(1 - cos(theta_x))*sin(phi_z)",
+                "sin(phi_z)*sin(theta_x)"
+              ],
+              [
+                "(1 - cos(theta_x))*sin(phi_z)",
+                "0",
+                "(1 - cos(phi_z))*sin(theta_x)"
+              ],
+              [
+                "-sin(phi_z)*sin(theta_x)",
+                "(1 - cos(phi_z))*sin(theta_x)",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "structural_reason": "rotations about distinct axes do not commute generically; zero for identity cases or both angles integer multiples of pi",
+            "zero_pinned": false,
+            "zero_symbolic": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "pinned_affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pinned_linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "structural_reason": "same channel",
+            "zero_pinned": true,
+            "zero_symbolic": true
+          }
+        ],
+        "special_zero_cases": {
+          "D_x_with_R_z": "zero iff q_x=0 or sin(phi_z)=0",
+          "D_z_with_R_x": "zero iff q_z=0 or sin(theta_x)=0",
+          "R_x_with_R_z": "zero if theta_x=0 mod 2pi, or phi_z=0 mod 2pi, or both theta_x and phi_z are integer multiples of pi"
+        }
+      },
+      "exact_strength": "exact_symbolic_matrix_table",
+      "id": "P6_commutator_table_symbolic",
+      "pass": true
+    },
+    "P7_prior_reuse_lineage": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "matrix64_order_gap_prior": {
+          "lines": "11-13,28-36,76-99,135-150",
+          "path": "system_v6/sims/terrain_operator_precedence_64_matrix/audit_verdict.md",
+          "reuse": "context_only_not_rerun"
+        },
+        "prior_sparse_commutator_numeric": {
+          "lines": "36-70",
+          "path": "system_v6/sims/source_locked_operator_base_packet/results/source_locked_operator_base_packet_envelope_results.json",
+          "reuse": "cross_check_only_not_proof"
+        },
+        "s1_bloch_convention_pin": {
+          "lines": "38-47,108-113",
+          "path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_envelope.py",
+          "reuse": "convention_pin"
+        },
+        "s5_terrain_fixed_point_prior": {
+          "lines": "2957,3018,3079",
+          "path": "system_v6/sims/terrain_generator_sheet_packet/results/terrain_generator_sheet_packet_envelope_results.json",
+          "reuse": "out_of_scope_context_only"
+        },
+        "source_locked_channel_forms": {
+          "lines": "167-221",
+          "path": "system_v6/sims/source_locked_operator_base_packet/source_locked_operator_base_packet_jax.py",
+          "reuse": "cite_only"
+        },
+        "source_locked_pauli_and_projectors": {
+          "lines": "45-61",
+          "path": "system_v6/sims/source_locked_operator_base_packet/source_locked_operator_base_packet_jax.py",
+          "reuse": "cite_only"
+        },
+        "source_locked_result_form_table": {
+          "lines": "848-866",
+          "path": "system_v6/sims/source_locked_operator_base_packet/results/source_locked_operator_base_packet_envelope_results.json",
+          "reuse": "cite_only"
+        }
+      },
+      "exact_strength": "lineage_citation_only",
+      "id": "P7_prior_reuse_lineage",
+      "pass": true
+    },
+    "P8_claim_ceiling": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "boundary": "Spinor/Hopf and nonassociative structure may be cited as lower/higher-stage boundaries but is not claimed by this S4 packet.",
+        "erases": [
+          "global phase",
+          "spinor path lift",
+          "Hopf fiber holonomy",
+          "three-slot bracketing",
+          "algebra-level nonassociativity"
+        ],
+        "scope": "density/Bloch quotient channels only",
+        "sees": [
+          "Bloch vector affine maps",
+          "density channel action",
+          "fixed axes",
+          "ellipsoid images",
+          "channel commutators"
+        ]
+      },
+      "exact_strength": "quotient_boundary_statement",
+      "id": "P8_claim_ceiling",
+      "pass": true
+    }
+  },
+  "result_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "self_check_notice": "Builder self-checks are local sanity checks only and are not independent audit evidence.",
+  "sim_id": "geo_s4_operator_stage_v0",
+  "source_lineage": {
+    "matrix64_order_gap_prior": {
+      "lines": "11-13,28-36,76-99,135-150",
+      "path": "system_v6/sims/terrain_operator_precedence_64_matrix/audit_verdict.md",
+      "reuse": "context_only_not_rerun"
+    },
+    "prior_sparse_commutator_numeric": {
+      "lines": "36-70",
+      "path": "system_v6/sims/source_locked_operator_base_packet/results/source_locked_operator_base_packet_envelope_results.json",
+      "reuse": "cross_check_only_not_proof"
+    },
+    "s1_bloch_convention_pin": {
+      "lines": "38-47,108-113",
+      "path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_envelope.py",
+      "reuse": "convention_pin"
+    },
+    "s5_terrain_fixed_point_prior": {
+      "lines": "2957,3018,3079",
+      "path": "system_v6/sims/terrain_generator_sheet_packet/results/terrain_generator_sheet_packet_envelope_results.json",
+      "reuse": "out_of_scope_context_only"
+    },
+    "source_locked_channel_forms": {
+      "lines": "167-221",
+      "path": "system_v6/sims/source_locked_operator_base_packet/source_locked_operator_base_packet_jax.py",
+      "reuse": "cite_only"
+    },
+    "source_locked_pauli_and_projectors": {
+      "lines": "45-61",
+      "path": "system_v6/sims/source_locked_operator_base_packet/source_locked_operator_base_packet_jax.py",
+      "reuse": "cite_only"
+    },
+    "source_locked_result_form_table": {
+      "lines": "848-866",
+      "path": "system_v6/sims/source_locked_operator_base_packet/results/source_locked_operator_base_packet_envelope_results.json",
+      "reuse": "cite_only"
+    }
+  },
+  "source_path": "system_v6/sims/geo_s4_operator_stage_v0/geo_s4_operator_stage_v0_envelope.py",
+  "source_sha256": "8ede98ed4520dfde382ee82fb648dd9c94d53edcd791981790722ce9042d4230"
+}

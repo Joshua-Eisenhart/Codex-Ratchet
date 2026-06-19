@@ -1,0 +1,74 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact count guard",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor storage and reductions",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing batched radius checks",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "entangled_fiber_count": 16,
+  "entangled_survivor_count": 16,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-13T00:55:57Z",
+  "one_q_regression_ok": true,
+  "package_observables": {
+    "sympy": "sp.Rational exact count decomposition guard",
+    "torch.func": "vmap over product Bloch vectors recomputes unit-radius geometry control"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "product_survivor_count": 528,
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_geometry_attach_2q_v1/results/gcm_geometry_attach_2q_v1_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_geometry_attach_2q_v1",
+  "source_path": "system_v6/sims/gcm_geometry_attach_2q_v1/gcm_geometry_attach_2q_v1_pytorch.py",
+  "source_sha256": "c1dac09b469f51e3c8dc90a9d598ba9a9898b8e38bec1887461cb74f71144897",
+  "survivor_count": 544,
+  "sympy_guard": {
+    "pass": true,
+    "survivors": "544",
+    "total": "544"
+  },
+  "torch_geometry_receipt": {
+    "all_entangled_subunit": true,
+    "finite": true,
+    "max_entangled_radius": 0.86602540378444,
+    "max_product_radius_error": 7.771561172376096e-16,
+    "min_entangled_radius": 0.707106781186548,
+    "product_vector_shape": [
+      1056,
+      3
+    ]
+  }
+}

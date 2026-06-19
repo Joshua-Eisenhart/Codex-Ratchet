@@ -1,0 +1,87 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact sign-cancellation guard",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive scalar tensor storage for PyTorch lane receipt",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive vmap sign-vector parity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "engine_values": {
+    "left_j_chi": -2,
+    "left_j_cut_sign": -1,
+    "left_j_ent_sign": -1,
+    "right_j_chi": 2,
+    "right_j_cut_sign": 1,
+    "right_j_ent_sign": 1
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-13T02:57:40Z",
+  "package_observables": {
+    "sympy": "sp.Rational guard for 3Q/2Q cut counts and L/R chirality cancellation"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0",
+    "torch.func": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_runtime_flux_3q_v0/results/gcm_runtime_flux_3q_v0_pytorch_results.json",
+  "runtime_flux_vector_receipt": {
+    "finite": true,
+    "input_vector": [
+      1.618198443941263,
+      0.725253655648275,
+      2.0,
+      -1.618198443941263,
+      -0.725253655648275,
+      -2.0
+    ],
+    "right_positive_left_negative": true,
+    "signed_square_vector": [
+      2.618566203973925,
+      0.525992865031187,
+      4.0,
+      -2.618566203973925,
+      -0.525992865031187,
+      -4.0
+    ]
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_runtime_flux_3q_v0",
+  "source_path": "system_v6/sims/gcm_runtime_flux_3q_v0/gcm_runtime_flux_3q_v0_pytorch.py",
+  "source_sha256": "1c98a664c30f0ecf0cac4c6796bfec632a1926e8520e060ff95ef3e73ea30fd0",
+  "sympy_guard": {
+    "left_chi": "-2",
+    "pass": true,
+    "right_chi": "2",
+    "three_q_cuts": "3",
+    "two_q_cuts": "1"
+  }
+}

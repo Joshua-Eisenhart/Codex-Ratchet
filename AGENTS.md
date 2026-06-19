@@ -21,41 +21,25 @@ Codex Ratchet is a nonclassical constraint-admissibility research system. The ma
 
 ## Wizard Runtime Default
 
-Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard v4.2 Max Assembly by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
+Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. The current Wizard is **v4.3**. There is no v4.2-to-run for current work.
 
 Max Assembly default means:
 
-- Run the real Wizard v4.2 sequence by default: v4.2 salience load, boot/thread rules, Decision Council, Failure Council, Follow-Up Council, management side lanes, compile gate, final receipt boundary, and controller synthesis.
-- Do not silently downgrade to a smaller Wizard run. If runtime capacity, context, or task shape prevents a complete Max Assembly run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
+- Run the real v4.3 sequence by default: current-task packet validation when object preservation is in scope, v4.3 salience/route loading, Decision Council, Failure Council, Follow-Up Council, management side lanes, compile gate, final receipt boundary, and controller synthesis.
+- Do not silently downgrade to v4.2, v4.1, or a smaller Wizard run. If runtime capacity, context, or task shape prevents a complete Max Assembly run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
 - Keep visible output concise when the user needs work product more than route detail, but keep the internal route truth complete and repair the visible surface before sending.
 - Do not call an incomplete subset `FULL`. It is a partial Max Assembly attempt unless the required waves actually ran or were explicitly blocked/deferred.
+- Do not call `example`, `selftest`, docs-reading, or unedited default-packet validation a v4.3 task run. A valid v4.3 run must show a current-task packet path, the exact `validate --input <that packet>` command, `ok:True`, and the task's adapter/probe/analogy/proxy boundary against the primary object.
 - Do not confuse route phases with completed worker waves. `waves:n` means actual receipt-boundary passes. One lateral wave with many parent subagents and child subsubagents is still one wave.
 
-Default boot/load rule (v4.2 packet-first):
+Default boot/load rule:
 
-- Main Codex thread loads the runnable v4.2 packet first: `~/wiki/wizard/packet-v4-2-current/WIZARD_v4_2.md`, the local skills manifest `~/wiki/wizard/packet-v4-2-current/skills/SKILLS_MANIFEST_v4_2.md`, and only the relevant v4.2 MMM or mini-MMM material from `~/wiki/wizard/packet-v4-2-current/mmm/`.
-- For full v4.2 topology, use `scripts/wizard_full_matrix_run_v4_2.py` with receipt-producing parent and child lanes. For level/loop operation, use `scripts/wizard_v4_2.py`.
-- Subagents load shared task summary + exact route/member mini-MMM from `~/wiki/wizard/packet-v4-2-current/mmm/` + assigned route definition + task card + source slice + receipt format.
-- Subsubagents load parent route summary + exact child route/member mini-MMM + child route definition + child task card + source slice + receipt format. Narrower than parent.
-- v4.1 packet paths are legacy/reference only unless the user explicitly asks for v4.1. Do not mix v4.1 route claims with v4.2 headers or receipts.
+- Main Codex/controller thread runs the v4.3 object-preservation preflight before object-bearing work and uses v4.3 route/salience surfaces for councils, follow-up, receipts, and maintenance.
+- Historical `packet-v4-2-current/` and `three-council-wizard-v4-2` surfaces are legacy/provenance only. Read them only for migration or historical audit, and never present them as the current run target.
+- Subagents load shared task summary + v4.3 salience/route slices + assigned route definition + task card + source slice + receipt format.
+- Subsubagents load parent route summary + exact child route/member salience set(s) + child route definition + child task card + source slice + receipt format.
+- v4.1 and v4.2 packet paths are legacy/reference only unless the user explicitly asks for historical comparison. Do not mix legacy route claims with v4.3 headers or receipts.
 - Negative, banned, contrast, archive, and reference-only material never enters boot.
-
-Use Wizard to:
-
-- choose the lane shape;
-- decide which subagents and mini-MMMs are required;
-- prevent fake plurality;
-- keep spawned/blocked/deferred truth;
-- preserve real voice differences when voices, lanes, council, compositions, or Max Assembly are visible;
-- audit follow-up prompts so they are useful next actions.
-
-Do not use Wizard to:
-
-- turn every answer into a worker log;
-- print raw receipts by default;
-- replace sim/proof/tool work with orchestration prose;
-- claim a route ran unless a real worker, tool, or declared check ran;
-- use `CLAUDE.md` as Codex behavior law.
 
 ## Sim-Mode Max Assembly Override
 
@@ -93,6 +77,13 @@ Failure rule:
 
 - If sim-mode output has no real worker voices, no real tool/function fanout, no child receipt attempt where child capacity exists, or follow-up options that were not Made/Scouted/Audited, call it a partial/failed Wizard attempt and fix the orchestration path before advancing the sim work.
 
+No-idle / gate-mining rule:
+
+- The system should not idle merely because a heavy wave is resource-gated. If the machine gate is closed, switch to bounded light work: gate-local scouts, negative controls, registry/queue hardening, blind expectation sheets, card repair, validator/schema repair, source/witness mining, route-truth audits, or distillates. Idle is admissible only when every determinable item is done/staged and the remaining blocker is a real resource gate, owner choice, or unsafe overlap.
+- Explore gates widely, not downstream claims prematurely. At the active gate, fan out alternatives, kill tests, variants, and falsifiers under strong gates. A broad search is good when every branch remains tied to the current prerequisite object and returns a receipt with claim ceiling.
+- Strong gates bind to the owner root frame: probe-relative identity / distinguishability (`a=a iff a~b`), finitude, noncommutation, entropic monism, and anti-Platonic monist nominalism. Names are labels for tested distinctions, not entities; constraints/admissibility/quotients/ratchets decide what survives.
+- When a basin or engine frame is active, keep ratcheting until the basin is blocked, split, leaks, or collapses; then map terminal classes, metastable subbasins, leakage edges, and the next discriminator instead of stopping.
+
 ## Subagent And Mini-MMM Rule
 
 Use real subagents by default for independent repo lookup, verification, voice/lane/check passes, and follow-up scouting when the task is substantive enough for parallel work. Do not invent a visible route from controller synthesis alone.
@@ -125,7 +116,7 @@ Worker pool truth:
 - Gemini may be used directly for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
 - OMX is disabled for this repository. Do not use `omx ask`, `omx sparkshell`, `omx team`, or OMX-managed Gemini routes for worker, scout, tool, or receipt evidence. If a task proposes OMX, mark that route `blocked_disabled` and use Codex native subagents, Claude Bridge, direct Gemini, tmux with explicit non-OMX receipts, or local tools instead.
 - Tmux presence alone is not team execution. A tmux route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
-- Mixed-pool worker receipts must pass `scripts/validate_wizard_worker_receipts.py` before their counts are accepted into Wizard v4.2 topology. External pools stay external evidence even when accepted; they do not become Codex-native subagents.
+- Mixed-pool worker receipts must pass the active Wizard receipt validator before their counts are accepted into Wizard v4.3 route truth. External pools stay external evidence even when accepted; they do not become Codex-native subagents.
 - Header counts must always show completed/required parent subagents and completed/current-obligation child subsubagents. If child routes were expected but not launched, do not write `children:0/0 not-run`; show the missed obligation, such as `children:0/3 not-run`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `tmux`, and `tools`.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
 
@@ -150,20 +141,20 @@ Route truth:
 
 ## Output Contract
 
-For ordinary repo work, still keep output readable. Use Wizard v4.2 Max Assembly internally by default, and expose only the concise truth needed for the user:
+For ordinary repo work, still keep output readable. Use v4.3 Max Assembly internally by default, and expose only the concise truth needed for the user:
 
 1. Main answer.
 2. Results: changed files, commands/checks, blockers.
 3. Follow-up: useful next prompts or next steps.
 4. Hygiene/security: relevant boundaries and risks.
 
-For Wizard plurality, council, output testing, or any response that visibly claims voices/lanes/compositions, use the v4.2 header shape:
+For Wizard plurality, council, output testing, or any response that visibly claims voices/lanes/compositions, use the v4.3 header shape:
 
 ```text
-🧙 Wizard v4.2 | {FULL|PARTIAL|BLOCKED} | loops:{completed/requested} | waves:{completed/total across completed loops} | parents:{accepted/required across completed loops} | children:{completed/obligation across completed loops} | tools:{completed across completed loops} | score:{0-100} | runtimes:{actual_runtimes}
+🧙 Wizard v4.3 | {FULL|PARTIAL|BLOCKED} | loops:{completed/requested} | waves:{completed/total across completed loops} | parents:{accepted/required across completed loops} | children:{completed/obligation across completed loops} | tools:{completed across completed loops} | score:{0-100} | runtimes:{actual_runtimes}
 ```
 
-Compact v4.2 is never a `FULL` proof of the nine-parent topology. Use `PARTIAL` for an incomplete, compact, degraded, or repaired-after-first-pass run, `BLOCKED` for a blocked run, or no Wizard run header when councils did not actually run.
+Compact v4.3 is never a `FULL` proof of the nine-parent topology. Use `PARTIAL` for an incomplete, compact, degraded, or repaired-after-first-pass run, `BLOCKED` for a blocked run, or no Wizard run header when councils did not actually run.
 
 Then provide useful content, not a log:
 
@@ -175,7 +166,7 @@ Then provide useful content, not a log:
 
 Audit fixes the answer. Do not output an Audit section by default. Quality score belongs in the footer only when useful.
 
-Before sending any visible Wizard answer, run the v4.2 self-repair gate:
+Before sending any visible Wizard answer, run the v4.3 self-repair gate:
 
 - use real Markdown sections, not bold pseudo-headings;
 - include `## ✨ Answer`, `## 🏛️ Council Results`, `## ✅ Compiled Move`, `## 🧭 Follow-Up Options`, and final `## 🧙 Footer` when a Wizard header is shown;

@@ -31,7 +31,17 @@ Short rule:
 
 ## Canonical Interpreter
 
-`/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3` — see Makefile `PYTHON` var for authority.
+Current runtime authority is `system_v5/docs/RUNTIME_LIBRARY_LOCATION_MAP_20260608.md`,
+`system_v5/docs/SIM_STACK_FULL_TARGET_SETS_20260609.md`, and the repo
+`Makefile`. Use the shared alias:
+
+```text
+/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
+```
+
+The older `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`
+path is the physical target behind the alias and appears in dated receipts, not
+the preferred command path for new work.
 
 ---
 
@@ -80,7 +90,7 @@ Interpretation:
 | Tool | Version | Role | Current usage |
 |---|---|---|---|
 | numpy | (system) | Numeric backbone, classical baselines | everywhere — baseline substrate |
-| torch | 2.8.0 | Core computation substrate (target) | 134 sim-like files detected |
+| torch | 2.11.0 in current sim-stack; 2.8.0 in older snapshot text | Core computation substrate (target) | 134 sim-like files detected in dated 2026-04-08 spot audit |
 | torch_geometric (PyG) | 2.7.0 | Graph dynamics, message passing | 55 sim-like files detected |
 | z3-solver | 4.16.0 | SMT constraint proofs (UNSAT) | 100 sim-like files detected |
 | cvc5 | 1.3.3 | SMT cross-check, SyGuS synthesis | 54 sim-like files detected |

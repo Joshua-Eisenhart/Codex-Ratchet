@@ -1,0 +1,143 @@
+{
+  "C": {
+    "hermiticity": "real Cayley-Dickson conjugation fixes the star operation",
+    "normalization": "basis units are normalized coordinate units",
+    "psd": "not a density-state rung; division-carrier admissibility uses square=-1 imaginary unit checks",
+    "rung_specific_constraint": "bare root requires finite basis, noncommuting pair, and a well-defined M quotient; stronger installed constraint is >=7 mutually anticommuting imaginary units / Cl(6) floor",
+    "trace_equals_one": "not a density-state rung; unit e0=1 is the carrier normalization witness"
+  },
+  "M": {
+    "finite_probe_family": {
+      "H": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "description": "coordinate probes on the finite basis define indistinguishability"
+    },
+    "name": "bare-root finite coordinate probes plus noncommuting Z/X analog"
+  },
+  "S_quotient_under_M": {
+    "H_bare_root_classes": "coordinate probes separate the four H basis classes",
+    "H_bare_root_quotient_rank": 4,
+    "relation": "a ~_M b iff every finite coordinate probe in M has the same value on a and b"
+  },
+  "aligned_packages_load_bearing": [
+    "CliffordAlgebras"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "CliffordAlgebras"
+  ],
+  "classification": "scratch_diagnostic",
+  "decision": {
+    "forced_by_bare_root": false,
+    "installed_by_constraint": ">=7 mutually anticommuting imaginary units / Cl(6) / 3-qubit Weyl floor",
+    "verdict": "INSTALLED_NOT_FORCED"
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T02:04:33.464",
+  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "negative_control": {
+    "add_Cl6_7_unit_constraint_admits_O": true,
+    "add_Cl6_7_unit_constraint_excludes_H": true,
+    "bare_root_admits_H": true,
+    "flip": {
+      "H_under_Cl6_7_unit_constraint": "unsat",
+      "H_under_bare_root": "sat",
+      "sat_to_unsat": true
+    }
+  },
+  "packages_used": [
+    "CliffordAlgebras",
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium_results.json",
+  "rung_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_medium",
+  "schema_version": "engine_leg_result_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_medium_julia_medium.jl",
+  "values": {
+    "H_bare_root": {
+      "M_probe_indices_zero_based": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ZX_commutator_vector": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "admissible": true,
+      "finite": true,
+      "finite_basis_dimension": 4,
+      "noncommuting_ZX_analog": true,
+      "quotient_rank": 4,
+      "quotient_separates_basis": true
+    },
+    "anticommuting_units": {
+      "C": {
+        "all_pairwise_anticommuting": true,
+        "basis_indices_zero_based": [
+          1
+        ],
+        "count": 1,
+        "pair_failures": []
+      },
+      "H": {
+        "all_pairwise_anticommuting": true,
+        "basis_indices_zero_based": [
+          1,
+          2,
+          3
+        ],
+        "count": 3,
+        "pair_failures": []
+      },
+      "O": {
+        "all_pairwise_anticommuting": true,
+        "basis_indices_zero_based": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "count": 7,
+        "pair_failures": []
+      },
+      "R": {
+        "all_pairwise_anticommuting": true,
+        "basis_indices_zero_based": [],
+        "count": 0,
+        "pair_failures": []
+      }
+    },
+    "associator_max_norms": {
+      "C": 0.0,
+      "H": 0.0,
+      "O": 2.0,
+      "R": 0.0
+    },
+    "clifford_reference_dimensions": {
+      "Cl_0_2_dimension": 4,
+      "Cl_0_6_dimension": 64
+    },
+    "unit_counts": {
+      "C": 1,
+      "H": 3,
+      "O": 7,
+      "R": 0
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "sim_id": "ordered_channel_maps_noncommutation_matrix_v0",
+  "engines": [
+    "numpy",
+    "jax",
+    "pytorch",
+    "julia"
+  ],
+  "computation_styles": {
+    "numpy": "dense_2x2_kraus_eigvalsh_tracenorm",
+    "jax": "jnp_complex128_kraus_svdvals_tracenorm",
+    "pytorch": "torch_complex128_kraus_nuclear_norm_tracenorm",
+    "julia": "julia_complexf64_kraus_svdvals_tracenorm"
+  },
+  "trace_norm_routes": {
+    "numpy": "eigvalsh (Hermitian eigenvalues)",
+    "jax": "svdvals (singular values)",
+    "pytorch": "nuclear-norm API (torch.linalg.matrix_norm ord=nuc)",
+    "julia": "svdvals (independent language)"
+  },
+  "trace_norm_route_note": "THREE distinct trace-norm routes (eigvalsh / svdvals / nuclear-norm), not four: jax and julia both use svdvals. julia's independence is the from-scratch independent-LANGUAGE substrate, not a distinct mathematical route. For a 2x2 trace-0 Hermitian commutator difference these routes are mathematically equivalent (eigvalsh, svdvals, nuclear-norm all give sum|eigvals|); agreement is a code-path / language cross-check, not an independent-algorithm cross-check. The non-trivial cross-validation is the generic-probe value (no closed form).",
+  "max_delta_matrix_diff_across_engines": 2.7755575615628914e-16,
+  "agreement_tolerance": 1e-09,
+  "four_engine_agreement": true,
+  "agreed_values": {
+    "n_commuting_rho0": 11,
+    "n_noncommuting_rho0": 4,
+    "n_map_level_commuting": 9,
+    "n_probe_specific_zeros_on_rho0": 2,
+    "probe_specific_zero_pairs": [
+      [
+        "Ti_z_dephasing",
+        "Fi_x_rotation"
+      ],
+      [
+        "Fi_x_rotation",
+        "projector_pinch"
+      ]
+    ],
+    "noncommuting_pairs_rho0": [
+      [
+        "Fi_x_rotation",
+        "Lindblad_amp_damp",
+        0.3
+      ],
+      [
+        "Fe_z_rotation",
+        "Te_x_dephasing",
+        0.707106781187
+      ],
+      [
+        "Fe_z_rotation",
+        "Fi_x_rotation",
+        0.707106781187
+      ],
+      [
+        "Lindblad_amp_damp",
+        "Te_x_dephasing",
+        0.3
+      ]
+    ],
+    "Ti_Fi_probe_relative": {
+      "rho0_plus": 0.0,
+      "mixed": 0.0,
+      "pole0": 0.866025403784,
+      "generic": 0.31224989992
+    },
+    "lindblad_vs_te_by_construction_equals_gamma": 0.3,
+    "classical_gap_max": 1.1102230246251565e-16,
+    "classical_gap_reopens_to": 0.34641016151377535
+  },
+  "load_bearing_facts": {
+    "map_level_commuting_pairs_are_zero_on_full_basis": true,
+    "state_null_zeros_detected_and_separated": true,
+    "noncommuting_pair_is_positive": true,
+    "order_dependence_probe_relative": true,
+    "signed_commutator_antisymmetric": true,
+    "classical_baseline_gap_collapses": true,
+    "coherence_reopens_gap": true
+  },
+  "structural_checks_recorded_not_load_bearing": {
+    "_note": "These are by-construction tautologies (true for ALL inputs); they are recorded as sanity checks but are NOT evidence of any discovered structure. Moved out of load_bearing_facts.",
+    "commuting_pair_is_zero_on_rho0": true,
+    "identity_commutes_with_all": true,
+    "label_shuffle_invariant": true,
+    "matrix_symmetric": true,
+    "diag_self_zero": true,
+    "choi_psd_pass_is_tautology_for_kraus": "Choi-PSD holds for any Kraus list; the trace-preserving check is the actual CPTP gate.",
+    "trace_preserving_is_load_bearing_cptp_gate": true,
+    "lindblad_vs_te_equals_gamma_by_construction": 0.3
+  },
+  "failures": [],
+  "engine_consensus_note": "numpy (eigvalsh), jax (svdvals), pytorch (nuclear-norm API), and julia (from-scratch independent language, svdvals) are four distinct code paths in four languages/frameworks; reads_peer_result=false on all four. There are THREE distinct trace-norm routes (jax+julia share svdvals); for 2x2 trace-0 Hermitian input these routes are mathematically equivalent, so agreement is a code-path/language cross-check, not an independent-algorithm cross-check.",
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

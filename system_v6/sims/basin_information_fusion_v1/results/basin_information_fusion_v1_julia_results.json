@@ -1,0 +1,138 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "supportive finite syndrome graph component count; does not gate all_pass",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing computed record identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "packet-local G1 syndrome graph carrier",
+      "receipt_id": "julia_Graphs_joint_basin_information_flow",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "computed syndrome/readout identity with erased-record flip",
+      "receipt_id": "julia_Z3_computed_record_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "computed_erased_record_label_count": 1,
+        "computed_full_record_label_count": 3,
+        "computed_syndrome_class_count": 3,
+        "encoding": "bind computed syndrome class count and computed full-record label count; assert inequality",
+        "erased_flip": "replace full record count with erased record count"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T02:41:00Z",
+  "joint_object_signature_sha256": "179eadae32e59c0896e9be9e73412b7ee6b11e62e9a283c4e133b48b9aa50c86",
+  "object_id": "basin_information_fusion_v1_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_observables": {
+    "Graphs": "supportive syndrome_graph_component_count; syndrome_count gates all_pass from table-derived unique labels",
+    "Z3": "crossover_proofs.julia_z3 computed record identity"
+  },
+  "package_versions": {
+    "Graphs": "runtime_project",
+    "Z3": "runtime_project",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_parent_results": true,
+  "reads_peer_result": false,
+  "record_reference": {
+    "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+    "erased_record_count": 1,
+    "full_record_count": 3,
+    "syndrome_class_count": 3,
+    "syndrome_graph_component_count": 33,
+    "syndrome_table_count": 33
+  },
+  "result_path": "system_v6/sims/basin_information_fusion_v1/results/basin_information_fusion_v1_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "source": "parent G1 terminal cells",
+    "status": "deterministic_no_rng"
+  },
+  "sim_id": "basin_information_fusion_v1",
+  "source_backing_probe": {
+    "Graphs_component_count": 3,
+    "Graphs_vertex_count": 3,
+    "Z3_check": "sat"
+  },
+  "source_path": "system_v6/sims/basin_information_fusion_v1/basin_information_fusion_v1_julia.jl",
+  "source_sha256": "8649aef9a878a1122fabf44d2e10b529b718290fd52b62baeeb93b0818a2e3d8",
+  "tool_calls": [
+    {
+      "boundary_case": "33 start-cell rows",
+      "demotion_condition": "demote if syndrome_count is assigned without table construction",
+      "gates": [
+        "record_retention",
+        "all_pass"
+      ],
+      "input_object": "computed G1 syndrome table",
+      "load_bearing": true,
+      "negative/erased_control": "erased record collapses readout label count",
+      "output_object": "finite syndrome graph carrier",
+      "positive_case": "three computed G1 chart-relative syndrome classes",
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_joint_basin_information_flow",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "integer count proof, not floating log proof",
+      "demotion_condition": "demote if Z3 binds hardcoded verdicts instead of computed counts",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "computed syndrome_count and record_readout_count",
+      "load_bearing": true,
+      "negative/erased_control": "erased count differs from syndrome count",
+      "output_object": "UNSAT equality identity and SAT erased flip",
+      "positive_case": "full record count equals syndrome count",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_computed_record_identity",
+      "tool": "Z3"
+    }
+  ]
+}

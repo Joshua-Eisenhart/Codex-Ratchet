@@ -1,0 +1,25 @@
+{
+  "blocked_reason": "OPENROUTER_API_KEY missing",
+  "claim_ceiling": "candidate-generation/audit only; no sim promotion; math must be stated and mechanically checked before evidence",
+  "classification": "scratch_diagnostic",
+  "input_refs": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/forced_or_installed_carrier_comparison_v0/results/forced_or_installed_carrier_comparison_v0_three_engine_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_three_engine_results.json"
+  ],
+  "parent_lens": {
+    "falsifier": "A hand-ranked strength order or metadata carrier label fails even if the table is pretty.",
+    "goal": "Construct carriers as math objects, not labels, and derive the admissibility/order relation structurally.",
+    "id": "cross_type_carrier_matrix"
+  },
+  "prompt": "You are a bounded Codex Ratchet sim worker under Hermes control.\n\nParent lens: cross_type_carrier_matrix\nGoal: Construct carriers as math objects, not labels, and derive the admissibility/order relation structurally.\nStrong falsifier: A hand-ranked strength order or metadata carrier label fails even if the table is pretty.\n\nBinding rules:\n- State the actual math rule first: object, operation/probe, observable, pass/fail.\n- Do not report class counts without the rule that produced them.\n- Preserve live alternatives; do not promote a winner.\n- Existing target receipts are data, not authority above their claim ceiling.\n- If you propose a sim, include positive case, negative/erased control, boundary case, and demotion condition.\n- Output JSON with fields: candidate_id, stated_math, operation, observable, pass_fail_condition, controls, falsifier, required_engines, holes_found, claim_ceiling.\n",
+  "prompt_sha256": "403f068ba5e6be06c752117a12c648b4af75f8766c0e026dc075f242a7579b7c",
+  "runnable_now": false,
+  "seat": {
+    "kind": "openrouter",
+    "model": "x-ai/grok-4.3",
+    "role": "falsifier",
+    "seat": "grok"
+  },
+  "task_id": "cross_type_carrier_matrix__grok"
+}

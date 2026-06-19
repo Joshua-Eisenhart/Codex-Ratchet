@@ -1,0 +1,1795 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "codex_runtime_env_doctor": "load_bearing",
+    "cvc5": "load_bearing",
+    "diffrax": "load_bearing",
+    "graph_topology_helpers": "load_bearing",
+    "jax": "load_bearing",
+    "julia_carrier": "load_bearing",
+    "runtime_mapping_reference_audit": "load_bearing",
+    "skill_agent_inventory": "load_bearing",
+    "support_imports": "supportive",
+    "torch": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "torchdiffeq": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "codex_runtime_env_doctor": {
+      "reason": "load-bearing environment authority check for the sim-stack alias, strict Julia carrier, and repo pollution.",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing SMT contradiction microcheck in Python.",
+      "tried": true,
+      "used": true
+    },
+    "diffrax": {
+      "reason": "load-bearing micro ODE smoke for the JAX dynamics lane.",
+      "tried": true,
+      "used": true
+    },
+    "graph_topology_helpers": {
+      "reason": "load-bearing graph/topology smoke for rustworkx, XGI, TopoNetX, and GUDHI.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing finite tensor execution and vmap smoke for the Python/JAX leg.",
+      "tried": true,
+      "used": true
+    },
+    "julia_carrier": {
+      "reason": "load-bearing strict carrier API probe for Quaternions, Octonions, Z3, and Graphs.",
+      "tried": true,
+      "used": true
+    },
+    "runtime_mapping_reference_audit": {
+      "reason": "load-bearing stale mapping scan across active docs, skills, agents, and scripts.",
+      "tried": true,
+      "used": true
+    },
+    "skill_agent_inventory": {
+      "reason": "load-bearing Codex/Claude skill and agent wiring check for the sim-stack gate surfaces.",
+      "tried": true,
+      "used": true
+    },
+    "support_imports": {
+      "reason": "supportive import reachability checks for optional packages without claiming API depth.",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "load-bearing finite tensor execution, torch.func, and DLPack bridge smoke for the PyTorch lane.",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing PyG data object smoke for graph-message carrier availability.",
+      "tried": true,
+      "used": true
+    },
+    "torchdiffeq": {
+      "reason": "load-bearing micro ODE smoke for PyTorch dynamics support.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT contradiction microcheck in Python and Julia carrier.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "blocked_until": "permanently blocked from scientific promotion by diagnostic scope",
+  "blockers": [],
+  "checks": [
+    {
+      "category": "environment",
+      "detail": {
+        "canonical_python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+        "canonical_python_resolved": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+        "sys_executable_resolved": "/opt/homebrew/Cellar/python@3.13/3.13.6/Frameworks/Python.framework/Versions/3.13/bin/python3.13"
+      },
+      "name": "current_python_is_sim_stack_alias",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "environment",
+      "detail": {
+        "expected": {
+          "julia": "/opt/homebrew/bin/julia",
+          "julia_load_path": "@:@stdlib",
+          "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+          "physical_python_env": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main",
+          "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+          "sim_stack_alias": "/Users/joshuaeisenhart/.local/share/sim-stack"
+        },
+        "raw": null,
+        "summary": {
+          "failures": [],
+          "install_state": "stable_observed",
+          "ok": true,
+          "warnings": []
+        }
+      },
+      "name": "codex_runtime_env_doctor",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "environment",
+      "detail": {
+        "failure_count": 0,
+        "failures": [],
+        "summary": {
+          "failure_count": 0,
+          "file_count": 813,
+          "ok": true,
+          "warning_count": 62
+        },
+        "warning_count": 62
+      },
+      "name": "runtime_mapping_reference_audit",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "julia",
+      "detail": {
+        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "graphs_edge_count": 1,
+        "load_path": "@:@stdlib",
+        "octonion_first_nonzero_associator": {
+          "associator_components": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -2,
+            0,
+            0
+          ],
+          "indices_one_based": [
+            2,
+            3,
+            5
+          ],
+          "indices_zero_based": [
+            1,
+            2,
+            4
+          ]
+        },
+        "quaternion_assoc_i_j_k": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "raw": null,
+        "z3_unsat": "unsat"
+      },
+      "name": "strict_julia_carrier_api_probe",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "julia",
+      "detail": {
+        "CondaPkg": {
+          "error": "ArgumentError(\"Package CondaPkg not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"CondaPkg\\\")` to install the CondaPkg package.\")",
+          "ok": false
+        },
+        "DLPack": {
+          "error": "ArgumentError(\"Package DLPack not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"DLPack\\\")` to install the DLPack package.\")",
+          "ok": false
+        },
+        "PythonCall": {
+          "error": "ArgumentError(\"Package PythonCall not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"PythonCall\\\")` to install the PythonCall package.\")",
+          "ok": false
+        },
+        "Zygote": {
+          "error": "ArgumentError(\"Package Zygote not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"Zygote\\\")` to install the Zygote package.\")",
+          "ok": false
+        }
+      },
+      "name": "strict_julia_bridge_quarantine",
+      "note": "PythonCall/DLPack/CondaPkg should not be available in the strict carrier by default.",
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "jax",
+      "detail": {
+        "values": [
+          0.0,
+          1.0,
+          4.0,
+          9.0,
+          16.0
+        ]
+      },
+      "name": "jax_vmap_x64",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "jax",
+      "detail": {
+        "expected": 0.36787944117144233,
+        "value": 0.3678794414272495
+      },
+      "name": "diffrax_decay_micro_ode",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "smt",
+      "detail": {
+        "status": "unsat"
+      },
+      "name": "python_z3_unsat_microcheck",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "smt",
+      "detail": {
+        "status": "unsat"
+      },
+      "name": "python_cvc5_unsat_microcheck",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "jax",
+      "detail": {
+        "dim": 4
+      },
+      "name": "e3nn_jax_irreps_dim",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "pytorch",
+      "detail": {
+        "jacobian": [
+          4.0
+        ]
+      },
+      "name": "torch_func_jacrev",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "pytorch",
+      "detail": {
+        "edges": 2
+      },
+      "name": "torch_geometric_data_edge_count",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "pytorch",
+      "detail": {
+        "expected": 0.36787944117144233,
+        "value": 0.3678790032863617
+      },
+      "name": "torchdiffeq_decay_micro_ode",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "pytorch",
+      "detail": {
+        "value": 4
+      },
+      "name": "e3nn_irreps_dim",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "pytorch",
+      "detail": {
+        "value": 2
+      },
+      "name": "geomstats_hypersphere_dim",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "quantum",
+      "detail": {
+        "value": [
+          2,
+          2
+        ]
+      },
+      "name": "qutip_sigmax_shape",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "tensor",
+      "detail": {
+        "value": 2.0
+      },
+      "name": "quimb_pauli_x_square_trace",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "graph_topology",
+      "detail": {
+        "value": 1
+      },
+      "name": "rustworkx_edge_count",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "graph_topology",
+      "detail": {
+        "value": 1
+      },
+      "name": "xgi_hyperedge_count",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "graph_topology",
+      "detail": {
+        "value": 2
+      },
+      "name": "toponetx_simplicial_dim",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "graph_topology",
+      "detail": {
+        "value": 3
+      },
+      "name": "gudhi_simplex_count",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "geometric_algebra",
+      "detail": {
+        "value": 1.0
+      },
+      "name": "clifford_e1_square",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "support_imports",
+      "detail": {
+        "failed": [],
+        "modules": {
+          "blackjax": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/blackjax/__init__.py",
+            "ok": true,
+            "version": "1.5"
+          },
+          "cvxpylayers": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvxpylayers/__init__.py",
+            "ok": true,
+            "version": "1.2.0"
+          },
+          "dynamiqs": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/dynamiqs/__init__.py",
+            "ok": true,
+            "version": "0.3.4"
+          },
+          "jaxopt": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/jaxopt/__init__.py",
+            "ok": true,
+            "version": null
+          },
+          "lineax": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/lineax/__init__.py",
+            "ok": true,
+            "version": "0.1.1"
+          },
+          "netket": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/netket/__init__.py",
+            "ok": true,
+            "version": "3.21.0"
+          },
+          "optimistix": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/optimistix/__init__.py",
+            "ok": true,
+            "version": "0.1.0"
+          },
+          "ott": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/ott/__init__.py",
+            "ok": true,
+            "version": "0.6.0"
+          },
+          "sympy": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+            "ok": true,
+            "version": "1.14.0"
+          },
+          "torch_ga": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_ga/__init__.py",
+            "ok": true,
+            "version": "0.0.6"
+          },
+          "torchode": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchode/__init__.py",
+            "ok": true,
+            "version": "1.0.1"
+          },
+          "xitorch": {
+            "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/xitorch/__init__.py",
+            "ok": true,
+            "version": "0.3.0"
+          }
+        }
+      },
+      "name": "support_package_imports",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "support_imports",
+      "detail": {
+        "modules": {
+          "bayeux": {
+            "error": "module 'jax.interpreters.xla' has no attribute 'pytype_aval_mappings'",
+            "error_type": "AttributeError",
+            "ok": false
+          },
+          "dgl": {
+            "error": "No module named 'dgl'",
+            "error_type": "ModuleNotFoundError",
+            "ok": false
+          },
+          "torch_scatter": {
+            "error": "No module named 'torch_scatter'",
+            "error_type": "ModuleNotFoundError",
+            "ok": false
+          },
+          "torch_sparse": {
+            "error": "No module named 'torch_sparse'",
+            "error_type": "ModuleNotFoundError",
+            "ok": false
+          }
+        },
+        "unexpectedly_imported": []
+      },
+      "name": "known_bad_or_quarantined_imports_do_not_load",
+      "note": "These packages are expected absent or import-broken in the current stack.",
+      "severity": "warn",
+      "status": "pass"
+    },
+    {
+      "category": "cross_runtime",
+      "detail": {
+        "claim_ceiling": "DLPack value bridge without numpy conversion; not a Julia bridge claim.",
+        "jax_to_torch": {
+          "dtype": "torch.float32",
+          "shape": [
+            4
+          ],
+          "values": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "torch_to_jax": {
+          "dtype": "float32",
+          "shape": [
+            4
+          ],
+          "values": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        }
+      },
+      "name": "jax_torch_dlpack_value_bridge",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "cross_runtime",
+      "detail": {
+        "claim_ceiling": "No Julia-Python bridge claim.",
+        "reason": "Strict Julia carrier intentionally excludes PythonCall/DLPack/CondaPkg."
+      },
+      "name": "julia_python_dlpack_bridge",
+      "note": null,
+      "severity": "skip",
+      "status": "skip"
+    },
+    {
+      "category": "cross_runtime",
+      "detail": {
+        "claim_ceiling": "Julia package produced table; JAX and PyTorch execute the finite tensor kernel.",
+        "jax_associator": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.0,
+          0.0,
+          0.0
+        ],
+        "julia_associator": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -2,
+          0,
+          0
+        ],
+        "julia_witness": {
+          "associator_components": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -2,
+            0,
+            0
+          ],
+          "indices_one_based": [
+            2,
+            3,
+            5
+          ],
+          "indices_zero_based": [
+            1,
+            2,
+            4
+          ]
+        },
+        "max_abs_diff_julia_jax": 0.0,
+        "max_abs_diff_julia_torch": 0.0,
+        "torch_associator": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "julia_jax_torch_octonion_associator_agreement",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "skill_agent_wiring",
+      "detail": {
+        "missing": [],
+        "roots": {
+          "/Users/joshuaeisenhart/.codex-second/skills": {
+            "codex-ratchet-env-agent-coordination": true,
+            "codex-ratchet-tool-status-auditor": true,
+            "jax-sim": true,
+            "julia-sim": true,
+            "lego-sim-classifier": true,
+            "pytorch-sim": true,
+            "sim-stack-maintenance": true,
+            "three-engine-sim": true
+          },
+          "/Users/joshuaeisenhart/.codex/skills": {
+            "codex-ratchet-env-agent-coordination": true,
+            "codex-ratchet-tool-status-auditor": true,
+            "jax-sim": true,
+            "julia-sim": true,
+            "lego-sim-classifier": true,
+            "pytorch-sim": true,
+            "sim-stack-maintenance": true,
+            "three-engine-sim": true
+          },
+          "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills": {
+            "codex-ratchet-env-agent-coordination": true,
+            "codex-ratchet-tool-status-auditor": true,
+            "jax-sim": true,
+            "julia-sim": true,
+            "lego-sim-classifier": true,
+            "pytorch-sim": true,
+            "sim-stack-maintenance": true,
+            "three-engine-sim": true
+          }
+        }
+      },
+      "name": "codex_skill_root_gate_engine_and_maintenance_skills",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "skill_agent_wiring",
+      "detail": {
+        "adapters": {
+          "codex-ratchet-env-agent-coordination": true,
+          "codex-ratchet-tool-status-auditor": true,
+          "jax-sim": true,
+          "julia-sim": true,
+          "lego-sim-classifier": true,
+          "pytorch-sim": true,
+          "sim-stack-maintenance": true,
+          "three-engine-sim": true
+        },
+        "missing": []
+      },
+      "name": "repo_codex_skill_openai_agent_adapters",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "skill_agent_wiring",
+      "detail": {
+        "missing": [],
+        "skills": {
+          "codex-ratchet-env-agent-coordination": true,
+          "codex-ratchet-tool-status-auditor": true,
+          "jax-sim": true,
+          "julia-sim": true,
+          "lego-sim-classifier": true,
+          "pytorch-sim": true,
+          "sim-stack-maintenance": true,
+          "three-engine-sim": true
+        }
+      },
+      "name": "claude_skill_gate_and_engine_skills",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "skill_agent_wiring",
+      "detail": {
+        "agents": {
+          "fabrication-auditor": true,
+          "fresh-audit-runner": true,
+          "jax-audit-lane-runner": true,
+          "jax-sim-runner": true,
+          "julia-carrier-builder": true,
+          "julia-sim-runner": true,
+          "process-stage-gate-steward": true,
+          "pytorch-sim-runner": true,
+          "repo-doc-archaeologist": true,
+          "sim-contract-gatekeeper": true,
+          "smt-proof-engineer": true
+        },
+        "missing": []
+      },
+      "name": "claude_sim_agent_role_cards",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    },
+    {
+      "category": "skill_agent_wiring",
+      "detail": {
+        "failures": {},
+        "guards": {
+          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-env-agent-coordination/SKILL.md": {
+            "exists": true,
+            "missing": []
+          },
+          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-tool-status-auditor/SKILL.md": {
+            "exists": true,
+            "missing": []
+          },
+          "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/lego-sim-classifier/SKILL.md": {
+            "exists": true,
+            "missing": []
+          },
+          "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
+            "exists": true,
+            "missing": []
+          }
+        }
+      },
+      "name": "skill_runtime_guard_content",
+      "note": null,
+      "severity": "fail",
+      "status": "pass"
+    }
+  ],
+  "claim_ceiling": "Environment/tool/skill capability diagnostic only; no scientific lego, formal scout, manifold, Axis0, bridge, or physics admission.",
+  "classification": "audit",
+  "demotion_condition": "Always demote to tooling/runtime evidence only. Any lego, formal scout, bridge, manifold, Axis0, or physics use must be rewritten as a scoped sim/proof receipt with claim-specific controls and load-bearing tools.",
+  "diagnostic_only": true,
+  "dlpack_probe": {
+    "claim_ceiling": "DLPack value bridge without numpy conversion; not a Julia bridge claim.",
+    "jax_to_torch": {
+      "dtype": "torch.float32",
+      "shape": [
+        4
+      ],
+      "values": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    "torch_to_jax": {
+      "dtype": "float32",
+      "shape": [
+        4
+      ],
+      "values": [
+        0.0,
+        1.0,
+        2.0,
+        3.0
+      ]
+    }
+  },
+  "doctor_summary": {
+    "failures": [],
+    "install_state": "stable_observed",
+    "ok": true,
+    "warnings": []
+  },
+  "expected_runtime": {
+    "julia": "/opt/homebrew/bin/julia",
+    "julia_load_path": "@:@stdlib",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier",
+    "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-09T06:08:35.459842Z",
+  "julia_probe": {
+    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "graphs_edge_count": 1,
+    "load_path": "@:@stdlib",
+    "octonion_first_nonzero_associator": {
+      "associator_components": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0
+      ],
+      "indices_one_based": [
+        2,
+        3,
+        5
+      ],
+      "indices_zero_based": [
+        1,
+        2,
+        4
+      ]
+    },
+    "octonion_structure_constants": [
+      [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1
+        ]
+      ],
+      [
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    ],
+    "quaternion_assoc_i_j_k": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "strict_blocked_imports": {
+      "CondaPkg": {
+        "error": "ArgumentError(\"Package CondaPkg not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"CondaPkg\\\")` to install the CondaPkg package.\")",
+        "ok": false
+      },
+      "DLPack": {
+        "error": "ArgumentError(\"Package DLPack not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"DLPack\\\")` to install the DLPack package.\")",
+        "ok": false
+      },
+      "PythonCall": {
+        "error": "ArgumentError(\"Package PythonCall not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"PythonCall\\\")` to install the PythonCall package.\")",
+        "ok": false
+      },
+      "Zygote": {
+        "error": "ArgumentError(\"Package Zygote not found in current path.\\n- Run `import Pkg; Pkg.add(\\\"Zygote\\\")` to install the Zygote package.\")",
+        "ok": false
+      }
+    },
+    "z3_unsat": "unsat"
+  },
+  "limitations": [
+    "Support imports are capability checks, not load-bearing scientific evidence.",
+    "Tri-engine agreement uses a Julia-derived octonion table executed by JAX and PyTorch; it is a runtime integration diagnostic.",
+    "Julia-Python DLPack is intentionally skipped because strict Julia carrier excludes PythonCall/DLPack/CondaPkg.",
+    "This result cannot promote a lego, full layer, G-structure, manifold, Axis0, or physics claim."
+  ],
+  "mapping_audit_summary": {
+    "failure_count": 0,
+    "file_count": 813,
+    "ok": true,
+    "warning_count": 62
+  },
+  "name": "codex_runtime_capability_shakedown",
+  "next_lego_target": "none; this audit only identifies runtime and skill wiring readiness",
+  "ok": true,
+  "out_of_scope": [
+    "science admission",
+    "canonical sim promotion",
+    "formal scout admission",
+    "package installation",
+    "model quality evaluation",
+    "Julia-Python bridge admission"
+  ],
+  "promotion_allowed": false,
+  "promotion_condition": "none; no promotion path exists for this audit receipt",
+  "python_api_probe": {
+    "blocked_imports": {
+      "bayeux": {
+        "error": "module 'jax.interpreters.xla' has no attribute 'pytype_aval_mappings'",
+        "error_type": "AttributeError",
+        "ok": false
+      },
+      "dgl": {
+        "error": "No module named 'dgl'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "torch_scatter": {
+        "error": "No module named 'torch_scatter'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      },
+      "torch_sparse": {
+        "error": "No module named 'torch_sparse'",
+        "error_type": "ModuleNotFoundError",
+        "ok": false
+      }
+    },
+    "clifford_e1_square": 1.0,
+    "cvc5_unsat": "unsat",
+    "diffrax_decay": 0.3678794414272495,
+    "e3nn_irreps_dim": 4,
+    "e3nn_jax_dim": 4,
+    "geomstats_hypersphere_dim": 2,
+    "gudhi_simplex_count": 3,
+    "jax_vmap": [
+      0.0,
+      1.0,
+      4.0,
+      9.0,
+      16.0
+    ],
+    "pyg_edges": 2,
+    "quimb_pauli_x_square_trace": 2.0,
+    "qutip_sigmax_shape": [
+      2,
+      2
+    ],
+    "rustworkx_edge_count": 1,
+    "support_imports": {
+      "blackjax": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/blackjax/__init__.py",
+        "ok": true,
+        "version": "1.5"
+      },
+      "cvxpylayers": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/cvxpylayers/__init__.py",
+        "ok": true,
+        "version": "1.2.0"
+      },
+      "dynamiqs": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/dynamiqs/__init__.py",
+        "ok": true,
+        "version": "0.3.4"
+      },
+      "jaxopt": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/jaxopt/__init__.py",
+        "ok": true,
+        "version": null
+      },
+      "lineax": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/lineax/__init__.py",
+        "ok": true,
+        "version": "0.1.1"
+      },
+      "netket": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/netket/__init__.py",
+        "ok": true,
+        "version": "3.21.0"
+      },
+      "optimistix": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/optimistix/__init__.py",
+        "ok": true,
+        "version": "0.1.0"
+      },
+      "ott": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/ott/__init__.py",
+        "ok": true,
+        "version": "0.6.0"
+      },
+      "sympy": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/sympy/__init__.py",
+        "ok": true,
+        "version": "1.14.0"
+      },
+      "torch_ga": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torch_ga/__init__.py",
+        "ok": true,
+        "version": "0.0.6"
+      },
+      "torchode": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/torchode/__init__.py",
+        "ok": true,
+        "version": "1.0.1"
+      },
+      "xitorch": {
+        "file": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/xitorch/__init__.py",
+        "ok": true,
+        "version": "0.3.0"
+      }
+    },
+    "toponetx_simplicial_dim": 2,
+    "torch_jacrev": [
+      4.0
+    ],
+    "torchdiffeq_decay": 0.3678790032863617,
+    "xgi_hyperedge_count": 1,
+    "z3_unsat": "unsat"
+  },
+  "repo": "/Users/joshuaeisenhart/Codex-Ratchet",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/tooling/codex_runtime_capability_shakedown_results.json",
+  "schema": "codex_runtime_capability_shakedown.v1",
+  "skill_agent_probe": {
+    "claude_agents": {
+      "fabrication-auditor": true,
+      "fresh-audit-runner": true,
+      "jax-audit-lane-runner": true,
+      "jax-sim-runner": true,
+      "julia-carrier-builder": true,
+      "julia-sim-runner": true,
+      "process-stage-gate-steward": true,
+      "pytorch-sim-runner": true,
+      "repo-doc-archaeologist": true,
+      "sim-contract-gatekeeper": true,
+      "smt-proof-engineer": true
+    },
+    "claude_skills": {
+      "codex-ratchet-env-agent-coordination": true,
+      "codex-ratchet-tool-status-auditor": true,
+      "jax-sim": true,
+      "julia-sim": true,
+      "lego-sim-classifier": true,
+      "pytorch-sim": true,
+      "sim-stack-maintenance": true,
+      "three-engine-sim": true
+    },
+    "codex_skill_roots": {
+      "/Users/joshuaeisenhart/.codex-second/skills": {
+        "codex-ratchet-env-agent-coordination": true,
+        "codex-ratchet-tool-status-auditor": true,
+        "jax-sim": true,
+        "julia-sim": true,
+        "lego-sim-classifier": true,
+        "pytorch-sim": true,
+        "sim-stack-maintenance": true,
+        "three-engine-sim": true
+      },
+      "/Users/joshuaeisenhart/.codex/skills": {
+        "codex-ratchet-env-agent-coordination": true,
+        "codex-ratchet-tool-status-auditor": true,
+        "jax-sim": true,
+        "julia-sim": true,
+        "lego-sim-classifier": true,
+        "pytorch-sim": true,
+        "sim-stack-maintenance": true,
+        "three-engine-sim": true
+      },
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills": {
+        "codex-ratchet-env-agent-coordination": true,
+        "codex-ratchet-tool-status-auditor": true,
+        "jax-sim": true,
+        "julia-sim": true,
+        "lego-sim-classifier": true,
+        "pytorch-sim": true,
+        "sim-stack-maintenance": true,
+        "three-engine-sim": true
+      }
+    },
+    "repo_codex_openai_yaml": {
+      "codex-ratchet-env-agent-coordination": true,
+      "codex-ratchet-tool-status-auditor": true,
+      "jax-sim": true,
+      "julia-sim": true,
+      "lego-sim-classifier": true,
+      "pytorch-sim": true,
+      "sim-stack-maintenance": true,
+      "three-engine-sim": true
+    },
+    "skill_content_guard": {
+      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-env-agent-coordination/SKILL.md": {
+        "exists": true,
+        "missing": []
+      },
+      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/codex-ratchet-tool-status-auditor/SKILL.md": {
+        "exists": true,
+        "missing": []
+      },
+      "/Users/joshuaeisenhart/Codex-Ratchet/.claude/skills/lego-sim-classifier/SKILL.md": {
+        "exists": true,
+        "missing": []
+      },
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/codex_skills/sim-stack-maintenance/SKILL.md": {
+        "exists": true,
+        "missing": []
+      }
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_engine_stack_shakedown.py",
+  "source_sha256": "c6457efbbf97a4cdca656f474475491eee13a3fd0fba163d9c55f76a5987fded",
+  "summary": {
+    "counts": {
+      "fail": 0,
+      "pass": 31,
+      "skip": 1,
+      "warn": 0
+    },
+    "failed_checks": [],
+    "ok": true,
+    "skip_checks": [
+      "julia_python_dlpack_bridge"
+    ],
+    "warn_checks": []
+  },
+  "tri_engine_table_probe": {
+    "claim_ceiling": "Julia package produced table; JAX and PyTorch execute the finite tensor kernel.",
+    "jax_associator": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -2.0,
+      0.0,
+      0.0
+    ],
+    "julia_associator": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -2,
+      0,
+      0
+    ],
+    "julia_witness": {
+      "associator_components": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0
+      ],
+      "indices_one_based": [
+        2,
+        3,
+        5
+      ],
+      "indices_zero_based": [
+        1,
+        2,
+        4
+      ]
+    },
+    "max_abs_diff_julia_jax": 0.0,
+    "max_abs_diff_julia_torch": 0.0,
+    "torch_associator": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -2.0,
+      0.0,
+      0.0
+    ]
+  }
+}

@@ -96,7 +96,10 @@ class A1RosettaMapper:
         return False
 
     def get_kernel_translation(self, overlay_term: str) -> Optional[str]:
-        """
+        """DEPRECATED (no-equals discipline): returns a single canonical kernel ID -- a de-facto '='
+        / one 'true name'. Prefer a plural ~_M perspective fan
+        (rosetta_reattach.RosettaCarrier.perspectives()). Kept for back-compat only.
+
         Translates a human overlay term into the strict canonical kernel ID.
         Returns None if not found or not ACTIVE.
         """

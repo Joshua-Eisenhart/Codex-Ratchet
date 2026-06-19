@@ -1,0 +1,95 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact count guard",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor storage and eigensolver",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing batched cut-metric recomputation",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "candidate_region_count": 6,
+  "classification": "scratch_diagnostic",
+  "embedded_1q_count": 16,
+  "engine": "pytorch",
+  "entangled_survivor_count": 16,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-13T00:14:32Z",
+  "metric_summary": {
+    "max_entangled_conditional": -0.245775366668471,
+    "max_product_negativity": 0.0,
+    "min_entangled_negativity": 0.249999999999999
+  },
+  "package_observables": {
+    "sympy": "sp.Rational exact finite count guard for product/entangled/embedding counts",
+    "torch.func": "vmap(cut_metrics)(rho_AB) recomputes partial traces, entropy, partial transpose, and negativity"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "product_survivor_count": 528,
+  "promotion_allowed": false,
+  "quotient_class_count": 8,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_2q_freeze_and_cut_v0",
+  "source_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/gcm_2q_freeze_and_cut_v0_pytorch.py",
+  "source_sha256": "2480eaaa55f9fc5a16769bd94845c35cc0847c04c8d91f02a06c9083bd4b7a10",
+  "survivor_count": 544,
+  "sympy_guard": {
+    "counts": {
+      "classes": "8",
+      "embedded": "16",
+      "entangled": "16",
+      "product": "528",
+      "two_q": "544"
+    },
+    "pass": true
+  },
+  "torch_cut_receipt": {
+    "all_entangled_conditional_negative": true,
+    "all_entangled_negativity_positive": true,
+    "all_product_negativity_zero": true,
+    "entangled_count": 16,
+    "finite": true,
+    "matrix_shape": [
+      544,
+      4,
+      4
+    ],
+    "max_abs_delta_vs_packet": 0.0,
+    "max_entangled_conditional": -0.245775366668471,
+    "max_product_negativity": 0.0,
+    "metric_shape": [
+      544,
+      7
+    ],
+    "min_entangled_negativity": 0.249999999999999,
+    "product_count": 528
+  }
+}

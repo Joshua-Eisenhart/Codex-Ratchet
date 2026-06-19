@@ -19,7 +19,9 @@ Usage:
   4. Implement admission tests, exclusion tests, and boundary probes
   5. Update TOOL_MANIFEST: tried=True for every tool attempted, reason non-empty
   6. Record which tools are load-bearing for the actual admissibility claim
-  7. Run locally, confirm exit 0, write result JSON, then report status label
+  7. If using Julia/JAX/PyTorch foreign runtimes, fill FOREIGN_RUNTIME_MANIFEST
+     and canon_runtime without bypassing this Python receipt layer
+  8. Run locally, confirm exit 0, write result JSON, then report status label
 """
 
 import json
@@ -34,6 +36,11 @@ TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
+    # --- Foreign runtime / Canon layer ---
+    "julia": {"tried": False, "used": False, "reason": ""},
+    "jax": {"tried": False, "used": False, "reason": ""},
+    "dlpack": {"tried": False, "used": False, "reason": ""},
+    "pythoncall": {"tried": False, "used": False, "reason": ""},
     # --- Proof layer ---
     "z3": {"tried": False, "used": False, "reason": ""},
     "cvc5": {"tried": False, "used": False, "reason": ""},
@@ -59,6 +66,10 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
     "pyg": None,
+    "julia": None,
+    "jax": None,
+    "dlpack": None,
+    "pythoncall": None,
     "z3": None,
     "cvc5": None,
     "sympy": None,
@@ -69,6 +80,52 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None,
     "toponetx": None,
     "gudhi": None,
+}
+
+# Foreign runtime manifest keeps Julia/JAX/PyTorch bridge work compatible with
+# the existing Python probe/result surface. Import success is not integration;
+# fill these entries only when an actual bridge or runtime call is made.
+FOREIGN_RUNTIME_MANIFEST = {
+    "julia": {
+        "tried": False,
+        "used": False,
+        "integration_depth": None,
+        "reason": "",
+    },
+    "jax": {
+        "tried": False,
+        "used": False,
+        "integration_depth": None,
+        "reason": "",
+    },
+    "pytorch": {
+        "tried": False,
+        "used": False,
+        "integration_depth": None,
+        "reason": "",
+    },
+    "dlpack": {
+        "tried": False,
+        "used": False,
+        "integration_depth": None,
+        "reason": "",
+    },
+}
+
+# Canon runtime contract for probes that call Julia-owned algebra/proof/basin
+# artifacts. See system_v5/docs/JULIA_CANON_RUNTIME_CONTRACT.md.
+CANON_RUNTIME = {
+    "semantic_owner": "not_scoped",          # usually "julia" when used
+    "accelerators": [],                     # e.g. ["pytorch", "jax"]
+    "tensor_exchange": "not_scoped",       # dlpack|typed_binary|not_scoped
+    "forbidden_exchange": [".numpy()", "np.asarray", "pickle", "csv", "pandas"],
+    "algebra_artifact_path": "not_scoped",
+    "algebra_artifact_sha256": "not_scoped",
+    "table_version": "not_scoped",
+    "bracket_policy": "not_scoped",
+    "proof_surface": "not_scoped",
+    "proof_promotion": "not_promoted_until_certified",
+    "promotion_blockers": [],
 }
 
 # Try importing each tool
@@ -240,6 +297,8 @@ if __name__ == "__main__":
         "constraint_set": "C_UNNAMED",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "foreign_runtime_manifest": FOREIGN_RUNTIME_MANIFEST,
+        "canon_runtime": CANON_RUNTIME,
         "positive": run_positive_tests(),   # admitted configurations under C
         "negative": run_negative_tests(),   # excluded configurations under C
         "boundary": run_boundary_tests(),   # boundary probes (M indistinguishable)

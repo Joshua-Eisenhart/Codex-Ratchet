@@ -1,0 +1,888 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia LinearAlgebra Float64": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "mp2_charge_quantization_julia_results.json": "load_bearing",
+    "numpy": null,
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend written by the Python driver",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra Float64": {
+      "reason": "load-bearing finite trace computation over hypercharge, isospin, charge, real-vs-erased owner carrier controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source alignment for sigma_z weak-isospin signs",
+      "tried": true,
+      "used": true
+    },
+    "mp2_charge_quantization_julia_results.json": {
+      "reason": "load-bearing Julia charge-witness receipt for Cl(0,6) unit-third/from-algebra gate",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used",
+      "tried": false,
+      "used": false
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing owner carrier receipt gate; erasing it changes sin2_theta_w and matches_3_8",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "julia",
+    "owner_julia_carrier",
+    "mp2_charge_quantization_julia_results.json",
+    "canonical_qit_engine_specs.py",
+    "Julia stdlib"
+  ],
+  "algebra_derived": false,
+  "all_pass": true,
+  "allowed_claims": [
+    "finite owner-carrier table reproduces the known SU(5)/GUT trace value 3/8",
+    "owner-carrier erasure changes the finite result",
+    "JAX and Julia agree on keyed finite readouts within 1e-9",
+    "the result is not an independent algebraic derivation of the physical Weinberg angle"
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_weinberg_angle_explore_julia_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_weinberg_angle_explore_results.json"
+  ],
+  "assignments": [
+    {
+      "Q": 0.0,
+      "T3": 0.5,
+      "Y": -0.5,
+      "charge_source_key": "plus_ideal_charge",
+      "color": null,
+      "mask": 0,
+      "name": "nu_L",
+      "sector": "left_lepton_doublet"
+    },
+    {
+      "Q": -1.0,
+      "T3": -0.5,
+      "Y": -0.5,
+      "charge_source_key": "minus_ideal_charge",
+      "color": null,
+      "mask": 7,
+      "name": "e_L",
+      "sector": "left_lepton_doublet"
+    },
+    {
+      "Q": 0.6666666666666666,
+      "T3": 0.5,
+      "Y": 0.16666666666666663,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "r",
+      "mask": 3,
+      "name": "u_L_r",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.3333333333333333,
+      "T3": -0.5,
+      "Y": 0.16666666666666669,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "r",
+      "mask": 1,
+      "name": "d_L_r",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": 0.6666666666666666,
+      "T3": 0.5,
+      "Y": 0.16666666666666663,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "g",
+      "mask": 5,
+      "name": "u_L_g",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.3333333333333333,
+      "T3": -0.5,
+      "Y": 0.16666666666666669,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "g",
+      "mask": 2,
+      "name": "d_L_g",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": 0.6666666666666666,
+      "T3": 0.5,
+      "Y": 0.16666666666666663,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "b",
+      "mask": 6,
+      "name": "u_L_b",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.3333333333333333,
+      "T3": -0.5,
+      "Y": 0.16666666666666669,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "b",
+      "mask": 4,
+      "name": "d_L_b",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": null,
+      "mask": 0,
+      "name": "nu_c",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 1.0,
+      "T3": 0.0,
+      "Y": 1.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": null,
+      "mask": 7,
+      "name": "e_c",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.3333333333333333,
+      "T3": 0.0,
+      "Y": 0.3333333333333333,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "r",
+      "mask": 1,
+      "name": "d_c_r",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.6666666666666666,
+      "T3": 0.0,
+      "Y": -0.6666666666666666,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "r",
+      "mask": 3,
+      "name": "u_c_r",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.3333333333333333,
+      "T3": 0.0,
+      "Y": 0.3333333333333333,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "g",
+      "mask": 2,
+      "name": "d_c_g",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.6666666666666666,
+      "T3": 0.0,
+      "Y": -0.6666666666666666,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "g",
+      "mask": 5,
+      "name": "u_c_g",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.3333333333333333,
+      "T3": 0.0,
+      "Y": 0.3333333333333333,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "b",
+      "mask": 4,
+      "name": "d_c_b",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.6666666666666666,
+      "T3": 0.0,
+      "Y": -0.6666666666666666,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "b",
+      "mask": 6,
+      "name": "u_c_b",
+      "sector": "right_conjugate_singlet"
+    }
+  ],
+  "backend": "julia",
+  "backend_roles": {
+    "jax": "load-bearing independent mirror",
+    "julia": "load-bearing finite trace computation using Julia Float64 arrays",
+    "owner_julia_carrier": "load-bearing source gate; erased control changes the result"
+  },
+  "blocked_consumers": [
+    "physics_admission",
+    "standard_model_derivation_claim",
+    "gauge_coupling_derivation",
+    "masses_or_coupling_constants",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "blocked_consumers_expanded": [
+    "physics_admission",
+    "standard_model_derivation_claim",
+    "gauge_coupling_derivation",
+    "masses_or_coupling_constants",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream_admission": {
+      "blocked_consumers": [
+        "physics_admission",
+        "standard_model_derivation_claim",
+        "gauge_coupling_derivation",
+        "masses_or_coupling_constants",
+        "M_C",
+        "Axis0",
+        "bridge",
+        "formal_admission",
+        "promotion"
+      ],
+      "claim_ceiling": "Scratch diagnostic only: finite witness reproducing the known SU(5)/GUT trace value sin^2(theta_W)=3/8 from the owner-carrier charge/isospin table. This does not derive a physical electroweak mixing angle, gauge coupling, masses or coupling constants, Standard Model admission, M(C), Axis0, bridge, basin, manifold, or formal admission claim.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "no_free_parameter_tuned": {
+      "free_parameter_tuned": false,
+      "pass": true
+    },
+    "no_numpy_compute": {
+      "pass": true,
+      "reason": "Julia mirror uses Julia LinearAlgebra and scalar array operations only; JAX peer uses jax.numpy x64."
+    },
+    "single_derivation_status": {
+      "algebra_derived": false,
+      "fit_or_tuned": true,
+      "pass": true,
+      "underdetermined": false
+    }
+  },
+  "branch_status_before_run": "scratch diagnostic only",
+  "bridge_layer": "none",
+  "canonical_qit_engine_specs": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+    "used_constants": [
+      "SZ"
+    ]
+  },
+  "carrier_layer": "owner Julia carrier receipts plus Cl(0,6) charge witness and canonical QIT sigma_z weak-isospin signs",
+  "claim_ceiling": "Scratch diagnostic only: finite witness reproducing the known SU(5)/GUT trace value sin^2(theta_W)=3/8 from the owner-carrier charge/isospin table. This does not derive a physical electroweak mixing angle, gauge coupling, masses or coupling constants, Standard Model admission, M(C), Axis0, bridge, basin, manifold, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "codomain_or_output": "finite scalar/boolean table for trace sums, 3/8 match, derivation/fitting flags, controls, and backend parity",
+  "cut_layer": "none",
+  "derived_not_fit": false,
+  "domain": "finite 16-state one-generation left-Weyl plus conjugate-singlet assignment table",
+  "elapsed_seconds": 1.3683960437774658,
+  "eligible_consumers": [],
+  "erased_assignments": [
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": null,
+      "mask": 0,
+      "name": "nu_L",
+      "sector": "left_lepton_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": -0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": null,
+      "mask": 7,
+      "name": "e_L",
+      "sector": "left_lepton_doublet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "r",
+      "mask": 3,
+      "name": "u_L_r",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": -0.0,
+      "Y": 0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "r",
+      "mask": 1,
+      "name": "d_L_r",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "g",
+      "mask": 5,
+      "name": "u_L_g",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": -0.0,
+      "Y": 0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "g",
+      "mask": 2,
+      "name": "d_L_g",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "b",
+      "mask": 6,
+      "name": "u_L_b",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": -0.0,
+      "Y": 0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "b",
+      "mask": 4,
+      "name": "d_L_b",
+      "sector": "left_quark_doublet"
+    },
+    {
+      "Q": -0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": null,
+      "mask": 0,
+      "name": "nu_c",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": null,
+      "mask": 7,
+      "name": "e_c",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "r",
+      "mask": 1,
+      "name": "d_c_r",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "r",
+      "mask": 3,
+      "name": "u_c_r",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "g",
+      "mask": 2,
+      "name": "d_c_g",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "g",
+      "mask": 5,
+      "name": "u_c_g",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": 0.0,
+      "T3": 0.0,
+      "Y": 0.0,
+      "charge_source_key": "plus_ideal_charge",
+      "color": "b",
+      "mask": 4,
+      "name": "d_c_b",
+      "sector": "right_conjugate_singlet"
+    },
+    {
+      "Q": -0.0,
+      "T3": 0.0,
+      "Y": -0.0,
+      "charge_source_key": "minus_ideal_charge",
+      "color": "b",
+      "mask": 6,
+      "name": "u_c_b",
+      "sector": "right_conjugate_singlet"
+    }
+  ],
+  "fail_rule": "owner gate failure, missing 3/8 trace reproduction, tautological erased control, claim-fence failure, or parity failure",
+  "finite_map": "owner_gate * finite rows (Q,T3,Y=Q-T3), then sin2_trace=sum(T3^2)/sum(Q^2)",
+  "fit_or_tuned": true,
+  "formal_admission_allowed": false,
+  "free_parameter_tuned": false,
+  "generated_at": "2026-06-07T04:23:50Z",
+  "generated_at_unix": 1.780806230771092e9,
+  "geometry_layer": "nested Hopf/Weyl/Clifford carrier gate from owner receipts; no downstream admission",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "not_independently_derived_from_algebra": {
+      "algebra_derived": false,
+      "derived_not_fit": false,
+      "fit_or_tuned": true,
+      "pass": true,
+      "reason": "The finite algebraic charge table reproduces the trace identity, but the trace formula and gauge-normalization interpretation are imported; no algebra-only coupling derivation is established.",
+      "underdetermined": false
+    },
+    "owner_carrier_erased_control_flips_result": {
+      "erased_sin2_theta_w": 0.0,
+      "pass": true,
+      "real_sin2_theta_w": 0.375
+    },
+    "raw_equal_coupling_control_does_not_hit_three_eighths": {
+      "pass": true,
+      "raw_equal_coupling_assumption_sin2": 0.5
+    }
+  },
+  "law_or_candidate_tested": "Weinberg angle exploration: reproduce or refute sin^2(theta_W)=3/8 from finite charge/isospin traces without claiming physics derivation",
+  "local_all_pass": true,
+  "matches_3_8": true,
+  "name": "mp2_weinberg_angle_explore",
+  "nearby_variants": {
+    "passed": 3,
+    "rows": {
+      "not_algebra_derived": true,
+      "owner_erased_flip": true,
+      "raw_equal_coupling_control": true
+    },
+    "total": 3
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp2_weinberg_angle_explore",
+  "owner_carrier": {
+    "checks": {
+      "all_owner_receipts_fenced_no_promotion": {
+        "pass": true,
+        "source": "owner receipt metadata"
+      },
+      "clifford_algebra_ladder": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder_julia_results.json"
+      },
+      "clifford_torus_nested_hopf_foliation": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation_julia_results.json"
+      },
+      "density_matrix_spinor_lift": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift_julia_results.json"
+      },
+      "division_algebra_ratchet_ladder": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_julia_results.json"
+      },
+      "golden_weyl": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json"
+      },
+      "octonion_G2_automorphism": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_julia_results.json"
+      },
+      "sedenion_break": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim_julia_results.json"
+      }
+    },
+    "erased_gate_numeric": 0.0,
+    "gate_numeric": 1.0,
+    "owner_carrier_load_bearing": true,
+    "owner_julia_carrier": "load_bearing",
+    "receipts": {
+      "clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder_julia_results.json",
+      "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation_julia_results.json",
+      "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift_julia_results.json",
+      "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_julia_results.json",
+      "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+      "golden_weyl_ledger": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_ledger.json",
+      "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_julia_results.json",
+      "sedenion_break": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim_julia_results.json"
+    },
+    "result_hashes": {
+      "clifford_algebra_ladder": "c8e405b5d95948c93c874175b971efaff62a592d18aea97603bf088b2db92fa7",
+      "clifford_torus_nested_hopf_foliation": "b997e0b4a071190312333dc13903db60351aa10c43b82fb705085232349c4e74",
+      "density_matrix_spinor_lift": "95f1bc01dfddb8d0b90a59e230c871872249fc1e198dd3cb6960c251aaafd8d0",
+      "division_algebra_ratchet_ladder": "b7707f01d268010231c1a791a39d8988a4058f4103301240fe18f988511bd4e0",
+      "golden_weyl": "2193864486f0e5d9198ed589c7e44f2ee49b0457b23676a2d25a51b40415488d",
+      "golden_weyl_ledger": "11cc23aec40214c65492f06d52ad68fb364913a8dbf657a2516ed5e2ed14c120",
+      "octonion_G2_automorphism": "0076abf08cf436bcf9099a905ec1a3b7d071a61188beac361cc1d34b8ea42e4d",
+      "sedenion_break": "7342e5ea5d8bec0f86d80e89f2de60087fefbe74f325c599ad74317ecf1e3758"
+    },
+    "signature_scalar": 9.742622875518846,
+    "signature_terms": {
+      "clifford_wrong_signature_gap": 2.0,
+      "density_fiber_dim": 1.0,
+      "division_O_associator_max": 2.0,
+      "division_S_zero_signed_count_scaled": 0.65625,
+      "g2_derivation_dim_scaled": 1.0,
+      "golden_weyl_linking": 0.9999999998157145,
+      "hopf_metric_det_min": 0.08637287570313155,
+      "sedenion_norm_break": 2.0000000000000004
+    },
+    "source_hashes": {
+      "canonical_qit_engine_specs": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+      "clifford_algebra_ladder": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8",
+      "clifford_torus_nested_hopf_foliation": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af",
+      "density_matrix_spinor_lift": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424",
+      "division_algebra_ratchet_ladder": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878",
+      "golden_weyl": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070",
+      "mp2_charge_quantization_julia_results": "48fe615bb00baec0fbff901213317a198fdc6599835ca981ca305159229ce095",
+      "octonion_G2_automorphism": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347",
+      "sedenion_break": "e2edeb045fb627c009cd4f486742f95008d9a59cc1647f71b720fbc2f257fcdf"
+    },
+    "sources": {
+      "canonical_qit_engine_specs": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+      "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "mp2_charge_quantization_julia_results": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_charge_quantization_julia_results.json",
+      "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "sedenion_break": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break.jl"
+    }
+  },
+  "owner_carrier_load_bearing": true,
+  "owner_julia_carrier": "load_bearing",
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "parity_max_diff": 0.0,
+    "parity_max_diff_key": null,
+    "pass": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_weinberg_angle_explore_results.json",
+    "scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5,
+        "julia": 0.5,
+        "key": "t3_up_from_canonical_qit_sigma_z"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "assignment_row_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "distance_to_3_8"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "owner_gate_numeric"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -8.326672684688674e-17,
+        "julia": -8.326672684688674e-17,
+        "key": "sum_T3Y_cross"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 9.742622875518846,
+        "julia": 9.742622875518846,
+        "key": "owner_signature_scalar"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.6000000000000001,
+        "julia": 0.6000000000000001,
+        "key": "hypercharge_trace_normalization_k2"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "charge_witness_ideal_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.5,
+        "julia": -0.5,
+        "key": "t3_down_from_canonical_qit_sigma_z"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.333333333333333,
+        "julia": 3.333333333333333,
+        "key": "sum_Y_squared"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.333333333333333,
+        "julia": 5.333333333333333,
+        "key": "sum_Q_squared"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5,
+        "julia": 0.5,
+        "key": "raw_equal_coupling_assumption_sin2"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.375,
+        "julia": 0.375,
+        "key": "target_3_8"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "erased_sin2_theta_w"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.375,
+        "julia": 0.375,
+        "key": "sin2_theta_w"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "sum_T3_squared"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.7745966692414834,
+        "julia": 0.7745966692414834,
+        "key": "hypercharge_trace_normalization_k"
+      }
+    ],
+    "status": "compared",
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "pass_rule": "local reproduction/control/boundary checks pass and keyed JAX-Julia parity is within 1e-9; algebra-only derivation is allowed to remain false",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_weinberg_angle_explore_results.json",
+  "positive": {
+    "canonical_qit_t3_signs_present": {
+      "pass": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py"
+    },
+    "cl6_charge_witness_present": {
+      "ideal_rank": 8,
+      "pass": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_charge_quantization_julia_results.json"
+    },
+    "owner_carrier_gate_real": {
+      "owner_julia_carrier": "load_bearing",
+      "pass": true,
+      "reason": "The real owner receipt gate enables the charge/isospin table."
+    },
+    "trace_reproduces_three_eighths": {
+      "formula": "sum(T3^2) / sum(Q^2) over the finite one-generation charge/isospin table",
+      "pass": true,
+      "sin2_theta_w": 0.375,
+      "target": "3/8"
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "physics_admission",
+    "standard_model_derivation_claim",
+    "gauge_coupling_derivation",
+    "masses_or_coupling_constants",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_weinberg_angle_explore_julia_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_weinberg_angle_explore_results.json"
+  ],
+  "required_tools": [
+    "jax",
+    "julia",
+    "owner_julia_carrier",
+    "mp2_charge_quantization_julia_results.json",
+    "canonical_qit_engine_specs.py"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_weinberg_angle_explore_julia_results.json",
+  "result_summary": {
+    "algebra_derived": false,
+    "all_pass": true,
+    "claim_ceiling": "scratch_diagnostic_no_promotion_no_physics_or_coupling_admission",
+    "derived_not_fit": false,
+    "fit_or_tuned": true,
+    "free_parameter_tuned": false,
+    "local_all_pass": true,
+    "matches_3_8": true,
+    "owner_carrier_load_bearing": true,
+    "owner_erased_flips_result": true,
+    "parity_max_diff": 0.0,
+    "sin2_theta_w": 0.375,
+    "underdetermined": false
+  },
+  "root_constraints_in_force": {
+    "F01": "finite 16-row one-generation charge/isospin table from Cl(0,6) charge witness and finite owner receipt gate",
+    "N01": "weak-isospin assignment, hypercharge from Q-T3, and owner-carrier erasure are order-sensitive and change trace readouts"
+  },
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "shared_booleans": {
+    "algebra_derived": false,
+    "algebra_forces_coupling_normalization": false,
+    "charge_witness_from_algebra": true,
+    "charge_witness_unit_third": true,
+    "claim_fence_ok": true,
+    "derived_not_fit": false,
+    "fit_or_tuned": true,
+    "free_parameter_tuned": false,
+    "matches_3_8": true,
+    "owner_carrier_load_bearing": true,
+    "owner_erased_flips_result": true,
+    "raw_equal_coupling_control_misses_3_8": true,
+    "trace_formula_imported": true,
+    "underdetermined": false
+  },
+  "shared_scalars": {
+    "assignment_row_count": 16.0,
+    "charge_witness_ideal_rank": 8.0,
+    "distance_to_3_8": 0.0,
+    "erased_sin2_theta_w": 0.0,
+    "hypercharge_trace_normalization_k": 0.7745966692414834,
+    "hypercharge_trace_normalization_k2": 0.6000000000000001,
+    "owner_gate_numeric": 1.0,
+    "owner_signature_scalar": 9.742622875518846,
+    "raw_equal_coupling_assumption_sin2": 0.5,
+    "sin2_theta_w": 0.375,
+    "sum_Q_squared": 5.333333333333333,
+    "sum_T3Y_cross": -8.326672684688674e-17,
+    "sum_T3_squared": 2.0,
+    "sum_Y_squared": 3.333333333333333,
+    "t3_down_from_canonical_qit_sigma_z": -0.5,
+    "t3_up_from_canonical_qit_sigma_z": 0.5,
+    "target_3_8": 0.375
+  },
+  "sim_class": "finite_formal_scout_weinberg_angle_trace_explore",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "mp2_weinberg_angle_explore",
+  "sin2_theta_w": 0.375,
+  "source_alignment_category": "mp2_weinberg_angle_explore",
+  "tier": "finite division-algebra charge/isospin Weinberg-angle trace scout",
+  "tool_integration_depth": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia LinearAlgebra Float64": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "mp2_charge_quantization_julia_results.json": "load_bearing",
+    "numpy": null,
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend written by the Python driver",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra Float64": {
+      "reason": "load-bearing finite trace computation over hypercharge, isospin, charge, real-vs-erased owner carrier controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source alignment for sigma_z weak-isospin signs",
+      "tried": true,
+      "used": true
+    },
+    "mp2_charge_quantization_julia_results.json": {
+      "reason": "load-bearing Julia charge-witness receipt for Cl(0,6) unit-third/from-algebra gate",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used",
+      "tried": false,
+      "used": false
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing owner carrier receipt gate; erasing it changes sin2_theta_w and matches_3_8",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [
+    "golden_weyl linking receipt",
+    "clifford_torus_nested_hopf_foliation receipt"
+  ],
+  "underdetermined": false,
+  "version": "1.0",
+  "why_not_v4_probes": {
+    "derived_not_fit": false,
+    "erased_sin2_theta_w": 0.0,
+    "fit_or_tuned": true,
+    "real_sin2_theta_w": 0.375,
+    "reason": "A charge-only or carrier-erased probe can reproduce neither the finite weak-isospin trace table nor the real-vs-erased owner control.",
+    "underdetermined": false
+  },
+  "witness_trace_id": "mp2_weinberg_angle_trace_owner_carrier_gate"
+}

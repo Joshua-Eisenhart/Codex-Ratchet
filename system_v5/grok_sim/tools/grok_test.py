@@ -21,11 +21,15 @@ except Exception as e:
     print(f"FAILED: {e}")
     sys.exit(1)
 
-print("\n=== Smoke chat (grok-4-fast if available, else first model) ===")
+print("\n=== Smoke chat (prefer grok-build-0.1, then grok-4.3) ===")
 model_ids = [m.id for m in models.data]
-test_model = "grok-4-fast" if "grok-4-fast" in model_ids else (
-    "grok-4" if "grok-4" in model_ids else model_ids[0]
-)
+preferred = [
+    "grok-build-0.1",
+    "grok-4.3",
+    "grok-4.20-0309-reasoning",
+    "grok-4.20-0309-non-reasoning",
+]
+test_model = next((model for model in preferred if model in model_ids), model_ids[0])
 print(f"Using: {test_model}")
 
 resp = client.chat.completions.create(

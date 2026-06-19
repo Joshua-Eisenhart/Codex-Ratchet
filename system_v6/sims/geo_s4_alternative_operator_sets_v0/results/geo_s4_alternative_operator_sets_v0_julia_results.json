@@ -1,0 +1,190 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing eigenvalue and matrix arithmetic for Choi positivity",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing Pauli basis route for independent affine/Choi survival mirror",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source and survival hashing",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia survival partition identity proof with erased control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": {
+    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "julia_version": "1.12.6",
+    "quantumoptics": {
+      "basis": "Spin(1/2)",
+      "sigmax_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+      "sigmay_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+      "sigmaz_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+    }
+  },
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "excluded": 4,
+        "survivors": 0,
+        "tested_sets": 4
+      },
+      "erased_flip_control_verdict": "unsat",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T09:21:48Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "object_id": "geo_s4_alternative_operator_sets_v0_julia",
+  "packages_used": [
+    "QuantumOptics",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/results/geo_s4_alternative_operator_sets_v0_julia_results.json",
+  "role_id": "julia_quantumoptics_z3_alternative_operator_mirror",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "geo_s4_alternative_operator_sets_v0",
+  "source_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/geo_s4_alternative_operator_sets_v0_julia.jl",
+  "source_sha256": "8739d95299159e78807494e3220264c56add24a6c4d6a8c86ce32a9b362744d2",
+  "survival_matrix": {
+    "A_y_frame": {
+      "exclusion_language": "excluded at z_probe_quotient_descent_mortality",
+      "first_failure_row": "z_probe_quotient_descent_mortality",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "survives": false
+    },
+    "B_depolarizing": {
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "survives": false
+    },
+    "C_amplitude_damping": {
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": true,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "survives": false
+    },
+    "D_random_hermitian": {
+      "exclusion_language": "excluded at shell_preservation_leakage",
+      "first_failure_row": "shell_preservation_leakage",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": false,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "survives": false
+    }
+  },
+  "survival_matrix_sha256": "8063dba4c14a0589595ec3d373359258927004eb54cd644ee77c99bc9a566e57",
+  "tool_calls": [
+    {
+      "boundary_case": "same slot-order sets as Python",
+      "demotion_condition": "demote if package route is absent",
+      "gates": [
+        "julia_sidecar_pass"
+      ],
+      "input_object": "one-qubit Pauli basis",
+      "negative/erased_control": "survival matrix excludes random and nonmatching alternatives",
+      "output_object": {
+        "basis": "Spin(1/2)",
+        "sigmax_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmay_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmaz_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+      },
+      "positive_case": "basis operators construct under carrier project",
+      "qualified_api/function": "QuantumOptics.SpinBasis/sigmax/sigmay/sigmaz",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "four alternatives",
+      "demotion_condition": "demote if proof binds a boolean",
+      "gates": [
+        "julia_sidecar_pass"
+      ],
+      "input_object": "survival partition counts",
+      "negative/erased_control": "excluded erased to zero fails",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "excluded": 4,
+          "survivors": 0,
+          "tested_sets": 4
+        },
+        "erased_flip_control_verdict": "unsat",
+        "erased_flip_detected": true,
+        "load_bearing": true,
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "unsat"
+      },
+      "positive_case": "partition identity violation unsat",
+      "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

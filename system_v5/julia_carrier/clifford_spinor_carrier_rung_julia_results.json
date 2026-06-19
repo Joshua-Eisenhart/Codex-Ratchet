@@ -1,0 +1,186 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing real CliffordAlgebra object construction, pseudoscalar/gamma5 extraction, and geometric-product anticommutation checks for Cl(3,0) and Cl(6,0)",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "supportive UTC receipt timestamp",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source fingerprint",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing structural SMT recurrence proof for dim(Cl(n))=2^n and wrong-dimension UNSAT erase-flip controls",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "backend": "julia_authoritative_cliffordalgebras_z3",
+  "claim_ceiling": "Authoritative Julia-only Clifford/spinor carrier rung diagnostic: constructs real Cl(3,0) and Cl(6,0) with CliffordAlgebras, checks dimensions, even-subalgebra dimensions, pseudoscalars, geometric-product anticommutation, and Z3 bounded structural dimension recurrence. No peer parity, no JAX/PyTorch leg, no bridge/admission/manifold closure claim.",
+  "classification": "scratch_diagnostic",
+  "clifford_algebras": {
+    "Cl(3,0)": {
+      "anticommutation": {
+        "failures": [],
+        "max_residual": 0.0,
+        "n": 3,
+        "pass": true
+      },
+      "basis_symbol_count": 8,
+      "constructed_as_real_cliffordalgebra_object": true,
+      "dimension": 8,
+      "dimension_pass": true,
+      "even_subalgebra_dimension": 4,
+      "even_subalgebra_dimension_pass": true,
+      "expected_dimension_2_pow_n": 8,
+      "expected_even_subalgebra_dimension": 4,
+      "name": "cl3_pauli_floor",
+      "pseudoscalar_gamma5": "+1×e1e2e3 ∈ Cl(3, 0, 0)",
+      "pseudoscalar_square": "-1 ∈ Cl(3, 0, 0)",
+      "signature": "Cl(3,0)",
+      "type": "CliffordAlgebra{3, 0, 0, (:e1, :e2, :e3), ((), (1,), (2,), (3,), (1, 2), (3, 1), (2, 3), (1, 2, 3))}"
+    },
+    "Cl(6,0)": {
+      "anticommutation": {
+        "failures": [],
+        "max_residual": 0.0,
+        "n": 6,
+        "pass": true
+      },
+      "basis_symbol_count": 64,
+      "constructed_as_real_cliffordalgebra_object": true,
+      "dimension": 64,
+      "dimension_pass": true,
+      "even_subalgebra_dimension": 32,
+      "even_subalgebra_dimension_pass": true,
+      "expected_dimension_2_pow_n": 64,
+      "expected_even_subalgebra_dimension": 32,
+      "name": "cl6_carrier",
+      "pseudoscalar_gamma5": "+1×e1e2e3e4e5e6 ∈ Cl(6, 0, 0)",
+      "pseudoscalar_square": "-1 ∈ Cl(6, 0, 0)",
+      "signature": "Cl(6,0)",
+      "type": "CliffordAlgebra{6, 0, 0, (:e1, :e2, :e3, :e4, :e5, :e6), ((), (1,), (2,), (3,), (4,), (5,), (6,), (1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (3, 4), (1, 5), (2, 5), (3, 5), (4, 5), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4), (1, 2, 5), (1, 3, 5), (2, 3, 5), (1, 4, 5), (2, 4, 5), (3, 4, 5), (1, 2, 6), (1, 6, 3), (2, 3, 6), (1, 4, 6), (2, 6, 4), (3, 4, 6), (1, 6, 5), (2, 5, 6), (3, 6, 5), (4, 5, 6), (1, 2, 3, 4), (1, 2, 5, 3), (1, 2, 4, 5), (1, 3, 5, 4), (2, 3, 4, 5), (1, 2, 3, 6), (1, 2, 6, 4), (1, 3, 4, 6), (2, 3, 6, 4), (1, 2, 5, 6), (1, 3, 6, 5), (2, 3, 5, 6), (1, 4, 5, 6), (2, 4, 6, 5), (3, 4, 5, 6), (1, 2, 3, 5, 4), (1, 2, 3, 4, 6), (1, 2, 3, 6, 5), (1, 2, 4, 5, 6), (1, 3, 4, 6, 5), (2, 3, 4, 5, 6), (1, 2, 3, 4, 5, 6))}"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-16T06:06:13Z",
+  "julia_version": "1.12.6",
+  "name": "clifford_spinor_carrier_rung",
+  "object_id": "clifford_spinor_carrier_rung",
+  "promotion_allowed": false,
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_spinor_carrier_rung_julia_results.json",
+  "runtime_seconds": 4.290732,
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_spinor_carrier_rung.jl",
+  "source_sha256": "81473c8e54b8defdd1c76378ebfc3c2b8fb1e165a9f122450dc1523e47b7714d",
+  "standalone": true,
+  "summary": {
+    "all_pass": true,
+    "anticommutation_holds": true,
+    "cl3_dim": 8,
+    "cl6_dim": 64,
+    "even_subalg_dim_cl3": 4,
+    "even_subalg_dim_cl6": 32,
+    "z3_dim_proof": true
+  },
+  "uses_cliffordalgebras": true,
+  "uses_z3": true,
+  "z3_dimension_proof": {
+    "dim_relation_proved": true,
+    "encoding": "bounded recurrence: dim_0=1, dim_(k+1)=2*dim_k; pow2_0=1, pow2_(k+1)=2*pow2_k; prove negated equality UNSAT for n=0..max_n",
+    "erase_flip_wrong_dim_unsat": true,
+    "max_n": 6,
+    "pass": true,
+    "proof_rows": [
+      {
+        "claim": "dim_0 == 2^0",
+        "n": 0,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_1 == 2^1",
+        "n": 1,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_2 == 2^2",
+        "n": 2,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_3 == 2^3",
+        "n": 3,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_4 == 2^4",
+        "n": 4,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_5 == 2^5",
+        "n": 5,
+        "negated_claim_status": "unsat",
+        "proved": true
+      },
+      {
+        "claim": "dim_6 == 2^6",
+        "n": 6,
+        "negated_claim_status": "unsat",
+        "proved": true
+      }
+    ],
+    "wrong_dim_rows": [
+      {
+        "n": 3,
+        "status": "unsat",
+        "unsat": true,
+        "wrong_dim": 7
+      },
+      {
+        "n": 3,
+        "status": "unsat",
+        "unsat": true,
+        "wrong_dim": 9
+      },
+      {
+        "n": 6,
+        "status": "unsat",
+        "unsat": true,
+        "wrong_dim": 63
+      },
+      {
+        "n": 6,
+        "status": "unsat",
+        "unsat": true,
+        "wrong_dim": 65
+      }
+    ]
+  }
+}

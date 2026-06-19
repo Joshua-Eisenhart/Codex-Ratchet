@@ -1,0 +1,136 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "structured result write",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive matrix arithmetic",
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing entropy_vn on qubit density operators for pinned S4 throughput rows",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hashing",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite quotient conservation identity control",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": {
+    "QuantumOptics.SpinBasis": "loaded_and_used",
+    "Z3.Solver": "loaded_and_checked",
+    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml"
+  },
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_unsat_to_sat": true,
+      "erased_record_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "log_base": "e",
+  "object_id": "manifold_information_throughput_v0",
+  "packages_used": [
+    "QuantumOptics",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "quantumoptics_guard": {
+    "api": "QuantumOptics.SpinBasis / QuantumOptics.dm / QuantumOptics.entropy_vn / QuantumOptics.DenseOperator",
+    "pure_state_entropy_nats": 0.0
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/manifold_information_throughput_v0/results/manifold_information_throughput_v0_julia_results.json",
+  "role_id": "julia_quantumoptics_information_throughput_leg",
+  "s4_six_state_rows": {
+    "D_x": {
+      "avg_entropy_nats": 0.6931471805599453,
+      "holevo_nats": 0.411341122022618,
+      "information_killed_from_identity_nats": 0.28180605853732726,
+      "mean_output_entropy_nats": 0.28180605853732726
+    },
+    "D_z": {
+      "avg_entropy_nats": 0.6931471805599453,
+      "holevo_nats": 0.411341122022618,
+      "information_killed_from_identity_nats": 0.28180605853732726,
+      "mean_output_entropy_nats": 0.28180605853732726
+    },
+    "R_x": {
+      "avg_entropy_nats": 0.6931471805599453,
+      "holevo_nats": 0.6931471805599453,
+      "information_killed_from_identity_nats": 0.0,
+      "mean_output_entropy_nats": 0.0
+    },
+    "R_z": {
+      "avg_entropy_nats": 0.6931471805599453,
+      "holevo_nats": 0.6931471805599453,
+      "information_killed_from_identity_nats": 0.0,
+      "mean_output_entropy_nats": 0.0
+    }
+  },
+  "schema_version": "manifold_information_throughput_v0_julia_leg_v1",
+  "sim_id": "manifold_information_throughput_v0",
+  "source_path": "system_v6/sims/manifold_information_throughput_v0/manifold_information_throughput_v0_julia.jl",
+  "source_sha256": "98b337a12213d1525857185db86ad1ac3971e2c216ce06608641efc0cd1ea5a4",
+  "tool_calls": [
+    {
+      "boundary_case": "one-qubit SpinBasis(1//2)",
+      "demotion_condition": "demote if entropy_vn route is replaced by literals only",
+      "gates": [
+        "s4_six_state_rows",
+        "all_pass"
+      ],
+      "input_object": "pinned qubit density operators from Bloch six-state ensemble",
+      "negative/erased_control": "pure-state entropy guard is zero",
+      "output_object": "Holevo throughput and information killed for D_z, D_x, R_x, R_z",
+      "positive_case": "unitary rows kill zero and dephasing rows kill positive off-axis information",
+      "qualified_api/function": "QuantumOptics.SpinBasis/QuantumOptics.DenseOperator/QuantumOptics.dm/QuantumOptics.entropy_vn",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "Z4 coefficient 2",
+      "demotion_condition": "demote if solver binds a precomputed boolean",
+      "gates": [
+        "julia_z3_conservation",
+        "all_pass"
+      ],
+      "input_object": "integer coefficients of log(2) for before/after/record",
+      "negative/erased_control": "record=0 makes conservation violation satisfiable",
+      "output_object": "unsat conservation identity and sat erased-record control",
+      "positive_case": "before = after + record is forced",
+      "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

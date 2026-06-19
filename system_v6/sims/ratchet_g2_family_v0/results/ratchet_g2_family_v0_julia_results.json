@@ -1,0 +1,193 @@
+{
+    "result_path": "system_v6/sims/ratchet_g2_family_v0/results/ratchet_g2_family_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "LinearAlgebra",
+        "Octonions",
+        "SHA",
+        "Z3"
+    ],
+    "source_sha256": "a9870317fefca6ecd0dc33bbae83f68aa069bf19eae223737227133843bc374b",
+    "derivation_dimensions": {
+        "compact": {
+            "rank": 50,
+            "nullspace_basis_count": 14,
+            "rank_method": "Julia LinearAlgebra.rank/nullspace from D(xy)=D(x)y+xD(y)",
+            "carrier": "O_compact_from_Octonions_jl",
+            "basis_dimension": 8,
+            "equation_count": 512,
+            "nullity_dim_der": 14,
+            "unknown_count": 64
+        },
+        "sign_flipped_control": {
+            "rank": 61,
+            "nullspace_basis_count": 3,
+            "rank_method": "Julia LinearAlgebra.rank/nullspace from D(xy)=D(x)y+xD(y)",
+            "carrier": "O_compact_one_sign_flipped",
+            "basis_dimension": 8,
+            "equation_count": 512,
+            "nullity_dim_der": 3,
+            "unknown_count": 64
+        },
+        "split": {
+            "rank": 50,
+            "nullspace_basis_count": 14,
+            "rank_method": "Julia LinearAlgebra.rank/nullspace from D(xy)=D(x)y+xD(y)",
+            "carrier": "O_split_cayley_dickson_gamma_plus_one",
+            "basis_dimension": 8,
+            "equation_count": 512,
+            "nullity_dim_der": 14,
+            "unknown_count": 64
+        }
+    },
+    "load_path": [
+        "@",
+        "@stdlib"
+    ],
+    "classification": "scratch_diagnostic",
+    "sim_id": "ratchet_g2_family_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T06:19:29Z",
+    "TOOL_MANIFEST": {
+        "Octonions": {
+            "used": true,
+            "tried": true,
+            "reason": "carrier structure constants for compact table"
+        },
+        "LinearAlgebra": {
+            "used": true,
+            "tried": true,
+            "reason": "rank/nullspace computation over derived structure constants"
+        },
+        "JSON3": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive receipt serialization"
+        },
+        "Z3": {
+            "used": true,
+            "tried": true,
+            "reason": "load-bearing erased-flip check over computed dimension identity"
+        }
+    },
+    "stabilizer_rows": {
+        "split_negative_e4": {
+            "basis_count": 14,
+            "stabilizer_dim": 8,
+            "orbit_dim": 6,
+            "constraint_rank_on_derivation_basis": 6
+        },
+        "compact_e1": {
+            "basis_count": 14,
+            "stabilizer_dim": 8,
+            "orbit_dim": 6,
+            "constraint_rank_on_derivation_basis": 6
+        },
+        "split_positive_e1": {
+            "basis_count": 14,
+            "stabilizer_dim": 8,
+            "orbit_dim": 6,
+            "constraint_rank_on_derivation_basis": 6
+        },
+        "split_null_e1_plus_e4": {
+            "basis_count": 14,
+            "stabilizer_dim": 8,
+            "orbit_dim": 6,
+            "constraint_rank_on_derivation_basis": 6
+        }
+    },
+    "all_pass": true,
+    "object_id": "ratchet_g2_family_v0",
+    "promotion_allowed": false,
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "TOOL_INTEGRATION_DEPTH": {
+        "Octonions": "supportive",
+        "LinearAlgebra": "supportive",
+        "JSON3": "supportive",
+        "Z3": "load_bearing"
+    },
+    "tool_calls": [
+        {
+            "boundary_case": "dimension identity only; no formal admission",
+            "demotion_condition": "demote if Z3.jl binds an expected boolean rather than the computed integer combo",
+            "output_object": {
+                "ran": true,
+                "load_bearing": true,
+                "gates": [
+                    "julia_z3",
+                    "all_pass"
+                ],
+                "negative/erased_control": "erase the computed combo binding; violating value is SAT",
+                "erased_flip_verdict": "sat",
+                "boundary_case": "dimension identity only; no formal admission",
+                "demotion_condition": "demote if Z3.jl binds an expected boolean rather than the computed integer combo",
+                "positive_case": "asserting the computed dimension identity is violated is UNSAT",
+                "verdict": "unsat",
+                "solver": "Z3.jl",
+                "derived_expression": "compact_stabilizer_dim + branch7_dim_sum + branch14_dim_sum",
+                "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+                "claim": "computed Julia carrier stabilizer and branching dims satisfy 8 + 7 + 14 = 29",
+                "erased_flip_detected": true
+            },
+            "positive_case": "asserting the computed dimension identity is violated is UNSAT",
+            "load_bearing": true,
+            "gates": [
+                "julia_z3",
+                "all_pass"
+            ],
+            "negative/erased_control": "erase the computed combo binding; violating value is SAT",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3",
+            "input_object": "computed compact stabilizer and branch dimension rows"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "load_bearing": true,
+            "gates": [
+                "julia_z3",
+                "all_pass"
+            ],
+            "negative/erased_control": "erase the computed combo binding; violating value is SAT",
+            "erased_flip_verdict": "sat",
+            "boundary_case": "dimension identity only; no formal admission",
+            "demotion_condition": "demote if Z3.jl binds an expected boolean rather than the computed integer combo",
+            "positive_case": "asserting the computed dimension identity is violated is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "derived_expression": "compact_stabilizer_dim + branch7_dim_sum + branch14_dim_sum",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "claim": "computed Julia carrier stabilizer and branching dims satisfy 8 + 7 + 14 = 29",
+            "erased_flip_detected": true
+        }
+    },
+    "capability_receipts": {
+        "julia_version": "1.12.6",
+        "carrier_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "z3_verdict": "unsat"
+    },
+    "engine_values": {
+        "split_null_stabilizer_dim": 8,
+        "compact_stabilizer_rank": 6,
+        "compact_orbit_dim": 6,
+        "compact_der_dim": 14,
+        "compact_stabilizer_dim": 8,
+        "split_negative_stabilizer_dim": 8,
+        "branch7_dim_sum": 7,
+        "branch27_dim_sum": 27,
+        "split_positive_stabilizer_dim": 8,
+        "corrupt_der_dim": 3,
+        "branch14_dim_sum": 14
+    },
+    "source_path": "system_v6/sims/ratchet_g2_family_v0/ratchet_g2_family_v0_julia.jl",
+    "seed": "ratchet_g2_family_v0_seed_20260611",
+    "schema_version": "ratchet_g2_family_v0_julia_result_v1",
+    "claim_path_tools": [
+        "Z3"
+    ]
+}

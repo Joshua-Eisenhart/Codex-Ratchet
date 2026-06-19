@@ -1,0 +1,642 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive matrix digest comparison",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from independent engine receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result-path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "explicit left/right parenthesized products over C[k,i,j]",
+    "consumer_policy": "engines compute local tables independently; no peer result reads",
+    "proof_pass": true,
+    "proof_tag": "generated_cayley_dickson_structure_constants_with_julia_z3_associator_control",
+    "receipt_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "c9fd9fa3fb03eeb7b87766de987061cf651aaa30dbe4087034adb1f2b764799f",
+    "table_version": "assoc_weakening_lattice_classifier_v1"
+  },
+  "claim_ceiling": "finite structure-constant classifier harness only; scratch diagnostic, not canonical algebra admission",
+  "claim_path_tools": [
+    "Z3",
+    "z3",
+    "cvc5",
+    "jax",
+    "jax.numpy",
+    "torch",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "classification_matrix": {
+    "C": {
+      "alternativity": true,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": true,
+      "flexibility": true,
+      "moufang": true,
+      "none": false,
+      "power_associativity": true,
+      "third_power_associativity": true
+    },
+    "H": {
+      "alternativity": true,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": true,
+      "flexibility": true,
+      "moufang": true,
+      "none": false,
+      "power_associativity": true,
+      "third_power_associativity": true
+    },
+    "K": {
+      "alternativity": false,
+      "artin_diassociativity_basis_pairs": false,
+      "associativity": false,
+      "flexibility": false,
+      "moufang": false,
+      "none": true,
+      "power_associativity": false,
+      "third_power_associativity": false
+    },
+    "O": {
+      "alternativity": true,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": false,
+      "flexibility": true,
+      "moufang": true,
+      "none": false,
+      "power_associativity": true,
+      "third_power_associativity": true
+    },
+    "R": {
+      "alternativity": true,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": true,
+      "flexibility": true,
+      "moufang": true,
+      "none": false,
+      "power_associativity": true,
+      "third_power_associativity": true
+    },
+    "S": {
+      "alternativity": false,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": false,
+      "flexibility": true,
+      "moufang": false,
+      "none": false,
+      "power_associativity": true,
+      "third_power_associativity": true
+    }
+  },
+  "control_only_tools": [],
+  "controls": {
+    "column_has_at_least_one_fail": {
+      "alternativity": true,
+      "artin_diassociativity_basis_pairs": true,
+      "associativity": true,
+      "flexibility": true,
+      "moufang": true,
+      "none": true,
+      "power_associativity": true,
+      "third_power_associativity": true
+    },
+    "permuted_table_control": {
+      "jax": {
+        "original_position": "alternativity",
+        "permuted_identity_results": {
+          "alternativity": false,
+          "artin_diassociativity_basis_pairs": false,
+          "associativity": false,
+          "flexibility": false,
+          "moufang": false,
+          "none": true,
+          "power_associativity": false,
+          "third_power_associativity": false
+        },
+        "permuted_position": "none",
+        "shifted": true
+      },
+      "julia": {
+        "original_position": "alternativity",
+        "permuted_identity_results": {
+          "alternativity": false,
+          "artin_diassociativity_basis_pairs": false,
+          "associativity": false,
+          "flexibility": false,
+          "moufang": false,
+          "none": true,
+          "power_associativity": false,
+          "third_power_associativity": false
+        },
+        "permuted_position": "none",
+        "shifted": true
+      },
+      "pytorch": {
+        "original_position": "alternativity",
+        "permuted_identity_results": {
+          "alternativity": false,
+          "artin_diassociativity_basis_pairs": false,
+          "associativity": false,
+          "flexibility": false,
+          "moufang": false,
+          "none": true,
+          "power_associativity": false,
+          "third_power_associativity": false
+        },
+        "permuted_position": "none",
+        "shifted": true
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "O_associativity": {
+        "H_control_cvc5": "unsat",
+        "H_control_julia_z3": "unsat",
+        "H_control_z3": "unsat",
+        "claim": "There exists a basis triple with (xy)z != x(yz) in O.",
+        "cvc5": "sat",
+        "julia_z3": "sat",
+        "passes": true,
+        "z3": "sat"
+      },
+      "S_alternativity": {
+        "H_control_cvc5": "unsat",
+        "H_control_z3": "unsat",
+        "claim": "There exists a sampled generic x,y with (xx)y != x(xy) in S.",
+        "cvc5": "sat",
+        "passes": true,
+        "z3": "sat"
+      },
+      "claim": "Independent cvc5 derivation matches z3 on the O/S decisive cells and H controls.",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    },
+    "julia_z3": {
+      "O_associativity": {
+        "H_control_cvc5": "unsat",
+        "H_control_julia_z3": "unsat",
+        "H_control_z3": "unsat",
+        "claim": "There exists a basis triple with (xy)z != x(yz) in O.",
+        "cvc5": "sat",
+        "julia_z3": "sat",
+        "passes": true,
+        "z3": "sat"
+      },
+      "claim": "Julia Z3 binds the O/H structure constants and derives the O SAT versus H UNSAT associativity flip.",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "O_associativity": {
+        "H_control_cvc5": "unsat",
+        "H_control_julia_z3": "unsat",
+        "H_control_z3": "unsat",
+        "claim": "There exists a basis triple with (xy)z != x(yz) in O.",
+        "cvc5": "sat",
+        "julia_z3": "sat",
+        "passes": true,
+        "z3": "sat"
+      },
+      "S_alternativity": {
+        "H_control_cvc5": "unsat",
+        "H_control_z3": "unsat",
+        "claim": "There exists a sampled generic x,y with (xx)y != x(xy) in S.",
+        "cvc5": "sat",
+        "passes": true,
+        "z3": "sat"
+      },
+      "claim": "O associativity violation and S alternativity violation derived from bound structure constants; H controls are UNSAT.",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    }
+  },
+  "divergence": {
+    "comparison_rule": "exact classification matrix and lattice-position equality",
+    "engine_values": {
+      "jax": {
+        "matrix_mismatch_count": 0,
+        "position_mismatch_count": 0
+      },
+      "julia": {
+        "matrix_mismatch_count": 0,
+        "position_mismatch_count": 0
+      },
+      "pytorch": {
+        "matrix_mismatch_count": 0,
+        "position_mismatch_count": 0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b",
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/assoc_weakening_lattice_classifier_jax.py",
+      "source_sha256": "e66832e960cf66249ac64c05acc26a2063818593158fb11e2cdc469ad6194d6f"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b",
+      "packages_used": [
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/assoc_weakening_lattice_classifier_julia.jl",
+      "source_sha256": "c9fd9fa3fb03eeb7b87766de987061cf651aaa30dbe4087034adb1f2b764799f"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b",
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_pytorch_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/assoc_weakening_lattice_classifier_pytorch.py",
+      "source_sha256": "4e78523a22eb0fe472dbf43cedccd2c69de97b47f5425eb588d1898e7a749a5e"
+    }
+  },
+  "expected_checks": {
+    "O_passes_2_3_4_5_6_7_fails_1": true,
+    "S_fails_2_flex_power_third_checked": true,
+    "every_identity_column_has_fail": true,
+    "kill_control_fails_5": true,
+    "permuted_table_control_shifts_all_engines": true
+  },
+  "failure_witnesses": {
+    "C": {},
+    "H": {},
+    "K": {
+      "alternativity": {
+        "kind": "left_alternative",
+        "max_abs": 3.0,
+        "support": [
+          1
+        ],
+        "values": [
+          3.0
+        ],
+        "x": "g0",
+        "y": "e1"
+      },
+      "artin_diassociativity_basis_pairs": {
+        "basis_triple": [
+          "e1",
+          "e2",
+          "e1"
+        ],
+        "generated_indices": [
+          0,
+          1,
+          2
+        ],
+        "generators": [
+          "e1",
+          "e2"
+        ],
+        "kind": "basis_pair_generated_subalgebra_associator",
+        "max_abs": 1.0,
+        "support": [
+          1
+        ],
+        "values": [
+          1.0
+        ]
+      },
+      "associativity": {
+        "kind": "associator",
+        "max_abs": 1.0,
+        "support": [
+          1
+        ],
+        "values": [
+          1.0
+        ],
+        "x": "e1",
+        "y": "e2",
+        "z": "e1"
+      },
+      "flexibility": {
+        "kind": "flexibility",
+        "max_abs": 1.0,
+        "support": [
+          1
+        ],
+        "values": [
+          1.0
+        ],
+        "x": "e1",
+        "y": "e2"
+      },
+      "moufang": {
+        "kind": "moufang",
+        "max_abs": 1.0,
+        "support": [
+          1
+        ],
+        "values": [
+          -1.0
+        ],
+        "x": "e1",
+        "y": "e1",
+        "z": "e2"
+      },
+      "power_associativity": {
+        "kind": "x3_bracketing",
+        "max_abs": 3.0,
+        "support": [
+          1
+        ],
+        "values": [
+          3.0
+        ],
+        "x": "g0"
+      },
+      "third_power_associativity": {
+        "kind": "third_power",
+        "max_abs": 3.0,
+        "support": [
+          1
+        ],
+        "values": [
+          -3.0
+        ],
+        "x": "g0"
+      }
+    },
+    "O": {
+      "associativity": {
+        "kind": "associator",
+        "max_abs": 2.0,
+        "support": [
+          7
+        ],
+        "values": [
+          2.0
+        ],
+        "x": "e1",
+        "y": "e2",
+        "z": "e4"
+      }
+    },
+    "R": {},
+    "S": {
+      "alternativity": {
+        "kind": "left_alternative",
+        "max_abs": 26.0,
+        "support": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "values": [
+          26.0,
+          -10.0,
+          2.0,
+          -22.0,
+          18.0
+        ],
+        "x": "g0",
+        "y": "e1"
+      },
+      "associativity": {
+        "kind": "associator",
+        "max_abs": 2.0,
+        "support": [
+          7
+        ],
+        "values": [
+          2.0
+        ],
+        "x": "e1",
+        "y": "e2",
+        "z": "e4"
+      },
+      "moufang": {
+        "kind": "moufang",
+        "max_abs": 2.0,
+        "support": [
+          14
+        ],
+        "values": [
+          2.0
+        ],
+        "x": "e1",
+        "y": "e2",
+        "z": "e12"
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "batched_exhaustive_worker_and_smt_sidecar"
+    },
+    "julia": {
+      "packages": [
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "project": "system_v5/julia_carrier",
+      "role": "semantic_owner"
+    },
+    "pytorch": {
+      "packages": [
+        "torch",
+        "torch.func",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "torch_tensor_and_torch_func_consumer"
+    },
+    "tensor_exchange": "none"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:40:18Z",
+  "identity_order": [
+    "associativity",
+    "alternativity",
+    "artin_diassociativity_basis_pairs",
+    "moufang",
+    "flexibility",
+    "power_associativity",
+    "third_power_associativity",
+    "none"
+  ],
+  "lattice_positions": {
+    "C": "associativity",
+    "H": "associativity",
+    "K": "none",
+    "O": "alternativity",
+    "R": "associativity",
+    "S": "artin_diassociativity_basis_pairs"
+  },
+  "ledger_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_pytorch_results.json"
+  },
+  "matrix_comparison": {
+    "jax": {
+      "matches_julia": true,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b"
+    },
+    "julia": {
+      "matches_julia": true,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b"
+    },
+    "pytorch": {
+      "matches_julia": true,
+      "matrix_hash": "01f8b66ce07d1923988510da10a153c806b41e7cada73799d36b0b160c59a21b"
+    }
+  },
+  "object_id": "assoc_weakening_lattice_classifier_envelope",
+  "position_comparison": {
+    "jax": {
+      "matches_julia": true,
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3"
+    },
+    "julia": {
+      "matches_julia": true,
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3"
+    },
+    "pytorch": {
+      "matches_julia": true,
+      "positions_hash": "a092eab494537d3cf6a39a5d173ac4520a34a6f59948d48d6d7f6286f7c31fa3"
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/results/assoc_weakening_lattice_classifier_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "smt_verdicts": {
+    "O_associativity": {
+      "H_control_cvc5": "unsat",
+      "H_control_julia_z3": "unsat",
+      "H_control_z3": "unsat",
+      "claim": "There exists a basis triple with (xy)z != x(yz) in O.",
+      "cvc5": "sat",
+      "julia_z3": "sat",
+      "passes": true,
+      "z3": "sat"
+    },
+    "S_alternativity": {
+      "H_control_cvc5": "unsat",
+      "H_control_z3": "unsat",
+      "claim": "There exists a sampled generic x,y with (xx)y != x(xy) in S.",
+      "cvc5": "sat",
+      "passes": true,
+      "z3": "sat"
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/assoc_weakening_lattice_classifier/assoc_weakening_lattice_classifier_envelope.py",
+  "source_sha256": "a20990db9954528fb8715a956fc48e04fe94eddc57f82c494f047e77ac895700",
+  "table_sha256": {
+    "C": "7c1b073af548dd116cd235976ab85039f32b51076e7a6a0e17dfd76b8ddf9bbb",
+    "H": "9383249795358eff8fd9d71fae3fa672c0c4f1f1d7182e387e650c06176f3910",
+    "K": "5e3547a8e4b176dcee7c4cd78d34356611353ca98d5867ab5221c6a6ab05e19b",
+    "O": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360",
+    "R": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "S": "d483eac3bd8211a2aaed32b177cbfac602efa3bcc5125abef25daa488dab12e5"
+  }
+}

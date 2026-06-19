@@ -1,0 +1,173 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph rebuild",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT binding",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "build_gates": {
+    "final_table_matches_expected": true,
+    "graphs_carrier_rebuilt": true,
+    "julia_z3_flip_control_sat": true,
+    "julia_z3_positive_unsat": true
+  },
+  "candidate_verdicts": [
+    {
+      "boundary_reads_axis0": true,
+      "candidate": "A0.CP.11",
+      "classification": "excluded",
+      "co_survivor": false,
+      "final_verdict": "excluded-by-stability-class-mismatch",
+      "hamming_disagreement_count": 19,
+      "multi_step_matches_anchor": false,
+      "stability_matches_anchor": false,
+      "witness_row": "stability-class-mismatch"
+    },
+    {
+      "boundary_reads_axis0": true,
+      "candidate": "A0.CP.14",
+      "classification": "excluded",
+      "co_survivor": false,
+      "final_verdict": "excluded-by-stability-class-mismatch",
+      "hamming_disagreement_count": 21,
+      "multi_step_matches_anchor": false,
+      "stability_matches_anchor": false,
+      "witness_row": "stability-class-mismatch"
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "counts": {
+    "candidate_count": 2,
+    "co_survivor_count": 0,
+    "cp11_boundary_reads_axis0": 1,
+    "cp11_hamming_count": 19,
+    "cp11_multi_step_matches_anchor": 0,
+    "cp11_stability_matches_anchor": 0,
+    "cp11_verdict_code": 11,
+    "cp14_boundary_reads_axis0": 1,
+    "cp14_hamming_count": 21,
+    "cp14_multi_step_matches_anchor": 0,
+    "cp14_stability_matches_anchor": 0,
+    "cp14_verdict_code": 11,
+    "excluded_count": 2
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "bound_values": {
+        "candidate_count": 2,
+        "co_survivor_count": 0,
+        "cp11_boundary_reads_axis0": 1,
+        "cp11_hamming_count": 19,
+        "cp11_multi_step_matches_anchor": 0,
+        "cp11_stability_matches_anchor": 0,
+        "cp11_verdict_code": 11,
+        "cp14_boundary_reads_axis0": 1,
+        "cp14_hamming_count": 21,
+        "cp14_multi_step_matches_anchor": 0,
+        "cp14_stability_matches_anchor": 0,
+        "cp14_verdict_code": 11,
+        "excluded_count": 2
+      },
+      "claim": "Julia binds CP.11/CP.14 heavy verdict values with SAT flip",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one heavy row binding differs from the computed value",
+      "negative/erased_control": "mutating CP.11 hamming by one is SAT and would be caught",
+      "positive_case": "negating the heavy row bindings is UNSAT",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "family_adjudication_sentence": "Axis-0 = the anchor alias class",
+  "final_verdict_table": [
+    {
+      "boundary_reads_axis0": true,
+      "candidate": "A0.CP.11",
+      "classification": "excluded",
+      "co_survivor": false,
+      "final_verdict": "excluded-by-stability-class-mismatch",
+      "hamming_disagreement_count": 19,
+      "multi_step_matches_anchor": false,
+      "stability_matches_anchor": false,
+      "witness_row": "stability-class-mismatch"
+    },
+    {
+      "boundary_reads_axis0": true,
+      "candidate": "A0.CP.14",
+      "classification": "excluded",
+      "co_survivor": false,
+      "final_verdict": "excluded-by-stability-class-mismatch",
+      "hamming_disagreement_count": 21,
+      "multi_step_matches_anchor": false,
+      "stability_matches_anchor": false,
+      "witness_row": "stability-class-mismatch"
+    }
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T09:21:36Z",
+  "package_observables": {
+    "Graphs": "SimpleDiGraph rebuilds the finite committed generator graph for the Julia mirror lane",
+    "Z3": "Z3.Solver/check binds CP.11/CP.14 heavy verdict counts and SAT flip control"
+  },
+  "packages_used": [
+    "Graphs",
+    "JSON",
+    "LinearAlgebra",
+    "SHA",
+    "Dates",
+    "Z3"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/axis0_cosurvivor_heavy_v0/results/axis0_cosurvivor_heavy_v0_julia_results.json",
+  "role_id": "julia_graphs_z3_axis0_cosurvivor_heavy_mirror",
+  "schema": "axis0_cosurvivor_heavy_v0_julia_lane_v1",
+  "sim_id": "axis0_cosurvivor_heavy_v0",
+  "source_path": "system_v6/sims/axis0_cosurvivor_heavy_v0/axis0_cosurvivor_heavy_v0_julia.jl",
+  "source_sha256": "403bfeb2a68999728a31442becb69e6359d3ac87bf626514f97fb69dfc7ba3c3",
+  "tool_calls": [
+    {
+      "boundary_case": "Graphs binds mirror support only",
+      "gates": [
+        "graphs_carrier_rebuilt"
+      ],
+      "input_object": "committed carrier edges",
+      "negative/erased_control": "graph rebuild alone cannot mint a co-survivor",
+      "output_object": "finite graph vertex and edge counts",
+      "positive_case": "graph has 33 vertices and nonzero finite directed support",
+      "qualified_api": "SimpleDiGraph/add_edge!",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "SMT binds the finite table, not Axis-0 admission",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "CP.11/CP.14 heavy verdict bindings",
+      "negative/erased_control": "mutating CP.11 hamming by one is SAT and would be caught",
+      "output_object": "UNSAT positive binding and SAT mutation",
+      "positive_case": "negating the heavy row bindings is UNSAT",
+      "qualified_api": "Z3.Solver/check",
+      "tool": "Z3"
+    }
+  ]
+}

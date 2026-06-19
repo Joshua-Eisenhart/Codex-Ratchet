@@ -1,0 +1,414 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "LinearAlgebra": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Cl(8,0) package receipt backing the exact anticommutation table, algebra dimension, and chirality split; hand gamma table retained as mirror",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive result serialization, timestamping, and source hashing",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive Kronecker construction over Complex{Int} Pauli matrices",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing symbolic phase-erasure factorization",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT polarity check over exact anticommutation deltas",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Symbolics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Symbolics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "10_anticommuting_family_impossible": {
+      "fired": true,
+      "z3_bound_check_32_le_16": "unsat"
+    },
+    "corrupted_gamma_sign": {
+      "actual": "sat",
+      "expected": "sat",
+      "fired": true
+    },
+    "triality_prose_only_overclaim": {
+      "fired": true
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:17:47.728",
+  "non_conflation": {
+    "CP15_vs_Spin8_triality_merged": false,
+    "present": true
+  },
+  "packages_used": [
+    "Symbolics",
+    "CliffordAlgebras",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "SHA"
+  ],
+  "pin_sha256": "acd40027098ca7074723cbb63c21dc9598637363e0a821372830f71b5a6f42ab",
+  "pin_spec": "geo_s1_four_qubit_support_exact_v0|four_spinor_C2x4_to_C16|S31_to_CP15_density_quotient|Cl8_Jordan_Wigner_gamma9_product|root_noncommutation_not_anticommutation|matrix_associator_zero|triality_pressure_only|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "P1_anticommutation_table": {
+      "corrupted_generator_control_z3": "sat",
+      "pass": true,
+      "z3_assert_some_bad": "unsat"
+    },
+    "P2_max_9_family_upper_bound": {
+      "pass": true,
+      "z3_assert_10_family_bound_32_le_16": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "receipts": {
+    "F01_finitude_receipt": {
+      "active_probe_family_count": {
+        "gamma_generators": 8,
+        "max_family": 9,
+        "named_states": 4
+      },
+      "computational_basis_count": 16,
+      "finite_enumeration_bounds": {
+        "extension_scan_candidates": 255,
+        "gamma_pairs": 64,
+        "gamma_triples": 512
+      },
+      "hilbert_dim": 16,
+      "mixed_density_real_dim": 255,
+      "operator_basis_count": 256,
+      "pass": true,
+      "phase_quotient": "CP^15",
+      "proof_objects": "finite matrix-entry constraints and finite Clifford generator-relation set",
+      "pure_sphere": "S^31 subset C^16",
+      "strength_label": "exact_integer_combinatorial"
+    },
+    "N01_noncommutation_receipt": {
+      "O1_commuting_control": {
+        "A": "XIII",
+        "AB_equals_BA": true,
+        "B": "IXII",
+        "order_gap_norm_squared": "0"
+      },
+      "O2_general_noncommuting_witness": {
+        "A": "XIII",
+        "AB_minus_BA_nonzero": true,
+        "B": "ZIII"
+      },
+      "O3_noncommuting_but_not_anticommuting_witness": {
+        "A": "XIII",
+        "AB_minus_BA_nonzero": true,
+        "AB_plus_BA_nonzero": true,
+        "B": "XIII + ZIII"
+      },
+      "O4_anticommuting_Clifford_witness": {
+        "A": "XIII",
+        "AB_nonzero": true,
+        "AB_plus_BA_zero": true,
+        "B": "ZIII"
+      },
+      "O5_order_gap_receipt_on_state": {
+        "AB_state_sparse": {
+          "8": "1 + 0im"
+        },
+        "BA_state_sparse": {
+          "8": "-1 + 0im"
+        },
+        "gap_norm_squared": "4",
+        "gap_sparse": {
+          "8": "2 + 0im"
+        },
+        "state": "|0000>"
+      },
+      "O6_Clifford_family_capacity_row_kept_separate": {
+        "not_collapsed": true,
+        "separate_capacity_row": "Z4 max anticommuting family = 9"
+      },
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial"
+    },
+    "T01_bracketing_receipt": {
+      "algebra_level_nonassociativity_statement": "not present in qubit matrix multiplication",
+      "matrix_associator_control": {
+        "failures": 0,
+        "ordered_triples": 512,
+        "theorem_extension": "associativity of matrix multiplication covers all M_16(C)"
+      },
+      "octonion_lane_boundary_statement": "true algebra-level nonassociativity belongs to octonion/nonassociative extension lane",
+      "pass": true,
+      "schedule_or_channel_associator_test": {
+        "reason": "no channel or measurement schedule implemented",
+        "status": "not_scoped"
+      },
+      "strength_label": "representation_theorem_with_constructive_receipt"
+    },
+    "Z1_carrier_quotient": {
+      "basis_dictionary": {
+        "0000": 0,
+        "0001": 1,
+        "0010": 2,
+        "0011": 3,
+        "0100": 4,
+        "0101": 5,
+        "0110": 6,
+        "0111": 7,
+        "1000": 8,
+        "1001": 9,
+        "1010": 10,
+        "1011": 11,
+        "1100": 12,
+        "1101": 13,
+        "1110": 14,
+        "1111": 15
+      },
+      "carrier": "(C^2)^{x4} ~= C^16",
+      "global_phase_quotient": "S^31/S^1 = CP^15",
+      "mixed_density_real_dim": 255,
+      "non_conflation_fields": {
+        "CP15_equals_Spin8_triality": false,
+        "Cl8_Spin8_pressure_separate": true
+      },
+      "normalized_state_locus": "S^31 subset C^16",
+      "pass": true,
+      "rank_1_density_phase_erasure_identity": {
+        "imag_delta_factor": "-u*y + v*x + (c^2)*u*y - (c^2)*v*x + (s^2)*u*y - (s^2)*v*x",
+        "meaning": "(alpha*psi)(alpha*psi)^dagger - psi*psi^dagger factors through |alpha|^2 - 1 for every entry",
+        "pass": true,
+        "phase_unit_constraint": "c^2 + s^2 = 1",
+        "real_delta_factor": "-u*x - v*y + (c^2)*u*x + (c^2)*v*y + (s^2)*u*x + (s^2)*v*y",
+        "strength_label": "symbolic_identity"
+      },
+      "strength_label": "symbolic_identity"
+    },
+    "Z2_entanglement_controls": {
+      "controls": {
+        "Bell_pair_product_mislabeled_as_global_GHZ4": {
+          "fails_exactly": true
+        },
+        "product_mislabeled_as_GHZ4": {
+          "fails_exactly": true
+        }
+      },
+      "pass": true,
+      "states": {
+        "Bell_AB_tensor_Bell_CD": {
+          "AB_entropy": "0",
+          "AC_entropy": "log(4)",
+          "CD_entropy": "0",
+          "one_qubit_entropy": "log(2)"
+        },
+        "GHZ4": {
+          "AB_entropy": "log(2)",
+          "one_qubit_entropy": "log(2)",
+          "one_qubit_rho": [
+            [
+              "1//2",
+              "0//1"
+            ],
+            [
+              "0//1",
+              "1//2"
+            ]
+          ]
+        },
+        "linear_cluster_4": {
+          "one_qubit_entropy": "log(2)",
+          "stabilizer_labels": {
+            "K_A": "XZII",
+            "K_B": "ZXZI",
+            "K_C": "IZXZ",
+            "K_D": "IIZX"
+          },
+          "stabilizer_receipt": "exact graph-state stabilizers mirrored in SymPy/PyTorch lanes"
+        },
+        "product_0000": {
+          "all_reduction_entropy": "0"
+        }
+      },
+      "strength_label": "closed_form_integral"
+    },
+    "Z3_Cl8_exact_floor": {
+      "CliffordAlgebras_receipt": {
+        "constructed_with": "CliffordAlgebra(8,0)",
+        "dimension": 256,
+        "e1_square": "+1 ∈ Cl(8, 0, 0)",
+        "load_bearing_route": "CliffordAlgebras.jl package object confirms Cl(8,0) algebra dimension and generator relation; hand Jordan-Wigner gamma table is mirror evidence"
+      },
+      "algebra_generated_dimension": 256,
+      "all_64_pairs_exact": true,
+      "anticommutation_pairs_checked": 64,
+      "convention": [
+        "gamma_1 = XIII",
+        "gamma_2 = YIII",
+        "gamma_3 = ZXII",
+        "gamma_4 = ZYII",
+        "gamma_5 = ZZXI",
+        "gamma_6 = ZZYI",
+        "gamma_7 = ZZZX",
+        "gamma_8 = ZZZY",
+        "gamma_9 = gamma_1...gamma_8"
+      ],
+      "corrupted_generator_control": {
+        "actual": "sat",
+        "expected": "sat",
+        "fired": true
+      },
+      "gamma9_eigenspace_split": {
+        "minus_one": 8,
+        "plus_one": 8
+      },
+      "gamma9_squared_identity": true,
+      "gamma9_trace": "0 + 0im",
+      "julia_z3_corrupted_generator_control": "sat",
+      "julia_z3_table_assert_some_bad": "unsat",
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial"
+    },
+    "Z4_max_anticommuting_family": {
+      "attempted_10_member_extension_negative_control": {
+        "fired": true,
+        "z3_bound_check_32_le_16": "unsat"
+      },
+      "constructed_family_size": 9,
+      "pass": true,
+      "strength_label": "representation_theorem_with_constructive_receipt",
+      "upper_bound_theorem": {
+        "m_10_allowed": false,
+        "m_10_min_rep_dim": 32,
+        "statement": "2^floor(m/2) <= 16, so m <= 9"
+      }
+    },
+    "Z5_Spin8_triality_pressure": {
+      "full_triality_automorphism_claimed": false,
+      "invariant_dimensions": {
+        "8c_negative_spinor_label": 8,
+        "8s_positive_spinor_label": 8,
+        "8v_vector_like_label": 8
+      },
+      "pass": true,
+      "pinned_triality_relevant_relation": {
+        "all_8_relations_exact_zero": true,
+        "relation": "gamma_i gamma9 + gamma9 gamma_i = 0 maps S+ <-> S-"
+      },
+      "strength_label": "open_with_reason",
+      "triality_pressure_open": {
+        "missing_condition": "explicit automorphism permuting 8v, 8s, and 8c while preserving form",
+        "status": "open-with-reason"
+      },
+      "triality_prose_only_overclaim_control": {
+        "fired": true
+      }
+    },
+    "Z6_4Q_supports_later_work_not_minimum": {
+      "claim_boundary": "support/scaling, not 3Q minimum proof",
+      "comparison_to_3Q": {
+        "3Q": "Cl6/7-family",
+        "4Q": "Cl8/9-family"
+      },
+      "pass": true,
+      "strength_label": "symbolic_identity"
+    },
+    "Z7_classification_table": {
+      "bare_float_rows": [],
+      "classification_table": [
+        {
+          "achieved_strength": "exact_integer_combinatorial",
+          "bare_float": false,
+          "claim": "F01 finitude receipt"
+        },
+        {
+          "achieved_strength": "exact_integer_combinatorial",
+          "bare_float": false,
+          "claim": "N01 noncommutation receipt"
+        },
+        {
+          "achieved_strength": "representation_theorem_with_constructive_receipt",
+          "bare_float": false,
+          "claim": "T01 matrix associator boundary"
+        },
+        {
+          "achieved_strength": "symbolic_identity",
+          "bare_float": false,
+          "claim": "Z1 carrier and quotient"
+        },
+        {
+          "achieved_strength": "closed_form_integral",
+          "bare_float": false,
+          "claim": "Z2 named-state controls"
+        },
+        {
+          "achieved_strength": "exact_integer_combinatorial",
+          "bare_float": false,
+          "claim": "Z3 Cl8 gamma table"
+        },
+        {
+          "achieved_strength": "representation_theorem_with_constructive_receipt",
+          "bare_float": false,
+          "claim": "Z4 max family theorem"
+        },
+        {
+          "achieved_strength": "open_with_reason",
+          "bare_float": false,
+          "claim": "Z5 triality pressure"
+        }
+      ],
+      "pass": true
+    }
+  },
+  "result_path": "system_v6/sims/geo_s1_four_qubit_support_exact_v0/results/geo_s1_four_qubit_support_exact_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "schema_version": "geo_s1_four_qubit_support_exact_v0_leg_v1",
+  "shared_scalars": {
+    "exact_failure_count": 0,
+    "hilbert_dim": 16,
+    "max_anticommuting_family": 9,
+    "mixed_density_real_dim": 255
+  },
+  "sim_id": "geo_s1_four_qubit_support_exact_v0",
+  "source_path": "system_v6/sims/geo_s1_four_qubit_support_exact_v0/geo_s1_four_qubit_support_exact_v0_julia.jl",
+  "source_sha256": "6e105abe351624271d2ea1ef9ac1e7f597fd2e1d38df26b8e15efab4f3717f1b",
+  "tool_calls": [
+    {
+      "boundary_case": "m=9 construction",
+      "demotion_condition": "Z3 polarity mismatch",
+      "gates": [
+        "all_pass",
+        "crossover_proofs"
+      ],
+      "input_object": "exact Cl8 matrix-entry deltas and 10-family bound arithmetic",
+      "negative_or_erased_control": "corrupted gamma and 10-family bound",
+      "output_object": "UNSAT/SAT polarity receipts",
+      "positive_case": "good anticommutator table",
+      "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

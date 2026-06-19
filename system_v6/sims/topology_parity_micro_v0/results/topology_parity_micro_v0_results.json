@@ -1,0 +1,277 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "supportive",
+    "fiber_augmented_cover_v1_common": "load_bearing",
+    "gudhi": "load_bearing",
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "shared builder/audit boundary guard so the builder packet does not claim its own audit verdict",
+      "tried": true,
+      "used": true
+    },
+    "fiber_augmented_cover_v1_common": {
+      "reason": "rebuilds the v1 and zero-shift product covers from the committed packet machinery by hash",
+      "tried": true,
+      "used": true
+    },
+    "gudhi": {
+      "reason": "independently computes Betti numbers on the same finite simplicial complex",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "eigenvalue kernel-count check for TopoNetX Hodge Laplacians",
+      "tried": true,
+      "used": true
+    },
+    "toponetx": {
+      "reason": "builds CellComplex incidence matrices and Hodge Laplacian kernel dimensions for the finite parity complex",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "TopoNetX/GUDHI toolchain sanity on torus/disk/sphere controls",
+    "finite adjacency-derived parity guard for fiber_augmented_cover_v1 only",
+    "computed-vs-expected report for the selected finite complex construction"
+  ],
+  "builder_gates": {
+    "g2a_boundary_from_birth": true,
+    "no_git_add_or_commit_required": true
+  },
+  "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+  "classification": "scratch_diagnostic",
+  "complex_build_rule": "undirected_lifted_adjacency_flag_2_complex_with_pinned_fiber_cycles",
+  "complexes": {
+    "v1_degree_one_cover": {
+      "complex_sha256": "ff21a8126b373d89a03e72781de0862d9601b83fb7a1984297b17204c5a9d6cb",
+      "construction_rule": "undirected_lifted_adjacency_flag_2_complex_with_pinned_fiber_cycles",
+      "flag_triangle_count": 66,
+      "gudhi_betti_b0_b1_b2_b3": [
+        1,
+        157,
+        0,
+        0
+      ],
+      "gudhi_hodge_agree_through_b2": true,
+      "hodge_kernel_dims_b0_b1_b2": [
+        1,
+        157,
+        0
+      ],
+      "label": "v1_degree_one_cover",
+      "source_cover_sha256": "618678a9cfb00ec88a722faa7fe5f2111145e5a9385bab8e6987b1949e53f696",
+      "source_transition_rows_sha256": "08da785fa86d05ef719a9ffeb874da5ccf7488b33e07db1865820a7a3e357727",
+      "undirected_nonself_edge_count": 321,
+      "vertex_count": 99
+    },
+    "zero_shift_product_cover": {
+      "complex_sha256": "98b0fc90eab36f8f8205942cf5d011ae0a612ebbd5e57c7184555bd2a59ad23b",
+      "construction_rule": "undirected_lifted_adjacency_flag_2_complex_with_pinned_fiber_cycles",
+      "flag_triangle_count": 72,
+      "gudhi_betti_b0_b1_b2_b3": [
+        1,
+        151,
+        0,
+        0
+      ],
+      "gudhi_hodge_agree_through_b2": true,
+      "hodge_kernel_dims_b0_b1_b2": [
+        1,
+        151,
+        0
+      ],
+      "label": "zero_shift_product_cover",
+      "source_cover_sha256": "c37c45e644ad421ff3c28b36267fae951bd5e56c5afcdd17eacbeb32735a5763",
+      "source_transition_rows_sha256": "fb63565ea3e4b2e8891678ac3708777cd47cad260bebdf08c83dde0f843f1865",
+      "undirected_nonself_edge_count": 321,
+      "vertex_count": 99
+    }
+  },
+  "controls": {
+    "all_reference_controls_pass": true,
+    "disk_reference": {
+      "expected_betti": [
+        1,
+        0,
+        0
+      ],
+      "gudhi_betti": [
+        1,
+        0,
+        0
+      ],
+      "hodge_kernel_dims": [
+        1,
+        0,
+        0
+      ],
+      "label": "disk_reference",
+      "pass": true
+    },
+    "mislabeled_torus_as_sphere_negative": {
+      "actual_gudhi_betti": [
+        1,
+        2,
+        1
+      ],
+      "actual_hodge_kernel_dims": [
+        1,
+        2,
+        1
+      ],
+      "claimed_expected_betti": [
+        1,
+        0,
+        1
+      ],
+      "input_complex": "torus_reference",
+      "label": "mislabeled_torus_as_sphere_negative",
+      "pass": true
+    },
+    "sphere_reference": {
+      "expected_betti": [
+        1,
+        0,
+        1
+      ],
+      "gudhi_betti": [
+        1,
+        0,
+        1
+      ],
+      "hodge_kernel_dims": [
+        1,
+        0,
+        1
+      ],
+      "label": "sphere_reference",
+      "pass": true
+    },
+    "torus_reference": {
+      "expected_betti": [
+        1,
+        2,
+        1
+      ],
+      "gudhi_betti": [
+        1,
+        2,
+        1
+      ],
+      "hodge_kernel_dims": [
+        1,
+        2,
+        1
+      ],
+      "label": "torus_reference",
+      "pass": true
+    }
+  },
+  "disallowed_claims": [
+    "new bundle claim",
+    "formal admission",
+    "canonical by process",
+    "axis-level closure",
+    "physics/manifold claim",
+    "cover-v1 audit replacement"
+  ],
+  "expected_profiles_preregistered_from_math": {
+    "v1_degree_one_cover": {
+      "expected_betti_b0_b1_b2_b3": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "ideal_space": "S3_like_total_space",
+      "math_reason": "nontrivial circle bundle over S2 with Euler class +/-1 has S3-like homology"
+    },
+    "zero_shift_product_cover": {
+      "expected_betti_b0_b1_b2_b3": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "ideal_space": "S2xS1_product_total_space",
+      "math_reason": "trivial circle bundle over S2 has product homology, including a circle-factor b1"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T11:03:06Z",
+  "no_builder_audit_verdict": true,
+  "parity_adjudication": {
+    "complex_building_resolution_indicted": true,
+    "computed_b1_differs": true,
+    "computed_product_betti": [
+      1,
+      151,
+      0,
+      0
+    ],
+    "computed_profiles_differ": true,
+    "computed_v1_betti": [
+      1,
+      157,
+      0,
+      0
+    ],
+    "cover_construction_indicted": false,
+    "discretization_fidelity_caveat": "the coarse adjacency-derived complex is not sufficient to adjudicate S3-like versus S2xS1 homology",
+    "expected_distinction": "v1 ideal b1=0 versus product ideal b1>=1",
+    "finding": "the lifted adjacency flag complex distinguishes v1 from the zero-shift product, but both Betti profiles miss the preregistered ideal-space profile",
+    "guard_status": "not_earned_resolution_insufficient",
+    "ideal_profiles_match": false,
+    "outcome": "discretization_fidelity_caveat",
+    "parity_question": "do the v1 and zero-shift product finite complexes differ as the bundle claim predicts"
+  },
+  "preregistration_order": "expected_profiles_declared_before_computation",
+  "promotion_allowed": false,
+  "result_summary": {
+    "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+    "guard_status": "not_earned_resolution_insufficient",
+    "independent_guard_earned": false,
+    "reference_controls_pass": true,
+    "v1_vs_product_profiles_differ": true
+  },
+  "sim_id": "topology_parity_micro_v0",
+  "source_cover": {
+    "consume_row": {
+      "exists": true,
+      "git_last_commit": "7bb60051d",
+      "path": "system_v6/receipts/old_sims_complete_consume_20260612.md",
+      "role": "gating_condition_for_topology_parity_micro_v0",
+      "sha256": "fe2d86244f6d398a9ae72f41b7934e418b12bd59c5c59dba92e1018f1d570912"
+    },
+    "fiber_augmented_cover_v1_audit": {
+      "exists": true,
+      "git_last_commit": "80860aa4f",
+      "path": "system_v6/sims/fiber_augmented_cover_v1/audit_verdict.md",
+      "role": "cover_v1_audit_ceiling_and_g2a_boundary",
+      "sha256": "4e7e241a015f2bbe0cfc8d60524d6fab3f965d66597784ae2d675d5e6afc2a44"
+    },
+    "fiber_augmented_cover_v1_result": {
+      "exists": true,
+      "git_last_commit": "80860aa4f",
+      "path": "system_v6/sims/fiber_augmented_cover_v1/results/fiber_augmented_cover_v1_results.json",
+      "role": "primary_cover_artifact",
+      "sha256": "8419f986b9b27fd80f038dc281eb9b116dab1fd42d99cd858bd0e01834293081"
+    },
+    "old_probe_source": {
+      "exists": true,
+      "git_last_commit": "4b3d602b1",
+      "path": "system_v4/probes/sim_toponetx_gudhi_hodge_betti_cross.py",
+      "role": "mechanics_feedstock_only_not_result_authority",
+      "sha256": "0ad663f336ba0817efc9f8b6171cfdacde96612ed13c0acec3159e07b6b1d4b1"
+    },
+    "v1_cover_sha256": "618678a9cfb00ec88a722faa7fe5f2111145e5a9385bab8e6987b1949e53f696",
+    "v1_transition_rows_sha256": "08da785fa86d05ef719a9ffeb874da5ccf7488b33e07db1865820a7a3e357727",
+    "zero_shift_cover_sha256": "c37c45e644ad421ff3c28b36267fae951bd5e56c5afcdd17eacbeb32735a5763",
+    "zero_shift_transition_rows_sha256": "fb63565ea3e4b2e8891678ac3708777cd47cad260bebdf08c83dde0f843f1865"
+  }
+}

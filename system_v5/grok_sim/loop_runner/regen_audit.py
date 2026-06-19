@@ -101,7 +101,7 @@ def build_regen_prompt() -> str:
 def call_grok(prompt: str, api_key: str) -> str:
     client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1", timeout=1800)
     resp = client.chat.completions.create(
-        model="grok-4-latest",
+        model="grok-4.3",
         messages=[{"role": "user", "content": prompt}],
         timeout=1800,
     )
@@ -115,7 +115,7 @@ def call_gemini(prompt: str, api_key: str) -> str:
         base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
     )
     resp = client.chat.completions.create(
-        model="gemini-2.5-pro",
+        model="gemini-3.1-pro-preview",
         messages=[{"role": "user", "content": prompt}],
         timeout=600,
     )

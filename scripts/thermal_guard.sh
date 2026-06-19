@@ -1,6 +1,6 @@
 #!/bin/bash
 # Throttle: kill youngest runner if load > THRESHOLD or thermal warning.
-ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
 LOG="$ROOT/overnight_logs/thermal_guard.log"
 THRESHOLD=${THRESHOLD:-12}
 while :; do

@@ -1,0 +1,64 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "finite_contextuality_assignment_smt_lift_discriminator_v0",
+  "engine": "smt",
+  "computation_style": "noncontextual_assignment_smt_feasibility_z3_cvc5",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-15T03:25:16Z",
+  "source_sha256": "78cbf5c5e3ea3c903111aaf51434f90f9d6c8bd5272442886169bbe7d8c5ace7",
+  "result_path": "system_v7/sims/finite_contextuality_assignment_smt_lift_discriminator_v0/results/finite_contextuality_assignment_smt_lift_discriminator_v0_smt_results.json",
+  "smt_flip": {
+    "question": "does a single noncontextual {-1,+1} assignment satisfy all 6 measurement-context product constraints?",
+    "contextual_peres_mermin": {
+      "z3": "unsat",
+      "cvc5": "unsat",
+      "expected": "unsat"
+    },
+    "noncontextual_control": {
+      "z3": "sat",
+      "cvc5": "sat",
+      "expected": "sat"
+    },
+    "contextual_is_unsat": true,
+    "control_is_sat": true,
+    "real_vs_control_flip_confirmed": true,
+    "interpretation": "Contextual statistics (Peres-Mermin) admit NO noncontextual assignment -> UNSAT -> no classical measure on a quotient reproduces them -> the quantum/rho carrier is FORCED. The control (frustrating sign removed) is SAT -> a classical measure on the quotient suffices -> the rho lift is REJECTED. The UNSAT/SAT FLIP is the load-bearing structural fact; it is not a definitional restatement."
+  },
+  "claims": {
+    "rho_forced_when_contextual": true,
+    "rho_rejected_when_noncontextual": true,
+    "load_bearing_smt_flip": true
+  },
+  "honest_scope": {
+    "earns": "an executable, flip-able z3+cvc5 control for the density_rho projection: a quantum/rho carrier is forced exactly when the finite probe statistics are CONTEXTUAL (UNSAT), rejected when noncontextual (SAT). Makes the runbook density Control executable (ledger caveat #2).",
+    "does_not_earn": "no claim that any PARTICULAR finite probe set is contextual -- only that IF it is, rho is forced; this is the discriminator, not a survey. scratch_diagnostic."
+  },
+  "packages_used": [
+    "z3",
+    "cvc5"
+  ],
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "TOOL_MANIFEST": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT (contextual) vs SAT (control) noncontextual-assignment flip"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing independent second solver confirming the same flip"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "z3": "load_bearing",
+    "cvc5": "load_bearing"
+  }
+}

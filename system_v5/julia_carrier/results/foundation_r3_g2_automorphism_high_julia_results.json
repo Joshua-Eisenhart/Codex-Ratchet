@@ -1,0 +1,233 @@
+{
+  "C_constraints": {
+    "Hermiticity": "real coordinate probes are self-adjoint observables",
+    "PSD": "probe-weight Gram matrices are positive semidefinite by construction for finite coordinate readouts",
+    "normalization": "e0 is the identity; basis units have norm 1; imaginary units square to -e0",
+    "rung_specific": "multiplication preservation: D(xy)=D(x)y+xD(y) for every basis pair",
+    "trace": "trace-one probe weights are normalized when probes are viewed as a finite measurement family"
+  },
+  "M_probe_family": {
+    "coordinate_readouts": "all output coordinates for all ordered basis pairs",
+    "finite_family": {
+      "C": 8,
+      "H": 64,
+      "O": 512,
+      "R": 1
+    },
+    "id": "basis_pair_derivation_defect_coordinates",
+    "observable": "P[k,a,b](D)=D(e_a e_b)-D(e_a)e_b-e_aD(e_b)"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing quaternion multiplication table used as the octonion Cayley-Dickson parent",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive rank/nullity computation over computed derivation matrices",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side finite certificate over computed dimensions",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "aligned_packages_load_bearing": [
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-08T03:52:18Z",
+  "engine": "julia",
+  "executable": "/opt/homebrew/bin/julia --project=@v1.12 --startup-file=no",
+  "finite_certificates": {
+    "julia_z3": {
+      "H_dim_not_3_status": "unsat",
+      "O_dim_not_14_status": "unsat",
+      "claim": "Z3.jl guards the Julia-computed rank/nullity values; it does not derive dim=14.",
+      "commutative_control_equals_O_status": "unsat",
+      "load_bearing": true,
+      "ran": true
+    }
+  },
+  "formal_admission_allowed": false,
+  "julia_version": "1.12.6",
+  "metadata": {
+    "asserted_precomputed_kernel_relations": 0,
+    "control_dimensions": {
+      "H": 3,
+      "O_imaginary_only": 15
+    },
+    "dimension_authority": "Julia LinearAlgebra rank/nullspace over the computed derivation matrix",
+    "unit_fixing_rank": 8
+  },
+  "negative_control": {
+    "division_algebra_ladder_flip": {
+      "dimensions": {
+        "C": 0,
+        "H": 3,
+        "O": 14,
+        "R": 0
+      },
+      "pass": true
+    },
+    "force_commutativity_flip": {
+      "O_derivation_dimension": 14,
+      "commutative_projection_derivation_dimension": 21,
+      "pass": true
+    },
+    "imaginary_only_probe_quotient_widens_to_15": {
+      "full_O_derivation_dimension": 14,
+      "imaginary_only_derivation_dimension": 15,
+      "pass": true
+    },
+    "unit_fixing_rank": {
+      "pass": true,
+      "rank": 8
+    }
+  },
+  "object_id": "foundation_r3_g2_automorphism_high",
+  "package_construction": {
+    "H": {
+      "algebra": "Cl(0,2)",
+      "basis_order_zero_based": [
+        "1",
+        "e1",
+        "e2",
+        "e1e2"
+      ],
+      "max_quaternion_relation_residual": 0.0,
+      "package": "CliffordAlgebras",
+      "package_native_h": true
+    },
+    "H_cd_vs_clifford_max_abs_diff": 0.0,
+    "O": {
+      "method": "Cayley-Dickson doubling of the CliffordAlgebras Cl(0,2) quaternion table",
+      "package_native_octonion_constructor_found": false
+    }
+  },
+  "packages_used": [
+    "CliffordAlgebras",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "quotient": {
+    "S": "End_R(A), represented by algebra_dim^2 real linear coefficients",
+    "class_dimensions": {
+      "C": 0,
+      "H": 3,
+      "O": 14,
+      "R": 0
+    },
+    "dimension_honesty": "Julia rank/nullspace is the authoritative dim=14 source; SMT is not credited with deriving the dimension.",
+    "equivalence": "D1 ~_M D2 iff all derivation-defect probes vanish on D1-D2",
+    "symmetry_class": "Der(A)=ker(M)"
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_g2_automorphism_high_julia_results.json",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r3_g2_automorphism_high_julia.jl",
+  "values": {
+    "C": {
+      "algebra_dim": 2,
+      "constraint_rank": 4,
+      "derivation_dimension": 0,
+      "imaginary_only_constraint_rank": 1,
+      "imaginary_only_derivation_dimension": 3,
+      "imaginary_only_probe_count": 1,
+      "name": "C",
+      "probe_count": 8,
+      "smallest_singular_values": [
+        2.4494897427831783,
+        2.4494897427831783,
+        1.4142135623730951,
+        1.4142135623730951
+      ],
+      "unit_pair_constraint_rank": 2,
+      "variable_count": 4
+    },
+    "H": {
+      "algebra_dim": 4,
+      "constraint_rank": 13,
+      "derivation_dimension": 3,
+      "imaginary_only_constraint_rank": 12,
+      "imaginary_only_derivation_dimension": 4,
+      "imaginary_only_probe_count": 27,
+      "name": "H",
+      "probe_count": 64,
+      "smallest_singular_values": [
+        2.8284271247461907,
+        2.0,
+        4.523702037078704e-16,
+        4.0410419505383353e-16,
+        3.1540078864219196e-16
+      ],
+      "unit_pair_constraint_rank": 4,
+      "variable_count": 16
+    },
+    "O": {
+      "algebra_dim": 8,
+      "constraint_rank": 50,
+      "derivation_dimension": 14,
+      "imaginary_only_constraint_rank": 49,
+      "imaginary_only_derivation_dimension": 15,
+      "imaginary_only_probe_count": 343,
+      "name": "O",
+      "probe_count": 512,
+      "smallest_singular_values": [
+        5.075620357319197e-16,
+        3.8132039694262123e-16,
+        1.5033928023762021e-16,
+        9.155989010935843e-17,
+        1.5442563700501195e-18
+      ],
+      "unit_pair_constraint_rank": 8,
+      "variable_count": 64
+    },
+    "O_commutative_projection_control": {
+      "algebra_dim": 8,
+      "constraint_rank": 43,
+      "derivation_dimension": 21,
+      "imaginary_only_constraint_rank": 14,
+      "imaginary_only_derivation_dimension": 50,
+      "imaginary_only_probe_count": 343,
+      "name": "O_commutative_projection_control",
+      "probe_count": 512,
+      "smallest_singular_values": [
+        2.8400513030351486e-17,
+        2.1419023329824984e-17,
+        1.6139060549270042e-17,
+        1.3631688793783984e-17,
+        6.709247426676332e-19
+      ],
+      "unit_pair_constraint_rank": 8,
+      "variable_count": 64
+    },
+    "R": {
+      "algebra_dim": 1,
+      "constraint_rank": 1,
+      "derivation_dimension": 0,
+      "imaginary_only_constraint_rank": 0,
+      "imaginary_only_derivation_dimension": 1,
+      "imaginary_only_probe_count": 0,
+      "name": "R",
+      "probe_count": 1,
+      "smallest_singular_values": [
+        1.0
+      ],
+      "unit_pair_constraint_rank": 1,
+      "variable_count": 1
+    }
+  }
+}

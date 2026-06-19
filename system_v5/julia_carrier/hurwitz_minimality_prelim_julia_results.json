@@ -1,0 +1,211 @@
+{
+  "algebras": {
+    "C": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 0.0,
+      "dim": 2,
+      "has_zero_divisors": false,
+      "label": "complex_numbers",
+      "n01_pass": false,
+      "name": "C",
+      "norm_mult_residual": 4.440892098500626e-16,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.011891030384294893,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "H": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 2.0,
+      "dim": 4,
+      "has_zero_divisors": false,
+      "label": "quaternions",
+      "n01_pass": true,
+      "name": "H",
+      "norm_mult_residual": 8.881784197001252e-16,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.7683083616370546,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "O": {
+      "assoc_pass": false,
+      "associator_max": 2.0,
+      "commutator_max": 2.0,
+      "dim": 8,
+      "has_zero_divisors": false,
+      "label": "octonions",
+      "n01_pass": true,
+      "name": "O",
+      "norm_mult_residual": 1.7763568394002505e-15,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 1.0,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "R": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 0.0,
+      "dim": 1,
+      "has_zero_divisors": false,
+      "label": "real_numbers",
+      "n01_pass": false,
+      "name": "R",
+      "norm_mult_residual": 0.0,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.01314828341855369,
+        "probe_count": 64,
+        "witness": null
+      }
+    }
+  },
+  "backend": "julia_reference",
+  "claim_ceiling": "PRELIM Hurwitz finite-table diagnostic only; no forcing proof, basin, admission, engine, bridge, Axis0, or manifold closure claim",
+  "classification": "scratch_diagnostic",
+  "control_status": {
+    "C_commutative_control_ok": true,
+    "O_nonassociative_control_ok": true,
+    "R_commutative_control_ok": true,
+    "control_miswired": false
+  },
+  "expected_controls": {
+    "C": "commutative control; must fail n01_pass",
+    "H": "expected minimal noncommutative associative normed division algebra",
+    "O": "nonassociative control; must fail assoc_pass",
+    "R": "commutative control; must fail n01_pass"
+  },
+  "fences": [
+    "Presumes the normed-division-algebra frame is the right place to look; this is a presumption, not forced.",
+    "Does not forbid noncommutative operator algebras over R or C; commutativity here is the scalar algebra, not operators on it.",
+    "H selection is a ratchet/minimality diagnostic result, not a proof that the engine must be spinorial."
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-06T01:08:40.033Z",
+  "norm_probe_count": 64,
+  "object_id": "hurwitz_minimality_prelim",
+  "plain_sentence": "At scratch_diagnostic ceiling, N01 plus associativity plus minimal normed-division filtering selects H, and the unit-quaternion SU(2)=Sp(1) check supports H as the spinor carrier, with the stated fences.",
+  "probe_source": "deterministic pseudorandom real vectors for reproducible Julia/JAX parity",
+  "promotion_allowed": false,
+  "question": "Among Hurwitz normed division algebras R,C,H,O, does N01 noncommutation plus associativity plus minimality select H, and is H the spinor carrier?",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/hurwitz_minimality_prelim_julia_results.json",
+  "root_constraints": {
+    "F01": "finite explicit real multiplication tables / structure constants for R,C,H,O",
+    "N01": "basis-pair commutator norm of the scalar algebra multiplication table"
+  },
+  "shared_booleans": {
+    "C.assoc_pass": true,
+    "C.has_zero_divisors": false,
+    "C.n01_pass": false,
+    "C.normed_division": true,
+    "H.assoc_pass": true,
+    "H.has_zero_divisors": false,
+    "H.n01_pass": true,
+    "H.normed_division": true,
+    "O.assoc_pass": false,
+    "O.has_zero_divisors": false,
+    "O.n01_pass": true,
+    "O.normed_division": true,
+    "R.assoc_pass": true,
+    "R.has_zero_divisors": false,
+    "R.n01_pass": false,
+    "R.normed_division": true,
+    "control.C_commutative_control_ok": true,
+    "control.O_nonassociative_control_ok": true,
+    "control.R_commutative_control_ok": true,
+    "control.control_miswired": false,
+    "verdict.minimal_N01_assoc_div": true,
+    "verdict.spinor_is_H": true
+  },
+  "shared_scalar_keys": [
+    "dim",
+    "commutator_max",
+    "associator_max",
+    "norm_mult_residual"
+  ],
+  "shared_scalars": {
+    "C.associator_max": 0.0,
+    "C.commutator_max": 0.0,
+    "C.dim": 2,
+    "C.norm_mult_residual": 4.440892098500626e-16,
+    "H.associator_max": 0.0,
+    "H.commutator_max": 2.0,
+    "H.dim": 4,
+    "H.norm_mult_residual": 8.881784197001252e-16,
+    "O.associator_max": 2.0,
+    "O.commutator_max": 2.0,
+    "O.dim": 8,
+    "O.norm_mult_residual": 1.7763568394002505e-15,
+    "R.associator_max": 0.0,
+    "R.commutator_max": 0.0,
+    "R.dim": 1,
+    "R.norm_mult_residual": 0.0
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/hurwitz_minimality_prelim.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "verdicts": {
+    "minimal_N01_assoc_div": {
+      "candidate_order": [
+        {
+          "algebra": "H",
+          "dim": 4
+        }
+      ],
+      "numbers": {
+        "C": {
+          "assoc_pass": true,
+          "dim": 2,
+          "n01_pass": false,
+          "normed_division": true
+        },
+        "H": {
+          "assoc_pass": true,
+          "dim": 4,
+          "n01_pass": true,
+          "normed_division": true
+        },
+        "O": {
+          "assoc_pass": false,
+          "dim": 8,
+          "n01_pass": true,
+          "normed_division": true
+        },
+        "R": {
+          "assoc_pass": true,
+          "dim": 1,
+          "n01_pass": false,
+          "normed_division": true
+        }
+      },
+      "selected": "H",
+      "selected_dim": 4,
+      "value": true
+    },
+    "spinor_is_H": {
+      "identification_fence": "Computed SU(2)=Sp(1) carrier check only; Pauli/Cl0(3) noted as standard spinor-side identification, not promoted here.",
+      "map": "q=(a,b,c,d) -> [[a+bi, c+di], [-c+di, a-bi]]",
+      "numbers": {
+        "max_det_residual": 4.440892098500626e-16,
+        "max_unitarity_residual": 3.3306690738754696e-16,
+        "tol": 1.0e-9,
+        "unit_quaternion_probe_count": 68
+      },
+      "value": true
+    }
+  }
+}

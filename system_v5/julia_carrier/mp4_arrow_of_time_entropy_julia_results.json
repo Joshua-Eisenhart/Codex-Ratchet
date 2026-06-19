@@ -1,0 +1,715 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror": "load_bearing",
+    "clifford_torus_nested_hopf_foliation": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "load_bearing",
+    "octonion_G2_automorphism": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates": {
+      "reason": "supportive exact receipt writing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite density-state evolution, von Neumann entropy, reverse conjugate control, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror": {
+      "reason": "load-bearing mirrored 32-substage schedule, H0 sign, perceptions, operator slots, and topology rates",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "load-bearing Hopf torus coordinates used in initial carrier states and carrier weights",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing spinor-to-density anchor and density-state validity control",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing quaternion and octonion algebra anchors for carrier validation and weights",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "load-bearing golden Weyl receipt scalars used in carrier weights and erasure control",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism": {
+      "reason": "load-bearing G2 derivation dimension and rank anchors for carrier validation and weights",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia_linearalgebra",
+  "blocked_consumers": [
+    "universal_clock admission",
+    "physics",
+    "standard_model",
+    "M(C)",
+    "Axis0",
+    "cosmology",
+    "PEPS3D",
+    "canonical",
+    "bridge",
+    "formal manifold admission"
+  ],
+  "boundary": {
+    "backend": {
+      "julia_linearalgebra": true,
+      "pass": true
+    },
+    "density_state": {
+      "hermitian_residual_final": 5.996602882813787e-16,
+      "pass": true,
+      "trace_residual_final": 4.440892098500626e-16
+    },
+    "finite_dimension": {
+      "hilbert_dimension": 8,
+      "pass": true,
+      "qubits": 3
+    },
+    "no_numpy_compute": {
+      "numpy_imported": false,
+      "pass": true
+    },
+    "no_promotion": {
+      "classification": "scratch_diagnostic",
+      "formal_admission": false,
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion": false,
+      "promotion_allowed": false
+    }
+  },
+  "canonical_qit_engine": {
+    "H0": "0.77*SZ + 0.13*SX mirrored from canonical_qit_engine_specs.py",
+    "engine_label": "type_one_left_weyl",
+    "engine_type": 0,
+    "expected_32_substage_schedule": true,
+    "operators": [
+      "Ti",
+      "Te",
+      "Fi",
+      "Fe"
+    ],
+    "perceptions": [
+      "Se",
+      "Ne",
+      "Ni",
+      "Si"
+    ],
+    "substage_count": 32
+  },
+  "carrier_anchors": {
+    "julia_source_paths_used": [
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl"
+    ],
+    "source_contract_paths": [
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl"
+    ]
+  },
+  "claim_ceiling": "finite MECHANISM witness in the owner's entropic-monist frame only: monotone finite entropy on the owner carrier plus a non-invertible reverse-control failure; NOT a proof or derivation of the named arrow-of-time problem and NO physics admission.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "owner_carrier_erasure": {
+      "description": "replace owner carrier weights by a flat carrier; final entropy changes, so the owner carrier is load-bearing for the result",
+      "final_entropy_abs_delta": 0.017519475259427986,
+      "pass": true
+    },
+    "reverse_conjugate_schedule": {
+      "anti_tautology": "the same conjugate unitary schedule recovers the start when entropy injection is disabled",
+      "entropy_after_reverse": 0.9513224755582717,
+      "pass": true,
+      "recovery_frobenius_distance": 0.23396429548543402
+    },
+    "unitary_only_recovery": {
+      "pass": true,
+      "recovery_frobenius_distance": 1.4997764793403665e-15
+    }
+  },
+  "created_at": "2026-06-07T04:24:39Z",
+  "eligible_consumers": [
+    "scratch diagnostic audits",
+    "dual-backend parity checks",
+    "finite entropy ratchet follow-up scouts"
+  ],
+  "formal_admission": false,
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "formal_manifold_admission": {
+      "derived": false,
+      "pass": true,
+      "reason": "formal_admission=false by request and contract fence"
+    },
+    "named_problem_derivation": {
+      "derived": false,
+      "pass": true,
+      "reason": "this finite carrier scout does not derive the open arrow-of-time problem"
+    },
+    "physics_admission": {
+      "derived": false,
+      "pass": true,
+      "reason": "no physics admission is made from this scratch diagnostic"
+    }
+  },
+  "irreversible_ratchet": true,
+  "monotone_dS": true,
+  "name": "mp4_arrow_of_time_entropy",
+  "nearby_variants": {
+    "passed": 3,
+    "total": 3,
+    "variants": [
+      "reverse_conjugate_schedule",
+      "unitary_only_recovery",
+      "owner_carrier_erasure"
+    ]
+  },
+  "object_id": "mp4_arrow_of_time_entropy",
+  "owner_carrier_load_bearing": true,
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "erased_carrier.final_entropy_abs_delta",
+    "missing_keys": [],
+    "parity_max_diff": 2.9976021664879227e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_arrow_of_time_entropy_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 0.018972360332302096,
+        "julia": 0.018972360332302318,
+        "key": "erased_carrier.min_step_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 50.0,
+        "julia": 50.0,
+        "key": "carrier.g2_constraint_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 65.0,
+        "julia": 65.0,
+        "key": "carrier.golden_weyl_eta_count"
+      },
+      {
+        "abs_diff": 7.374647539188964e-17,
+        "jax": 6.734067636732683e-16,
+        "julia": 5.996602882813787e-16,
+        "key": "density.hermitian_residual_final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.hopf_s3_residual"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 0.9338030002988432,
+        "julia": 0.9338030002988441,
+        "key": "erased_carrier.final_entropy"
+      },
+      {
+        "abs_diff": 2.1094237467877974e-15,
+        "jax": 0.9513224755582742,
+        "julia": 0.9513224755582721,
+        "key": "entropy.final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.quaternion_ij_minus_k_residual"
+      },
+      {
+        "abs_diff": 1.5543122344752192e-15,
+        "jax": 0.9513224755582732,
+        "julia": 0.9513224755582717,
+        "key": "reverse.entropy_after_reverse"
+      },
+      {
+        "abs_diff": 2.9976021664879227e-15,
+        "jax": 0.017519475259430983,
+        "julia": 0.017519475259427986,
+        "key": "erased_carrier.final_entropy_abs_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "carrier.g2_derivation_dim"
+      },
+      {
+        "abs_diff": 1.4432899320127035e-15,
+        "jax": 0.019340163436765923,
+        "julia": 0.01934016343676448,
+        "key": "entropy.min_step_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.8900027000452759,
+        "julia": 0.8900027000452759,
+        "key": "entropy.delta"
+      },
+      {
+        "abs_diff": 1.1726730697603216e-15,
+        "jax": 0.049997394757854335,
+        "julia": 0.04999739475785551,
+        "key": "entropy.max_step_delta"
+      },
+      {
+        "abs_diff": 6.437055920426782e-16,
+        "jax": 2.1434820713830446e-15,
+        "julia": 1.4997764793403665e-15,
+        "key": "unitary_control.reverse_recovery_frobenius_distance"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.009026734527909674,
+        "julia": 0.009026734527909674,
+        "key": "entropy.injection_strength_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "carrier.density_spinor_bloch_norm"
+      },
+      {
+        "abs_diff": 2.3314683517128287e-15,
+        "jax": 0.9999999998157121,
+        "julia": 0.9999999998157144,
+        "key": "carrier.golden_weyl_flat_control_delta"
+      },
+      {
+        "abs_diff": 4.3759086296146144e-17,
+        "jax": 1.1752064935111686e-17,
+        "julia": 5.551115123125783e-17,
+        "key": "carrier.density_spinor_idempotency_residual"
+      },
+      {
+        "abs_diff": 2.0886070650760757e-15,
+        "jax": 0.061319775512998276,
+        "julia": 0.06131977551299619,
+        "key": "entropy.initial_after_step"
+      },
+      {
+        "abs_diff": 4.440892098500626e-16,
+        "jax": 8.881784197001252e-16,
+        "julia": 4.440892098500626e-16,
+        "key": "density.trace_residual_final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "schedule.substage_count"
+      },
+      {
+        "abs_diff": 8.326672684688674e-16,
+        "jax": 0.23396429548543485,
+        "julia": 0.23396429548543402,
+        "key": "reverse.recovery_frobenius_distance"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "carrier.octonion_associator_norm"
+      },
+      {
+        "abs_diff": 5.551115123125783e-16,
+        "jax": 0.8900027000452749,
+        "julia": 0.8900027000452755,
+        "key": "reverse.entropy_retained_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.008858849189082186,
+        "julia": 0.008858849189082186,
+        "key": "entropy.injection_strength_min"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_arrow_of_time_entropy_results.json",
+  "plain_sentence": "Finite witness only: entropy increases monotonically on the owner carrier, and the conjugate reverse schedule cannot recover the starting density state after structure has accumulated.",
+  "positive": {
+    "irreversible_ratchet": {
+      "owner_carrier_load_bearing": true,
+      "pass": true,
+      "reverse_control_fails": true,
+      "unitary_reverse_recovers_start": true
+    },
+    "monotone_entropy": {
+      "dS_final_minus_initial": 0.8900027000452759,
+      "dS_min": 0.01934016343676448,
+      "entropy_head": [
+        0.06131977551299619,
+        0.1113171702708517,
+        0.15671188309949766,
+        0.1991309529257984,
+        0.2390500367695634,
+        0.2771239241577971
+      ],
+      "entropy_tail": [
+        0.8507983873935601,
+        0.8717362442677757,
+        0.8922401206229016,
+        0.9122974182887386,
+        0.9319823121215076,
+        0.9513224755582721
+      ],
+      "pass": true
+    }
+  },
+  "promotion": false,
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_arrow_of_time_entropy_julia_results.json",
+  "reverse_control_fails": true,
+  "rung_spec": {
+    "control": "conjugating the schedule in reverse fails to recover the start once entropy has been injected; the unitary-only conjugate control recovers",
+    "deepens": "diagnostic companion to mp_universal_clock; no universal_clock admission",
+    "fence": "scratch_diagnostic; promotion=false; formal_admission=false; finite mechanism witness only",
+    "positive": "whole-state von Neumann entropy dS >= 0 along the canonical 32-substage owner schedule",
+    "target": "finite entropy-direction witness on scheduled carrier"
+  },
+  "schedule_trace_head": [
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Ti",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 0,
+      "sign": 1,
+      "substage_index": 0,
+      "token": "TiSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Fi",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 1,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "FiSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Te",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 2,
+      "sign": 1,
+      "substage_index": 2,
+      "token": "TeSe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "pinching_projection",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 0,
+      "operator": "Fe",
+      "perception": "Se",
+      "projector_axis": "x",
+      "rate": 0.18,
+      "realization": "Funnel",
+      "record_index": 3,
+      "sign": -1,
+      "substage_index": 3,
+      "token": "SeFe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 1,
+      "operator": "Ti",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 4,
+      "sign": -1,
+      "substage_index": 0,
+      "token": "NeTi",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "outer",
+      "main_stage_index": 1,
+      "operator": "Fi",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 5,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "FiNe",
+      "type_label": "type_one_left_weyl"
+    }
+  ],
+  "schedule_trace_tail": [
+    {
+      "dynamics_family": "lowering_dissipator",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 6,
+      "operator": "Ti",
+      "perception": "Ni",
+      "projector_axis": "z",
+      "rate": 0.28,
+      "realization": "Pit",
+      "record_index": 26,
+      "sign": 1,
+      "substage_index": 2,
+      "token": "TiNi",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "lowering_dissipator",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 6,
+      "operator": "Fi",
+      "perception": "Ni",
+      "projector_axis": "z",
+      "rate": 0.28,
+      "realization": "Pit",
+      "record_index": 27,
+      "sign": -1,
+      "substage_index": 3,
+      "token": "NiFi",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Fi",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 28,
+      "sign": 1,
+      "substage_index": 0,
+      "token": "FiNe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Ti",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 29,
+      "sign": 1,
+      "substage_index": 1,
+      "token": "TiNe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Te",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 30,
+      "sign": 1,
+      "substage_index": 2,
+      "token": "TeNe",
+      "type_label": "type_one_left_weyl"
+    },
+    {
+      "dynamics_family": "kraus_filter",
+      "engine_type": 0,
+      "loop_class": "inner",
+      "main_stage_index": 7,
+      "operator": "Fe",
+      "perception": "Ne",
+      "projector_axis": "y",
+      "rate": 0.13,
+      "realization": "Vortex",
+      "record_index": 31,
+      "sign": -1,
+      "substage_index": 3,
+      "token": "NeFe",
+      "type_label": "type_one_left_weyl"
+    }
+  ],
+  "schema": "MP4_ARROW_OF_TIME_ENTROPY_DUAL_BACKEND_FINITE_SCOUT_v1",
+  "shared_booleans": {
+    "boundary.jax_x64_enabled": true,
+    "boundary.no_numpy_imported": true,
+    "carrier.canonical_qit_schedule_real": true,
+    "carrier.density_matrix_spinor_lift_real": true,
+    "carrier.division_octonion_nonassociative_real": true,
+    "carrier.golden_weyl_control_real": true,
+    "carrier.hopf_torus_real": true,
+    "carrier.octonion_g2_derivation_dim_real": true,
+    "carrier.quaternion_table_real": true,
+    "density_valid": true,
+    "irreversible_ratchet": true,
+    "monotone_dS": true,
+    "owner_carrier_load_bearing": true,
+    "reverse_control_fails": true,
+    "unitary_reverse_recovers_start": true
+  },
+  "shared_scalars": {
+    "carrier.density_spinor_bloch_norm": 1.0,
+    "carrier.density_spinor_idempotency_residual": 5.551115123125783e-17,
+    "carrier.g2_constraint_rank": 50.0,
+    "carrier.g2_derivation_dim": 14.0,
+    "carrier.golden_weyl_eta_count": 65.0,
+    "carrier.golden_weyl_flat_control_delta": 0.9999999998157144,
+    "carrier.hopf_s3_residual": 0.0,
+    "carrier.octonion_associator_norm": 2.0,
+    "carrier.quaternion_ij_minus_k_residual": 0.0,
+    "density.hermitian_residual_final": 5.996602882813787e-16,
+    "density.trace_residual_final": 4.440892098500626e-16,
+    "entropy.delta": 0.8900027000452759,
+    "entropy.final": 0.9513224755582721,
+    "entropy.initial_after_step": 0.06131977551299619,
+    "entropy.injection_strength_max": 0.009026734527909674,
+    "entropy.injection_strength_min": 0.008858849189082186,
+    "entropy.max_step_delta": 0.04999739475785551,
+    "entropy.min_step_delta": 0.01934016343676448,
+    "erased_carrier.final_entropy": 0.9338030002988441,
+    "erased_carrier.final_entropy_abs_delta": 0.017519475259427986,
+    "erased_carrier.min_step_delta": 0.018972360332302318,
+    "reverse.entropy_after_reverse": 0.9513224755582717,
+    "reverse.entropy_retained_delta": 0.8900027000452755,
+    "reverse.recovery_frobenius_distance": 0.23396429548543402,
+    "schedule.substage_count": 32.0,
+    "unitary_control.reverse_recovery_frobenius_distance": 1.4997764793403665e-15
+  },
+  "sim_class": "dual_backend_finite_entropy_ratchet_scout",
+  "sim_execution_kind": "nonclassical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_arrow_of_time_entropy_julia.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "summary": {
+    "all_pass": true,
+    "irreversible_ratchet": true,
+    "monotone_dS": true,
+    "owner_carrier_load_bearing": true,
+    "parity_max_diff": 2.9976021664879227e-15,
+    "parity_within_1e_9": true,
+    "reverse_control_fails": true
+  },
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror": "load_bearing",
+    "clifford_torus_nested_hopf_foliation": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "load_bearing",
+    "octonion_G2_automorphism": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/Dates": {
+      "reason": "supportive exact receipt writing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite density-state evolution, von Neumann entropy, reverse conjugate control, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror": {
+      "reason": "load-bearing mirrored 32-substage schedule, H0 sign, perceptions, operator slots, and topology rates",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "load-bearing Hopf torus coordinates used in initial carrier states and carrier weights",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing spinor-to-density anchor and density-state validity control",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing quaternion and octonion algebra anchors for carrier validation and weights",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "load-bearing golden Weyl receipt scalars used in carrier weights and erasure control",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism": {
+      "reason": "load-bearing G2 derivation dimension and rank anchors for carrier validation and weights",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": [
+    "uses dual-backend finite JAX/Julia carrier scout, not legacy v4 probes",
+    "claim is fenced to scratch diagnostic and does not admit physics or formal manifold claims"
+  ]
+}

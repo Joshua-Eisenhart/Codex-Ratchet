@@ -1,0 +1,960 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Julia carrier proof of the quotient-order identity over independently recomputed exact rows",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent solver proof of the same quotient holonomy identity",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source, pin, and byte-exact no-op control hashes",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic envelope serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result path binding",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact metric, area, connection, holonomy, and control-row derivation",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing integer proof of the quotient holonomy identity with an erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_gates": {
+    "alteration_computed": true,
+    "capability_receipts_present": true,
+    "ceilings_preserved": true,
+    "controls_fired": true,
+    "disintegration_rule_cited": true,
+    "julia_engine_values_match_python_exact_rows": true,
+    "julia_reads_no_peer_result": true,
+    "julia_result_loaded": true,
+    "julia_source_hash_matches": true,
+    "julia_z3_load_bearing": true,
+    "julia_z3_positive_and_erased_flip": true,
+    "mode_declared_ratcheted": true,
+    "naive_conditioning_failure_refired": true,
+    "narrowing_computed": true,
+    "nested_multi_shell_conditioning_fenced": true,
+    "noncommuting_extension_present": true,
+    "one_to_one_tool_calls": true,
+    "path_pair_honestly_marked_commuting": true,
+    "path_specificity_kind_reworded": true,
+    "single_shell_only": true,
+    "smt_positive_and_erased_flip": true
+  },
+  "capability_receipts": {
+    "cvc5": {
+      "api_smoke": "unsat",
+      "version": "1.3.3"
+    },
+    "python": {
+      "executable_policy": "Makefile SIM_PY",
+      "version": "3.13.6"
+    },
+    "sympy": {
+      "api_smoke": "0",
+      "version": "1.14.0"
+    },
+    "z3": {
+      "api_smoke": "unsat",
+      "version": "4.16.0"
+    }
+  },
+  "ceiling": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "not_earned": [
+      "numeric order-gap family",
+      "nested ratchet",
+      "multi-shell conditioning",
+      "M(C,t)",
+      "axis-level claim",
+      "bridge claim",
+      "trend claim",
+      "canonical status"
+    ],
+    "path_specificity_kind": "quotient_well_definedness_equivariance_failure_non_Z4_saturation",
+    "promotion_allowed": false,
+    "single_fixed_eta_shell_only": true
+  },
+  "claim": "Single-shell RATCHETED pilot: condition S3 to T_eta0 via committed disintegration, then quotient the induced leaf by Z4 and recompute induced geometry; path-specificity is a non-Z4-saturation quotient well-definedness/equivariance failure, not a numeric order-gap family.",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_subtree_hashes": {
+    "audit_verdict_current_hashes": [
+      {
+        "hash": "7f0b8a230b5725263c556542b8cb43a1bfd4dc55832aaf1222a2b289b7ad525c",
+        "subtree": "ratchet_sequence"
+      },
+      {
+        "hash": "d99750d49e42470a7cd249e3f52e4d55c8544ae1e02d9e9fcec420f30aa58fdf",
+        "subtree": "ratchet_signatures"
+      },
+      {
+        "hash": "ce2f5032776312261078a3a8330f04018979f4b09368551567de3860970fad51",
+        "subtree": "controls"
+      },
+      {
+        "hash": "facf881098da7753df990f54ba0b4025acf82932b31ee3d9d0a1e6d6809fec51",
+        "subtree": "crossover_proofs"
+      }
+    ],
+    "fresh_current_hashes": [
+      {
+        "hash": "7f0b8a230b5725263c556542b8cb43a1bfd4dc55832aaf1222a2b289b7ad525c",
+        "subtree": "ratchet_sequence"
+      },
+      {
+        "hash": "b0de7059a366da24b3b7486469a42e701a6abf8c6e73f2a31ca96521be744fb7",
+        "subtree": "ratchet_signatures"
+      },
+      {
+        "hash": "ce2f5032776312261078a3a8330f04018979f4b09368551567de3860970fad51",
+        "subtree": "controls"
+      },
+      {
+        "hash": "facf881098da7753df990f54ba0b4025acf82932b31ee3d9d0a1e6d6809fec51",
+        "subtree": "crossover_proofs_python_z3_cvc5"
+      },
+      {
+        "hash": "b44cbe07475a33a876efd37d5dde5ddc09ad2f511c9aa4216d2de08d35e59390",
+        "subtree": "crossover_proofs_with_julia_z3"
+      },
+      {
+        "hash": "da12ca66893d72fd480997b05541c266b6d6aaa3f4ef428b7460f45cb23d042d",
+        "subtree": "julia_exact_rows"
+      }
+    ],
+    "fresh_full_rerun": true,
+    "hash_algorithm": "sha256(stable_json(sort_keys=True,separators=(',',':')))",
+    "kind": "shape_only_repair_hash_receipt",
+    "note": "The packet now contains the missing hash receipt. Fresh full rerun preserves the exact ratchet_sequence, controls, and original Python z3/cvc5 proof subtrees recorded by the audit. The whole ratchet_signatures hash is intentionally different because G3 restates path-specificity as quotient well-definedness/equivariance failure rather than a numeric order-gap family.",
+    "preservation_checks": {
+      "controls": true,
+      "crossover_proofs_python_z3_cvc5": true,
+      "ratchet_sequence": true,
+      "ratchet_signatures_whole_subtree_changed_by_G3_language_repair": true
+    }
+  },
+  "controls": {
+    "boundary_N1_phase_lens": {
+      "area_ratio_to_step1": "1",
+      "constraint": "Z1 quotient",
+      "global_generator_holonomy": "2*pi",
+      "induced_geometry_equal_step1_for_quotient_rows": true
+    },
+    "designed_fail_anti_assoc_style_row": {
+      "required_here": false,
+      "status": "not_required_by_single_shell_ratchet_pilot"
+    },
+    "identity_constraint_excludes_nothing": {
+      "after_sha256": "96069cb44451ef8d7b50d0ba5b6ed9d6f9e20c8483c09d2710905771c8d69493",
+      "applied_to": "step1_exact_geometry",
+      "before_sha256": "96069cb44451ef8d7b50d0ba5b6ed9d6f9e20c8483c09d2710905771c8d69493",
+      "byte_exact_on_exact_rows": true,
+      "constraint": "C_true",
+      "induced_geometry_equal_previous": true
+    },
+    "naive_conditioning_failure_refired": {
+      "constraint_set": "T_eta0 at eta0=pi/6",
+      "denominator_mass": "0",
+      "failure": "P(A and T_eta0)/P(T_eta0) is 0/0 for the round S3 measure; use committed disintegration instead",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true,
+      "source_control": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json#/controls/naive_singleton_conditioning"
+    },
+    "shuffled_wrong_order_control": {
+      "control": "reuse the prequotient full global cycle as primitive after Z4 quotient",
+      "control_fired": true,
+      "distinct_from_path_specificity_row": true,
+      "expected_recomputed_primitive_global_holonomy": "pi/2",
+      "wrong_reused_global_holonomy": "2*pi"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "erased_flip": "replace multiplier 4 by 3",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "load_bearing": true,
+      "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "erased_flip": "replace multiplier 4 by 3",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "gates": [
+        "G1_SOURCE_BACKED_LANES",
+        "proof",
+        "all_pass"
+      ],
+      "identity": "4 * h_Z4_global = h_full_global",
+      "load_bearing": true,
+      "positive_case": "negated quotient-order identity is UNSAT",
+      "ran": true,
+      "result": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_julia_results.json",
+      "source": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "erased_flip": "replace multiplier 4 by 3",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "load_bearing": true,
+      "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "A_T_dchi_coefficient": "1/2",
+        "full_global_holonomy_pi_over_2_units": 4,
+        "fundamental_holonomy_alpha_cycle": "3*pi/2",
+        "fundamental_holonomy_beta_cycle": "pi/2",
+        "fundamental_holonomy_chi_cycle": "pi",
+        "fundamental_holonomy_phi_cycle": "2*pi",
+        "julia_z3_quotient_order_identity_verified": 1,
+        "metric_radii_alpha": "sqrt(3)/2",
+        "metric_radii_beta": "1/2",
+        "non_Z4_saturated_window_witness": 1,
+        "quotient_area": "sqrt(3)*pi**2/4",
+        "quotient_global_holonomy_pi_over_2_units": 1
+      },
+      "julia": {
+        "A_T_dchi_coefficient": "1/2",
+        "full_global_holonomy_pi_over_2_units": 4,
+        "fundamental_holonomy_alpha_cycle": "3*pi/2",
+        "fundamental_holonomy_beta_cycle": "pi/2",
+        "fundamental_holonomy_chi_cycle": "pi",
+        "fundamental_holonomy_phi_cycle": "2*pi",
+        "julia_z3_quotient_order_identity_verified": 1,
+        "metric_radii_alpha": "sqrt(3)/2",
+        "metric_radii_beta": "1/2",
+        "non_Z4_saturated_window_witness": 1,
+        "quotient_area": "sqrt(3)*pi**2/4",
+        "quotient_global_holonomy_pi_over_2_units": 1
+      }
+    },
+    "interpretation": "Fresh full rerun. Actual Julia carrier values and Python/JAX-envelope values agree exactly on the declared exact rows.",
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "per_observable": {
+      "A_T_dchi_coefficient": {
+        "engine_values": {
+          "jax": "1/2",
+          "julia": "1/2"
+        },
+        "max_divergence": 0.0
+      },
+      "full_global_holonomy_pi_over_2_units": {
+        "engine_values": {
+          "jax": 4,
+          "julia": 4
+        },
+        "max_divergence": 0.0
+      },
+      "fundamental_holonomy_alpha_cycle": {
+        "engine_values": {
+          "jax": "3*pi/2",
+          "julia": "3*pi/2"
+        },
+        "max_divergence": 0.0
+      },
+      "fundamental_holonomy_beta_cycle": {
+        "engine_values": {
+          "jax": "pi/2",
+          "julia": "pi/2"
+        },
+        "max_divergence": 0.0
+      },
+      "fundamental_holonomy_chi_cycle": {
+        "engine_values": {
+          "jax": "pi",
+          "julia": "pi"
+        },
+        "max_divergence": 0.0
+      },
+      "fundamental_holonomy_phi_cycle": {
+        "engine_values": {
+          "jax": "2*pi",
+          "julia": "2*pi"
+        },
+        "max_divergence": 0.0
+      },
+      "julia_z3_quotient_order_identity_verified": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      },
+      "metric_radii_alpha": {
+        "engine_values": {
+          "jax": "sqrt(3)/2",
+          "julia": "sqrt(3)/2"
+        },
+        "max_divergence": 0.0
+      },
+      "metric_radii_beta": {
+        "engine_values": {
+          "jax": "1/2",
+          "julia": "1/2"
+        },
+        "max_divergence": 0.0
+      },
+      "non_Z4_saturated_window_witness": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      },
+      "quotient_area": {
+        "engine_values": {
+          "jax": "sqrt(3)*pi**2/4",
+          "julia": "sqrt(3)*pi**2/4"
+        },
+        "max_divergence": 0.0
+      },
+      "quotient_global_holonomy_pi_over_2_units": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      }
+    },
+    "structural_disagreements": []
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "local_lane_rule": "the Julia carrier lane and Python/JAX-envelope lane each compute exact observables without peer-result reads; controller comparison happens only in this envelope",
+    "mode": "RATCHETED",
+    "no_peer_result_reads": true,
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph, network, autograd, torch_geometric, or PyTorch-specific claim path in this single-shell RATCHETED pilot"
+    },
+    "repo_validator_expected_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_envelope_results.json",
+    "scoped_lanes": {
+      "jax": "batched/workhorse lane scoped to the same per-observable exact values; no stochastic sweep or peer-result read in this single-shell pilot",
+      "julia": "semantic owner lane from actual /opt/homebrew/bin/julia carrier execution with independent exact rows and load-bearing Z3.jl quotient-order proof"
+    },
+    "validator_expected_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ratchet_s1_single_shell_pilot_v0/validate_ratchet_s1_single_shell_pilot_v0.py system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_envelope_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "omission_note": null,
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "scope": "scoped workhorse/comparison lane over identical exact observables in this Python single-shell pilot",
+      "source_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0.py",
+      "source_sha256": "bf1d7d1d05764cca96d08604099a56934d5de09f9bb61eeb75087fa2c96ed2df"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "command": "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+      "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "omission_note": null,
+      "packages_used": [
+        "JSON3",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_julia_results.json",
+      "result_sha256": "e896e4e917f7b18e8d63eb5932524652b0236944708c0f781475d8a316bed581",
+      "scope": "actual Julia carrier semantic-owner exact row lane with load-bearing Z3.jl quotient-order proof",
+      "source_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+      "source_sha256": "d216cd9c8016af398e0a0838a11ef721dac3eddedb26a4015e8ee1a8d7f21b7b"
+    }
+  },
+  "formal_admission": false,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T00:46:59Z",
+  "hardening_addendum": {
+    "closed_caveats": {
+      "G1_SOURCE_BACKED_LANES": {
+        "closed": true,
+        "evidence": {
+          "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+          "julia_result": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_julia_results.json",
+          "julia_source": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+          "julia_z3_verdict": "unsat",
+          "load_bearing_tool": "Z3"
+        }
+      },
+      "G2_MISSING_PRE_FIX_HASH_NOTE": {
+        "closed": true,
+        "evidence": {
+          "audit_verdict_current_hashes": [
+            {
+              "hash": "7f0b8a230b5725263c556542b8cb43a1bfd4dc55832aaf1222a2b289b7ad525c",
+              "subtree": "ratchet_sequence"
+            },
+            {
+              "hash": "d99750d49e42470a7cd249e3f52e4d55c8544ae1e02d9e9fcec420f30aa58fdf",
+              "subtree": "ratchet_signatures"
+            },
+            {
+              "hash": "ce2f5032776312261078a3a8330f04018979f4b09368551567de3860970fad51",
+              "subtree": "controls"
+            },
+            {
+              "hash": "facf881098da7753df990f54ba0b4025acf82932b31ee3d9d0a1e6d6809fec51",
+              "subtree": "crossover_proofs"
+            }
+          ],
+          "fresh_current_hashes": [
+            {
+              "hash": "7f0b8a230b5725263c556542b8cb43a1bfd4dc55832aaf1222a2b289b7ad525c",
+              "subtree": "ratchet_sequence"
+            },
+            {
+              "hash": "b0de7059a366da24b3b7486469a42e701a6abf8c6e73f2a31ca96521be744fb7",
+              "subtree": "ratchet_signatures"
+            },
+            {
+              "hash": "ce2f5032776312261078a3a8330f04018979f4b09368551567de3860970fad51",
+              "subtree": "controls"
+            },
+            {
+              "hash": "facf881098da7753df990f54ba0b4025acf82932b31ee3d9d0a1e6d6809fec51",
+              "subtree": "crossover_proofs_python_z3_cvc5"
+            },
+            {
+              "hash": "b44cbe07475a33a876efd37d5dde5ddc09ad2f511c9aa4216d2de08d35e59390",
+              "subtree": "crossover_proofs_with_julia_z3"
+            },
+            {
+              "hash": "da12ca66893d72fd480997b05541c266b6d6aaa3f4ef428b7460f45cb23d042d",
+              "subtree": "julia_exact_rows"
+            }
+          ],
+          "fresh_full_rerun": true,
+          "hash_algorithm": "sha256(stable_json(sort_keys=True,separators=(',',':')))",
+          "kind": "shape_only_repair_hash_receipt",
+          "note": "The packet now contains the missing hash receipt. Fresh full rerun preserves the exact ratchet_sequence, controls, and original Python z3/cvc5 proof subtrees recorded by the audit. The whole ratchet_signatures hash is intentionally different because G3 restates path-specificity as quotient well-definedness/equivariance failure rather than a numeric order-gap family.",
+          "preservation_checks": {
+            "controls": true,
+            "crossover_proofs_python_z3_cvc5": true,
+            "ratchet_sequence": true,
+            "ratchet_signatures_whole_subtree_changed_by_G3_language_repair": true
+          }
+        }
+      },
+      "G3_PATH_GAP_KIND": {
+        "closed": true,
+        "evidence": {
+          "branch_mortality": "quotient-first branch kills this non-Z4-saturated window as a coherent quotient constraint",
+          "ceiling_language": "path-specificity is non-Z4-saturation causing quotient well-definedness/equivariance failure, not a numeric order-gap family",
+          "claim_kind": "quotient_well_definedness_equivariance_failure",
+          "is_Z4_saturated": false,
+          "membership_in_window": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "nested_multi_shell_conditioning": false,
+          "noncommuting": true,
+          "not_numeric_order_gap_family": true,
+          "quotient_then_window": "not well-defined/equivariant on T_eta0/Z4 because the alpha-window is not invariant on quotient orbits",
+          "third_constraint": "phase_window_alpha_half: 0 <= alpha < pi on the single T_eta0 leaf",
+          "window_then_quotient": "cuts Z4 orbits; two of four witness representatives survive before quotient identification",
+          "witness_orbit_under_Z4": [
+            "pi/4",
+            "3*pi/4",
+            "5*pi/4",
+            "7*pi/4"
+          ]
+        }
+      }
+    },
+    "fresh_verdict": "fresh audit verdict stands pending re-audit; this is a builder hardening receipt, not an auditor verdict",
+    "kind": "builder_hardening_addendum",
+    "status": "builder_hardened_pending_fresh_reaudit"
+  },
+  "lineage_citations": {
+    "committed_s1_free_anchor": "system_v6/sims/geo_s1_spinor_hopf_free_v0",
+    "committed_s1_lens_tower": "system_v6/sims/geo_s1_finite_phase_lens_v0",
+    "committed_s2_connection_anchor": "system_v6/sims/geo_s2_connection_flux_foliation_v0",
+    "disintegration_rule": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py#/PIN_SPEC",
+    "mode4_prerequisite_disintegration_packet": "system_v6/sims/geo_disintegration_machinery_v0",
+    "mode4_program_rule": "system_v6/receipts/geometry_sim_program_canonical_20260610.md:14",
+    "naive_conditioning_control": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json#/controls/naive_singleton_conditioning"
+  },
+  "mode": "RATCHETED",
+  "object_id": "ratchet_s1_single_shell_pilot_v0",
+  "pin_sha256": "377f9e8ce1d6c490509c62c0f88bdf66cd8217095871f2ff0003c55d9f125f9a",
+  "pin_spec": "ratchet_s1_single_shell_pilot_v0|mode=RATCHETED|single_shell_only|eta0=pi/6|step0=FREE_S3_round_measure|step1=condition_T_eta0_via_geo_disintegration_machinery_v0_rule|conditional_chart_density=1/(4*pi^2)|double_cover=(phi,chi)~(phi+pi,chi+pi)|step2=phase_lens_Z4_quotient_from_geo_s1_finite_phase_lens_v0|no_nested_multi_shell_conditioning|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "program_receipt": "system_v6/receipts/geometry_sim_program_canonical_20260610.md",
+  "promotion_allowed": false,
+  "ratchet_sequence": {
+    "scalars": {
+      "cos_2eta0": "1/2",
+      "cos_eta0": "sqrt(3)/2",
+      "eta0": "pi/6",
+      "quotient_area": "sqrt(3)*pi**2/4",
+      "s3_volume": "2*pi**2",
+      "sin_eta0": "1/2",
+      "t_eta0_chart_area": "2*sqrt(3)*pi**2",
+      "t_eta0_physical_area": "sqrt(3)*pi**2"
+    },
+    "step0": {
+      "committed_anchor": "system_v6/sims/geo_s1_spinor_hopf_free_v0",
+      "constraint": "FREE",
+      "dimension": 3,
+      "metric": "deta^2 + dphi^2 + dchi^2 + 2*cos(2*eta)*dphi*dchi",
+      "normalized_measure": "round Haar probability measure on S3",
+      "object": "S3 with round measure",
+      "step": 0,
+      "volume": "2*pi**2"
+    },
+    "step1": {
+      "committed_prerequisite": "system_v6/sims/geo_disintegration_machinery_v0",
+      "conditioning_rule": "condition via committed disintegration rule, not naive P(A and T_eta)/P(T_eta)",
+      "constraint": "T_eta0 where eta0=pi/6",
+      "exact_geometry": {
+        "conditional_measure": {
+          "conditional_chart_density": "1/(4*pi^2) d_phi d_chi",
+          "double_cover": "(phi, chi) ~ (phi + pi, chi + pi)",
+          "normalized_eta_marginal": "sin(2*eta) d_eta",
+          "source": "geo_disintegration_machinery_v0 PIN_SPEC"
+        },
+        "connection_pullback": {
+          "alpha_beta_basis": {
+            "dalpha": "3/4",
+            "dbeta": "1/4"
+          },
+          "phi_chi_basis": {
+            "dchi": "1/2",
+            "dphi": "1"
+          }
+        },
+        "dimension": 2,
+        "double_cover_chart_area": "2*sqrt(3)*pi**2",
+        "eta0": "pi/6",
+        "holonomies": {
+          "full_global_phase_cycle": {
+            "cycle_phi_chi_delta": [
+              "2*pi",
+              "0"
+            ],
+            "mod_2pi": "0",
+            "value": "2*pi"
+          },
+          "primitive_alpha_cycle": {
+            "cycle_phi_chi_delta": [
+              "pi",
+              "pi"
+            ],
+            "mod_2pi": "3*pi/2",
+            "value": "3*pi/2"
+          },
+          "primitive_beta_cycle": {
+            "cycle_phi_chi_delta": [
+              "pi",
+              "-pi"
+            ],
+            "mod_2pi": "pi/2",
+            "value": "pi/2"
+          },
+          "relative_chi_cycle": {
+            "cycle_phi_chi_delta": [
+              "0",
+              "2*pi"
+            ],
+            "mod_2pi": "pi",
+            "value": "pi"
+          }
+        },
+        "metric_alpha_beta": {
+          "basis": [
+            "alpha=phi+chi",
+            "beta=phi-chi"
+          ],
+          "matrix": [
+            [
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "1/4"
+            ]
+          ],
+          "radii": {
+            "alpha": "sqrt(3)/2",
+            "beta": "1/2"
+          }
+        },
+        "metric_phi_chi": {
+          "basis": [
+            "phi",
+            "chi"
+          ],
+          "determinant": "3/4",
+          "matrix": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1"
+            ]
+          ]
+        },
+        "object": "T_eta0 subset S3",
+        "physical_area": "sqrt(3)*pi**2"
+      },
+      "step": 1
+    },
+    "step2": {
+      "committed_prerequisite": "system_v6/sims/geo_s1_finite_phase_lens_v0",
+      "constraint": "Z4 finite phase lens quotient on the already-conditioned leaf",
+      "exact_geometry": {
+        "area": "sqrt(3)*pi**2/4",
+        "area_ratio_to_step1": "1/4",
+        "connection": {
+          "alpha_beta_basis": {
+            "dalpha": "3/4",
+            "dbeta": "1/4"
+          },
+          "phi_chi_basis": {
+            "dchi": "1/2",
+            "dphi": "1"
+          }
+        },
+        "dimension": 2,
+        "holonomies": {
+          "old_z2_cycle_survives_nonprimitive": {
+            "cycle_relation": "4*q_global - z1_cycle",
+            "mod_2pi": "pi/2",
+            "value": "pi/2"
+          },
+          "primitive_quotient_global_cycle": {
+            "cycle_phi_chi_delta": [
+              "pi/2",
+              "0"
+            ],
+            "mod_2pi": "pi/2",
+            "survival_statement": "new primitive loop; four traversals recover the prequotient full global cycle",
+            "value": "pi/2"
+          },
+          "primitive_z1_cycle_survives": {
+            "cycle_phi_chi_delta": [
+              "pi",
+              "pi"
+            ],
+            "mod_2pi": "3*pi/2",
+            "survival_statement": "old alpha/z1 cycle remains a loop but is no longer paired with the old lattice as the only primitive basis",
+            "value": "3*pi/2"
+          },
+          "relative_chi_cycle_survives_nonprimitive": {
+            "cycle_relation": "2*z1_cycle - 4*q_global",
+            "mod_2pi": "pi",
+            "value": "pi"
+          }
+        },
+        "local_metric": "same local flat metric as step1, descended to the quotient lattice",
+        "measure": "pushforward of the disintegrated conditional measure to T_eta0/Z4",
+        "object": "T_eta0 / Z4 global phase lens",
+        "quotient_action": {
+          "alpha_beta_delta": [
+            "pi/2",
+            "pi/2"
+          ],
+          "from_committed_lens_tower": "psi -> exp(2*pi*i/4) psi",
+          "phi_chi_delta": [
+            "pi/2",
+            "0"
+          ],
+          "preserves_eta": true
+        },
+        "quotient_lattice_phi_chi_generators": {
+          "q_global": [
+            "pi/2",
+            "0"
+          ],
+          "z1_alpha_cycle": [
+            "pi",
+            "pi"
+          ]
+        }
+      },
+      "step": 2
+    }
+  },
+  "ratchet_signatures": {
+    "alteration": {
+      "after_step2_primitive_quotient_global_cycle": "pi/2",
+      "altered": true,
+      "before_step2_full_global_cycle": "2*pi",
+      "computed": true,
+      "identity": "4 * h_quotient_global = h_prequotient_global",
+      "identity_scaled_by_pi_over_2": "4 * 1 = 4",
+      "quantity": "global phase holonomy primitive after recomputing the quotient lattice"
+    },
+    "narrowing": {
+      "computed": true,
+      "rows": [
+        {
+          "dimension": 3,
+          "measure_or_volume": "2*pi**2",
+          "normalized_mass": "1",
+          "object": "S3",
+          "step": 0
+        },
+        {
+          "ambient_s3_measure": "0",
+          "conditional_mass": "1",
+          "dimension": 2,
+          "object": "T_eta0",
+          "physical_area": "sqrt(3)*pi**2",
+          "step": 1,
+          "strict_from_previous": true
+        },
+        {
+          "area_ratio_to_step1": "1/4",
+          "covering_area": "sqrt(3)*pi**2/4",
+          "dimension": 2,
+          "finite_phase_orbit_order": 4,
+          "object": "T_eta0/Z4",
+          "step": 2,
+          "strict_from_previous": true
+        }
+      ]
+    },
+    "path_specificity": {
+      "noncommuting_extension": {
+        "branch_mortality": "quotient-first branch kills this non-Z4-saturated window as a coherent quotient constraint",
+        "ceiling_language": "path-specificity is non-Z4-saturation causing quotient well-definedness/equivariance failure, not a numeric order-gap family",
+        "claim_kind": "quotient_well_definedness_equivariance_failure",
+        "is_Z4_saturated": false,
+        "membership_in_window": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "nested_multi_shell_conditioning": false,
+        "noncommuting": true,
+        "not_numeric_order_gap_family": true,
+        "quotient_then_window": "not well-defined/equivariant on T_eta0/Z4 because the alpha-window is not invariant on quotient orbits",
+        "third_constraint": "phase_window_alpha_half: 0 <= alpha < pi on the single T_eta0 leaf",
+        "window_then_quotient": "cuts Z4 orbits; two of four witness representatives survive before quotient identification",
+        "witness_orbit_under_Z4": [
+          "pi/4",
+          "3*pi/4",
+          "5*pi/4",
+          "7*pi/4"
+        ]
+      },
+      "requested_two_constraint_pair": {
+        "condition_then_quotient_sha256": "74bd74da243642b75d5cac7c50aebb17bdc3f844784b918acd464a0e1fdf9b05",
+        "constraints": [
+          "T_eta0",
+          "Z4_global_phase_lens"
+        ],
+        "quotient_then_condition_sha256": "74bd74da243642b75d5cac7c50aebb17bdc3f844784b918acd464a0e1fdf9b05",
+        "reason": "the committed Z4 global phase action preserves eta, so it descends through the eta-leaf disintegration",
+        "reported_honestly_as_commuting_pair": true,
+        "same_pair_commutes": true
+      }
+    }
+  },
+  "result_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "scope_fences": {
+    "formal_admission_allowed": false,
+    "nested_multi_shell_conditioning": false,
+    "nested_scope_caveat": "CAVEAT_NESTED_SCOPE respected; no nested or multi-layer conditioning is attempted",
+    "promotion_allowed": false,
+    "single_shell_only": true,
+    "trend_claims": false
+  },
+  "seed_ledger": {
+    "eta0": "pi/6",
+    "phase_lens_N": 4,
+    "smt_seed": 2026061011,
+    "status": "deterministic_exact_rows_no_rng_sampling",
+    "symbolic_seed": 2026061011
+  },
+  "sim_id": "ratchet_s1_single_shell_pilot_v0",
+  "source_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0.py",
+  "source_sha256": "bf1d7d1d05764cca96d08604099a56934d5de09f9bb61eeb75087fa2c96ed2df",
+  "summary": {
+    "N": 4,
+    "all_pass": true,
+    "eta0": "pi/6",
+    "noncommuting_extension": "phase_window_alpha_half: 0 <= alpha < pi on the single T_eta0 leaf",
+    "not_numeric_order_gap_family": true,
+    "path_specificity_kind": "quotient_well_definedness_equivariance_failure",
+    "requested_pair_commutes": true,
+    "step1_connection": {
+      "dchi": "1/2",
+      "dphi": "1"
+    },
+    "step1_metric_phi_chi": [
+      [
+        "1",
+        "1/2"
+      ],
+      [
+        "1/2",
+        "1"
+      ]
+    ],
+    "step2_global_holonomy": "pi/2"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "Z1 quotient leaves step1 quotient rows unchanged",
+      "input_object": "eta0=pi/6 metric, area, pullback connection, and holonomy formulas",
+      "load_bearing": true,
+      "negative/erased_control": "wrong-order quotient holonomy reuse differs from the recomputed primitive quotient holonomy",
+      "output_object": "exact step0/step1/step2 geometry rows",
+      "positive_case": "T_eta0 metric, connection, area, and holonomies simplify to exact pi/sqrt rows",
+      "qualified_api/function": "sympy.simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "input_object": "4 * h_Z4_global = h_full_global",
+      "load_bearing": true,
+      "negative/erased_control": "replace multiplier 4 by 3",
+      "output_object": {
+        "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+        "erased_flip": "replace multiplier 4 by 3",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "load_bearing": true,
+        "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "input_object": "4 * h_Z4_global = h_full_global",
+      "load_bearing": true,
+      "negative/erased_control": "replace multiplier 4 by 3",
+      "output_object": {
+        "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+        "erased_flip": "replace multiplier 4 by 3",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "load_bearing": true,
+        "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "positive_case": "negated identity is UNSAT with h_Z4_global=1 and h_full_global=4",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+      "gates": [
+        "G1_SOURCE_BACKED_LANES"
+      ],
+      "input_object": "4 * h_Z4_global = h_full_global",
+      "load_bearing": true,
+      "negative/erased_control": "replace multiplier 4 by 3",
+      "output_object": {
+        "boundary_case": "N=1 gives h_generator=h_full_global=4 in the same scale",
+        "erased_flip": "replace multiplier 4 by 3",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "gates": [
+          "G1_SOURCE_BACKED_LANES",
+          "proof",
+          "all_pass"
+        ],
+        "identity": "4 * h_Z4_global = h_full_global",
+        "load_bearing": true,
+        "positive_case": "negated quotient-order identity is UNSAT",
+        "ran": true,
+        "result": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_julia_results.json",
+        "source": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+        "verdict": "unsat"
+      },
+      "positive_case": "negated quotient-order identity is UNSAT",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "validator": {
+    "expected_ok": true,
+    "expected_result_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_validator_results.json",
+    "packet_validator": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/validate_ratchet_s1_single_shell_pilot_v0.py",
+    "repo_validator": "scripts/validate_three_engine_sim_result.py"
+  }
+}

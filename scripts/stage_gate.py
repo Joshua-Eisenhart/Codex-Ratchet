@@ -23,6 +23,7 @@ CLAIM_RULES = {
     "engine": {"requires_stage": "coupling", "requires_receipts": True},
     "tier_d": {"requires_flag": "allow_tier_d_launch"},
     "default_late_stage": {"requires_flag": "allow_default_queue_late_stage"},
+    "off_program": {"requires_flag": "allow_off_program"},
 }
 
 
@@ -51,6 +52,7 @@ def load_gate(path: Path) -> dict[str, Any]:
     return {
         "active_stage": payload.get("active_stage"),
         "allow_default_queue_late_stage": payload.get("allow_default_queue_late_stage") is True,
+        "allow_off_program": payload.get("allow_off_program") is True,
         "allow_tier_d_launch": payload.get("allow_tier_d_launch") is True,
         "notes": payload.get("notes", []),
     }
@@ -117,6 +119,7 @@ def main() -> int:
         "stage_gate": str(gate_path),
         "active_stage": gate.get("active_stage"),
         "allow_default_queue_late_stage": gate.get("allow_default_queue_late_stage"),
+        "allow_off_program": gate.get("allow_off_program"),
         "allow_tier_d_launch": gate.get("allow_tier_d_launch"),
         "all_pass": True,
         "decisions": decisions,

@@ -1,0 +1,223 @@
+{
+  "algebras": {
+    "C": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 0.0,
+      "dim": 2,
+      "has_zero_divisors": false,
+      "label": "complex_numbers",
+      "n01_pass": false,
+      "name": "C",
+      "norm_mult_residual": 4.440892098500626e-16,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.011891030384294893,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "H": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 2.0,
+      "dim": 4,
+      "has_zero_divisors": false,
+      "label": "quaternions",
+      "n01_pass": true,
+      "name": "H",
+      "norm_mult_residual": 8.881784197001252e-16,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.7683083616370546,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "O": {
+      "assoc_pass": false,
+      "associator_max": 2.0,
+      "commutator_max": 2.0,
+      "dim": 8,
+      "has_zero_divisors": false,
+      "label": "octonions",
+      "n01_pass": true,
+      "name": "O",
+      "norm_mult_residual": 1.7763568394002505e-15,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 1.0,
+        "probe_count": 64,
+        "witness": null
+      }
+    },
+    "R": {
+      "assoc_pass": true,
+      "associator_max": 0.0,
+      "commutator_max": 0.0,
+      "dim": 1,
+      "has_zero_divisors": false,
+      "label": "real_numbers",
+      "n01_pass": false,
+      "name": "R",
+      "norm_mult_residual": 0.0,
+      "normed_division": true,
+      "zero_divisor_check": {
+        "kind": "basis_pairs_plus_deterministic_pseudorandom_nonzero_probe_pairs",
+        "min_product_norm_seen": 0.01314828341855369,
+        "probe_count": 64,
+        "witness": null
+      }
+    }
+  },
+  "backend": "julia_reference",
+  "claim_ceiling": "PRELIM octonion/J3(O) finite diagnostic only; no forcing proof, basin, admission, engine, bridge, Axis0, or manifold closure claim",
+  "classification": "scratch_diagnostic",
+  "control_status": {
+    "C_commutative_control_ok": true,
+    "J3O_nonassociative_control_ok": true,
+    "R_commutative_control_ok": true,
+    "control_miswired": false,
+    "octonion_alternative_power_ok": true,
+    "survivor_contrast_ok": true
+  },
+  "fences": [
+    "Admitting O under the dropped-associativity filter does not force it; it shows associativity was the discriminator, nothing more.",
+    "The engine may still require associativity for its operator/probe algebra; that remains open.",
+    "scratch_diagnostic only, promotion_allowed=false, no Axis0/bridge/manifold/engine claim.",
+    "J3(O) existing as a Jordan algebra is a known math fact reproduced here as a finite witness, not a new physics claim."
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-06T01:02:21.817Z",
+  "norm_probe_count": 64,
+  "object_id": "octonion_admissibility_prelim",
+  "part_a": {
+    "contrast_plain": "with associativity required -> {H}; without associativity -> {H,O}; O prior exclusion is the associativity axiom, not N01",
+    "octonion_prior_exclusion_discriminator": "associativity_axiom",
+    "octonion_properties": {
+      "alternative": true,
+      "max_associator_xxx": 4.572178254219406e-15,
+      "max_associator_xxy": 6.9970479439745904e-15,
+      "max_associator_xyy": 6.028010073543578e-15,
+      "max_power_four_residual": 1.1512108063996359e-14,
+      "power_associative": true,
+      "probe_count": 20,
+      "probe_kind": "basis_vectors_plus_deterministic_pseudorandom_vectors"
+    },
+    "survivors_NO_assoc": [
+      "H",
+      "O"
+    ],
+    "survivors_with_assoc": [
+      "H"
+    ]
+  },
+  "part_b": {
+    "formally_real": true,
+    "formally_real_test": {
+      "kind": "finite_trace_square_identity_plus_nonzero_random_sum_square_probe",
+      "max_trace_square_residual": 1.4210854715202004e-14,
+      "min_nonzero_sum_square_norm": 56.36408661171183,
+      "min_nonzero_sum_square_trace": 90.45508625817965,
+      "min_nonzero_trace_square": 1.0,
+      "random_set_count": 12
+    },
+    "jordan_associative": false,
+    "jordan_associative_witness": {
+      "ia": 1,
+      "ib": 1,
+      "ic": 4,
+      "kind": "probe_search",
+      "residual": 0.3535533905932738
+    },
+    "jordan_associative_witness_residual": 0.3535533905932738,
+    "jordan_commutative": true,
+    "jordan_commutative_residual": 0.0,
+    "power_associative": true,
+    "power_associative_residual": 1.3097532051712642e-13,
+    "probe_count": 39,
+    "rank1_idempotent": {
+      "imaginary_offdiag_norm": 0.5,
+      "kind": "offdiagonal_unit_octonion_projection",
+      "residual": 0.0,
+      "trace": 1.0
+    },
+    "rank1_idempotent_exists": true,
+    "rank1_idempotent_residual": 0.0,
+    "rank1_trace_residual": 0.0,
+    "real_dim": 27
+  },
+  "plain_sentence": "At scratch_diagnostic ceiling, O is admissible under N01+normed-division when associativity is not required, and J3(O) exists as a formally-real nonassociative Jordan algebra finite witness; this is not an engine/admission/bridge/manifold claim.",
+  "probe_source": "basis vectors plus deterministic pseudorandom real vectors for reproducible Julia/JAX parity",
+  "promotion_allowed": false,
+  "question": "Do octonions survive the N01+normed-division filter when associativity is dropped, and does the octonionic density matrix algebra J3(O) pass finite Jordan checks?",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_admissibility_prelim_julia_results.json",
+  "root_constraints": {
+    "F01": "finite explicit real multiplication tables / structure constants for R,C,H,O and finite J3(O) coordinate maps",
+    "N01": "basis-pair commutator norm of scalar algebra multiplication table; associativity deliberately omitted in Part A no-assoc filter"
+  },
+  "shared_booleans": {
+    "part_a.C.assoc_pass": true,
+    "part_a.C.n01_pass": false,
+    "part_a.C.normed_division": true,
+    "part_a.H.assoc_pass": true,
+    "part_a.H.n01_pass": true,
+    "part_a.H.normed_division": true,
+    "part_a.O.alternative": true,
+    "part_a.O.assoc_pass": false,
+    "part_a.O.n01_pass": true,
+    "part_a.O.normed_division": true,
+    "part_a.O.power_associative": true,
+    "part_a.R.assoc_pass": true,
+    "part_a.R.n01_pass": false,
+    "part_a.R.normed_division": true,
+    "part_a.survivors_no_assoc_is_HO": true,
+    "part_a.survivors_with_assoc_is_H": true,
+    "part_b.formally_real": true,
+    "part_b.jordan_associative": false,
+    "part_b.jordan_commutative": true,
+    "part_b.power_associative": true,
+    "part_b.rank1_idempotent_exists": true
+  },
+  "shared_scalars": {
+    "part_a.C.associator_max": 0.0,
+    "part_a.C.commutator_max": 0.0,
+    "part_a.C.dim": 2,
+    "part_a.C.norm_mult_residual": 4.440892098500626e-16,
+    "part_a.H.associator_max": 0.0,
+    "part_a.H.commutator_max": 2.0,
+    "part_a.H.dim": 4,
+    "part_a.H.norm_mult_residual": 8.881784197001252e-16,
+    "part_a.O.associator_max": 2.0,
+    "part_a.O.commutator_max": 2.0,
+    "part_a.O.dim": 8,
+    "part_a.O.max_associator_xxx": 4.572178254219406e-15,
+    "part_a.O.max_associator_xxy": 6.9970479439745904e-15,
+    "part_a.O.max_associator_xyy": 6.028010073543578e-15,
+    "part_a.O.max_power_four_residual": 1.1512108063996359e-14,
+    "part_a.O.norm_mult_residual": 1.7763568394002505e-15,
+    "part_a.R.associator_max": 0.0,
+    "part_a.R.commutator_max": 0.0,
+    "part_a.R.dim": 1,
+    "part_a.R.norm_mult_residual": 0.0,
+    "part_b.formally_real.max_trace_square_residual": 1.4210854715202004e-14,
+    "part_b.formally_real.min_nonzero_sum_square_trace": 90.45508625817965,
+    "part_b.formally_real.min_nonzero_trace_square": 1.0,
+    "part_b.jordan_associative_witness_residual": 0.3535533905932738,
+    "part_b.jordan_commutative_residual": 0.0,
+    "part_b.power_associative_residual": 1.3097532051712642e-13,
+    "part_b.rank1_idempotent_residual": 0.0,
+    "part_b.rank1_trace_residual": 0.0,
+    "part_b.real_dim": 27
+  },
+  "sim_class": "carrier_probe",
+  "sim_execution_kind": "nonclassical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_admissibility_prelim.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "structure_probe_count": 12,
+  "tol": 1.0e-9
+}

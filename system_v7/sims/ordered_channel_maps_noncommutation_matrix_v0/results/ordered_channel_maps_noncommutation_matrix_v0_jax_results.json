@@ -1,0 +1,701 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "ordered_channel_maps_noncommutation_matrix_v0",
+  "engine": "jax",
+  "computation_style": "jnp_complex128_kraus_svdvals_tracenorm",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-16T05:15:54Z",
+  "source_sha256": "a510204f40df5b6fcec25b0ede01b90d314f6ac66894f5297cb4099d4d73262f",
+  "result_path": "system_v7/sims/ordered_channel_maps_noncommutation_matrix_v0/results/ordered_channel_maps_noncommutation_matrix_v0_jax_results.json",
+  "params": {
+    "THETA": 1.0471975511965976,
+    "PHI": 0.7853981633974483,
+    "GAMMA": 0.3,
+    "TOL": 1e-09
+  },
+  "map_names": [
+    "Ti_z_dephasing",
+    "Te_x_dephasing",
+    "Fi_x_rotation",
+    "Fe_z_rotation",
+    "projector_pinch",
+    "Lindblad_amp_damp"
+  ],
+  "cptp_validity": {
+    "Ti_z_dephasing": {
+      "trace_preserving_err": 2.220446049250313e-16,
+      "choi_min_eig": 0.0,
+      "is_cptp": true
+    },
+    "Te_x_dephasing": {
+      "trace_preserving_err": 2.2371143170757382e-17,
+      "choi_min_eig": 0.0,
+      "is_cptp": true
+    },
+    "Fi_x_rotation": {
+      "trace_preserving_err": 2.220446049250313e-16,
+      "choi_min_eig": -9.356150301797843e-17,
+      "is_cptp": true
+    },
+    "Fe_z_rotation": {
+      "trace_preserving_err": 0.0,
+      "choi_min_eig": 0.0,
+      "is_cptp": true
+    },
+    "projector_pinch": {
+      "trace_preserving_err": 0.0,
+      "choi_min_eig": 0.0,
+      "is_cptp": true
+    },
+    "Lindblad_amp_damp": {
+      "trace_preserving_err": 0.0,
+      "choi_min_eig": 0.0,
+      "is_cptp": true
+    }
+  },
+  "all_maps_cptp": true,
+  "delta_matrix_rho0": {
+    "Ti_z_dephasing": {
+      "Ti_z_dephasing": 0.0,
+      "Te_x_dephasing": 2.220446049250313e-16,
+      "Fi_x_rotation": 2.581652997505183e-16,
+      "Fe_z_rotation": 0.0,
+      "projector_pinch": 0.0,
+      "Lindblad_amp_damp": 1.1102230246251565e-16
+    },
+    "Te_x_dephasing": {
+      "Ti_z_dephasing": 2.220446049250313e-16,
+      "Te_x_dephasing": 0.0,
+      "Fi_x_rotation": 2.7755575615628914e-16,
+      "Fe_z_rotation": 0.7071067811865475,
+      "projector_pinch": 2.2371143170757382e-17,
+      "Lindblad_amp_damp": 0.2999999999999998
+    },
+    "Fi_x_rotation": {
+      "Ti_z_dephasing": 2.5816529975051837e-16,
+      "Te_x_dephasing": 2.7755575615628914e-16,
+      "Fi_x_rotation": 0.0,
+      "Fe_z_rotation": 0.7071067811865475,
+      "projector_pinch": 2.581652997505183e-16,
+      "Lindblad_amp_damp": 0.2999999999999999
+    },
+    "Fe_z_rotation": {
+      "Ti_z_dephasing": 0.0,
+      "Te_x_dephasing": 0.7071067811865475,
+      "Fi_x_rotation": 0.7071067811865475,
+      "Fe_z_rotation": 0.0,
+      "projector_pinch": 0.0,
+      "Lindblad_amp_damp": 1.1188630228279524e-16
+    },
+    "projector_pinch": {
+      "Ti_z_dephasing": 0.0,
+      "Te_x_dephasing": 2.2371143170757382e-17,
+      "Fi_x_rotation": 2.5816529975051827e-16,
+      "Fe_z_rotation": 0.0,
+      "projector_pinch": 0.0,
+      "Lindblad_amp_damp": 0.0
+    },
+    "Lindblad_amp_damp": {
+      "Ti_z_dephasing": 1.1102230246251565e-16,
+      "Te_x_dephasing": 0.2999999999999998,
+      "Fi_x_rotation": 0.2999999999999999,
+      "Fe_z_rotation": 1.1188630228279524e-16,
+      "projector_pinch": 0.0,
+      "Lindblad_amp_damp": 0.0
+    }
+  },
+  "diag_all_zero": true,
+  "matrix_symmetric": true,
+  "commuting_pairs_rho0": [
+    [
+      "Ti_z_dephasing",
+      "projector_pinch",
+      0.0
+    ],
+    [
+      "Te_x_dephasing",
+      "Ti_z_dephasing",
+      2.220446049250313e-16
+    ],
+    [
+      "Te_x_dephasing",
+      "projector_pinch",
+      2.2371143170757382e-17
+    ],
+    [
+      "Fi_x_rotation",
+      "Ti_z_dephasing",
+      2.5816529975051837e-16
+    ],
+    [
+      "Fi_x_rotation",
+      "Te_x_dephasing",
+      2.7755575615628914e-16
+    ],
+    [
+      "Fi_x_rotation",
+      "projector_pinch",
+      2.581652997505183e-16
+    ],
+    [
+      "Fe_z_rotation",
+      "Ti_z_dephasing",
+      0.0
+    ],
+    [
+      "Fe_z_rotation",
+      "projector_pinch",
+      0.0
+    ],
+    [
+      "Fe_z_rotation",
+      "Lindblad_amp_damp",
+      1.1188630228279524e-16
+    ],
+    [
+      "Lindblad_amp_damp",
+      "Ti_z_dephasing",
+      1.1102230246251565e-16
+    ],
+    [
+      "Lindblad_amp_damp",
+      "projector_pinch",
+      0.0
+    ]
+  ],
+  "noncommuting_pairs_rho0": [
+    [
+      "Fi_x_rotation",
+      "Lindblad_amp_damp",
+      0.2999999999999999
+    ],
+    [
+      "Fe_z_rotation",
+      "Te_x_dephasing",
+      0.7071067811865475
+    ],
+    [
+      "Fe_z_rotation",
+      "Fi_x_rotation",
+      0.7071067811865475
+    ],
+    [
+      "Lindblad_amp_damp",
+      "Te_x_dephasing",
+      0.2999999999999998
+    ]
+  ],
+  "n_commuting": 11,
+  "n_noncommuting": 4,
+  "per_probe_delta_matrix": {
+    "rho0_plus": {
+      "Ti_z_dephasing": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.220446049250313e-16,
+        "Fi_x_rotation": 2.581652997505183e-16,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 1.1102230246251565e-16
+      },
+      "Te_x_dephasing": {
+        "Ti_z_dephasing": 2.220446049250313e-16,
+        "Te_x_dephasing": 0.0,
+        "Fi_x_rotation": 2.7755575615628914e-16,
+        "Fe_z_rotation": 0.7071067811865475,
+        "projector_pinch": 2.2371143170757382e-17,
+        "Lindblad_amp_damp": 0.2999999999999998
+      },
+      "Fi_x_rotation": {
+        "Ti_z_dephasing": 2.5816529975051837e-16,
+        "Te_x_dephasing": 2.7755575615628914e-16,
+        "Fi_x_rotation": 0.0,
+        "Fe_z_rotation": 0.7071067811865475,
+        "projector_pinch": 2.581652997505183e-16,
+        "Lindblad_amp_damp": 0.2999999999999999
+      },
+      "Fe_z_rotation": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 0.7071067811865475,
+        "Fi_x_rotation": 0.7071067811865475,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 1.1188630228279524e-16
+      },
+      "projector_pinch": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.2371143170757382e-17,
+        "Fi_x_rotation": 2.5816529975051827e-16,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "Lindblad_amp_damp": {
+        "Ti_z_dephasing": 1.1102230246251565e-16,
+        "Te_x_dephasing": 0.2999999999999998,
+        "Fi_x_rotation": 0.2999999999999999,
+        "Fe_z_rotation": 1.1188630228279524e-16,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      }
+    },
+    "mixed": {
+      "Ti_z_dephasing": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.220446049250313e-16,
+        "Fi_x_rotation": 2.5816529975051837e-16,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 1.1102230246251565e-16
+      },
+      "Te_x_dephasing": {
+        "Ti_z_dephasing": 2.220446049250313e-16,
+        "Te_x_dephasing": 0.0,
+        "Fi_x_rotation": 1.570092458683775e-16,
+        "Fe_z_rotation": 1.7122131709032546e-17,
+        "projector_pinch": 2.2371143170757382e-17,
+        "Lindblad_amp_damp": 0.2999999999999998
+      },
+      "Fi_x_rotation": {
+        "Ti_z_dephasing": 2.581652997505183e-16,
+        "Te_x_dephasing": 1.570092458683775e-16,
+        "Fi_x_rotation": 0.0,
+        "Fe_z_rotation": 1.7838692103939266e-16,
+        "projector_pinch": 2.3307374444839697e-16,
+        "Lindblad_amp_damp": 0.2999999999999998
+      },
+      "Fe_z_rotation": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 1.7122131709032546e-17,
+        "Fi_x_rotation": 1.7838692103939266e-16,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 4.163336342344337e-17
+      },
+      "projector_pinch": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.2371143170757382e-17,
+        "Fi_x_rotation": 2.3307374444839697e-16,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "Lindblad_amp_damp": {
+        "Ti_z_dephasing": 1.1102230246251565e-16,
+        "Te_x_dephasing": 0.2999999999999998,
+        "Fi_x_rotation": 0.2999999999999998,
+        "Fe_z_rotation": 4.163336342344337e-17,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      }
+    },
+    "pole0": {
+      "Ti_z_dephasing": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.2371143170757385e-17,
+        "Fi_x_rotation": 0.8660254037844386,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "Te_x_dephasing": {
+        "Ti_z_dephasing": 2.2371143170757385e-17,
+        "Te_x_dephasing": 0.0,
+        "Fi_x_rotation": 2.333353421744751e-16,
+        "Fe_z_rotation": 1.7122131709032546e-17,
+        "projector_pinch": 2.2371143170757382e-17,
+        "Lindblad_amp_damp": 0.2999999999999999
+      },
+      "Fi_x_rotation": {
+        "Ti_z_dephasing": 0.8660254037844386,
+        "Te_x_dephasing": 2.333353421744751e-16,
+        "Fi_x_rotation": 0.0,
+        "Fe_z_rotation": 0.6628271480711834,
+        "projector_pinch": 0.8660254037844384,
+        "Lindblad_amp_damp": 0.20617943689632734
+      },
+      "Fe_z_rotation": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 1.7122131709032546e-17,
+        "Fi_x_rotation": 0.6628271480711834,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "projector_pinch": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.2371143170757382e-17,
+        "Fi_x_rotation": 0.8660254037844384,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "Lindblad_amp_damp": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 0.2999999999999999,
+        "Fi_x_rotation": 0.20617943689632734,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      }
+    },
+    "generic": {
+      "Ti_z_dephasing": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 1.1325378444380935e-16,
+        "Fi_x_rotation": 0.3122498999199198,
+        "Fe_z_rotation": 2.7755575615628914e-17,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 1.1102230246251565e-16
+      },
+      "Te_x_dephasing": {
+        "Ti_z_dephasing": 1.1325378444380935e-16,
+        "Te_x_dephasing": 0.0,
+        "Fi_x_rotation": 2.9882757180427705e-16,
+        "Fe_z_rotation": 0.35355339059327373,
+        "projector_pinch": 2.2371143170757382e-17,
+        "Lindblad_amp_damp": 0.2999999999999998
+      },
+      "Fi_x_rotation": {
+        "Ti_z_dephasing": 0.3122498999199198,
+        "Te_x_dephasing": 2.9882757180427705e-16,
+        "Fi_x_rotation": 0.0,
+        "Fe_z_rotation": 0.3430225909074558,
+        "projector_pinch": 0.31224989991991975,
+        "Lindblad_amp_damp": 0.262430770052978
+      },
+      "Fe_z_rotation": {
+        "Ti_z_dephasing": 2.7755575615628914e-17,
+        "Te_x_dephasing": 0.35355339059327373,
+        "Fi_x_rotation": 0.3430225909074558,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 5.763878168445255e-17
+      },
+      "projector_pinch": {
+        "Ti_z_dephasing": 0.0,
+        "Te_x_dephasing": 2.2371143170757382e-17,
+        "Fi_x_rotation": 0.31224989991991975,
+        "Fe_z_rotation": 0.0,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      },
+      "Lindblad_amp_damp": {
+        "Ti_z_dephasing": 1.1102230246251565e-16,
+        "Te_x_dephasing": 0.2999999999999998,
+        "Fi_x_rotation": 0.262430770052978,
+        "Fe_z_rotation": 5.763878168445255e-17,
+        "projector_pinch": 0.0,
+        "Lindblad_amp_damp": 0.0
+      }
+    }
+  },
+  "discriminator_a_commuting": {
+    "Ti_vs_projector_pinch": 0.0,
+    "Fe_vs_Ti": 0.0,
+    "Fe_vs_projector_pinch": 0.0
+  },
+  "discriminator_b_noncommuting": {
+    "Fe_vs_Te": 0.7071067811865475,
+    "Fe_vs_Fi": 0.7071067811865475,
+    "Lindblad_vs_Fi": 0.2999999999999999
+  },
+  "lindblad_vs_te_by_construction_equals_gamma": 0.2999999999999998,
+  "discriminator_b2_probe_relative_TiFi": {
+    "rho0_plus": 2.581652997505183e-16,
+    "mixed": 2.5816529975051837e-16,
+    "pole0": 0.8660254037844386,
+    "generic": 0.3122498999199198
+  },
+  "discriminator_c_signed_antisymmetric": {
+    "signed_TiFi": 0.17320508075688756,
+    "signed_FiTi": -0.17320508075688756,
+    "antisymmetric": true
+  },
+  "map_level_commutation": {
+    "basis": [
+      "plus_X",
+      "plus_Y",
+      "zero_Z",
+      "one_Z"
+    ],
+    "basis_note": "tomographically complete (d^2=4 linearly independent states)",
+    "pairs": [
+      {
+        "pair": [
+          "Ti_z_dephasing",
+          "Te_x_dephasing"
+        ],
+        "delta_rho0": 2.220446049250313e-16,
+        "max_delta_over_basis": 2.220446049250313e-16,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Ti_z_dephasing",
+          "Fi_x_rotation"
+        ],
+        "delta_rho0": 2.581652997505183e-16,
+        "max_delta_over_basis": 0.8660254037844388,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": true
+      },
+      {
+        "pair": [
+          "Ti_z_dephasing",
+          "Fe_z_rotation"
+        ],
+        "delta_rho0": 0.0,
+        "max_delta_over_basis": 0.0,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Ti_z_dephasing",
+          "projector_pinch"
+        ],
+        "delta_rho0": 0.0,
+        "max_delta_over_basis": 0.0,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Ti_z_dephasing",
+          "Lindblad_amp_damp"
+        ],
+        "delta_rho0": 1.1102230246251565e-16,
+        "max_delta_over_basis": 1.1102230246251565e-16,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Te_x_dephasing",
+          "Fi_x_rotation"
+        ],
+        "delta_rho0": 2.7755575615628914e-16,
+        "max_delta_over_basis": 3.1456112923728473e-16,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Te_x_dephasing",
+          "Fe_z_rotation"
+        ],
+        "delta_rho0": 0.7071067811865475,
+        "max_delta_over_basis": 0.7071067811865475,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Te_x_dephasing",
+          "projector_pinch"
+        ],
+        "delta_rho0": 2.2371143170757382e-17,
+        "max_delta_over_basis": 2.2371143170757382e-17,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Te_x_dephasing",
+          "Lindblad_amp_damp"
+        ],
+        "delta_rho0": 0.2999999999999998,
+        "max_delta_over_basis": 0.2999999999999999,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Fi_x_rotation",
+          "Fe_z_rotation"
+        ],
+        "delta_rho0": 0.7071067811865475,
+        "max_delta_over_basis": 0.7071067811865475,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Fi_x_rotation",
+          "projector_pinch"
+        ],
+        "delta_rho0": 2.581652997505183e-16,
+        "max_delta_over_basis": 0.8660254037844386,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": true
+      },
+      {
+        "pair": [
+          "Fi_x_rotation",
+          "Lindblad_amp_damp"
+        ],
+        "delta_rho0": 0.2999999999999999,
+        "max_delta_over_basis": 0.4068218087560628,
+        "map_level_commutes": false,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Fe_z_rotation",
+          "projector_pinch"
+        ],
+        "delta_rho0": 0.0,
+        "max_delta_over_basis": 0.0,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "Fe_z_rotation",
+          "Lindblad_amp_damp"
+        ],
+        "delta_rho0": 1.1188630228279524e-16,
+        "max_delta_over_basis": 1.1188630228279524e-16,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      },
+      {
+        "pair": [
+          "projector_pinch",
+          "Lindblad_amp_damp"
+        ],
+        "delta_rho0": 0.0,
+        "max_delta_over_basis": 0.0,
+        "map_level_commutes": true,
+        "rho0_zero_but_map_noncommutes": false
+      }
+    ],
+    "n_map_level_commuting": 9,
+    "n_rho0_commuting": 11,
+    "n_probe_specific_zeros": 2
+  },
+  "by_construction_index": {
+    "choi_psd_is_tautology": {
+      "statement": "Choi-PSD holds for any Kraus list; not a CP discriminator. TP check is the load-bearing CPTP gate.",
+      "load_bearing_for_CP": false
+    },
+    "diag_self_zero": {
+      "statement": "delta[A][A]=0.",
+      "holds_for_all": true
+    },
+    "matrix_symmetric": {
+      "statement": "delta[A][B]=delta[B][A] (||M||_1=||-M||_1).",
+      "holds_for_all": true
+    },
+    "identity_commutes_all": {
+      "statement": "delta[id][X]=0 for all X.",
+      "holds_for_all": true
+    },
+    "Lindblad_vs_Te_equals_GAMMA_for_all_rho": {
+      "statement": "delta(La,Te,rho)=GAMMA for every rho (probe-independent; equals the parameter). Moved out of genuine discriminators.",
+      "value_is_parameter": 0.3,
+      "probe_independent": true
+    },
+    "structural_zero_pairs_map_level": {
+      "statement": "Pairs with max delta over the basis ~0 commute as superoperators by algebra (Fe-Ti, Ti-PP, Fe-PP, Fe-La, Fi-Te, Ti-Te, Te-PP)."
+    },
+    "probe_specific_zeros_on_rho0": {
+      "statement": "~0 on rho0 but nonzero on other basis probes -> map-level NONCOMMUTING (state-null kernel on |+>).",
+      "pairs": [
+        [
+          "Ti_z_dephasing",
+          "Fi_x_rotation"
+        ],
+        [
+          "Fi_x_rotation",
+          "projector_pinch"
+        ]
+      ]
+    },
+    "disc_b2_rho0_mixed_zeros_by_construction": {
+      "statement": "Ti-Fi=0 on rho0=|+> and I/2 are fixed-point zeros; genuine probe-relativity is the nonzero on pole0/generic.",
+      "genuine_probe_relative_evidence": [
+        "pole0",
+        "generic"
+      ]
+    }
+  },
+  "discriminator_d_classical_baseline": {
+    "classical_maps": [
+      "Ti_z_dephasing",
+      "projector_pinch",
+      "Lindblad_amp_damp",
+      "Fe_z_rotation"
+    ],
+    "classical_state_diag": [
+      0.7,
+      0.3
+    ],
+    "classical_pairs": [
+      [
+        "Ti_z_dephasing",
+        "projector_pinch",
+        0.0
+      ],
+      [
+        "Lindblad_amp_damp",
+        "Ti_z_dephasing",
+        2.7755575615628914e-17
+      ],
+      [
+        "Lindblad_amp_damp",
+        "projector_pinch",
+        0.0
+      ],
+      [
+        "Fe_z_rotation",
+        "Ti_z_dephasing",
+        4.163336342344337e-17
+      ],
+      [
+        "Fe_z_rotation",
+        "projector_pinch",
+        0.0
+      ],
+      [
+        "Fe_z_rotation",
+        "Lindblad_amp_damp",
+        1.1102230246251565e-16
+      ]
+    ],
+    "classical_gap_max": 1.1102230246251565e-16,
+    "classical_gap_collapses": true,
+    "coherence_map_reopens_gap_on_same_state": 0.34641016151377535,
+    "gap_reopens": true
+  },
+  "control_identity_map": {
+    "id_deltas": {
+      "Ti_z_dephasing": 0.0,
+      "Te_x_dephasing": 0.0,
+      "Fi_x_rotation": 0.0,
+      "Fe_z_rotation": 0.0,
+      "projector_pinch": 0.0,
+      "Lindblad_amp_damp": 0.0
+    },
+    "identity_commutes_all": true
+  },
+  "control_label_shuffle": {
+    "max_diff": 0.0,
+    "invariant": true
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "tried": true,
+      "used": true,
+      "reason": "jnp Kraus action + svdvals trace norm (distinct route from eigvalsh)"
+    }
+  },
+  "aligned_tools_load_bearing": [
+    "jax"
+  ]
+}

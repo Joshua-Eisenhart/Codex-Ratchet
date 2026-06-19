@@ -1,0 +1,307 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/Dates/SHA/LinearAlgebra": "supportive",
+    "Manifolds": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/Dates/SHA/LinearAlgebra": {
+      "reason": "supportive serialization, timestamping, hashing, and local matrix arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "Manifolds": {
+      "reason": "load-bearing SO(3) manifold distance check on the vector route",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing spinor ket and density quotient construction",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite truth-table gate for the route discriminator",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Manifolds",
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Manifolds",
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "corrupted_su2_2pi_closure_control": {
+      "pass": true,
+      "z3": "sat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T21:43:14.327",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "packages_used": [
+    "Manifolds",
+    "QuantumOptics",
+    "Z3",
+    "JSON",
+    "Dates",
+    "LinearAlgebra",
+    "SHA"
+  ],
+  "pin_sha256": "c3c89d4f03ec7ca1fe8bf789c8e0f3427c3a70291d2dd2452d6c2d4c9ec42789",
+  "pin_spec": "geo_s1_vector_vs_spinor_v0|routes=SO3_vector_vs_SU2_spinor|U(theta)=diag(exp(-i theta/2),exp(i theta/2))|R(theta)=Rz(theta)|density_quotient=psi psi_dagger|compare_2pi_4pi|classification=scratch_diagnostic|promotion_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "route_truth_table_julia_z3": {
+      "actuals": {
+        "density_quotient_collapses_sign": true,
+        "n01_closure_order_gap_pass": true,
+        "so3_2pi_closed": true,
+        "spinor_sign_visible_before_density": true,
+        "su2_2pi_not_closed": true,
+        "su2_4pi_closed": true,
+        "u_minus_u_same_rotation": true
+      },
+      "corrupted_control_not_accepted": "sat",
+      "nominal_not_accepted": "unsat",
+      "pass": true
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_vector_vs_spinor_v0/results/geo_s1_vector_vs_spinor_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "route_receipts": {
+    "SO3_vector_return": {
+      "R_2pi": [
+        [
+          1.0,
+          2.4492935982947064e-16,
+          0.0
+        ],
+        [
+          -2.4492935982947064e-16,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "R_4pi": [
+        [
+          1.0,
+          4.898587196589413e-16,
+          0.0
+        ],
+        [
+          -4.898587196589413e-16,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "distance_identity_to_R_2pi": 3.463824224941973e-16,
+      "distance_identity_to_R_4pi": 6.927648449883946e-16,
+      "manifold": "Manifolds.Rotations(3)",
+      "pass": true
+    },
+    "SU2_spinor_return": {
+      "U_2pi": [
+        [
+          {
+            "im": -1.2246467991473532e-16,
+            "re": -1.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 1.2246467991473532e-16,
+            "re": -1.0
+          }
+        ]
+      ],
+      "U_4pi": [
+        [
+          {
+            "im": 2.4492935982947064e-16,
+            "re": 1.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": -2.4492935982947064e-16,
+            "re": 1.0
+          }
+        ]
+      ],
+      "distance_U_2pi_to_identity": 2.8284271247461903,
+      "distance_U_2pi_to_minus_identity": 1.7319121124709866e-16,
+      "distance_U_4pi_to_identity": 3.463824224941973e-16,
+      "pass": true
+    },
+    "density_quotient": {
+      "density_norm_difference_dm_psi_dm_minus_psi": 0.0,
+      "pass": true,
+      "quantumoptics_objects": [
+        "QuantumOptics.Ket",
+        "QuantumOptics.dm"
+      ],
+      "rho_minus": [
+        [
+          {
+            "im": 0.0,
+            "re": 1.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ]
+      ],
+      "rho_plus": [
+        [
+          {
+            "im": 0.0,
+            "re": 1.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ]
+      ],
+      "spinor_norm_difference_psi_minus_psi": 2.0
+    },
+    "double_cover_map": {
+      "R_from_U_theta_pi_over_3": [
+        [
+          0.5000000000000002,
+          -0.8660254037844386,
+          0.0
+        ],
+        [
+          0.8660254037844386,
+          0.5000000000000002,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "R_from_minus_U_theta_pi_over_3": [
+        [
+          0.5000000000000002,
+          -0.8660254037844386,
+          0.0
+        ],
+        [
+          0.8660254037844386,
+          0.5000000000000002,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "map": "R_ij = 1/2 Tr(sigma_i U sigma_j U^dagger)",
+      "norm_difference": 0.0,
+      "pass": true
+    },
+    "n01_closure_order_gap": {
+      "exclusion_reason": "does not compare ||R-I3|| with ||U-I2|| as one numeric gap because the representations have different matrix dimensions",
+      "four_pi_check": {
+        "spinor_closes_to_identity": true,
+        "vector_closes_to_identity": true
+      },
+      "functional": "boolean identity closure at theta=2pi under each route's own representation",
+      "gap": 1,
+      "gap_direction": "vector_minus_spinor",
+      "name": "n01_closure_order_gap",
+      "pass": true,
+      "raw_norm_cross_dimension_comparison_excluded": true,
+      "routes": {
+        "spinor_SU2_U": {
+          "closes_to_identity": false,
+          "normalized_boolean_value": 0,
+          "representation": "U(theta)=diag(exp(-i theta/2), exp(i theta/2)) in SU(2)",
+          "theta": "2pi"
+        },
+        "vector_SO3_Rz": {
+          "closes_to_identity": true,
+          "normalized_boolean_value": 1,
+          "representation": "R(theta)=Rz(theta) in SO(3)",
+          "theta": "2pi"
+        }
+      },
+      "scale": "normalized_boolean_closure_not_raw_matrix_norm"
+    }
+  },
+  "schema_version": "geo_s1_vector_vs_spinor_v0_leg_v1",
+  "shared_scalars": {
+    "density_quotient_sign_distance": 0.0,
+    "n01_closure_order_gap": 1,
+    "so3_2pi_distance": 3.463824224941973e-16,
+    "su2_2pi_identity_distance": 2.8284271247461903,
+    "su2_4pi_identity_distance": 3.463824224941973e-16,
+    "u_minus_u_rotation_distance": 0.0
+  },
+  "sim_id": "geo_s1_vector_vs_spinor_v0",
+  "source_path": "system_v6/sims/geo_s1_vector_vs_spinor_v0/geo_s1_vector_vs_spinor_v0_julia.jl",
+  "source_sha256": "be47392759d9c49372c074084a2b4b3b46a102eafdc9c8938f045f8e3e5ebea1"
+}

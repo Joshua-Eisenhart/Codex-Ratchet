@@ -1,0 +1,171 @@
+{
+  "object_id": "ax4_variance_order_split_jax_audit_v1",
+  "claim_ceiling": "JAX audit lane; not layer-complete; not bridge; promotion_allowed=false",
+  "promotion_allowed": false,
+  "root_gates": [
+    "F01",
+    "N01"
+  ],
+  "carrier": "JAX/numpy ComplexF64 L/R Weyl spinor-derived 2x2 density matrices",
+  "jax_available": true,
+  "size_ladder": [
+    {
+      "N": 8,
+      "mean_trajectory_deductive": [
+        -4.163336342344337e-16,
+        0.3486292877310653,
+        0.3486292877310653,
+        0.5000000000000002
+      ],
+      "mean_trajectory_inductive": [
+        0.19708821948279126,
+        0.19708821948279115,
+        0.5000000000000001,
+        0.5000000000000002
+      ],
+      "mean_trajectory_distance": 0.4747227072603119,
+      "mean_order_gap_frobenius": 1.142570689391878e-16,
+      "max_commuting_control_gap": 0.0,
+      "commuting_control_near_zero": true,
+      "trajectories_differ": true,
+      "axis4_split_fraction": 1.0,
+      "axis4_split_real": true,
+      "how_they_differ": "deductive front-loads variance reduction; inductive pattern unclear"
+    },
+    {
+      "N": 16,
+      "mean_trajectory_deductive": [
+        -2.1510571102112408e-16,
+        0.2644891596995524,
+        0.26448915969955245,
+        0.5000000000000002
+      ],
+      "mean_trajectory_inductive": [
+        0.372765271681643,
+        0.372765271681643,
+        0.5000000000000001,
+        0.5000000000000002
+      ],
+      "mean_trajectory_distance": 0.5011597443114146,
+      "mean_order_gap_frobenius": 6.831528490225982e-17,
+      "max_commuting_control_gap": 0.0,
+      "commuting_control_near_zero": true,
+      "trajectories_differ": true,
+      "axis4_split_fraction": 1.0,
+      "axis4_split_real": true,
+      "how_they_differ": "deductive front-loads variance reduction (large early delta); inductive back-loads it (large late delta)"
+    },
+    {
+      "N": 32,
+      "mean_trajectory_deductive": [
+        -3.0531133177191805e-16,
+        0.37219233310194555,
+        0.37219233310194555,
+        0.5000000000000001
+      ],
+      "mean_trajectory_inductive": [
+        0.23465728227037147,
+        0.23465728227037136,
+        0.5000000000000001,
+        0.5000000000000001
+      ],
+      "mean_trajectory_distance": 0.4522549780581757,
+      "mean_order_gap_frobenius": 6.540068752513413e-17,
+      "max_commuting_control_gap": 0.0,
+      "commuting_control_near_zero": true,
+      "trajectories_differ": true,
+      "axis4_split_fraction": 1.0,
+      "axis4_split_real": true,
+      "how_they_differ": "deductive front-loads variance reduction; inductive pattern unclear"
+    },
+    {
+      "N": 64,
+      "mean_trajectory_deductive": [
+        -3.95516952522712e-16,
+        0.3828605442027998,
+        0.38286054420279986,
+        0.5
+      ],
+      "mean_trajectory_inductive": [
+        0.24837607170368808,
+        0.24837607170368806,
+        0.5,
+        0.5
+      ],
+      "mean_trajectory_distance": 0.45829203237971766,
+      "mean_order_gap_frobenius": 5.927600863663641e-17,
+      "max_commuting_control_gap": 0.0,
+      "commuting_control_near_zero": true,
+      "trajectories_differ": true,
+      "axis4_split_fraction": 1.0,
+      "axis4_split_real": true,
+      "how_they_differ": "deductive front-loads variance reduction; inductive pattern unclear"
+    }
+  ],
+  "boundary_checks": [
+    {
+      "label": "pure_state_boundary",
+      "traj_deductive": [
+        -4.440892098500626e-16,
+        0.4999999999999998,
+        0.5,
+        0.5000000000000003
+      ],
+      "traj_inductive": [
+        0.0,
+        -4.440892098500626e-16,
+        0.5000000000000002,
+        0.5000000000000002
+      ],
+      "traj_distance": 0.5000000000000002,
+      "order_gap": 8.040447494916645e-17
+    },
+    {
+      "label": "maximally_mixed_boundary",
+      "traj_deductive": [
+        0.4999999999999999,
+        0.4999999999999999,
+        0.5,
+        0.5000000000000003
+      ],
+      "traj_inductive": [
+        0.5,
+        0.4999999999999999,
+        0.5000000000000003,
+        0.5000000000000003
+      ],
+      "traj_distance": 3.510833468576701e-16,
+      "order_gap": 6.223285321735372e-19
+    },
+    {
+      "label": "commuting_control_pure",
+      "traj_UEUE": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "traj_EUEU": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "traj_distance": 0.0,
+      "order_gap": 0.0,
+      "expect_near_zero": true
+    }
+  ],
+  "summary_n64": {
+    "mean_trajectory_distance": 0.45829203237971766,
+    "mean_order_gap_frobenius": 5.927600863663641e-17,
+    "max_commuting_control_gap": 0.0,
+    "trajectories_differ": true,
+    "commuting_control_near_zero": true,
+    "axis4_split_fraction": 1.0,
+    "axis4_split_real": true,
+    "how_they_differ": "deductive front-loads variance reduction; inductive pattern unclear",
+    "two_directions_earned": true
+  },
+  "honest_caveat": "Two directions earned only if trajectories_differ AND commuting_control_near_zero AND axis4_split_real. If any is false, two_directions_earned=false."
+}

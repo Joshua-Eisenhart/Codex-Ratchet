@@ -1,0 +1,34 @@
+{
+  "rung": "cl6",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_r3_octonion_cl6_link_xhigh_jax.py",
+  "source_sha256": "a0ea5379d4c10539950dff1e1029c61ba03498f6cdb158fd08ac153ae9c82775",
+  "source_mtime": 1780884162.9548726,
+  "source_mtime_iso": "2026-06-08T02:02:42.954873Z",
+  "prompt_sha256": "a84f5cf9a6028d339eb8b01fd1a2b4cafe62e887686d6c83c0ca52045df14dcb",
+  "audited_at": "2026-06-08T02:56:21.981565Z",
+  "authority": {
+    "model": "codex1 gpt-5.5 xhigh (fresh read-only; separate instance from codex2 builder)",
+    "verdict": "GENUINE",
+    "raw": "     \"quaternion_anticommutation_max_residual\": h_anti[\"max_abs_residual\"],\n            \"pseudoscalar_link_plus_residual\": pseudoscalar_link[\"plus_residual\"],\n            \"full_quotient_class_count\": quotient[\"full_probe_class_count\"],\n            \"coarse_quotient_class_count\": quotient[\"drop_dimension_and_rank_probe_class_count\"],\n            \"z3_verdict\": smt[\"z3\"][\"verdict\"],\n            \"z3_offdiag_violation\": smt[\"z3\"][\"offdiag_pair_violation\"][\"status\"],\n            \"z3_self_square_violation\": smt[\"z3\"][\"self_square_violation\"][\"status\"],\n            \"z3_erased_status\": smt[\"z3\"][\"erase_L_entry_binding_flip\"][\"status\"],\n            \"z3_wrong_sign_control\": smt[\"z3\"][\"wrong_sign_plus_I_violation_control\"][\"status\"],\n            \"cvc5_verdict\": smt[\"cvc5\"][\"verdict\"],\n            \"cvc5_offdiag_violation\": smt[\"cvc5\"][\"offdiag_pair_violation\"][\"status\"],\n            \"cvc5_self_square_violation\": smt[\"cvc5\"][\"self_square_violation\"][\"status\"],\n            \"cvc5_erased_status\": smt[\"cvc5\"][\"erase_L_entry_binding_flip\"][\"status\"],\n            \"cvc5_wrong_sign_control\": smt[\"cvc5\"][\"wrong_sign_plus_I_violation_control\"][\"status\"],\n            \"all_pass\": all_pass,\n        },\n        \"all_pass\": all_pass,\n    }\n\n\ndef main() -> int:\n    result = build_result()\n    RESULT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    print(f\"wrote: {RESULT_PATH}\")\n    print(\n        \"JAX_DONE \"\n        f\"all_pass={str(result['all_pass']).lower()} \"\n        f\"octonion_cl6_rank={result['summary']['octonion_cl6_rank']} \"\n        f\"quaternion_cl2_rank={result['summary']['quaternion_cl2_rank']} \"\n        f\"z3={result['summary']['z3_verdict']} \"\n        f\"cvc5={result['summary']['cvc5_verdict']} \"\n        f\"wrong_sign_z3={result['summary']['z3_wrong_sign_control']} \"\n        f\"wrong_sign_cvc5={result['summary']['cvc5_wrong_sign_control']}\"\n    )\n    return 0 if result[\"all_pass\"] else 2\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n\ndeprecated: `[features].codex_hooks` is deprecated. Use `[features].hooks` instead.\nEnable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.\ncodex\nVERDICT=GENUINE; LINE=175; REASON=The SMT violation is built from in-solver products of bound matrix-entry variables, so the UNSAT result is derived from the anticommutator expression rather than from a precomputed scalar, boolean, or literal.\ntokens used\n30,295\n"
+  },
+  "alt_views": {
+    "grok420": {
+      "model_id": "grok-4.20-0309-reasoning",
+      "response_id": "af9e2225-c804-9b6d-9d4b-1aeb54ad9f82",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=310; REASON=derives anticommutators in-solver from bound matrix entries (no precomputed residual/boolean), with binding-drop flip changing UNSAT to SAT."
+    },
+    "grok43": {
+      "model_id": "grok-4.3",
+      "response_id": "659de466-183a-9c12-8205-0a70f8428fd4",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=140; REASON=Solver derives each anticommutator entry on-the-fly via explicit in-solver Sum/MULT over the bound L-entry variables (z3_anticommutator_entry / cvc5_anticommutator_entry) rather than asserting any precomputed scalar or boolean."
+    },
+    "gemini": {
+      "model_id": "gemini-3.1-pro-preview",
+      "response_id": "JC8marvLEOD5jrEP5M6k8Ao",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=175; REASON=The SMT solver explicitly derives the anticommutator expressions internally by multiplying and adding the bound individual matrix entries rather than simply checking a precomputed boolean or scalar."
+    }
+  }
+}

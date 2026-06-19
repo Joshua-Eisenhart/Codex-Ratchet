@@ -1,0 +1,489 @@
+{
+  "M_C_quotient": {
+    "C": {
+      "Hermitian": "rho=rho^dagger by density construction and Hermitian symmetrization in readouts",
+      "PSD": "density generated as |psi><psi| and Lindblad/CPTP path preserves positive eigenvalues within tolerance",
+      "normalization": "node spinor normalized on S3 before Hopf map",
+      "rung_specific": "octonion edge bracketing, chirality split, graph message invariant, and finite basin escape query all active",
+      "trace": "trace(rho)=1 checked after ODE integration"
+    },
+    "M": {
+      "graph_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "probe_family": [
+        "edge octonion associator",
+        "quaternion associator control",
+        "Hopf S3_to_S2 node readout",
+        "Weyl chirality split",
+        "Lindblad/CPTP entropy/coherent information",
+        "finite graph cycle rank",
+        "basin state/update/boundary/invariant/escape"
+      ]
+    },
+    "drop_probe_strictly_coarsens": true,
+    "quotient_classes_under_M": {
+      "associative_control": "quaternion associator zero",
+      "erased_control": "zeroed basin update and maximally mixed carrier collapse coherent information",
+      "structured_spinor_network": "nonzero octonion associator, chirality split, two structured finite basins, positive coherent information"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "Attractors": "supportive",
+    "Cayley-Dickson": "load_bearing",
+    "CliffordAlgebras": "supportive",
+    "DifferentialEquations": "load_bearing",
+    "DynamicalSystems": "supportive",
+    "Graphs": "load_bearing",
+    "ITensors": "supportive",
+    "JSON": "supportive",
+    "Manifolds": "supportive",
+    "Octonions": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Quaternions": "load_bearing",
+    "Yao": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Attractors": {
+      "reason": "supportive basins_of_attraction side readout for the order-parameter basin map; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "Cayley-Dickson": {
+      "reason": "sedenion zero-divisor kill-control table construction",
+      "tried": true,
+      "used": true
+    },
+    "CliffordAlgebras": {
+      "reason": "supportive Cl(3) side readout attached to the same spinor carrier; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "DifferentialEquations": {
+      "reason": "master-equation ODE integration for the same node Hamiltonian and jump operator",
+      "tried": true,
+      "used": true
+    },
+    "DynamicalSystems": {
+      "reason": "supportive CoupledODEs and StateSpaceSet backing the Attractors side readout; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "Graphs": {
+      "reason": "finite graph construction and cycle-rank invariant",
+      "tried": true,
+      "used": true
+    },
+    "ITensors": {
+      "reason": "supportive multi-spinor tensor contraction side readout over four node carrier amplitudes; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "Manifolds": {
+      "reason": "supportive S^3 spinor distance side readout for the Hopf/Bloch manifold control; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "Octonions": {
+      "reason": "octonion nonassociative edge associator on the network coupling witness",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "node density matrices, entropy_vn, ptrace, and liouvillian superoperator for the spinor-network node",
+      "tried": true,
+      "used": true
+    },
+    "Quaternions": {
+      "reason": "associative quaternion control and noncommuting edge order control",
+      "tried": true,
+      "used": true
+    },
+    "Yao": {
+      "reason": "supportive X/H unitary gate matrix side readout for node unitary control; not used by all_pass, divergence, quotient, control, or proof gates",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "derive-in-solver associator and basin escape checks from bound table/state entries",
+      "tried": true,
+      "used": true
+    }
+  },
+  "algebra": {
+    "clifford_dimension_cl3": 8,
+    "clifford_e1e2_anticommutes": true,
+    "commuting_control_gap": 0.0,
+    "octonion_associator_norm": 2.0,
+    "octonion_associator_vector": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -2.0,
+      0.0,
+      0.0
+    ],
+    "quaternion_associator_control_norm": 0.0,
+    "quaternion_order_gap": 2.0,
+    "sedenion_zero_divisor_left_normsq": 2,
+    "sedenion_zero_divisor_product_normsq": 0,
+    "sedenion_zero_divisor_right_normsq": 2
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "DifferentialEquations",
+    "Z3"
+  ],
+  "all_pass": true,
+  "attractors_package_basin": {
+    "attractor_count": 2,
+    "basin_counts": {
+      "1": 8,
+      "2": 8
+    },
+    "function_called": "Attractors.basins_of_attraction with DynamicalSystems.CoupledODEs"
+  },
+  "basins": {
+    "finite_erased_control": {
+      "attractor_count": 1,
+      "basin_counts": {
+        "0 0 0 0": 16
+      },
+      "basin_fractions": {
+        "0 0 0 0": 1.0
+      },
+      "seed_count": 16,
+      "state_space": "{-1,+1}^4"
+    },
+    "finite_real": {
+      "attractor_count": 2,
+      "basin_counts": {
+        "-1 1 1 1": 5,
+        "1 -1 -1 -1": 11
+      },
+      "basin_fractions": {
+        "-1 1 1 1": 0.3125,
+        "1 -1 -1 -1": 0.6875
+      },
+      "seed_count": 16,
+      "state_space": "{-1,+1}^4"
+    }
+  },
+  "claim_ceiling": "scratch_diagnostic finite same-carrier spinor-network integration test only; no canon/admission/bridge/physics/Axis0/manifold claim",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Octonions",
+    "Quaternions",
+    "DifferentialEquations",
+    "Graphs",
+    "Z3",
+    "Cayley-Dickson"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "associative_control": {
+      "flips": true,
+      "octonion": 2.0,
+      "quaternion": 0.0
+    },
+    "basin_control": {
+      "erased_count": 1,
+      "flips": true,
+      "structured_count": 2
+    },
+    "carrier_erasure": {
+      "erased_coherent_information": -0.6931471805599453,
+      "flips": true,
+      "structured_coherent_information": 0.6931471805599451
+    },
+    "commuting_control": {
+      "control": 0.0,
+      "flips": true,
+      "structured": 2.0
+    },
+    "no_chirality": {
+      "chirality_split_norm": 0.632455532033676,
+      "flips": true,
+      "no_chirality_control_norm": 0.0
+    },
+    "sedenion_zero_divisor_kill": {
+      "flips": true,
+      "product_normsq": 0
+    },
+    "z3_derive_flip": {
+      "erased_basin_escape": "sat",
+      "flips": true,
+      "octonion_assoc_zero": "unsat",
+      "quaternion_assoc_zero": "sat"
+    }
+  },
+  "dynamics": {
+    "final_excited_population": 0.7877603705782761,
+    "final_trace": 1.0,
+    "unitary_xh_commutator_norm": 1.9999999999999998
+  },
+  "engine": "julia",
+  "engine_contract": {
+    "mode": "all_three_full_sims",
+    "reads_peer_result": false
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-09T06:39:22.720",
+  "geometry": {
+    "chirality_split_norm": 0.632455532033676,
+    "hopf_s2": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "no_chirality_control_norm": 0.0,
+    "s3_distance_to_erased_reference": 2.0943951023931957
+  },
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "network": {
+    "connected_components": [
+      [
+        1,
+        2,
+        3,
+        4
+      ]
+    ],
+    "cycle_rank": 2,
+    "edge_count": 5,
+    "node_count": 4
+  },
+  "object_id": "foundation_spinor_network_full_stack_layer_julia",
+  "omitted_tools": [
+    "Grassmann",
+    "QuantumClifford",
+    "QuantumToolbox",
+    "ITensorMPS",
+    "Symbolics",
+    "ChaosTools"
+  ],
+  "packages_used": [
+    "DynamicalSystems",
+    "JSON",
+    "CliffordAlgebras",
+    "Cayley-Dickson",
+    "Quaternions",
+    "Manifolds",
+    "ITensors",
+    "Yao",
+    "Graphs",
+    "Octonions",
+    "DifferentialEquations",
+    "Attractors",
+    "Z3",
+    "QuantumOptics"
+  ],
+  "promotion_allowed": false,
+  "qit_readout": {
+    "coherent_information": 0.6931471805599451,
+    "erased_coherent_information": -0.6931471805599453,
+    "erased_subsystem_entropy": 0.6931471805599453,
+    "erased_von_neumann_entropy": 1.3862943611198906,
+    "liouvillian_shape": [
+      4,
+      4
+    ],
+    "subsystem_entropy": 0.6931471805599453,
+    "trace_distance_to_erased": 0.75,
+    "von_neumann_entropy": 2.220446049250313e-16
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_spinor_network_full_stack_layer_julia_results.json",
+  "rung_id": "spinor_network_full_stack_layer",
+  "schema_version": "engine_leg_result_v1",
+  "smt": {
+    "z3": {
+      "derived_in_solver": true,
+      "erased_basin_escape": "sat",
+      "octonion_assoc_zero_assertion": "unsat",
+      "quaternion_assoc_zero_control": "sat",
+      "real_basin_escape": "unsat"
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_spinor_network_full_stack_layer_julia.jl",
+  "source_sha256": "53dd2aab61ba8950493a02263adf9c4e78e2b18a323047545e7cb475a9ffe1c0",
+  "tensor_readout": {
+    "contraction_norm": 1.0,
+    "node_tensor_count": 4
+  },
+  "tool_calls": [
+    {
+      "api_surface": "Octonions.Octonion multiplication",
+      "boundary_case": "same witness indices inside quaternion subalgebra",
+      "demotion_condition": "associator norm collapses to zero",
+      "input_object": "edge couplings e1,e2,e4",
+      "negative_control": "quaternion associator zero",
+      "output_object": 2.0,
+      "positive_case": "nonzero octonion associator",
+      "tool": "Octonions"
+    },
+    {
+      "api_surface": "Quaternions.Quaternion multiplication",
+      "boundary_case": "associative triplet associator",
+      "demotion_condition": "no order or associativity flip",
+      "input_object": "edge controls i,j",
+      "negative_control": "i*i order gap zero",
+      "output_object": 2.0,
+      "positive_case": "noncommuting order gap",
+      "tool": "Quaternions"
+    },
+    {
+      "api_surface": "recursive table multiplication",
+      "boundary_case": "nonzero factor norms",
+      "demotion_condition": "kill-control does not annihilate",
+      "input_object": "sedenion witness (e1+e10)*(e5+e14)",
+      "negative_control": "octonion division control",
+      "output_object": 0,
+      "positive_case": "zero product with nonzero factors",
+      "tool": "Cayley-Dickson"
+    },
+    {
+      "api_surface": "CliffordAlgebra(3)/basevector/MultiVector product",
+      "boundary_case": 8,
+      "claim_depth": "supportive",
+      "demotion_condition": "side readout does not gate all_pass, divergence, quotient, a named control, or proof",
+      "gates": "none",
+      "input_object": "Cl(3) e1,e2 carrier blades",
+      "negative_control": "zero multivector anticommutator",
+      "output_object": {
+        "dimension": 8,
+        "e1e2_anticommutes": true
+      },
+      "positive_case": "Cl(3) carrier side sanity check",
+      "tool": "CliffordAlgebras"
+    },
+    {
+      "api_surface": "QuantumOptics.entropy_vn/ptrace/liouvillian",
+      "boundary_case": [
+        4,
+        4
+      ],
+      "demotion_condition": "entropy readout independent of carrier",
+      "input_object": "two-qubit spinor density",
+      "negative_control": -0.6931471805599453,
+      "output_object": 0.6931471805599451,
+      "positive_case": "structured coherent information",
+      "tool": "QuantumOptics"
+    },
+    {
+      "api_surface": "DifferentialEquations.ODEProblem/solve",
+      "boundary_case": 1.0,
+      "demotion_condition": "ODE not on node state",
+      "input_object": "Lindblad master equation",
+      "negative_control": "trace conservation",
+      "output_object": 0.7877603705782761,
+      "positive_case": "dissipative/unitary final population",
+      "tool": "DifferentialEquations"
+    },
+    {
+      "api_surface": "basins_of_attraction/CoupledODEs",
+      "boundary_case": "finite basin escape SMT",
+      "claim_depth": "supportive",
+      "demotion_condition": "side readout does not gate all_pass, divergence, quotient, a named control, or proof",
+      "gates": "none",
+      "input_object": "order-parameter flow",
+      "negative_control": 1,
+      "output_object": 2,
+      "positive_case": "two attractor labels",
+      "tool": "Attractors+DynamicalSystems"
+    },
+    {
+      "api_surface": "Manifolds.distance(Sphere(3),p,q)",
+      "boundary_case": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "claim_depth": "supportive",
+      "demotion_condition": "side readout does not gate all_pass, divergence, quotient, a named control, or proof",
+      "gates": "none",
+      "input_object": "normalized node spinor",
+      "negative_control": "erased reference",
+      "output_object": 2.0943951023931957,
+      "positive_case": "structured S3 distance",
+      "tool": "Manifolds"
+    },
+    {
+      "api_surface": "Graphs.SimpleGraph/add_edge!",
+      "boundary_case": 5,
+      "demotion_condition": "graph invariant unused",
+      "input_object": "four-node spinor network",
+      "negative_control": "edge-erasure would reduce rank",
+      "output_object": 2,
+      "positive_case": "cycle rank invariant",
+      "tool": "Graphs"
+    },
+    {
+      "api_surface": "ITensors.ITensor/scalar",
+      "boundary_case": 4,
+      "claim_depth": "supportive",
+      "demotion_condition": "side readout does not gate all_pass, divergence, quotient, a named control, or proof",
+      "gates": "none",
+      "input_object": "four node spinor amplitudes",
+      "negative_control": "carrier erasure would flatten amplitudes",
+      "output_object": 1.0,
+      "positive_case": "multi-node contraction norm",
+      "tool": "ITensors"
+    },
+    {
+      "api_surface": "Yao.X/Yao.H matrices",
+      "boundary_case": "2x2 gates",
+      "claim_depth": "supportive",
+      "demotion_condition": "side readout does not gate all_pass, divergence, quotient, a named control, or proof",
+      "gates": "none",
+      "input_object": "unitary node gates",
+      "negative_control": "same-gate commutator zero",
+      "output_object": 1.9999999999999998,
+      "positive_case": "unitary order gap",
+      "tool": "Yao"
+    },
+    {
+      "api_surface": "Z3.add/check",
+      "boundary_case": "all entries derived in solver",
+      "demotion_condition": "proof binds only a precomputed scalar",
+      "input_object": "bound multiplication tables and finite state update",
+      "negative_control": "quaternion assoc-zero SAT and erased escape SAT",
+      "output_object": {
+        "derived_in_solver": true,
+        "erased_basin_escape": "sat",
+        "octonion_assoc_zero_assertion": "unsat",
+        "quaternion_assoc_zero_control": "sat",
+        "real_basin_escape": "unsat"
+      },
+      "positive_case": "octonion assoc-zero UNSAT and real escape UNSAT",
+      "tool": "Z3"
+    }
+  ]
+}

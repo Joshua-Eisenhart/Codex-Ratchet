@@ -8,6 +8,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -47,6 +48,7 @@ WORKER_RECEIPT_GLOBS = [
 ]
 BYPASS_RECEIPT_GLOB = ROOT / "system_v5/ops/wizard_admissions"
 BYPASS_SENTINEL = ROOT / "system_v5/ops/.allow_admission_bypass_recovery"
+DEFAULT_CONTRACT_LINT_TIMEOUT_SEC = 2.0
 
 OPS_REPORTS = [
     ROOT / "system_v5/ops/blocked_reason_breakdown.json",
@@ -324,29 +326,98 @@ def reports_freshness(now: datetime) -> dict[str, Any]:
     }
 
 
-def contract_lint_summary() -> dict[str, Any]:
-    violation_total = 0
-    sims_with_violations = 0
-    violations_by_type: dict[str, int] = {}
-    checked = 0
-    for path in sorted(adaptive_controller.PROBES.glob("sim_*.py")):
-        if not path.is_file() or " 2" in path.name:
-            continue
-        checked += 1
-        violations = lint_sim_contract.lint_sim(path)
-        if violations:
-            sims_with_violations += 1
-        for violation in violations:
-            rule = str(violation.get("rule") or "unknown")
-            violations_by_type[rule] = violations_by_type.get(rule, 0) + 1
-            violation_total += 1
+def contract_lint_ratchet_counts() -> dict[str, int] | None:
+    path = ROOT / "system_v5/ops/state/contract_lint_ratchet.json"
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text())
+    except json.JSONDecodeError:
+        return None
+    try:
+        return {
+            "violation_total": int(data.get("violation_total") or 0),
+            "sims_with_violations": int(data.get("sims_with_violations") or 0),
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+def contract_lint_summary(*, max_seconds: float = DEFAULT_CONTRACT_LINT_TIMEOUT_SEC) -> dict[str, Any]:
+    paths = [
+        path
+        for path in sorted(adaptive_controller.PROBES.glob("sim_*.py"))
+        if path.is_file() and " 2" not in path.name
+    ]
+    ratchet_counts = contract_lint_ratchet_counts()
+    command = ["python3", "scripts/lint_sim_contract.py"]
+    timeout = max_seconds if max_seconds > 0 else None
+    started = time.monotonic()
+    try:
+        result = subprocess.run(
+            command,
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired:
+        return {
+            "ok": False,
+            "closeout_check": "python3 scripts/lint_sim_contract.py",
+            "command": command,
+            "complete": False,
+            "timed_out": True,
+            "timeout_seconds": max_seconds,
+            "elapsed_seconds": round(time.monotonic() - started, 3),
+            "sim_file_total": len(paths),
+            "checked": 0,
+            "unchecked": len(paths),
+            "violation_total": ratchet_counts["violation_total"] if ratchet_counts else 0,
+            "sims_with_violations": ratchet_counts["sims_with_violations"] if ratchet_counts else 0,
+            "violations_by_type": {},
+            "count_source": "contract_lint_ratchet_timeout_fallback" if ratchet_counts else "timeout_no_count_source",
+            "error": "contract lint exceeded runtime-audit time budget",
+        }
+    try:
+        parsed = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return {
+            "ok": False,
+            "closeout_check": "python3 scripts/lint_sim_contract.py",
+            "command": command,
+            "complete": True,
+            "timed_out": False,
+            "timeout_seconds": max_seconds,
+            "elapsed_seconds": round(time.monotonic() - started, 3),
+            "sim_file_total": len(paths),
+            "checked": 0,
+            "unchecked": len(paths),
+            "violation_total": ratchet_counts["violation_total"] if ratchet_counts else 0,
+            "sims_with_violations": ratchet_counts["sims_with_violations"] if ratchet_counts else 0,
+            "violations_by_type": {},
+            "count_source": "contract_lint_ratchet_parse_fallback" if ratchet_counts else "parse_failure_no_count_source",
+            "error": result.stderr.strip() or result.stdout.strip() or "contract lint output was not JSON",
+        }
+    violation_total = int(parsed.get("violation_total") or 0)
+    checked = int(parsed.get("checked") or 0)
     return {
-        "ok": violation_total == 0,
+        "ok": result.returncode == 0 and violation_total == 0,
         "closeout_check": "python3 scripts/lint_sim_contract.py",
+        "command": command,
+        "complete": True,
+        "timed_out": False,
+        "timeout_seconds": max_seconds,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "sim_file_total": len(paths),
         "checked": checked,
+        "unchecked": max(0, len(paths) - checked),
         "violation_total": violation_total,
-        "sims_with_violations": sims_with_violations,
-        "violations_by_type": dict(sorted(violations_by_type.items())),
+        "sims_with_violations": int(parsed.get("sims_with_violations") or 0),
+        "violations_by_type": dict(parsed.get("violations_by_type") or {}),
+        "top_offenders": list(parsed.get("top_offenders") or [])[:10],
+        "count_source": "live_contract_lint",
     }
 
 
@@ -448,6 +519,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skip-preflight", action="store_true", help="Skip packet/helper subprocess checks.")
     parser.add_argument("--accept-skipped-preflight", action="store_true", help="Allow ok=true when --skip-preflight is used.")
+    parser.add_argument(
+        "--contract-lint-timeout-sec",
+        type=float,
+        default=DEFAULT_CONTRACT_LINT_TIMEOUT_SEC,
+        help="Maximum seconds to spend summarizing sim contract lint before reporting a bounded guard failure.",
+    )
     args = parser.parse_args(argv)
 
     findings = scan_live_surfaces()
@@ -458,7 +535,7 @@ def main(argv: list[str] | None = None) -> int:
     now = datetime.now(timezone.utc)
     checks["worker_pool_receipts"] = worker_receipt_check(now)
     checks["ops_reports_freshness"] = reports_freshness(now)
-    checks["contract_lint_summary"] = contract_lint_summary()
+    checks["contract_lint_summary"] = contract_lint_summary(max_seconds=args.contract_lint_timeout_sec)
     checks["never_run_summary"] = never_run_summary()
     checks["taxonomy_unknown_allowlist"] = taxonomy_allowlist_summary(now)
     heartbeat["dominant_blocked_reason_next_check"] = dominant_blocked_reason_next_check(heartbeat)

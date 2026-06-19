@@ -112,7 +112,7 @@ Required stop language for all workers:
 - do not promote beyond the bounded claim set
 
 Canonical interpreter:
-- /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+- /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3
 
 Per-packet run pattern:
 - system_v4/probes/cleanup_first_guard.py --context sim

@@ -1,0 +1,95 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "openrouter-fusion_decision_council",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "I'll run this through the analysis panel first, then synthesize a concrete proposal-only audit response.```json\n{\n  \"diagnosis\": \"Scope/routing defect in the admission lane, not a tool-registry or result defect. The result is authoritatively classified scratch_diagnostic with promotion_allowed=false and formal_admission_allowed=false, and codex_sim_runner.py reproves the three-engine result deterministically. wizard_sim_admission.py is nonetheless applying the *nonclassical load-bearing tool* gate (which requires a tool to be present in two_root_constraints.py) to this rung-0 scratch object. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are symptoms of that misapplied gate firing on tool_target=jax \u2014 they are NOT evidence the registry is broken or that jax must be registered as load-bearing. UNRESOLVED and decision-critical: whether the admission gate keys off the basename suffix 'three_engine' / tool_target string, or off the result-JSON classification/flags. The local deterministic check below decides this and tells you whether the patch site is the validator predicate alone or also the runner's packet construction.\",\n\n  \"smallest_executable_fix\": \"In scripts/wizard_sim_admission.py, make the nonclassical load-bearing-tool checks conditional on the object's authoritative classification/flags read FROM THE RESULT JSON (not the basename string or tool_target). When classification == 'scratch_diagnostic' (equivalently formal_admission_allowed == false), short-circuit BEFORE the two_root_constraints registry lookup and emit a clear, non-error refusal status such as 'admission_denied: scratch_diagnostic / formal_admission_allowed=false' \u2014 and return a distinct NON-zero (refusal) exit code, never 0. Do not skip silently and do not downgrade to a pass. Leave the gate fully intact for genuine nonclassical objects (formal_admission_allowed=true). Do NOT add jax/julia to the registry, do NOT add decorative torch fields, and do NOT touch the result JSON. ONLY IF the deterministic check shows the runner is upgrading scratch->nonclassical via basename/tool_target: additionally patch scripts/codex_sim_runner.py so the admission packet preserves classification/promotion_allowed/formal_admission_allowed verbatim from the result and never derives a load-bearing nonclassical claim from the basename suffix or tool_target.\",\n\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\",\n    \"scripts/codex_sim_runner.py  (CONDITIONAL \u2014 only if the deterministic check shows packet construction, not the validator, sets the nonclassical claim)\"\n  ],\n\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"AGENTS.md\"\n  ],\n\n  \"local_deterministic_check_to_decide_patch_site\": [\n    \"grep -n 'nonclassical_load_bearing_tool_missing\\\\|nonclassical_suitable_load_bearing_tool_missing\\\\|two_root\\\\|tool_target\\\\|basename\\\\|three_engine\\\\|classification\\\\|formal_admission_allowed' scripts/wizard_sim_admission.py scripts/codex_sim_runner.py\",\n    \"Decider: copy the result JSON to /tmp, flip nothing else but set classification to a non-scratch nonclassical value, re-run wizard_sim_admission against the copy. If the findings DISAPPEAR when classification changes -> the gate already reads classification and the defect is that scratch is wrongly entering the gate (patch validator early-exit). If the findings PERSIST regardless of classification but vanish when basename/tool_target change -> the gate keys off the string and the runner is upgrading the packet (patch runner packet construction too).\"\n  ],\n\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet\",\n    \"python3 -m py_compile scripts/wizard_sim_admission.py scripts/codex_sim_runner.py\",\n    \"python3 -c \\\"import json; r=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); assert r['sim_id']=='probe_quotient_fingerprint_floor_v1' and r['object_id']=='probe_quotient_fingerprint_floor_v1' and r['classification']=='scratch_diagnostic' and r['promotion_allowed'] is False and r['formal_admission_allowed'] is False; print('result metadata still scratch/proposal-only')\\\"\",\n    \"python3 scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py   # confirm deterministic three-engine rerun still passes\",\n    \"set +e; python3 scripts/wizard_sim_admission.py system_v7/sims/probe_quotient_fingerprint_floor_v1/",
+  "content_sha256": "7faf838a0edf4bf70a2b9c760331d4d8a803102fe1ec8c640428888089cf0b72",
+  "created_at": "2026-06-18T07:15:32.990479+00:00",
+  "duration_ms": 108468,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": "OPENROUTER_API_KEY",
+  "evidence_role": "proposal",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "content",
+    "extraction_status": "usable_content",
+    "finish_reason": "stop",
+    "native_finish_reason": null,
+    "output_text": "I'll run this through the analysis panel first, then synthesize a concrete proposal-only audit response.```json\n{\n  \"diagnosis\": \"Scope/routing defect in the admission lane, not a tool-registry or result defect. The result is authoritatively classified scratch_diagnostic with promotion_allowed=false and formal_admission_allowed=false, and codex_sim_runner.py reproves the three-engine result deterministically. wizard_sim_admission.py is nonetheless applying the *nonclassical load-bearing tool* gate (which requires a tool to be present in two_root_constraints.py) to this rung-0 scratch object. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are symptoms of that misapplied gate firing on tool_target=jax \u2014 they are NOT evidence the registry is broken or that jax must be registered as load-bearing. UNRESOLVED and decision-critical: whether the admission gate keys off the basename suffix 'three_engine' / tool_target string, or off the result-JSON classification/flags. The local deterministic check below decides this and tells you whether the patch site is the validator predicate alone or also the runner's packet construction.\",\n\n  \"smallest_executable_fix\": \"In scripts/wizard_sim_admission.py, make the nonclassical load-bearing-tool checks conditional on the object's authoritative classification/flags read FROM THE RESULT JSON (not the basename string or tool_target). When classification == 'scratch_diagnostic' (equivalently formal_admission_allowed == false), short-circuit BEFORE the two_root_constraints registry lookup and emit a clear, non-error refusal status such as 'admission_denied: scratch_diagnostic / formal_admission_allowed=false' \u2014 and return a distinct NON-zero (refusal) exit code, never 0. Do not skip silently and do not downgrade to a pass. Leave the gate fully intact for genuine nonclassical objects (formal_admission_allowed=true). Do NOT add jax/julia to the registry, do NOT add decorative torch fields, and do NOT touch the result JSON. ONLY IF the deterministic check shows the runner is upgrading scratch->nonclassical via basename/tool_target: additionally patch scripts/codex_sim_runner.py so the admission packet preserves classification/promotion_allowed/formal_admission_allowed verbatim from the result and never derives a load-bearing nonclassical claim from the basename suffix or tool_target.\",\n\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\",\n    \"scripts/codex_sim_runner.py  (CONDITIONAL \u2014 only if the deterministic check shows packet construction, not the validator, sets the nonclassical claim)\"\n  ],\n\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"AGENTS.md\"\n  ],\n\n  \"local_deterministic_check_to_decide_patch_site\": [\n    \"grep -n 'nonclassical_load_bearing_tool_missing\\\\|nonclassical_suitable_load_bearing_tool_missing\\\\|two_root\\\\|tool_target\\\\|basename\\\\|three_engine\\\\|classification\\\\|formal_admission_allowed' scripts/wizard_sim_admission.py scripts/codex_sim_runner.py\",\n    \"Decider: copy the result JSON to /tmp, flip nothing else but set classification to a non-scratch nonclassical value, re-run wizard_sim_admission against the copy. If the findings DISAPPEAR when classification changes -> the gate already reads classification and the defect is that scratch is wrongly entering the gate (patch validator early-exit). If the findings PERSIST regardless of classification but vanish when basename/tool_target change -> the gate keys off the string and the runner is upgrading the packet (patch runner packet construction too).\"\n  ],\n\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet\",\n    \"python3 -m py_compile scripts/wizard_sim_admission.py scripts/codex_sim_runner.py\",\n    \"python3 -c \\\"import json; r=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); assert r['sim_id']=='probe_quotient_fingerprint_floor_v1' and r['object_id']=='probe_quotient_fingerprint_floor_v1' and r['classification']=='scratch_diagnostic' and r['promotion_allowed'] is False and r['formal_admission_allowed'] is False; print('result metadata still scratch/proposal-only')\\\"\",\n    \"python3 scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py   # confirm deterministic three-engine rerun still passes\",\n    \"set +e; python3 scripts/wizard_sim_admission.py system_v7/sims/probe_quotient_fingerprint_floor_v1/",
+    "reasoning_present": false
+  },
+  "formal_admission_allowed": false,
+  "http_status": 200,
+  "launch_surface": "direct_openrouter_api",
+  "model": "openrouter/fusion",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "openrouter",
+  "raw_response_excerpt": "{\"choices\": [{\"error\": {\"code\": 500, \"message\": \"Internal Server Error\", \"metadata\": {\"error_type\": \"server\"}}, \"finish_reason\": \"stop\", \"index\": 0, \"logprobs\": null, \"message\": {\"content\": \"I'll run this through the analysis panel first, then synthesize a concrete proposal-only audit response.```json\\n{\\n  \\\"diagnosis\\\": \\\"Scope/routing defect in the admission lane, not a tool-registry or result defect. The result is authoritatively classified scratch_diagnostic with promotion_allowed=false and formal_admission_allowed=false, and codex_sim_runner.py reproves the three-engine result deterministically. wizard_sim_admission.py is nonetheless applying the *nonclassical load-bearing tool* gate (which requires a tool to be present in two_root_constraints.py) to this rung-0 scratch object. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are symptoms of that misapplied gate firing on tool_target=jax \\u2014 they are NOT evidence the registry is broken or that jax must be registered as load-bearing. UNRESOLVED and decision-critical: whether the admission gate keys off the basename suffix 'three_engine' / tool_target string, or off the result-JSON classification/flags. The local deterministic check below decides this and tells you whether the patch site is the validator predicate alone or also the runner's packet construction.\\\",\\n\\n  \\\"smallest_executable_fix\\\": \\\"In scripts/wizard_sim_admission.py, make the nonclassical load-bearing-tool checks conditional on the object's authoritative classification/flags read FROM THE RESULT JSON (not the basename string or tool_target). When classification == 'scratch_diagnostic' (equivalently formal_admission_allowed == false), short-circuit BEFORE the two_root_constraints registry lookup and emit a clear, non-error refusal status such as 'admission_denied: scratch_diagnostic / formal_admission_allowed=false' \\u2014 and return a distinct NON-zero (refusal) exit",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "decision_council",
+  "runtime": "openrouter-fusion",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 20,
+      "evidence_specificity": 20,
+      "extraction_health": 15,
+      "gate_alignment": 15,
+      "novel_failure_detection": 9,
+      "overclaim_resistance": 6
+    },
+    "penalties": [],
+    "total": 85,
+    "word_count": 543
+  },
+  "status": "completed",
+  "usage": {
+    "completion_tokens": 2679,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.47859100000000004,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.066975,
+      "upstream_inference_cost": 0.12873,
+      "upstream_inference_prompt_cost": 0.061755
+    },
+    "prompt_tokens": 12351,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "server_tool_use": {},
+    "total_tokens": 15030
+  }
+}

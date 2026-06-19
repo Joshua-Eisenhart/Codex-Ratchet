@@ -1,0 +1,70 @@
+{
+  "TOOL_INTEGRATION_DEPTH": "exact_diagonal_channel_fixture",
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "finite transition matrix, basin graph, entropy and mutual-information readouts",
+      "used": true
+    }
+  },
+  "all_controls_pass": true,
+  "all_tests_pass": true,
+  "basins": {
+    "assignment_entropy": 2.4237949406953985,
+    "count": 7,
+    "false_memory_rate": 0.375,
+    "sizes": [
+      5,
+      5,
+      2,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "branch": "B-lite: open diagonal Hopfield/QCA memory; coherent information blocked",
+  "claim_ceiling": "diagonal_open_channel_memory_fixture_only; not full quantum Hopfield; not non-diagonal QIT admission",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "density_only_overbuild_blocked": true,
+    "false_memory_rate_reported": true,
+    "identity_qca_no_memory_compression": true,
+    "random_memory_control_fails_named_recall": true
+  },
+  "formal_admission_allowed": false,
+  "honest_scope": {
+    "does_not_earn": "full quantum Hopfield, Lindblad/CPTP non-diagonal dynamics, coherent information, admitted QIT engine, or physical/social claim",
+    "earns": "finite diagonal Hopfield/QCA memory basins plus typed entropy-information readouts at scratch ceiling"
+  },
+  "open_channel_readouts": {
+    "coherent_information": {
+      "available": false,
+      "reason": "no non-diagonal channel or purification earned"
+    },
+    "diagonal_von_neumann_entropy": 2.9001569345718186,
+    "fidelity_to_named_memory_states": 0.5749999999999998,
+    "mutual_information_cut_01_23": 0.7969394220174131,
+    "p_update": 0.9
+  },
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.sim_result.v1",
+  "sim_id": "quantum_hopfield_qca_entropy_information_v0",
+  "source_target": "Levos packet sim_targets/quantum_hopfield_qca_entropy_information_v0.md",
+  "support": {
+    "memories": [
+      "0000",
+      "1111"
+    ],
+    "ring_bits": 4,
+    "state_count": 16
+  },
+  "tests": {
+    "coherent_information_blocked": true,
+    "entropy_information_readouts_available": true,
+    "finite_ring_support_exists": true,
+    "hopfield_memory_basins_exist": true,
+    "named_memory_basins_exist": true,
+    "open_diagonal_channel_row_stochastic": true,
+    "steady_state_computed": true
+  }
+}

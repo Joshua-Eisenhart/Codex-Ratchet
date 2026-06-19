@@ -1,0 +1,5867 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "cvc5": "supportive",
+    "eng64_stage_fingerprint_ids_v0": "load_bearing",
+    "gcm_substrate_check": "load_bearing",
+    "geo_s5_terrain_flows_v0": "load_bearing",
+    "json_hashing": "supportive",
+    "numpy": "supportive",
+    "scipy.linalg": "load_bearing",
+    "sympy": "supportive",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "load-bearing G.2a idempotency-from-birth validator boundary.",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "supportive independent computed-count consistency gate matching z3.",
+      "tried": true,
+      "used": true
+    },
+    "eng64_stage_fingerprint_ids_v0": {
+      "reason": "load-bearing: imports the exact audited label-free fingerprint machinery and representative density carrier unchanged.",
+      "tried": true,
+      "used": true
+    },
+    "gcm_substrate_check": {
+      "reason": "load-bearing substrate-first lineage gate plus lineage-free negative control.",
+      "tried": true,
+      "used": true
+    },
+    "geo_s5_terrain_flows_v0": {
+      "reason": "load-bearing source: consumes pinned S5 terrain generator rows by source/result hash as the finite T_tau realization estate.",
+      "tried": true,
+      "used": true
+    },
+    "json_hashing": {
+      "reason": "supportive deterministic result serialization, source locks, and stability hashes.",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "supportive finite affine matrix and density arithmetic on the one-qubit Bloch carrier.",
+      "tried": true,
+      "used": true
+    },
+    "scipy.linalg": {
+      "reason": "load-bearing: computes exp(tX) finite-time affine flow maps from the pinned terrain generators.",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "supportive exact parsing of S5 pinned generator rows before numerical finite-time realization.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "supportive computed-count consistency gate over stage/control/correspondence counts.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "scratch diagnostic hypothesis test executed",
+    "owner-corrected native-pairing table evaluated under pinned finite T_tau choices",
+    "label-free eng64 fingerprint correspondence computed",
+    "GCM substrate lineage consumed"
+  ],
+  "base_operator_rows": [
+    {
+      "affine_channel_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bloch_matrix_3x3": [
+        [
+          0.7,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "channel": "D_z",
+      "fixture_parameter": {
+        "lambda": 0.7
+      },
+      "kind": "dephase",
+      "native_side": "z",
+      "operator": "Ti",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "affine_channel_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.7
+        ]
+      ],
+      "bloch_matrix_3x3": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7
+        ]
+      ],
+      "channel": "D_x",
+      "fixture_parameter": {
+        "lambda": 0.7
+      },
+      "kind": "dephase",
+      "native_side": "x",
+      "operator": "Te",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "affine_channel_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "bloch_matrix_3x3": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "channel": "R_x",
+      "fixture_parameter": {
+        "theta": 1.5707963267948966
+      },
+      "kind": "rotation",
+      "native_side": "x",
+      "operator": "Fi",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "affine_channel_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bloch_matrix_3x3": [
+        [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "channel": "R_z",
+      "fixture_parameter": {
+        "theta": 1.5707963267948966
+      },
+      "kind": "rotation",
+      "native_side": "z",
+      "operator": "Fe",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "build_helper_path": "scripts/build_three_engine_envelope.py",
+  "builder_gates": {
+    "G_2a_idempotency_from_birth": true,
+    "builder_audit_boundary_ok": true,
+    "definitions_pinned_before_correspondence": true,
+    "file_disjoint_packet": true,
+    "fingerprint_method_reused_unchanged": true,
+    "lineage_free_negative_red": true,
+    "no_stage_admission": true,
+    "substrate_first_gcm_lineage": true
+  },
+  "claim_ceiling": "hypothesis_test_only",
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "networkx",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "commuting_pair_honest_null_rule": {
+      "all_pairs": [
+        {
+          "commutator_affine_l2": 0.061027495509,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_z o T_Se",
+          "pair": "Ti<->Se",
+          "terrain_after_operator": "T_Se o D_z"
+        },
+        {
+          "commutator_affine_l2": 0.289623466569,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_x o T_Se",
+          "pair": "Fi<->Se",
+          "terrain_after_operator": "T_Se o R_x"
+        },
+        {
+          "commutator_affine_l2": 0.423600627665,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_z o T_Ne",
+          "pair": "Ti<->Ne",
+          "terrain_after_operator": "T_Ne o D_z"
+        },
+        {
+          "commutator_affine_l2": 2.402111877609,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_x o T_Ne",
+          "pair": "Fi<->Ne",
+          "terrain_after_operator": "T_Ne o R_x"
+        },
+        {
+          "commutator_affine_l2": 0.153821424564,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_x o T_Ni",
+          "pair": "Te<->Ni",
+          "terrain_after_operator": "T_Ni o D_x"
+        },
+        {
+          "commutator_affine_l2": 0.453348903233,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_z o T_Ni",
+          "pair": "Fe<->Ni",
+          "terrain_after_operator": "T_Ni o R_z"
+        },
+        {
+          "commutator_affine_l2": 0.0,
+          "commuting_under_tolerance": true,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_x o T_Si",
+          "pair": "Te<->Si",
+          "terrain_after_operator": "T_Si o D_x"
+        },
+        {
+          "commutator_affine_l2": 0.751873524431,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_z o T_Si",
+          "pair": "Fe<->Si",
+          "terrain_after_operator": "T_Si o R_z"
+        }
+      ],
+      "commuting_pairs": [
+        {
+          "commutator_affine_l2": 0.0,
+          "commuting_under_tolerance": true,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_x o T_Si",
+          "pair": "Te<->Si",
+          "terrain_after_operator": "T_Si o D_x"
+        }
+      ],
+      "noncommuting_pairs": [
+        {
+          "commutator_affine_l2": 0.061027495509,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_z o T_Se",
+          "pair": "Ti<->Se",
+          "terrain_after_operator": "T_Se o D_z"
+        },
+        {
+          "commutator_affine_l2": 0.289623466569,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_x o T_Se",
+          "pair": "Fi<->Se",
+          "terrain_after_operator": "T_Se o R_x"
+        },
+        {
+          "commutator_affine_l2": 0.423600627665,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_z o T_Ne",
+          "pair": "Ti<->Ne",
+          "terrain_after_operator": "T_Ne o D_z"
+        },
+        {
+          "commutator_affine_l2": 2.402111877609,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_x o T_Ne",
+          "pair": "Fi<->Ne",
+          "terrain_after_operator": "T_Ne o R_x"
+        },
+        {
+          "commutator_affine_l2": 0.153821424564,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "D_x o T_Ni",
+          "pair": "Te<->Ni",
+          "terrain_after_operator": "T_Ni o D_x"
+        },
+        {
+          "commutator_affine_l2": 0.453348903233,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_z o T_Ni",
+          "pair": "Fe<->Ni",
+          "terrain_after_operator": "T_Ni o R_z"
+        },
+        {
+          "commutator_affine_l2": 0.751873524431,
+          "commuting_under_tolerance": false,
+          "honest_null_rule": "if commuting_under_tolerance=true, the two ordered labels are reported as the same stage, not forced distinct",
+          "operator_after_terrain": "R_z o T_Si",
+          "pair": "Fe<->Si",
+          "terrain_after_operator": "T_Si o R_z"
+        }
+      ],
+      "reported_all_commuting_pairs": true
+    },
+    "label_permutation_invariance": {
+      "control": "Stage labels are deterministically permuted after fingerprints are computed; component IDs must remain unchanged.",
+      "fingerprint_ids_unchanged": true,
+      "label_field_used_in_fingerprint": false,
+      "permuted_label_count": 16
+    },
+    "order_erasure": {
+      "alias_groups": [
+        {
+          "component_id": "eng64_fp_317f6cb558367837",
+          "size": 2,
+          "stage_tokens": [
+            "NeTi",
+            "TiNe"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_6b6b5f049e591fed",
+          "size": 2,
+          "stage_tokens": [
+            "FeSi",
+            "SiFe"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_8bf0e242db60c5cb",
+          "size": 2,
+          "stage_tokens": [
+            "SeTi",
+            "TiSe"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_9e807fb7df6dac44",
+          "size": 2,
+          "stage_tokens": [
+            "NiTe",
+            "TeNi"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_9eb18ccd407404af",
+          "size": 2,
+          "stage_tokens": [
+            "FiNe",
+            "NeFi"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_b0287c8e7f9c89bc",
+          "size": 2,
+          "stage_tokens": [
+            "FeNi",
+            "NiFe"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+          "size": 2,
+          "stage_tokens": [
+            "SiTe",
+            "TeSi"
+          ]
+        },
+        {
+          "component_id": "eng64_fp_e593c97b86f8c0b2",
+          "size": 2,
+          "stage_tokens": [
+            "FiSe",
+            "SeFi"
+          ]
+        }
+      ],
+      "collapsed_toward_8": true,
+      "control": "Both ordered variants for one terrain/operator pair are evaluated as the same T_tau-after-channel map.",
+      "largest_alias_group": 2,
+      "n_distinct": 8,
+      "stage_count": 16
+    },
+    "pairing_scramble": {
+      "alias_groups": [
+        {
+          "component_id": "eng64_fp_433cac65c3a8d657",
+          "size": 2,
+          "stage_tokens": [
+            "FeSi",
+            "SiFe"
+          ]
+        }
+      ],
+      "control": "Wrong-pairing variant swaps Ti<->Te and Fi<->Fe before matrix construction.",
+      "diagnosis": "pairing convention did not improve exact discovered-component matches",
+      "exact_matched_component_count": 0,
+      "largest_alias_group": 2,
+      "n_distinct": 15,
+      "normal_exact_matched_component_count": 0,
+      "pairing_convention_doing_nothing": true,
+      "stage_count": 16,
+      "wrong_pairing_scores_worse": false
+    }
+  },
+  "correspondence": {
+    "defined_alias_groups": [
+      {
+        "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+        "size": 2,
+        "stage_tokens": [
+          "SiTe",
+          "TeSi"
+        ]
+      }
+    ],
+    "defined_component_count": 15,
+    "defined_components_without_discovered_counterpart": [
+      "eng64_fp_0d9bc9c7d9018527",
+      "eng64_fp_317f6cb558367837",
+      "eng64_fp_6b6b5f049e591fed",
+      "eng64_fp_85d572765da5488e",
+      "eng64_fp_8b58328520e6add8",
+      "eng64_fp_8bf0e242db60c5cb",
+      "eng64_fp_9e807fb7df6dac44",
+      "eng64_fp_9eb18ccd407404af",
+      "eng64_fp_a862e4373e415d77",
+      "eng64_fp_b0287c8e7f9c89bc",
+      "eng64_fp_b44a8bbd9fdf1a50",
+      "eng64_fp_db6f5b1f9b376249",
+      "eng64_fp_e593c97b86f8c0b2",
+      "eng64_fp_e5d507b57764ab5f",
+      "eng64_fp_ee56803500224c97"
+    ],
+    "discovered_component_count": 16,
+    "discovered_components_without_defined_counterpart": [
+      "eng64_fp_08b47991f6268c8b",
+      "eng64_fp_156da3feb1c44a3a",
+      "eng64_fp_347a740bbeae1849",
+      "eng64_fp_3b46121ffb60af1e",
+      "eng64_fp_4163bb5088f8e0b1",
+      "eng64_fp_4fe32aa4ee040ed1",
+      "eng64_fp_61a8c0b44c5241e4",
+      "eng64_fp_6c442f781631fc52",
+      "eng64_fp_7e33b958d470d543",
+      "eng64_fp_87f5490ee2b9612c",
+      "eng64_fp_8d6afc5f73c0931e",
+      "eng64_fp_a2e9a71b5adfde87",
+      "eng64_fp_c8149ac9760ecff5",
+      "eng64_fp_c9c6fafb678bbf4a",
+      "eng64_fp_d71f192fc2ef7231",
+      "eng64_fp_f4f288963aa796ae"
+    ],
+    "discovered_labels": [
+      "rep_hex00:eng64_fp_87f5490ee2b9612c",
+      "rep_hex04:eng64_fp_8d6afc5f73c0931e",
+      "rep_hex08:eng64_fp_c8149ac9760ecff5",
+      "rep_hex12:eng64_fp_6c442f781631fc52",
+      "rep_hex16:eng64_fp_08b47991f6268c8b",
+      "rep_hex20:eng64_fp_156da3feb1c44a3a",
+      "rep_hex24:eng64_fp_c9c6fafb678bbf4a",
+      "rep_hex28:eng64_fp_61a8c0b44c5241e4",
+      "rep_hex32:eng64_fp_3b46121ffb60af1e",
+      "rep_hex36:eng64_fp_f4f288963aa796ae",
+      "rep_hex40:eng64_fp_7e33b958d470d543",
+      "rep_hex44:eng64_fp_4163bb5088f8e0b1",
+      "rep_hex48:eng64_fp_347a740bbeae1849",
+      "rep_hex52:eng64_fp_a2e9a71b5adfde87",
+      "rep_hex56:eng64_fp_d71f192fc2ef7231",
+      "rep_hex60:eng64_fp_4fe32aa4ee040ed1"
+    ],
+    "exact_matched_component_count": 0,
+    "exact_stage_match_count": 0,
+    "exact_stage_matches": [],
+    "failing_pairings": [
+      "TiSe",
+      "SeTi",
+      "FiSe",
+      "SeFi",
+      "TiNe",
+      "NeTi",
+      "FiNe",
+      "NeFi",
+      "TeNi",
+      "NiTe",
+      "FeNi",
+      "NiFe",
+      "TeSi",
+      "SiTe",
+      "FeSi",
+      "SiFe"
+    ],
+    "match_matrix_16x16": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "match_rule": "exact equality of eng64_fp_* component IDs computed from rounded 8-float density fingerprints",
+    "matched_component_ids": [],
+    "nearest_discovered_by_stage": [
+      {
+        "component_id": "eng64_fp_8bf0e242db60c5cb",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.151241004149,
+        "stage_token": "TiSe"
+      },
+      {
+        "component_id": "eng64_fp_db6f5b1f9b376249",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.147709277417,
+        "stage_token": "SeTi"
+      },
+      {
+        "component_id": "eng64_fp_e593c97b86f8c0b2",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_7e33b958d470d543",
+        "nearest_l2_distance": 0.321634787044,
+        "stage_token": "FiSe"
+      },
+      {
+        "component_id": "eng64_fp_a862e4373e415d77",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_7e33b958d470d543",
+        "nearest_l2_distance": 0.315141809814,
+        "stage_token": "SeFi"
+      },
+      {
+        "component_id": "eng64_fp_317f6cb558367837",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_347a740bbeae1849",
+        "nearest_l2_distance": 0.700378969601,
+        "stage_token": "TiNe"
+      },
+      {
+        "component_id": "eng64_fp_ee56803500224c97",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.539014900697,
+        "stage_token": "NeTi"
+      },
+      {
+        "component_id": "eng64_fp_9eb18ccd407404af",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_61a8c0b44c5241e4",
+        "nearest_l2_distance": 0.332336224415,
+        "stage_token": "FiNe"
+      },
+      {
+        "component_id": "eng64_fp_0d9bc9c7d9018527",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_f4f288963aa796ae",
+        "nearest_l2_distance": 0.714954546299,
+        "stage_token": "NeFi"
+      },
+      {
+        "component_id": "eng64_fp_9e807fb7df6dac44",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_a2e9a71b5adfde87",
+        "nearest_l2_distance": 0.090323520972,
+        "stage_token": "TeNi"
+      },
+      {
+        "component_id": "eng64_fp_8b58328520e6add8",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_a2e9a71b5adfde87",
+        "nearest_l2_distance": 0.16874095955,
+        "stage_token": "NiTe"
+      },
+      {
+        "component_id": "eng64_fp_b0287c8e7f9c89bc",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_c8149ac9760ecff5",
+        "nearest_l2_distance": 0.148426730666,
+        "stage_token": "FeNi"
+      },
+      {
+        "component_id": "eng64_fp_85d572765da5488e",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_c8149ac9760ecff5",
+        "nearest_l2_distance": 0.153892409407,
+        "stage_token": "NiFe"
+      },
+      {
+        "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.110582735762,
+        "stage_token": "TeSi"
+      },
+      {
+        "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.110582735762,
+        "stage_token": "SiTe"
+      },
+      {
+        "component_id": "eng64_fp_6b6b5f049e591fed",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.288502330504,
+        "stage_token": "FeSi"
+      },
+      {
+        "component_id": "eng64_fp_e5d507b57764ab5f",
+        "exact_match": false,
+        "nearest_discovered_component_id": "eng64_fp_d71f192fc2ef7231",
+        "nearest_l2_distance": 0.281479793133,
+        "stage_token": "SiFe"
+      }
+    ],
+    "perfect_bijection": false,
+    "question": "Does the owner-corrected native-pairing terrain-flow table reproduce the discovered eng64 16 component set under exact fingerprint equivalence?",
+    "result": "MISMATCH",
+    "stage_labels": [
+      "TiSe",
+      "SeTi",
+      "FiSe",
+      "SeFi",
+      "TiNe",
+      "NeTi",
+      "FiNe",
+      "NeFi",
+      "TeNi",
+      "NiTe",
+      "FeNi",
+      "NiFe",
+      "TeSi",
+      "SiTe",
+      "FeSi",
+      "SiFe"
+    ],
+    "verdict": "0-match_again"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "bound_values": {
+        "defined_distinct": 15,
+        "discovered_distinct": 16,
+        "exact_matched_components": 0,
+        "order_erased_distinct": 8,
+        "stage_count": 16
+      },
+      "load_bearing": false,
+      "polarity": "direct satisfiable computed-count consistency check",
+      "ran": true,
+      "supportive": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "bound_values": {
+        "defined_distinct": 15,
+        "discovered_distinct": 16,
+        "exact_matched_components": 0,
+        "order_erased_distinct": 8,
+        "stage_count": 16
+      },
+      "load_bearing": false,
+      "polarity": "direct satisfiable computed-count consistency check",
+      "ran": true,
+      "supportive": true,
+      "verdict": "sat"
+    }
+  },
+  "defined_stage_rows": [
+    {
+      "authority_stage_token": "TiSe",
+      "authority_table_position": 0,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.045505152881,
+        0.000272072952,
+        -0.433133516689
+      ],
+      "component_id": "eng64_fp_8bf0e242db60c5cb",
+      "effective_composition": "T_Se o D_z",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.2834332,
+        0.0,
+        -0.022752599999999998,
+        -0.000136,
+        -0.022752599999999998,
+        0.000136,
+        0.7165668,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_8bf0e242db60c5cb",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.044451797112,
+        "eigenvalues_re_im": [
+          [
+            0.328849382396,
+            0.118316244551
+          ],
+          [
+            0.328849382396,
+            -0.118316244551
+          ],
+          [
+            0.363939418219,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.59505768421,
+        "entropy_input": 0.0,
+        "entropy_output": 0.59505768421,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.405162281879,
+        "purity_input": 1.0,
+        "purity_output": 0.594837718121,
+        "singular_values": [
+          0.449328964117,
+          0.314530274882,
+          0.314530274882
+        ],
+        "spectral_radius": 0.363939418219,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.297977803379,
+          -0.062439852781,
+          0.112846177549
+        ],
+        [
+          0.0,
+          0.078992324284,
+          0.297977803379,
+          -0.089199789687
+        ],
+        [
+          0.0,
+          -0.062439852781,
+          0.078992324284,
+          0.425682576255
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.297977803379,
+          -0.062439852781,
+          0.112846177549
+        ],
+        [
+          0.078992324284,
+          0.297977803379,
+          -0.089199789687
+        ],
+        [
+          -0.062439852781,
+          0.078992324284,
+          0.425682576255
+        ]
+      ],
+      "operator_channel": "D_z",
+      "operator_label": "Ti",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.283433241656,
+            0.0
+          ],
+          [
+            -0.02275257644,
+            -0.000136036476
+          ]
+        ],
+        [
+          [
+            -0.02275257644,
+            0.000136036476
+          ],
+          [
+            0.716566758344,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.28224128247,
+        0.71775871753
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Se o D_z",
+      "stage_token": "TiSe",
+      "terrain": "Se",
+      "terrain_role": "expansion_family",
+      "terrain_source_key": "Se_Funnel_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "SeTi",
+      "authority_table_position": 1,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.013723777264,
+        -0.024849664289,
+        -0.447495173705
+      ],
+      "component_id": "eng64_fp_db6f5b1f9b376249",
+      "effective_composition": "D_z o T_Se",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.2762524,
+        0.0,
+        -0.0068619,
+        0.0124248,
+        -0.0068619,
+        -0.0124248,
+        0.7237475999999999,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_db6f5b1f9b376249",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.044451797112,
+        "eigenvalues_re_im": [
+          [
+            0.328849382396,
+            0.118316244551
+          ],
+          [
+            0.328849382396,
+            -0.118316244551
+          ],
+          [
+            0.363939418219,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.588945267424,
+        "entropy_input": 0.0,
+        "entropy_output": 0.588945267424,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.399471110817,
+        "purity_input": 1.0,
+        "purity_output": 0.600528889183,
+        "singular_values": [
+          0.449328964117,
+          0.314530274882,
+          0.314530274882
+        ],
+        "spectral_radius": 0.363939418219,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.297977803379,
+          -0.062439852781,
+          0.078992324284
+        ],
+        [
+          0.0,
+          0.078992324284,
+          0.297977803379,
+          -0.062439852781
+        ],
+        [
+          0.0,
+          -0.089199789687,
+          0.112846177549,
+          0.425682576255
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.297977803379,
+          -0.062439852781,
+          0.078992324284
+        ],
+        [
+          0.078992324284,
+          0.297977803379,
+          -0.062439852781
+        ],
+        [
+          -0.089199789687,
+          0.112846177549,
+          0.425682576255
+        ]
+      ],
+      "operator_channel": "D_z",
+      "operator_label": "Ti",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.276252413147,
+            0.0
+          ],
+          [
+            -0.006861888632,
+            0.012424832144
+          ]
+        ],
+        [
+          [
+            -0.006861888632,
+            -0.012424832144
+          ],
+          [
+            0.723747586853,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.275802665958,
+        0.724197334042
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "D_z o T_Se",
+      "stage_token": "SeTi",
+      "terrain": "Se",
+      "terrain_role": "expansion_family",
+      "terrain_source_key": "Se_Funnel_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "FiSe",
+      "authority_table_position": 2,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.061314722945,
+        0.443244133936,
+        -0.040885944723
+      ],
+      "component_id": "eng64_fp_e593c97b86f8c0b2",
+      "effective_composition": "T_Se o R_x",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.47955699999999996,
+        0.0,
+        -0.030657399999999998,
+        -0.2216221,
+        -0.030657399999999998,
+        0.2216221,
+        0.520443,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_e593c97b86f8c0b2",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.090717953289,
+        "eigenvalues_re_im": [
+          [
+            0.449328964117,
+            0.0
+          ],
+          [
+            -0.112846177549,
+            0.434927877018
+          ],
+          [
+            -0.112846177549,
+            -0.434927877018
+          ]
+        ],
+        "entropy_delta": 0.588493746392,
+        "entropy_input": 0.0,
+        "entropy_output": 0.588493746392,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.399051741003,
+        "purity_input": 1.0,
+        "purity_output": 0.600948258997,
+        "singular_values": [
+          0.449328964117,
+          0.449328964117,
+          0.449328964117
+        ],
+        "spectral_radius": 0.449328964117,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.425682576255,
+          0.112846177549,
+          0.089199789687
+        ],
+        [
+          0.0,
+          0.112846177549,
+          -0.089199789687,
+          -0.425682576255
+        ],
+        [
+          0.0,
+          -0.089199789687,
+          0.425682576255,
+          -0.112846177549
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.425682576255,
+          0.112846177549,
+          0.089199789687
+        ],
+        [
+          0.112846177549,
+          -0.089199789687,
+          -0.425682576255
+        ],
+        [
+          -0.089199789687,
+          0.425682576255,
+          -0.112846177549
+        ]
+      ],
+      "operator_channel": "R_x",
+      "operator_label": "Fi",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.479557027639,
+            0.0
+          ],
+          [
+            -0.030657361473,
+            -0.221622066968
+          ]
+        ],
+        [
+          [
+            -0.030657361473,
+            0.221622066968
+          ],
+          [
+            0.520442972361,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.275335517941,
+        0.724664482059
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Se o R_x",
+      "stage_token": "FiSe",
+      "terrain": "Se",
+      "terrain_role": "expansion_family",
+      "terrain_source_key": "Se_Funnel_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "SeFi",
+      "authority_table_position": 3,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.019605396091,
+        0.447495173705,
+        -0.035499520412
+      ],
+      "component_id": "eng64_fp_a862e4373e415d77",
+      "effective_composition": "R_x o T_Se",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.48225019999999996,
+        0.0,
+        -0.0098027,
+        -0.2237476,
+        -0.0098027,
+        0.2237476,
+        0.5177497999999999,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_a862e4373e415d77",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.090717953289,
+        "eigenvalues_re_im": [
+          [
+            0.449328964117,
+            0.0
+          ],
+          [
+            -0.112846177549,
+            0.434927877018
+          ],
+          [
+            -0.112846177549,
+            -0.434927877018
+          ]
+        ],
+        "entropy_delta": 0.588493746392,
+        "entropy_input": 0.0,
+        "entropy_output": 0.588493746392,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.399051741003,
+        "purity_input": 1.0,
+        "purity_output": 0.600948258997,
+        "singular_values": [
+          0.449328964117,
+          0.449328964117,
+          0.449328964117
+        ],
+        "spectral_radius": 0.449328964117,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.425682576255,
+          -0.089199789687,
+          0.112846177549
+        ],
+        [
+          0.0,
+          0.089199789687,
+          -0.112846177549,
+          -0.425682576255
+        ],
+        [
+          0.0,
+          0.112846177549,
+          0.425682576255,
+          -0.089199789687
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.425682576255,
+          -0.089199789687,
+          0.112846177549
+        ],
+        [
+          0.089199789687,
+          -0.112846177549,
+          -0.425682576255
+        ],
+        [
+          0.112846177549,
+          0.425682576255,
+          -0.089199789687
+        ]
+      ],
+      "operator_channel": "R_x",
+      "operator_label": "Fi",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.482250239794,
+            0.0
+          ],
+          [
+            -0.009802698046,
+            -0.223747586853
+          ]
+        ],
+        [
+          [
+            -0.009802698046,
+            0.223747586853
+          ],
+          [
+            0.517749760206,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.275335517941,
+        0.724664482059
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "R_x o T_Se",
+      "stage_token": "SeFi",
+      "terrain": "Se",
+      "terrain_role": "expansion_family",
+      "terrain_source_key": "Se_Funnel_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "TiNe",
+      "authority_table_position": 4,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.918932451964,
+        0.132603095879,
+        -0.278295083511
+      ],
+      "component_id": "eng64_fp_317f6cb558367837",
+      "effective_composition": "T_Ne o D_z",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.36085249999999996,
+        0.0,
+        -0.4594662,
+        -0.0663015,
+        -0.4594662,
+        0.0663015,
+        0.6391475,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_317f6cb558367837",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.49,
+        "eigenvalues_re_im": [
+          [
+            -0.327130493128,
+            0.717270541725
+          ],
+          [
+            -0.327130493128,
+            -0.717270541725
+          ],
+          [
+            0.78842604778,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.079422308846,
+        "entropy_input": 0.0,
+        "entropy_output": 0.079422308846,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.030265707092,
+        "purity_input": 1.0,
+        "purity_output": 0.969734292908,
+        "singular_values": [
+          1.0,
+          0.7,
+          0.7
+        ],
+        "spectral_radius": 0.78842604778,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.039131476278,
+          -0.037053918045,
+          0.997032059667
+        ],
+        [
+          0.0,
+          0.697922441767,
+          0.039131476278,
+          -0.052934168636
+        ],
+        [
+          0.0,
+          -0.037053918045,
+          0.697922441767,
+          0.055902108969
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.039131476278,
+          -0.037053918045,
+          0.997032059667
+        ],
+        [
+          0.697922441767,
+          0.039131476278,
+          -0.052934168636
+        ],
+        [
+          -0.037053918045,
+          0.697922441767,
+          0.055902108969
+        ]
+      ],
+      "operator_channel": "D_z",
+      "operator_label": "Ti",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.360852458245,
+            0.0
+          ],
+          [
+            -0.459466225982,
+            -0.066301547939
+          ]
+        ],
+        [
+          [
+            -0.459466225982,
+            0.066301547939
+          ],
+          [
+            0.639147541755,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.015369061601,
+        0.984630938399
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Ne o D_z",
+      "stage_token": "TiNe",
+      "terrain": "Ne",
+      "terrain_role": "circulation",
+      "terrain_source_key": "Ne_Vortex_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "NeTi",
+      "authority_table_position": 5,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.638133836725,
+        0.117695008313,
+        -0.375073030834
+      ],
+      "component_id": "eng64_fp_ee56803500224c97",
+      "effective_composition": "D_z o T_Ne",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.3124635,
+        0.0,
+        -0.3190669,
+        -0.0588475,
+        -0.3190669,
+        0.0588475,
+        0.6875365,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_ee56803500224c97",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.49,
+        "eigenvalues_re_im": [
+          [
+            -0.327130493128,
+            0.717270541725
+          ],
+          [
+            -0.327130493128,
+            -0.717270541725
+          ],
+          [
+            0.78842604778,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.377258663151,
+        "entropy_input": 0.0,
+        "entropy_output": 0.377258663151,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.219126656493,
+        "purity_input": 1.0,
+        "purity_output": 0.780873343507,
+        "singular_values": [
+          1.0,
+          0.7,
+          0.7
+        ],
+        "spectral_radius": 0.78842604778,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.039131476278,
+          -0.037053918045,
+          0.697922441767
+        ],
+        [
+          0.0,
+          0.697922441767,
+          0.039131476278,
+          -0.037053918045
+        ],
+        [
+          0.0,
+          -0.052934168636,
+          0.997032059667,
+          0.055902108969
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.039131476278,
+          -0.037053918045,
+          0.697922441767
+        ],
+        [
+          0.697922441767,
+          0.039131476278,
+          -0.037053918045
+        ],
+        [
+          -0.052934168636,
+          0.997032059667,
+          0.055902108969
+        ]
+      ],
+      "operator_channel": "D_z",
+      "operator_label": "Ti",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.312463484583,
+            0.0
+          ],
+          [
+            -0.319066918363,
+            -0.058847504156
+          ]
+        ],
+        [
+          [
+            -0.319066918363,
+            0.058847504156
+          ],
+          [
+            0.687536515417,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.125251188456,
+        0.874748811544
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "D_z o T_Ne",
+      "stage_token": "NeTi",
+      "terrain": "Ne",
+      "terrain_role": "circulation",
+      "terrain_source_key": "Ne_Vortex_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "FiNe",
+      "authority_table_position": 6,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.357427429012,
+        0.205347417615,
+        0.911086203973
+      ],
+      "component_id": "eng64_fp_9eb18ccd407404af",
+      "effective_composition": "T_Ne o R_x",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.9555431,
+        0.0,
+        -0.1787137,
+        -0.10267369999999999,
+        -0.1787137,
+        0.10267369999999999,
+        0.0444569,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_9eb18ccd407404af",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            -0.7261194852,
+            -0.6875685371,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 1.0,
+        "eigenvalues_re_im": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            -0.997032059667,
+            0.076987479477
+          ],
+          [
+            -0.997032059667,
+            -0.076987479477
+          ]
+        ],
+        "entropy_delta": 0.0,
+        "entropy_input": 0.0,
+        "entropy_output": 0.0,
+        "linear_fixed_subspace_basis_if_unital": [
+          [
+            0.7261194852,
+            0.6875685371,
+            0.0
+          ]
+        ],
+        "purity_delta": 0.0,
+        "purity_input": 1.0,
+        "purity_output": 1.0,
+        "singular_values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "spectral_radius": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.055902108969,
+          0.997032059667,
+          0.052934168636
+        ],
+        [
+          0.0,
+          0.997032059667,
+          -0.052934168636,
+          -0.055902108969
+        ],
+        [
+          0.0,
+          -0.052934168636,
+          0.055902108969,
+          -0.997032059667
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.055902108969,
+          0.997032059667,
+          0.052934168636
+        ],
+        [
+          0.997032059667,
+          -0.052934168636,
+          -0.055902108969
+        ],
+        [
+          -0.052934168636,
+          0.055902108969,
+          -0.997032059667
+        ]
+      ],
+      "operator_channel": "R_x",
+      "operator_label": "Fi",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.955543101986,
+            0.0
+          ],
+          [
+            -0.178713714506,
+            -0.102673708807
+          ]
+        ],
+        [
+          [
+            -0.178713714506,
+            0.102673708807
+          ],
+          [
+            0.044456898014,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.0,
+        1.0
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Ne o R_x",
+      "stage_token": "FiNe",
+      "terrain": "Ne",
+      "terrain_role": "circulation",
+      "terrain_source_key": "Ne_Vortex_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "NeFi",
+      "authority_table_position": 7,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.91161976675,
+        0.375073030834,
+        0.168135726161
+      ],
+      "component_id": "eng64_fp_0d9bc9c7d9018527",
+      "effective_composition": "R_x o T_Ne",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.5840679,
+        0.0,
+        -0.4558099,
+        -0.1875365,
+        -0.4558099,
+        0.1875365,
+        0.41593209999999997,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_0d9bc9c7d9018527",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.7261194852,
+            0.0,
+            0.6875685371,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 1.0,
+        "eigenvalues_re_im": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            -0.997032059667,
+            0.076987479477
+          ],
+          [
+            -0.997032059667,
+            -0.076987479477
+          ]
+        ],
+        "entropy_delta": 0.0,
+        "entropy_input": 0.0,
+        "entropy_output": 0.0,
+        "linear_fixed_subspace_basis_if_unital": [
+          [
+            0.7261194852,
+            0.0,
+            0.6875685371
+          ]
+        ],
+        "purity_delta": 0.0,
+        "purity_input": 1.0,
+        "purity_output": 1.0,
+        "singular_values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "spectral_radius": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.055902108969,
+          -0.052934168636,
+          0.997032059667
+        ],
+        [
+          0.0,
+          0.052934168636,
+          -0.997032059667,
+          -0.055902108969
+        ],
+        [
+          0.0,
+          0.997032059667,
+          0.055902108969,
+          -0.052934168636
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.055902108969,
+          -0.052934168636,
+          0.997032059667
+        ],
+        [
+          0.052934168636,
+          -0.997032059667,
+          -0.055902108969
+        ],
+        [
+          0.997032059667,
+          0.055902108969,
+          -0.052934168636
+        ]
+      ],
+      "operator_channel": "R_x",
+      "operator_label": "Fi",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.584067863081,
+            0.0
+          ],
+          [
+            -0.455809883375,
+            -0.187536515417
+          ]
+        ],
+        [
+          [
+            -0.455809883375,
+            0.187536515417
+          ],
+          [
+            0.415932136919,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.0,
+        1.0
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "R_x o T_Ne",
+      "stage_token": "NeFi",
+      "terrain": "Ne",
+      "terrain_role": "circulation",
+      "terrain_source_key": "Ne_Vortex_L",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "TeNi",
+      "authority_table_position": 8,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.106126368875,
+        -0.251168370301,
+        0.065058932877
+      ],
+      "component_id": "eng64_fp_9e807fb7df6dac44",
+      "effective_composition": "T_Ni o D_x",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.5325295,
+        0.0,
+        0.0530632,
+        0.1255842,
+        0.0530632,
+        -0.1255842,
+        0.46747049999999996,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_9e807fb7df6dac44",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            -0.1666449887,
+            0.2518025982,
+            0.4530179486,
+            0.8388084629
+          ]
+        ],
+        "determinant": 0.180260926174,
+        "eigenvalues_re_im": [
+          [
+            0.590265108531,
+            0.0
+          ],
+          [
+            0.533495629785,
+            0.144125583248
+          ],
+          [
+            0.533495629785,
+            -0.144125583248
+          ]
+        ],
+        "entropy_delta": 0.653325197958,
+        "entropy_input": 0.0,
+        "entropy_output": 0.653325197958,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.460709489421,
+        "purity_input": 1.0,
+        "purity_output": 0.539290510579,
+        "singular_values": [
+          0.776102820129,
+          0.544690718887,
+          0.426414889869
+        ],
+        "spectral_radius": 0.590265108531,
+        "translation": [
+          -0.041174962046,
+          0.048065526381,
+          0.386989378742
+        ],
+        "translation_norm": 0.392130656268
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.041174962046,
+          0.7394128379,
+          0.135921228219,
+          -0.095168318625
+        ],
+        [
+          0.048065526381,
+          -0.156400049325,
+          0.51758898653,
+          0.121609512317
+        ],
+        [
+          0.386989378742,
+          0.173727874739,
+          -0.095168318625,
+          0.400254543672
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.7394128379,
+          0.135921228219,
+          -0.095168318625
+        ],
+        [
+          -0.156400049325,
+          0.51758898653,
+          0.121609512317
+        ],
+        [
+          0.173727874739,
+          -0.095168318625,
+          0.400254543672
+        ]
+      ],
+      "operator_channel": "D_x",
+      "operator_label": "Te",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.532529466438,
+            0.0
+          ],
+          [
+            0.053063184438,
+            0.12558418515
+          ]
+        ],
+        [
+          [
+            0.053063184438,
+            -0.12558418515
+          ],
+          [
+            0.467470533562,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.359838467156,
+        0.640161532844
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Ni o D_x",
+      "stage_token": "TeNi",
+      "terrain": "Ni",
+      "terrain_role": "contraction_attractor",
+      "terrain_source_key": "Ni_Source_R",
+      "translation_bloch_3": [
+        -0.041174962046,
+        0.048065526381,
+        0.386989378742
+      ]
+    },
+    {
+      "authority_stage_token": "NiTe",
+      "authority_table_position": 9,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.125990536462,
+        -0.259182065767,
+        -0.058153570585
+      ],
+      "component_id": "eng64_fp_8b58328520e6add8",
+      "effective_composition": "D_x o T_Ni",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.4709232,
+        0.0,
+        0.0629953,
+        0.12959099999999998,
+        0.0629953,
+        -0.12959099999999998,
+        0.5290768,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_8b58328520e6add8",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            -0.1793854289,
+            0.1897374903,
+            0.3413566392,
+            0.902937538
+          ]
+        ],
+        "determinant": 0.180260926174,
+        "eigenvalues_re_im": [
+          [
+            0.590265108531,
+            0.0
+          ],
+          [
+            0.533495629785,
+            0.144125583248
+          ],
+          [
+            0.533495629785,
+            -0.144125583248
+          ]
+        ],
+        "entropy_delta": 0.649286683318,
+        "entropy_input": 0.0,
+        "entropy_output": 0.649286683318,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.456784601868,
+        "purity_input": 1.0,
+        "purity_output": 0.543215398132,
+        "singular_values": [
+          0.776935331565,
+          0.544416733303,
+          0.426172341969
+        ],
+        "spectral_radius": 0.590265108531,
+        "translation": [
+          -0.041174962046,
+          0.033645868467,
+          0.270892565119
+        ],
+        "translation_norm": 0.276061956454
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.041174962046,
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          0.033645868467,
+          -0.109480034527,
+          0.51758898653,
+          0.121609512317
+        ],
+        [
+          0.270892565119,
+          0.121609512317,
+          -0.095168318625,
+          0.400254543672
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          -0.109480034527,
+          0.51758898653,
+          0.121609512317
+        ],
+        [
+          0.121609512317,
+          -0.095168318625,
+          0.400254543672
+        ]
+      ],
+      "operator_channel": "D_x",
+      "operator_label": "Te",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.470923214708,
+            0.0
+          ],
+          [
+            0.062995268231,
+            0.129591032883
+          ]
+        ],
+        [
+          [
+            0.062995268231,
+            -0.129591032883
+          ],
+          [
+            0.529076785292,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.353004425012,
+        0.646995574988
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "D_x o T_Ni",
+      "stage_token": "NiTe",
+      "terrain": "Ni",
+      "terrain_role": "contraction_attractor",
+      "terrain_source_key": "Ni_Source_R",
+      "translation_bloch_3": [
+        -0.041174962046,
+        0.033645868467,
+        0.270892565119
+      ]
+    },
+    {
+      "authority_stage_token": "FeNi",
+      "authority_table_position": 10,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.346847078139,
+        -0.063545500591,
+        -0.113409491752
+      ],
+      "component_id": "eng64_fp_b0287c8e7f9c89bc",
+      "effective_composition": "T_Ni o R_z",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.4432953,
+        0.0,
+        0.17342349999999998,
+        0.0317728,
+        0.17342349999999998,
+        -0.0317728,
+        0.5567046999999999,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_b0287c8e7f9c89bc",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            -0.1761544314,
+            0.0267945316,
+            0.6841881689,
+            0.70720451
+          ]
+        ],
+        "determinant": 0.367879441171,
+        "eigenvalues_re_im": [
+          [
+            0.154480814901,
+            0.758861121995
+          ],
+          [
+            0.154480814901,
+            -0.758861121995
+          ],
+          [
+            0.613403807939,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.622884130374,
+        "entropy_input": 0.0,
+        "entropy_output": 0.622884130374,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.431398680461,
+        "purity_input": 1.0,
+        "purity_output": 0.568601319539,
+        "singular_values": [
+          0.778799242154,
+          0.777096204537,
+          0.607862301474
+        ],
+        "spectral_radius": 0.774425286679,
+        "translation": [
+          -0.041174962046,
+          0.048065526381,
+          0.386989378742
+        ],
+        "translation_norm": 0.392130656268
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.041174962046,
+          0.19417318317,
+          -0.7394128379,
+          -0.135954740893
+        ],
+        [
+          0.048065526381,
+          0.7394128379,
+          0.156400049325,
+          0.173727874739
+        ],
+        [
+          0.386989378742,
+          -0.135954740893,
+          -0.173727874739,
+          0.571792205245
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.19417318317,
+          -0.7394128379,
+          -0.135954740893
+        ],
+        [
+          0.7394128379,
+          0.156400049325,
+          0.173727874739
+        ],
+        [
+          -0.135954740893,
+          -0.173727874739,
+          0.571792205245
+        ]
+      ],
+      "operator_channel": "R_z",
+      "operator_label": "Fe",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.443295254124,
+            0.0
+          ],
+          [
+            0.173423539069,
+            0.031772750296
+          ]
+        ],
+        [
+          [
+            0.173423539069,
+            -0.031772750296
+          ],
+          [
+            0.556704745876,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.314795627024,
+        0.685204372976
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Ni o R_z",
+      "stage_token": "FeNi",
+      "terrain": "Ni",
+      "terrain_role": "contraction_attractor",
+      "terrain_source_key": "Ni_Source_R",
+      "translation_bloch_3": [
+        -0.041174962046,
+        0.048065526381,
+        0.386989378742
+      ]
+    },
+    {
+      "authority_stage_token": "NiFe",
+      "authority_table_position": 11,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.370260093952,
+        0.125990536462,
+        -0.083076529407
+      ],
+      "component_id": "eng64_fp_85d572765da5488e",
+      "effective_composition": "R_z o T_Ni",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.45846169999999997,
+        0.0,
+        0.18513,
+        -0.0629953,
+        0.18513,
+        0.0629953,
+        0.5415383,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_85d572765da5488e",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            -0.0267945316,
+            -0.1761544314,
+            0.6841881689,
+            0.70720451
+          ]
+        ],
+        "determinant": 0.367879441171,
+        "eigenvalues_re_im": [
+          [
+            0.154480814901,
+            0.758861121995
+          ],
+          [
+            0.154480814901,
+            -0.758861121995
+          ],
+          [
+            0.613403807939,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.610934275316,
+        "entropy_input": 0.0,
+        "entropy_output": 0.610934275316,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.420066068905,
+        "purity_input": 1.0,
+        "purity_output": 0.579933931095,
+        "singular_values": [
+          0.778799242154,
+          0.777096204537,
+          0.607862301474
+        ],
+        "spectral_radius": 0.774425286679,
+        "translation": [
+          -0.048065526381,
+          -0.041174962046,
+          0.386989378742
+        ],
+        "translation_norm": 0.392130656268
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.048065526381,
+          0.156400049325,
+          -0.7394128379,
+          -0.173727874739
+        ],
+        [
+          -0.041174962046,
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          0.386989378742,
+          0.173727874739,
+          -0.135954740893,
+          0.571792205245
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.156400049325,
+          -0.7394128379,
+          -0.173727874739
+        ],
+        [
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          0.173727874739,
+          -0.135954740893,
+          0.571792205245
+        ]
+      ],
+      "operator_channel": "R_z",
+      "operator_label": "Fe",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.458461735297,
+            0.0
+          ],
+          [
+            0.185130046976,
+            -0.062995268231
+          ]
+        ],
+        [
+          [
+            0.185130046976,
+            0.062995268231
+          ],
+          [
+            0.541538264703,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.30008260319,
+        0.69991739681
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "R_z o T_Ni",
+      "stage_token": "NiFe",
+      "terrain": "Ni",
+      "terrain_role": "contraction_attractor",
+      "terrain_source_key": "Ni_Source_R",
+      "translation_bloch_3": [
+        -0.048065526381,
+        -0.041174962046,
+        0.386989378742
+      ]
+    },
+    {
+      "authority_stage_token": "TeSi",
+      "authority_table_position": 12,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.136529420884,
+        0.034836467447,
+        -0.463522987207
+      ],
+      "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+      "effective_composition": "T_Si o D_x",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.2682385,
+        0.0,
+        0.0682647,
+        -0.0174182,
+        0.0682647,
+        0.0174182,
+        0.7317615,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_b44a8bbd9fdf1a50",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.220171192417,
+        "eigenvalues_re_im": [
+          [
+            0.432183953531,
+            0.1827244448
+          ],
+          [
+            0.432183953531,
+            -0.1827244448
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.570708223315,
+        "entropy_input": 0.0,
+        "entropy_output": 0.570708223315,
+        "linear_fixed_subspace_basis_if_unital": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "purity_delta": -0.38264628905,
+        "purity_input": 1.0,
+        "purity_output": 0.61735371095,
+        "singular_values": [
+          1.0,
+          0.469224032225,
+          0.469224032225
+        ],
+        "spectral_radius": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.432183953531,
+          -0.1827244448
+        ],
+        [
+          0.0,
+          0.0,
+          0.1827244448,
+          0.432183953531
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.432183953531,
+          -0.1827244448
+        ],
+        [
+          0.0,
+          0.1827244448,
+          0.432183953531
+        ]
+      ],
+      "operator_channel": "D_x",
+      "operator_label": "Te",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.268238506396,
+            0.0
+          ],
+          [
+            0.068264710442,
+            -0.017418233723
+          ]
+        ],
+        [
+          [
+            0.068264710442,
+            0.017418233723
+          ],
+          [
+            0.731761493604,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.257766939756,
+        0.742233060244
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Si o D_x",
+      "stage_token": "TeSi",
+      "terrain": "Si",
+      "terrain_role": "retention_strata",
+      "terrain_source_key": "Si_Citadel_R",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "SiTe",
+      "authority_table_position": 13,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.136529420884,
+        0.034836467447,
+        -0.463522987207
+      ],
+      "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+      "effective_composition": "D_x o T_Si",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.2682385,
+        0.0,
+        0.0682647,
+        -0.0174182,
+        0.0682647,
+        0.0174182,
+        0.7317615,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_b44a8bbd9fdf1a50",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.220171192417,
+        "eigenvalues_re_im": [
+          [
+            0.432183953531,
+            0.1827244448
+          ],
+          [
+            0.432183953531,
+            -0.1827244448
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.570708223315,
+        "entropy_input": 0.0,
+        "entropy_output": 0.570708223315,
+        "linear_fixed_subspace_basis_if_unital": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "purity_delta": -0.38264628905,
+        "purity_input": 1.0,
+        "purity_output": 0.61735371095,
+        "singular_values": [
+          1.0,
+          0.469224032225,
+          0.469224032225
+        ],
+        "spectral_radius": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.432183953531,
+          -0.1827244448
+        ],
+        [
+          0.0,
+          0.0,
+          0.1827244448,
+          0.432183953531
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.432183953531,
+          -0.1827244448
+        ],
+        [
+          0.0,
+          0.1827244448,
+          0.432183953531
+        ]
+      ],
+      "operator_channel": "D_x",
+      "operator_label": "Te",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.268238506396,
+            0.0
+          ],
+          [
+            0.068264710442,
+            -0.017418233723
+          ]
+        ],
+        [
+          [
+            0.068264710442,
+            0.017418233723
+          ],
+          [
+            0.731761493604,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.257766939756,
+        0.742233060244
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "D_x o T_Si",
+      "stage_token": "SiTe",
+      "terrain": "Si",
+      "terrain_role": "retention_strata",
+      "terrain_source_key": "Si_Citadel_R",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "FeSi",
+      "authority_table_position": 14,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        0.316304860308,
+        0.329348824838,
+        -0.543970135128
+      ],
+      "component_id": "eng64_fp_6b6b5f049e591fed",
+      "effective_composition": "T_Si o R_z",
+      "effective_order": "terrain_after_operator",
+      "fingerprint": [
+        0.2280149,
+        0.0,
+        0.1581524,
+        -0.1646744,
+        0.1581524,
+        0.1646744,
+        0.7719851,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_6b6b5f049e591fed",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.449328964117,
+        "eigenvalues_re_im": [
+          [
+            -0.031532888495,
+            0.811988783159
+          ],
+          [
+            -0.031532888495,
+            -0.811988783159
+          ],
+          [
+            0.680471424892,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.413735356828,
+        "entropy_input": 0.0,
+        "entropy_output": 0.413735356828,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.247788539506,
+        "purity_input": 1.0,
+        "purity_output": 0.752211460494,
+        "singular_values": [
+          1.0,
+          0.670320046036,
+          0.670320046036
+        ],
+        "spectral_radius": 0.812600828841,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.617405647902,
+          0.0,
+          -0.261034921143
+        ],
+        [
+          0.0,
+          0.261034921143,
+          0.0,
+          0.617405647902
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          0.617405647902,
+          0.0,
+          -0.261034921143
+        ],
+        [
+          0.261034921143,
+          0.0,
+          0.617405647902
+        ]
+      ],
+      "operator_channel": "R_z",
+      "operator_label": "Fe",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.228014932436,
+            0.0
+          ],
+          [
+            0.158152430154,
+            -0.164674412419
+          ]
+        ],
+        [
+          [
+            0.158152430154,
+            0.164674412419
+          ],
+          [
+            0.771985067564,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.14488631363,
+        0.85511368637
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "T_Si o R_z",
+      "stage_token": "FeSi",
+      "terrain": "Si",
+      "terrain_role": "retention_strata",
+      "terrain_source_key": "Si_Citadel_R",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "authority_stage_token": "SiFe",
+      "authority_table_position": 15,
+      "bloch_input": [
+        0.136529420884,
+        -0.316304860308,
+        -0.938781631999
+      ],
+      "bloch_output": [
+        -0.049766382067,
+        0.136529420884,
+        -0.66217569601
+      ],
+      "component_id": "eng64_fp_e5d507b57764ab5f",
+      "effective_composition": "R_z o T_Si",
+      "effective_order": "operator_after_terrain",
+      "fingerprint": [
+        0.16891219999999998,
+        0.0,
+        -0.024883199999999998,
+        -0.0682647,
+        -0.024883199999999998,
+        0.0682647,
+        0.8310877999999999,
+        0.0
+      ],
+      "fingerprint_id": "eng64_fp_e5d507b57764ab5f",
+      "geometry": {
+        "affine_fixed_equation_augmented_nullspace": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.449328964117,
+        "eigenvalues_re_im": [
+          [
+            -0.031532888495,
+            0.811988783159
+          ],
+          [
+            -0.031532888495,
+            -0.811988783159
+          ],
+          [
+            0.680471424892,
+            0.0
+          ]
+        ],
+        "entropy_delta": 0.441379401959,
+        "entropy_input": 0.0,
+        "entropy_output": 0.441379401959,
+        "linear_fixed_subspace_basis_if_unital": [],
+        "purity_delta": -0.270203186031,
+        "purity_input": 1.0,
+        "purity_output": 0.729796813969,
+        "singular_values": [
+          1.0,
+          0.670320046036,
+          0.670320046036
+        ],
+        "spectral_radius": 0.812600828841,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "translation_norm": 0.0
+      },
+      "matrix_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.617405647902,
+          0.261034921143
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.261034921143,
+          0.617405647902
+        ]
+      ],
+      "matrix_bloch_3x3": [
+        [
+          0.0,
+          -0.617405647902,
+          0.261034921143
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.261034921143,
+          0.617405647902
+        ]
+      ],
+      "operator_channel": "R_z",
+      "operator_label": "Fe",
+      "pairing_scrambled": false,
+      "rho_output": [
+        [
+          [
+            0.168912151995,
+            0.0
+          ],
+          [
+            -0.024883191034,
+            -0.068264710442
+          ]
+        ],
+        [
+          [
+            -0.024883191034,
+            0.068264710442
+          ],
+          [
+            0.831087848005,
+            0.0
+          ]
+        ]
+      ],
+      "rho_output_eigvals": [
+        0.16103332467,
+        0.83896667533
+      ],
+      "rho_output_trace_real": 1.0,
+      "source_composition": "R_z o T_Si",
+      "stage_token": "SiFe",
+      "terrain": "Si",
+      "terrain_role": "retention_strata",
+      "terrain_source_key": "Si_Citadel_R",
+      "translation_bloch_3": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "definition_phase_pinned_before_correspondence": true,
+  "definition_rule": {
+    "authority": "ratchet_geometry_order_hypothesis_20260612.md lines 35-73",
+    "channel_count": 4,
+    "flow_count": 4,
+    "native_pairing_convention": {
+      "Fe": {
+        "channel": "R_z",
+        "kind": "rotation",
+        "native_side": "z"
+      },
+      "Fi": {
+        "channel": "R_x",
+        "kind": "rotation",
+        "native_side": "x"
+      },
+      "Te": {
+        "channel": "D_x",
+        "kind": "dephase",
+        "native_side": "x"
+      },
+      "Ti": {
+        "channel": "D_z",
+        "kind": "dephase",
+        "native_side": "z"
+      }
+    },
+    "order_count_per_pair": 2,
+    "stage_count": "4 native terrain/channel pairings x 2 channel families per side x 2 orders = 16",
+    "stage_table_verbatim_tokens": [
+      "TiSe",
+      "SeTi",
+      "FiSe",
+      "SeFi",
+      "TiNe",
+      "NeTi",
+      "FiNe",
+      "NeFi",
+      "TeNi",
+      "NiTe",
+      "FeNi",
+      "NiFe",
+      "TeSi",
+      "SiTe",
+      "FeSi",
+      "SiFe"
+    ],
+    "terrain_realization": {
+      "Ne": {
+        "committed_generator": "Ne / Vortex",
+        "finite_time_M": [
+          [
+            0.055902108969,
+            -0.052934168636,
+            0.997032059667
+          ],
+          [
+            0.997032059667,
+            0.055902108969,
+            -0.052934168636
+          ],
+          [
+            -0.052934168636,
+            0.997032059667,
+            0.055902108969
+          ]
+        ],
+        "finite_time_affine_4x4": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.055902108969,
+            -0.052934168636,
+            0.997032059667
+          ],
+          [
+            0.0,
+            0.997032059667,
+            0.055902108969,
+            -0.052934168636
+          ],
+          [
+            0.0,
+            -0.052934168636,
+            0.997032059667,
+            0.055902108969
+          ]
+        ],
+        "finite_time_b": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "flow_time": 1.0,
+        "measured": {
+          "determinant": 1.0,
+          "eigenvalues_re_im": [
+            [
+              -0.416146836547,
+              0.909297426826
+            ],
+            [
+              -0.416146836547,
+              -0.909297426826
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "measured_character": "circulation_or_isometry",
+          "singular_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "translation_norm": 0.0
+        },
+        "role": "circulation",
+        "source_key": "Ne_Vortex_L",
+        "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:78",
+        "terrain": "Ne"
+      },
+      "Ni": {
+        "committed_generator": "Ni / Source",
+        "finite_time_M": [
+          [
+            0.7394128379,
+            0.19417318317,
+            -0.135954740893
+          ],
+          [
+            -0.156400049325,
+            0.7394128379,
+            0.173727874739
+          ],
+          [
+            0.173727874739,
+            -0.135954740893,
+            0.571792205245
+          ]
+        ],
+        "finite_time_affine_4x4": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.041174962046,
+            0.7394128379,
+            0.19417318317,
+            -0.135954740893
+          ],
+          [
+            0.048065526381,
+            -0.156400049325,
+            0.7394128379,
+            0.173727874739
+          ],
+          [
+            0.386989378742,
+            0.173727874739,
+            -0.135954740893,
+            0.571792205245
+          ]
+        ],
+        "finite_time_b": [
+          -0.041174962046,
+          0.048065526381,
+          0.386989378742
+        ],
+        "flow_time": 1.0,
+        "measured": {
+          "determinant": 0.367879441171,
+          "eigenvalues_re_im": [
+            [
+              0.670009050852,
+              0.262279613009
+            ],
+            [
+              0.670009050852,
+              -0.262279613009
+            ],
+            [
+              0.710599779342,
+              0.0
+            ]
+          ],
+          "measured_character": "non_unital_attractor",
+          "singular_values": [
+            0.778799242154,
+            0.777096204537,
+            0.607862301474
+          ],
+          "translation_norm": 0.392130656268
+        },
+        "role": "contraction_attractor",
+        "source_key": "Ni_Source_R",
+        "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:81",
+        "terrain": "Ni"
+      },
+      "Se": {
+        "committed_generator": "Se / Funnel",
+        "finite_time_M": [
+          [
+            0.425682576255,
+            -0.089199789687,
+            0.112846177549
+          ],
+          [
+            0.112846177549,
+            0.425682576255,
+            -0.089199789687
+          ],
+          [
+            -0.089199789687,
+            0.112846177549,
+            0.425682576255
+          ]
+        ],
+        "finite_time_affine_4x4": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.425682576255,
+            -0.089199789687,
+            0.112846177549
+          ],
+          [
+            0.0,
+            0.112846177549,
+            0.425682576255,
+            -0.089199789687
+          ],
+          [
+            0.0,
+            -0.089199789687,
+            0.112846177549,
+            0.425682576255
+          ]
+        ],
+        "finite_time_b": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "flow_time": 1.0,
+        "measured": {
+          "determinant": 0.090717953289,
+          "eigenvalues_re_im": [
+            [
+              0.413859382324,
+              0.174976940358
+            ],
+            [
+              0.413859382324,
+              -0.174976940358
+            ],
+            [
+              0.449328964117,
+              0.0
+            ]
+          ],
+          "measured_character": "contraction_or_retention",
+          "singular_values": [
+            0.449328964117,
+            0.449328964117,
+            0.449328964117
+          ],
+          "translation_norm": 0.0
+        },
+        "role": "expansion_family",
+        "source_key": "Se_Funnel_L",
+        "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:76",
+        "terrain": "Se"
+      },
+      "Si": {
+        "committed_generator": "Si / Citadel",
+        "finite_time_M": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.617405647902,
+            -0.261034921143
+          ],
+          [
+            0.0,
+            0.261034921143,
+            0.617405647902
+          ]
+        ],
+        "finite_time_affine_4x4": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.617405647902,
+            -0.261034921143
+          ],
+          [
+            0.0,
+            0.0,
+            0.261034921143,
+            0.617405647902
+          ]
+        ],
+        "finite_time_b": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "flow_time": 1.0,
+        "measured": {
+          "determinant": 0.449328964117,
+          "eigenvalues_re_im": [
+            [
+              0.617405647902,
+              0.261034921143
+            ],
+            [
+              0.617405647902,
+              -0.261034921143
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "measured_character": "contraction_or_retention",
+          "singular_values": [
+            1.0,
+            0.670320046036,
+            0.670320046036
+          ],
+          "translation_norm": 0.0
+        },
+        "role": "retention_strata",
+        "source_key": "Si_Citadel_R",
+        "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:83",
+        "terrain": "Si"
+      }
+    },
+    "under_determined_choices_pinned_as_convention": [
+      "one S5 sheeted generator row selected per terrain before scoring",
+      "finite terrain flow time t=1",
+      "lambda=0.7 and theta=pi/2 retained from the prior operator fixture",
+      "wrong-pairing control swaps Ti/Te and Fi/Fe before scoring"
+    ]
+  },
+  "diff_vs_first_proposal": {
+    "baseline_defined_distinct_component_count": 12,
+    "baseline_exact_matched_component_count": 0,
+    "baseline_packet": "system_v6/sims/engine_16_stage_definition_correspondence_v0",
+    "baseline_result": "MISMATCH",
+    "changed_stage_math": [
+      "v0 used 2 chirality sheets x T/F operator pairs x order polarity",
+      "v1 uses owner-forwarded native-pairing table: terrain flow T_tau composed with one channel D_z/D_x/R_x/R_z",
+      "v1 realizes T_tau from committed S5 terrain generator rows at t=1",
+      "v1 consumes GCM object lineage before accepting the result"
+    ],
+    "current_defined_distinct_component_count": 15,
+    "current_exact_matched_component_count": 0,
+    "distinct_count_delta": 3,
+    "moved_the_needle": true,
+    "movement_summary": "exact matches 0-> 0; defined distinct components 12-> 15",
+    "score_delta_exact_matched_components": 0
+  },
+  "disallowed_claims": [
+    "stage admission",
+    "Matrix64 admission",
+    "QIT-engine admission",
+    "axis admission",
+    "bridge admission",
+    "manifold admission",
+    "physics claim",
+    "target-system claim"
+  ],
+  "discovered_components": [
+    {
+      "component_id": "eng64_fp_87f5490ee2b9612c",
+      "representative_fingerprint": [
+        0.7273484,
+        0.0,
+        -0.0273195,
+        0.1760608,
+        -0.0273195,
+        -0.1760608,
+        0.2726516,
+        0.0
+      ],
+      "representative_stage": 0,
+      "size": 4,
+      "stages": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "component_id": "eng64_fp_8d6afc5f73c0931e",
+      "representative_fingerprint": [
+        0.6570462,
+        0.0,
+        0.0011634,
+        0.0263761,
+        0.0011634,
+        -0.0263761,
+        0.3429538,
+        0.0
+      ],
+      "representative_stage": 4,
+      "size": 4,
+      "stages": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "component_id": "eng64_fp_c8149ac9760ecff5",
+      "representative_fingerprint": [
+        0.4844635,
+        0.0,
+        0.0900483,
+        -0.0168996,
+        0.0900483,
+        0.0168996,
+        0.5155365,
+        0.0
+      ],
+      "representative_stage": 8,
+      "size": 4,
+      "stages": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "component_id": "eng64_fp_6c442f781631fc52",
+      "representative_fingerprint": [
+        0.8107941999999999,
+        0.0,
+        0.006731999999999999,
+        -0.0199007,
+        0.006731999999999999,
+        0.0199007,
+        0.18920579999999998,
+        0.0
+      ],
+      "representative_stage": 12,
+      "size": 4,
+      "stages": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "component_id": "eng64_fp_08b47991f6268c8b",
+      "representative_fingerprint": [
+        0.5008079,
+        0.0,
+        -0.0661075,
+        0.2196467,
+        -0.0661075,
+        -0.2196467,
+        0.49919209999999997,
+        0.0
+      ],
+      "representative_stage": 16,
+      "size": 4,
+      "stages": [
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "component_id": "eng64_fp_156da3feb1c44a3a",
+      "representative_fingerprint": [
+        0.713276,
+        0.0,
+        0.0076053,
+        0.023947799999999998,
+        0.0076053,
+        -0.023947799999999998,
+        0.286724,
+        0.0
+      ],
+      "representative_stage": 20,
+      "size": 4,
+      "stages": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "component_id": "eng64_fp_c9c6fafb678bbf4a",
+      "representative_fingerprint": [
+        0.3448769,
+        0.0,
+        0.08470559999999999,
+        0.0490003,
+        0.08470559999999999,
+        -0.0490003,
+        0.6551231,
+        0.0
+      ],
+      "representative_stage": 24,
+      "size": 4,
+      "stages": [
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    {
+      "component_id": "eng64_fp_61a8c0b44c5241e4",
+      "representative_fingerprint": [
+        0.8085515,
+        0.0,
+        0.004453599999999999,
+        -0.09449489999999999,
+        0.004453599999999999,
+        0.09449489999999999,
+        0.1914485,
+        0.0
+      ],
+      "representative_stage": 28,
+      "size": 4,
+      "stages": [
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    {
+      "component_id": "eng64_fp_3b46121ffb60af1e",
+      "representative_fingerprint": [
+        0.7305737,
+        0.0,
+        -0.018229099999999998,
+        0.1071731,
+        -0.018229099999999998,
+        -0.1071731,
+        0.2694263,
+        0.0
+      ],
+      "representative_stage": 32,
+      "size": 4,
+      "stages": [
+        32,
+        33,
+        34,
+        35
+      ]
+    },
+    {
+      "component_id": "eng64_fp_f4f288963aa796ae",
+      "representative_fingerprint": [
+        0.6541988,
+        0.0,
+        0.0011634,
+        0.017004599999999998,
+        0.0011634,
+        -0.017004599999999998,
+        0.3458012,
+        0.0
+      ],
+      "representative_stage": 36,
+      "size": 4,
+      "stages": [
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "component_id": "eng64_fp_7e33b958d470d543",
+      "representative_fingerprint": [
+        0.48434689999999997,
+        0.0,
+        0.050640199999999996,
+        -0.0092728,
+        0.050640199999999996,
+        0.0092728,
+        0.5156531,
+        0.0
+      ],
+      "representative_stage": 40,
+      "size": 4,
+      "stages": [
+        40,
+        41,
+        42,
+        43
+      ]
+    },
+    {
+      "component_id": "eng64_fp_4163bb5088f8e0b1",
+      "representative_fingerprint": [
+        0.8086789999999999,
+        0.0,
+        0.0047374,
+        -0.010661,
+        0.0047374,
+        0.010661,
+        0.191321,
+        0.0
+      ],
+      "representative_stage": 44,
+      "size": 4,
+      "stages": [
+        44,
+        45,
+        46,
+        47
+      ]
+    },
+    {
+      "component_id": "eng64_fp_347a740bbeae1849",
+      "representative_fingerprint": [
+        0.37922069999999997,
+        0.0,
+        -0.0803443,
+        0.25180939999999996,
+        -0.0803443,
+        -0.25180939999999996,
+        0.6207792999999999,
+        0.0
+      ],
+      "representative_stage": 48,
+      "size": 4,
+      "stages": [
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    {
+      "component_id": "eng64_fp_a2e9a71b5adfde87",
+      "representative_fingerprint": [
+        0.5755988,
+        0.0,
+        0.0059045,
+        0.12507269999999998,
+        0.0059045,
+        -0.12507269999999998,
+        0.4244012,
+        0.0
+      ],
+      "representative_stage": 52,
+      "size": 4,
+      "stages": [
+        52,
+        53,
+        54,
+        55
+      ]
+    },
+    {
+      "component_id": "eng64_fp_d71f192fc2ef7231",
+      "representative_fingerprint": [
+        0.34497049999999996,
+        0.0,
+        0.059565,
+        -0.029697699999999997,
+        0.059565,
+        0.029697699999999997,
+        0.6550294999999999,
+        0.0
+      ],
+      "representative_stage": 56,
+      "size": 4,
+      "stages": [
+        56,
+        57,
+        58,
+        59
+      ]
+    },
+    {
+      "component_id": "eng64_fp_4fe32aa4ee040ed1",
+      "representative_fingerprint": [
+        0.7622744,
+        0.0,
+        0.0157647,
+        0.1449213,
+        0.0157647,
+        -0.1449213,
+        0.23772559999999998,
+        0.0
+      ],
+      "representative_stage": 60,
+      "size": 4,
+      "stages": [
+        60,
+        61,
+        62,
+        63
+      ]
+    }
+  ],
+  "divergence": {
+    "basis": "defined distinct component count agreement across Julia/JAX/PyTorch lanes",
+    "engine_values": {
+      "jax": 15,
+      "julia": 15,
+      "pytorch": 15
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "tolerance": 0
+  },
+  "eng64_fingerprint_contract": {
+    "definition": "Apply stage channel to RHO_REPR, flatten rho_out row-major as real/imag pairs, round to FP_TOL=1e-7, and hash the 8-float vector using eng64 component_id_for_fingerprint.",
+    "fp_tolerance": 1e-07,
+    "method_reused_unchanged": true,
+    "representative_rho_sha256": "50edee6a2da6f909af8ddc626c01c0296207a040f1f1aacf09bb77792b3c5133",
+    "rng_seed": 20260604,
+    "source": "system_v6/sims/eng64_stage_fingerprint_ids_v0/eng64_stage_fingerprint_ids_v0.py"
+  },
+  "engine_consensus": {
+    "defined_distinct_count_agreement": true,
+    "engine_defined_distinct_counts": {
+      "jax": 15,
+      "julia": 15,
+      "pytorch": 15
+    },
+    "engine_stage_counts": {
+      "jax": 16,
+      "julia": 16,
+      "pytorch": 16
+    },
+    "match_matrix_sha256": {
+      "jax": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc",
+      "julia": "julia_independent_output_keys",
+      "pytorch": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc"
+    },
+    "python_lane_match_matrix_hash_agreement": true,
+    "stage_count_agreement": true
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "julia_canon_jax_with_pytorch_graph",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engine_lanes": [
+    "jax",
+    "julia",
+    "pytorch"
+  ],
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_values": {
+        "correspondence_verdict": "0-match_again",
+        "defined_distinct_component_count": 15,
+        "discovered_component_count": 16,
+        "exact_matched_component_count": 0,
+        "match_matrix_sha256": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc",
+        "normal_component_ids": [
+          "eng64_fp_8bf0e242db60c5cb",
+          "eng64_fp_db6f5b1f9b376249",
+          "eng64_fp_e593c97b86f8c0b2",
+          "eng64_fp_a862e4373e415d77",
+          "eng64_fp_317f6cb558367837",
+          "eng64_fp_ee56803500224c97",
+          "eng64_fp_9eb18ccd407404af",
+          "eng64_fp_0d9bc9c7d9018527",
+          "eng64_fp_9e807fb7df6dac44",
+          "eng64_fp_8b58328520e6add8",
+          "eng64_fp_b0287c8e7f9c89bc",
+          "eng64_fp_85d572765da5488e",
+          "eng64_fp_b44a8bbd9fdf1a50",
+          "eng64_fp_b44a8bbd9fdf1a50",
+          "eng64_fp_6b6b5f049e591fed",
+          "eng64_fp_e5d507b57764ab5f"
+        ],
+        "perfect_bijection": false,
+        "stage_count": 16
+      },
+      "engine_mode": "julia_canon_jax_with_pytorch_graph",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "networkx": "nx.Graph alias components over exact stage fingerprint IDs",
+        "sympy": "sp.Rational exact guard for 16 stage rows, 16 discovered rows, and 16x16 matrix shape"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_jax_results.json",
+      "result_sha256": "9f8543a30f7c2d152968ce92be08e2e5430a21984c3f14d4711037ebf3bacb85",
+      "source_path": "system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_jax.py",
+      "source_sha256": "9d9b4e22bb62d7a064430bb72e2e1d8b09ee8ad4adaeef7a64e4935a6f806ed6"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_values": {
+        "defined_distinct_component_count": 15,
+        "identity_distinct_component_count": 1,
+        "order_erased_distinct_component_count": 8,
+        "stage_count": 16
+      },
+      "engine_mode": "julia_canon_jax_with_pytorch_graph",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.SimpleGraph alias components over exact rounded affine stage output vectors"
+      },
+      "packages_used": [
+        "Graphs",
+        "JSON",
+        "SHA",
+        "LinearAlgebra"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_julia_results.json",
+      "result_sha256": "fe02b38cfd5056e9312a769595dbf15917ad6f25b47902c77fed942aa071d518",
+      "source_path": "system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_julia.jl",
+      "source_sha256": "39be9a0286b896b9c530ded24cda265d8b628a93dab9145d670e76ace40aaaff"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_values": {
+        "correspondence_verdict": "0-match_again",
+        "defined_distinct_component_count": 15,
+        "discovered_component_count": 16,
+        "exact_matched_component_count": 0,
+        "match_matrix_sha256": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc",
+        "normal_component_ids": [
+          "eng64_fp_8bf0e242db60c5cb",
+          "eng64_fp_db6f5b1f9b376249",
+          "eng64_fp_e593c97b86f8c0b2",
+          "eng64_fp_a862e4373e415d77",
+          "eng64_fp_317f6cb558367837",
+          "eng64_fp_ee56803500224c97",
+          "eng64_fp_9eb18ccd407404af",
+          "eng64_fp_0d9bc9c7d9018527",
+          "eng64_fp_9e807fb7df6dac44",
+          "eng64_fp_8b58328520e6add8",
+          "eng64_fp_b0287c8e7f9c89bc",
+          "eng64_fp_85d572765da5488e",
+          "eng64_fp_b44a8bbd9fdf1a50",
+          "eng64_fp_b44a8bbd9fdf1a50",
+          "eng64_fp_6b6b5f049e591fed",
+          "eng64_fp_e5d507b57764ab5f"
+        ],
+        "perfect_bijection": false,
+        "stage_count": 16
+      },
+      "engine_mode": "julia_canon_jax_with_pytorch_graph",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "sympy": "sp.Rational exact guard for 16 stage rows, 16 discovered rows, and 16x16 matrix shape",
+        "torch.func": "vmap over the 16 explicit affine stage maps applied to the representative Bloch vector"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_pytorch_results.json",
+      "result_sha256": "bcac48adc918b0df73c4dab60d6ef576b7fdd15dd891f747df0a2c395ff48a51",
+      "source_path": "system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_pytorch.py",
+      "source_sha256": "c48f4379c976c7d4879844eed041524984457176548198e71f22eabbb27dfd8f"
+    }
+  },
+  "envelope_built_with_helper": true,
+  "formal_admission_allowed": false,
+  "gcm_lineage": {
+    "candidate_region_ids": [
+      "creg_fb8dade30d57503aa616"
+    ],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "object_maps": [
+      {
+        "candidate_region_id": "creg_fb8dade30d57503aa616",
+        "quotient_class_id": "qcls_830aa0cdc681784fa290",
+        "role": "one_qubit_carve_anchor",
+        "survivor_id": "surv_df8410cc012bfc835668"
+      }
+    ],
+    "quotient_class_ids": [
+      "qcls_830aa0cdc681784fa290"
+    ],
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+    "survivor_ids": [
+      "surv_df8410cc012bfc835668"
+    ]
+  },
+  "generated_at": "2026-06-12T23:49:34Z",
+  "layer_declaration": {
+    "carrier_floor": "1Q",
+    "integration": "integrated-onto-the-carve",
+    "layer": "15 ordered compositions"
+  },
+  "lineage_free_negative_control": {
+    "errors": [
+      "gcm_object_id mismatch: cited=None registry='gcmobj_a40e54e13cec01466c9d675028b3574b'",
+      "registry_body_sha256 missing from lineage",
+      "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+    ],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "ok": false,
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+  },
+  "mode": "julia_canon_jax_with_pytorch_graph",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "non_equivalence_matrix": {
+    "alias_distinct_matrix_16x16": [
+      [
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "alias",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "alias",
+        "distinct",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias",
+        "distinct"
+      ],
+      [
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "distinct",
+        "alias"
+      ]
+    ],
+    "alias_groups": [
+      {
+        "component_id": "eng64_fp_b44a8bbd9fdf1a50",
+        "size": 2,
+        "stage_tokens": [
+          "SiTe",
+          "TeSi"
+        ]
+      }
+    ],
+    "all_pairs_distinct": false,
+    "fingerprint_l2_distance_matrix_16x16": [
+      [
+        0.0,
+        0.03039249683,
+        0.41852866875,
+        0.423551760836,
+        0.634177246245,
+        0.429166547939,
+        0.98647814199,
+        0.791250649703,
+        0.408907253277,
+        0.344483082265,
+        0.360719072812,
+        0.394465316071,
+        0.132768235992,
+        0.132768235992,
+        0.354600316059,
+        0.188473439301
+      ],
+      [
+        0.03039249683,
+        0.0,
+        0.439720223781,
+        0.443218105296,
+        0.660614349844,
+        0.45576956137,
+        1.004207708566,
+        0.820108785762,
+        0.405151871285,
+        0.336168610036,
+        0.348655993775,
+        0.389228236787,
+        0.114881097399,
+        0.114881097399,
+        0.349057881307,
+        0.191611488173
+      ],
+      [
+        0.41852866875,
+        0.439720223781,
+        0.0,
+        0.029889449262,
+        0.666471655905,
+        0.524587166899,
+        0.724751208658,
+        0.621029797357,
+        0.510622050797,
+        0.514190650112,
+        0.462974945278,
+        0.379925454159,
+        0.43849817123,
+        0.43849817123,
+        0.452030107811,
+        0.490004133222
+      ],
+      [
+        0.423551760836,
+        0.443218105296,
+        0.029889449262,
+        0.0,
+        0.695304162511,
+        0.550752052885,
+        0.731021182145,
+        0.649000015791,
+        0.506976993329,
+        0.510442976214,
+        0.448062494339,
+        0.358903753719,
+        0.434666189125,
+        0.434666189125,
+        0.43893996478,
+        0.495142516689
+      ],
+      [
+        0.634177246245,
+        0.660614349844,
+        0.666471655905,
+        0.695304162511,
+        0.0,
+        0.210280863977,
+        0.931452428112,
+        0.359267055411,
+        0.811146719229,
+        0.80430771417,
+        0.913197411252,
+        0.922000811212,
+        0.760876905721,
+        0.760876905721,
+        0.904185589903,
+        0.671873971526
+      ],
+      [
+        0.429166547939,
+        0.45576956137,
+        0.524587166899,
+        0.550752052885,
+        0.210280863977,
+        0.0,
+        0.932921356271,
+        0.466965645138,
+        0.664717846378,
+        0.64279089831,
+        0.73195053488,
+        0.742357316415,
+        0.554433054357,
+        0.554433054357,
+        0.701525707438,
+        0.463119225974
+      ],
+      [
+        0.98647814199,
+        1.004207708566,
+        0.724751208658,
+        0.731021182145,
+        0.931452428112,
+        0.932921356271,
+        0.0,
+        0.666299967122,
+        0.75466907459,
+        0.833338561478,
+        0.899415674303,
+        0.872979417492,
+        1.039860032435,
+        1.039860032435,
+        1.137207226432,
+        1.134580076368
+      ],
+      [
+        0.791250649703,
+        0.820108785762,
+        0.621029797357,
+        0.649000015791,
+        0.359267055411,
+        0.466965645138,
+        0.666299967122,
+        0.0,
+        0.848118637157,
+        0.874677551949,
+        0.963169938955,
+        0.940309931233,
+        0.898156592432,
+        0.898156592432,
+        1.004237143554,
+        0.862876397047
+      ],
+      [
+        0.408907253277,
+        0.405151871285,
+        0.510622050797,
+        0.506976993329,
+        0.811146719229,
+        0.664717846378,
+        0.75466907459,
+        0.848118637157,
+        0.0,
+        0.088431185182,
+        0.249999692143,
+        0.342023117579,
+        0.42551264303,
+        0.42551264303,
+        0.613225792745,
+        0.593077698389
+      ],
+      [
+        0.344483082265,
+        0.336168610036,
+        0.514190650112,
+        0.510442976214,
+        0.80430771417,
+        0.64279089831,
+        0.833338561478,
+        0.874677551949,
+        0.088431185182,
+        0.0,
+        0.21225498093,
+        0.322991197632,
+        0.354176676463,
+        0.354176676463,
+        0.556150054439,
+        0.525509567764
+      ],
+      [
+        0.360719072812,
+        0.348655993775,
+        0.462974945278,
+        0.448062494339,
+        0.913197411252,
+        0.73195053488,
+        0.899415674303,
+        0.963169938955,
+        0.249999692143,
+        0.21225498093,
+        0.0,
+        0.136733716462,
+        0.297062319807,
+        0.297062319807,
+        0.412723538236,
+        0.499237687353
+      ],
+      [
+        0.394465316071,
+        0.389228236787,
+        0.379925454159,
+        0.358903753719,
+        0.922000811212,
+        0.742357316415,
+        0.872979417492,
+        0.940309931233,
+        0.342023117579,
+        0.322991197632,
+        0.136733716462,
+        0.0,
+        0.322241016032,
+        0.322241016032,
+        0.358251749218,
+        0.505909524917
+      ],
+      [
+        0.132768235992,
+        0.114881097399,
+        0.43849817123,
+        0.434666189125,
+        0.760876905721,
+        0.554433054357,
+        1.039860032435,
+        0.898156592432,
+        0.42551264303,
+        0.354176676463,
+        0.297062319807,
+        0.322241016032,
+        0.0,
+        0.0,
+        0.25052794274,
+        0.205560753591
+      ],
+      [
+        0.132768235992,
+        0.114881097399,
+        0.43849817123,
+        0.434666189125,
+        0.760876905721,
+        0.554433054357,
+        1.039860032435,
+        0.898156592432,
+        0.42551264303,
+        0.354176676463,
+        0.297062319807,
+        0.322241016032,
+        0.0,
+        0.0,
+        0.25052794274,
+        0.205560753591
+      ],
+      [
+        0.354600316059,
+        0.349057881307,
+        0.452030107811,
+        0.43893996478,
+        0.904185589903,
+        0.701525707438,
+        1.137207226432,
+        1.004237143554,
+        0.613225792745,
+        0.556150054439,
+        0.412723538236,
+        0.358251749218,
+        0.25052794274,
+        0.25052794274,
+        0.0,
+        0.304269585298
+      ],
+      [
+        0.188473439301,
+        0.191611488173,
+        0.490004133222,
+        0.495142516689,
+        0.671873971526,
+        0.463119225974,
+        1.134580076368,
+        0.862876397047,
+        0.593077698389,
+        0.525509567764,
+        0.499237687353,
+        0.505909524917,
+        0.205560753591,
+        0.205560753591,
+        0.304269585298,
+        0.0
+      ]
+    ],
+    "labels": [
+      "TiSe",
+      "SeTi",
+      "FiSe",
+      "SeFi",
+      "TiNe",
+      "NeTi",
+      "FiNe",
+      "NeFi",
+      "TeNi",
+      "NiTe",
+      "FeNi",
+      "NiFe",
+      "TeSi",
+      "SiTe",
+      "FeSi",
+      "SiFe"
+    ]
+  },
+  "object_id": "engine_16_stage_correspondence_v1",
+  "parent_lineage": {
+    "builder_boundary": "scripts/builder_audit_boundary.py",
+    "eng64_result": "system_v6/sims/eng64_stage_fingerprint_ids_v0/results/eng64_stage_fingerprint_ids_v0_results.json",
+    "eng64_source": "system_v6/sims/eng64_stage_fingerprint_ids_v0/eng64_stage_fingerprint_ids_v0.py",
+    "first_proposal_common": "system_v6/sims/engine_16_stage_definition_correspondence_v0/engine_16_stage_definition_correspondence_v0_common.py",
+    "first_proposal_result": "system_v6/sims/engine_16_stage_definition_correspondence_v0/results/engine_16_stage_definition_correspondence_v0_results.json",
+    "gcm_registry": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+    "hypothesis": "system_v6/receipts/ratchet_geometry_order_hypothesis_20260612.md",
+    "s5_audit": "system_v6/sims/geo_s5_terrain_flows_v0/audit_verdict.md",
+    "s5_envelope": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+    "s5_jax_source": "system_v6/sims/geo_s5_terrain_flows_v0/geo_s5_terrain_flows_v0_jax.py",
+    "standards_codex": "system_v6/receipts/audit_standards_codex_v1.md",
+    "substrate_helper": "scripts/gcm_substrate_check.py",
+    "terrain_math": "system_v5/READ ONLY Reference Docs/terrain math.md",
+    "terrain_operator_map": "system_v6/receipts/terrain_operator_map_20260609.md"
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_envelope_results.json",
+  "schema": "engine_16_stage_correspondence_v1_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "engine_16_stage_correspondence_v1",
+  "smt_rows": {
+    "cvc5": {
+      "bound_values": {
+        "defined_distinct": 15,
+        "discovered_distinct": 16,
+        "exact_matched_components": 0,
+        "order_erased_distinct": 8,
+        "stage_count": 16
+      },
+      "load_bearing": false,
+      "polarity": "direct satisfiable computed-count consistency check",
+      "ran": true,
+      "supportive": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "bound_values": {
+        "defined_distinct": 15,
+        "discovered_distinct": 16,
+        "exact_matched_components": 0,
+        "order_erased_distinct": 8,
+        "stage_count": 16
+      },
+      "load_bearing": false,
+      "polarity": "direct satisfiable computed-count consistency check",
+      "ran": true,
+      "supportive": true,
+      "verdict": "sat"
+    }
+  },
+  "source_locks": {
+    "builder_boundary": {
+      "exists": true,
+      "git_last_commit": "aed311e85",
+      "path": "scripts/builder_audit_boundary.py",
+      "role": "G.2a helper",
+      "sha256": "ed25d7cef8fda4a1f0e84d71d280b39c32682e14dafd833ccce8766c60d5f67b"
+    },
+    "eng64_result": {
+      "commit_hint": "fab7b2253",
+      "exists": true,
+      "git_last_commit": "fab7b2253",
+      "path": "system_v6/sims/eng64_stage_fingerprint_ids_v0/results/eng64_stage_fingerprint_ids_v0_results.json",
+      "role": "audited discovered-16 component set",
+      "sha256": "6ffab6c30f025b4d65842cb0971f71e4c1185a36e636db36150194f732ce49fa"
+    },
+    "eng64_source": {
+      "commit_hint": "fab7b2253",
+      "exists": true,
+      "git_last_commit": "fab7b2253",
+      "path": "system_v6/sims/eng64_stage_fingerprint_ids_v0/eng64_stage_fingerprint_ids_v0.py",
+      "role": "audited fingerprint machinery",
+      "sha256": "83f01c07db5c442bded893d7d21ea20c90bd8972495686d2269bef0dda291f6c"
+    },
+    "first_proposal_common": {
+      "exists": true,
+      "git_last_commit": null,
+      "path": "system_v6/sims/engine_16_stage_definition_correspondence_v0/engine_16_stage_definition_correspondence_v0_common.py",
+      "role": "baseline stage math implementation",
+      "sha256": "47e1f01e2a9c360b0550b798cdcf3d97c168dc4148553dbf3c14d907c4db2b50"
+    },
+    "first_proposal_result": {
+      "exists": true,
+      "git_last_commit": null,
+      "path": "system_v6/sims/engine_16_stage_definition_correspondence_v0/results/engine_16_stage_definition_correspondence_v0_results.json",
+      "role": "0/16 baseline result",
+      "sha256": "f4e2ada7d0944250901348a881fd4c4badf113e9f5ea6011239bdd7b7652a989"
+    },
+    "gcm_registry": {
+      "exists": true,
+      "git_last_commit": "d9771ebe9",
+      "path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+      "role": "frozen GCM object registry",
+      "sha256": "64cd715166cee039f89494166496adabf15300bae4b8cc79fee98fc0251189f2"
+    },
+    "hypothesis": {
+      "commit_hint": "c74e2db99",
+      "exists": true,
+      "git_last_commit": "3322a939f",
+      "path": "system_v6/receipts/ratchet_geometry_order_hypothesis_20260612.md",
+      "role": "registered owner-forwarded hypothesis",
+      "sha256": "6f0028eb67a5719e4f14079336d19b8072aaf90e9db54035387d75ea1bebe6e7"
+    },
+    "s5_audit": {
+      "exists": true,
+      "git_last_commit": "6aa75cc96",
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/audit_verdict.md",
+      "role": "S5 caveat boundary",
+      "sha256": "037b732d6af238f9f26dacb34653a156428336cfb7e373c2ac4d6c55519242a4"
+    },
+    "s5_envelope": {
+      "exists": true,
+      "git_last_commit": "6aa75cc96",
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+      "role": "committed S5 terrain generator result estate",
+      "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+    },
+    "s5_jax_source": {
+      "exists": true,
+      "git_last_commit": "6aa75cc96",
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/geo_s5_terrain_flows_v0_jax.py",
+      "role": "committed S5 terrain generator source",
+      "sha256": "e0f5ac28ca207d08ac3d5396ab9756c388210e2afc25672ea74efd7358564385"
+    },
+    "standards_codex": {
+      "exists": true,
+      "git_last_commit": "443e474b2",
+      "path": "system_v6/receipts/audit_standards_codex_v1.md",
+      "role": "G.2a and standards codex",
+      "sha256": "6ed5b840a94eb43a08204b408c3efd1d86124f9af7fc4105bbc190924e8a3f27"
+    },
+    "substrate_helper": {
+      "exists": true,
+      "git_last_commit": "d9771ebe9",
+      "path": "scripts/gcm_substrate_check.py",
+      "role": "substrate lineage helper",
+      "sha256": "5e769e1635a27398a13d7621457f10b4451e27c7a48613f5ab7c3fcdeaa6800f"
+    },
+    "terrain_math": {
+      "exists": true,
+      "git_last_commit": "698386f7a",
+      "path": "system_v5/READ ONLY Reference Docs/terrain math.md",
+      "role": "terrain generator source formulas",
+      "sha256": "4ac153b4da35e80b4ae64fcb7cc96a89edf49f7efce271e22b0bcef89b918875"
+    },
+    "terrain_operator_map": {
+      "exists": true,
+      "git_last_commit": "af67d2b2d",
+      "path": "system_v6/receipts/terrain_operator_map_20260609.md",
+      "role": "operator/terrain source router",
+      "sha256": "5564025048e0365c00710710da99d99bbbd9aed7059110d9b6c0816fdbc9ec66"
+    }
+  },
+  "source_path": "system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_envelope.py",
+  "source_sha256": "0d21b533250f4551fc772bc71c0245f0af7dbceffffb845f5e342c9216bb84c1",
+  "stability_pairs": [
+    {
+      "hash": "584670e712a419239d4b080d3ce0bfec20064ebadcda82321768de48eee44fd4",
+      "subtree": "defined_stage_rows.component_id"
+    },
+    {
+      "hash": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc",
+      "subtree": "correspondence.match_matrix_16x16"
+    },
+    {
+      "hash": "3e2a0946ce0e6bd5f16982df02a8929f7477c903992c50bd9f1d7ad2f1b24e34",
+      "subtree": "controls"
+    },
+    {
+      "hash": "1f5947294a4dbe4def483427a6439ded44841149f34919b9363107cb9d655c1a",
+      "subtree": "gcm_lineage"
+    }
+  ],
+  "substrate_check": {
+    "errors": [],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "ok": true,
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+  },
+  "summary": {
+    "commuting_pair_count": 1,
+    "correspondence_verdict": "0-match_again",
+    "defined_distinct_component_count": 15,
+    "discovered_component_count": 16,
+    "exact_matched_component_count": 0,
+    "exact_stage_match_count": 0,
+    "perfect_bijection": false,
+    "stage_count": 16
+  },
+  "terrain_flow_rows": [
+    {
+      "committed_generator": "Se / Funnel",
+      "finite_time_M": [
+        [
+          0.425682576255,
+          -0.089199789687,
+          0.112846177549
+        ],
+        [
+          0.112846177549,
+          0.425682576255,
+          -0.089199789687
+        ],
+        [
+          -0.089199789687,
+          0.112846177549,
+          0.425682576255
+        ]
+      ],
+      "finite_time_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.425682576255,
+          -0.089199789687,
+          0.112846177549
+        ],
+        [
+          0.0,
+          0.112846177549,
+          0.425682576255,
+          -0.089199789687
+        ],
+        [
+          0.0,
+          -0.089199789687,
+          0.112846177549,
+          0.425682576255
+        ]
+      ],
+      "finite_time_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "flow_time": 1.0,
+      "generator_A": [
+        [
+          -0.8,
+          -0.230940107676,
+          0.230940107676
+        ],
+        [
+          0.230940107676,
+          -0.8,
+          -0.230940107676
+        ],
+        [
+          -0.230940107676,
+          0.230940107676,
+          -0.8
+        ]
+      ],
+      "generator_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured": {
+        "determinant": 0.090717953289,
+        "eigenvalues_re_im": [
+          [
+            0.413859382324,
+            0.174976940358
+          ],
+          [
+            0.413859382324,
+            -0.174976940358
+          ],
+          [
+            0.449328964117,
+            0.0
+          ]
+        ],
+        "measured_character": "contraction_or_retention",
+        "singular_values": [
+          0.449328964117,
+          0.449328964117,
+          0.449328964117
+        ],
+        "translation_norm": 0.0
+      },
+      "role": "expansion_family",
+      "source_key": "Se_Funnel_L",
+      "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:76",
+      "terrain": "Se"
+    },
+    {
+      "committed_generator": "Ne / Vortex",
+      "finite_time_M": [
+        [
+          0.055902108969,
+          -0.052934168636,
+          0.997032059667
+        ],
+        [
+          0.997032059667,
+          0.055902108969,
+          -0.052934168636
+        ],
+        [
+          -0.052934168636,
+          0.997032059667,
+          0.055902108969
+        ]
+      ],
+      "finite_time_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.055902108969,
+          -0.052934168636,
+          0.997032059667
+        ],
+        [
+          0.0,
+          0.997032059667,
+          0.055902108969,
+          -0.052934168636
+        ],
+        [
+          0.0,
+          -0.052934168636,
+          0.997032059667,
+          0.055902108969
+        ]
+      ],
+      "finite_time_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "flow_time": 1.0,
+      "generator_A": [
+        [
+          0.0,
+          -1.154700538379,
+          1.154700538379
+        ],
+        [
+          1.154700538379,
+          0.0,
+          -1.154700538379
+        ],
+        [
+          -1.154700538379,
+          1.154700538379,
+          0.0
+        ]
+      ],
+      "generator_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured": {
+        "determinant": 1.0,
+        "eigenvalues_re_im": [
+          [
+            -0.416146836547,
+            0.909297426826
+          ],
+          [
+            -0.416146836547,
+            -0.909297426826
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "measured_character": "circulation_or_isometry",
+        "singular_values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "translation_norm": 0.0
+      },
+      "role": "circulation",
+      "source_key": "Ne_Vortex_L",
+      "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:78",
+      "terrain": "Ne"
+    },
+    {
+      "committed_generator": "Ni / Source",
+      "finite_time_M": [
+        [
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          -0.156400049325,
+          0.7394128379,
+          0.173727874739
+        ],
+        [
+          0.173727874739,
+          -0.135954740893,
+          0.571792205245
+        ]
+      ],
+      "finite_time_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.041174962046,
+          0.7394128379,
+          0.19417318317,
+          -0.135954740893
+        ],
+        [
+          0.048065526381,
+          -0.156400049325,
+          0.7394128379,
+          0.173727874739
+        ],
+        [
+          0.386989378742,
+          0.173727874739,
+          -0.135954740893,
+          0.571792205245
+        ]
+      ],
+      "finite_time_b": [
+        -0.041174962046,
+        0.048065526381,
+        0.386989378742
+      ],
+      "flow_time": 1.0,
+      "generator_A": [
+        [
+          -0.25,
+          0.230940107676,
+          -0.230940107676
+        ],
+        [
+          -0.230940107676,
+          -0.25,
+          0.230940107676
+        ],
+        [
+          0.230940107676,
+          -0.230940107676,
+          -0.5
+        ]
+      ],
+      "generator_b": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "measured": {
+        "determinant": 0.367879441171,
+        "eigenvalues_re_im": [
+          [
+            0.670009050852,
+            0.262279613009
+          ],
+          [
+            0.670009050852,
+            -0.262279613009
+          ],
+          [
+            0.710599779342,
+            0.0
+          ]
+        ],
+        "measured_character": "non_unital_attractor",
+        "singular_values": [
+          0.778799242154,
+          0.777096204537,
+          0.607862301474
+        ],
+        "translation_norm": 0.392130656268
+      },
+      "role": "contraction_attractor",
+      "source_key": "Ni_Source_R",
+      "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:81",
+      "terrain": "Ni"
+    },
+    {
+      "committed_generator": "Si / Citadel",
+      "finite_time_M": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.617405647902,
+          -0.261034921143
+        ],
+        [
+          0.0,
+          0.261034921143,
+          0.617405647902
+        ]
+      ],
+      "finite_time_affine_4x4": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.617405647902,
+          -0.261034921143
+        ],
+        [
+          0.0,
+          0.0,
+          0.261034921143,
+          0.617405647902
+        ]
+      ],
+      "finite_time_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "flow_time": 1.0,
+      "generator_A": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.4,
+          -0.4
+        ],
+        [
+          0.0,
+          0.4,
+          -0.4
+        ]
+      ],
+      "generator_b": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured": {
+        "determinant": 0.449328964117,
+        "eigenvalues_re_im": [
+          [
+            0.617405647902,
+            0.261034921143
+          ],
+          [
+            0.617405647902,
+            -0.261034921143
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "measured_character": "contraction_or_retention",
+        "singular_values": [
+          1.0,
+          0.670320046036,
+          0.670320046036
+        ],
+        "translation_norm": 0.0
+      },
+      "role": "retention_strata",
+      "source_key": "Si_Citadel_R",
+      "source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:83",
+      "terrain": "Si"
+    }
+  ],
+  "tool_intent": {
+    "claim_classes": [
+      "engine_16_stage_correspondence_hypothesis_test",
+      "eng64_fingerprint_family_reuse",
+      "gcm_substrate_consumption",
+      "computed_controls_only"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "networkx": "construct the exact alias graph over the 16 computed stage fingerprint IDs without reading peer results",
+        "sympy": "exactly bind the 16x16 match-matrix dimensions and discovered-component count"
+      },
+      "julia": {
+        "Graphs": "construct the exact alias graph over the 16 computed stage output keys without reading peer results"
+      },
+      "pytorch": {
+        "sympy": "exactly bind the 16x16 match-matrix dimensions and discovered-component count",
+        "torch.func": "batched application of all 16 explicit affine stage maps to the representative Bloch vector"
+      }
+    }
+  },
+  "validator_expected_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1.py",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_jax.py",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_pytorch.py",
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_julia.jl",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/engine_16_stage_correspondence_v1/engine_16_stage_correspondence_v1_envelope.py",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/engine_16_stage_correspondence_v1/validate_engine_16_stage_correspondence_v1.py",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/gcm_substrate_check.py system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_envelope_results.json",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/engine_16_stage_correspondence_v1/results/engine_16_stage_correspondence_v1_envelope_results.json",
+    "PYTHONDONTWRITEBYTECODE=1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q -p no:cacheprovider system_v6/sims/engine_16_stage_correspondence_v1/tests"
+  ]
+}

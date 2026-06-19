@@ -1,6 +1,6 @@
 GRAVEYARD_CLUSTER_PROTOCOL_v1
 STATUS: ACTIVE
-TOTAL_ENTRIES: 21
+TOTAL_ENTRIES: 23
 
 ---
 STRUCTURE_ID: GY_001
@@ -277,4 +277,36 @@ RULE_HIT: THERMALIZING_BATH_REQUIRED
 PARENT_STRUCTURE: ARROW_OF_TIME
 DESCRIPTION: Naive arrow of time (all open dynamics → S increases) is WRONG. Arbitrary Lindblad operators converge to their OWN steady state which may have higher OR lower entropy. Arrow of time only holds when bath IS maximal entropy (σ=I/d). 11/50 violations with random L operators. 0/50 with thermalizing L operators.
 RESURRECTION_TRIGGER: RESCUED — refined to require thermal bath coupling specifically. Evidence: E_SIM_ARROW_OF_TIME_OK with thermalizing L operators.
+---
+
+---
+STRUCTURE_ID: GY_022
+SIM_ID: carrier_type_admissibility_matrix_v0
+SIM_TIER: 0
+BRANCH_TRACK: CARRIER_TYPE_ADMISSIBILITY
+FAIL_CLASS: SIM_KILL
+RULE_HIT: ORDER_GAP_CLEAN_NON_DISTURBANCE_CONTRADICTION
+PARENT_STRUCTURE: classical_noncontextual
+ENGINE_ORDER: THREE_ENGINE_ENVELOPE
+TIMESTAMP: 2026-06-17T04:24:44.548616+00:00
+GRAVEYARD_ID: GRAVEYARD::classical_noncontextual::d996c7c6d6ff
+DESCRIPTION: classical_noncontextual excluded on order_gap_clean by genuine non-disturbance contradiction; one classical joint J cannot equal both ZX=1/4 and XZ=3/8 while the single-branch checks remain SAT.
+SIM_EVIDENCE: system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_three_engine_results.json
+RESURRECTION_TRIGGER: disturbing/contextual classical model admitted
+---
+
+---
+STRUCTURE_ID: GY_023
+SIM_ID: carrier_type_admissibility_matrix_v0
+SIM_TIER: 0
+BRANCH_TRACK: CARRIER_TYPE_ADMISSIBILITY
+FAIL_CLASS: SIM_KILL
+RULE_HIT: Y_PHASE_BY_CONSTRUCTION_NO_Y_DOF
+PARENT_STRUCTURE: real_rebit
+ENGINE_ORDER: THREE_ENGINE_ENVELOPE
+TIMESTAMP: 2026-06-17T04:24:44.718692+00:00
+GRAVEYARD_ID: GRAVEYARD::real_rebit::75e27c6fefe0
+DESCRIPTION: real_rebit excluded on y_phase_exclusion by_construction; a real-symmetric rebit has no Y degree of freedom, represented here as Y=1/2, so measured Y=3/4 is outside the class by design. This is fenced from load-bearing status.
+SIM_EVIDENCE: system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_three_engine_results.json
+RESURRECTION_TRIGGER: rebit model with admitted Y degree of freedom or different real-carrier law
 ---

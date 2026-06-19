@@ -1,0 +1,1347 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer": {
+      "reason": "load-bearing within-run parity reference for shared scalar, boolean, and string keys",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization and current JAX peer comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent finite quotient and CPTP operation stability mirror computation",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, norms, eigenvalue checks, and finite operation products",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "R2 finite probe quotient stability under admissible ordered CPTP operations, scratch diagnostic only."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_quotient_stability_under_operations_julia_results.json"
+  ],
+  "backend": "julia",
+  "base_quotient_S_mod_M": {
+    "class_count": 5,
+    "classes": [
+      {
+        "class_id": "base_M_ZX_q0",
+        "members": [
+          "pure_z1"
+        ],
+        "signature": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "base_M_ZX_q1",
+        "members": [
+          "pure_x_minus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "class_id": "base_M_ZX_q2",
+        "members": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_y_minus",
+          "pure_y_plus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "base_M_ZX_q3",
+        "members": [
+          "pure_x_plus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "class_id": "base_M_ZX_q4",
+        "members": [
+          "pure_z0"
+        ],
+        "signature": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      }
+    ],
+    "name": "base_M_ZX",
+    "partition_member_ids": [
+      "ensemble_x_mixed",
+      "ensemble_z_mixed",
+      "pure_x_minus",
+      "pure_x_plus",
+      "pure_y_minus",
+      "pure_y_plus",
+      "pure_z0",
+      "pure_z1"
+    ],
+    "probe_names": [
+      "Z",
+      "X"
+    ]
+  },
+  "blocked_consumers": [
+    "promotion",
+    "formal_admission",
+    "higher_layer_consumers"
+  ],
+  "boundary": {
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_allowed_false": {
+      "pass": true
+    },
+    "promotion_allowed_false": {
+      "pass": true
+    },
+    "reverse_admissible_sequence_still_stable": {
+      "pass": true
+    },
+    "same_class_count_but_different_ordered_reachable_signatures": {
+      "left_class_count": 5,
+      "pass": true,
+      "reachable_signature_l1_gap": 5.0,
+      "right_class_count": 5
+    }
+  },
+  "claim_ceiling": "Allowed only: finite S/~_M quotient stability/collapse under named R2 operations. No promotion, no formal admission, no higher-layer consumer.",
+  "classification": "scratch_diagnostic",
+  "criteria_checked": [
+    "classification/promotion/formal-admission fences",
+    "finite inherited S and M quotient exists",
+    "admissible forward sequence preserves quotient class count and is well-defined on classes",
+    "admissible reverse sequence preserves quotient class count and is well-defined on classes",
+    "nonadmissible projective_Z collapses quotient with the same stability predicate",
+    "noncommuting admissible operation order changes reachable quotient signatures",
+    "all controls compare distinct computed quantities",
+    "JAX/Julia shared scalar, boolean, and string parity"
+  ],
+  "eligible_consumers": [],
+  "fail_rule": "any required stability, collapse, order, no-self-diff, fence, or parity predicate is false",
+  "finite_probe_family_M": {
+    "probe_names": [
+      "Z",
+      "X"
+    ],
+    "size": 2
+  },
+  "finite_support_set_S": {
+    "candidate_ids": [
+      "pure_z0",
+      "pure_z1",
+      "pure_x_plus",
+      "pure_x_minus",
+      "pure_y_plus",
+      "pure_y_minus",
+      "ensemble_z_mixed",
+      "ensemble_x_mixed"
+    ],
+    "size": 8
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T09:06:36Z",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "nonadmissible_operation_as_preserving": {
+      "pass": true
+    },
+    "order_irrelevant_for_noncommuting_admissible_pair": {
+      "pass": true
+    },
+    "self_diff_control": {
+      "pass": true
+    }
+  },
+  "jax_enable_x64": null,
+  "kill_conditions": [
+    "admissible operation sequence collapses or splits the base quotient",
+    "nonadmissible projective operation fails to collapse the base quotient",
+    "ordered admissible noncommuting pair has identical reachable quotient signatures",
+    "any control compares an expression with itself",
+    "JAX/Julia parity exceeds tolerance"
+  ],
+  "n01_order_affects_reachable_quotient": true,
+  "name": "r2_quotient_stability_under_operations",
+  "nearby_variants": {
+    "all_pass": true,
+    "passed": 3,
+    "rows": [
+      {
+        "name": "admissible_forward_sequence",
+        "pass": true
+      },
+      {
+        "name": "admissible_reverse_sequence",
+        "pass": true
+      },
+      {
+        "name": "nonadmissible_projective_z_negative",
+        "pass": true
+      }
+    ],
+    "total": 3
+  },
+  "negative": {
+    "nonadmissible_projective_z_collapses_quotient": {
+      "after_class_count": 3,
+      "base_class_count": 5,
+      "collapse_count": 2,
+      "negative_predicate_value": false,
+      "pass": true,
+      "positive_predicate_value": true,
+      "same_stability_predicate_as_positive": true
+    },
+    "order_swap_changes_reachable_quotient": {
+      "left_expression_id": "unitary_X_then_damping_Z0_half_reachable_quotient",
+      "pass": true,
+      "reachable_signature_l1_gap": 5.0,
+      "right_expression_id": "damping_Z0_half_then_unitary_X_reachable_quotient"
+    }
+  },
+  "negatives_run": [
+    "nonadmissible_projective_z_collapses_quotient",
+    "order_swap_changes_reachable_quotient"
+  ],
+  "no_self_diff_tautologies": true,
+  "nonadmissible_op_collapses_quotient": true,
+  "numpy_compute_used": false,
+  "numpy_imported": false,
+  "object_id": "r2_quotient_stability_under_operations",
+  "operation_classification_source": {
+    "admissible_preserve_operations": [
+      "unitary_X",
+      "unitary_Z",
+      "damping_Z0_half",
+      "phase_damping_Z_half"
+    ],
+    "excluded_collapse_operations": [
+      "projective_Z",
+      "projective_X"
+    ],
+    "rows": [
+      {
+        "adm_filter_pass": false,
+        "base_class_count": 5,
+        "collapse_count": 2,
+        "cptp": {
+          "choi_min_eigenvalue": 0.0,
+          "kraus_count": 2,
+          "pass": true,
+          "trace_preserving_gap": 0.0
+        },
+        "kind": "projective_measurement_channel",
+        "operation": "projective_Z",
+        "operation_class": "collapse",
+        "output_class_count": 3
+      },
+      {
+        "adm_filter_pass": false,
+        "base_class_count": 5,
+        "collapse_count": 2,
+        "cptp": {
+          "choi_min_eigenvalue": 0.0,
+          "kraus_count": 2,
+          "pass": true,
+          "trace_preserving_gap": 1.0e-15
+        },
+        "kind": "projective_measurement_channel",
+        "operation": "projective_X",
+        "operation_class": "collapse",
+        "output_class_count": 3
+      },
+      {
+        "adm_filter_pass": true,
+        "base_class_count": 5,
+        "collapse_count": 0,
+        "cptp": {
+          "choi_min_eigenvalue": 0.0,
+          "kraus_count": 1,
+          "pass": true,
+          "trace_preserving_gap": 0.0
+        },
+        "kind": "unitary_channel",
+        "operation": "unitary_X",
+        "operation_class": "preserve",
+        "output_class_count": 5
+      },
+      {
+        "adm_filter_pass": true,
+        "base_class_count": 5,
+        "collapse_count": 0,
+        "cptp": {
+          "choi_min_eigenvalue": 0.0,
+          "kraus_count": 1,
+          "pass": true,
+          "trace_preserving_gap": 0.0
+        },
+        "kind": "unitary_channel",
+        "operation": "unitary_Z",
+        "operation_class": "preserve",
+        "output_class_count": 5
+      },
+      {
+        "adm_filter_pass": true,
+        "base_class_count": 5,
+        "collapse_count": 0,
+        "cptp": {
+          "choi_min_eigenvalue": -0.0,
+          "kraus_count": 2,
+          "pass": true,
+          "trace_preserving_gap": 0.0
+        },
+        "kind": "dissipator_channel",
+        "operation": "damping_Z0_half",
+        "operation_class": "preserve",
+        "output_class_count": 5
+      },
+      {
+        "adm_filter_pass": true,
+        "base_class_count": 5,
+        "collapse_count": 0,
+        "cptp": {
+          "choi_min_eigenvalue": 0.0,
+          "kraus_count": 3,
+          "pass": true,
+          "trace_preserving_gap": 0.0
+        },
+        "kind": "dissipator_channel",
+        "operation": "phase_damping_Z_half",
+        "operation_class": "preserve",
+        "output_class_count": 5
+      }
+    ]
+  },
+  "parent_packets": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_foundation_rung0to3_distinguishability_probe.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_r0_r1_r2_probe_quotient_micro_packet.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_r2_admissible_operations_commutation_order.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_r2_admissible_composition_rules.py"
+  ],
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "n01_order_reachable_signature_l1_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "base_quotient_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "admissible_forward_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "collapse_operation_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "n01_order_left_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "nonadmissible_projective_z_collapse_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "nonadmissible_projective_z_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "admissible_reverse_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "n01_order_right_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "preserve_operation_count"
+      }
+    ],
+    "parity_max_diff": 0.0,
+    "peer_generated_at": "2026-06-07T09:06:20Z",
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_quotient_stability_under_operations_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_1e_12": true
+  },
+  "parity_within_run": true,
+  "pass_rule": "admissible sequences stable, nonadmissible sequence collapses, N01 order changes reachable quotient, no self-diff controls, and JAX/Julia parity passes",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_quotient_stability_under_operations_results.json",
+  "positive": {
+    "admissible_forward_preserves_quotient": {
+      "pass": true
+    },
+    "admissible_reverse_preserves_quotient": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_false": {
+      "pass": true
+    },
+    "n01_order_affects_reachable_quotient": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "promotion_false": {
+      "pass": true
+    },
+    "quotient_survives_admissible_ops": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "negative_sequence": [
+      "projective_Z"
+    ],
+    "order_sequences": [
+      [
+        "unitary_X",
+        "damping_Z0_half"
+      ],
+      [
+        "damping_Z0_half",
+        "unitary_X"
+      ]
+    ],
+    "positive_sequence": [
+      "unitary_X",
+      "damping_Z0_half"
+    ],
+    "stability_predicate": "CPTP components, well-defined map on base quotient classes, and output class count equal to base quotient class count"
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "purpose": "Complete the finite R2 operation layer by testing quotient stability under admissible ordered CPTP operations.",
+  "quotient_survives_admissible_ops": true,
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_quotient_stability_under_operations_julia_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_quotient_stability_under_operations_results.json"
+  ],
+  "required_negatives": [
+    "nonadmissible_projective_z_collapses_quotient",
+    "order_swap_changes_reachable_quotient"
+  ],
+  "required_tools": [
+    "JAX peer",
+    "Julia",
+    "LinearAlgebra"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_quotient_stability_under_operations_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "base_class_count": 5,
+    "n01_order_affects_reachable_quotient": true,
+    "n01_order_reachable_signature_l1_gap": 5.0,
+    "no_self_diff_tautologies": true,
+    "nonadmissible_after_class_count": 3,
+    "nonadmissible_op_collapses_quotient": true,
+    "parity_within_run": true,
+    "quotient_survives_admissible_ops": true,
+    "stability_genuine": true
+  },
+  "root_constraints_in_force": [
+    "F01",
+    "N01",
+    "probe_relative_quotient",
+    "r2_admissible_operations",
+    "r2_admissible_composition_rules"
+  ],
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "scientific_question": "Does the inherited probe-relative quotient S/~_M persist under admissible R2 operations and collapse under excluded operations?",
+  "shared_booleans": {
+    "admissible_forward_stable": true,
+    "admissible_reverse_stable": true,
+    "classification_is_scratch_diagnostic": true,
+    "formal_admission_false": true,
+    "n01_order_affects_reachable_quotient": true,
+    "no_self_diff_tautologies": true,
+    "nonadmissible_op_collapses_quotient": true,
+    "nonadmissible_projective_z_unstable": true,
+    "promotion_false": true,
+    "quotient_survives_admissible_ops": true,
+    "stability_genuine": true
+  },
+  "shared_scalars": {
+    "admissible_forward_class_count": 5.0,
+    "admissible_reverse_class_count": 5.0,
+    "base_quotient_class_count": 5.0,
+    "collapse_operation_count": 2.0,
+    "n01_order_left_class_count": 5.0,
+    "n01_order_reachable_signature_l1_gap": 5.0,
+    "n01_order_right_class_count": 5.0,
+    "nonadmissible_projective_z_class_count": 3.0,
+    "nonadmissible_projective_z_collapse_count": 2.0,
+    "preserve_operation_count": 4.0
+  },
+  "shared_strings": {
+    "admissible_sequence": "unitary_X_then_damping_Z0_half",
+    "allowed_claim": "R2 finite probe quotient stability under admissible ordered CPTP operations, scratch diagnostic only.",
+    "negative_sequence": "projective_Z",
+    "object_id": "r2_quotient_stability_under_operations",
+    "reverse_sequence": "damping_Z0_half_then_unitary_X"
+  },
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "r2_quotient_stability_under_operations",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_quotient_stability_under_operations.jl",
+  "stability_controls": {
+    "boundary_admissible_reverse": {
+      "after_class_count": 5,
+      "after_quotient": {
+        "class_count": 5,
+        "classes": [
+          {
+            "class_id": "admissible_damping_then_unitary_x_M_ZX_q0",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_damping_then_unitary_x_M_ZX_q1",
+            "members": [
+              "pure_x_minus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.146446609407,
+                0.853553390593
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_damping_then_unitary_x_M_ZX_q2",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_damping_then_unitary_x_M_ZX_q3",
+            "members": [
+              "pure_x_plus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.853553390593,
+                0.146446609407
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_damping_then_unitary_x_M_ZX_q4",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        ],
+        "name": "admissible_damping_then_unitary_x_M_ZX",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X"
+        ]
+      },
+      "base_class_count": 5,
+      "collapse_count": 0,
+      "cptp_sequence": {
+        "component_rows": [
+          {
+            "choi_min_eigenvalue": -0.0,
+            "kraus_count": 2,
+            "pass": true,
+            "trace_preserving_gap": 0.0
+          },
+          {
+            "choi_min_eigenvalue": 0.0,
+            "kraus_count": 1,
+            "pass": true,
+            "trace_preserving_gap": 0.0
+          }
+        ],
+        "operation_names": [
+          "damping_Z0_half",
+          "unitary_X"
+        ],
+        "pass": true
+      },
+      "expected_stable": true,
+      "expressions_distinct": true,
+      "label": "admissible_damping_then_unitary_x",
+      "left_quantity": "base quotient S/~_M before operation sequence",
+      "operation_names": [
+        "damping_Z0_half",
+        "unitary_X"
+      ],
+      "pass": true,
+      "quotient_stable": true,
+      "right_quantity": "quotient after damping_Z0_half then unitary_X",
+      "well_defined_on_base_quotient": {
+        "pass": true,
+        "rows": [
+          {
+            "input_class_id": "base_M_ZX_q0",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q1",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q2",
+            "member_count": 4,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q3",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q4",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          }
+        ]
+      }
+    },
+    "n01_order_reachable_quotient": {
+      "class_count_preserved_in_both_orders": true,
+      "expressions_distinct": true,
+      "left_class_count": 5,
+      "left_expression_id": "unitary_X_then_damping_Z0_half_reachable_quotient",
+      "left_quotient": {
+        "class_count": 5,
+        "classes": [
+          {
+            "class_id": "unitary_X_then_damping_Z0_half_M_ZX_q0",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "unitary_X_then_damping_Z0_half_M_ZX_q1",
+            "members": [
+              "pure_x_minus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.146446609407,
+                0.853553390593
+              ]
+            ]
+          },
+          {
+            "class_id": "unitary_X_then_damping_Z0_half_M_ZX_q2",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "unitary_X_then_damping_Z0_half_M_ZX_q3",
+            "members": [
+              "pure_x_plus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.853553390593,
+                0.146446609407
+              ]
+            ]
+          },
+          {
+            "class_id": "unitary_X_then_damping_Z0_half_M_ZX_q4",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        ],
+        "name": "unitary_X_then_damping_Z0_half_M_ZX",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X"
+        ]
+      },
+      "operation_names_distinct": true,
+      "pass": true,
+      "reachable_signature_l1_gap": 5.0,
+      "reachable_signature_sets_differ": true,
+      "right_class_count": 5,
+      "right_expression_id": "damping_Z0_half_then_unitary_X_reachable_quotient",
+      "right_quotient": {
+        "class_count": 5,
+        "classes": [
+          {
+            "class_id": "damping_Z0_half_then_unitary_X_M_ZX_q0",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "damping_Z0_half_then_unitary_X_M_ZX_q1",
+            "members": [
+              "pure_x_minus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.146446609407,
+                0.853553390593
+              ]
+            ]
+          },
+          {
+            "class_id": "damping_Z0_half_then_unitary_X_M_ZX_q2",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "damping_Z0_half_then_unitary_X_M_ZX_q3",
+            "members": [
+              "pure_x_plus"
+            ],
+            "signature": [
+              [
+                0.25,
+                0.75
+              ],
+              [
+                0.853553390593,
+                0.146446609407
+              ]
+            ]
+          },
+          {
+            "class_id": "damping_Z0_half_then_unitary_X_M_ZX_q4",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        ],
+        "name": "damping_Z0_half_then_unitary_X_M_ZX",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X"
+        ]
+      }
+    },
+    "negative_nonadmissible_collapse": {
+      "after_class_count": 3,
+      "after_quotient": {
+        "class_count": 3,
+        "classes": [
+          {
+            "class_id": "nonadmissible_projective_z_M_ZX_q0",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "nonadmissible_projective_z_M_ZX_q1",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_x_minus",
+              "pure_x_plus",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "nonadmissible_projective_z_M_ZX_q2",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        ],
+        "name": "nonadmissible_projective_z_M_ZX",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X"
+        ]
+      },
+      "base_class_count": 5,
+      "collapse_count": 2,
+      "cptp_sequence": {
+        "component_rows": [
+          {
+            "choi_min_eigenvalue": 0.0,
+            "kraus_count": 2,
+            "pass": true,
+            "trace_preserving_gap": 0.0
+          }
+        ],
+        "operation_names": [
+          "projective_Z"
+        ],
+        "pass": true
+      },
+      "expected_stable": false,
+      "expressions_distinct": true,
+      "label": "nonadmissible_projective_z",
+      "left_quantity": "base quotient S/~_M before operation sequence",
+      "operation_names": [
+        "projective_Z"
+      ],
+      "pass": true,
+      "quotient_stable": false,
+      "right_quantity": "quotient after projective_Z",
+      "well_defined_on_base_quotient": {
+        "pass": true,
+        "rows": [
+          {
+            "input_class_id": "base_M_ZX_q0",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q1",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q2",
+            "member_count": 4,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q3",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q4",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          }
+        ]
+      }
+    },
+    "positive_admissible_forward": {
+      "after_class_count": 5,
+      "after_quotient": {
+        "class_count": 5,
+        "classes": [
+          {
+            "class_id": "admissible_unitary_x_then_damping_M_ZX_q0",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_unitary_x_then_damping_M_ZX_q1",
+            "members": [
+              "pure_x_minus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.146446609407,
+                0.853553390593
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_unitary_x_then_damping_M_ZX_q2",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_unitary_x_then_damping_M_ZX_q3",
+            "members": [
+              "pure_x_plus"
+            ],
+            "signature": [
+              [
+                0.75,
+                0.25
+              ],
+              [
+                0.853553390593,
+                0.146446609407
+              ]
+            ]
+          },
+          {
+            "class_id": "admissible_unitary_x_then_damping_M_ZX_q4",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        ],
+        "name": "admissible_unitary_x_then_damping_M_ZX",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X"
+        ]
+      },
+      "base_class_count": 5,
+      "collapse_count": 0,
+      "cptp_sequence": {
+        "component_rows": [
+          {
+            "choi_min_eigenvalue": 0.0,
+            "kraus_count": 1,
+            "pass": true,
+            "trace_preserving_gap": 0.0
+          },
+          {
+            "choi_min_eigenvalue": -0.0,
+            "kraus_count": 2,
+            "pass": true,
+            "trace_preserving_gap": 0.0
+          }
+        ],
+        "operation_names": [
+          "unitary_X",
+          "damping_Z0_half"
+        ],
+        "pass": true
+      },
+      "expected_stable": true,
+      "expressions_distinct": true,
+      "label": "admissible_unitary_x_then_damping",
+      "left_quantity": "base quotient S/~_M before operation sequence",
+      "operation_names": [
+        "unitary_X",
+        "damping_Z0_half"
+      ],
+      "pass": true,
+      "quotient_stable": true,
+      "right_quantity": "quotient after unitary_X then damping_Z0_half",
+      "well_defined_on_base_quotient": {
+        "pass": true,
+        "rows": [
+          {
+            "input_class_id": "base_M_ZX_q0",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q1",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q2",
+            "member_count": 4,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q3",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          },
+          {
+            "input_class_id": "base_M_ZX_q4",
+            "member_count": 1,
+            "output_signature_count": 1,
+            "pass": true
+          }
+        ]
+      }
+    }
+  },
+  "stability_genuine": true,
+  "stop_condition_fired": false,
+  "tier": "R2_quotient_stability_under_operations",
+  "tool_integration_depth": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX peer": {
+      "reason": "load-bearing within-run parity reference for shared scalar, boolean, and string keys",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization and current JAX peer comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent finite quotient and CPTP operation stability mirror computation",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, norms, eigenvalue checks, and finite operation products",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "version": "1.0",
+  "why_not_v4_probes": "This is a v5 scratch diagnostic formal-scout-style receipt with no promotion or formal admission.",
+  "witness_trace_id": "r2_quotient_stability_under_operations:julia:2026-06-07T09:06:37Z"
+}

@@ -1,0 +1,1042 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JAX reference": {
+      "reason": "load-bearing peer backend parity over the current same-token JAX output",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and current JAX-result parity read",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent Cayley-Dickson table construction and property residual computation",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing vector norms for finite carrier property residuals",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "not used: explicit user fence for this row says no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON",
+    "JAX reference"
+  ],
+  "all_pass": false,
+  "allowed_claims": [
+    "Finite R/C/H/O/S carrier-candidate property-onset map over the verified R0-R2 foundation surface; scratch diagnostic only."
+  ],
+  "associativity_lost_at": "O",
+  "backend": "julia",
+  "blocked_consumers": [
+    "promotion",
+    "formal_admission",
+    "downstream scientific claims"
+  ],
+  "boundary": {
+    "C_to_H_commutativity_boundary": {
+      "left": "C",
+      "pass": true,
+      "right": "H"
+    },
+    "H_to_O_associativity_boundary": {
+      "left": "H",
+      "pass": true,
+      "right": "O"
+    },
+    "O_to_S_norm_division_boundary": {
+      "left": "O",
+      "pass": true,
+      "right": "S"
+    },
+    "claim_ceiling": "Allowed only: bottom-up finite carrier-candidate algebra property onset map. No promotion, no formal admission, no downstream scientific claim."
+  },
+  "claim_ceiling": "Allowed only: bottom-up finite carrier-candidate algebra property onset map. No promotion, no formal admission, no downstream scientific claim.",
+  "classification": "scratch_diagnostic",
+  "commutativity_lost_at": "H",
+  "construction": {
+    "method": "finite Cayley-Dickson doubling",
+    "rung_dims": {
+      "C": 2,
+      "H": 4,
+      "O": 8,
+      "R": 1,
+      "S": 16
+    },
+    "rung_names": [
+      "R",
+      "C",
+      "H",
+      "O",
+      "S"
+    ]
+  },
+  "control_comparison_pairs": [
+    {
+      "left_quantity": "C.commutator_max",
+      "left_value": 0.0,
+      "name": "commutativity_onset",
+      "negative_case": "H",
+      "negative_case_fails": true,
+      "negative_property_value": false,
+      "right_quantity": "H.commutator_max",
+      "right_value": 2.0
+    },
+    {
+      "left_quantity": "H.associator_max",
+      "left_value": 0.0,
+      "name": "associativity_onset",
+      "negative_case": "O",
+      "negative_case_fails": true,
+      "negative_property_value": false,
+      "right_quantity": "O.associator_max",
+      "right_value": 2.0
+    },
+    {
+      "left_quantity": "O.norm_multiplicativity_residual",
+      "left_value": 2.1316282072803006e-14,
+      "name": "norm_division_onset",
+      "negative_case": "S",
+      "negative_case_fails": true,
+      "negative_property_value": false,
+      "right_quantity": "S.norm_multiplicativity_residual",
+      "right_value": 58.344530699337014
+    }
+  ],
+  "core_pass": true,
+  "eligible_consumers": [],
+  "fail_rule": "any wrong onset, missing negative failure, self-diff control, fence violation, or parity mismatch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T21:10:00.484Z",
+  "jax_reference": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_division_algebra_ladder_onset_results.json",
+    "run_token": "r3_division_final_20260607T090302Z",
+    "shared_value_digest": "13e9b1dd34c49faaed7649855f3fe64df48ea7435f653ab85a9efce03ea2a18f"
+  },
+  "ladder_onset_genuine": true,
+  "name": "r3_division_algebra_ladder_onset",
+  "negative": {
+    "H_commutativity_negative_case": {
+      "commutator_max": 2.0,
+      "control_can_fail": true,
+      "pass": true
+    },
+    "O_associativity_negative_case": {
+      "control_can_fail": true,
+      "octonion_assoc_residual": 2.0,
+      "pass": true
+    },
+    "S_norm_division_negative_case": {
+      "control_can_fail": true,
+      "norm_multiplicativity_residual": 58.344530699337014,
+      "pass": true,
+      "zero_divisor": {
+        "checked": true,
+        "factor_squared_norm_product": 4.0,
+        "has_zero_divisor_witness": true,
+        "left_terms": [
+          "-e1",
+          "-e10"
+        ],
+        "product_squared_norm": 0.0,
+        "right_terms": [
+          "-e4",
+          "e15"
+        ]
+      }
+    }
+  },
+  "no_self_diff": true,
+  "norm_division_lost_at": "S",
+  "object_id": "r3_division_algebra_ladder_onset",
+  "octonion_assoc_residual": 2.0,
+  "onset_map": {
+    "alternativity_lost_at": "S",
+    "associativity_lost_at": "O",
+    "commutativity_lost_at": "H",
+    "norm_division_lost_at": "S"
+  },
+  "onset_tol": 1.0e-9,
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "O.nonzero_entry_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.6004088e7,
+        "julia": 1.6004088e7,
+        "key": "H.weighted_checksum"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "S.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.commutator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.associator_max"
+      },
+      {
+        "abs_diff": 1.7763568394002505e-15,
+        "jax": 5.329070518200751e-15,
+        "julia": 3.552713678800501e-15,
+        "key": "H.norm_multiplicativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "R.sum_abs_entries"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.alternativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "O.sum_abs_entries"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "S.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "C.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "S.alternativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.220446049250313e-16,
+        "julia": 2.220446049250313e-16,
+        "key": "R.norm_multiplicativity_residual"
+      },
+      {
+        "abs_diff": 5.684341886080802e-14,
+        "jax": 58.34453069933696,
+        "julia": 58.344530699337014,
+        "key": "S.norm_multiplicativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.alternativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.octonion_assoc_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "H.commutator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "H.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "R.nonzero_entry_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.4008272e7,
+        "julia": 6.4008272e7,
+        "key": "O.weighted_checksum"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 256.0,
+        "julia": 256.0,
+        "key": "S.sum_abs_entries"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.commutator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "C.nonzero_entry_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "S.zero_divisor_factor_squared_norm_product"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "S.commutator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "C.sum_abs_entries"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.alternativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "H.sum_abs_entries"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "H.nonzero_entry_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 256.0,
+        "julia": 256.0,
+        "key": "S.nonzero_entry_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.001013e6,
+        "julia": 1.001013e6,
+        "key": "R.weighted_checksum"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "S.zero_divisor_product_squared_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.56016928e8,
+        "julia": 2.56016928e8,
+        "key": "S.weighted_checksum"
+      },
+      {
+        "abs_diff": 8.23817764561145e-16,
+        "jax": 4.577566798522237e-16,
+        "julia": 1.2815744444133687e-15,
+        "key": "O.alternativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.commutator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.552713678800501e-15,
+        "julia": 3.552713678800501e-15,
+        "key": "C.norm_multiplicativity_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.002032e6,
+        "julia": 4.002032e6,
+        "key": "C.weighted_checksum"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "R.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "O.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.associator_max"
+      },
+      {
+        "abs_diff": 7.105427357601002e-15,
+        "jax": 1.4210854715202004e-14,
+        "julia": 2.1316282072803006e-14,
+        "key": "O.norm_multiplicativity_residual"
+      }
+    ],
+    "parity_max_diff": 5.684341886080802e-14,
+    "parity_within_run": false,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_division_algebra_ladder_onset_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_tolerance": false
+  },
+  "parity_within_run": false,
+  "pass_rule": "onset map H/O/S as specified, quaternion associator zero, octonion associator 2.0, negative controls fail as expected, no self-diff controls, and within-run JAX parity",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_division_algebra_ladder_onset_results.json",
+  "plain_numpy_imported": false,
+  "positive": {
+    "H_associative": {
+      "pass": true,
+      "quaternion_associator_max": 0.0
+    },
+    "O_norm_division_before_S": {
+      "pass": true
+    },
+    "R_C_commutative": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "dual_backend_parity": {
+      "pass": false
+    },
+    "formal_admission_allowed_false": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "promotion_allowed_false": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "control_rule": "every control compares two named computed quantities and includes a negative case that fails the property",
+    "measured_properties": [
+      "commutativity",
+      "associativity",
+      "alternativity",
+      "norm_multiplicativity",
+      "norm_division"
+    ],
+    "question": "property onset in the R/C/H/O/S carrier-candidate ladder"
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JAX reference"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_division_algebra_ladder_onset_julia_results.json",
+  "result_summary": {
+    "all_pass": false,
+    "associativity_lost_at": "O",
+    "commutativity_lost_at": "H",
+    "ladder_onset_genuine": true,
+    "no_self_diff": true,
+    "norm_division_lost_at": "S",
+    "octonion_assoc_residual": 2.0,
+    "parity_within_run": false,
+    "quaternion_assoc_residual": 0.0
+  },
+  "run_token": "manual-token-not-set",
+  "rungs": {
+    "C": {
+      "alternativity_check": {
+        "max_residual": 0.0,
+        "probe_count": 16,
+        "witness": {
+          "kind": "none",
+          "residual": 0.0
+        }
+      },
+      "alternativity_residual": 0.0,
+      "associator_check": {
+        "max_residual": 0.0,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ]
+      },
+      "associator_max": 0.0,
+      "commutator_check": {
+        "max_residual": 0.0,
+        "witness_basis_indices": [
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "e0*e0",
+          "e0*e0"
+        ]
+      },
+      "commutator_max": 0.0,
+      "dim": 2,
+      "has_zero_divisor_witness": false,
+      "name": "C",
+      "norm_division_check": {
+        "max_residual": 3.552713678800501e-15,
+        "norm_division": true,
+        "norm_multiplicative": true,
+        "witness": {
+          "factor_squared_norm_product": 9.14963068807856,
+          "kind": "squared_norm_multiplicativity",
+          "left_probe_index": 4,
+          "product_squared_norm": 9.149630688078556,
+          "residual": 3.552713678800501e-15,
+          "right_probe_index": 5
+        },
+        "zero_divisor": {
+          "checked": false,
+          "factor_squared_norm_product": null,
+          "has_zero_divisor_witness": false,
+          "product_squared_norm": null
+        }
+      },
+      "norm_multiplicativity_residual": 3.552713678800501e-15,
+      "properties": {
+        "alternative": true,
+        "associative": true,
+        "commutative": true,
+        "norm_division": true,
+        "norm_multiplicative": true
+      },
+      "table_checksum": {
+        "nonzero_entry_count": 4,
+        "sum_abs_entries": 4.0,
+        "weighted_checksum": 4.002032e6
+      }
+    },
+    "H": {
+      "alternativity_check": {
+        "max_residual": 0.0,
+        "probe_count": 80,
+        "witness": {
+          "kind": "none",
+          "residual": 0.0
+        }
+      },
+      "alternativity_residual": 0.0,
+      "associator_check": {
+        "max_residual": 0.0,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ]
+      },
+      "associator_max": 0.0,
+      "commutator_check": {
+        "max_residual": 2.0,
+        "witness_basis_indices": [
+          1,
+          2
+        ],
+        "witness_expression_ids": [
+          "e1*e2",
+          "e2*e1"
+        ]
+      },
+      "commutator_max": 2.0,
+      "dim": 4,
+      "has_zero_divisor_witness": false,
+      "name": "H",
+      "norm_division_check": {
+        "max_residual": 3.552713678800501e-15,
+        "norm_division": true,
+        "norm_multiplicative": true,
+        "witness": {
+          "factor_squared_norm_product": 15.611251114498701,
+          "kind": "squared_norm_multiplicativity",
+          "left_probe_index": 5,
+          "product_squared_norm": 15.611251114498698,
+          "residual": 3.552713678800501e-15,
+          "right_probe_index": 6
+        },
+        "zero_divisor": {
+          "checked": false,
+          "factor_squared_norm_product": null,
+          "has_zero_divisor_witness": false,
+          "product_squared_norm": null
+        }
+      },
+      "norm_multiplicativity_residual": 3.552713678800501e-15,
+      "properties": {
+        "alternative": true,
+        "associative": true,
+        "commutative": false,
+        "norm_division": true,
+        "norm_multiplicative": true
+      },
+      "table_checksum": {
+        "nonzero_entry_count": 16,
+        "sum_abs_entries": 16.0,
+        "weighted_checksum": 1.6004088e7
+      }
+    },
+    "O": {
+      "alternativity_check": {
+        "max_residual": 1.2815744444133687e-15,
+        "probe_count": 544,
+        "witness": {
+          "kind": "(x*x)*y - x*(x*y)",
+          "residual": 1.2815744444133687e-15,
+          "x_probe_index": 65,
+          "y_probe_index": 3
+        }
+      },
+      "alternativity_residual": 1.2815744444133687e-15,
+      "associator_check": {
+        "max_residual": 2.0,
+        "witness_basis_indices": [
+          1,
+          2,
+          4
+        ],
+        "witness_expression_ids": [
+          "(e1*e2)*e4",
+          "e1*(e2*e4)"
+        ]
+      },
+      "associator_max": 2.0,
+      "commutator_check": {
+        "max_residual": 2.0,
+        "witness_basis_indices": [
+          1,
+          2
+        ],
+        "witness_expression_ids": [
+          "e1*e2",
+          "e2*e1"
+        ]
+      },
+      "commutator_max": 2.0,
+      "dim": 8,
+      "has_zero_divisor_witness": false,
+      "name": "O",
+      "norm_division_check": {
+        "max_residual": 2.1316282072803006e-14,
+        "norm_division": true,
+        "norm_multiplicative": true,
+        "witness": {
+          "factor_squared_norm_product": 54.163001471058244,
+          "kind": "squared_norm_multiplicativity",
+          "left_probe_index": 10,
+          "product_squared_norm": 54.16300147105822,
+          "residual": 2.1316282072803006e-14,
+          "right_probe_index": 13
+        },
+        "zero_divisor": {
+          "checked": false,
+          "factor_squared_norm_product": null,
+          "has_zero_divisor_witness": false,
+          "product_squared_norm": null
+        }
+      },
+      "norm_multiplicativity_residual": 2.1316282072803006e-14,
+      "properties": {
+        "alternative": true,
+        "associative": false,
+        "commutative": false,
+        "norm_division": true,
+        "norm_multiplicative": true
+      },
+      "table_checksum": {
+        "nonzero_entry_count": 64,
+        "sum_abs_entries": 64.0,
+        "weighted_checksum": 6.4008272e7
+      }
+    },
+    "R": {
+      "alternativity_check": {
+        "max_residual": 0.0,
+        "probe_count": 5,
+        "witness": {
+          "kind": "none",
+          "residual": 0.0
+        }
+      },
+      "alternativity_residual": 0.0,
+      "associator_check": {
+        "max_residual": 0.0,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ]
+      },
+      "associator_max": 0.0,
+      "commutator_check": {
+        "max_residual": 0.0,
+        "witness_basis_indices": [
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "e0*e0",
+          "e0*e0"
+        ]
+      },
+      "commutator_max": 0.0,
+      "dim": 1,
+      "has_zero_divisor_witness": false,
+      "name": "R",
+      "norm_division_check": {
+        "max_residual": 2.220446049250313e-16,
+        "norm_division": true,
+        "norm_multiplicative": true,
+        "witness": {
+          "factor_squared_norm_product": 1.3235922634181374,
+          "kind": "squared_norm_multiplicativity",
+          "left_probe_index": 2,
+          "product_squared_norm": 1.3235922634181376,
+          "residual": 2.220446049250313e-16,
+          "right_probe_index": 3
+        },
+        "zero_divisor": {
+          "checked": false,
+          "factor_squared_norm_product": null,
+          "has_zero_divisor_witness": false,
+          "product_squared_norm": null
+        }
+      },
+      "norm_multiplicativity_residual": 2.220446049250313e-16,
+      "properties": {
+        "alternative": true,
+        "associative": true,
+        "commutative": true,
+        "norm_division": true,
+        "norm_multiplicative": true
+      },
+      "table_checksum": {
+        "nonzero_entry_count": 1,
+        "sum_abs_entries": 1.0,
+        "weighted_checksum": 1.001013e6
+      }
+    },
+    "S": {
+      "alternativity_check": {
+        "max_residual": 2.0,
+        "probe_count": 17,
+        "witness": {
+          "kind": "(x*x)*y - x*(x*y)",
+          "residual": 2.0,
+          "x_probe_index": 16,
+          "y_probe_index": 0
+        }
+      },
+      "alternativity_residual": 2.0,
+      "associator_check": {
+        "max_residual": 2.0,
+        "witness_basis_indices": [
+          1,
+          2,
+          4
+        ],
+        "witness_expression_ids": [
+          "(e1*e2)*e4",
+          "e1*(e2*e4)"
+        ]
+      },
+      "associator_max": 2.0,
+      "commutator_check": {
+        "max_residual": 2.0,
+        "witness_basis_indices": [
+          1,
+          2
+        ],
+        "witness_expression_ids": [
+          "e1*e2",
+          "e2*e1"
+        ]
+      },
+      "commutator_max": 2.0,
+      "dim": 16,
+      "has_zero_divisor_witness": true,
+      "name": "S",
+      "norm_division_check": {
+        "max_residual": 58.344530699337014,
+        "norm_division": false,
+        "norm_multiplicative": false,
+        "witness": {
+          "factor_squared_norm_product": 175.2249486570257,
+          "kind": "squared_norm_multiplicativity",
+          "left_probe_index": 18,
+          "product_squared_norm": 233.5694793563627,
+          "residual": 58.344530699337014,
+          "right_probe_index": 17
+        },
+        "zero_divisor": {
+          "checked": true,
+          "factor_squared_norm_product": 4.0,
+          "has_zero_divisor_witness": true,
+          "left_terms": [
+            "-e1",
+            "-e10"
+          ],
+          "product_squared_norm": 0.0,
+          "right_terms": [
+            "-e4",
+            "e15"
+          ]
+        }
+      },
+      "norm_multiplicativity_residual": 58.344530699337014,
+      "properties": {
+        "alternative": false,
+        "associative": false,
+        "commutative": false,
+        "norm_division": false,
+        "norm_multiplicative": false
+      },
+      "table_checksum": {
+        "nonzero_entry_count": 256,
+        "sum_abs_entries": 256.0,
+        "weighted_checksum": 2.56016928e8
+      }
+    }
+  },
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "shared_booleans": {
+    "C.has_zero_divisor_witness": false,
+    "C.property.alternative": true,
+    "C.property.associative": true,
+    "C.property.commutative": true,
+    "C.property.norm_division": true,
+    "C.property.norm_multiplicative": true,
+    "H.has_zero_divisor_witness": false,
+    "H.property.alternative": true,
+    "H.property.associative": true,
+    "H.property.commutative": false,
+    "H.property.norm_division": true,
+    "H.property.norm_multiplicative": true,
+    "O.has_zero_divisor_witness": false,
+    "O.property.alternative": true,
+    "O.property.associative": false,
+    "O.property.commutative": false,
+    "O.property.norm_division": true,
+    "O.property.norm_multiplicative": true,
+    "R.has_zero_divisor_witness": false,
+    "R.property.alternative": true,
+    "R.property.associative": true,
+    "R.property.commutative": true,
+    "R.property.norm_division": true,
+    "R.property.norm_multiplicative": true,
+    "S.has_zero_divisor_witness": true,
+    "S.property.alternative": false,
+    "S.property.associative": false,
+    "S.property.commutative": false,
+    "S.property.norm_division": false,
+    "S.property.norm_multiplicative": false,
+    "classification_is_scratch_diagnostic": true,
+    "formal_admission_false": true,
+    "jax_enable_x64": true,
+    "ladder_onset_genuine": true,
+    "negative_controls_fail": true,
+    "no_self_diff_tautologies": true,
+    "octonion_assoc_anchor": true,
+    "onset_map_ok": true,
+    "plain_numpy_imported": false,
+    "promotion_false": true,
+    "quaternion_associator_zero": true,
+    "torch_imported": false
+  },
+  "shared_scalars": {
+    "C.alternativity_residual": 0.0,
+    "C.associator_max": 0.0,
+    "C.commutator_max": 0.0,
+    "C.dim": 2.0,
+    "C.nonzero_entry_count": 4.0,
+    "C.norm_multiplicativity_residual": 3.552713678800501e-15,
+    "C.sum_abs_entries": 4.0,
+    "C.weighted_checksum": 4.002032e6,
+    "H.alternativity_residual": 0.0,
+    "H.associator_max": 0.0,
+    "H.commutator_max": 2.0,
+    "H.dim": 4.0,
+    "H.nonzero_entry_count": 16.0,
+    "H.norm_multiplicativity_residual": 3.552713678800501e-15,
+    "H.sum_abs_entries": 16.0,
+    "H.weighted_checksum": 1.6004088e7,
+    "O.alternativity_residual": 1.2815744444133687e-15,
+    "O.associator_max": 2.0,
+    "O.commutator_max": 2.0,
+    "O.dim": 8.0,
+    "O.nonzero_entry_count": 64.0,
+    "O.norm_multiplicativity_residual": 2.1316282072803006e-14,
+    "O.octonion_assoc_residual": 2.0,
+    "O.sum_abs_entries": 64.0,
+    "O.weighted_checksum": 6.4008272e7,
+    "R.alternativity_residual": 0.0,
+    "R.associator_max": 0.0,
+    "R.commutator_max": 0.0,
+    "R.dim": 1.0,
+    "R.nonzero_entry_count": 1.0,
+    "R.norm_multiplicativity_residual": 2.220446049250313e-16,
+    "R.sum_abs_entries": 1.0,
+    "R.weighted_checksum": 1.001013e6,
+    "S.alternativity_residual": 2.0,
+    "S.associator_max": 2.0,
+    "S.commutator_max": 2.0,
+    "S.dim": 16.0,
+    "S.nonzero_entry_count": 256.0,
+    "S.norm_multiplicativity_residual": 58.344530699337014,
+    "S.sum_abs_entries": 256.0,
+    "S.weighted_checksum": 2.56016928e8,
+    "S.zero_divisor_factor_squared_norm_product": 4.0,
+    "S.zero_divisor_product_squared_norm": 0.0
+  },
+  "shared_strings": {
+    "allowed_claim": "Finite R/C/H/O/S carrier-candidate property-onset map over the verified R0-R2 foundation surface; scratch diagnostic only.",
+    "alternativity_lost_at": "S",
+    "associativity_lost_at": "O",
+    "commutativity_lost_at": "H",
+    "norm_division_lost_at": "S",
+    "object_id": "r3_division_algebra_ladder_onset"
+  },
+  "sim_execution_kind": "classical",
+  "sim_id": "r3_division_algebra_ladder_onset",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_division_algebra_ladder_onset.jl",
+  "stop_condition_fired": true,
+  "tier": "R3_foundation_carrier_candidate_onset",
+  "tol": 1.0e-12,
+  "tool_integration_depth": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JAX reference": {
+      "reason": "load-bearing peer backend parity over the current same-token JAX output",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and current JAX-result parity read",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent Cayley-Dickson table construction and property residual computation",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing vector norms for finite carrier property residuals",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "not used: explicit user fence for this row says no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_imported": false,
+  "version": "1.0"
+}

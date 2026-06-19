@@ -1,0 +1,72 @@
+{
+  "schema": "codex_ratchet.sim_spec.v1",
+  "sim_id": "induced_geometry_on_survivors_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "Manifold-tower L6 scratch diagnostic only: the metric/relational geometry is restricted to the current survivor set and recomputed after each admissibility constraint. No manifold admission, no bridge, no physics, no formal claim.",
+  "description": "Finite support S={0,1}^5 with a probe quotient that forgets one hidden bit. The live object is X_t, a subset of quotient classes under the active survivor constraints C_1..C_k. At every step the induced Hamming nearest-neighbor graph G_t is recomputed on X_t itself. A stale control that keeps the initial graph G_0 and only restricts old edges is expected to be wrong once constraints carve away all initial nearest neighbors.",
+  "finite_support": {
+    "raw_support": "S = {0,1}^5",
+    "raw_support_size": 32,
+    "state_coordinates": ["p0", "p1", "p2", "p3", "hidden"],
+    "probe_family": ["p0", "p1", "p2", "p3"],
+    "probe_map": "pi(s) = (s.p0, s.p1, s.p2, s.p3)",
+    "quotient_size": 16
+  },
+  "equivalence_relation": {
+    "name": "~_P",
+    "definition": "s ~_P s_prime iff pi(s) == pi(s_prime), i.e. iff s and s_prime agree on probes p0,p1,p2,p3. The hidden bit is not identity-bearing for this sim.",
+    "identity_object": "vertices are quotient classes [s]_P, represented by their 4-bit probe signatures"
+  },
+  "induced_geometry": {
+    "name": "InducedGeometry_HammingNN",
+    "metric": "d_H(u,v) = Hamming distance between 4-bit probe signatures u and v",
+    "graph_rule": "For each survivor set X_t, compute delta_t = min{d_H(u,v): u,v in X_t, u != v}; add an undirected edge u--v iff d_H(u,v) == delta_t. If |X_t| < 2, the graph has no edges.",
+    "recompute_requirement": "G_{t+1} is computed from X_{t+1} with a fresh delta_{t+1}; it is not the old G_t relabelled or merely edge-restricted.",
+    "stale_control": "Hold G_0 fixed and restrict only its original edges to X_t. This intentionally fails to recompute delta_t and must disagree with the recomputed geometry on the same survivor data."
+  },
+  "constraints": [
+    {
+      "id": "C1_even_probe_parity",
+      "predicate": "sum(pi(s)) mod 2 == 0",
+      "role": "carves the 4-cube to even-parity quotient vertices; recomputed nearest-neighbor distance changes from 1 to 2"
+    },
+    {
+      "id": "C2_probe_weight_le_2",
+      "predicate": "sum(pi(s)) <= 2",
+      "role": "further restricts the even-parity survivor set"
+    },
+    {
+      "id": "C3_first_probe_zero",
+      "predicate": "pi(s)[0] == 0",
+      "role": "primary final restriction"
+    }
+  ],
+  "state_data_perturbation": {
+    "id": "C3_first_probe_one",
+    "predicate": "replace C3_first_probe_zero by pi(s)[0] == 1",
+    "purpose": "real state/data perturbation of the admissibility predicate. It changes the final survivor set and final induced graph metrics without editing graph labels or expected outputs."
+  },
+  "hypotheses_under_test": [
+    "H_recompute: degree sequence, nearest-neighbor distance, edge count, component count, or diameter of InducedGeometry_HammingNN changes as constraints carve X_t.",
+    "H_not_stale: holding the initial graph G_0 stale and merely restricting old edges is detectably wrong on the same survivor set.",
+    "H_state_flip: changing the C3 state predicate from first probe == 0 to first probe == 1 flips the final induced graph metrics."
+  ],
+  "controls_that_must_fire": [
+    "stale_geometry_control: G_0 restricted to X_1 has zero old distance-1 edges, while recomputed G_1 on even-parity survivors has distance-2 edges and is connected.",
+    "state_data_perturbation_control: replacing C3_first_probe_zero by C3_first_probe_one changes the final survivor count and degree sequence."
+  ],
+  "engines": {
+    "exact": "Python stdlib + numpy-free exact tuple/set reference leg over quotient classes and explicit Hamming distances",
+    "jax": "JAX x64 boolean-mask leg over the quotient enumeration with a vectorized pairwise Hamming matrix"
+  },
+  "agreement_invariants": [
+    "quotient_relation",
+    "primary_sequence.recomputed step metrics",
+    "primary_sequence.stale step metrics",
+    "perturbed_sequence.final recomputed metrics",
+    "tests",
+    "controls"
+  ]
+}

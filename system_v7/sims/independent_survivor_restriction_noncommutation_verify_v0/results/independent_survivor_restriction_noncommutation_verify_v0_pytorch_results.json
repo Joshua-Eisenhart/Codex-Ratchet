@@ -1,0 +1,61 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "independent_survivor_restriction_noncommutation_verify_v0",
+  "engine": "pytorch",
+  "computation_style": "boolean_tensor_xor_symdiff_and_permutation_matrix_winding",
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "f01_ancestry": "root_axioms:53 (finitude) via spec \u00a70",
+  "n01_ancestry": "root_axioms:51 (order as noncommutation) via spec \u00a71.2 R4",
+  "generated_at": "2026-06-16T07:05:12Z",
+  "source_sha256": "1af7dea2859055eafe2184c873790cf6a8c41faa99ecb8ed23d0526e549f8250",
+  "core_sha256": "7341caa8a248314805e27b58245d4b3dafada4ab80c03ac09bcda6ac595fc98b",
+  "result_path": "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_pytorch_results.json",
+  "torch_recomputed_deltas": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_static_control_x_reactive": 3,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0
+  },
+  "torch_core_parity": {
+    "delta_history_dependent": true,
+    "delta_static_control_extensional": true,
+    "delta_static_control_x_reactive": true,
+    "delta_mixed_history_dependent": true,
+    "delta_mixed_amnesic": true
+  },
+  "torch_core_parity_all": true,
+  "gnvw_index": {
+    "left_shift": -1,
+    "right_shift": 1,
+    "identity": 0
+  },
+  "gnvw_index_matches_core": true,
+  "phi_commuting_square_fidelity": 1.0,
+  "phi_square_fidelity_wrong_lex_control": 0.7777777777777778,
+  "phi_square_fidelity_scrambled_phi_control": 0.2777777777777778,
+  "package_versions": {
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch"
+  ],
+  "aligned_packages_load_bearing": [
+    "torch"
+  ],
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing boolean-tensor XOR symdiff + permutation-matrix winding for GNVW, an independent code path from JAX/Julia"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing"
+  }
+}

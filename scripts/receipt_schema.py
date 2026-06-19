@@ -18,6 +18,7 @@ import two_root_constraints
 VALID_CLASSIFICATIONS = {
     "canonical",
     "classical_baseline",
+    "scratch_diagnostic",
     "tool_lego_fit_probe",
     "supporting",
     "audit",

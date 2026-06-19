@@ -1,0 +1,2280 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent finite rational separation proof with flip control",
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive tuple/source hashes",
+      "used": true
+    },
+    "json": {
+      "reason": "supportive result serialization",
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact canonical POVM effect multisets, weighted-Bloch Gram matrices, ranks, and witnesses",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing finite rational separation proof with flip control",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "convention_pinned_exclusion_policy": "would use excluded-under-pinned-<convention>-convention if a candidate's only separation were convention-relative; no S3 candidate required that verdict here",
+    "heavy_local_not_authorized": [],
+    "phase": "light-symbolic phase 1 only",
+    "pytorch_omitted": "no graph/network/autograd/tensor claim path exists",
+    "surds_carried_by_cas_not_smt": true
+  },
+  "build_gates": {
+    "anchor_classifies_as_itself": true,
+    "cvc5_flip_control_sat": true,
+    "cvc5_positive_unsat": true,
+    "deliberate_reparameterization_alias_classifies_alias": true,
+    "far_control_dies_first_teeth_row": true,
+    "mub_classifies_alias": true,
+    "no_heavy_local_registry_rows_for_s3": true,
+    "no_numeric_closeness_on_claim_path": true,
+    "noisy_pauli_excluded_by_registry_teeth": true,
+    "pinned_convention_exclusion_not_used": true,
+    "rank4_null_excluded_by_registry_teeth": true,
+    "registry_read_full": true,
+    "sic_preserved_as_known_co_survivor": true,
+    "trine_excluded_by_registry_teeth": true,
+    "z3_flip_control_sat": true,
+    "z3_positive_unsat": true
+  },
+  "candidate_verdicts": [
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/6",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/6",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/36"
+          ],
+          [
+            "0",
+            "1/36",
+            "0",
+            "0",
+            "-1/36",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/36",
+            "-1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/36",
+            "1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/36",
+            "0",
+            "0",
+            "1/36",
+            "0"
+          ],
+          [
+            "-1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/36"
+          ]
+        ]
+      },
+      "canonical_form_hash": "636c192773985f0f004ef901f7c5b4bad3efcfdc57d76f62d1aabd84cd11ee05",
+      "closeness": "control",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "none; anchor",
+      "family_id": "S3.R3.0_committed_pauli_xyz",
+      "finite_representative": "six Pauli projectors X/Y/Z, parent axis order pinned",
+      "id": "S3.R3.0_committed_pauli_xyz",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/6"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/3",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "anchor",
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "self",
+        "candidate": "self",
+        "field": "anchor"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/6",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/6",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/36"
+          ],
+          [
+            "0",
+            "1/36",
+            "0",
+            "0",
+            "-1/36",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/36",
+            "-1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/36",
+            "1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/36",
+            "0",
+            "0",
+            "1/36",
+            "0"
+          ],
+          [
+            "-1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/36"
+          ]
+        ]
+      },
+      "canonical_form_hash": "636c192773985f0f004ef901f7c5b4bad3efcfdc57d76f62d1aabd84cd11ee05",
+      "closeness": "exact alias calibrator",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "alias gate before battery",
+      "family_id": "S3.R3.1_mub_xyz_alias_probe",
+      "finite_representative": "three MUB bases in the same X/Y/Z order",
+      "id": "S3.R3.1_mub_xyz_alias_probe",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/6"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/3",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "alias_gate_before_battery",
+      "verdict": "alias",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_form"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/4",
+            "-sqrt(3)/12",
+            "-sqrt(3)/12",
+            "sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "-sqrt(3)/12",
+            "sqrt(3)/12",
+            "-sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "sqrt(3)/12",
+            "-sqrt(3)/12",
+            "-sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "sqrt(3)/12",
+            "sqrt(3)/12",
+            "sqrt(3)/12"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/16",
+            "-1/48",
+            "-1/48",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "1/16",
+            "-1/48",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "-1/48",
+            "1/16",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "-1/48",
+            "-1/48",
+            "1/16"
+          ]
+        ]
+      },
+      "canonical_form_hash": "80870eb0f38878de4170d682998fa744d446a8cb022d27aba0a1dff92cf58fa1",
+      "closeness": "genuine IC co-survivor",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "projective-order / N01 nonparallel count",
+      "family_id": "S3.R3.2_sic_tetrahedron",
+      "finite_representative": "four tetrahedral effects with Bloch dot -1/3",
+      "id": "S3.R3.2_sic_tetrahedron",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 6,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [],
+          "z_axis_signed_bloch_abs_total": "0",
+          "z_axis_weight_total": "0"
+        }
+      },
+      "row": "projective-order / N01 nonparallel count",
+      "verdict": "co-survivor-open",
+      "witness": {
+        "anchor": 12,
+        "candidate": 6,
+        "field": "nonparallel_count",
+        "interpretation": "exact separator, but registry marks SIC as genuine IC co-survivor rather than intrinsic kill"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/9",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/9",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/9"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/9"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/9",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/9",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/81",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/81"
+          ],
+          [
+            "0",
+            "1/81",
+            "0",
+            "0",
+            "-1/81",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/81",
+            "-1/81",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/81",
+            "1/81",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/81",
+            "0",
+            "0",
+            "1/81",
+            "0"
+          ],
+          [
+            "-1/81",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/81"
+          ]
+        ]
+      },
+      "canonical_form_hash": "d86d4c03555d80a7d1503fad256a8cc27c803943f2deeda7785e1e7f74216b30",
+      "closeness": "near committed IC, softer projective row",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "projective sharpness and N01/order row",
+      "family_id": "S3.R3.3_noisy_pauli_ic",
+      "finite_representative": "Pauli effects shrunk by lambda=2/3 with weights fixed to preserve POVM normalization",
+      "id": "S3.R3.3_noisy_pauli_ic__lambda_2_3",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/9"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/9"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "2/9",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "projective sharpness and N01/order row",
+      "verdict": "excluded-by-projective-sharpness-and-N01-order-row",
+      "witness": {
+        "anchor": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "candidate": [
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324",
+          "5/324"
+        ],
+        "field": "sharpness_deficits",
+        "first_nonzero_deficit": "5/324"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/12",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/12",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/12"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/12"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/12",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/12",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/144",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/144"
+          ],
+          [
+            "0",
+            "1/144",
+            "0",
+            "0",
+            "-1/144",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/144",
+            "-1/144",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/144",
+            "1/144",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/144",
+            "0",
+            "0",
+            "1/144",
+            "0"
+          ],
+          [
+            "-1/144",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/144"
+          ]
+        ]
+      },
+      "canonical_form_hash": "df8554832bde313c79c9c1365cb496d7fd19f27ee45fad27ec61d13cf92f6994",
+      "closeness": "near committed IC, softer projective row",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "projective sharpness and N01/order row",
+      "family_id": "S3.R3.3_noisy_pauli_ic",
+      "finite_representative": "Pauli effects shrunk by lambda=1/2 with weights fixed to preserve POVM normalization",
+      "id": "S3.R3.3_noisy_pauli_ic__lambda_1_2",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/12"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/12"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/6",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "projective sharpness and N01/order row",
+      "verdict": "excluded-by-projective-sharpness-and-N01-order-row",
+      "witness": {
+        "anchor": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "candidate": [
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48",
+          "1/48"
+        ],
+        "field": "sharpness_deficits",
+        "first_nonzero_deficit": "1/48"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/4",
+            "0",
+            "0",
+            "-1/4"
+          ],
+          [
+            "1/4",
+            "0",
+            "0",
+            "1/4"
+          ],
+          [
+            "1/6",
+            "-1/12",
+            "-sqrt(3)/12",
+            "0"
+          ],
+          [
+            "1/6",
+            "-1/12",
+            "sqrt(3)/12",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/6",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/16",
+            "-1/16",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "-1/16",
+            "1/16",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/36",
+            "-1/72",
+            "-1/72"
+          ],
+          [
+            "0",
+            "0",
+            "-1/72",
+            "1/36",
+            "-1/72"
+          ],
+          [
+            "0",
+            "0",
+            "-1/72",
+            "-1/72",
+            "1/36"
+          ]
+        ]
+      },
+      "canonical_form_hash": "eaf61d8f2cd9e2ff01beafc48afd141ed2a4bd6051e5a922e58f0a942cabf8e4",
+      "closeness": "between SIC and z-coarse family",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "z-coarsening plus six-state separation",
+      "family_id": "S3.R3.4_z_refined_equatorial_trine",
+      "finite_representative": "Z pair plus equatorial trine frame, normalized as one finite POVM family",
+      "id": "S3.R3.4_z_refined_equatorial_trine",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 9,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/4",
+              "0",
+              "0",
+              "-1/4"
+            ],
+            [
+              "1/4",
+              "0",
+              "0",
+              "1/4"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/2",
+          "z_axis_weight_total": "1/2"
+        }
+      },
+      "row": "z-coarsening plus six-state separation",
+      "verdict": "excluded-by-z-coarsening-plus-six-state-separation",
+      "witness": {
+        "anchor": [
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/6"
+          ]
+        ],
+        "candidate": [
+          [
+            "1/4",
+            "0",
+            "0",
+            "-1/4"
+          ],
+          [
+            "1/4",
+            "0",
+            "0",
+            "1/4"
+          ]
+        ],
+        "field": "z_coarsening_signature.z_axis_effects",
+        "six_state_class_count": 6
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/4",
+            "-1/8",
+            "-1/8",
+            "-1/8"
+          ],
+          [
+            "1/4",
+            "0",
+            "0",
+            "1/8"
+          ],
+          [
+            "1/4",
+            "0",
+            "1/8",
+            "0"
+          ],
+          [
+            "1/4",
+            "1/8",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "3/64",
+            "-1/64",
+            "-1/64",
+            "-1/64"
+          ],
+          [
+            "-1/64",
+            "1/64",
+            "0",
+            "0"
+          ],
+          [
+            "-1/64",
+            "0",
+            "1/64",
+            "0"
+          ],
+          [
+            "-1/64",
+            "0",
+            "0",
+            "1/64"
+          ]
+        ]
+      },
+      "canonical_form_hash": "3a78b8d24264e9495a1fa438e1a0b2f39e13dc459f1e06b9b15c651ba25f8b1f",
+      "closeness": "closer than old rank-deficient null",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "composite IC+z+order row",
+      "family_id": "S3.R3.5_rank4_random_null_fixed",
+      "finite_representative": "deterministic rational Bloch frame with rank 4 but non-projective asymmetry",
+      "id": "S3.R3.5_rank4_random_null_fixed",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 6,
+        "sharpness_deficits": [
+          "1/64",
+          "3/64",
+          "3/64",
+          "3/64"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/4",
+              "0",
+              "0",
+              "1/8"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/8",
+          "z_axis_weight_total": "1/4"
+        }
+      },
+      "row": "composite IC+z+order row",
+      "verdict": "excluded-by-composite-IC-z-order-row",
+      "witness": {
+        "anchor": {
+          "rank": 4,
+          "sharpness_deficits": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "z_coarsening": {
+            "z_axis_effects": [
+              [
+                "1/6",
+                "0",
+                "0",
+                "-1/6"
+              ],
+              [
+                "1/6",
+                "0",
+                "0",
+                "1/6"
+              ]
+            ],
+            "z_axis_signed_bloch_abs_total": "1/3",
+            "z_axis_weight_total": "1/3"
+          }
+        },
+        "candidate": {
+          "rank": 4,
+          "sharpness_deficits": [
+            "1/64",
+            "3/64",
+            "3/64",
+            "3/64"
+          ],
+          "z_coarsening": {
+            "z_axis_effects": [
+              [
+                "1/4",
+                "0",
+                "0",
+                "1/8"
+              ]
+            ],
+            "z_axis_signed_bloch_abs_total": "1/8",
+            "z_axis_weight_total": "1/4"
+          }
+        },
+        "field": "composite_projective_sharpness_z_order"
+      }
+    }
+  ],
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/6",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/6",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/36"
+          ],
+          [
+            "0",
+            "1/36",
+            "0",
+            "0",
+            "-1/36",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/36",
+            "-1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/36",
+            "1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/36",
+            "0",
+            "0",
+            "1/36",
+            "0"
+          ],
+          [
+            "-1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/36"
+          ]
+        ]
+      },
+      "canonical_form_hash": "636c192773985f0f004ef901f7c5b4bad3efcfdc57d76f62d1aabd84cd11ee05",
+      "closeness": "control",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "control",
+      "expected_teeth_row": "anchor must classify as itself",
+      "family_id": "control.anchor_self",
+      "finite_representative": "anchor copy",
+      "id": "control.anchor_self",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/6"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/3",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "anchor",
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "self",
+        "candidate": "self",
+        "field": "anchor"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/6",
+            "-1/6",
+            "0",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "0",
+            "1/6"
+          ],
+          [
+            "1/6",
+            "0",
+            "1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/6",
+            "0",
+            "0"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1/36"
+          ],
+          [
+            "0",
+            "1/36",
+            "0",
+            "0",
+            "-1/36",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1/36",
+            "-1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1/36",
+            "1/36",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1/36",
+            "0",
+            "0",
+            "1/36",
+            "0"
+          ],
+          [
+            "-1/36",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/36"
+          ]
+        ]
+      },
+      "canonical_form_hash": "636c192773985f0f004ef901f7c5b4bad3efcfdc57d76f62d1aabd84cd11ee05",
+      "closeness": "deliberate reparameterization alias",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "control",
+      "expected_teeth_row": "alias gate before battery",
+      "family_id": "control.alias_reordered_pauli_xyz",
+      "finite_representative": "same Pauli effects in permuted effect order",
+      "id": "control.alias_reordered_pauli_xyz",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 12,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/6",
+              "0",
+              "0",
+              "-1/6"
+            ],
+            [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1/3",
+          "z_axis_weight_total": "1/3"
+        }
+      },
+      "row": "alias_gate_before_battery",
+      "verdict": "alias",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_form"
+      }
+    },
+    {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/2",
+            "0",
+            "0",
+            "-1/2"
+          ],
+          [
+            "1/2",
+            "0",
+            "0",
+            "1/2"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/4",
+            "-1/4"
+          ],
+          [
+            "-1/4",
+            "1/4"
+          ]
+        ]
+      },
+      "canonical_form_hash": "aa2766eabc34f074d8945ce4d3a8655e20a00fb4f28434d9e0aa8e966af9348e",
+      "closeness": "far control",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "control",
+      "expected_teeth_row": "first teeth row: frame rank and six-state separation",
+      "family_id": "control.far_z_only_round2_null",
+      "finite_representative": "round-2 far/coarse Z-only family, normalized two-effect POVM",
+      "id": "control.far_z_only_round2_null",
+      "observables": {
+        "frame_rank": 2,
+        "nonparallel_count": 0,
+        "sharpness_deficits": [
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 3,
+          "classes": [
+            [
+              "+x",
+              "+y",
+              "-x",
+              "-y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": [
+            [
+              "+x",
+              "+y"
+            ],
+            [
+              "+x",
+              "-x"
+            ],
+            [
+              "+x",
+              "-y"
+            ],
+            [
+              "+y",
+              "-x"
+            ],
+            [
+              "+y",
+              "-y"
+            ],
+            [
+              "-x",
+              "-y"
+            ]
+          ]
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/2",
+              "0",
+              "0",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "0",
+              "1/2"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1",
+          "z_axis_weight_total": "1"
+        }
+      },
+      "row": "frame rank and six-state separation",
+      "verdict": "excluded-by-first-teeth-row-frame-rank-and-six-state-separation",
+      "witness": {
+        "anchor": 4,
+        "candidate": 2,
+        "collapsed_pairs": [
+          [
+            "+x",
+            "+y"
+          ],
+          [
+            "+x",
+            "-x"
+          ],
+          [
+            "+x",
+            "-y"
+          ],
+          [
+            "+y",
+            "-x"
+          ],
+          [
+            "+y",
+            "-y"
+          ],
+          [
+            "-x",
+            "-y"
+          ]
+        ],
+        "field": "frame_rank"
+      }
+    }
+  ],
+  "counts": {
+    "alias_class_count_including_controls": 7,
+    "control_representatives": 3,
+    "heavy_local_registry_rows": 0,
+    "known_co_survivor_open_count": 1,
+    "raw_light_representatives": 7,
+    "registry_candidate_families": 6
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "surds in SIC/trine rows remain SymPy canonical-form evidence; SMT binds finite rational witness rows",
+      "claim": "computed finite rational S3 non-alias witness rows are all nonzero",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one required nonzero witness is zero",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "positive_case": "non-alias and far-control witnesses are nonzero after exact canonicalization",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "witness_values": {
+        "S3_R3_3_noisy_pauli_ic__lambda_1_2_deficit_times_1296": 27,
+        "S3_R3_3_noisy_pauli_ic__lambda_2_3_deficit_times_1296": 20,
+        "far_control_rank_gap": 2,
+        "rank4_null_min_deficit_times_64": 1,
+        "sic_nonparallel_gap": 6,
+        "z_trine_z_weight_gap_times_12": 1
+      }
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "surds in SIC/trine rows remain SymPy canonical-form evidence; SMT binds finite rational witness rows",
+      "claim": "computed finite rational S3 non-alias witness rows are all nonzero",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one required nonzero witness is zero",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "positive_case": "non-alias and far-control witnesses are nonzero after exact canonicalization",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "witness_values": {
+        "S3_R3_3_noisy_pauli_ic__lambda_1_2_deficit_times_1296": 27,
+        "S3_R3_3_noisy_pauli_ic__lambda_2_3_deficit_times_1296": 20,
+        "far_control_rank_gap": 2,
+        "rank4_null_min_deficit_times_64": 1,
+        "sic_nonparallel_gap": 6,
+        "z_trine_z_weight_gap_times_12": 1
+      }
+    }
+  },
+  "engine_role_note": "Python/JAX lane uses exact SymPy plus z3/cvc5; JAX arrays are intentionally omitted because the claim is light-symbolic exact canonicalization.",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T00:35:34Z",
+  "negative": {
+    "excluded_candidate_count": 4,
+    "far_control": {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/2",
+            "0",
+            "0",
+            "-1/2"
+          ],
+          [
+            "1/2",
+            "0",
+            "0",
+            "1/2"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/4",
+            "-1/4"
+          ],
+          [
+            "-1/4",
+            "1/4"
+          ]
+        ]
+      },
+      "canonical_form_hash": "aa2766eabc34f074d8945ce4d3a8655e20a00fb4f28434d9e0aa8e966af9348e",
+      "closeness": "far control",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "control",
+      "expected_teeth_row": "first teeth row: frame rank and six-state separation",
+      "family_id": "control.far_z_only_round2_null",
+      "finite_representative": "round-2 far/coarse Z-only family, normalized two-effect POVM",
+      "id": "control.far_z_only_round2_null",
+      "observables": {
+        "frame_rank": 2,
+        "nonparallel_count": 0,
+        "sharpness_deficits": [
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 3,
+          "classes": [
+            [
+              "+x",
+              "+y",
+              "-x",
+              "-y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": [
+            [
+              "+x",
+              "+y"
+            ],
+            [
+              "+x",
+              "-x"
+            ],
+            [
+              "+x",
+              "-y"
+            ],
+            [
+              "+y",
+              "-x"
+            ],
+            [
+              "+y",
+              "-y"
+            ],
+            [
+              "-x",
+              "-y"
+            ]
+          ]
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [
+            [
+              "1/2",
+              "0",
+              "0",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "0",
+              "1/2"
+            ]
+          ],
+          "z_axis_signed_bloch_abs_total": "1",
+          "z_axis_weight_total": "1"
+        }
+      },
+      "row": "frame rank and six-state separation",
+      "verdict": "excluded-by-first-teeth-row-frame-rank-and-six-state-separation",
+      "witness": {
+        "anchor": 4,
+        "candidate": 2,
+        "collapsed_pairs": [
+          [
+            "+x",
+            "+y"
+          ],
+          [
+            "+x",
+            "-x"
+          ],
+          [
+            "+x",
+            "-y"
+          ],
+          [
+            "+y",
+            "-x"
+          ],
+          [
+            "+y",
+            "-y"
+          ],
+          [
+            "-x",
+            "-y"
+          ]
+        ],
+        "field": "frame_rank"
+      }
+    }
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver/checkSat proves the same computed finite rational S3 witness rows with matching polarity",
+    "z3": "z3.Solver/check proves computed finite rational S3 witness rows UNSAT under negation and SAT under erased flip"
+  },
+  "packages_used": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "hashlib"
+  ],
+  "phase2_queue": {
+    "heavy_local_queued_by_registry_cost_class": [],
+    "known_co_survivors_not_heavy_queued": [
+      "S3.R3.2_sic_tetrahedron"
+    ],
+    "light_symbolic_non_alias_representatives_remaining": [
+      "S3.R3.2_sic_tetrahedron"
+    ],
+    "stop_rule_application": "All S3 registry rows are light-symbolic. MUB is exact alias, SIC is the known IC co-survivor, and R3.3-R3.5 are classified by light teeth; no heavy-local S3 row is queued by the registry."
+  },
+  "positive": {
+    "alias_classes": {
+      "3a78b8d24264e9495a1fa438e1a0b2f39e13dc459f1e06b9b15c651ba25f8b1f": [
+        "S3.R3.5_rank4_random_null_fixed"
+      ],
+      "636c192773985f0f004ef901f7c5b4bad3efcfdc57d76f62d1aabd84cd11ee05": [
+        "S3.R3.0_committed_pauli_xyz",
+        "S3.R3.1_mub_xyz_alias_probe",
+        "control.anchor_self",
+        "control.alias_reordered_pauli_xyz"
+      ],
+      "80870eb0f38878de4170d682998fa744d446a8cb022d27aba0a1dff92cf58fa1": [
+        "S3.R3.2_sic_tetrahedron"
+      ],
+      "aa2766eabc34f074d8945ce4d3a8655e20a00fb4f28434d9e0aa8e966af9348e": [
+        "control.far_z_only_round2_null"
+      ],
+      "d86d4c03555d80a7d1503fad256a8cc27c803943f2deeda7785e1e7f74216b30": [
+        "S3.R3.3_noisy_pauli_ic__lambda_2_3"
+      ],
+      "df8554832bde313c79c9c1365cb496d7fd19f27ee45fad27ec61d13cf92f6994": [
+        "S3.R3.3_noisy_pauli_ic__lambda_1_2"
+      ],
+      "eaf61d8f2cd9e2ff01beafc48afd141ed2a4bd6051e5a922e58f0a942cabf8e4": [
+        "S3.R3.4_z_refined_equatorial_trine"
+      ]
+    },
+    "anchor_alias_class": [
+      "S3.R3.0_committed_pauli_xyz",
+      "S3.R3.1_mub_xyz_alias_probe",
+      "control.anchor_self",
+      "control.alias_reordered_pauli_xyz"
+    ],
+    "anchor_canonical_form": {
+      "axis_permutation": [
+        "x",
+        "y",
+        "z"
+      ],
+      "effect_multiset": [
+        [
+          "1/6",
+          "-1/6",
+          "0",
+          "0"
+        ],
+        [
+          "1/6",
+          "0",
+          "-1/6",
+          "0"
+        ],
+        [
+          "1/6",
+          "0",
+          "0",
+          "-1/6"
+        ],
+        [
+          "1/6",
+          "0",
+          "0",
+          "1/6"
+        ],
+        [
+          "1/6",
+          "0",
+          "1/6",
+          "0"
+        ],
+        [
+          "1/6",
+          "1/6",
+          "0",
+          "0"
+        ]
+      ],
+      "weighted_bloch_gram": [
+        [
+          "1/36",
+          "0",
+          "0",
+          "0",
+          "0",
+          "-1/36"
+        ],
+        [
+          "0",
+          "1/36",
+          "0",
+          "0",
+          "-1/36",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/36",
+          "-1/36",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1/36",
+          "1/36",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "-1/36",
+          "0",
+          "0",
+          "1/36",
+          "0"
+        ],
+        [
+          "-1/36",
+          "0",
+          "0",
+          "0",
+          "0",
+          "1/36"
+        ]
+      ]
+    },
+    "sic_known_co_survivor": {
+      "canonical_form": {
+        "axis_permutation": [
+          "x",
+          "y",
+          "z"
+        ],
+        "effect_multiset": [
+          [
+            "1/4",
+            "-sqrt(3)/12",
+            "-sqrt(3)/12",
+            "sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "-sqrt(3)/12",
+            "sqrt(3)/12",
+            "-sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "sqrt(3)/12",
+            "-sqrt(3)/12",
+            "-sqrt(3)/12"
+          ],
+          [
+            "1/4",
+            "sqrt(3)/12",
+            "sqrt(3)/12",
+            "sqrt(3)/12"
+          ]
+        ],
+        "weighted_bloch_gram": [
+          [
+            "1/16",
+            "-1/48",
+            "-1/48",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "1/16",
+            "-1/48",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "-1/48",
+            "1/16",
+            "-1/48"
+          ],
+          [
+            "-1/48",
+            "-1/48",
+            "-1/48",
+            "1/16"
+          ]
+        ]
+      },
+      "canonical_form_hash": "80870eb0f38878de4170d682998fa744d446a8cb022d27aba0a1dff92cf58fa1",
+      "closeness": "genuine IC co-survivor",
+      "convention_boundary": {
+        "candidate_has_pinned_convention_only_separation": false,
+        "note": "No S3 candidate in this pass is excluded solely by axis/order convention; pins only bound allowed alias canonicalization.",
+        "pin": null,
+        "relaxing_pin_reopens": false
+      },
+      "cost": "light-symbolic",
+      "expected_teeth_row": "projective-order / N01 nonparallel count",
+      "family_id": "S3.R3.2_sic_tetrahedron",
+      "finite_representative": "four tetrahedral effects with Bloch dot -1/3",
+      "id": "S3.R3.2_sic_tetrahedron",
+      "observables": {
+        "frame_rank": 4,
+        "nonparallel_count": 6,
+        "sharpness_deficits": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "six_state_classes": {
+          "class_count": 6,
+          "classes": [
+            [
+              "+x"
+            ],
+            [
+              "+y"
+            ],
+            [
+              "+z"
+            ],
+            [
+              "-x"
+            ],
+            [
+              "-y"
+            ],
+            [
+              "-z"
+            ]
+          ],
+          "collapsed_pairs": []
+        },
+        "z_coarsening_signature": {
+          "z_axis_effects": [],
+          "z_axis_signed_bloch_abs_total": "0",
+          "z_axis_weight_total": "0"
+        }
+      },
+      "row": "projective-order / N01 nonparallel count",
+      "verdict": "co-survivor-open",
+      "witness": {
+        "anchor": 12,
+        "candidate": 6,
+        "field": "nonparallel_count",
+        "interpretation": "exact separator, but registry marks SIC as genuine IC co-survivor rather than intrinsic kill"
+      }
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/round3_s3_alias_pass_v0/results/round3_s3_alias_pass_v0_jax_results.json",
+  "role_id": "jax_rich_mirror_sim_builder",
+  "schema": "round3_s3_alias_pass_v0_jax_lane_v1",
+  "sim_id": "round3_s3_alias_pass_v0",
+  "source_path": "system_v6/sims/round3_s3_alias_pass_v0/round3_s3_alias_pass_v0_jax.py",
+  "source_sha256": "9b076f60b806dba22576e726005045ded9a806ac6c06ded54fa64181081e1ca4",
+  "tool_calls": [
+    {
+      "boundary_case": "SIC remains a known co-survivor instead of being merged or killed",
+      "demotion_condition": "any verdict requires numeric closeness or tolerance",
+      "gates": [
+        "all_pass",
+        "alias",
+        "exclusion",
+        "co_survivor"
+      ],
+      "input_object": "S3 registry POVM effect rows over exact rationals and surds",
+      "negative/erased_control": "Z-only far control rank and six-state separation fail",
+      "output_object": "canonical effect multisets, weighted Bloch Gram matrices, ranks, and exact witnesses",
+      "positive_case": "MUB XYZ and reordered Pauli controls have equal canonical form",
+      "qualified_api": "sympy.Matrix.rank/sympy.simplify/sympy.radsimp",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "surds in SIC/trine rows remain SymPy canonical-form evidence; SMT binds finite rational witness rows",
+      "demotion_condition": "wrong polarity or precomputed boolean assertion",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "computed finite rational S3 witness rows from exact canonical forms",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "output_object": "UNSAT positive nonzero proof and SAT flip control",
+      "positive_case": "non-alias and far-control witnesses are nonzero after exact canonicalization",
+      "qualified_api": "z3.Solver/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "surds in SIC/trine rows remain SymPy canonical-form evidence; SMT binds finite rational witness rows",
+      "demotion_condition": "disagrees with z3",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "same computed finite rational S3 witness rows as z3",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "output_object": "matching UNSAT/SAT polarity",
+      "positive_case": "non-alias and far-control witnesses are nonzero after exact canonicalization",
+      "qualified_api": "cvc5.Solver/checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

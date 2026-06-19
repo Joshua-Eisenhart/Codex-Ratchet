@@ -1,0 +1,78 @@
+{
+    "result_path": "system_v6/sims/geo_s5_alternative_flow_families_v0/results/geo_s5_alternative_flow_families_v0_julia_results.json",
+    "packages_used": [
+        "Z3",
+        "JSON3",
+        "SHA",
+        "Dates"
+    ],
+    "source_sha256": "d948728261ee95eb933536a9f1327d746c27b440bfc6b3875a42513ed763fa84",
+    "classification": "scratch_diagnostic",
+    "sim_id": "geo_s5_alternative_flow_families_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T09:13:52Z",
+    "TOOL_MANIFEST": {
+        "Dates": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive timestamp emission"
+        },
+        "SHA": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive source hashing"
+        },
+        "JSON3": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive result serialization"
+        },
+        "Z3": {
+            "used": true,
+            "tried": true,
+            "reason": "load-bearing integer row proof for alternative survivor and control counts"
+        }
+    },
+    "all_pass": true,
+    "promotion_allowed": false,
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "TOOL_INTEGRATION_DEPTH": {
+        "Dates": "supportive",
+        "SHA": "supportive",
+        "JSON3": "supportive",
+        "Z3": "load_bearing"
+    },
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "load_bearing": true,
+            "wrong_null_control_verdict": "unsat",
+            "negative/erased_control": "erased count set to 1 makes the zero assertion UNSAT",
+            "gates": [
+                "alternative_survival_count",
+                "null_model_control"
+            ],
+            "erased_flip_verdict": "unsat",
+            "boundary_case": "one valid affine quotient co-survivor remains but full-signature count stays zero",
+            "demotion_condition": "demote if counts are not represented as Z3-bound integer rows",
+            "positive_case": "asserting survivor_count=0 and survivor_count=0 is SAT",
+            "verdict": "sat",
+            "solver": "Z3.jl",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "claim": "alternative full-signature survivor count is exactly zero",
+            "erased_flip_detected": true
+        }
+    },
+    "engine_values": {
+        "alternative_full_survivor_count": 0,
+        "non_affine_killing_row": "affine_validity",
+        "valid_affine_quotient_co_survivor_count": 1,
+        "null_model_killing_row": "validity"
+    },
+    "source_path": "system_v6/sims/geo_s5_alternative_flow_families_v0/geo_s5_alternative_flow_families_v0_julia.jl",
+    "schema_version": "geo_s5_alternative_flow_families_v0_julia_result_v1"
+}

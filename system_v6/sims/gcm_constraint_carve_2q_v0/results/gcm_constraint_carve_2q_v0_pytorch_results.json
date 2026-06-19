@@ -1,0 +1,86 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact count guard",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor storage and reductions",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing batched finite survivor observable",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "component_count": 204,
+  "embedded_1q_count": 16,
+  "engine": "pytorch",
+  "entangled_survivor_count": 16,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T22:54:00Z",
+  "package_observables": {
+    "sympy": "sp.Rational exact 2Q candidate/density/survivor/quotient/cross-rung count guard",
+    "torch.func": "vmap(observables)(first_marginal_coords) checks active probes, order-gap proxy, M(C,t), and entangled survivor count"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "quotient_class_count": 8,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_constraint_carve_2q_v0/results/gcm_constraint_carve_2q_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_constraint_carve_2q_v0",
+  "source_path": "system_v6/sims/gcm_constraint_carve_2q_v0/gcm_constraint_carve_2q_v0_pytorch.py",
+  "source_sha256": "9ebc1e1aa5f1a10bc45e13dfba64110d2b226650cae6c3839e62fbb2ce2683b0",
+  "survivor_count": 544,
+  "sympy_guard": {
+    "counts": {
+      "candidate": "15783",
+      "density": "1167",
+      "embedded_1q": "16",
+      "entangled_survivor": "16",
+      "quotient": "8",
+      "survivor": "544"
+    },
+    "pass": true
+  },
+  "torch_func_receipt": {
+    "all_order_gap_active": true,
+    "all_probe_active": true,
+    "coord_shape": [
+      544,
+      3
+    ],
+    "entangled_survivor_count": 16,
+    "finite": true,
+    "mct_positive_active_count": 272,
+    "min_active_probe_norm": 0.5,
+    "min_order_gap_proxy": 0.5,
+    "observable_shape": [
+      544,
+      3
+    ]
+  }
+}

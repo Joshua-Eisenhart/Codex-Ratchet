@@ -1,0 +1,1243 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "cvc5": "load_bearing",
+    "gcm_substrate_check": "load_bearing",
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "G.2a builder/audit boundary from birth",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent survivor-count contradiction guard matching z3",
+      "tried": true,
+      "used": true
+    },
+    "gcm_substrate_check": {
+      "reason": "load-bearing hardened 1Q, 2Q, and 3Q lineage consumption checks; 5Q hash check is local to this packet",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "load-bearing finite C^64 density matrices, partial traces, full C1/C2/C3 rows, and 6-party CKW focus inequalities",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "JSON, hashing, source locks, and result writing",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing survivor-count contradiction guard",
+      "tried": true,
+      "used": true
+    }
+  },
+  "candidate_count": 557,
+  "claim_path_tools": [
+    "Graphs",
+    "networkx",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "consumed_6q_feedstock": {
+    "five_q_carve_survivors": {
+      "authority_commit": "16837555a",
+      "caveat_carried": "5Q stored cut entropy/MI rows but not per-cut reduced matrices; 6Q carries the same explicit caveat.",
+      "path": "system_v6/sims/gcm_constraint_carve_5q_v0/results/gcm_constraint_carve_5q_v0_results.json",
+      "sha256": "ad44014071580b40d681557b232a89898ec168667ed3f8ec8076007cdcf6a5c0",
+      "source_commit": "b8b6e777e",
+      "survivor_count": 547
+    },
+    "geo_s1_scaling_stress_678q_exact_v0": {
+      "commit": "b27d22317",
+      "jax_pin_sha256": "e4da6f5578731c0017ca6140646e893f84b296db78837413d88f0012f86721e8",
+      "jax_result_sha256": "61cbe32a417319a699440c2baaca27b84af9bc89cff842fa588b49155ea94bf4",
+      "path": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json",
+      "pin_sha256": "e4da6f5578731c0017ca6140646e893f84b296db78837413d88f0012f86721e8",
+      "rows_consumed": [
+        "proofs.6.finite_pauli_extension_scan",
+        "proofs.6.max_family_bound",
+        "proofs.6.named_state_controls",
+        "per_rung_receipt_tables.6.W1_carrier_quotient",
+        "per_rung_receipt_tables.6.W2_Cl2n_exact_floor"
+      ],
+      "sha256": "b7d77b8342ff12dc7b6fcdb6fc359717bc63e8d7e60633758f9d14288e87e379",
+      "source_sha256": "c70d98a36c75a00c58a489ac715821a818b79e0766ca13b9c5b038ddb04d1fa4"
+    },
+    "mode": "consume_existing_feedstock_never_rebuild",
+    "stage_lifted_spinor_shell_n6_v0": {
+      "jax_pin_sha256": "52a2f3e9753cfd1c7080ef6e6f3091b131e69198cc5fcac2f27522baae8b2e87",
+      "jax_result_sha256": "881e1b9b1255cd408e08094aa679790417706937e81a619fe1b283dc17d54571",
+      "path": "system_v6/sims/stage_lifted_spinor_shell_n6_v0/results/stage_lifted_spinor_shell_n6_v0_envelope_results.json",
+      "pin_sha256": "52a2f3e9753cfd1c7080ef6e6f3091b131e69198cc5fcac2f27522baae8b2e87",
+      "rows_consumed": [
+        "rows.P2_support_object",
+        "rows.P3_density_quotient",
+        "rows.P5_entropy",
+        "rows.P6_order_gaps.Cl12_anchor"
+      ],
+      "sha256": "e197c10195b4d448d712e4173929678dca1caae98a31a9cb997c09cf6bb5d261",
+      "source_sha256": "5ff413b8f1c35e9dd7b5426b131aa0bdae821e12d447d8b42f01ae0e995cef2b"
+    }
+  },
+  "controls_summary": {
+    "regressions": {
+      "five_q": {
+        "authority_commit": "16837555a",
+        "claim_ceiling": "scratch_diagnostic_state_artifacted_5q_count_fixture",
+        "quotient_class_count": 9,
+        "source_commit": "b8b6e777e",
+        "survivor_count": 547
+      },
+      "one_q": {
+        "object_id_match": true,
+        "registry_body_hash_match": true,
+        "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed"
+      },
+      "three_q": {
+        "object_id_match": true,
+        "quotient_class_count": 9,
+        "registry_body_hash_match": true,
+        "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+        "survivor_count": 545
+      },
+      "two_q": {
+        "object_id_match": true,
+        "registry_body_hash_match": true,
+        "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac"
+      }
+    },
+    "source_recompute_injection_red": {
+      "caught_tokens": [
+        "terrain",
+        "atlas",
+        "Se"
+      ],
+      "control": "source predicate recompute after forbidden terrain/atlas/Se injection",
+      "error_codes": [
+        "GCM6Q_SOURCE_RECOMPUTE_FORBIDDEN_TOKEN"
+      ],
+      "red": true
+    }
+  },
+  "cross_rung_rows": {
+    "cut_lattice": {
+      "bipartitions": [
+        "q0|q12345",
+        "q1|q02345",
+        "q2|q01345",
+        "q3|q01245",
+        "q4|q01235",
+        "q5|q01234",
+        "q01|q2345",
+        "q02|q1345",
+        "q03|q1245",
+        "q04|q1235",
+        "q05|q1234",
+        "q12|q0345",
+        "q13|q0245",
+        "q14|q0235",
+        "q15|q0234",
+        "q23|q0145",
+        "q24|q0135",
+        "q25|q0134",
+        "q34|q0125",
+        "q35|q0124",
+        "q45|q0123",
+        "q012|q345",
+        "q013|q245",
+        "q014|q235",
+        "q015|q234",
+        "q023|q145",
+        "q024|q135",
+        "q025|q134",
+        "q034|q125",
+        "q035|q124",
+        "q045|q123"
+      ],
+      "count": 31
+    },
+    "five_q_to_6q_product_embedding": {
+      "all_5q_survivors_have_one_6q_lift": true,
+      "construction": "rho_ABCDE tensor |0><0|_F",
+      "input_5q_survivor_count": 547,
+      "lifted_6q_survivor_count": 547
+    },
+    "partial_trace_F_vs_5q_survivors": {
+      "Tr_F_reproduces_5q_state_count": 547,
+      "max_abs_delta_TrF_vs_5q_rho": 0.0,
+      "sample_rows": [
+        {
+          "candidate_id": 0,
+          "max_abs_delta_TrF_vs_5q_rho": 0.0,
+          "source_5q_survivor_id": 0
+        },
+        {
+          "candidate_id": 1,
+          "max_abs_delta_TrF_vs_5q_rho": 0.0,
+          "source_5q_survivor_id": 1
+        },
+        {
+          "candidate_id": 2,
+          "max_abs_delta_TrF_vs_5q_rho": 0.0,
+          "source_5q_survivor_id": 2
+        },
+        {
+          "candidate_id": 3,
+          "max_abs_delta_TrF_vs_5q_rho": 0.0,
+          "source_5q_survivor_id": 3
+        },
+        {
+          "candidate_id": 4,
+          "max_abs_delta_TrF_vs_5q_rho": 0.0,
+          "source_5q_survivor_id": 4
+        }
+      ],
+      "trace": "Tr_F(rho_ABCDEF)"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "assertion": "computed survivor_count != expected",
+      "bound_value": 548,
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "assertion": "computed survivor_count != expected",
+      "bound_value": 548,
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "cut_lattice_caveat": {
+    "per_cut_reduced_matrices_stored": false,
+    "reduced_matrix_caveat": "Per-cut reduced matrices are not stored for all 6Q candidates in this tractable count fixture; only entropy/MI rows are emitted."
+  },
+  "divergence": {
+    "divergence_log": [
+      "All three lanes agree on survivor_count=548 and quotient_class_count=9."
+    ],
+    "engine_values": {
+      "jax": {
+        "quotient_class_count": 9,
+        "survivor_count": 548
+      },
+      "julia": {
+        "quotient_class_count": 9,
+        "survivor_count": 548
+      },
+      "pytorch": {
+        "quotient_class_count": 9,
+        "survivor_count": 548
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims_state_artifacted_6q_count_fixture",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver unsat guard for 6Q survivor count",
+        "networkx": "nx.Graph/connected_components over 6Q quotient classes",
+        "sympy": "sp.Rational exact 6Q count guards",
+        "z3": "z3.Solver unsat guard for 6Q survivor count"
+      },
+      "packages_used": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/gcm_constraint_carve_6q_v0/results/gcm_constraint_carve_6q_v0_jax_results.json",
+      "result_sha256": "89f6e4cfcfe3f1617610b17b1bc1fd211f3eb8c13b21f6d682016b398db3951e",
+      "source_path": "system_v6/sims/gcm_constraint_carve_6q_v0/gcm_constraint_carve_6q_v0_jax.py",
+      "source_sha256": "7597b6757b22c67c0b977c5247235e82ff2b6a27cc6b8f30102d888958b19a5f"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.SimpleGraph/add_edge!/connected_components over 6Q quotient-class matrix adjacency"
+      },
+      "packages_used": [
+        "Dates",
+        "JSON3",
+        "SHA",
+        "Graphs"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/gcm_constraint_carve_6q_v0/results/gcm_constraint_carve_6q_v0_julia_results.json",
+      "result_sha256": "c8208ef4adb60499ff2b7b77caef505a670a12adc1674507d1f1220c35029f2c",
+      "source_path": "system_v6/sims/gcm_constraint_carve_6q_v0/gcm_constraint_carve_6q_v0_julia.jl",
+      "source_sha256": "794a7a5d226b2562632100d4a4079be15279d5ae5391fc2124386fcae64d4e22"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "sympy": "sp.Rational exact 6Q survivor/class count guards",
+        "torch.func": "vmap 6Q C2 active-probe recomputation from matrix-derived first-qubit rows"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/gcm_constraint_carve_6q_v0/results/gcm_constraint_carve_6q_v0_pytorch_results.json",
+      "result_sha256": "6eb6d0f394815aa93aacdaad2562e59e66200e9cd8575062ad092250be396c9c",
+      "source_path": "system_v6/sims/gcm_constraint_carve_6q_v0/gcm_constraint_carve_6q_v0_pytorch.py",
+      "source_sha256": "fee2a84a5662ddd70eb8bfa26876d6cac82043d0e0441ea816779216c14aea44"
+    }
+  },
+  "floor_rows_extended": {
+    "consumed_not_rebuilt": true,
+    "geo_s1_scaling_stress_678q_exact_v0": {
+      "path": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json",
+      "proofs_6": {
+        "finite_pauli_extension_scan": {
+          "cvc5_erased_chirality_control": "sat",
+          "cvc5_no_full_family_extension": "sat",
+          "pass": true,
+          "z3_erased_chirality_control": "sat",
+          "z3_no_full_family_extension": "sat"
+        },
+        "max_family_bound": {
+          "cvc5_max_family_boundary_control": "sat",
+          "cvc5_next_family_blocked_by_representation_bound": "unsat",
+          "pass": true,
+          "z3_max_family_boundary_control": "sat",
+          "z3_next_family_blocked_by_representation_bound": "unsat"
+        },
+        "named_state_controls": {
+          "Bell_pair_entropy": "0",
+          "GHZ_single_entropy": "log(2)",
+          "cvc5_product_GHZ_label_swap_detected": "unsat",
+          "pass": true,
+          "product_single_entropy": "0",
+          "z3_product_GHZ_label_swap_detected": "unsat"
+        }
+      },
+      "receipt_table_6": {
+        "F01_finitude_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "N01_noncommutation_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "T01_bracketing_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W1_carrier_quotient": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W2_Cl2n_exact_floor": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W3_max_anticommuting_family": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W4_finite_pauli_string_stress": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W5_named_stabilizer_controls": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W6_scaling_boundary_ceiling": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "W7_classification_table": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        }
+      }
+    },
+    "stage_lifted_spinor_shell_n6_v0": {
+      "Cl12_anchor": {
+        "algebra": "Cl(12) on the six-qubit C^64 carrier",
+        "certificate": "Stored exact symplectic-rank certificate over all 4095 nonidentity n=6 Pauli strings modulo phase; explicit 13-Pauli witness has all 78 pairs verified, rank(K_13)=12 is admissible in F_2^12, and rank(K_14)=14>12 excludes a 14-element anticommuting family.",
+        "chirality_split": {
+          "minus": 32,
+          "plus": 32
+        },
+        "constructive_family_size": 13,
+        "max_anticommutator_norm": 0.0,
+        "maximal_anticommuting_family": 13,
+        "maximality_receipt": {
+          "bound_certificate": {
+            "ambient_symplectic_rank_6q": 12,
+            "cvc5_rank_bound_check": "unsat",
+            "rank_K_13_over_F2": 12,
+            "rank_K_14_over_F2": 14,
+            "z3_rank_bound_check": "unsat"
+          },
+          "kind": "exact_pauli_symplectic_rank_maximality_certificate",
+          "max_clique_size": 13,
+          "method": "exact finite symplectic-rank certificate: an m-family of pairwise anticommuting Pauli strings has Gram matrix K_m over F2; rank(K_13)=12 is admissible in F_2^12 while rank(K_14)=14 exceeds the 6Q Pauli symplectic rank 12, excluding 14; the stored Jordan-Wigner witness reaches 13",
+          "no_14_element_family_exists": true,
+          "rank_K_13_admissible": true,
+          "search_space": {
+            "edge_rule": "symplectic inner product over F2 equals 1, i.e. Pauli strings anticommute",
+            "n_qubits": 6,
+            "vertex_set": "all nonidentity n=6 Pauli strings modulo phase",
+            "vertices": 4095
+          },
+          "target_excluded": 14,
+          "witness_all_pairs_anticommute": true,
+          "witness_clique_labels": [
+            "XIIIII",
+            "YIIIII",
+            "ZXIIII",
+            "ZYIIII",
+            "ZZXIII",
+            "ZZYIII",
+            "ZZZXII",
+            "ZZZYII",
+            "ZZZZXI",
+            "ZZZZYI",
+            "ZZZZZX",
+            "ZZZZZY",
+            "ZZZZZZ"
+          ],
+          "witness_pair_count": 78
+        },
+        "pass": true,
+        "squares_to_identity": true
+      },
+      "certificate_caveat": "Use symplectic-rank certificate wording; do not cite as materialized exhaustive 4095-vertex clique search.",
+      "path": "system_v6/sims/stage_lifted_spinor_shell_n6_v0/results/stage_lifted_spinor_shell_n6_v0_jax_results.json"
+    }
+  },
+  "formal_admission_allowed": false,
+  "gcm_lineage": {
+    "base_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "candidate_region_ids": [
+      "creg_fb8dade30d57503aa616"
+    ],
+    "gcm_2q_candidate_region_ids": [
+      "gcm2qcreg_515f363fed16353edaf8"
+    ],
+    "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+    "gcm_2q_quotient_class_ids": [
+      "gcm2qqcls_6195072db055551c2105"
+    ],
+    "gcm_2q_registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+    "gcm_2q_survivor_ids": [
+      "gcm2qsurv_d0e240413ea2b2160413"
+    ],
+    "gcm_3q_candidate_region_ids": [
+      "gcm3qcreg_f5cd83b58e096b79e27d8ead"
+    ],
+    "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+    "gcm_3q_quotient_class_ids": [
+      "gcm3qqcls_51c3e7a02fd4262934b6c4ff"
+    ],
+    "gcm_3q_registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+    "gcm_3q_survivor_ids": [
+      "gcm3qsurv_5197eacabb43ac19561c19c5"
+    ],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "object_maps": [
+      {
+        "candidate_region_id": "creg_fb8dade30d57503aa616",
+        "gcm_2q_candidate_region_id": "gcm2qcreg_515f363fed16353edaf8",
+        "gcm_2q_quotient_class_id": "gcm2qqcls_6195072db055551c2105",
+        "gcm_2q_survivor_id": "gcm2qsurv_d0e240413ea2b2160413",
+        "gcm_3q_candidate_region_id": "gcm3qcreg_f5cd83b58e096b79e27d8ead",
+        "gcm_3q_quotient_class_id": "gcm3qqcls_51c3e7a02fd4262934b6c4ff",
+        "gcm_3q_survivor_id": "gcm3qsurv_5197eacabb43ac19561c19c5",
+        "quotient_class_id": "qcls_830aa0cdc681784fa290",
+        "role": "minimal resolved lineage witness for hardened 1Q/2Q/3Q substrate checks",
+        "survivor_id": "surv_df8410cc012bfc835668"
+      }
+    ],
+    "one_q_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "quotient_class_ids": [
+      "qcls_830aa0cdc681784fa290"
+    ],
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "survivor_ids": [
+      "surv_df8410cc012bfc835668"
+    ],
+    "three_q_registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0"
+  },
+  "generated_at": "2026-06-13T03:32:14Z",
+  "ghz6_w6_cluster_admissibility_matrix": {
+    "asymmetry_strength": "matrix-row local-constraint asymmetry only; not SLOCC, phase, or QIT-floor admission evidence",
+    "honest_statement": "GHZ6 fails C2+C3; W6 fails C3 only; cluster_linear_6 fails C2+C3 under this local first-qubit probe.",
+    "rows": {
+      "GHZ6": {
+        "candidate_id": 547,
+        "failed_constraints": [
+          "C2",
+          "C3"
+        ],
+        "first_failed_constraint_display_only": "C2",
+        "pass_fail": {
+          "C1": true,
+          "C2": false,
+          "C3": false
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_6db62f8979c48cb8d5f63be5"
+      },
+      "W6": {
+        "candidate_id": 548,
+        "failed_constraints": [
+          "C3"
+        ],
+        "first_failed_constraint_display_only": "C3",
+        "pass_fail": {
+          "C1": true,
+          "C2": true,
+          "C3": false
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_8ec9ab3c0968bf8b37c22855"
+      },
+      "cluster_linear_6": {
+        "candidate_id": 549,
+        "failed_constraints": [
+          "C2",
+          "C3"
+        ],
+        "first_failed_constraint_display_only": "C2",
+        "pass_fail": {
+          "C1": true,
+          "C2": false,
+          "C3": false
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_556433d954c3b613ad9f48b2"
+      }
+    },
+    "source": "full_constraint_matrix"
+  },
+  "helper_preflight": {
+    "all_pass": true,
+    "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/helper_process_audit.py --strict",
+    "exit_code": 0,
+    "guard": "non_browser_sim_preflight",
+    "helper_process_count": 0,
+    "helper_processes": [],
+    "likely_root_cause": null,
+    "mcp_config_findings": [],
+    "mcp_config_parse_error": null,
+    "mcp_config_path": "/Users/joshuaeisenhart/.codex/config.toml",
+    "note": "These helpers are only suspicious for non-browser sim/controller runs; keep them if an active browser/computer-use task intentionally owns them."
+  },
+  "mode": "all_three_full_sims_state_artifacted_6q_count_fixture",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "gcm_constraint_carve_6q_v0",
+  "parent_lineage": {
+    "base_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "candidate_region_ids": [
+      "creg_fb8dade30d57503aa616"
+    ],
+    "gcm_2q_candidate_region_ids": [
+      "gcm2qcreg_515f363fed16353edaf8"
+    ],
+    "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+    "gcm_2q_quotient_class_ids": [
+      "gcm2qqcls_6195072db055551c2105"
+    ],
+    "gcm_2q_registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+    "gcm_2q_survivor_ids": [
+      "gcm2qsurv_d0e240413ea2b2160413"
+    ],
+    "gcm_3q_candidate_region_ids": [
+      "gcm3qcreg_f5cd83b58e096b79e27d8ead"
+    ],
+    "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+    "gcm_3q_quotient_class_ids": [
+      "gcm3qqcls_51c3e7a02fd4262934b6c4ff"
+    ],
+    "gcm_3q_registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+    "gcm_3q_survivor_ids": [
+      "gcm3qsurv_5197eacabb43ac19561c19c5"
+    ],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "object_maps": [
+      {
+        "candidate_region_id": "creg_fb8dade30d57503aa616",
+        "gcm_2q_candidate_region_id": "gcm2qcreg_515f363fed16353edaf8",
+        "gcm_2q_quotient_class_id": "gcm2qqcls_6195072db055551c2105",
+        "gcm_2q_survivor_id": "gcm2qsurv_d0e240413ea2b2160413",
+        "gcm_3q_candidate_region_id": "gcm3qcreg_f5cd83b58e096b79e27d8ead",
+        "gcm_3q_quotient_class_id": "gcm3qqcls_51c3e7a02fd4262934b6c4ff",
+        "gcm_3q_survivor_id": "gcm3qsurv_5197eacabb43ac19561c19c5",
+        "quotient_class_id": "qcls_830aa0cdc681784fa290",
+        "role": "minimal resolved lineage witness for hardened 1Q/2Q/3Q substrate checks",
+        "survivor_id": "surv_df8410cc012bfc835668"
+      }
+    ],
+    "one_q_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "quotient_class_ids": [
+      "qcls_830aa0cdc681784fa290"
+    ],
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "survivor_ids": [
+      "surv_df8410cc012bfc835668"
+    ],
+    "three_q_registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0"
+  },
+  "promotion_allowed": false,
+  "quotient_class_count": 9,
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "gcm_constraint_carve_6q_v0",
+  "six_party_ckw_monogamy_narrowed": {
+    "all_focus_qubits_satisfy_ckw": true,
+    "computed_from_stored_rho_ABCDEF": true,
+    "generalization": "Osborne-Verstraete N-qubit CKW focus-qubit inequality",
+    "higher_party_residual_allocation_claimed": false,
+    "narrow_statement": "For stored pure survivor states, C(qi|rest)^2 >= sum_j C(qi,qj)^2 is checked per focus qubit.",
+    "pure_survivor_count_checked": 4,
+    "residual_6_tangle_claimed": false,
+    "rows": [
+      {
+        "candidate_id": 544,
+        "computed_from_stored_rho_ABCDEF": true,
+        "focus_qubits": {
+          "q0": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q0q1": 0.0,
+              "q0q2": 0.0,
+              "q0q3": 0.0,
+              "q0q4": 0.0,
+              "q0q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q1": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q1q0": 0.0,
+              "q1q2": 0.0,
+              "q1q3": 0.0,
+              "q1q4": 0.0,
+              "q1q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q2": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q2q0": 0.0,
+              "q2q1": 0.0,
+              "q2q3": 0.0,
+              "q2q4": 0.0,
+              "q2q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q3": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q3q0": 0.0,
+              "q3q1": 0.0,
+              "q3q2": 0.0,
+              "q3q4": 0.0,
+              "q3q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q4": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q4q0": 0.0,
+              "q4q1": 0.0,
+              "q4q2": 0.0,
+              "q4q3": 0.0,
+              "q4q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q5": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q5q0": 0.0,
+              "q5q1": 0.0,
+              "q5q2": 0.0,
+              "q5q3": 0.0,
+              "q5q4": 0.0
+            },
+            "satisfies_focus_ckw": true
+          }
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_2fd924e42f545dc00b919c6a",
+        "state_id": "5q_lift_544",
+        "survivor_id": 544
+      },
+      {
+        "candidate_id": 545,
+        "computed_from_stored_rho_ABCDEF": true,
+        "focus_qubits": {
+          "q0": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q0q1": 0.0,
+              "q0q2": 0.0,
+              "q0q3": 0.0,
+              "q0q4": 0.0,
+              "q0q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q1": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q1q0": 0.0,
+              "q1q2": 0.0,
+              "q1q3": 0.0,
+              "q1q4": 0.0,
+              "q1q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q2": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q2q0": 0.0,
+              "q2q1": 0.0,
+              "q2q3": 0.0,
+              "q2q4": 0.0,
+              "q2q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q3": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q3q0": 0.0,
+              "q3q1": 0.0,
+              "q3q2": 0.0,
+              "q3q4": 0.0,
+              "q3q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q4": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q4q0": 0.0,
+              "q4q1": 0.0,
+              "q4q2": 0.0,
+              "q4q3": 0.0,
+              "q4q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q5": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q5q0": 0.0,
+              "q5q1": 0.0,
+              "q5q2": 0.0,
+              "q5q3": 0.0,
+              "q5q4": 0.0
+            },
+            "satisfies_focus_ckw": true
+          }
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_a4a799a760d0d6f8939816a5",
+        "state_id": "5q_lift_545",
+        "survivor_id": 545
+      },
+      {
+        "candidate_id": 546,
+        "computed_from_stored_rho_ABCDEF": true,
+        "focus_qubits": {
+          "q0": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q0q1": 0.0,
+              "q0q2": 0.0,
+              "q0q3": 0.0,
+              "q0q4": 0.0,
+              "q0q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q1": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q1q0": 0.0,
+              "q1q2": 0.0,
+              "q1q3": 0.0,
+              "q1q4": 0.0,
+              "q1q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q2": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q2q0": 0.0,
+              "q2q1": 0.0,
+              "q2q3": 0.0,
+              "q2q4": 0.0,
+              "q2q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q3": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q3q0": 0.0,
+              "q3q1": 0.0,
+              "q3q2": 0.0,
+              "q3q4": 0.0,
+              "q3q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q4": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q4q0": 0.0,
+              "q4q1": 0.0,
+              "q4q2": 0.0,
+              "q4q3": 0.0,
+              "q4q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q5": {
+            "ckw_margin": 0.0,
+            "one_tangle": 0.0,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q5q0": 0.0,
+              "q5q1": 0.0,
+              "q5q2": 0.0,
+              "q5q3": 0.0,
+              "q5q4": 0.0
+            },
+            "satisfies_focus_ckw": true
+          }
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_451f5fd84442ed92d7cd4d11",
+        "state_id": "5q_lift_546",
+        "survivor_id": 546
+      },
+      {
+        "candidate_id": 552,
+        "computed_from_stored_rho_ABCDEF": true,
+        "focus_qubits": {
+          "q0": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q0q1": 0.0,
+              "q0q2": 0.0,
+              "q0q3": 0.0,
+              "q0q4": 0.0,
+              "q0q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q1": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q1q0": 0.0,
+              "q1q2": 0.0,
+              "q1q3": 0.0,
+              "q1q4": 0.0,
+              "q1q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q2": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q2q0": 0.0,
+              "q2q1": 0.0,
+              "q2q3": 0.0,
+              "q2q4": 0.0,
+              "q2q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q3": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q3q0": 0.0,
+              "q3q1": 0.0,
+              "q3q2": 0.0,
+              "q3q4": 0.0,
+              "q3q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q4": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q4q0": 0.0,
+              "q4q1": 0.0,
+              "q4q2": 0.0,
+              "q4q3": 0.0,
+              "q4q5": 0.0
+            },
+            "satisfies_focus_ckw": true
+          },
+          "q5": {
+            "ckw_margin": 0.1875,
+            "one_tangle": 0.1875,
+            "pairwise_sum": 0.0,
+            "pairwise_tangles": {
+              "q5q0": 0.0,
+              "q5q1": 0.0,
+              "q5q2": 0.0,
+              "q5q3": 0.0,
+              "q5q4": 0.0
+            },
+            "satisfies_focus_ckw": true
+          }
+        },
+        "rho_ABCDEF_content_id": "rhoabcdef_92442c46f24cd38e9bdf1c52",
+        "state_id": "locally_rotated_generalized_GHZ6_anchor",
+        "survivor_id": 547
+      }
+    ],
+    "subtle_open_boundary": "Six-party residual allocation and entanglement-class separation are not claimed by this fixture."
+  },
+  "stability_pairs": [],
+  "state_artifact_index_sha256": "0aa14694de7af253b1abba3e8ad81d5ccdd4580b38453e1b59e4f124f7947c90",
+  "state_artifact_result_path": "system_v6/sims/gcm_constraint_carve_6q_v0/results/gcm_constraint_carve_6q_v0_results.json",
+  "substrate_checks": {
+    "five_q_carve": {
+      "authority_commit": "16837555a",
+      "error_codes": [],
+      "ok": true,
+      "path": "system_v6/sims/gcm_constraint_carve_5q_v0/results/gcm_constraint_carve_5q_v0_results.json",
+      "source_commit": "b8b6e777e",
+      "survivor_count": 547
+    },
+    "one_q_default_registry": {
+      "error_codes": [],
+      "errors": [],
+      "gcm_2q_object_id": null,
+      "gcm_3q_object_id": null,
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+      "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+    },
+    "three_q_registry": {
+      "error_codes": [],
+      "errors": [],
+      "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+      "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+      "registry_path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json"
+    },
+    "two_q_registry": {
+      "error_codes": [],
+      "errors": [],
+      "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+      "gcm_3q_object_id": null,
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+      "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    }
+  },
+  "substrate_negatives": {
+    "1Q": {
+      "lineage_free": {
+        "error_codes": [
+          "GCM_OBJECT_ID_MISMATCH",
+          "GCM_LINEAGE_REGISTRY_BODY_SHA256_MISSING",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "registry_body_sha256 missing from lineage",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": null,
+        "gcm_3q_object_id": null,
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+        "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+      },
+      "stale_lineage": {
+        "error_codes": [
+          "GCM_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "lineage registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=stale",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": null,
+        "gcm_3q_object_id": null,
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+        "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+      }
+    },
+    "2Q": {
+      "lineage_free": {
+        "error_codes": [
+          "GCM_OBJECT_ID_MISMATCH",
+          "GCM2Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "lineage 2Q registry_body_sha256 mismatch: registry=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=[]",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": null,
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+        "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+      },
+      "stale_lineage": {
+        "error_codes": [
+          "GCM2Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "lineage 2Q registry_body_sha256 mismatch: registry=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=['stale']",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": null,
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+        "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+      }
+    },
+    "3Q": {
+      "lineage_free": {
+        "error_codes": [
+          "GCM_OBJECT_ID_MISMATCH",
+          "GCM3Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM3Q_LINEAGE_2Q_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "lineage 3Q registry_body_sha256 mismatch: registry=623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0 cited=None",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "lineage 2Q registry_body_sha256 mismatch for 3Q packet: expected=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+        "registry_path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json"
+      },
+      "stale_lineage": {
+        "error_codes": [
+          "GCM3Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM3Q_LINEAGE_2Q_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "lineage 3Q registry_body_sha256 mismatch: registry=623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0 cited=None",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "lineage 2Q registry_body_sha256 mismatch for 3Q packet: expected=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+        "registry_path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json"
+      }
+    },
+    "5Q": {
+      "lineage_free": {
+        "error_codes": [
+          "GCM5Q_CARVE_SOURCE_MISSING"
+        ],
+        "errors": [
+          "5Q carve source omitted"
+        ],
+        "ok": false
+      },
+      "stale_lineage": {
+        "error_codes": [
+          "GCM5Q_CARVE_HASH_STALE"
+        ],
+        "errors": [
+          "5Q carve commit/hash stale"
+        ],
+        "ok": false
+      }
+    }
+  },
+  "survivor_count": 548,
+  "terrain_blindness_guard": {
+    "checked_constraint_ids": [
+      "C1_finite_6q_density_carrier",
+      "C2_probe_distinguishability_xz_local_adapter_pin",
+      "C3_persistence_n01_order_gap"
+    ],
+    "clean": true,
+    "errors": [],
+    "forbidden_tokens": [
+      "terrain",
+      "atlas",
+      "Se",
+      "Ne",
+      "Ni",
+      "Si",
+      "dissipative",
+      "circulation"
+    ],
+    "guard": "admissibility_predicate_source_recompute_token_guard",
+    "predicate_text_sha256": "61419eb56d4b9514bbee155c41948b0e291f00b80d6106fedaccb6e98f27d485"
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "state_artifacted_6q_constraint_matrix",
+      "5q_to_6q_product_embedding_and_TrF_retraction",
+      "GHZ6_W6_cluster_full_matrix_rows",
+      "narrowed_6party_ckw_from_stored_rho",
+      "Cl12_C64_floor_rows_consumed_from_feedstock"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver unsat guard for survivor count",
+        "networkx": "nx.Graph/connected_components over quotient classes",
+        "sympy": "sp.Rational exact count guard",
+        "z3": "z3.Solver unsat guard for survivor count"
+      },
+      "julia": {
+        "Graphs": "Graphs.SimpleGraph/add_edge!/connected_components over 6Q quotient-class adjacency"
+      },
+      "pytorch": {
+        "sympy": "sp.Rational exact survivor/class count guards",
+        "torch.func": "vmap recomputes C2 active-probe booleans from matrix-derived first-qubit x/z rows"
+      }
+    }
+  }
+}

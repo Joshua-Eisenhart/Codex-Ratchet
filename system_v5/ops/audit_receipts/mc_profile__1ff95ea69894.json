@@ -1,0 +1,34 @@
+{
+  "rung": "mc_profile",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_mc_profile_v0_jax_leg.py",
+  "source_sha256": "1ff95ea69894aaa3dfac1d7a7322a7630ccc3b53deaa7c185adb049b68c84886",
+  "source_mtime": 1780884317.2774248,
+  "source_mtime_iso": "2026-06-08T02:05:17.277425Z",
+  "prompt_sha256": "a84f5cf9a6028d339eb8b01fd1a2b4cafe62e887686d6c83c0ca52045df14dcb",
+  "audited_at": "2026-06-08T03:04:42.331940Z",
+  "authority": {
+    "model": "codex1 gpt-5.5 xhigh (fresh read-only; separate instance from codex2 builder)",
+    "verdict": "GENUINE",
+    "raw": "ad_bearing\": True,\n                \"verdict\": \"unsat\",\n                \"claim\": \"Independent cvc5 derivation of the same excluded controls and erase flips.\",\n                \"erase_flip_verdicts\": {k: v[\"cvc5_after\"] for k, v in flips.items()},\n            },\n        },\n        \"all_pass\": all_pass,\n        \"TOOL_MANIFEST\": {\n            \"jax\": {\"tried\": True, \"used\": True, \"reason\": \"load-bearing finite grid construction and matrix-entry computation with x64 enabled\"},\n            \"jax.numpy\": {\"tried\": True, \"used\": True, \"reason\": \"load-bearing trace, determinant, and Born-probe value computation from candidate matrices\"},\n            \"z3\": {\"tried\": True, \"used\": True, \"reason\": \"load-bearing exact Real arithmetic derivation of C exclusion and erase flips from pinned matrix entries\"},\n            \"cvc5\": {\"tried\": True, \"used\": True, \"reason\": \"load-bearing independent exact Real arithmetic derivation matching z3\"},\n        },\n        \"TOOL_INTEGRATION_DEPTH\": {\"jax\": \"load_bearing\", \"jax.numpy\": \"load_bearing\", \"z3\": \"load_bearing\", \"cvc5\": \"load_bearing\"},\n    }\n\n\ndef main() -> int:\n    result = build_result()\n    RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    RESULT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    print(\n        \"SCOUT_DONE \"\n        f\"all_pass={str(result['all_pass']).lower()} \"\n        f\"admitted={result['profile']['admitted_cardinality']} \"\n        f\"classes={result['profile']['full_M_class_count']} \"\n        f\"drop_y_classes={result['profile']['drop_P_yplus_class_count']} \"\n        f\"z3={result['crossover_proofs']['z3']['verdict']} \"\n        f\"cvc5={result['crossover_proofs']['cvc5']['verdict']} \"\n        f\"drop_psd={result['negative_control_flip']['drop_psd']['before']}->{result['negative_control_flip']['drop_psd']['z3_after']} \"\n        f\"reads_peer_result={result['reads_peer_result']}\"\n    )\n    return 0 if result[\"all_pass\"] else 2\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n\ndeprecated: `[features].codex_hooks` is deprecated. Use `[features].hooks` instead.\nEnable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.\ncodex\nVERDICT=GENUINE; LINE=120; REASON=The SMT contradiction is derived from symbolic Real expressions over pinned matrix entries, with determinant/probe formulas computed in solver rather than rechecking precomputed scalars or booleans.\ntokens used\n33,903\n"
+  },
+  "alt_views": {
+    "grok420": {
+      "model_id": "grok-4.20-0309-reasoning",
+      "response_id": "76ac964e-e319-9e6a-8697-69d97fc059ac",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=113; REASON=solver builds and evaluates det/p_xplus/etc. expressions directly from pinned matrix constants inside the Real arithmetic theory before asserting psd/trace/probe constraints."
+    },
+    "grok43": {
+      "model_id": "grok-4.3",
+      "response_id": "a82e5a00-3399-9278-89a2-5d4fe41cd740",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=140; REASON=Solver asserts fixed matrix entries to vars then builds det=(a*d-ru^2-iu^2) and other predicates symbolically inside z3/cvc5, so dropping psd/trace/etc. produces the observed UNSAT->SAT flip by in-solver arithmetic rather than a pre-bound literal.\n\nFinal answer: VERDICT=GENUINE; LINE=140; REASON=Solver asserts fixed matrix entries to vars then builds det=(a*d-ru^2-iu^2) and other predicates symbolically inside z3/cvc5, so dropping psd/trace/etc. produces the observed UNSAT->SAT flip by in-solver arithmetic rather than a pre-bound literal."
+    },
+    "gemini": {
+      "model_id": "gemini-3.1-pro-preview",
+      "response_id": "XjAmao75E5id-8YP8Nqq0Qo",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=124; REASON=The solver mathematically derives the matrix properties, such as the determinant, directly from symbolic variables bound to individual matrix entries, authenticating constraints like PSD algebraically rather than checking a precomputed boolean."
+    }
+  }
+}

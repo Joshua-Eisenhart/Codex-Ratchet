@@ -24,17 +24,8 @@ def pass_values(section: dict[str, Any]) -> list[bool]:
     return values
 
 
-def validate(path: pathlib.Path) -> dict[str, Any]:
-    data = json.loads(path.read_bytes().decode("utf-8"))
-    errors = []
-    if data.get("classification") != "formal_scout":
-        errors.append("classification is not formal_scout")
-    if data.get("promotion_allowed") is not False:
-        errors.append("promotion_allowed is not false")
-    if not data.get("claim_ceiling"):
-        errors.append("claim_ceiling missing")
-    if "canonical" in str(data.get("claim_ceiling", "")).lower() and "does not admit" not in str(data.get("claim_ceiling", "")).lower():
-        errors.append("claim_ceiling may overclaim")
+def validate_formal_scout(data: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
     positives = data.get("positive")
     graveyards = data.get("graveyard_companions")
     if not isinstance(positives, dict) or not positives:
@@ -57,6 +48,109 @@ def validate(path: pathlib.Path) -> dict[str, Any]:
         errors.append("one or more graveyard checks failed")
     if isinstance(boundary, dict) and False in pass_values(boundary):
         errors.append("one or more boundary checks failed")
+    return errors
+
+
+def validate_tool_capability(data: dict[str, Any]) -> list[str]:
+    """Validate pre-admission tool-stack/lego-fit/consumer-gate receipts.
+
+    These are intentionally not `formal_scout` results. They exist so the
+    tool-stack and consumer gates can be simulated and tuned before the
+    scientific ladder consumes them. The validator keeps their ceiling low while
+    still checking that the receipt is operational rather than an import-only
+    manifest or prose-only policy note.
+    """
+    errors: list[str] = []
+    evidence_level = data.get("evidence_level")
+    if evidence_level not in {"tool_capability", "tool_lego_fit", "consumer_gate"}:
+        errors.append("evidence_level is not tool_capability/tool_lego_fit/consumer_gate")
+    if data.get("formal_admission_allowed") is not False:
+        errors.append("formal_admission_allowed is not false")
+    if data.get("all_pass") is not True:
+        errors.append("all_pass is not true")
+    if evidence_level == "consumer_gate":
+        positive = data.get("positive")
+        negative = data.get("negative")
+        boundary = data.get("boundary")
+        if not isinstance(positive, dict) or not positive:
+            errors.append("consumer_gate positive checks missing")
+        elif False in pass_values(positive):
+            errors.append("one or more consumer_gate positive checks failed")
+        if not isinstance(negative, dict) or not negative:
+            errors.append("consumer_gate negative checks missing")
+        elif False in pass_values(negative):
+            errors.append("one or more consumer_gate negative checks failed")
+        if not isinstance(boundary, dict) or not boundary:
+            errors.append("consumer_gate boundary checks missing")
+        elif False in pass_values(boundary):
+            errors.append("one or more consumer_gate boundary checks failed")
+        if data.get("stage_movement_allowed") is not False:
+            errors.append("stage_movement_allowed is not false")
+        if data.get("stage4_unlock_allowed") is not False:
+            errors.append("stage4_unlock_allowed is not false")
+        allowed = data.get("allowed_next_uses") or data.get("eligible_consumers")
+        if not isinstance(allowed, list) or not allowed:
+            errors.append("consumer_gate allowed_next_uses/eligible_consumers missing")
+        if not isinstance(data.get("blocked_downstream_consumers"), list) or not data.get("blocked_downstream_consumers"):
+            errors.append("blocked_downstream_consumers missing")
+        if not isinstance(data.get("receipt_schema_validation"), dict) or not data.get("receipt_schema_validation"):
+            errors.append("receipt_schema_validation missing")
+    else:
+        summary = data.get("summary")
+        if not isinstance(summary, dict):
+            errors.append("summary missing")
+        else:
+            if summary.get("failed_or_blocked") not in ([], None):
+                errors.append("failed_or_blocked is not empty")
+            if summary.get("pass_count") != summary.get("probe_count"):
+                errors.append("summary pass_count does not equal probe_count")
+        tool_claims = data.get("tool_claim") or data.get("tool_claims")
+        if not isinstance(tool_claims, dict) or not tool_claims:
+            errors.append("tool_claim/tool_claims missing")
+        else:
+            required = {
+                "tool",
+                "api_surface",
+                "observable",
+                "positive",
+                "negative",
+                "boundary",
+                "demotion_condition",
+            }
+            for name, claim in tool_claims.items():
+                if not isinstance(claim, dict):
+                    errors.append(f"tool claim {name} is not an object")
+                    continue
+                missing = sorted(field for field in required if not claim.get(field))
+                if missing:
+                    errors.append(f"tool claim {name} missing fields: {', '.join(missing)}")
+        if not isinstance(data.get("engine_contract"), dict) or not data.get("engine_contract"):
+            errors.append("engine_contract missing")
+        if not isinstance(data.get("blocked_downstream_consumers"), list) or not data.get("blocked_downstream_consumers"):
+            errors.append("blocked_downstream_consumers missing")
+    if not data.get("source_path"):
+        errors.append("source_path missing")
+    if not data.get("source_sha256"):
+        errors.append("source_sha256 missing")
+    return errors
+
+
+def validate(path: pathlib.Path) -> dict[str, Any]:
+    data = json.loads(path.read_bytes().decode("utf-8"))
+    errors = []
+    classification = data.get("classification")
+    if classification not in {"formal_scout", "scratch_diagnostic", "tool_lego_fit_probe"}:
+        errors.append("classification is not formal_scout/scratch_diagnostic/tool_lego_fit_probe")
+    if data.get("promotion_allowed") is not False:
+        errors.append("promotion_allowed is not false")
+    if not data.get("claim_ceiling"):
+        errors.append("claim_ceiling missing")
+    if "canonical" in str(data.get("claim_ceiling", "")).lower() and "does not admit" not in str(data.get("claim_ceiling", "")).lower():
+        errors.append("claim_ceiling may overclaim")
+    if classification == "formal_scout":
+        errors.extend(validate_formal_scout(data))
+    else:
+        errors.extend(validate_tool_capability(data))
     if "rosetta_to_sim_contract" in data:
         errors.append("legacy rosetta_to_sim_contract key present")
     if data.get("blockers"):

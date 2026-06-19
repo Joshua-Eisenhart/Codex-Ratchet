@@ -1,0 +1,1025 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/Dates/SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/Dates/SHA": {
+      "reason": "supportive result serialization, timestamping, and source hashing",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side raw-value proof that wrong S2 residuals cannot equal zero",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+    "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+    "holonomy_quantity": "accumulated_phi",
+    "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+    "phase_domain": "lifted_real"
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T07:34:38.363",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "negative_model_receipts": {
+    "negative_1_wrong_connection_sign_flipped": {
+      "S2.A_connection_match": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "max_abs_connection_delta": 1.4142135623730951
+        },
+        "note": "sign-flipped connection fails canonical match",
+        "pass": false
+      },
+      "S2.C_chern_normalization": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "canonical_chart_integral": -12.566370614359172,
+          "fail_magnitude": 25.132741228718345,
+          "wrong_chart_integral": 12.566370614359172
+        },
+        "note": "wrong curvature reverses Chern sign",
+        "pass": false
+      },
+      "S2.F_curvature_derivative_pair": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "canonical_curvature_match_pass": false,
+          "internal_derivative_pair_pass": true,
+          "max_abs_curvature_delta": 4.0
+        },
+        "note": "wrong connection has opposite canonical curvature sign",
+        "pass": false
+      },
+      "S2.G_grid_count": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer",
+        "measured": {
+          "N": 64,
+          "naive_points": 4096,
+          "physical_points": 2048
+        },
+        "note": "grid count preserved",
+        "pass": true
+      },
+      "S2.G_parity_identification": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer_plus_numeric_pairs",
+        "measured": {
+          "max_pair_deviation": 2.4492935982947064e-16,
+          "pair_rows": [
+            {
+              "a": 0,
+              "b": 0,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 32,
+              "paired_b": 32,
+              "parity_preserved": true
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 33,
+              "paired_b": 34,
+              "parity_preserved": true
+            },
+            {
+              "a": 7,
+              "b": 9,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 39,
+              "paired_b": 41,
+              "parity_preserved": true
+            },
+            {
+              "a": 18,
+              "b": 25,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 50,
+              "paired_b": 57,
+              "parity_preserved": true
+            },
+            {
+              "a": 31,
+              "b": 5,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 63,
+              "paired_b": 37,
+              "parity_preserved": true
+            }
+          ],
+          "parity_preserved": true
+        },
+        "note": "parity identification preserved",
+        "pass": true
+      },
+      "S2.H_horizontal_holonomy": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "max_abs_residual": 8.885765876316732,
+          "rows": [
+            {
+              "eta": 0.39269908169872414,
+              "residual": 8.885765876316732,
+              "target": -4.442882938158366,
+              "wrong_holonomy": 4.442882938158366
+            },
+            {
+              "eta": 0.5235987755982988,
+              "residual": 6.283185307179588,
+              "target": -3.141592653589794,
+              "wrong_holonomy": 3.141592653589794
+            },
+            {
+              "eta": 0.7853981633974483,
+              "residual": 7.694682774887159e-16,
+              "target": -3.8473413874435795e-16,
+              "wrong_holonomy": 3.8473413874435795e-16
+            },
+            {
+              "eta": 1.0471975511965976,
+              "residual": 6.283185307179584,
+              "target": 3.141592653589792,
+              "wrong_holonomy": -3.141592653589792
+            },
+            {
+              "eta": 1.1780972450961724,
+              "residual": 8.885765876316732,
+              "target": 4.442882938158366,
+              "wrong_holonomy": -4.442882938158366
+            }
+          ]
+        },
+        "note": "wrong connection fails holonomy target except accidental zero-cos shell",
+        "pass": false
+      },
+      "S2.S_stokes_strip": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "max_abs_residual": 15.168951183496318,
+          "rows": [
+            {
+              "eta_i": 0.39269908169872414,
+              "eta_j": 1.0471975511965976,
+              "residual_against_canonical_F": 15.168951183496317
+            },
+            {
+              "eta_i": 0.5235987755982988,
+              "eta_j": 1.1780972450961724,
+              "residual_against_canonical_F": 15.168951183496318
+            }
+          ]
+        },
+        "note": "wrong holonomy fails Stokes against canonical F",
+        "pass": false
+      },
+      "S2.T_local_metric_det": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "sqrt_det_g": 0.9510565162951535
+        },
+        "note": "metric determinant preserved",
+        "pass": true
+      },
+      "S2.T_physical_area": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "chart_area": 37.54620631564544,
+          "cover_factor": 2.0,
+          "physical_area": 18.77310315782272
+        },
+        "note": "area quotient preserved",
+        "pass": true
+      },
+      "common_suite_adapter": {
+        "adapter_id": "s2_negative_positive_receipt_interface_v1",
+        "receipt_keys": [
+          "S2.A_connection_match",
+          "S2.F_curvature_derivative_pair",
+          "S2.H_horizontal_holonomy",
+          "S2.S_stokes_strip",
+          "S2.C_chern_normalization",
+          "S2.T_local_metric_det",
+          "S2.T_physical_area",
+          "S2.G_grid_count",
+          "S2.G_parity_identification"
+        ],
+        "same_interface_as_positive_control": true,
+        "selectivity_columns": [
+          "connection_match",
+          "curvature_derivative_pair",
+          "horizontal_holonomy_target",
+          "stokes_consistency",
+          "chern_normalization",
+          "local_metric_determinant",
+          "physical_torus_area",
+          "grid_distinct_count",
+          "parity_preserving_identification"
+        ]
+      },
+      "model_id": "negative_1_wrong_connection_sign_flipped",
+      "negative_family": "wrong_connection",
+      "negative_model": true,
+      "primary_fail_magnitude": 8.885765876316732
+    },
+    "negative_2_broken_stokes_wrong_F_sign": {
+      "S2.A_connection_match": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "max_abs_connection_delta": 0.0
+        },
+        "note": "canonical A preserved",
+        "pass": true
+      },
+      "S2.C_chern_normalization": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "canonical_chart_integral": -12.566370614359172,
+          "fail_magnitude": 25.132741228718345,
+          "reported_c1_if_unfixed": -1,
+          "wrong_chart_integral": 12.566370614359172
+        },
+        "note": "wrong F reverses Chern row",
+        "pass": false
+      },
+      "S2.F_curvature_derivative_pair": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "F_wrong_coeff": 1.902113032590307,
+          "dA_canonical_coeff": -1.902113032590307,
+          "fail_magnitude": 3.804226065180614
+        },
+        "note": "wrong F is not dA",
+        "pass": false
+      },
+      "S2.G_grid_count": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer",
+        "measured": {
+          "N": 64,
+          "naive_points": 4096,
+          "physical_points": 2048
+        },
+        "note": "grid count preserved",
+        "pass": true
+      },
+      "S2.G_parity_identification": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer_plus_numeric_pairs",
+        "measured": {
+          "max_pair_deviation": 2.4492935982947064e-16,
+          "pair_rows": [
+            {
+              "a": 0,
+              "b": 0,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 32,
+              "paired_b": 32,
+              "parity_preserved": true
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 33,
+              "paired_b": 34,
+              "parity_preserved": true
+            },
+            {
+              "a": 7,
+              "b": 9,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 39,
+              "paired_b": 41,
+              "parity_preserved": true
+            },
+            {
+              "a": 18,
+              "b": 25,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 50,
+              "paired_b": 57,
+              "parity_preserved": true
+            },
+            {
+              "a": 31,
+              "b": 5,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 63,
+              "paired_b": 37,
+              "parity_preserved": true
+            }
+          ],
+          "parity_preserved": true
+        },
+        "note": "parity identification preserved",
+        "pass": true
+      },
+      "S2.H_horizontal_holonomy": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "max_abs_residual": 0.0,
+          "sample_holonomy": -1.9416110387254666
+        },
+        "note": "horizontal transport from A preserved",
+        "pass": true
+      },
+      "S2.S_stokes_strip": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "max_abs_residual": 15.168951183496318,
+          "rows": [
+            {
+              "eta_i": 0.39269908169872414,
+              "eta_j": 1.0471975511965976,
+              "residual_against_wrong_F": 15.168951183496317
+            },
+            {
+              "eta_i": 0.5235987755982988,
+              "eta_j": 1.1780972450961724,
+              "residual_against_wrong_F": 15.168951183496318
+            }
+          ]
+        },
+        "note": "Stokes fails with wrong F",
+        "pass": false
+      },
+      "S2.T_local_metric_det": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "sqrt_det_g": 0.9510565162951535
+        },
+        "note": "metric determinant preserved",
+        "pass": true
+      },
+      "S2.T_physical_area": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "chart_area": 37.54620631564544,
+          "cover_factor": 2.0,
+          "physical_area": 18.77310315782272
+        },
+        "note": "area quotient preserved",
+        "pass": true
+      },
+      "common_suite_adapter": {
+        "adapter_id": "s2_negative_positive_receipt_interface_v1",
+        "receipt_keys": [
+          "S2.A_connection_match",
+          "S2.F_curvature_derivative_pair",
+          "S2.H_horizontal_holonomy",
+          "S2.S_stokes_strip",
+          "S2.C_chern_normalization",
+          "S2.T_local_metric_det",
+          "S2.T_physical_area",
+          "S2.G_grid_count",
+          "S2.G_parity_identification"
+        ],
+        "same_interface_as_positive_control": true,
+        "selectivity_columns": [
+          "connection_match",
+          "curvature_derivative_pair",
+          "horizontal_holonomy_target",
+          "stokes_consistency",
+          "chern_normalization",
+          "local_metric_determinant",
+          "physical_torus_area",
+          "grid_distinct_count",
+          "parity_preserving_identification"
+        ]
+      },
+      "model_id": "negative_2_broken_stokes_wrong_F_sign",
+      "negative_family": "broken_stokes",
+      "negative_model": true,
+      "primary_fail_magnitude": 15.168951183496318
+    },
+    "negative_3_naive_cover_grid_one_to_one": {
+      "S2.A_connection_match": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "max_abs_connection_delta": 0.0
+        },
+        "note": "connection path preserved",
+        "pass": true
+      },
+      "S2.C_chern_normalization": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "chart_integral": -12.566370614359172,
+          "reported_c1": 1
+        },
+        "note": "Chern row preserved",
+        "pass": true
+      },
+      "S2.F_curvature_derivative_pair": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "F_coeff": -1.902113032590307,
+          "max_abs_curvature_delta": 0.0
+        },
+        "note": "F=dA preserved",
+        "pass": true
+      },
+      "S2.G_grid_count": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer_control",
+        "measured": {
+          "N": 64,
+          "fail_magnitude": 2048,
+          "naive_claimed_points": 4096,
+          "overcount_factor": 2.0,
+          "physical_points": 2048
+        },
+        "note": "naive grid count reports N^2",
+        "pass": false
+      },
+      "S2.G_parity_identification": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "exact_integer_plus_numeric_pairs",
+        "measured": {
+          "fail_magnitude": 2048,
+          "max_pair_deviation": 2.4492935982947064e-16,
+          "model_applies_quotient": false,
+          "pair_rows": [
+            {
+              "a": 0,
+              "b": 0,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 32,
+              "paired_b": 32,
+              "parity_preserved": true
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 33,
+              "paired_b": 34,
+              "parity_preserved": true
+            },
+            {
+              "a": 7,
+              "b": 9,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 39,
+              "paired_b": 41,
+              "parity_preserved": true
+            },
+            {
+              "a": 18,
+              "b": 25,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 50,
+              "paired_b": 57,
+              "parity_preserved": true
+            },
+            {
+              "a": 31,
+              "b": 5,
+              "pair_deviation": 2.4492935982947064e-16,
+              "paired_a": 63,
+              "paired_b": 37,
+              "parity_preserved": true
+            }
+          ],
+          "parity_preserved": true
+        },
+        "note": "naive model refuses the quotient pairs",
+        "pass": false
+      },
+      "S2.H_horizontal_holonomy": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "max_abs_residual": 0.0,
+          "sample_holonomy": -1.9416110387254666
+        },
+        "note": "holonomy preserved",
+        "pass": true
+      },
+      "S2.S_stokes_strip": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "max_abs_residual": 0.0,
+          "pairs": [
+            [
+              0.39269908169872414,
+              1.0471975511965976
+            ],
+            [
+              0.5235987755982988,
+              1.1780972450961724
+            ]
+          ]
+        },
+        "note": "Stokes preserved",
+        "pass": true
+      },
+      "S2.T_local_metric_det": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form",
+        "measured": {
+          "sqrt_det_g": 0.9510565162951535
+        },
+        "note": "local determinant before quotienting passes",
+        "pass": true
+      },
+      "S2.T_physical_area": {
+        "convention_pin": {
+          "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+          "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+          "holonomy_quantity": "accumulated_phi",
+          "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+          "phase_domain": "lifted_real"
+        },
+        "exact_strength": "closed_form_control",
+        "measured": {
+          "fail_magnitude": 18.77310315782272,
+          "naive_area": 37.54620631564544,
+          "overcount_factor": 2.0,
+          "physical_area": 18.77310315782272
+        },
+        "note": "naive chart area overcounts by factor two",
+        "pass": false
+      },
+      "common_suite_adapter": {
+        "adapter_id": "s2_negative_positive_receipt_interface_v1",
+        "receipt_keys": [
+          "S2.A_connection_match",
+          "S2.F_curvature_derivative_pair",
+          "S2.H_horizontal_holonomy",
+          "S2.S_stokes_strip",
+          "S2.C_chern_normalization",
+          "S2.T_local_metric_det",
+          "S2.T_physical_area",
+          "S2.G_grid_count",
+          "S2.G_parity_identification"
+        ],
+        "same_interface_as_positive_control": true,
+        "selectivity_columns": [
+          "connection_match",
+          "curvature_derivative_pair",
+          "horizontal_holonomy_target",
+          "stokes_consistency",
+          "chern_normalization",
+          "local_metric_determinant",
+          "physical_torus_area",
+          "grid_distinct_count",
+          "parity_preserving_identification"
+        ]
+      },
+      "model_id": "negative_3_naive_cover_grid_one_to_one",
+      "negative_family": "naive_cover_grid",
+      "negative_model": true,
+      "primary_fail_magnitude": 2048
+    }
+  },
+  "packages_used": [
+    "Z3"
+  ],
+  "pin_sha256": "af61575c073a640e083929b35bd5d6f2b930f3fdc82611141eb08317cf0cf483",
+  "pin_spec": "geo_s2_negative_models_v0|stage:S2|negative_models:wrong_connection,broken_stokes,naive_cover_grid|common_adapter:s2_negative_positive_receipt_interface_v1|classification:scratch_diagnostic|promotion_allowed:false|formal_admission_allowed:false",
+  "positive_control": {
+    "S2.A_connection_match": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "max_abs_connection_delta": 0.0
+      },
+      "note": "canonical A matches target",
+      "pass": true
+    },
+    "S2.C_chern_normalization": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "chart_integral": -12.566370614359172,
+        "reported_c1": 1
+      },
+      "note": "canonical Chern convention passes",
+      "pass": true
+    },
+    "S2.F_curvature_derivative_pair": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "F_coeff": -1.902113032590307,
+        "max_abs_curvature_delta": 0.0
+      },
+      "note": "canonical F=dA is preserved",
+      "pass": true
+    },
+    "S2.G_grid_count": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "exact_integer",
+      "measured": {
+        "N": 64,
+        "naive_points": 4096,
+        "physical_points": 2048
+      },
+      "note": "grid quotient count passes",
+      "pass": true
+    },
+    "S2.G_parity_identification": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "exact_integer_plus_numeric_pairs",
+      "measured": {
+        "max_pair_deviation": 2.4492935982947064e-16,
+        "pair_rows": [
+          {
+            "a": 0,
+            "b": 0,
+            "pair_deviation": 2.4492935982947064e-16,
+            "paired_a": 32,
+            "paired_b": 32,
+            "parity_preserved": true
+          },
+          {
+            "a": 1,
+            "b": 2,
+            "pair_deviation": 2.4492935982947064e-16,
+            "paired_a": 33,
+            "paired_b": 34,
+            "parity_preserved": true
+          },
+          {
+            "a": 7,
+            "b": 9,
+            "pair_deviation": 2.4492935982947064e-16,
+            "paired_a": 39,
+            "paired_b": 41,
+            "parity_preserved": true
+          },
+          {
+            "a": 18,
+            "b": 25,
+            "pair_deviation": 2.4492935982947064e-16,
+            "paired_a": 50,
+            "paired_b": 57,
+            "parity_preserved": true
+          },
+          {
+            "a": 31,
+            "b": 5,
+            "pair_deviation": 2.4492935982947064e-16,
+            "paired_a": 63,
+            "paired_b": 37,
+            "parity_preserved": true
+          }
+        ],
+        "parity_preserved": true
+      },
+      "note": "parity-preserving identification passes",
+      "pass": true
+    },
+    "S2.H_horizontal_holonomy": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "max_abs_residual": 0.0,
+        "sample_holonomy": -1.9416110387254666
+      },
+      "note": "canonical horizontal target is preserved",
+      "pass": true
+    },
+    "S2.S_stokes_strip": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "max_abs_residual": 0.0,
+        "pairs": [
+          [
+            0.39269908169872414,
+            1.0471975511965976
+          ],
+          [
+            0.5235987755982988,
+            1.1780972450961724
+          ]
+        ]
+      },
+      "note": "canonical Stokes rows pass",
+      "pass": true
+    },
+    "S2.T_local_metric_det": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "sqrt_det_g": 0.9510565162951535
+      },
+      "note": "local metric determinant passes",
+      "pass": true
+    },
+    "S2.T_physical_area": {
+      "convention_pin": {
+        "base_loop_count": "chi:0->2pi torus-chart cycle, traverses Hopf base twice because base_angle=2*chi",
+        "berry_formula": "not_reported_in_negative_suite; canonical target uses lifted torus-chart cycle h(eta)=-2*pi*cos(2*eta)",
+        "holonomy_quantity": "accumulated_phi",
+        "orientation_and_c1_sign": "displayed F integrates to -4*pi on the double-covered chart; orientation reports c1=1",
+        "phase_domain": "lifted_real"
+      },
+      "exact_strength": "closed_form",
+      "measured": {
+        "chart_area": 37.54620631564544,
+        "cover_factor": 2.0,
+        "physical_area": 18.77310315782272
+      },
+      "note": "physical area quotient passes",
+      "pass": true
+    },
+    "common_suite_adapter": {
+      "adapter_id": "s2_negative_positive_receipt_interface_v1",
+      "receipt_keys": [
+        "S2.A_connection_match",
+        "S2.F_curvature_derivative_pair",
+        "S2.H_horizontal_holonomy",
+        "S2.S_stokes_strip",
+        "S2.C_chern_normalization",
+        "S2.T_local_metric_det",
+        "S2.T_physical_area",
+        "S2.G_grid_count",
+        "S2.G_parity_identification"
+      ],
+      "same_interface_as_positive_control": true,
+      "selectivity_columns": [
+        "connection_match",
+        "curvature_derivative_pair",
+        "horizontal_holonomy_target",
+        "stokes_consistency",
+        "chern_normalization",
+        "local_metric_determinant",
+        "physical_torus_area",
+        "grid_distinct_count",
+        "parity_preserving_identification"
+      ]
+    },
+    "model_id": "positive_s2_canonical_connection_quotiented_grid",
+    "negative_model": false,
+    "pass": true
+  },
+  "promotion_allowed": false,
+  "proofs": {
+    "julia_z3_broken_stokes": {
+      "broken_residual_scaled": 15168951,
+      "pass": true,
+      "scaled_integer_factor": 1000000,
+      "z3_assert_broken_residual_zero": "unsat",
+      "z3_positive_control_assert_residual_zero": "sat"
+    },
+    "julia_z3_wrong_connection_holonomy": {
+      "pass": true,
+      "scaled_integer_factor": 1000000,
+      "wrong_residual_scaled": 8885766,
+      "z3_assert_wrong_residual_zero": "unsat",
+      "z3_positive_control_assert_residual_zero": "sat"
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s2_negative_models_v0/results/geo_s2_negative_models_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "schema_version": "geo_s2_negative_models_leg_v1",
+  "shared_scalars": {
+    "broken_stokes_max_residual": 15.168951183496318,
+    "naive_cover_count_overfactor": 2.0,
+    "wrong_connection_max_holonomy_residual": 8.885765876316732
+  },
+  "sim_id": "geo_s2_negative_models_v0",
+  "source_path": "system_v6/sims/geo_s2_negative_models_v0/geo_s2_negative_models_v0_julia.jl",
+  "source_sha256": "1b4401285c1f23b237cb637b0a89a4918f7e41fa9769de4f78e1e859eb1ba9d8"
+}

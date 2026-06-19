@@ -6,11 +6,18 @@ Supersedes: VENV_SPEC_GRAPH_POST_MIGRATION_VALIDATION.md,
             VENV_SPEC_GRAPH_REFERENCE_PRIORITY_AUDIT.md,
             VENV_SPEC_GRAPH_TIER2_SKILL_BATCH_READINESS.md
 
+Superseded for current Codex Ratchet runtime routing by
+`system_v5/docs/RUNTIME_LIBRARY_LOCATION_MAP_20260608.md`. This page is only a
+historical `.venv_spec_graph` migration receipt; do not use its Homebrew Python
+path as current sim-stack authority.
+
 ---
 
 ## Status: COMPLETE — Deletion-ready pending owner confirmation
 
-All 5 tier-1/tier-2 runtime skills migrated to `/opt/homebrew/bin/python3`.
+All 5 tier-1/tier-2 runtime skills historically migrated to `/opt/homebrew/bin/python3` as
+of the 2026-04-05 `.venv_spec_graph` cleanup. Current work now uses
+`/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3`.
 Zero live runtime blockers remaining for this `.venv_spec_graph` migration only.
 This is not a current formal-scout, sim-readiness, or proof-status claim.
 

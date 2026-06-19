@@ -1,0 +1,55 @@
+{
+  "spec_id": "survivor_set_running_mean_threshold_noncommutation_v0.spec.v1",
+  "description": "Pure DATA + rule definitions. A finite configuration set S = {0,1}^N on a ring of N cells. A 'constraint' is a survivor-set restriction X -> {x in X : admit(x, X)} where admit may read the RUNNING survivor set X. The question this fixture answers: for which NATURAL families of survivor-set-reactive local rules does APPLYING TWO CONSTRAINTS IN DIFFERENT ORDER land on DIFFERENT survivor sets (restriction-noncommutation)? No precomputed counts are stored here; each leg derives them. The four rule families and the isolating control are defined purely (no project nicknames).",
+  "configuration_space": "S = {0,1}^N, cells indexed 0..N-1 on a ring (index arithmetic mod N).",
+  "window_alphabet": {
+    "offsets": [-2, -1, 1, 2],
+    "windows": "each window w is a cell-set obtained from a nonempty subset T of the offsets as { (c+o) mod N : ... }; concretely the rule's cell-set comp(w) = sorted({ o mod N : o in T }). Distinct cell-sets are deduplicated. The generic scan ranges over ALL unordered pairs (a,b) of distinct windows -- no window pair is hand-selected.",
+    "scan": "all unordered pairs (a,b), a<b, of the deduplicated window cell-sets"
+  },
+  "constraint_as_survivor_restriction": "step(rule, X) = [ x in X : admit_rule(x, X) ]. Applying rule_a then rule_b to S means step(rule_b, step(rule_a, S)).",
+  "rule_families": {
+    "running_mean_threshold": {
+      "role": "candidate state-reactive cut (survivor-set-state-dependent admission via a NON-MONOTONE aggregate)",
+      "admit": "x admitted iff count1(x, comp) >= theta where count1(x, comp) = |{ i in comp : x_i = 1 }| and theta = the REAL-VALUED mean over y in X of count1(y, comp) (NO ROUNDING). theta READS THE RUNNING SURVIVOR SET X. As X contracts, theta shifts, so order can matter. NOTE: an earlier round()-based threshold was convention-fragile (floor->0, ceil->62, banker's-round->44) -- a defect the full-fleet audit caught; the real-valued mean removes that artifact.",
+      "expectation_hint": "running-X: ADMITS order-dependent terminal sets (noncommutes) on a generic fraction of window pairs (62/105 with >=, 64/105 with >); to be DERIVED by each leg, not asserted here. This is order-dependent filtering under a natural state-reactive cut -- NOT 'emergence' (that label was fleet-rejected)."
+    },
+    "ensemble_consistency_majority": {
+      "role": "confluence control (closure-type local rule)",
+      "admit": "x admitted iff for every cell c: x_c equals the majority value of cell c among { y in X : y agrees with x on (c+comp) excluding c }; ties / empty conditioning leave cell c unconstrained.",
+      "expectation_hint": "predicted CONFLUENT (commutes on all pairs)"
+    },
+    "competitive_exclusion": {
+      "role": "confluence control (dominance / Pareto local rule)",
+      "admit": "x admitted iff there is no y in X with y agreeing with x on all cells OUTSIDE comp and strictly more 1s than x INSIDE comp.",
+      "expectation_hint": "predicted CONFLUENT (commutes on all pairs)"
+    },
+    "minority_frustration": {
+      "role": "confluence control (anti-majority of the running ensemble)",
+      "admit": "x admitted iff for every cell c: x_c equals the MINORITY value of cell c among { y in X : y agrees with x on (c+comp) excluding c }; ties / empty leave cell c unconstrained.",
+      "expectation_hint": "predicted CONFLUENT (commutes on all pairs)"
+    }
+  },
+  "isolating_control": {
+    "name": "fixed_reference",
+    "definition": "Replace every read of the RUNNING survivor set X inside admit_rule by a read of a FIXED reference set R = S (the full configuration space). admit_rule becomes a STATIC predicate on x, so step_R(rule_b, step_R(rule_a, S)) = S intersect P_a intersect P_b is order-independent.",
+    "claim": "fixed_reference noncommutation count is 0 for every family. This shows dependence on the RUNNING survivor set is NECESSARY for the order-dependence.",
+    "tautology_caveat": "the full-fleet audit correctly noted this control is PARTLY A TAUTOLOGY: static predicates commute by set-intersection, so 0 is mathematically guaranteed and cannot fail. It therefore CONFIRMS necessity of running-set dependence; it is NOT independent causal evidence. The non-trivial content is the NECESSARY-NOT-SUFFICIENT pair: floor(mean) and three other natural state-reactive families read the running set yet are confluent."
+  },
+  "invariant_to_agree_on": {
+    "running_mean_threshold_running_X_noncommute_count": "DERIVED per leg (>0 = order-dependence present)",
+    "running_mean_threshold_fixed_reference_noncommute_count": "DERIVED per leg (MUST be 0 = isolator holds)",
+    "confluence_controls_running_X_noncommute_counts": "DERIVED per leg (predicted 0 each)",
+    "robustness": "the running-X noncommute count is checked at N in {5,6,7}"
+  },
+  "earns": "a NARROW, fleet-survived fact: under a natural state-reactive cut (survive iff at/above the running average density), survivor-set descent ADMITS order-dependent terminal sets (restriction-noncommutation) for a generic 62/105 fraction of window pairs, convention-free (no rounding). State-dependence on the running set is NECESSARY (fixed_reference commutes -- partly tautological) and NOT SUFFICIENT (floor(mean) + three natural state-reactive families are confluent), which REFUTES 'any state-reactive threshold trivially noncommutes.'",
+  "does_not_earn": "the 'emergence' label (full-fleet audit MIXED verdict, 6/7 returning verdicts rejected/weakened it; held divergence: gemini-3.1-pro alone called it justified); a full ratchet (strict-decrease + termination + distinct terminal sets under distinct schedules); a purely-local-neighborhood rule (the threshold reads a GLOBAL aggregate); a causal 'engine'; any GNVW / bridge / manifold / axis claim.",
+  "fleet_audit": "wf w3lcat7qr (2026-06-14): 9 verdicts (codex2 high+medium, gemini-3.1-pro, deepseek-v4-pro, qwen3.7-max, 2 claude-recompute; glm-5.1 + kimi-k2.6 UNAVAILABLE on token exhaustion). Arbiter (codex2): MIXED, noncommutation REAL, emergence overclaimed, rounding artifact + isolator-tautology confirmed. See FLEET_VERDICT_20260614.md.",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "lineage": {
+    "root_axiom": "a = a iff a ~ b -- identity is the survivor class under the active constraints; here the constraint is a survivor-set restriction.",
+    "deeper_engine": "order-sensitivity is intrinsic to X_{k+1} = { x in X_k : C(x, X_k) } when C reads the RUNNING set X_k via a non-monotone aggregate; history-dependence (R3) is one special case of this, not the only source.",
+    "exclusion_first": "constraints eliminate configurations that cannot persist; they do not generate configurations."
+  }
+}

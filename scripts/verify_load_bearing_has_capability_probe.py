@@ -12,12 +12,13 @@ from __future__ import annotations
 import argparse
 import ast
 import json
+import re
 import sys
 from pathlib import Path
 
 import two_root_constraints
 
-REPO = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+REPO = Path(__file__).resolve().parents[1]
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 REPORT_PATH = RESULTS_DIR / "load_bearing_capability_audit.json"
@@ -34,8 +35,26 @@ ALIASES = {
     "z3-solver": "z3",
     "z3_solver": "z3",
     "cvc5": "cvc5",
+    "quimb.tensor": "quimb",
+    "quimb_tensor": "quimb",
     "sympy": "sympy",
     "clifford": "clifford",
+    "octonions": "julia_carrier_algebra",
+    "octonions.jl": "julia_carrier_algebra",
+    "quaternions": "julia_carrier_algebra",
+    "quaternions.jl": "julia_carrier_algebra",
+    "cliffordalgebras": "cliffordalgebras",
+    "cliffordalgebras.jl": "cliffordalgebras",
+    "itensors": "itensors",
+    "itensors.jl": "itensors",
+    "itensormps": "itensors",
+    "itensormps.jl": "itensors",
+    "manifolds": "manifolds",
+    "manifolds.jl": "manifolds",
+    "quantumclifford": "quantumclifford",
+    "quantumclifford.jl": "quantumclifford",
+    "kingdon": "kingdon",
+    "torch_ga": "torch_ga",
     "geomstats": "geomstats",
     "e3nn": "e3nn",
     "xgi": "xgi",
@@ -188,6 +207,16 @@ def _apply_subscript_updates(tree: ast.AST, name: str, depth: dict) -> dict:
     return merged
 
 
+def _extract_julia_tool_integration_depth(text: str) -> dict | None:
+    match = re.search(r"const\s+TOOL_INTEGRATION_DEPTH\s*=\s*Dict(?:\{[^}]+\})?\((.*?)\)", text, re.S)
+    if match is None:
+        return None
+    pairs = re.findall(r'"([^"]+)"\s*=>\s*"([^"]+)"', match.group(1))
+    if not pairs:
+        return None
+    return dict(pairs)
+
+
 def extract_tool_integration_depth(path: Path) -> dict | None:
     """Parse-only extraction of TOOL_INTEGRATION_DEPTH.
 
@@ -196,8 +225,14 @@ def extract_tool_integration_depth(path: Path) -> dict | None:
     `TOOL_MANIFEST` is a sibling literal dict/list/tuple/set at module scope.
     """
     try:
-        tree = ast.parse(path.read_text(encoding="utf-8"))
-    except (SyntaxError, UnicodeDecodeError):
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return None
+    if path.suffix == ".jl":
+        return _extract_julia_tool_integration_depth(text)
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
         return None
     for node in ast.iter_child_nodes(tree):
         if isinstance(node, ast.Assign):

@@ -1,0 +1,1207 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer backend": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "numpy": null,
+    "owner_clifford_algebra_ladder": "load_bearing",
+    "owner_octonion_G2_automorphism": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer backend": {
+      "reason": "load-bearing peer backend parity over the same finite witness and controls",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Cl(0,6) ladder/readout discriminator and controls",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded by request",
+      "tried": false,
+      "used": false
+    },
+    "owner_clifford_algebra_ladder": {
+      "reason": "load-bearing owner Cl(6) carrier source; erasing this carrier changes the result",
+      "tried": true,
+      "used": true
+    },
+    "owner_octonion_G2_automorphism": {
+      "reason": "load-bearing owner octonion/G2 carrier anchor; der(O)=14 is required for the owner carrier witness",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia_float64_complex",
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream": {
+      "claim_ceiling": "scratch_diagnostic discriminator only: finite Cl(0,6)/octonion owner-carrier charge-ladder readout. It may report CONVENTION/REPRODUCED/GRAVEYARD/OPEN; it does not admit physics, Standard Model recovery, M(C), Axis0, bridge, basin, mass/coupling, or formal derivation.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "convention_not_derivation": {
+      "pass": true,
+      "reason": "valid Cl(6) basis changes preserve the ladder, but removing N or changing normalization prevents the target charge readout"
+    }
+  },
+  "charges_only_with_chosen_rep": false,
+  "chosen_number_operator_required": true,
+  "claim_ceiling": "scratch_diagnostic discriminator only: finite Cl(0,6)/octonion owner-carrier charge-ladder readout. It may report CONVENTION/REPRODUCED/GRAVEYARD/OPEN; it does not admit physics, Standard Model recovery, M(C), Axis0, bridge, basin, mass/coupling, or formal derivation.",
+  "classification": "scratch_diagnostic",
+  "construction": {
+    "carrier": "owner Cl(0,6) finite multivector table with octonion/G2 der(O)=14 anchor",
+    "fixed_recipe": "given three admissible Cl(0,6) generator pairs, build alpha_i, alpha_i_dag, N=sum alpha_i_dag alpha_i, then read Q=+/-N/3",
+    "honest_interpretation": "the occupation ladder is stable under valid Cl(6) basis changes, but the number operator and /3 normalization are selected readout conventions"
+  },
+  "controls_also_produce_charges": false,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T05:24:07Z",
+  "graveyard_companions": {
+    "erased_owner_carrier_fails": {
+      "pass": true
+    },
+    "random_embedding_control_fails": {
+      "pass": true
+    },
+    "removed_number_operator_fails": {
+      "pass": true
+    },
+    "rescaled_normalization_misses_target_charges": {
+      "pass": true
+    }
+  },
+  "jax_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_charge_ladder_results.json",
+  "julia_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_charge_ladder_julia_results.json",
+  "local_all_pass": true,
+  "name": "CHARGE LADDER -- DERIVED vs CHOSEN REPRESENTATION",
+  "nearby_variants": {
+    "passed": 6,
+    "total": 6,
+    "variant_names": [
+      "generator_permutation",
+      "charge_conjugation",
+      "alternate_cl6_basis",
+      "representation_rescaling",
+      "random_embedding_control",
+      "remove_number_operator"
+    ]
+  },
+  "normalization_fixed_by_carrier": false,
+  "numpy_compute_used": false,
+  "object_id": "disc_charge_ladder",
+  "owner_anchor": {
+    "cl6_dim": 64,
+    "cl6_dim_is_64": true,
+    "der_O_dim": 14,
+    "der_O_dim_is_14": true,
+    "g2_constraint_cols": 64,
+    "g2_constraint_rank": 50,
+    "g2_constraint_rows": 512,
+    "octonion_dim": 8,
+    "octonion_dim_is_8": true,
+    "rank_tol": 6.821210263296967e-11
+  },
+  "owner_carrier_load_bearing": true,
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "random_bad.car_residual",
+    "missing_keys": [],
+    "parity_max_diff": 2.7755575615628914e-17,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_charge_ladder_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.3999999999999999,
+        "julia": 0.3999999999999999,
+        "key": "rescaled.unit_third_lattice_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "chosen.unit_third_lattice_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0816681711721685e-17,
+        "julia": 2.0816681711721685e-17,
+        "key": "rotated.car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "sign_flipped.car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "owner.cl6_dim"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.22095250145955486,
+        "julia": 0.22095250145955483,
+        "key": "random_bad.car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "chosen.car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "chosen.ideal_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "rescaled.denominator"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "owner.octonion_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "owner.der_O_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "chosen.max_total_number_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "permuted.car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "row_verdict_code"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "string_mismatches": [],
+    "within_1e_9": true
+  },
+  "positive": {
+    "basis_controls_preserve_ladder_spectrum": {
+      "pass": true
+    },
+    "chosen_recipe_emits_required_charge_values": {
+      "pass": true
+    },
+    "owner_carrier_is_load_bearing": {
+      "erase_changes_result": true,
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "ratios_survive_normalization_floats": true,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_charge_ladder_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "charges_only_with_chosen_rep": false,
+    "claim_ceiling": "scratch_diagnostic discriminator only: finite Cl(0,6)/octonion owner-carrier charge-ladder readout. It may report CONVENTION/REPRODUCED/GRAVEYARD/OPEN; it does not admit physics, Standard Model recovery, M(C), Axis0, bridge, basin, mass/coupling, or formal derivation.",
+    "controls_also_produce_charges": false,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "ratios_survive_normalization_floats": true,
+    "row_verdict": "CONVENTION",
+    "survive_basis_change": true
+  },
+  "row_verdict": "CONVENTION",
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "shared_booleans": {
+    "charges_only_with_chosen_rep": false,
+    "chosen_number_operator_required": true,
+    "chosen_recipe_emits_required_charges": true,
+    "classification_is_scratch_diagnostic": true,
+    "controls_also_produce_charges": false,
+    "formal_admission_allowed": false,
+    "jax_enable_x64": true,
+    "local_all_pass": true,
+    "normalization_fixed_by_carrier": false,
+    "owner_carrier_load_bearing": true,
+    "promotion_allowed": false,
+    "ratios_survive_normalization_floats": true,
+    "survive_basis_change": true
+  },
+  "shared_scalars": {
+    "chosen.car_residual": 0.0,
+    "chosen.ideal_rank": 8.0,
+    "chosen.max_total_number_residual": 0.0,
+    "chosen.unit_third_lattice_residual": 0.0,
+    "owner.cl6_dim": 64.0,
+    "owner.der_O_dim": 14.0,
+    "owner.octonion_dim": 8.0,
+    "permuted.car_residual": 0.0,
+    "random_bad.car_residual": 0.22095250145955483,
+    "rescaled.denominator": 5.0,
+    "rescaled.unit_third_lattice_residual": 0.3999999999999999,
+    "rotated.car_residual": 2.0816681711721685e-17,
+    "row_verdict_code": 4.0,
+    "sign_flipped.car_residual": 0.0
+  },
+  "shared_strings": {
+    "claim_ceiling": "scratch_diagnostic discriminator only: finite Cl(0,6)/octonion owner-carrier charge-ladder readout. It may report CONVENTION/REPRODUCED/GRAVEYARD/OPEN; it does not admit physics, Standard Model recovery, M(C), Axis0, bridge, basin, mass/coupling, or formal derivation.",
+    "row_verdict": "CONVENTION"
+  },
+  "sim_class": "carrier_readout_discriminator_row",
+  "sim_execution_kind": "nonclassical",
+  "source_alignment_category": "owner_carrier_readout_discriminator",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_charge_ladder_julia.jl",
+  "source_refs": {
+    "clifford_algebra_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+      "sha256": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8"
+    },
+    "jax_clifford_algebra_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+      "sha256": "52e136238e1d3f1bbc94f115eeaaa049f5157de89fe75fe35e9392600486ff77"
+    },
+    "jax_octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+      "sha256": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a"
+    },
+    "octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "sha256": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347"
+    },
+    "source": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_charge_ladder_julia.jl",
+      "sha256": "3ad5c14472f041f5dd819f404fcf319364cd7f8a4ea7c9f23759cf71a589e322"
+    }
+  },
+  "stop_condition_fired": false,
+  "survive_basis_change": true,
+  "target": {
+    "full_charge_set": [
+      -1.0,
+      -0.6666666666666666,
+      -0.3333333333333333,
+      0.0,
+      0.3333333333333333,
+      0.6666666666666666,
+      1.0
+    ],
+    "question": "Do +2/3, -1/3, and -1 arise from carrier/readout constraints or from a chosen Cl(6) representation/readout?",
+    "required_target_charges": [
+      -1.0,
+      -0.3333333333333333,
+      0.6666666666666666
+    ]
+  },
+  "tool_integration_depth": {
+    "JAX peer backend": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "numpy": null,
+    "owner_clifford_algebra_ladder": "load_bearing",
+    "owner_octonion_G2_automorphism": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX peer backend": {
+      "reason": "load-bearing peer backend parity over the same finite witness and controls",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Cl(0,6) ladder/readout discriminator and controls",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded by request",
+      "tried": false,
+      "used": false
+    },
+    "owner_clifford_algebra_ladder": {
+      "reason": "load-bearing owner Cl(6) carrier source; erasing this carrier changes the result",
+      "tried": true,
+      "used": true
+    },
+    "owner_octonion_G2_automorphism": {
+      "reason": "load-bearing owner octonion/G2 carrier anchor; der(O)=14 is required for the owner carrier witness",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": [
+    "scratch diagnostic by request",
+    "not a physics or Standard Model admission",
+    "no formal theorem prover layer",
+    "normalization is not fixed by the carrier",
+    "number-operator readout is selected, not eliminated"
+  ],
+  "witnesses": {
+    "alternate_cl6_basis": {
+      "car_residual": 2.0816681711721685e-17,
+      "denominator": 3.0,
+      "full_charge_set_present": true,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 1.0592614694129797e-33,
+      "label": "alternate_orthogonal_cl6_basis_same_recipe",
+      "max_mode_number_residual": 7.359808400080196e-18,
+      "max_total_number_residual": 7.359808400080196e-18,
+      "passes_ladder_checks": true,
+      "ratio_signature": [
+        1.0,
+        2.000000000003,
+        3.000000000003
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": true,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -3.5308715647099323e-34,
+          "mode_eigenvalues": [
+            1.0592614694129797e-33,
+            0.0,
+            0.0
+          ],
+          "occupancy": 0,
+          "plus_charge": 3.5308715647099323e-34,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0592614694129797e-33,
+            1.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0592614694129797e-33,
+            0.0,
+            1.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0592614694129797e-33,
+            1.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 7,
+          "minus_charge": -1.0,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 3,
+          "plus_charge": 1.0,
+          "state_norm": 0.3535533905932738
+        }
+      ],
+      "unique_charges": [
+        -1.0,
+        -0.666666666667,
+        -0.333333333333,
+        0.0,
+        0.333333333333,
+        0.666666666667,
+        1.0
+      ],
+      "unit_third_lattice_residual": 1.0592614694129797e-33,
+      "vacuum_idempotent_residual": 0.0,
+      "vacuum_norm": 0.3535533905932738
+    },
+    "charge_conjugation_sign_flip": {
+      "car_residual": 0.0,
+      "denominator": 3.0,
+      "full_charge_set_present": true,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 0.0,
+      "label": "charge_conjugation_sign_flip_generators",
+      "max_mode_number_residual": 0.0,
+      "max_total_number_residual": 0.0,
+      "passes_ladder_checks": true,
+      "ratio_signature": [
+        1.0,
+        2.000000000003,
+        3.000000000003
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": true,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -0.0,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 0,
+          "plus_charge": 0.0,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 7,
+          "minus_charge": -1.0,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 3,
+          "plus_charge": 1.0,
+          "state_norm": 0.3535533905932738
+        }
+      ],
+      "unique_charges": [
+        -1.0,
+        -0.666666666667,
+        -0.333333333333,
+        0.0,
+        0.333333333333,
+        0.666666666667,
+        1.0
+      ],
+      "unit_third_lattice_residual": 0.0,
+      "vacuum_idempotent_residual": 0.0,
+      "vacuum_norm": 0.3535533905932738
+    },
+    "chosen_representation": {
+      "car_residual": 0.0,
+      "denominator": 3.0,
+      "full_charge_set_present": true,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 0.0,
+      "label": "chosen_adjacent_pairs_Q_equals_plusminus_N_over_3",
+      "max_mode_number_residual": 0.0,
+      "max_total_number_residual": 0.0,
+      "passes_ladder_checks": true,
+      "ratio_signature": [
+        1.0,
+        2.000000000003,
+        3.000000000003
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": true,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -0.0,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 0,
+          "plus_charge": 0.0,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 7,
+          "minus_charge": -1.0,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 3,
+          "plus_charge": 1.0,
+          "state_norm": 0.3535533905932738
+        }
+      ],
+      "unique_charges": [
+        -1.0,
+        -0.666666666667,
+        -0.333333333333,
+        0.0,
+        0.333333333333,
+        0.666666666667,
+        1.0
+      ],
+      "unit_third_lattice_residual": 0.0,
+      "vacuum_idempotent_residual": 0.0,
+      "vacuum_norm": 0.3535533905932738
+    },
+    "erased_owner_carrier": {
+      "car_residual": 1.0,
+      "full_charge_set_present": false,
+      "ideal_rank": 0,
+      "label": "erased_owner_carrier",
+      "passes_ladder_checks": false,
+      "reason": "Cl(6) product and octonion/G2 owner anchor erased; finite ladder cannot be constructed",
+      "required_targets_present": false,
+      "unique_charges": []
+    },
+    "generator_permutation": {
+      "car_residual": 0.0,
+      "denominator": 3.0,
+      "full_charge_set_present": true,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 0.0,
+      "label": "generator_permutation_same_recipe",
+      "max_mode_number_residual": 0.0,
+      "max_total_number_residual": 0.0,
+      "passes_ladder_checks": true,
+      "ratio_signature": [
+        1.0,
+        2.000000000003,
+        3.000000000003
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": true,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -0.0,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 0,
+          "plus_charge": 0.0,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.3333333333333333,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3333333333333333,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.6666666666666666,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6666666666666666,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 7,
+          "minus_charge": -1.0,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 3,
+          "plus_charge": 1.0,
+          "state_norm": 0.3535533905932738
+        }
+      ],
+      "unique_charges": [
+        -1.0,
+        -0.666666666667,
+        -0.333333333333,
+        0.0,
+        0.333333333333,
+        0.666666666667,
+        1.0
+      ],
+      "unit_third_lattice_residual": 0.0,
+      "vacuum_idempotent_residual": 0.0,
+      "vacuum_norm": 0.3535533905932738
+    },
+    "random_embedding_control": {
+      "car_residual": 0.22095250145955483,
+      "denominator": 3.0,
+      "full_charge_set_present": false,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 0.13572710798939808,
+      "label": "random_non_cl_embedding_same_recipe",
+      "max_mode_number_residual": 0.08778059445870752,
+      "max_total_number_residual": 0.09109362125459751,
+      "passes_ladder_checks": false,
+      "ratio_signature": [
+        1.0,
+        7.52568107741,
+        7.535624572294,
+        7.632815917358,
+        13.683091516284,
+        13.741705415208,
+        13.75877178943,
+        19.119837410976
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": false,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -0.04985084095455682,
+          "mode_eigenvalues": [
+            0.030959498076761027,
+            0.05309597359087224,
+            0.0654970511960372
+          ],
+          "occupancy": 0,
+          "plus_charge": 0.04985084095455682,
+          "state_norm": 0.2839872278335719
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.3756572220501957,
+          "mode_eigenvalues": [
+            0.973184361284769,
+            0.06844152876560425,
+            0.08534577610021372
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3756572220501957,
+          "state_norm": 0.2795566148191616
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.3751615304676954,
+          "mode_eigenvalues": [
+            0.07236395352023473,
+            0.9725574722725151,
+            0.08056316561033637
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.3751615304676954,
+          "state_norm": 0.2763451137753977
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.68211361895104,
+          "mode_eigenvalues": [
+            0.9519912210550652,
+            0.9721054117348462,
+            0.1222442240632084
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.68211361895104,
+          "state_norm": 0.2698204316139862
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.380502292335026,
+          "mode_eigenvalues": [
+            0.07624667547494,
+            0.09306689816309976,
+            0.9721933033670382
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.380502292335026,
+          "state_norm": 0.27452958047345744
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.6850355711039916,
+          "mode_eigenvalues": [
+            0.9516737176057706,
+            0.13184311979572777,
+            0.9715898759104764
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6850355711039916,
+          "state_norm": 0.2673611158228842
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.6858863442114939,
+          "mode_eigenvalues": [
+            0.13572710798939808,
+            0.9501942685365475,
+            0.9717376561085358
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.6858863442114939,
+          "state_norm": 0.2649797824357523
+        },
+        {
+          "mask": 7,
+          "minus_charge": -0.9531399738602313,
+          "mode_eigenvalues": [
+            0.9387790761649446,
+            0.9502452532845176,
+            0.9703955921312318
+          ],
+          "occupancy": 3,
+          "plus_charge": 0.9531399738602313,
+          "state_norm": 0.2527910423399859
+        }
+      ],
+      "unique_charges": [
+        -0.95313997386,
+        -0.685886344211,
+        -0.685035571104,
+        -0.682113618951,
+        -0.380502292335,
+        -0.37565722205,
+        -0.375161530468,
+        -0.049850840955,
+        0.049850840955,
+        0.375161530468,
+        0.37565722205,
+        0.380502292335,
+        0.682113618951,
+        0.685035571104,
+        0.685886344211,
+        0.95313997386
+      ],
+      "unit_third_lattice_residual": 0.14955252286367046,
+      "vacuum_idempotent_residual": 0.062323360365200926,
+      "vacuum_norm": 0.2839872278335719
+    },
+    "remove_hand_chosen_number_operator": {
+      "full_charge_set_present": false,
+      "label": "removed_number_operator",
+      "passes_ladder_checks": false,
+      "reason": "state family remains finite but the charge readout operator is removed; target charges are not emitted",
+      "required_targets_present": false,
+      "source_ladder_ok": true,
+      "unique_charges": [
+        0.0
+      ]
+    },
+    "representation_rescaling": {
+      "car_residual": 0.0,
+      "denominator": 5.0,
+      "full_charge_set_present": false,
+      "ideal_rank": 8,
+      "integer_eigenvalue_residual": 0.0,
+      "label": "representation_rescaling_Q_equals_plusminus_N_over_5",
+      "max_mode_number_residual": 0.0,
+      "max_total_number_residual": 0.0,
+      "passes_ladder_checks": true,
+      "ratio_signature": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "required_target_charges": [
+        -1.0,
+        -0.3333333333333333,
+        0.6666666666666666
+      ],
+      "required_targets_present": false,
+      "state_rows": [
+        {
+          "mask": 0,
+          "minus_charge": -0.0,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 0,
+          "plus_charge": 0.0,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 1,
+          "minus_charge": -0.2,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.2,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 2,
+          "minus_charge": -0.2,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.2,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 3,
+          "minus_charge": -0.4,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.4,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 4,
+          "minus_charge": -0.2,
+          "mode_eigenvalues": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 1,
+          "plus_charge": 0.2,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 5,
+          "minus_charge": -0.4,
+          "mode_eigenvalues": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.4,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 6,
+          "minus_charge": -0.4,
+          "mode_eigenvalues": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 2,
+          "plus_charge": 0.4,
+          "state_norm": 0.3535533905932738
+        },
+        {
+          "mask": 7,
+          "minus_charge": -0.6,
+          "mode_eigenvalues": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "occupancy": 3,
+          "plus_charge": 0.6,
+          "state_norm": 0.3535533905932738
+        }
+      ],
+      "unique_charges": [
+        -0.6,
+        -0.4,
+        -0.2,
+        0.0,
+        0.2,
+        0.4,
+        0.6
+      ],
+      "unit_third_lattice_residual": 0.3999999999999999,
+      "vacuum_idempotent_residual": 0.0,
+      "vacuum_norm": 0.3535533905932738
+    }
+  }
+}

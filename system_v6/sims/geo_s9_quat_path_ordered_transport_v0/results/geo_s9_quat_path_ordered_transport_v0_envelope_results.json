@@ -1,0 +1,1614 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source, result, parent-lineage, and pin hash checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from independent Julia and Python leg receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "the two explicit BPST rectangular loops in parent planes have computed path-ordered Sp(1) holonomies",
+    "for calibrated transported theta=pi/3 loops, the transported commutator gap agrees with the parent algebraic gap within the stated numeric tolerance",
+    "small-loop transport agrees with exp(curvature area) to leading order only",
+    "the S2 U(1) contrast reproduces committed lifted holonomy values because U(1) path ordering collapses"
+  ],
+  "blocked_until": "full nonabelian Stokes or continuum holonomy wording remains blocked until a separate surface-ordered proof/sim exists",
+  "builder_self_check_is_evidence": false,
+  "canon_runtime": {
+    "consumer_policy": "consume only as scratch diagnostic transport evidence with parent caveat boundary preserved",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "bpst_sp1_path_ordered_transport_same_plane_gap",
+    "semantic_owner": "julia"
+  },
+  "claim": "Scratch diagnostic path-ordered BPST Sp(1) transport for the quaternionic Hopf S7->S4 row, including same-plane comparison with the committed algebraic gap, leading-order small-loop curvature check, and abelian U(1) contrast.",
+  "claim_ceiling": "scratch_diagnostic only; validates a bounded path-ordered transport diagnostic, not continuum holonomy admission, not formal geometry promotion, not bridge/axis/physics evidence",
+  "claim_path_tools": [
+    "DifferentialEquations",
+    "Z3",
+    "cvc5",
+    "diffrax",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "jax": {
+      "coarse_integration_visible_drift": {
+        "holonomy_raw": [
+          0.5403546241567464,
+          0.9257221510310346,
+          0.0,
+          0.0
+        ],
+        "method": "deliberately coarse explicit Euler control",
+        "raw_norm_drift": 0.07188834341880224
+      },
+      "curvature_area_square_visible_difference": {
+        "leading_order_theta": 1.0471975511965976,
+        "side_length_from_leading_order_area_theta": 0.7236012545582676,
+        "transport_angle_observed": 0.6216664142692465,
+        "visible_difference": 0.4255311369273511
+      },
+      "reverse_loop_inverse": {
+        "distance": 0.0,
+        "inverse_expected": [
+          0.5000000000000013,
+          -0.8660254037844379,
+          -0.0,
+          -0.0
+        ],
+        "pass": true,
+        "reverse_holonomy": [
+          0.5000000000000013,
+          -0.8660254037844379,
+          0.0,
+          0.0
+        ]
+      },
+      "zero_curvature_identity": {
+        "distance_to_identity": 0.0,
+        "holonomy": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true,
+        "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+      }
+    },
+    "julia": {
+      "coarse_integration_visible_drift": {
+        "holonomy_raw": [
+          0.5403546241567464,
+          0.9257221510310346,
+          0.0,
+          0.0
+        ],
+        "method": "deliberately coarse explicit Euler control",
+        "raw_norm_drift": 0.07188834341880224
+      },
+      "curvature_area_square_visible_difference": {
+        "leading_order_theta": 1.0471975511965976,
+        "side_length_from_leading_order_area_theta": 0.7236012545582676,
+        "transport_angle_observed": 0.6216664142692454,
+        "visible_difference": 0.4255311369273522
+      },
+      "reverse_loop_inverse": {
+        "distance": 0.0,
+        "inverse_expected": [
+          0.4999999999999995,
+          -0.8660254037844389,
+          -0.0,
+          -0.0
+        ],
+        "pass": true,
+        "reverse_holonomy": [
+          0.4999999999999995,
+          -0.8660254037844389,
+          0.0,
+          0.0
+        ]
+      },
+      "zero_curvature_identity": {
+        "distance_to_identity": 0.0,
+        "holonomy": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true,
+        "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "load_bearing": true,
+      "proofs": {
+        "erased_flip_control": "sat",
+        "positive_identity": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "load_bearing": true,
+      "proofs": {
+        "computed_scaled_quaternion": [
+          500,
+          866,
+          0,
+          0
+        ],
+        "erased_flip_control": "vector((q*q)) != 0 for the same computed q when the inverse vector flip is erased",
+        "pass": true,
+        "positive_identity": "vector((q*conj(q))) == 0 for computed transported q",
+        "strength_label": "computed_integer_smt_polarity",
+        "z3_erased_flip_control": "sat",
+        "z3_verdict": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "load_bearing": true,
+      "proofs": {
+        "erased_flip_control": "sat",
+        "positive_identity": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "demotion_condition": "demote to failed diagnostic if source hashes drift, peer-result reads appear, loop convention changes, gap tolerance fails, small-loop leading-order check fails, or flat/reverse/coarse controls stop firing",
+  "divergence": {
+    "comparison": {
+      "coarse_raw_norm_drift": {
+        "abs_diff": 0.0,
+        "jax": 0.07188834341880224,
+        "julia": 0.07188834341880224
+      },
+      "commutator_gap": {
+        "abs_diff": 3.3306690738754696e-15,
+        "jax": 1.4999999999999976,
+        "julia": 1.5000000000000009
+      },
+      "difference_from_committed_gap": {
+        "abs_diff": 1.1102230246251565e-15,
+        "jax": 2.220446049250313e-15,
+        "julia": 1.1102230246251565e-15
+      },
+      "small_loop_finest_distance": {
+        "abs_diff": 1.1730347528287992e-18,
+        "jax": 4.26427873680545e-07,
+        "julia": 4.2642787368171806e-07
+      },
+      "u1_max_abs_error": {
+        "abs_diff": 0.0,
+        "jax": 1.4210854715202004e-14,
+        "julia": 1.4210854715202004e-14
+      }
+    },
+    "engine_values": {
+      "jax": {
+        "coarse_raw_norm_drift": 0.07188834341880224,
+        "commutator_gap": 1.4999999999999976,
+        "difference_from_committed_gap": 2.220446049250313e-15,
+        "small_loop_finest_distance": 4.26427873680545e-07,
+        "u1_max_abs_error": 1.4210854715202004e-14
+      },
+      "julia": {
+        "coarse_raw_norm_drift": 0.07188834341880224,
+        "commutator_gap": 1.5000000000000009,
+        "difference_from_committed_gap": 1.1102230246251565e-15,
+        "small_loop_finest_distance": 4.2642787368171806e-07,
+        "u1_max_abs_error": 1.4210854715202004e-14
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 3.3306690738754696e-15
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_differentialequations_plus_python_high_order_diagnostic",
+    "pytorch": {
+      "reason": "no tensor/autograd/PyTorch claim path is scoped for this transport packet",
+      "status": "excluded"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "diffrax",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": {
+        "cvc5": "1.3.3",
+        "diffrax": "0.7.2",
+        "jax": "0.10.1",
+        "numpy": "2.3.4",
+        "z3": "unknown"
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "diffrax",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "parent_lineage": {
+        "parent_sim_id": "geo_s9_quaternionic_hopf_stack_v0",
+        "paths": {
+          "envelope_result": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+          "envelope_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+          "jax_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_jax.py",
+          "julia_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_julia.jl"
+        },
+        "pin_sha256": "5e896aabda6404943cb600fa965ed8c8153eca02448381b3e62d37ae55f3a11f",
+        "read_only": true,
+        "sha256": {
+          "envelope_result": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+          "envelope_source": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f",
+          "jax_source": "297f0c8a4f9e31711114a658db72de8da563c1d9df37ef446ad7846ffeee11c0",
+          "julia_source": "bede8645bc9becc6d20400d6727da300bddb4111af72ed230fb32c5165df62ec"
+        }
+      },
+      "pin_sha256": "881ba8be481d51732ecba4f043f726ad806908c4981f889957d4783cecaaaabd",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/results/geo_s9_quat_path_ordered_transport_v0_jax_results.json",
+      "result_sha256": "c08a69afccbc333ff19abd92227eb93588adbc4534be00e1966f6dc858d29cd0",
+      "role_id": "python_high_order_transport_leg",
+      "source_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_jax.py",
+      "source_sha256": "7bf111a3eca152b912ce7031e40660068d65952a535c6e1f2073849eec4ba673",
+      "tool_calls": [
+        {
+          "status": "used",
+          "surface": "Dopri8 path-ordered transport ODE",
+          "tool": "diffrax"
+        },
+        {
+          "status": "used",
+          "surface": "computed inverse identity erased-flip polarity",
+          "tool": "z3"
+        },
+        {
+          "status": "used",
+          "surface": "computed inverse identity erased-flip polarity",
+          "tool": "cvc5"
+        },
+        {
+          "status": "used",
+          "surface": "hash/path/json receipt assembly",
+          "tool": "python_stdlib"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "diffrax": "load_bearing",
+        "python_stdlib": "supportive",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT polarity check matching z3 on the computed inverse identity",
+          "tried": true,
+          "used": true
+        },
+        "diffrax": {
+          "reason": "load-bearing independent Dopri8 high-order path-ordered transport integration for Sp(1) and U(1) controls",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive deterministic paths, hashing, timestamps, and JSON serialization",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing computed inverse identity polarity check with erased-vector-flip control",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "DifferentialEquations",
+        "Z3"
+      ],
+      "capability_receipts": {
+        "Base.active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "DifferentialEquations.ODEProblem": "ODEProblem",
+        "DifferentialEquations.Vern9": "Vern9",
+        "Z3.Solver": "Solver",
+        "julia_version": "1.12.6",
+        "project_dependencies_count": 24
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "DifferentialEquations",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "Dates",
+        "SHA",
+        "Pkg"
+      ],
+      "parent_lineage": {
+        "parent_sim_id": "geo_s9_quaternionic_hopf_stack_v0",
+        "paths": {
+          "envelope_result": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+          "envelope_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+          "jax_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_jax.py",
+          "julia_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_julia.jl"
+        },
+        "pin_sha256": "5e896aabda6404943cb600fa965ed8c8153eca02448381b3e62d37ae55f3a11f",
+        "read_only": true,
+        "sha256": {
+          "envelope_result": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+          "envelope_source": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f",
+          "jax_source": "297f0c8a4f9e31711114a658db72de8da563c1d9df37ef446ad7846ffeee11c0",
+          "julia_source": "bede8645bc9becc6d20400d6727da300bddb4111af72ed230fb32c5165df62ec"
+        }
+      },
+      "pin_sha256": "881ba8be481d51732ecba4f043f726ad806908c4981f889957d4783cecaaaabd",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/results/geo_s9_quat_path_ordered_transport_v0_julia_results.json",
+      "result_sha256": "d4d10a0f99bc533c60c6c06bf2c3f7ab1bc3c36630cc1788b71c9bc05ba2306e",
+      "role_id": "julia_differentialequations_transport_leg",
+      "source_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_julia.jl",
+      "source_sha256": "e5fd02f8dca03ec7ad596323e125db53563ca79f9a64a7a8714726503fe74e7b",
+      "tool_calls": [
+        {
+          "status": "used",
+          "surface": "Vern9 path-ordered transport ODE",
+          "tool": "DifferentialEquations"
+        },
+        {
+          "status": "used",
+          "surface": "computed inverse identity erased-flip polarity",
+          "tool": "Z3"
+        },
+        {
+          "status": "used",
+          "surface": "quaternion norm/distance controls",
+          "tool": "LinearAlgebra"
+        },
+        {
+          "status": "used",
+          "surface": "receipt assembly and capability metadata",
+          "tool": "JSON/Dates/SHA/Pkg"
+        }
+      ],
+      "tool_integration_depth": {
+        "DifferentialEquations": "load_bearing",
+        "JSON/Dates/SHA/Pkg": "supportive",
+        "LinearAlgebra": "supportive",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "DifferentialEquations": {
+          "reason": "load-bearing Vern9 integration of the path-ordered Sp(1) parallel-transport ODE and U(1) horizontal transport ODE",
+          "tried": true,
+          "used": true
+        },
+        "JSON/Dates/SHA/Pkg": {
+          "reason": "supportive receipt serialization, timestamping, source hashing, and package capability receipt",
+          "tried": true,
+          "used": true
+        },
+        "LinearAlgebra": {
+          "reason": "supportive quaternion-vector norms and convergence distances",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing computed inverse identity polarity check with erased-vector-flip control",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "jax": {
+      "packages": [
+        "diffrax",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "role": "Python DOP853 high-order independent transport plus z3/cvc5 identity checks"
+    },
+    "julia": {
+      "packages": [
+        "DifferentialEquations",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "Dates",
+        "SHA",
+        "Pkg"
+      ],
+      "role": "DifferentialEquations transport owner and Z3 identity check"
+    },
+    "pytorch": {
+      "role": "not scoped",
+      "status": "excluded"
+    }
+  },
+  "formal_admission_allowed": false,
+  "gate_pass": {
+    "abelian_u1_contrast": {
+      "details": {
+        "jax_rows": [
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": -5.441398092702654,
+            "computed_lifted_holonomy": -5.441398092702668,
+            "eta": 0.2617993877991494
+          },
+          {
+            "abs_error": 9.325873406851315e-15,
+            "committed_lifted_holonomy": -3.141592653589794,
+            "computed_lifted_holonomy": -3.1415926535897847,
+            "eta": 0.5235987755982988
+          },
+          {
+            "abs_error": 2.514494135391975e-30,
+            "committed_lifted_holonomy": -3.8473413874435795e-16,
+            "computed_lifted_holonomy": -3.8473413874436047e-16,
+            "eta": 0.7853981633974483
+          },
+          {
+            "abs_error": 7.993605777301127e-15,
+            "committed_lifted_holonomy": 3.1415926535897922,
+            "computed_lifted_holonomy": 3.1415926535897842,
+            "eta": 1.0471975511965976
+          },
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": 5.441398092702654,
+            "computed_lifted_holonomy": 5.441398092702668,
+            "eta": 1.3089969389957472
+          }
+        ],
+        "julia_rows": [
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": -5.441398092702654,
+            "computed_lifted_holonomy": -5.441398092702668,
+            "eta": 0.2617993877991494
+          },
+          {
+            "abs_error": 8.881784197001252e-15,
+            "committed_lifted_holonomy": -3.141592653589794,
+            "computed_lifted_holonomy": -3.141592653589785,
+            "eta": 0.5235987755982988
+          },
+          {
+            "abs_error": 2.514494135391975e-30,
+            "committed_lifted_holonomy": -3.8473413874435795e-16,
+            "computed_lifted_holonomy": -3.8473413874436047e-16,
+            "eta": 0.7853981633974483
+          },
+          {
+            "abs_error": 7.105427357601002e-15,
+            "committed_lifted_holonomy": 3.141592653589792,
+            "computed_lifted_holonomy": 3.1415926535897847,
+            "eta": 1.0471975511965976
+          },
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": 5.441398092702654,
+            "computed_lifted_holonomy": 5.441398092702668,
+            "eta": 1.3089969389957472
+          }
+        ]
+      },
+      "gate": "abelian_u1_contrast",
+      "pass": true
+    },
+    "ceiling_exact": {
+      "details": {
+        "jax": [
+          "scratch_diagnostic",
+          false,
+          false
+        ],
+        "julia": [
+          "scratch_diagnostic",
+          false,
+          false
+        ]
+      },
+      "gate": "ceiling_exact",
+      "pass": true
+    },
+    "controls_fired": {
+      "details": {
+        "jax": {
+          "coarse_integration_visible_drift": {
+            "holonomy_raw": [
+              0.5403546241567464,
+              0.9257221510310346,
+              0.0,
+              0.0
+            ],
+            "method": "deliberately coarse explicit Euler control",
+            "raw_norm_drift": 0.07188834341880224
+          },
+          "curvature_area_square_visible_difference": {
+            "leading_order_theta": 1.0471975511965976,
+            "side_length_from_leading_order_area_theta": 0.7236012545582676,
+            "transport_angle_observed": 0.6216664142692465,
+            "visible_difference": 0.4255311369273511
+          },
+          "reverse_loop_inverse": {
+            "distance": 0.0,
+            "inverse_expected": [
+              0.5000000000000013,
+              -0.8660254037844379,
+              -0.0,
+              -0.0
+            ],
+            "pass": true,
+            "reverse_holonomy": [
+              0.5000000000000013,
+              -0.8660254037844379,
+              0.0,
+              0.0
+            ]
+          },
+          "zero_curvature_identity": {
+            "distance_to_identity": 0.0,
+            "holonomy": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "pass": true,
+            "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+          }
+        },
+        "julia": {
+          "coarse_integration_visible_drift": {
+            "holonomy_raw": [
+              0.5403546241567464,
+              0.9257221510310346,
+              0.0,
+              0.0
+            ],
+            "method": "deliberately coarse explicit Euler control",
+            "raw_norm_drift": 0.07188834341880224
+          },
+          "curvature_area_square_visible_difference": {
+            "leading_order_theta": 1.0471975511965976,
+            "side_length_from_leading_order_area_theta": 0.7236012545582676,
+            "transport_angle_observed": 0.6216664142692454,
+            "visible_difference": 0.4255311369273522
+          },
+          "reverse_loop_inverse": {
+            "distance": 0.0,
+            "inverse_expected": [
+              0.4999999999999995,
+              -0.8660254037844389,
+              -0.0,
+              -0.0
+            ],
+            "pass": true,
+            "reverse_holonomy": [
+              0.4999999999999995,
+              -0.8660254037844389,
+              0.0,
+              0.0
+            ]
+          },
+          "zero_curvature_identity": {
+            "distance_to_identity": 0.0,
+            "holonomy": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "pass": true,
+            "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+          }
+        }
+      },
+      "gate": "controls_fired",
+      "pass": true
+    },
+    "cross_engine_numeric_divergence_bounded": {
+      "details": {
+        "comparison": {
+          "coarse_raw_norm_drift": {
+            "abs_diff": 0.0,
+            "jax": 0.07188834341880224,
+            "julia": 0.07188834341880224
+          },
+          "commutator_gap": {
+            "abs_diff": 3.3306690738754696e-15,
+            "jax": 1.4999999999999976,
+            "julia": 1.5000000000000009
+          },
+          "difference_from_committed_gap": {
+            "abs_diff": 1.1102230246251565e-15,
+            "jax": 2.220446049250313e-15,
+            "julia": 1.1102230246251565e-15
+          },
+          "small_loop_finest_distance": {
+            "abs_diff": 1.1730347528287992e-18,
+            "jax": 4.26427873680545e-07,
+            "julia": 4.2642787368171806e-07
+          },
+          "u1_max_abs_error": {
+            "abs_diff": 0.0,
+            "jax": 1.4210854715202004e-14,
+            "julia": 1.4210854715202004e-14
+          }
+        },
+        "engine_values": {
+          "jax": {
+            "coarse_raw_norm_drift": 0.07188834341880224,
+            "commutator_gap": 1.4999999999999976,
+            "difference_from_committed_gap": 2.220446049250313e-15,
+            "small_loop_finest_distance": 4.26427873680545e-07,
+            "u1_max_abs_error": 1.4210854715202004e-14
+          },
+          "julia": {
+            "coarse_raw_norm_drift": 0.07188834341880224,
+            "commutator_gap": 1.5000000000000009,
+            "difference_from_committed_gap": 1.1102230246251565e-15,
+            "small_loop_finest_distance": 4.2642787368171806e-07,
+            "u1_max_abs_error": 1.4210854715202004e-14
+          }
+        },
+        "julia_authoritative": true,
+        "max_divergence": 3.3306690738754696e-15
+      },
+      "gate": "cross_engine_numeric_divergence_bounded",
+      "pass": true
+    },
+    "legs_exit_0_by_receipt": {
+      "details": {
+        "jax": true,
+        "julia": true
+      },
+      "gate": "legs_exit_0_by_receipt",
+      "pass": true
+    },
+    "parent_lineage_identical": {
+      "details": {
+        "jax": {
+          "parent_sim_id": "geo_s9_quaternionic_hopf_stack_v0",
+          "paths": {
+            "envelope_result": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+            "envelope_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+            "jax_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_jax.py",
+            "julia_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_julia.jl"
+          },
+          "pin_sha256": "5e896aabda6404943cb600fa965ed8c8153eca02448381b3e62d37ae55f3a11f",
+          "read_only": true,
+          "sha256": {
+            "envelope_result": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+            "envelope_source": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f",
+            "jax_source": "297f0c8a4f9e31711114a658db72de8da563c1d9df37ef446ad7846ffeee11c0",
+            "julia_source": "bede8645bc9becc6d20400d6727da300bddb4111af72ed230fb32c5165df62ec"
+          }
+        },
+        "julia": {
+          "parent_sim_id": "geo_s9_quaternionic_hopf_stack_v0",
+          "paths": {
+            "envelope_result": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+            "envelope_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+            "jax_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_jax.py",
+            "julia_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_julia.jl"
+          },
+          "pin_sha256": "5e896aabda6404943cb600fa965ed8c8153eca02448381b3e62d37ae55f3a11f",
+          "read_only": true,
+          "sha256": {
+            "envelope_result": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+            "envelope_source": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f",
+            "jax_source": "297f0c8a4f9e31711114a658db72de8da563c1d9df37ef446ad7846ffeee11c0",
+            "julia_source": "bede8645bc9becc6d20400d6727da300bddb4111af72ed230fb32c5165df62ec"
+          }
+        }
+      },
+      "gate": "parent_lineage_identical",
+      "pass": true
+    },
+    "path_ordered_comparison_row": {
+      "details": {
+        "committed": 1.4999999999999998,
+        "jax": 1.4999999999999976,
+        "julia": 1.5000000000000009
+      },
+      "gate": "path_ordered_comparison_row",
+      "pass": true
+    },
+    "pin_identical": {
+      "details": [
+        "881ba8be481d51732ecba4f043f726ad806908c4981f889957d4783cecaaaabd"
+      ],
+      "gate": "pin_identical",
+      "pass": true
+    },
+    "small_loop_stokes_boundary": {
+      "details": {
+        "boundary": "leading-order nonabelian Stokes only; no surface-ordered full nonabelian Stokes theorem is proved",
+        "jax_finest": {
+          "distance": 4.26427873680545e-07,
+          "distance_over_side4": 2.665174210503406,
+          "leading_exp_curvature": [
+            0.999999680000017,
+            0.0007999999146666695,
+            0.0,
+            0.0
+          ],
+          "side": 0.02,
+          "transport_holonomy": [
+            0.9999996803410685,
+            0.0007995734869293732,
+            0.0,
+            0.0
+          ]
+        },
+        "julia_finest": {
+          "distance": 4.2642787368171806e-07,
+          "distance_over_side4": 2.6651742105107377,
+          "leading_exp_curvature": [
+            0.999999680000017,
+            0.0007999999146666695,
+            0.0,
+            0.0
+          ],
+          "side": 0.02,
+          "transport_holonomy": [
+            0.9999996803410686,
+            0.0007995734869293721,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "gate": "small_loop_stokes_boundary",
+      "pass": true
+    },
+    "smt_flip": {
+      "details": {
+        "jax": {
+          "computed_scaled_quaternion": [
+            500,
+            866,
+            0,
+            0
+          ],
+          "cvc5_erased_flip_control": "sat",
+          "cvc5_verdict": "unsat",
+          "erased_flip_control": "vector((q*q)) != 0 for the same computed q when the inverse vector flip is erased",
+          "pass": true,
+          "positive_identity": "vector((q*conj(q))) == 0 for computed transported q",
+          "strength_label": "computed_integer_smt_polarity",
+          "z3_erased_flip_control": "sat",
+          "z3_verdict": "unsat"
+        },
+        "julia": {
+          "computed_scaled_quaternion": [
+            500,
+            866,
+            0,
+            0
+          ],
+          "erased_flip_control": "vector((q*q)) != 0 for the same computed q when the inverse vector flip is erased",
+          "pass": true,
+          "positive_identity": "vector((q*conj(q))) == 0 for computed transported q",
+          "strength_label": "computed_integer_smt_polarity",
+          "z3_erased_flip_control": "sat",
+          "z3_verdict": "unsat"
+        }
+      },
+      "gate": "smt_flip",
+      "pass": true
+    },
+    "source_sha256_current": {
+      "details": {
+        "jax": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_jax.py",
+        "julia": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_julia.jl"
+      },
+      "gate": "source_sha256_current",
+      "pass": true
+    },
+    "tool_calls_one_to_one": {
+      "details": {
+        "jax": {
+          "called_tools": [
+            "cvc5",
+            "diffrax",
+            "python_stdlib",
+            "z3"
+          ],
+          "claim_path_tools": [
+            "cvc5",
+            "diffrax",
+            "z3"
+          ],
+          "claim_tools_have_calls": true,
+          "unique_tool_call_rows": true
+        },
+        "julia": {
+          "called_tools": [
+            "DifferentialEquations",
+            "JSON/Dates/SHA/Pkg",
+            "LinearAlgebra",
+            "Z3"
+          ],
+          "claim_path_tools": [
+            "DifferentialEquations",
+            "Z3"
+          ],
+          "claim_tools_have_calls": true,
+          "unique_tool_call_rows": true
+        }
+      },
+      "gate": "tool_calls_one_to_one",
+      "pass": true
+    }
+  },
+  "generated_at": "2026-06-11T05:56:57Z",
+  "name": "geo_s9_quat_path_ordered_transport_v0",
+  "next_lego_target": "a narrower surface-ordered small-patch Stokes scout with independently parameterized surfaces, still below promotion",
+  "object_id": "geo_s9_quat_path_ordered_transport_v0",
+  "out_of_scope": [
+    "full nonabelian Stokes theorem",
+    "surface-ordered holonomy proof",
+    "global continuum holonomy claim",
+    "canonical/admitted geometry status",
+    "physics, bridge, axis, or manifold promotion"
+  ],
+  "parent_lineage": {
+    "parent_sim_id": "geo_s9_quaternionic_hopf_stack_v0",
+    "paths": {
+      "envelope_result": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+      "envelope_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+      "jax_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_jax.py",
+      "julia_source": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_julia.jl"
+    },
+    "pin_sha256": "5e896aabda6404943cb600fa965ed8c8153eca02448381b3e62d37ae55f3a11f",
+    "read_only": true,
+    "sha256": {
+      "envelope_result": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+      "envelope_source": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f",
+      "jax_source": "297f0c8a4f9e31711114a658db72de8da563c1d9df37ef446ad7846ffeee11c0",
+      "julia_source": "bede8645bc9becc6d20400d6727da300bddb4111af72ed230fb32c5165df62ec"
+    }
+  },
+  "pin_sha256": "881ba8be481d51732ecba4f043f726ad806908c4981f889957d4783cecaaaabd",
+  "pin_spec": "geo_s9_quat_path_ordered_transport_v0|stage:S9|mode:path_ordered_transport|parent=geo_s9_quaternionic_hopf_stack_v0 read_only|BPST Sp1 A=Im(x*dconj(x))/(1+|x|^2)|loops=(x0,x1)->i,(x0,x2)->j|theta=pi/3 transported calibration|abelian=S2 U1 horizontal holonomy|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "promotion_condition": "none in this packet; promotion_allowed=false by construction",
+  "proofs": {
+    "jax": {
+      "P4_computed_inverse_identity_smt": {
+        "computed_scaled_quaternion": [
+          500,
+          866,
+          0,
+          0
+        ],
+        "cvc5_erased_flip_control": "sat",
+        "cvc5_verdict": "unsat",
+        "erased_flip_control": "vector((q*q)) != 0 for the same computed q when the inverse vector flip is erased",
+        "pass": true,
+        "positive_identity": "vector((q*conj(q))) == 0 for computed transported q",
+        "strength_label": "computed_integer_smt_polarity",
+        "z3_erased_flip_control": "sat",
+        "z3_verdict": "unsat"
+      }
+    },
+    "julia": {
+      "J4_computed_inverse_identity_smt": {
+        "computed_scaled_quaternion": [
+          500,
+          866,
+          0,
+          0
+        ],
+        "erased_flip_control": "vector((q*q)) != 0 for the same computed q when the inverse vector flip is erased",
+        "pass": true,
+        "positive_identity": "vector((q*conj(q))) == 0 for computed transported q",
+        "strength_label": "computed_integer_smt_polarity",
+        "z3_erased_flip_control": "sat",
+        "z3_verdict": "unsat"
+      }
+    }
+  },
+  "receipts": {
+    "jax": {
+      "P1_path_ordered_sp1_transport": {
+        "calibration": {
+          "angle_formula": "2*(a/sqrt(1+a^2))*atan(a/sqrt(1+a^2))",
+          "side_length_solved_from_exact_square_integral": 1.2714085432332016,
+          "target_theta": 1.0471975511965976,
+          "why": "parent row stored curvature-generated theta=pi/3; this packet uses explicit loops in the same planes calibrated to the same transported angle"
+        },
+        "coarse_integration_control": {
+          "holonomy_raw": [
+            0.5403546241567464,
+            0.9257221510310346,
+            0.0,
+            0.0
+          ],
+          "method": "deliberately coarse explicit Euler control",
+          "raw_norm_drift": 0.07188834341880224
+        },
+        "committed_algebraic_gap": 1.4999999999999998,
+        "commutator_gap": 1.4999999999999976,
+        "connection": "BPST Sp(1) A_t=Im(x*dconj(x))/(1+|x|^2); transport q'=-A_t q",
+        "curvature_area_square_control": {
+          "leading_order_theta": 1.0471975511965976,
+          "side_length_from_leading_order_area_theta": 0.7236012545582676,
+          "transport_angle_observed": 0.6216664142692465,
+          "visible_difference": 0.4255311369273511
+        },
+        "difference_from_committed_gap": 2.220446049250313e-15,
+        "holonomy_1": [
+          0.5000000000000013,
+          0.8660254037844379,
+          0.0,
+          0.0
+        ],
+        "holonomy_2": [
+          0.5000000000000013,
+          0.0,
+          0.8660254037844379,
+          0.0
+        ],
+        "loop_1_i": {
+          "richardson": {
+            "error_bar": 0.0,
+            "last_step_delta": 1.5543122344752192e-15,
+            "limit": 1.0471975511965963,
+            "order_assumed": 8
+          },
+          "rows": [
+            {
+              "accepted_steps": 128,
+              "angle": 1.0471975511965979,
+              "holonomy": [
+                0.5,
+                0.8660254037844387,
+                0.0,
+                0.0
+              ],
+              "n_per_segment": 32,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_steps": 256,
+              "angle": 1.0471975511965976,
+              "holonomy": [
+                0.5000000000000001,
+                0.8660254037844386,
+                0.0,
+                0.0
+              ],
+              "n_per_segment": 64,
+              "unit_norm_drift": 1.1102230246251565e-15
+            },
+            {
+              "accepted_steps": 512,
+              "angle": 1.0471975511965979,
+              "holonomy": [
+                0.49999999999999994,
+                0.8660254037844387,
+                0.0,
+                0.0
+              ],
+              "n_per_segment": 128,
+              "unit_norm_drift": 1.2212453270876722e-15
+            },
+            {
+              "accepted_steps": 1024,
+              "angle": 1.0471975511965963,
+              "holonomy": [
+                0.5000000000000013,
+                0.8660254037844379,
+                0.0,
+                0.0
+              ],
+              "n_per_segment": 256,
+              "unit_norm_drift": 1.7763568394002505e-15
+            }
+          ]
+        },
+        "loop_2_j": {
+          "richardson": {
+            "error_bar": 0.0,
+            "last_step_delta": 1.5543122344752192e-15,
+            "limit": 1.0471975511965963,
+            "order_assumed": 8
+          },
+          "rows": [
+            {
+              "accepted_steps": 128,
+              "angle": 1.0471975511965979,
+              "holonomy": [
+                0.5,
+                0.0,
+                0.8660254037844387,
+                0.0
+              ],
+              "n_per_segment": 32,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_steps": 256,
+              "angle": 1.0471975511965976,
+              "holonomy": [
+                0.5000000000000001,
+                0.0,
+                0.8660254037844386,
+                0.0
+              ],
+              "n_per_segment": 64,
+              "unit_norm_drift": 1.1102230246251565e-15
+            },
+            {
+              "accepted_steps": 512,
+              "angle": 1.0471975511965979,
+              "holonomy": [
+                0.49999999999999994,
+                0.0,
+                0.8660254037844387,
+                0.0
+              ],
+              "n_per_segment": 128,
+              "unit_norm_drift": 1.2212453270876722e-15
+            },
+            {
+              "accepted_steps": 1024,
+              "angle": 1.0471975511965963,
+              "holonomy": [
+                0.5000000000000013,
+                0.0,
+                0.8660254037844379,
+                0.0
+              ],
+              "n_per_segment": 256,
+              "unit_norm_drift": 1.7763568394002505e-15
+            }
+          ]
+        },
+        "loop_model": "same parent planes: rectangle in (x0,x1) gives i holonomy; rectangle in (x0,x2) gives j holonomy",
+        "pass": true,
+        "reverse_loop_inverse_control": {
+          "distance": 0.0,
+          "inverse_expected": [
+            0.5000000000000013,
+            -0.8660254037844379,
+            -0.0,
+            -0.0
+          ],
+          "pass": true,
+          "reverse_holonomy": [
+            0.5000000000000013,
+            -0.8660254037844379,
+            0.0,
+            0.0
+          ]
+        },
+        "strength_label": "diagnostic_float_nonclaim_path_ordered",
+        "zero_curvature_control": {
+          "distance_to_identity": 0.0,
+          "holonomy": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "pass": true,
+          "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+        }
+      },
+      "P2_small_loop_leading_stokes_boundary": {
+        "boundary": "leading-order nonabelian Stokes only; no surface-ordered full nonabelian Stokes theorem is proved",
+        "curvature_at_basepoint": "F01=2*i for the (x0,x1) rectangle",
+        "pass": true,
+        "rows": [
+          {
+            "distance": 0.0005420430921481268,
+            "distance_over_side4": 2.6140195416094083,
+            "leading_exp_curvature": [
+              0.9995853086646539,
+              0.02879601885310971,
+              0.0,
+              0.0
+            ],
+            "side": 0.12,
+            "transport_holonomy": [
+              0.9996007705027449,
+              0.02825419633114486,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 0.00010825710956351189,
+            "distance_over_side4": 2.6429958389529267,
+            "leading_exp_curvature": [
+              0.9999180811184749,
+              0.012799650477529968,
+              0.0,
+              0.0
+            ],
+            "side": 0.08,
+            "transport_holonomy": [
+              0.9999194609123162,
+              0.012691402161422964,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 6.811410796300694e-06,
+            "distance_over_side4": 2.6607073423049585,
+            "leading_exp_curvature": [
+              0.9999948800043691,
+              0.003199994538669463,
+              0.0,
+              0.0
+            ],
+            "side": 0.04,
+            "transport_holonomy": [
+              0.9999949017776489,
+              0.003193183162673363,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 4.26427873680545e-07,
+            "distance_over_side4": 2.665174210503406,
+            "leading_exp_curvature": [
+              0.999999680000017,
+              0.0007999999146666695,
+              0.0,
+              0.0
+            ],
+            "side": 0.02,
+            "transport_holonomy": [
+              0.9999996803410685,
+              0.0007995734869293732,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "strength_label": "leading_order_consistency_check"
+      },
+      "P3_abelian_u1_contrast": {
+        "committed_values_source": "geo_s2_connection_flux_foliation_v0: lifted_holonomy=-2*pi*cos(2*eta), rows eta=pi/12,pi/6,pi/4,pi/3,5pi/12",
+        "pass": true,
+        "path_ordered_equals_algebraic_reason": "U(1) connection values commute, so path ordering collapses to the ordinary exponential of the integrated phase",
+        "rows": [
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": -5.441398092702654,
+            "computed_lifted_holonomy": -5.441398092702668,
+            "eta": 0.2617993877991494
+          },
+          {
+            "abs_error": 9.325873406851315e-15,
+            "committed_lifted_holonomy": -3.141592653589794,
+            "computed_lifted_holonomy": -3.1415926535897847,
+            "eta": 0.5235987755982988
+          },
+          {
+            "abs_error": 2.514494135391975e-30,
+            "committed_lifted_holonomy": -3.8473413874435795e-16,
+            "computed_lifted_holonomy": -3.8473413874436047e-16,
+            "eta": 0.7853981633974483
+          },
+          {
+            "abs_error": 7.993605777301127e-15,
+            "committed_lifted_holonomy": 3.1415926535897922,
+            "computed_lifted_holonomy": 3.1415926535897842,
+            "eta": 1.0471975511965976
+          },
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": 5.441398092702654,
+            "computed_lifted_holonomy": 5.441398092702668,
+            "eta": 1.3089969389957472
+          }
+        ],
+        "strength_label": "abelian_transport_contrast",
+        "u1_commutator_gap": 0.0
+      }
+    },
+    "julia": {
+      "J1_path_ordered_sp1_transport": {
+        "calibration": {
+          "angle_formula": "2*(a/sqrt(1+a^2))*atan(a/sqrt(1+a^2))",
+          "side_length_solved_from_exact_square_integral": 1.2714085432332016,
+          "target_theta": 1.0471975511965976,
+          "why": "parent row stored curvature-generated theta=pi/3; this packet uses explicit loops in the same planes calibrated to the same transported angle"
+        },
+        "coarse_integration_control": {
+          "holonomy_raw": [
+            0.5403546241567464,
+            0.9257221510310346,
+            0.0,
+            0.0
+          ],
+          "method": "deliberately coarse explicit Euler control",
+          "raw_norm_drift": 0.07188834341880224
+        },
+        "committed_algebraic_gap": 1.4999999999999998,
+        "commutator_gap": 1.5000000000000009,
+        "connection": "BPST Sp(1) A_t=Im(x*dconj(x))/(1+|x|^2); transport q'=-A_t q",
+        "curvature_area_square_control": {
+          "leading_order_theta": 1.0471975511965976,
+          "side_length_from_leading_order_area_theta": 0.7236012545582676,
+          "transport_angle_observed": 0.6216664142692454,
+          "visible_difference": 0.4255311369273522
+        },
+        "difference_from_committed_gap": 1.1102230246251565e-15,
+        "h1_h2": [
+          0.2499999999999995,
+          0.433012701892219,
+          0.433012701892219,
+          0.7500000000000004
+        ],
+        "h2_h1": [
+          0.2499999999999995,
+          0.433012701892219,
+          0.433012701892219,
+          -0.7500000000000004
+        ],
+        "holonomy_1": [
+          0.4999999999999995,
+          0.8660254037844389,
+          0.0,
+          0.0
+        ],
+        "holonomy_2": [
+          0.4999999999999995,
+          0.0,
+          0.8660254037844389,
+          0.0
+        ],
+        "loop_1_i": {
+          "richardson": {
+            "error_bar": 0.0,
+            "last_step_delta": 1.1102230246251565e-15,
+            "limit": 1.0471975511965983,
+            "order_assumed": 9
+          },
+          "rows": [
+            {
+              "accepted_step_count": 4,
+              "angle": 1.047197551196597,
+              "holonomy": [
+                0.5000000000000007,
+                0.8660254037844384,
+                0.0,
+                0.0
+              ],
+              "n_per_segment_dtmax": 32,
+              "unit_norm_drift": 2.220446049250313e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965976,
+              "holonomy": [
+                0.5000000000000001,
+                0.8660254037844386,
+                0.0,
+                0.0
+              ],
+              "n_per_segment_dtmax": 64,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965972,
+              "holonomy": [
+                0.5000000000000006,
+                0.8660254037844385,
+                0.0,
+                0.0
+              ],
+              "n_per_segment_dtmax": 128,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965983,
+              "holonomy": [
+                0.4999999999999995,
+                0.8660254037844389,
+                0.0,
+                0.0
+              ],
+              "n_per_segment_dtmax": 256,
+              "unit_norm_drift": 2.220446049250313e-16
+            }
+          ]
+        },
+        "loop_2_j": {
+          "richardson": {
+            "error_bar": 0.0,
+            "last_step_delta": 1.1102230246251565e-15,
+            "limit": 1.0471975511965983,
+            "order_assumed": 9
+          },
+          "rows": [
+            {
+              "accepted_step_count": 4,
+              "angle": 1.047197551196597,
+              "holonomy": [
+                0.5000000000000007,
+                0.0,
+                0.8660254037844384,
+                0.0
+              ],
+              "n_per_segment_dtmax": 32,
+              "unit_norm_drift": 2.220446049250313e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965976,
+              "holonomy": [
+                0.5000000000000001,
+                0.0,
+                0.8660254037844386,
+                0.0
+              ],
+              "n_per_segment_dtmax": 64,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965972,
+              "holonomy": [
+                0.5000000000000006,
+                0.0,
+                0.8660254037844385,
+                0.0
+              ],
+              "n_per_segment_dtmax": 128,
+              "unit_norm_drift": 4.440892098500626e-16
+            },
+            {
+              "accepted_step_count": 4,
+              "angle": 1.0471975511965983,
+              "holonomy": [
+                0.4999999999999995,
+                0.0,
+                0.8660254037844389,
+                0.0
+              ],
+              "n_per_segment_dtmax": 256,
+              "unit_norm_drift": 2.220446049250313e-16
+            }
+          ]
+        },
+        "loop_model": "same parent planes: rectangle in (x0,x1) gives i holonomy; rectangle in (x0,x2) gives j holonomy",
+        "pass": true,
+        "reverse_loop_inverse_control": {
+          "distance": 0.0,
+          "inverse_expected": [
+            0.4999999999999995,
+            -0.8660254037844389,
+            -0.0,
+            -0.0
+          ],
+          "pass": true,
+          "reverse_holonomy": [
+            0.4999999999999995,
+            -0.8660254037844389,
+            0.0,
+            0.0
+          ]
+        },
+        "strength_label": "diagnostic_float_nonclaim_path_ordered",
+        "zero_curvature_control": {
+          "distance_to_identity": 0.0,
+          "holonomy": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "pass": true,
+          "scope": "explicit A=0 control connection on the same loop; BPST itself has nonzero curvature on the tested chart"
+        }
+      },
+      "J2_small_loop_leading_stokes_boundary": {
+        "boundary": "leading-order nonabelian Stokes only; no surface-ordered full nonabelian Stokes theorem is proved",
+        "curvature_at_basepoint": "F01=2*i for the (x0,x1) rectangle",
+        "pass": true,
+        "rows": [
+          {
+            "distance": 0.0005420430921481302,
+            "distance_over_side4": 2.6140195416094247,
+            "leading_exp_curvature": [
+              0.9995853086646539,
+              0.02879601885310971,
+              0.0,
+              0.0
+            ],
+            "side": 0.12,
+            "transport_holonomy": [
+              0.9996007705027449,
+              0.028254196331144857,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 0.00010825710956351156,
+            "distance_over_side4": 2.642995838952919,
+            "leading_exp_curvature": [
+              0.9999180811184749,
+              0.012799650477529968,
+              0.0,
+              0.0
+            ],
+            "side": 0.08,
+            "transport_holonomy": [
+              0.9999194609123163,
+              0.012691402161422966,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 6.8114107963089336e-06,
+            "distance_over_side4": 2.6607073423081773,
+            "leading_exp_curvature": [
+              0.9999948800043691,
+              0.003199994538669463,
+              0.0,
+              0.0
+            ],
+            "side": 0.04,
+            "transport_holonomy": [
+              0.9999949017776489,
+              0.003193183162673355,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "distance": 4.2642787368171806e-07,
+            "distance_over_side4": 2.6651742105107377,
+            "leading_exp_curvature": [
+              0.999999680000017,
+              0.0007999999146666695,
+              0.0,
+              0.0
+            ],
+            "side": 0.02,
+            "transport_holonomy": [
+              0.9999996803410686,
+              0.0007995734869293721,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "strength_label": "leading_order_consistency_check"
+      },
+      "J3_abelian_u1_contrast": {
+        "committed_values_source": "geo_s2_connection_flux_foliation_v0: lifted_holonomy=-2*pi*cos(2*eta), rows eta=pi/12,pi/6,pi/4,pi/3,5pi/12",
+        "pass": true,
+        "path_ordered_equals_algebraic_reason": "U(1) connection values commute, so path ordering collapses to the ordinary exponential of the integrated phase",
+        "rows": [
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": -5.441398092702654,
+            "computed_lifted_holonomy": -5.441398092702668,
+            "eta": 0.2617993877991494
+          },
+          {
+            "abs_error": 8.881784197001252e-15,
+            "committed_lifted_holonomy": -3.141592653589794,
+            "computed_lifted_holonomy": -3.141592653589785,
+            "eta": 0.5235987755982988
+          },
+          {
+            "abs_error": 2.514494135391975e-30,
+            "committed_lifted_holonomy": -3.8473413874435795e-16,
+            "computed_lifted_holonomy": -3.8473413874436047e-16,
+            "eta": 0.7853981633974483
+          },
+          {
+            "abs_error": 7.105427357601002e-15,
+            "committed_lifted_holonomy": 3.141592653589792,
+            "computed_lifted_holonomy": 3.1415926535897847,
+            "eta": 1.0471975511965976
+          },
+          {
+            "abs_error": 1.4210854715202004e-14,
+            "committed_lifted_holonomy": 5.441398092702654,
+            "computed_lifted_holonomy": 5.441398092702668,
+            "eta": 1.3089969389957472
+          }
+        ],
+        "strength_label": "abelian_transport_contrast",
+        "u1_commutator_gap": 0.0
+      }
+    }
+  },
+  "result_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/results/geo_s9_quat_path_ordered_transport_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seed_ledger": {
+    "deterministic_rows": [
+      "explicit loops",
+      "deterministic ODE tolerances",
+      "finite SMT constants"
+    ],
+    "rng": "none"
+  },
+  "sim_id": "geo_s9_quat_path_ordered_transport_v0",
+  "source_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_envelope.py",
+  "source_sha256": "b6e678831e9e4a8eb04812ab4f4eb0a31265812056ddcb1bb108e3c78fbfddee",
+  "stage_movement_allowed": false,
+  "tool_calls": [
+    {
+      "status": "used",
+      "surface": "envelope assembly",
+      "tool": "json"
+    },
+    {
+      "status": "used",
+      "surface": "source/result/lineage hash checks",
+      "tool": "hashlib"
+    },
+    {
+      "status": "used",
+      "surface": "deterministic path binding",
+      "tool": "pathlib"
+    }
+  ],
+  "validator_expected_command": "SIM_PY=/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 $SIM_PY scripts/validate_three_engine_sim_result.py system_v6/sims/geo_s9_quat_path_ordered_transport_v0/results/geo_s9_quat_path_ordered_transport_v0_envelope_results.json --require-source-backed"
+}

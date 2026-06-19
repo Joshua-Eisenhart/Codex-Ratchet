@@ -1,0 +1,110 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/SHA/Dates": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/SHA/Dates": {
+      "reason": "supportive serialization and hashing",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing density entropy and Bell entropy boundary",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing final availability count proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "boundary_case": "all six registered entropy types are available only after record layer",
+      "demotion_condition": "demote if Z3.jl is not bound to computed final count",
+      "load_bearing": true,
+      "negative/erased_control": "perturbed final availability count 5 is SAT",
+      "perturbed_availability_entry_verdict": "sat",
+      "positive_case": "final availability count is bound to 6, so count != 6 is UNSAT",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_values": {
+    "final_available_type_count": 6,
+    "rho_entropy_nats": 0.6931471805599453
+  },
+  "formal_admission_allowed": false,
+  "package_observables": {
+    "QuantumOptics": "NLevelBasis/DenseOperator/entropy_vn computes actual rho entropy and Bell boundary",
+    "Z3": "Z3.Solver binds final availability count and perturbed SAT control"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "quantumoptics_receipt": {
+    "api": "QuantumOptics.NLevelBasis/DenseOperator/entropy_vn/tensor/dm",
+    "bell_entropy_exact": "0",
+    "bell_entropy_nats": 2.220446049250313e-16,
+    "pass": true,
+    "rho_entropy_exact": "log(2)",
+    "rho_entropy_nats": 0.6931471805599453
+  },
+  "result_path": "system_v6/sims/entropy_type_ratchet_v0/results/entropy_type_ratchet_v0_julia_results.json",
+  "role_id": "julia_reference_builder",
+  "schema_version": "entropy_type_ratchet_v0_julia_result_v1",
+  "sim_id": "entropy_type_ratchet_v0",
+  "source_path": "system_v6/sims/entropy_type_ratchet_v0/entropy_type_ratchet_v0_julia.jl",
+  "source_sha256": "dfcf80b1de9829ab43b4467215cb4435513e352de944ff30fe3d6cc975f7621d",
+  "tool_calls": [
+    {
+      "boundary_case": "two-level density quotient",
+      "demotion_condition": "demote if entropy_vn does not match exact rows",
+      "gates": [
+        "rho",
+        "entropy",
+        "all_pass"
+      ],
+      "input_object": "actual rho and Bell density object",
+      "negative/erased_control": "Bell pure density has S=0 boundary",
+      "output_object": "vN entropy log(2) and Bell entropy 0",
+      "positive_case": "rho=diag(1/2,1/2) has S=log(2)",
+      "qualified_api/function": "QuantumOptics.NLevelBasis/DenseOperator/entropy_vn/tensor/dm",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "all six registered entropy types are available only after record layer",
+      "demotion_condition": "demote if Z3.jl is not bound to computed final count",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "computed final available type count",
+      "negative/erased_control": "perturbed final availability count 5 is SAT",
+      "output_object": "UNSAT mismatch and SAT perturbation",
+      "positive_case": "final availability count is bound to 6, so count != 6 is UNSAT",
+      "qualified_api/function": "Z3.Context/Z3.Solver/Z3.int_const/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

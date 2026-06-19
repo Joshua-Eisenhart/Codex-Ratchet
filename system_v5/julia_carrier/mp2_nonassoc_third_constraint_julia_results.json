@@ -1,0 +1,1110 @@
+{
+  "CONTROLS": {
+    "associativity_required_reverts_to_F01N01": {
+      "associativity_required_basin": [
+        "H",
+        "M2C"
+      ],
+      "expected": [
+        "H",
+        "M2C"
+      ],
+      "pass": true
+    },
+    "dimension_only_control_too_loose": {
+      "dimension_only_survivors": [
+        "H",
+        "M2C",
+        "O",
+        "J3O",
+        "S"
+      ],
+      "pass": true,
+      "real_basin_plus_NA": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    },
+    "real_vs_erased_associator_flip": {
+      "erased": [
+        "H",
+        "M2C"
+      ],
+      "pass": true,
+      "real": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    },
+    "sedenion_nonassoc_graveyard_not_admitted": {
+      "S_associator_gap": 2.0,
+      "S_reason": "sedenion_break_zero_divisor_and_normed_division_failure",
+      "pass": true
+    }
+  },
+  "NA_changes_basin": true,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX": "load_bearing",
+    "Julia": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "clifford_algebra_ladder": "supportive",
+    "clifford_torus_nested_hopf_foliation": "supportive",
+    "density_matrix_spinor_lift": "supportive",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "supportive",
+    "jax.numpy": "load_bearing",
+    "numpy": null,
+    "octonion_G2_automorphism": "supportive",
+    "owner_julia_carrier": "load_bearing",
+    "sedenion_break": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX": {
+      "reason": "load-bearing jnp/x64 finite table and associator basin computation; no NumPy compute",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent mirror backend compared to 1e-9",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing M2C matrix carrier constants and schedule/layer source checks mirrored in Julia",
+      "tried": true,
+      "used": true
+    },
+    "clifford_algebra_ladder": {
+      "reason": "supportive spinor/quaternion carrier check",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "supportive nested Hopf torus carrier check",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "supportive density/spinor lift carrier check",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing H/O/S multiplication and associator carrier",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "supportive Weyl spinor normalization check",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "load-bearing x64 array algebra for M2C, table residuals, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "forbidden in the paired JAX scout; Julia mirror does not use NumPy",
+      "tried": false,
+      "used": false
+    },
+    "octonion_G2_automorphism": {
+      "reason": "supportive O carrier integrity check via Der(O) dimension",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing real carrier; erasing measured associators changes basin_plus_NA",
+      "tried": true,
+      "used": true
+    },
+    "sedenion_break": {
+      "reason": "load-bearing graveyard control excluding S despite non-associativity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia_mirror_x64",
+  "basin_F01N01": [
+    "H",
+    "M2C"
+  ],
+  "basin_erased_NA_control": [
+    "H",
+    "M2C"
+  ],
+  "basin_plus_NA": [
+    "H",
+    "M2C",
+    "O",
+    "J3O"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream_admission": {
+      "blocked_claims": [
+        "final_M_C",
+        "formal_admission",
+        "PEPS3D_admission",
+        "Axis0",
+        "bridge",
+        "physics",
+        "Standard_Model",
+        "masses",
+        "couplings"
+      ],
+      "claim_ceiling": "Finite witness reproducing known algebraic structure on the owner carrier: a measured non-associator predicate changes a bounded F01+N01 survivor set. No final M(C), PEPS3D admission, formal admission, Axis0, bridge, physics, Standard Model, mass, or coupling claim is made.",
+      "pass": true
+    },
+    "no_numpy_compute": {
+      "jax_enable_x64": true,
+      "numpy_compute_used": false,
+      "numpy_used": false,
+      "pass": true
+    },
+    "owner_julia_carrier_load_bearing": {
+      "not_dimension_only": true,
+      "owner_julia_carrier": "load_bearing",
+      "pass": true
+    },
+    "scratch_diagnostic_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    }
+  },
+  "candidates": {
+    "C": {
+      "associative": true,
+      "associator_gap": 0.0,
+      "associator_witness": {
+        "kind": "none"
+      },
+      "commutator_gap": 0.0,
+      "dim": 2,
+      "finite": true,
+      "graveyard": false,
+      "na_admissible": false,
+      "name": "C",
+      "noncommutative": false,
+      "source": "division_algebra_ratchet_ladder"
+    },
+    "H": {
+      "associative": true,
+      "associator_gap": 0.0,
+      "associator_witness": {
+        "kind": "none"
+      },
+      "commutator_gap": 2.0,
+      "dim": 4,
+      "finite": true,
+      "graveyard": false,
+      "na_admissible": false,
+      "name": "H",
+      "noncommutative": true,
+      "source": "division_algebra_ratchet_ladder"
+    },
+    "J3O": {
+      "associative": false,
+      "associator_gap": 0.5477428722515137,
+      "associator_witness": {
+        "kind": "deterministic_j3_probe_triple",
+        "residual": 0.5477428722515137,
+        "sample_idx": 5
+      },
+      "commutator_gap": 0.0,
+      "dim": 27,
+      "finite": true,
+      "graveyard": false,
+      "jordan_cubic_identity_max_residual": 4.827686361099109e-16,
+      "na_admissible": true,
+      "name": "J3O",
+      "noncommutative": false,
+      "power_associator_gap": 5.765785684033213e-16,
+      "source": "J3O_spectral_OP2+division_algebra_ratchet_ladder"
+    },
+    "M2C": {
+      "associative": true,
+      "associator_gap": 0.0,
+      "associator_witness": {
+        "kind": "none",
+        "residual": 0.0
+      },
+      "canonical_qit_checks": {
+        "qit_H0_trace_abs": 0.0,
+        "qit_manifold_layer_count": 13.0,
+        "qit_sx_sy_commutator_minus_2i_sz_norm": 0.0,
+        "qit_type_one_schedule_len": 8.0,
+        "qit_type_two_schedule_len": 8.0
+      },
+      "commutator_gap": 2.0,
+      "dim": 8,
+      "finite": true,
+      "graveyard": false,
+      "na_admissible": false,
+      "name": "M2C",
+      "noncommutative": true,
+      "source": "canonical_qit_engine_specs.py:M2C_real_basis"
+    },
+    "O": {
+      "associative": false,
+      "associator_gap": 2.0,
+      "associator_witness": {
+        "kind": "division_algebra_associator_max",
+        "residual": 2.0
+      },
+      "commutator_gap": 2.0,
+      "dim": 8,
+      "finite": true,
+      "graveyard": false,
+      "na_admissible": true,
+      "name": "O",
+      "noncommutative": true,
+      "source": "division_algebra_ratchet_ladder+octonion_G2_automorphism"
+    },
+    "R": {
+      "associative": true,
+      "associator_gap": 0.0,
+      "associator_witness": {
+        "kind": "none"
+      },
+      "commutator_gap": 0.0,
+      "dim": 1,
+      "finite": true,
+      "graveyard": false,
+      "na_admissible": false,
+      "name": "R",
+      "noncommutative": false,
+      "source": "division_algebra_ratchet_ladder"
+    },
+    "S": {
+      "associative": false,
+      "associator_gap": 2.0,
+      "associator_witness": {
+        "kind": "division_algebra_associator_max",
+        "residual": 2.0
+      },
+      "commutator_gap": 2.0,
+      "dim": 16,
+      "finite": true,
+      "graveyard": true,
+      "graveyard_reason": "sedenion_break_zero_divisor_and_normed_division_failure",
+      "has_zero_divisors": true,
+      "na_admissible": false,
+      "name": "S",
+      "noncommutative": true,
+      "norm_mult_residual": 2.0000000000000004,
+      "source": "division_algebra_ratchet_ladder+sedenion_break"
+    }
+  },
+  "claim_ceiling": "Finite witness reproducing known algebraic structure on the owner carrier: a measured non-associator predicate changes a bounded F01+N01 survivor set. No final M(C), PEPS3D admission, formal admission, Axis0, bridge, physics, Standard Model, mass, or coupling claim is made.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "associativity_required_reverts_to_F01N01": {
+      "associativity_required_basin": [
+        "H",
+        "M2C"
+      ],
+      "expected": [
+        "H",
+        "M2C"
+      ],
+      "pass": true
+    },
+    "dimension_only_control_too_loose": {
+      "dimension_only_survivors": [
+        "H",
+        "M2C",
+        "O",
+        "J3O",
+        "S"
+      ],
+      "pass": true,
+      "real_basin_plus_NA": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    },
+    "real_vs_erased_associator_flip": {
+      "erased": [
+        "H",
+        "M2C"
+      ],
+      "pass": true,
+      "real": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    },
+    "sedenion_nonassoc_graveyard_not_admitted": {
+      "S_associator_gap": 2.0,
+      "S_reason": "sedenion_break_zero_divisor_and_normed_division_failure",
+      "pass": true
+    }
+  },
+  "divergence_log": [
+    "F01+N01 without NA keeps the finite associative noncommutative rows H and M2C.",
+    "Adding the measured non-associator predicate admits O and J3O while keeping S out through the sedenion graveyard control.",
+    "Erasing the measured associator residuals returns the basin to F01+N01."
+  ],
+  "formal_admission_allowed": false,
+  "from_real_associator": true,
+  "generated_at": "2026-06-07T04:22:20.145",
+  "graveyard_companions": {
+    "R_C_commutative_controls_below_N01": {
+      "C_commutator_gap": 0.0,
+      "R_commutator_gap": 0.0,
+      "pass": true
+    },
+    "S_nonassoc_but_excluded": {
+      "S_associator_gap": 2.0,
+      "S_reason": "sedenion_break_zero_divisor_and_normed_division_failure",
+      "pass": true
+    },
+    "erased_associator_returns_control_basin": {
+      "erased": [
+        "H",
+        "M2C"
+      ],
+      "pass": true,
+      "real": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    }
+  },
+  "jax_enable_x64": true,
+  "local_all_pass": true,
+  "nearby_variants": {
+    "passed": 3,
+    "total": 3,
+    "variants": [
+      "base_F01N01_without_NA",
+      "plus_NA_with_real_associators",
+      "plus_NA_with_erased_associators"
+    ]
+  },
+  "numpy_compute_used": false,
+  "numpy_used": false,
+  "object_id": "mp2_nonassoc_third_constraint",
+  "owner_carrier_load_bearing": true,
+  "owner_julia_carrier": "load_bearing",
+  "parity": {
+    "boolean_mismatches": [],
+    "diffs": {
+      "C.associator_gap": 0.0,
+      "C.base_active": 0.0,
+      "C.commutator_gap": 0.0,
+      "C.dim": 0.0,
+      "C.erased_NA_active": 0.0,
+      "C.plus_NA_active": 0.0,
+      "H.associator_gap": 0.0,
+      "H.base_active": 0.0,
+      "H.commutator_gap": 0.0,
+      "H.dim": 0.0,
+      "H.erased_NA_active": 0.0,
+      "H.plus_NA_active": 0.0,
+      "J3O.associator_gap": 2.220446049250313e-16,
+      "J3O.base_active": 0.0,
+      "J3O.commutator_gap": 0.0,
+      "J3O.dim": 0.0,
+      "J3O.erased_NA_active": 0.0,
+      "J3O.plus_NA_active": 0.0,
+      "M2C.associator_gap": 0.0,
+      "M2C.base_active": 0.0,
+      "M2C.commutator_gap": 0.0,
+      "M2C.dim": 0.0,
+      "M2C.erased_NA_active": 0.0,
+      "M2C.plus_NA_active": 0.0,
+      "O.associator_gap": 0.0,
+      "O.base_active": 0.0,
+      "O.commutator_gap": 0.0,
+      "O.dim": 0.0,
+      "O.erased_NA_active": 0.0,
+      "O.plus_NA_active": 0.0,
+      "R.associator_gap": 0.0,
+      "R.base_active": 0.0,
+      "R.commutator_gap": 0.0,
+      "R.dim": 0.0,
+      "R.erased_NA_active": 0.0,
+      "R.plus_NA_active": 0.0,
+      "S.associator_gap": 0.0,
+      "S.base_active": 0.0,
+      "S.commutator_gap": 0.0,
+      "S.dim": 0.0,
+      "S.erased_NA_active": 0.0,
+      "S.plus_NA_active": 0.0,
+      "basin.F01N01.count": 0.0,
+      "basin.erased_NA.count": 0.0,
+      "basin.plus_NA.count": 0.0,
+      "source.clifford_cl30_even_dim": 0.0,
+      "source.density_trace_residual": 0.0,
+      "source.g2_derivation_dim": 0.0,
+      "source.golden_weyl_spinor_norm_residual": 0.0,
+      "source.hopf_torus_metric_det_min": 0.0,
+      "source.qit_sx_sy_commutator_minus_2i_sz_norm": 0.0,
+      "source.sedenion_product_norm": 0.0
+    },
+    "missing_keys": [],
+    "parity_max_diff": 2.220446049250313e-16,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_nonassoc_third_constraint_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "source.density_trace_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "S.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.08637287570313155,
+        "julia": 0.08637287570313155,
+        "key": "source.hopf_torus_metric_det_min"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "H.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "S.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M2C.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "J3O.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "source.qit_sx_sy_commutator_minus_2i_sz_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M2C.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "H.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "S.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "C.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "basin.erased_NA.count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "O.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "J3O.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "J3O.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "H.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "S.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "basin.plus_NA.count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "O.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "O.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "M2C.commutator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "source.clifford_cl30_even_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "J3O.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "source.golden_weyl_spinor_norm_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.commutator_gap"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 0.547742872251514,
+        "julia": 0.5477428722515137,
+        "key": "J3O.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "source.sedenion_product_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.plus_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "H.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "M2C.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 27.0,
+        "julia": 27.0,
+        "key": "J3O.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "S.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M2C.base_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "R.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "S.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "basin.F01N01.count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "H.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.erased_NA_active"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "O.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "source.g2_derivation_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.associator_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.plus_NA_active"
+      }
+    ],
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true,
+    "worst_key": "J3O.associator_gap"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_nonassoc_third_constraint_results.json",
+  "positive": {
+    "NA_changes_basin_from_real_associator": {
+      "basin_F01N01": [
+        "H",
+        "M2C"
+      ],
+      "basin_plus_NA": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ],
+      "new_survivors": [
+        "J3O",
+        "O"
+      ],
+      "pass": true,
+      "real_associator_gaps": {
+        "J3O": 0.5477428722515137,
+        "O": 2.0
+      }
+    },
+    "owner_carrier_load_bearing_ablation_changes_result": {
+      "erasure": "set measured non-associator residuals to zero before the same selector",
+      "owner_erased_basin": [
+        "H",
+        "M2C"
+      ],
+      "pass": true,
+      "real_basin": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ]
+    },
+    "plus_NA_admits_requested_nonassoc_survivors": {
+      "basin_plus_NA": [
+        "H",
+        "M2C",
+        "O",
+        "J3O"
+      ],
+      "excluded_nonassoc_graveyard": [
+        "S"
+      ],
+      "pass": true
+    },
+    "requested_real_objects_checked": {
+      "checks": {
+        "clifford_cl30_dim": 8.0,
+        "clifford_cl30_even_dim": 4.0,
+        "density_spinor_norm_residual": 0.0,
+        "density_trace_residual": 0.0,
+        "g2_derivation_dim": 14.0,
+        "golden_weyl_spinor_norm_residual": 0.0,
+        "hopf_latitude_residual": 3.8285686989269494e-16,
+        "hopf_torus_metric_det_min": 0.08637287570313155,
+        "sedenion_product_norm": 0.0,
+        "sedenion_zero_divisor_witness": true
+      },
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_nonassoc_third_constraint_julia_results.json",
+  "result_summary": {
+    "NA_changes_basin": true,
+    "all_pass": true,
+    "basin_F01N01": [
+      "H",
+      "M2C"
+    ],
+    "basin_plus_NA": [
+      "H",
+      "M2C",
+      "O",
+      "J3O"
+    ],
+    "from_real_associator": true,
+    "owner_carrier_load_bearing": true
+  },
+  "schema": "DUAL_BACKEND_FINITE_FORMAL_SCOUT_v1",
+  "scratch_diagnostic": true,
+  "shared_booleans": {
+    "C.base_survives": false,
+    "C.erased_NA_survives": false,
+    "C.graveyard": false,
+    "C.na_admissible": false,
+    "C.plus_NA_survives": false,
+    "H.base_survives": true,
+    "H.erased_NA_survives": true,
+    "H.graveyard": false,
+    "H.na_admissible": false,
+    "H.plus_NA_survives": true,
+    "J3O.base_survives": false,
+    "J3O.erased_NA_survives": false,
+    "J3O.graveyard": false,
+    "J3O.na_admissible": true,
+    "J3O.plus_NA_survives": true,
+    "M2C.base_survives": true,
+    "M2C.erased_NA_survives": true,
+    "M2C.graveyard": false,
+    "M2C.na_admissible": false,
+    "M2C.plus_NA_survives": true,
+    "NA_changes_basin": true,
+    "O.base_survives": false,
+    "O.erased_NA_survives": false,
+    "O.graveyard": false,
+    "O.na_admissible": true,
+    "O.plus_NA_survives": true,
+    "R.base_survives": false,
+    "R.erased_NA_survives": false,
+    "R.graveyard": false,
+    "R.na_admissible": false,
+    "R.plus_NA_survives": false,
+    "S.base_survives": false,
+    "S.erased_NA_survives": false,
+    "S.graveyard": true,
+    "S.na_admissible": false,
+    "S.plus_NA_survives": false,
+    "boundary.claim_ceiling_blocks_downstream_admission.pass": true,
+    "boundary.no_numpy_compute.pass": true,
+    "boundary.owner_julia_carrier_load_bearing.pass": true,
+    "boundary.scratch_diagnostic_fence.pass": true,
+    "controls.associativity_required_reverts_to_F01N01.pass": true,
+    "controls.dimension_only_control_too_loose.pass": true,
+    "controls.real_vs_erased_associator_flip.pass": true,
+    "controls.sedenion_nonassoc_graveyard_not_admitted.pass": true,
+    "from_real_associator": true,
+    "graveyard.R_C_commutative_controls_below_N01.pass": true,
+    "graveyard.S_nonassoc_but_excluded.pass": true,
+    "graveyard.erased_associator_returns_control_basin.pass": true,
+    "owner_carrier_load_bearing": true,
+    "positive.NA_changes_basin_from_real_associator.pass": true,
+    "positive.owner_carrier_load_bearing_ablation_changes_result.pass": true,
+    "positive.plus_NA_admits_requested_nonassoc_survivors.pass": true,
+    "positive.requested_real_objects_checked.pass": true,
+    "source_checks_pass": true
+  },
+  "shared_scalars": {
+    "C.associator_gap": 0.0,
+    "C.base_active": 0.0,
+    "C.commutator_gap": 0.0,
+    "C.dim": 2.0,
+    "C.erased_NA_active": 0.0,
+    "C.plus_NA_active": 0.0,
+    "H.associator_gap": 0.0,
+    "H.base_active": 1.0,
+    "H.commutator_gap": 2.0,
+    "H.dim": 4.0,
+    "H.erased_NA_active": 1.0,
+    "H.plus_NA_active": 1.0,
+    "J3O.associator_gap": 0.5477428722515137,
+    "J3O.base_active": 0.0,
+    "J3O.commutator_gap": 0.0,
+    "J3O.dim": 27.0,
+    "J3O.erased_NA_active": 0.0,
+    "J3O.plus_NA_active": 1.0,
+    "M2C.associator_gap": 0.0,
+    "M2C.base_active": 1.0,
+    "M2C.commutator_gap": 2.0,
+    "M2C.dim": 8.0,
+    "M2C.erased_NA_active": 1.0,
+    "M2C.plus_NA_active": 1.0,
+    "O.associator_gap": 2.0,
+    "O.base_active": 0.0,
+    "O.commutator_gap": 2.0,
+    "O.dim": 8.0,
+    "O.erased_NA_active": 0.0,
+    "O.plus_NA_active": 1.0,
+    "R.associator_gap": 0.0,
+    "R.base_active": 0.0,
+    "R.commutator_gap": 0.0,
+    "R.dim": 1.0,
+    "R.erased_NA_active": 0.0,
+    "R.plus_NA_active": 0.0,
+    "S.associator_gap": 2.0,
+    "S.base_active": 0.0,
+    "S.commutator_gap": 2.0,
+    "S.dim": 16.0,
+    "S.erased_NA_active": 0.0,
+    "S.plus_NA_active": 0.0,
+    "basin.F01N01.count": 2.0,
+    "basin.erased_NA.count": 2.0,
+    "basin.plus_NA.count": 4.0,
+    "source.clifford_cl30_even_dim": 4.0,
+    "source.density_trace_residual": 0.0,
+    "source.g2_derivation_dim": 14.0,
+    "source.golden_weyl_spinor_norm_residual": 0.0,
+    "source.hopf_torus_metric_det_min": 0.08637287570313155,
+    "source.qit_sx_sy_commutator_minus_2i_sz_norm": 0.0,
+    "source.sedenion_product_norm": 0.0
+  },
+  "sim_class": "mp2_nonassoc_third_constraint_basin_probe",
+  "sim_execution_kind": "nonclassical_diagnostic",
+  "source_dependencies": {
+    "J3O_spectral_OP2_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_J3O_spectral_OP2.py",
+    "J3O_spectral_OP2_julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/J3O_spectral_OP2.jl",
+    "canonical_qit_engine_specs": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+    "clifford_algebra_ladder_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+    "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+    "clifford_torus_nested_hopf_foliation_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+    "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+    "density_matrix_spinor_lift_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+    "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+    "division_algebra_ratchet_ladder_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+    "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+    "golden_weyl_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+    "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+    "octonion_G2_automorphism_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+    "sedenion_break": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break.jl",
+    "sedenion_break_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_sedenion_break_prelim.py"
+  },
+  "source_hashes": {
+    "J3O_spectral_OP2_jax": "3aac92ec27cbfc7b7dcbe9c581ea59429f61d70d141395fee480b81130aa7bc9",
+    "J3O_spectral_OP2_julia": "c918e9ea6277bdd9026e3466ac5ed7fa70e808a08a8031e85d21a2b5cabd254e",
+    "canonical_qit_engine_specs": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+    "clifford_algebra_ladder": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8",
+    "clifford_algebra_ladder_jax": "52e136238e1d3f1bbc94f115eeaaa049f5157de89fe75fe35e9392600486ff77",
+    "clifford_torus_nested_hopf_foliation": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af",
+    "clifford_torus_nested_hopf_foliation_jax": "a55594e5dbc0629d0b8419beed97811925f113c299c0b8b0a86f5912f9472a02",
+    "density_matrix_spinor_lift": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424",
+    "density_matrix_spinor_lift_jax": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a",
+    "division_algebra_ratchet_ladder": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878",
+    "division_algebra_ratchet_ladder_jax": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24",
+    "golden_weyl": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070",
+    "golden_weyl_jax": "2bad22d3ab60ece229a59e36bc75d247ea2ff5acea834868eb1c276cb4d590ab",
+    "octonion_G2_automorphism": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347",
+    "octonion_G2_automorphism_jax": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a",
+    "sedenion_break": "e2edeb045fb627c009cd4f486742f95008d9a59cc1647f71b720fbc2f257fcdf",
+    "sedenion_break_jax": "b05730f4aa2146eb2707c440f97d394a9697ede2eafba88218896c18a3f2ea24"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_nonassoc_third_constraint_julia.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "JAX": "load_bearing",
+    "Julia": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "clifford_algebra_ladder": "supportive",
+    "clifford_torus_nested_hopf_foliation": "supportive",
+    "density_matrix_spinor_lift": "supportive",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "supportive",
+    "jax.numpy": "load_bearing",
+    "numpy": null,
+    "octonion_G2_automorphism": "supportive",
+    "owner_julia_carrier": "load_bearing",
+    "sedenion_break": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX": {
+      "reason": "load-bearing jnp/x64 finite table and associator basin computation; no NumPy compute",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent mirror backend compared to 1e-9",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing M2C matrix carrier constants and schedule/layer source checks mirrored in Julia",
+      "tried": true,
+      "used": true
+    },
+    "clifford_algebra_ladder": {
+      "reason": "supportive spinor/quaternion carrier check",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "supportive nested Hopf torus carrier check",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "supportive density/spinor lift carrier check",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing H/O/S multiplication and associator carrier",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "supportive Weyl spinor normalization check",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "load-bearing x64 array algebra for M2C, table residuals, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "forbidden in the paired JAX scout; Julia mirror does not use NumPy",
+      "tried": false,
+      "used": false
+    },
+    "octonion_G2_automorphism": {
+      "reason": "supportive O carrier integrity check via Der(O) dimension",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing real carrier; erasing measured associators changes basin_plus_NA",
+      "tried": true,
+      "used": true
+    },
+    "sedenion_break": {
+      "reason": "load-bearing graveyard control excluding S despite non-associativity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": [
+    "This is an MP2 dual-backend scratch diagnostic, not a v4 canonical probe.",
+    "It compares finite survivor sets under a measured non-associator predicate only.",
+    "It does not admit M(C), PEPS3D, Axis0, bridge, physics, Standard Model, masses, or couplings."
+  ]
+}

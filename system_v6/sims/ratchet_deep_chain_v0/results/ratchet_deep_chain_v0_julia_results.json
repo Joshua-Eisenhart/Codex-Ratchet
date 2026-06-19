@@ -1,0 +1,99 @@
+{
+    "result_path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "Pkg",
+        "SHA",
+        "Dates",
+        "Z3"
+    ],
+    "source_sha256": "79a275521e8f648b35572721d9861293c902561edda43ef75eaf4948ef30ae2a",
+    "classification": "scratch_diagnostic",
+    "sim_id": "ratchet_deep_chain_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T07:58:49Z",
+    "all_pass": true,
+    "object_id": "ratchet_deep_chain_v0",
+    "promotion_allowed": false,
+    "tool_calls": [
+        {
+            "boundary_case": "repeat constraints no-op",
+            "demotion_condition": "Z3.jl verdict not UNSAT/SAT as expected",
+            "output_object": {
+                "ran": true,
+                "bound_values": {
+                    "phase_window_denominator": 2,
+                    "Z2_order": 2,
+                    "Z4_order": 4
+                },
+                "load_bearing": true,
+                "verdict": "unsat",
+                "solver": "Z3.jl",
+                "erased": false,
+                "derived_expression": "effective_denominator = Z4_order * phase_window_denominator * Z2_order",
+                "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check"
+            },
+            "positive_case": "negated identity UNSAT",
+            "load_bearing": true,
+            "negative/erased_control": "Z2 erased",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3",
+            "input_object": "deep-chain denominator identity"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "bound_values": {
+                "phase_window_denominator": 2,
+                "Z2_order": 2,
+                "Z4_order": 4
+            },
+            "load_bearing": true,
+            "gates": [
+                "composite_group",
+                "saturation",
+                "proof",
+                "all_pass"
+            ],
+            "negative/erased_control": "erase second Z2 quotient by binding Z2_order=1",
+            "erased_flip_verdict": "sat",
+            "demotion_condition": "demote if Z3.jl is not bound to the recomputed integer rows",
+            "boundary_case": "saturation repeat keeps denominator 16",
+            "positive_case": "negated computed denominator identity is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "erased": false,
+            "derived_expression": "effective_denominator = Z4_order * phase_window_denominator * Z2_order",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "erased_flip_detected": true
+        }
+    },
+    "capability_receipts": {
+        "julia": {
+            "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+            "version": "1.12.6"
+        },
+        "Z3": {
+            "api_smoke": "unsat",
+            "package_version": "1.0.4"
+        }
+    },
+    "engine_values": {
+        "saturation_denominator_before": 16,
+        "composite_group": "Z4 x Z2",
+        "final_effective_denominator": 16,
+        "commuting_control_gap_norm_squared": "0",
+        "saturation_denominator_after": 16,
+        "mortality_equivariance_failure": 1,
+        "composite_order": 8,
+        "final_chart_volume": "pi**2/4",
+        "terrain_order_gap_norm_squared": "4/25"
+    },
+    "source_path": "system_v6/sims/ratchet_deep_chain_v0/ratchet_deep_chain_v0_julia.jl",
+    "schema_version": "ratchet_deep_chain_v0_julia_result_v1"
+}

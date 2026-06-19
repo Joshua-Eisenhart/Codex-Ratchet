@@ -1,0 +1,368 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "supportive",
+    "cvc5": "supportive",
+    "jax": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "supportive independent consistency check agreeing with z3 on the same forced/trivial quotient-table polarity",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing vectorized finite table equality matrix and class-count computation",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive readback of independent engine receipts and envelope write",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive path binding for result files inside this sim directory",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "banned_verb_scan_scope": "result narrative strings reviewed for prohibited promotion verbs",
+  "boundary_tests": {
+    "counting_cardinality_not_claimed_forced": true,
+    "persistent_indistinguishable_pair_under_full_P": [
+      "x4",
+      "x5"
+    ]
+  },
+  "build_status": "PASS",
+  "canon_runtime": {
+    "artifact_path": "not_scoped",
+    "consumer_policy": "finite table rows only; no canonical carrier artifact consumed",
+    "semantic_owner": "julia"
+  },
+  "claim": "Finite opaque support X with explicit finite probe table P admits the forced quotient Q=X/~P. The solver polarity is a consistency check over the supplied generating table, not load-bearing discovery.",
+  "claim_ceiling": "Q=X/~_P is the FORCED floor, trivially well-defined for the exact supplied finite probe table. The z3/cvc5/Z3.jl checks are consistency checks, not load-bearing structural discovery; the load-bearing forced-vs-installed content lives in the cross-type discriminator, not here. No carrier ontology, no rung above 0, no geometry, no physics, no canonical consumer.",
+  "claim_path_tools": [
+    "jax",
+    "jax.numpy"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "supportive consistency check: independent SMT route agrees with z3 on full and erased probe lists",
+      "erased_P_verdict": "sat",
+      "full_P_verdict": "unsat",
+      "load_bearing": false,
+      "ran": true,
+      "supportive": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "claim": "supportive consistency check: Z3.jl route agrees on the full/erased polarity",
+      "erased_P_verdict": "sat",
+      "full_P_verdict": "unsat",
+      "load_bearing": false,
+      "ran": true,
+      "supportive": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "supportive consistency check: full P has no soundness/coarseness violation and erased P exposes the expected over-refinement relative to the forced full Q",
+      "erased_P_verdict": "sat",
+      "full_P_verdict": "unsat",
+      "load_bearing": false,
+      "ran": true,
+      "supportive": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 5,
+      "julia": 5
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "notes": [
+      "Agreement is envelope plumbing after independent local lane runs.",
+      "The claim path is the finite table quotient. The SMT flip is supportive consistency evidence, not load-bearing discovery."
+    ]
+  },
+  "engine": "envelope_controller",
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "pytorch": {
+      "reason": "Rung-0 scratch diagnostic has no graph, network, or autograd claim path.",
+      "scoped": false
+    }
+  },
+  "engine_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_julia_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "supportive independent SMT full/erased quotient-table consistency polarity",
+        "jax": "jax.vmap computed pairwise equality over the finite table rows",
+        "jax.numpy": "integer array support for the JAX vmap equality matrix",
+        "z3": "supportive SMT full/erased quotient-table consistency polarity"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_jax.py",
+      "source_sha256": "1e8855205671adc483d78355b8c4578b8c8afc37dff4d7e633c938eace7b3000"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "package_observables": {
+        "JSON": "spec/result JSON handling only",
+        "Z3": "supportive Z3.jl full/erased quotient-table consistency polarity"
+      },
+      "packages_used": [
+        "JSON",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_julia.jl",
+      "source_sha256": "aeaf8c04297ac278b4409a2e62281a0cb871d1806f6cb9a6bfc09d81ccc4dbb8"
+    }
+  },
+  "failures": [],
+  "flip_control": {
+    "added_probe": "p_split",
+    "erased_merge_pair": [
+      "x0",
+      "x2"
+    ],
+    "new_class_count_after_addition": 5,
+    "new_class_count_after_erasure": 4,
+    "split_pair_after_addition": [
+      "x0",
+      "x2"
+    ],
+    "tautology_guard_tripped": false
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "role": "batched_finite_table_worker"
+    },
+    "julia": {
+      "packages": [
+        "JSON",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "semantic_owner"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "not_scoped"
+    },
+    "tensor_exchange": "not_scoped"
+  },
+  "formal_admission_allowed": false,
+  "negative_tests": {
+    "erased_P_control": "SAT under z3 and cvc5",
+    "merge_pair": [
+      "x0",
+      "x2"
+    ]
+  },
+  "object_id": "probe_quotient_fingerprint_floor_v1",
+  "positive_tests": {
+    "class_count_matches_fixture": true,
+    "full_P_structural_claim": "UNSAT under z3 and cvc5"
+  },
+  "promotion_allowed": false,
+  "quotient": {
+    "erased_class_count": 4,
+    "erased_classes": [
+      [
+        "x0",
+        "x2"
+      ],
+      [
+        "x1"
+      ],
+      [
+        "x3"
+      ],
+      [
+        "x4",
+        "x5"
+      ]
+    ],
+    "full_class_count": 5,
+    "full_classes": [
+      [
+        "x0"
+      ],
+      [
+        "x1"
+      ],
+      [
+        "x2"
+      ],
+      [
+        "x3"
+      ],
+      [
+        "x4",
+        "x5"
+      ]
+    ],
+    "probe_order_erased": [
+      "p_left",
+      "p_mid"
+    ],
+    "probe_order_full": [
+      "p_left",
+      "p_mid",
+      "p_split"
+    ],
+    "support": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5"
+    ]
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "probe_quotient_fingerprint_floor_v1",
+  "surviving_alternatives": [
+    {
+      "reading": "Rung-0.5 Boolean lattice reading",
+      "statement": "The Boolean lattice of P-invariant subsets is FORCED as the exclusion-composition surface needed after Q is admitted.",
+      "status": "live"
+    },
+    {
+      "reading": "Rung-0.5 dual reading",
+      "statement": "The Boolean lattice of P-invariant subsets is merely DERIVED or dual to Q; counting and cardinality are not claimed forced, so the individuation objection stays open.",
+      "status": "live"
+    }
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "x4 and x5 remain indistinguishable under full P",
+      "demotion_condition": "class counts or pairwise matrices disagree with table grouping",
+      "gates": [
+        "quotient",
+        "divergence",
+        "all_pass"
+      ],
+      "input_object": "finite integer probe table",
+      "negative/erased_control": "erased-P class count is 4",
+      "output_object": "pairwise equality matrices and class counts",
+      "positive_case": "full-P class count is 5",
+      "qualified_api/function": "jax.vmap",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to plain table computation if full is not unsat or erased is not sat",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "measured rows and full-P class ids",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "UNSAT full-P and SAT erased-P verdicts",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to single-solver consistency check if cvc5 disagrees with z3",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "same measured rows and class ids as z3",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "matching UNSAT/SAT polarity",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to plain table computation if full is not unsat or erased is not sat",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "measured rows and full-P class ids",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "UNSAT full-P and SAT erased-P verdicts",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "written_at": "2026-06-19T03:55:44Z"
+}

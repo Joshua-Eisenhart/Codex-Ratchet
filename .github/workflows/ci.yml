@@ -65,6 +65,10 @@ jobs:
         pip install -r requirements-core.txt
         pip install -r requirements-runtime.txt
         pip install -r requirements-dev.txt
+    - name: Materialize Actual Lego Registry
+      run: python system_v4/probes/extract_actual_lego_registry.py
+    - name: Real Object Program Binding Gate
+      run: python scripts/gate_object_binding.py --self-test
     - name: Run Pytest
       run: pytest -q system_v4/tests/
 

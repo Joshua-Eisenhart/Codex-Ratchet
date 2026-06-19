@@ -1,0 +1,446 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SMT encoding over the same computed finite flags",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64/int64 action-matrix mirror; not the proof arbiter",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive matrix materialization of exact integer SO(3) action rows",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational/surd coefficients and Clifford product simplification",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT on computed double-cover sign/action flags with erased-sign SAT flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "boundary_rows": {
+    "theta_2pi": {
+      "action_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "rotor": "-1",
+      "rotor_sparse": {
+        "1": "-1"
+      },
+      "same_so3_as_identity": true
+    },
+    "theta_4pi": {
+      "action_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "rotor": "1",
+      "rotor_sparse": {
+        "1": "1"
+      },
+      "same_so3_as_identity": true
+    }
+  },
+  "claim_ceiling": "tool_function_micro_only",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "non_unit_even_multivector_fails_rotor_predicate": {
+      "candidate": {
+        "1": "1",
+        "e12": "1/2"
+      },
+      "pass": true,
+      "predicate": {
+        "even_grade": true,
+        "is_spin3_rotor": false,
+        "reverse_product_sparse": {
+          "1": "5/4"
+        },
+        "unit_reverse_product": false
+      },
+      "vector_norm2_after": "25/16",
+      "vector_norm2_before": "1"
+    },
+    "odd_grade_element_fails_rotor_predicate": {
+      "candidate": {
+        "e1": "1"
+      },
+      "pass": true,
+      "pin_not_spin": true,
+      "predicate": {
+        "even_grade": false,
+        "is_spin3_rotor": false,
+        "reverse_product_sparse": {
+          "1": "1"
+        },
+        "unit_reverse_product": true
+      }
+    },
+    "single_cover_matrix_cannot_distinguish_2pi": {
+      "matrix_theta": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "matrix_theta_plus_2pi": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "pass": true,
+      "rotor_coefficients_distinct": true
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_kind": "same finite flag family as z3, independently encoded",
+      "ran": true,
+      "raw_value_binding": {
+        "closure_at_4pi": 1,
+        "non_unit_rejected": 1,
+        "odd_unit_rejected": 1,
+        "rotor_sign_distinct_360": 1,
+        "sign_flip_at_2pi": 1,
+        "so3_action_equal_360": 1
+      },
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_kind": "computed Spin(3) sign/action flags; positive violation UNSAT, erased sign row SAT",
+      "ran": true,
+      "raw_value_binding": {
+        "closure_at_4pi": 1,
+        "non_unit_rejected": 1,
+        "odd_unit_rejected": 1,
+        "rotor_sign_distinct_360": 1,
+        "sign_flip_at_2pi": 1,
+        "so3_action_equal_360": 1
+      },
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "double_cover_rows": {
+    "theta_pi_over_2_vs_theta_plus_2pi": {
+      "action_matrix_theta": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "action_matrix_theta_plus_2pi": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "basis_vector_actions": {
+        "e1": {
+          "e2": "1"
+        },
+        "e2": {
+          "e1": "-1"
+        },
+        "e3": {
+          "e3": "1"
+        }
+      },
+      "jax_int64_action_matrix_receipt": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "rotor_relation": "R(theta_plus_2pi)=-R(theta)",
+      "rotor_theta_plus_2pi_sparse": {
+        "1": "-sqrt(2)/2",
+        "e12": "sqrt(2)/2"
+      },
+      "rotor_theta_sparse": {
+        "1": "sqrt(2)/2",
+        "e12": "-sqrt(2)/2"
+      },
+      "rotors_differ_by_sign": true,
+      "so3_actions_equal": true,
+      "theta": "pi/2",
+      "theta_plus_2pi": "5*pi/2"
+    }
+  },
+  "engine": "jax",
+  "fixed_dimension": {
+    "basis_blade_count": 8,
+    "cl_pq": "Cl(3,0)",
+    "even_subalgebra_dimension": 4
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:48:22Z",
+  "object_id": "clifford_spin3_double_cover_micro_v0",
+  "package_observables": {
+    "cvc5": "independent solver encoding of same computed flags",
+    "sympy": "exact sqrt(2)/2 rotor coefficients and symbolic Clifford product simplification",
+    "z3": "computed sign/action/control flags bound into UNSAT/SAT proof"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "hashlib",
+    "pathlib"
+  ],
+  "pinned_angles": {
+    "theta_0": {
+      "cos(theta/2)": "1",
+      "rotor": {
+        "1": "1"
+      },
+      "sin(theta/2)": "0",
+      "theta": "0"
+    },
+    "theta_2pi": {
+      "cos(theta/2)": "-1",
+      "rotor": {
+        "1": "-1"
+      },
+      "sin(theta/2)": "0",
+      "theta": "2*pi"
+    },
+    "theta_4pi": {
+      "cos(theta/2)": "1",
+      "rotor": {
+        "1": "1"
+      },
+      "sin(theta/2)": "0",
+      "theta": "4*pi"
+    },
+    "theta_pi": {
+      "cos(theta/2)": "0",
+      "rotor": {
+        "e12": "-1"
+      },
+      "sin(theta/2)": "1",
+      "theta": "pi"
+    },
+    "theta_pi_over_2": {
+      "cos(theta/2)": "sqrt(2)/2",
+      "rotor": {
+        "1": "sqrt(2)/2",
+        "e12": "-sqrt(2)/2"
+      },
+      "sin(theta/2)": "sqrt(2)/2",
+      "theta": "pi/2"
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/clifford_spin3_double_cover_micro_v0/results/clifford_spin3_double_cover_micro_v0_jax_results.json",
+  "sim_id": "clifford_spin3_double_cover_micro_v0",
+  "source_path": "system_v6/sims/clifford_spin3_double_cover_micro_v0/clifford_spin3_double_cover_micro_v0_jax.py",
+  "source_sha256": "e68bcd14c52d570767bdf38b751aeb529a8833eefcff2768acfd1606fc2a3782",
+  "tool_calls": [
+    {
+      "boundary_case": "2pi=-1 and 4pi=1",
+      "demotion_condition": "demote if coefficients become floats",
+      "gates": [
+        "positive_section",
+        "boundary_section",
+        "all_pass"
+      ],
+      "input_object": "Cl(3,0) exact rotor coefficients and blade products",
+      "negative/erased_control": "non-unit even and odd-grade candidates fail rotor predicate",
+      "output_object": "exact sparse multivectors and SO(3) matrices",
+      "positive_case": "R(pi/2)=(1-e12)/sqrt(2), e1->e2",
+      "qualified_api/function": "sympy.sqrt/simplify/Rational",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "2pi sign flip and 4pi closure flags",
+      "demotion_condition": "demote if SMT does not bind computed values",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": {
+        "closure_at_4pi": 1,
+        "non_unit_rejected": 1,
+        "odd_unit_rejected": 1,
+        "rotor_sign_distinct_360": 1,
+        "sign_flip_at_2pi": 1,
+        "so3_action_equal_360": 1
+      },
+      "negative/erased_control": "erasing rotor sign row admits SAT",
+      "output_object": {
+        "flip_control_verdict": "sat",
+        "load_bearing": true,
+        "proof_kind": "computed Spin(3) sign/action flags; positive violation UNSAT, erased sign row SAT",
+        "ran": true,
+        "raw_value_binding": {
+          "closure_at_4pi": 1,
+          "non_unit_rejected": 1,
+          "odd_unit_rejected": 1,
+          "rotor_sign_distinct_360": 1,
+          "sign_flip_at_2pi": 1,
+          "so3_action_equal_360": 1
+        },
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "positive_case": "computed flags make violation UNSAT",
+      "qualified_api/function": "z3.Solver/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "QF_LIA finite flags",
+      "demotion_condition": "demote if cvc5 disagrees with z3",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": {
+        "closure_at_4pi": 1,
+        "non_unit_rejected": 1,
+        "odd_unit_rejected": 1,
+        "rotor_sign_distinct_360": 1,
+        "sign_flip_at_2pi": 1,
+        "so3_action_equal_360": 1
+      },
+      "negative/erased_control": "same erased-sign SAT flip",
+      "output_object": {
+        "flip_control_verdict": "sat",
+        "load_bearing": true,
+        "proof_kind": "same finite flag family as z3, independently encoded",
+        "ran": true,
+        "raw_value_binding": {
+          "closure_at_4pi": 1,
+          "non_unit_rejected": 1,
+          "odd_unit_rejected": 1,
+          "rotor_sign_distinct_360": 1,
+          "sign_flip_at_2pi": 1,
+          "so3_action_equal_360": 1
+        },
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "positive_case": "same as z3",
+      "qualified_api/function": "cvc5.Solver/checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

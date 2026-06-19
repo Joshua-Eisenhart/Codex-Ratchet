@@ -406,6 +406,7 @@ def provider_receipt_summary() -> dict[str, Any]:
                 "strict_live_validator_fail_count": 0,
                 "strict_live_validation_error_counts": {},
             },
+            "skipped_sidecar_samples": [],
             "failed_samples": [],
             "strict_live_failed_samples": [],
         }

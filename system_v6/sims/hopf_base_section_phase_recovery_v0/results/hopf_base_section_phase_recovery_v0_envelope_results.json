@@ -1,0 +1,800 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "subprocess": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT mirror over the same scaled phase rows",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT proof of the same phase equality and flip controls",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source/result/PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64 finite-carrier endpoint U(1) reconstruction and complex phase comparison",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive complex spinor arithmetic for the declared section rows",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic result serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    },
+    "subprocess": {
+      "reason": "supportive git lineage reads for cited parent commits",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact section pullback, enclosed-area phase, gauge-shift, and holonomy spectrum rows",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT proof that exact computed phases cannot differ from predictions, with wrong-sign flips",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "chart-relative section phase recovery for named finite Hopf rows",
+    "agreement with committed S2/S9 holonomy spectrum anchors at scratch ceiling"
+  ],
+  "blocked_consumers": [
+    "formal admission",
+    "global manifold claim",
+    "bridge or axis claims"
+  ],
+  "build_gates": {
+    "anchor_spectrum_recomputed": true,
+    "classification_ceiling": true,
+    "controls_computed": true,
+    "file_disjoint_packet": true,
+    "jax_endpoint_rows_pass": true,
+    "julia_leg_loaded": true,
+    "julia_reads_no_peer_result": true,
+    "julia_values_match_python": true,
+    "no_builder_audit_verdict": true,
+    "north_section_rows_exact": true,
+    "one_to_one_tool_calls": true,
+    "parent_lineage_present": true,
+    "section_change_gauge_computed": true,
+    "smt_flips_fire": true,
+    "z3_cvc5_agree": true
+  },
+  "claim": "Scratch diagnostic: a declared section over the committed finite Hopf carrier recovers the U(1) phase of a closed base loop exactly against enclosed-area/holonomy predictions, with gauge-shift and degenerate-loop controls.",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "base_loop_count": {
+      "north_section": "beta:0->2*pi traverses the base once",
+      "repo_lifted_cycle": "chi:0->2*pi with beta=-2*chi matches the committed lifted-cycle spectrum"
+    },
+    "berry_area_formula": {
+      "one_base_loop": "gamma_N=-Omega/2=-pi*(1-cos(theta))",
+      "theta": "theta=2*eta"
+    },
+    "holonomy_quantity": {
+      "anchor": "repo accumulated_phi lifted cycle h(eta)=-2*pi*cos(2eta)",
+      "distinguished_from": [
+        "endpoint_global_spinor_phase",
+        "mod_2pi_class_only"
+      ],
+      "primary": "recovered_u1_phase_relative_to_declared_section"
+    },
+    "orientation": {
+      "north_area": "positive beta orientation",
+      "repo_anchor": "same h(eta) sign as geo_s2_connection_flux_foliation_v0 and 9de3f3633"
+    },
+    "phase_domain": {
+      "primary": "lifted_real",
+      "u1_reconciliation": "exp(i*phase) equality is recorded separately"
+    },
+    "section": {
+      "declared": "north_section",
+      "formula": "s_N(theta,beta)=(cos(theta/2), exp(i beta) sin(theta/2))",
+      "section_change": "s_prime=exp(i beta)*s_N"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_detected": true,
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    },
+    "julia_z3": {
+      "erased_flip_detected": true,
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    },
+    "z3": {
+      "erased_flip_detected": true,
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "anchor_spectrum_rows": 6,
+        "boundary_u1_identity": true,
+        "contractible_phase_half_pi": 0,
+        "gauge_shift_half_pi": -4,
+        "north_section_pass_rows": 5
+      },
+      "julia": {
+        "anchor_spectrum_rows": 6,
+        "boundary_u1_identity": true,
+        "contractible_phase_half_pi": 0,
+        "gauge_shift_half_pi": -4,
+        "north_section_pass_rows": 5
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "divergence_log": [],
+  "eligible_consumers": [
+    "future S1/S2 finite Hopf phase and holonomy packets at scratch ceiling"
+  ],
+  "engine_contract": {
+    "audit_order": [
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph/network/autograd claim path"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "package_observables": {
+        "cvc5": "independent phase equality and gauge-shift wrong-sign UNSAT/SAT flip",
+        "sympy": "exact area/section/gauge/holonomy expressions",
+        "z3": "phase equality and gauge-shift wrong-sign UNSAT/SAT flip"
+      },
+      "packages_used": [
+        "sympy",
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/results/hopf_base_section_phase_recovery_v0_envelope_results.json",
+      "role_id": "python_sympy_jax_smt_workhorse",
+      "source_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/hopf_base_section_phase_recovery_v0.py",
+      "source_sha256": "069b408a7981ea8c835ad7bead8be79c25a933a1068efb7c259eef69d84abe10"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "package_observables": {
+        "Z3": "phase equality and gauge-shift wrong-sign UNSAT/SAT flip"
+      },
+      "packages_used": [
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/results/hopf_base_section_phase_recovery_v0_julia_results.json",
+      "result_sha256": "bcd0d511b4b1cccc28b247f81d805ec9dbde72600219ad988b86d37ae1db5bdf",
+      "role_id": "julia_exact_phase_mirror",
+      "source_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/hopf_base_section_phase_recovery_v0_julia.jl",
+      "source_sha256": "278ebf2cca916d142b89339d4774fff69613d2dc4b2986457630496517d411f4"
+    }
+  },
+  "exact_rows": {
+    "anchor_spectrum_values": [
+      "-2*pi",
+      "-sqrt(3)*pi",
+      "-pi",
+      "0",
+      "pi",
+      "2*pi"
+    ],
+    "controls": {
+      "area_degenerate_boundary": {
+        "north_pole": {
+          "area": "0",
+          "eta": "0",
+          "north_section_phase": "0",
+          "u1_phase": "1"
+        },
+        "pass": true,
+        "south_pole_chart_boundary": {
+          "area": "4*pi",
+          "chart_relative_reopenable": true,
+          "eta": "pi/2",
+          "north_section_phase": "-2*pi",
+          "u1_phase": "1"
+        }
+      },
+      "contractible_loop": {
+        "computed_area": "0",
+        "computed_phase": "0",
+        "pass": true,
+        "path": "beta:0->2*pi then 2*pi->0 at fixed theta"
+      },
+      "wrong_sign_control": {
+        "expected_to_fail_nonzero_rows": true,
+        "wrong_prediction": "+Omega/2"
+      }
+    },
+    "north_section_one_base_loop": [
+      {
+        "area": "0",
+        "computed_recovered_phase": "0",
+        "enclosed_area_prediction": "0",
+        "eta": "0",
+        "exact_match": true,
+        "theta": "0"
+      },
+      {
+        "area": "pi",
+        "computed_recovered_phase": "-pi/2",
+        "enclosed_area_prediction": "-pi/2",
+        "eta": "pi/6",
+        "exact_match": true,
+        "theta": "pi/3"
+      },
+      {
+        "area": "2*pi",
+        "computed_recovered_phase": "-pi",
+        "enclosed_area_prediction": "-pi",
+        "eta": "pi/4",
+        "exact_match": true,
+        "theta": "pi/2"
+      },
+      {
+        "area": "3*pi",
+        "computed_recovered_phase": "-3*pi/2",
+        "enclosed_area_prediction": "-3*pi/2",
+        "eta": "pi/3",
+        "exact_match": true,
+        "theta": "2*pi/3"
+      },
+      {
+        "area": "4*pi",
+        "computed_recovered_phase": "-2*pi",
+        "enclosed_area_prediction": "-2*pi",
+        "eta": "pi/2",
+        "exact_match": true,
+        "theta": "pi"
+      }
+    ],
+    "repo_anchor_lifted_cycle_spectrum": [
+      {
+        "cos_theta": "1",
+        "eta": "0",
+        "repo_lifted_cycle_h": "-2*pi",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "0"
+      },
+      {
+        "cos_theta": "sqrt(3)/2",
+        "eta": "pi/12",
+        "repo_lifted_cycle_h": "-sqrt(3)*pi",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "pi/6"
+      },
+      {
+        "cos_theta": "1/2",
+        "eta": "pi/6",
+        "repo_lifted_cycle_h": "-pi",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "pi/3"
+      },
+      {
+        "cos_theta": "0",
+        "eta": "pi/4",
+        "repo_lifted_cycle_h": "0",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "pi/2"
+      },
+      {
+        "cos_theta": "-1/2",
+        "eta": "pi/3",
+        "repo_lifted_cycle_h": "pi",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "2*pi/3"
+      },
+      {
+        "cos_theta": "-1",
+        "eta": "pi/2",
+        "repo_lifted_cycle_h": "2*pi",
+        "source_anchor": "9de3f3633 holonomy spectrum class",
+        "theta": "pi"
+      }
+    ],
+    "row_table_hash": "b1765879613a1a11328c289ff559d52b8b8e449254d8a42c3c3c4625d797da06",
+    "section_change_gauge": {
+      "computed_lifted_phase_shift": "-2*pi",
+      "expected_lifted_phase_shift": "-2*pi",
+      "gauge": "g(beta)=beta",
+      "pullback_connection_shift": "A_prime=A+dg",
+      "u1_endpoint_unchanged": true
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:47:33Z",
+  "jax_endpoint_rows": [
+    {
+      "eta_float": 0.0,
+      "pass": true,
+      "section_closure_gap": 0.0,
+      "target_phase": -0.0,
+      "u1_endpoint_gap": 0.0
+    },
+    {
+      "eta_float": 0.5235987755982988,
+      "pass": true,
+      "section_closure_gap": 1.224646799147353e-16,
+      "target_phase": -1.5707963267948961,
+      "u1_endpoint_gap": 6.123233995736757e-17
+    },
+    {
+      "eta_float": 0.7853981633974483,
+      "pass": true,
+      "section_closure_gap": 1.7319121124709863e-16,
+      "target_phase": -3.1415926535897927,
+      "u1_endpoint_gap": 1.2246467991473535e-16
+    },
+    {
+      "eta_float": 1.0471975511965976,
+      "pass": true,
+      "section_closure_gap": 2.1211504774498136e-16,
+      "target_phase": -4.712388980384689,
+      "u1_endpoint_gap": 1.8369701987210292e-16
+    },
+    {
+      "eta_float": 1.5707963267948966,
+      "pass": true,
+      "section_closure_gap": 2.4492935982947064e-16,
+      "target_phase": -6.283185307179586,
+      "u1_endpoint_gap": 2.4492935982947064e-16
+    }
+  ],
+  "mode": "FREE_chart_relative_phase_recovery",
+  "negatives_run": [
+    "contractible_loop",
+    "wrong_sign_control",
+    "wrong_gauge_shift_control",
+    "area_degenerate_boundary"
+  ],
+  "no_builder_audit_verdict": true,
+  "object_id": "hopf_base_section_phase_recovery_v0",
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "julia_expected": "recorded in julia result",
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.6",
+    "sympy": "1.14.0",
+    "z3": "4.16.0"
+  },
+  "parent_lineage": {
+    "boundary_pattern_commit_f1907c814": "tooling: packet-validator file-boundary gate made POST-AUDIT IDEMPOTENT (Hermes catch + two codex2 rounds): the gate now asserts the BUILD-TIME envelope field no_builder_audit_verdict rather than requiring audit_verdict.md absence forever \u2014 the genuine audit no longer breaks its own packet's validator; teeth kept (synthetic no_builder_audit_verdict=False fails with the named error); GRANDFATHER clause: pre-convention envelopes (field absent, packets predating 2026-06-11) pass with the noted pre_convention_grandfathered flag, never hard-fail retroactively; applied across all system_v6 packet validators + the sim-wizard SKILL clarification; final-heavy validator ok:true post-audit, 14+12 validator sweep green except ONE named pre-existing gap (basin_two_engine_joint_v0's validator word-polices its audit prose \u2014 surfaced, separate, the killed-control packet); refreshed validator-results JSONs from the reruns included",
+    "geo_s1_source": {
+      "exists": true,
+      "path": "system_v6/sims/geo_s1_spinor_hopf_free_v0/geo_s1_spinor_hopf_free_v0_jax.py",
+      "sha256": "b1b32aadc0aacd79201056c274b4db5b647b90330937eae5145bfc2135fe6cb5"
+    },
+    "geo_s2_envelope": {
+      "exists": true,
+      "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json",
+      "sha256": "47ecb1d4c83645ad0eb60286e3485871c40a6e5155263ca052867624234324d0"
+    },
+    "geo_s9_alt_connections": {
+      "exists": true,
+      "path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_envelope_results.json",
+      "sha256": "34c6b22838ac169a2073fb46656a71957a0f3b690faf32e5e8b7b78fbe10d2ed"
+    },
+    "holonomy_anchor_commit_9de3f3633": "system_v6: geo_s9_alternative_connections_v0 \u2014 the S9 CONNECTION discriminator: the TOPOLOGY-vs-GEOMETRY split computed, GENUINE-WITH-CAVEATS (codex1 build + codex2 cross-backend audit): the same-flux candidate (cos(2eta) + (1/5)sin^2(2eta)) SURVIVES the topological row (c1=1 recomputed from the boundary difference) and DIES at the geometric rows (its full holonomy spectrum differs leaf-by-leaf from the committed [-2pi, -sqrt(3)pi, -pi, 0, pi, 2pi] \u2014 both spectra recomputed; gauge-inequivalence established by invariants, not labels); flat dies at curvature/Chern, rescaled at the holonomy anchors, the nonperiodic null at validity; THE STRUCTURAL ANSWER: the Chern class is shareable topology \u2014 the committed connection's identity is its HOLONOMY SPECTRUM (the geometric data), unique among tested alternatives given the leaf anchors; committed S2 anchors byte-cited (h(pi/6)=-pi, h(pi/4)=0); scoped to these four alternatives; scratch ceiling",
+    "legacy_source": {
+      "exists": true,
+      "path": "system_v4/probes/sim_hopf_base_section_phase_recovery.py",
+      "sha256": "cb60a4a2227940ea93a18e697e57dab8a94e936d5a0a8147e10388bb1f70d543"
+    },
+    "old_estate_commit_77fb7ca52": "receipts: the old-estate mine \u2014 the pre-v6 estate consumed into the tier-1 corpus via child fan-out (4 regions): system_v4 probes (6626 files inventoried, 68 graveyard/negative items harvested as designed-fail material, 3825 never-run intents cataloged, 12 ranked unconsumed objects), formal scouts (990 files, 248 result JSONs parsed clean, 9 v6-supersession rows, 12 unconsumed objects + the stale-README finding: 398/406 result refs missing), julia carrier (the canon artifact lineage, 2 actual convention divergences + 3 guard rows), the old registries (the lego/axes/operator inventory); the ranked unconsumed-object queue = future v6 packet candidates; estate read-only, zero diffs; mine-not-roadmap rule held throughout",
+    "old_estate_mine": {
+      "exists": true,
+      "path": "system_v6/receipts/old_estate_mine_20260611.md",
+      "sha256": "47c211dbcad604c61b4e137b4b28f686ff206359449ab5eb3a0afcce75b0fd99"
+    }
+  },
+  "pin_sha256": "d3c61d4c7a8b5d224c7dfc0b72b3314016687baefda625c1fbfb16d1679b7dfb",
+  "pin_spec": "hopf_base_section_phase_recovery_v0|old_estate_item_11|section=s_N(theta,beta)=(cos(theta/2),exp(i*beta)sin(theta/2))|one_base_loop_beta:0->2pi|gamma_N=-Omega/2=-pi*(1-cos(theta))|repo_anchor=A=dphi+cos(2eta)dchi;h(eta)=-2pi*cos(2eta)|section_change=s'=exp(i*beta)s_N shifts lifted phase by -2pi|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "not a global section theorem",
+    "not a bridge, axis, physics, or uniqueness claim",
+    "chart-relative rows remain reopenable under convention changes"
+  ],
+  "required_negatives": [
+    "contractible loop",
+    "wrong-sign holonomy",
+    "wrong gauge-shift sign",
+    "area-degenerate boundary"
+  ],
+  "result_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/results/hopf_base_section_phase_recovery_v0_envelope_results.json",
+  "result_summary": {
+    "accepted_ceiling": "scratch_diagnostic",
+    "answer": "section phase recovery matches the declared section/enclosed-area row and the committed lifted-cycle holonomy spectrum under explicit convention pins",
+    "promotion_allowed": false
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "hopf_base_section_phase_recovery_v0",
+  "smt_proofs": {
+    "cvc5": {
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    },
+    "julia_z3": {
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    },
+    "z3": {
+      "gauge_verdict": "unsat",
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_wrong_sign_sat",
+      "ran": true,
+      "real_verdict": "unsat",
+      "rows": [
+        {
+          "computed_half_pi": 0,
+          "label": "eta_0",
+          "predicted_half_pi": 0
+        },
+        {
+          "computed_half_pi": -1,
+          "label": "eta_pi_6",
+          "predicted_half_pi": -1
+        },
+        {
+          "computed_half_pi": -2,
+          "label": "eta_pi_4",
+          "predicted_half_pi": -2
+        },
+        {
+          "computed_half_pi": -3,
+          "label": "eta_pi_3",
+          "predicted_half_pi": -3
+        },
+        {
+          "computed_half_pi": -4,
+          "label": "eta_pi_2",
+          "predicted_half_pi": -4
+        }
+      ],
+      "scaled_units": "half_pi_units",
+      "verdict": "unsat",
+      "wrong_gauge_flip_verdict": "sat",
+      "wrong_sign_flip_verdict": "sat"
+    }
+  },
+  "source_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/hopf_base_section_phase_recovery_v0.py",
+  "source_sha256": "069b408a7981ea8c835ad7bead8be79c25a933a1068efb7c259eef69d84abe10",
+  "tier": 2,
+  "tool_calls": [
+    {
+      "claim": "exact section phase and holonomy rows",
+      "load_bearing": true,
+      "receipt": "exact_rows",
+      "tool": "sympy"
+    },
+    {
+      "claim": "phase/gauge SMT flip",
+      "load_bearing": true,
+      "receipt": "smt_proofs.z3",
+      "tool": "z3"
+    },
+    {
+      "claim": "phase/gauge SMT flip",
+      "load_bearing": true,
+      "receipt": "smt_proofs.cvc5",
+      "tool": "cvc5"
+    },
+    {
+      "claim": "Julia-side phase/gauge SMT flip",
+      "load_bearing": true,
+      "receipt": "system_v6/sims/hopf_base_section_phase_recovery_v0/results/hopf_base_section_phase_recovery_v0_julia_results.json",
+      "tool": "Z3"
+    }
+  ],
+  "tool_integration_depth": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "subprocess": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT mirror over the same scaled phase rows",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT proof of the same phase equality and flip controls",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source/result/PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64 finite-carrier endpoint U(1) reconstruction and complex phase comparison",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive complex spinor arithmetic for the declared section rows",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic result serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    },
+    "subprocess": {
+      "reason": "supportive git lineage reads for cited parent commits",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact section pullback, enclosed-area phase, gauge-shift, and holonomy spectrum rows",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT proof that exact computed phases cannot differ from predictions, with wrong-sign flips",
+      "tried": true,
+      "used": true
+    }
+  },
+  "validator": {
+    "path": "system_v6/sims/hopf_base_section_phase_recovery_v0/validate_hopf_base_section_phase_recovery_v0.py",
+    "result_path": "system_v6/sims/hopf_base_section_phase_recovery_v0/results/hopf_base_section_phase_recovery_v0_validator_results.json"
+  }
+}

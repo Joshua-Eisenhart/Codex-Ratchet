@@ -1,0 +1,1998 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "DifferentialEquations": "load_bearing",
+    "Graphs": "supportive",
+    "ITensorMPS": "supportive",
+    "ITensors": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Manifolds": "load_bearing",
+    "QuantumClifford": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Cl(8,0) carrier and pseudoscalar row",
+      "tried": true,
+      "used": true
+    },
+    "DifferentialEquations": {
+      "reason": "load-bearing ODEProblem/solve(Tsit5) shell leakage flow",
+      "tried": true,
+      "used": true
+    },
+    "Graphs": {
+      "reason": "supportive finite support graph connectedness; demoted because no green Graphs capability receipt is present for this gate",
+      "tried": true,
+      "used": true
+    },
+    "ITensorMPS": {
+      "reason": "supportive MPS product mirror for named 4Q support state; demoted because no green ITensorMPS capability receipt is present for this gate",
+      "tried": true,
+      "used": true
+    },
+    "ITensors": {
+      "reason": "load-bearing ITensor site support fixture",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive serialization, timestamping, and source hashing",
+      "tried": true,
+      "used": true
+    },
+    "Manifolds": {
+      "reason": "load-bearing Sphere metric support receipt",
+      "tried": true,
+      "used": true
+    },
+    "QuantumClifford": {
+      "reason": "load-bearing Pauli commutation control for the 4Q carrier",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing NLevelBasis/tensor/dm/ptrace/entropy_vn state and density rows",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing symbolic quotient-erasure identity side row",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia SMT mirror for density-only support recovery failure",
+      "tried": true,
+      "used": true
+    }
+  },
+  "acceptance": {
+    "P10_cross_engine_fatality": true,
+    "P11_negative_controls": true,
+    "P12_ceiling": true,
+    "P1_source_lineage": true,
+    "P2_support_object": true,
+    "P3_density_quotient": true,
+    "P4_lifted_path": true,
+    "P5_entropy": true,
+    "P6_order_gaps": true,
+    "P7_bracketing_boundary": true,
+    "P8_shell_leakage": true,
+    "P9_tooling": true
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "QuantumClifford",
+    "ITensors",
+    "DifferentialEquations",
+    "Manifolds",
+    "Symbolics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "QuantumClifford",
+    "ITensors",
+    "DifferentialEquations",
+    "Manifolds",
+    "Symbolics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "GHZ_non_nesting_tripwire": {
+      "fired": true,
+      "source": "computed trace-one GHZ_4 row"
+    },
+    "W4_weighted_nesting_tripwire": {
+      "fired": true,
+      "source": "computed trace-one W_4 row"
+    },
+    "carrier_mismatch": {
+      "fired": true
+    },
+    "collapsed_shell": {
+      "failing_values": {
+        "required_unique_z_count": 4,
+        "unique_z_count_after_mutation": 1,
+        "z_values_after_mutation": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "fired": true,
+      "gate_passed_after_mutation": false,
+      "mutation": "rerun site shell construction with all etas collapsed to pi/4",
+      "rerun_under_mutation": true
+    },
+    "density_only_collapse": {
+      "fired": true
+    },
+    "duplicate_eta": {
+      "failing_values": {
+        "eta_values_after_mutation": [
+          0.314159265359,
+          0.314159265359,
+          0.942477796077,
+          1.256637061436
+        ],
+        "required_unique_eta_count": 4,
+        "unique_eta_count_after_mutation": 3
+      },
+      "fired": true,
+      "gate_passed_after_mutation": false,
+      "mutation": "rerun site shell construction after setting q1 eta equal to q0 eta",
+      "rerun_under_mutation": true
+    },
+    "global_shell_only": {
+      "failing_values": {
+        "edge_count": 0,
+        "face_count": 0,
+        "node_count": 0
+      },
+      "fired": true,
+      "gate_passed_after_mutation": false,
+      "mutation": "drop site/edge/face support and keep only one global shell label",
+      "observed": {
+        "edge_count": 0,
+        "face_count": 0,
+        "node_count": 0
+      },
+      "rerun_under_mutation": true
+    },
+    "hardcoded_zero_leakage": {
+      "fired": true
+    },
+    "matrix_associator_overclaim": {
+      "fired": true
+    },
+    "no_face": {
+      "failing_values": {
+        "face_count_after_mutation": 0
+      },
+      "fired": true,
+      "gate_passed_after_mutation": false,
+      "mutation": "rerun support graph with the filled face removed",
+      "rerun_under_mutation": true
+    },
+    "per_site_only_no_aggregate": {
+      "aggregate_present": true,
+      "fired": true
+    },
+    "wrong_shell_coordinate": {
+      "fired": true,
+      "wrong_coordinate": "sin(2 eta)"
+    }
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "control_verdict": "sat",
+      "load_bearing": true,
+      "pass": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:08:28.796",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "QuantumClifford",
+    "ITensors",
+    "ITensorMPS",
+    "DifferentialEquations",
+    "Manifolds",
+    "Graphs",
+    "Symbolics",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "pin_sha256": "6d5fb046d0ca2813e22b02fa9d9ae2e669311ae52f9ea3853486b0834f13eaa4",
+  "pin_spec": "stage_lifted_spinor_shell_n4_v0|n=4-only|shell_nested_hopf_torus_support|arrow_types=tensor,algebra extension,quotient,principal-bundle / fibration,subset/submanifold|GHZ partial trace is non-nesting mixture|z=cos(2 eta)|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "z3": {
+      "control_verdict": "sat",
+      "load_bearing": true,
+      "pass": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/stage_lifted_spinor_shell_n4_v0/results/stage_lifted_spinor_shell_n4_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "rows": {
+    "P10_cross_engine_fatality": {
+      "fatal_on_envelope_disagreement": true,
+      "local_values": {
+        "GHZ_A_B_I": 1.38629436112,
+        "GHZ_A_B_conditional": -0.69314718056,
+        "aggregate_leakage": -0.007193697444,
+        "bracketing_path_gap": 1.0,
+        "ghz_non_nesting_distance": 0.707106781187,
+        "matrix_associator_norm": 0.0,
+        "order_gap_TO": 2.0,
+        "support_edge_count": 5.0,
+        "support_face_count": 2.0,
+        "support_node_count": 4.0
+      }
+    },
+    "P11_negative_controls": {
+      "GHZ_non_nesting_tripwire": {
+        "fired": true,
+        "source": "computed trace-one GHZ_4 row"
+      },
+      "W4_weighted_nesting_tripwire": {
+        "fired": true,
+        "source": "computed trace-one W_4 row"
+      },
+      "carrier_mismatch": {
+        "fired": true
+      },
+      "collapsed_shell": {
+        "failing_values": {
+          "required_unique_z_count": 4,
+          "unique_z_count_after_mutation": 1,
+          "z_values_after_mutation": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "fired": true,
+        "gate_passed_after_mutation": false,
+        "mutation": "rerun site shell construction with all etas collapsed to pi/4",
+        "rerun_under_mutation": true
+      },
+      "density_only_collapse": {
+        "fired": true
+      },
+      "duplicate_eta": {
+        "failing_values": {
+          "eta_values_after_mutation": [
+            0.314159265359,
+            0.314159265359,
+            0.942477796077,
+            1.256637061436
+          ],
+          "required_unique_eta_count": 4,
+          "unique_eta_count_after_mutation": 3
+        },
+        "fired": true,
+        "gate_passed_after_mutation": false,
+        "mutation": "rerun site shell construction after setting q1 eta equal to q0 eta",
+        "rerun_under_mutation": true
+      },
+      "global_shell_only": {
+        "failing_values": {
+          "edge_count": 0,
+          "face_count": 0,
+          "node_count": 0
+        },
+        "fired": true,
+        "gate_passed_after_mutation": false,
+        "mutation": "drop site/edge/face support and keep only one global shell label",
+        "observed": {
+          "edge_count": 0,
+          "face_count": 0,
+          "node_count": 0
+        },
+        "rerun_under_mutation": true
+      },
+      "hardcoded_zero_leakage": {
+        "fired": true
+      },
+      "matrix_associator_overclaim": {
+        "fired": true
+      },
+      "no_face": {
+        "failing_values": {
+          "face_count_after_mutation": 0
+        },
+        "fired": true,
+        "gate_passed_after_mutation": false,
+        "mutation": "rerun support graph with the filled face removed",
+        "rerun_under_mutation": true
+      },
+      "per_site_only_no_aggregate": {
+        "aggregate_present": true,
+        "fired": true
+      },
+      "wrong_shell_coordinate": {
+        "fired": true,
+        "wrong_coordinate": "sin(2 eta)"
+      }
+    },
+    "P12_ceiling": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "promotion_allowed": false
+    },
+    "P1_source_lineage": {
+      "spec": "system_v6/receipts/lifted_ladder_spec_20260610.md"
+    },
+    "P2_support_object": {
+      "Graphs": {
+        "connected": true,
+        "edge_count": 5,
+        "node_count": 4
+      },
+      "ITensorMPS": {
+        "Z_expect": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "maxlinkdim": 1
+      },
+      "ITensors": {
+        "nonzero_anchor": 1.0,
+        "tensor_order": 4
+      },
+      "Manifolds": {
+        "orthogonal_distance": 1.570796326795,
+        "sphere": "Sphere(2)"
+      },
+      "controls": {
+        "collapsed_shell": {
+          "failing_values": {
+            "required_unique_z_count": 4,
+            "unique_z_count_after_mutation": 1,
+            "z_values_after_mutation": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun site shell construction with all etas collapsed to pi/4",
+          "rerun_under_mutation": true
+        },
+        "duplicate_eta": {
+          "failing_values": {
+            "eta_values_after_mutation": [
+              0.314159265359,
+              0.314159265359,
+              0.942477796077,
+              1.256637061436
+            ],
+            "required_unique_eta_count": 4,
+            "unique_eta_count_after_mutation": 3
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun site shell construction after setting q1 eta equal to q0 eta",
+          "rerun_under_mutation": true
+        },
+        "global_shell_only": {
+          "failing_values": {
+            "edge_count": 0,
+            "face_count": 0,
+            "node_count": 0
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "drop site/edge/face support and keep only one global shell label",
+          "observed": {
+            "edge_count": 0,
+            "face_count": 0,
+            "node_count": 0
+          },
+          "rerun_under_mutation": true
+        },
+        "no_face": {
+          "failing_values": {
+            "face_count_after_mutation": 0
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun support graph with the filled face removed",
+          "rerun_under_mutation": true
+        }
+      },
+      "edges": [
+        {
+          "dst": "q1",
+          "edge_id": "e01",
+          "path_type": "tensor",
+          "src": "q0"
+        },
+        {
+          "dst": "q2",
+          "edge_id": "e12",
+          "path_type": "tensor",
+          "src": "q1"
+        },
+        {
+          "dst": "q3",
+          "edge_id": "e23",
+          "path_type": "tensor",
+          "src": "q2"
+        },
+        {
+          "dst": "q3",
+          "edge_id": "e03",
+          "path_type": "tensor",
+          "src": "q0"
+        },
+        {
+          "dst": "q2",
+          "edge_id": "e02",
+          "path_type": "tensor",
+          "src": "q0"
+        }
+      ],
+      "faces": [
+        {
+          "face_id": "f012",
+          "nodes": [
+            "q0",
+            "q1",
+            "q2"
+          ],
+          "shell_adjacency": "rank2_filled_shell_face"
+        },
+        {
+          "face_id": "f023",
+          "nodes": [
+            "q0",
+            "q2",
+            "q3"
+          ],
+          "shell_adjacency": "rank2_filled_shell_face"
+        }
+      ],
+      "pass": true,
+      "sites": [
+        {
+          "eta": 0.314159265359,
+          "hopf_node_id": "hopf_ring_0:q0",
+          "loop_phase": 0.314159265359,
+          "psi_L": [
+            0.951056516295,
+            0.0
+          ],
+          "psi_R": [
+            0.309016994375,
+            -0.0
+          ],
+          "shell_id": "shell_0",
+          "site_id": "q0",
+          "theta": 0.0,
+          "z": 0.809016994375
+        },
+        {
+          "eta": 0.628318530718,
+          "hopf_node_id": "hopf_ring_1:q1",
+          "loop_phase": 2.199114857513,
+          "psi_L": [
+            0.0,
+            0.809016994375
+          ],
+          "psi_R": [
+            0.0,
+            -0.587785252292
+          ],
+          "shell_id": "shell_1",
+          "site_id": "q1",
+          "theta": 1.570796326795,
+          "z": 0.309016994375
+        },
+        {
+          "eta": 0.942477796077,
+          "hopf_node_id": "hopf_ring_2:q2",
+          "loop_phase": 4.084070449667,
+          "psi_L": [
+            -0.587785252292,
+            0.0
+          ],
+          "psi_R": [
+            -0.809016994375,
+            -0.0
+          ],
+          "shell_id": "shell_2",
+          "site_id": "q2",
+          "theta": 3.14159265359,
+          "z": -0.309016994375
+        },
+        {
+          "eta": 1.256637061436,
+          "hopf_node_id": "hopf_ring_3:q3",
+          "loop_phase": 5.969026041821,
+          "psi_L": [
+            -0.0,
+            -0.309016994375
+          ],
+          "psi_R": [
+            -0.0,
+            0.951056516295
+          ],
+          "shell_id": "shell_3",
+          "site_id": "q3",
+          "theta": 4.712388980385,
+          "z": -0.809016994375
+        }
+      ]
+    },
+    "P3_density_quotient": {
+      "density_only_collapse_control": {
+        "fired": true
+      },
+      "erasure_table": [
+        {
+          "arrow_type": "quotient",
+          "field": "global_phase",
+          "lift_visible": true,
+          "rho_visible": false
+        },
+        {
+          "arrow_type": "principal-bundle / fibration",
+          "field": "hopf_node_id",
+          "lift_visible": true,
+          "rho_visible": false
+        },
+        {
+          "arrow_type": "subset/submanifold",
+          "field": "face_id",
+          "lift_visible": true,
+          "rho_visible": false
+        },
+        {
+          "arrow_type": "tensor",
+          "field": "edge_path_order",
+          "lift_visible": true,
+          "rho_visible": false
+        }
+      ],
+      "ic_povm_separation": {
+        "d": 16,
+        "effect_count": 256,
+        "expected_d_squared": 256,
+        "frame_rank": 256,
+        "min_effect_eigenvalue": 0.0037109375,
+        "pass": true
+      },
+      "pass": true,
+      "phase_erasure_norm": 0.0,
+      "rho": "quotient S/~_M over the d=16 shell-supported carrier",
+      "symbolics_phase_identity": "0"
+    },
+    "P4_lifted_path": {
+      "controls": {
+        "collapsed_shell": {
+          "failing_values": {
+            "required_unique_z_count": 4,
+            "unique_z_count_after_mutation": 1,
+            "z_values_after_mutation": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun site shell construction with all etas collapsed to pi/4",
+          "rerun_under_mutation": true
+        },
+        "duplicate_eta": {
+          "failing_values": {
+            "eta_values_after_mutation": [
+              0.314159265359,
+              0.314159265359,
+              0.942477796077,
+              1.256637061436
+            ],
+            "required_unique_eta_count": 4,
+            "unique_eta_count_after_mutation": 3
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun site shell construction after setting q1 eta equal to q0 eta",
+          "rerun_under_mutation": true
+        },
+        "global_shell_only": {
+          "failing_values": {
+            "edge_count": 0,
+            "face_count": 0,
+            "node_count": 0
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "drop site/edge/face support and keep only one global shell label",
+          "observed": {
+            "edge_count": 0,
+            "face_count": 0,
+            "node_count": 0
+          },
+          "rerun_under_mutation": true
+        },
+        "no_face": {
+          "failing_values": {
+            "face_count_after_mutation": 0
+          },
+          "fired": true,
+          "gate_passed_after_mutation": false,
+          "mutation": "rerun support graph with the filled face removed",
+          "rerun_under_mutation": true
+        }
+      },
+      "edges": [
+        {
+          "dst": "q1",
+          "edge_id": "e01",
+          "path_type": "tensor",
+          "src": "q0"
+        },
+        {
+          "dst": "q2",
+          "edge_id": "e12",
+          "path_type": "tensor",
+          "src": "q1"
+        },
+        {
+          "dst": "q3",
+          "edge_id": "e23",
+          "path_type": "tensor",
+          "src": "q2"
+        },
+        {
+          "dst": "q3",
+          "edge_id": "e03",
+          "path_type": "tensor",
+          "src": "q0"
+        },
+        {
+          "dst": "q2",
+          "edge_id": "e02",
+          "path_type": "tensor",
+          "src": "q0"
+        }
+      ],
+      "faces": [
+        {
+          "face_id": "f012",
+          "nodes": [
+            "q0",
+            "q1",
+            "q2"
+          ],
+          "shell_adjacency": "rank2_filled_shell_face"
+        },
+        {
+          "face_id": "f023",
+          "nodes": [
+            "q0",
+            "q2",
+            "q3"
+          ],
+          "shell_adjacency": "rank2_filled_shell_face"
+        }
+      ],
+      "sites": [
+        {
+          "eta": 0.314159265359,
+          "hopf_node_id": "hopf_ring_0:q0",
+          "loop_phase": 0.314159265359,
+          "psi_L": [
+            0.951056516295,
+            0.0
+          ],
+          "psi_R": [
+            0.309016994375,
+            -0.0
+          ],
+          "shell_id": "shell_0",
+          "site_id": "q0",
+          "theta": 0.0,
+          "z": 0.809016994375
+        },
+        {
+          "eta": 0.628318530718,
+          "hopf_node_id": "hopf_ring_1:q1",
+          "loop_phase": 2.199114857513,
+          "psi_L": [
+            0.0,
+            0.809016994375
+          ],
+          "psi_R": [
+            0.0,
+            -0.587785252292
+          ],
+          "shell_id": "shell_1",
+          "site_id": "q1",
+          "theta": 1.570796326795,
+          "z": 0.309016994375
+        },
+        {
+          "eta": 0.942477796077,
+          "hopf_node_id": "hopf_ring_2:q2",
+          "loop_phase": 4.084070449667,
+          "psi_L": [
+            -0.587785252292,
+            0.0
+          ],
+          "psi_R": [
+            -0.809016994375,
+            -0.0
+          ],
+          "shell_id": "shell_2",
+          "site_id": "q2",
+          "theta": 3.14159265359,
+          "z": -0.309016994375
+        },
+        {
+          "eta": 1.256637061436,
+          "hopf_node_id": "hopf_ring_3:q3",
+          "loop_phase": 5.969026041821,
+          "psi_L": [
+            -0.0,
+            -0.309016994375
+          ],
+          "psi_R": [
+            -0.0,
+            0.951056516295
+          ],
+          "shell_id": "shell_3",
+          "site_id": "q3",
+          "theta": 4.712388980385,
+          "z": -0.809016994375
+        }
+      ]
+    },
+    "P5_entropy": {
+      "computed_anchors": {
+        "GHZ_4_ln2_all_bipartitions": true,
+        "W_4_expected": 0.562335144619,
+        "W_4_single_site_entropy": 0.562335144619
+      },
+      "pass": true,
+      "rows": {
+        "GHZ": {
+          "A|B": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q01|q23": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q02|q13": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q03|q12": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q0|q123": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q1|q023": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q2|q013": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q3|q012": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          }
+        },
+        "W": {
+          "A|B": {
+            "I_A_B": 1.124670289238,
+            "I_c_A_to_B": 0.562335144619,
+            "S_A": 0.562335144619,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.562335144619,
+            "S_B": 0.562335144619
+          },
+          "q01|q23": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q02|q13": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q03|q12": {
+            "I_A_B": 1.38629436112,
+            "I_c_A_to_B": 0.69314718056,
+            "S_A": 0.69314718056,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.69314718056,
+            "S_B": 0.69314718056
+          },
+          "q0|q123": {
+            "I_A_B": 1.124670289238,
+            "I_c_A_to_B": 0.562335144619,
+            "S_A": 0.562335144619,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.562335144619,
+            "S_B": 0.562335144619
+          },
+          "q1|q023": {
+            "I_A_B": 1.124670289238,
+            "I_c_A_to_B": 0.562335144619,
+            "S_A": 0.562335144619,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.562335144619,
+            "S_B": 0.562335144619
+          },
+          "q2|q013": {
+            "I_A_B": 1.124670289238,
+            "I_c_A_to_B": 0.562335144619,
+            "S_A": 0.562335144619,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.562335144619,
+            "S_B": 0.562335144619
+          },
+          "q3|q012": {
+            "I_A_B": 1.124670289238,
+            "I_c_A_to_B": 0.562335144619,
+            "S_A": 0.562335144619,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.562335144619,
+            "S_B": 0.562335144619
+          }
+        },
+        "cluster_linear": {
+          "A|B": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q01|q23": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q02|q13": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q03|q12": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q0|q123": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q1|q023": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q2|q013": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          },
+          "q3|q012": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": -0.0,
+            "S_B": 0.0
+          }
+        },
+        "product_0000": {
+          "A|B": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q01|q23": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q02|q13": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q03|q12": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q0|q123": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q1|q023": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q2|q013": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          },
+          "q3|q012": {
+            "I_A_B": 0.0,
+            "I_c_A_to_B": 0.0,
+            "S_A": 0.0,
+            "S_AB": 0.0,
+            "S_A_given_B": 0.0,
+            "S_B": 0.0
+          }
+        }
+      }
+    },
+    "P6_order_gaps": {
+      "Cl8_anchor": {
+        "algebra": "Cl(8) on the four-qubit C^16 carrier",
+        "certificate": "Stored exact max-clique search over all 255 nonidentity n=4 Pauli strings modulo phase; no 10-element anticommuting family exists on this finite Pauli surface.",
+        "chirality_split": {
+          "minus": 8,
+          "plus": 8
+        },
+        "constructive_family_size": 9,
+        "max_anticommutator_norm": 0.0,
+        "maximal_anticommuting_family": 9,
+        "maximality_receipt": {
+          "kind": "exact_pauli_anticommutation_max_clique_certificate",
+          "max_clique_size": 9,
+          "method": "deterministic exact branch-and-bound maximum-clique search with greedy-color upper bounds over the full Pauli anticommutation graph",
+          "no_10_element_family_exists": true,
+          "search_space": {
+            "edge_count": 16320,
+            "edge_rule": "symplectic inner product over F2 equals 1, i.e. Pauli strings anticommute",
+            "n_qubits": 4,
+            "vertex_set": "all nonidentity n=4 Pauli strings modulo phase",
+            "vertices": 255
+          },
+          "stats": {
+            "candidate_count_prunes": 3,
+            "color_bound_pruned_vertices": 2419451,
+            "search_nodes": 201247
+          },
+          "target_excluded": 10,
+          "witness_all_pairs_anticommute": true,
+          "witness_clique_labels": [
+            "XZZZ",
+            "ZZZZ",
+            "IYZZ",
+            "YZZZ",
+            "IXZZ",
+            "IIYZ",
+            "IIXZ",
+            "IIIY",
+            "IIIX"
+          ],
+          "witness_pair_count": 36
+        },
+        "pass": true,
+        "squares_to_identity": true
+      },
+      "CliffordAlgebras": {
+        "constructed": "CliffordAlgebra(8,0)",
+        "object_type": "CliffordAlgebra{8, 0, 0, (:e1, :e2, :e3, :e4, :e5, :e6, :e7, :e8), ((), (1,), (2,), (3,), (4,), (5,), (6,), (7,), (8,), (1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (3, 4), (1, 5), (2, 5), (3, 5), (4, 5), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8), (7, 8), (1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4), (1, 2, 5), (1, 3, 5), (2, 3, 5), (1, 4, 5), (2, 4, 5), (3, 4, 5), (1, 2, 6), (1, 3, 6), (2, 3, 6), (1, 4, 6), (2, 4, 6), (3, 4, 6), (1, 5, 6), (2, 5, 6), (3, 5, 6), (4, 5, 6), (1, 2, 7), (1, 3, 7), (2, 3, 7), (1, 4, 7), (2, 4, 7), (3, 4, 7), (1, 5, 7), (2, 5, 7), (3, 5, 7), (4, 5, 7), (1, 6, 7), (2, 6, 7), (3, 6, 7), (4, 6, 7), (5, 6, 7), (1, 2, 8), (1, 3, 8), (2, 3, 8), (1, 4, 8), (2, 4, 8), (3, 4, 8), (1, 5, 8), (2, 5, 8), (3, 5, 8), (4, 5, 8), (1, 6, 8), (2, 6, 8), (3, 6, 8), (4, 6, 8), (5, 6, 8), (1, 7, 8), (2, 7, 8), (3, 7, 8), (4, 7, 8), (5, 7, 8), (6, 7, 8), (1, 2, 3, 4), (1, 2, 3, 5), (1, 2, 4, 5), (1, 3, 4, 5), (2, 3, 4, 5), (1, 2, 3, 6), (1, 2, 4, 6), (1, 3, 4, 6), (2, 3, 4, 6), (1, 2, 5, 6), (1, 3, 5, 6), (2, 3, 5, 6), (1, 4, 5, 6), (2, 4, 5, 6), (3, 4, 5, 6), (1, 2, 3, 7), (1, 2, 4, 7), (1, 3, 4, 7), (2, 3, 4, 7), (1, 2, 5, 7), (1, 3, 5, 7), (2, 3, 5, 7), (1, 4, 5, 7), (2, 4, 5, 7), (3, 4, 5, 7), (1, 2, 6, 7), (1, 3, 6, 7), (2, 3, 6, 7), (1, 4, 6, 7), (2, 4, 6, 7), (3, 4, 6, 7), (1, 5, 6, 7), (2, 5, 6, 7), (3, 5, 6, 7), (4, 5, 6, 7), (1, 2, 3, 8), (1, 2, 8, 4), (1, 3, 4, 8), (2, 3, 8, 4), (1, 2, 5, 8), (1, 3, 8, 5), (2, 3, 5, 8), (1, 4, 5, 8), (2, 4, 8, 5), (3, 4, 5, 8), (1, 2, 8, 6), (1, 3, 6, 8), (2, 3, 8, 6), (1, 4, 8, 6), (2, 4, 6, 8), (3, 4, 8, 6), (1, 5, 6, 8), (2, 5, 8, 6), (3, 5, 6, 8), (4, 5, 8, 6), (1, 2, 7, 8), (1, 3, 8, 7), (2, 3, 7, 8), (1, 4, 7, 8), (2, 4, 8, 7), (3, 4, 7, 8), (1, 5, 8, 7), (2, 5, 7, 8), (3, 5, 8, 7), (4, 5, 7, 8), (1, 6, 7, 8), (2, 6, 8, 7), (3, 6, 7, 8), (4, 6, 8, 7), (5, 6, 7, 8), (1, 2, 3, 5, 4), (1, 2, 3, 4, 6), (1, 2, 3, 6, 5), (1, 2, 4, 5, 6), (1, 3, 4, 6, 5), (2, 3, 4, 5, 6), (1, 2, 3, 7, 4), (1, 2, 3, 5, 7), (1, 2, 4, 7, 5), (1, 3, 4, 5, 7), (2, 3, 4, 7, 5), (1, 2, 3, 7, 6), (1, 2, 4, 6, 7), (1, 3, 4, 7, 6), (2, 3, 4, 6, 7), (1, 2, 5, 7, 6), (1, 3, 5, 6, 7), (2, 3, 5, 7, 6), (1, 4, 5, 7, 6), (2, 4, 5, 6, 7), (3, 4, 5, 7, 6), (1, 2, 3, 4, 8), (1, 2, 3, 8, 5), (1, 2, 4, 5, 8), (1, 3, 4, 8, 5), (2, 3, 4, 5, 8), (1, 2, 3, 6, 8), (1, 2, 4, 8, 6), (1, 3, 4, 6, 8), (2, 3, 4, 8, 6), (1, 2, 5, 6, 8), (1, 3, 5, 8, 6), (2, 3, 5, 6, 8), (1, 4, 5, 6, 8), (2, 4, 5, 8, 6), (3, 4, 5, 6, 8), (1, 2, 3, 8, 7), (1, 2, 4, 7, 8), (1, 3, 4, 8, 7), (2, 3, 4, 7, 8), (1, 2, 5, 8, 7), (1, 3, 5, 7, 8), (2, 3, 5, 8, 7), (1, 4, 5, 8, 7), (2, 4, 5, 7, 8), (3, 4, 5, 8, 7), (1, 2, 6, 7, 8), (1, 3, 6, 8, 7), (2, 3, 6, 7, 8), (1, 4, 6, 7, 8), (2, 4, 6, 8, 7), (3, 4, 6, 7, 8), (1, 5, 6, 8, 7), (2, 5, 6, 7, 8), (3, 5, 6, 8, 7), (4, 5, 6, 7, 8), (1, 2, 3, 4, 5, 6), (1, 2, 3, 4, 7, 5), (1, 2, 3, 4, 6, 7), (1, 2, 3, 5, 7, 6), (1, 2, 4, 5, 6, 7), (1, 3, 4, 5, 7, 6), (2, 3, 4, 5, 6, 7), (1, 2, 3, 4, 5, 8), (1, 2, 3, 4, 8, 6), (1, 2, 3, 5, 6, 8), (1, 2, 4, 5, 8, 6), (1, 3, 4, 5, 6, 8), (2, 3, 4, 5, 8, 6), (1, 2, 3, 4, 7, 8), (1, 2, 3, 5, 8, 7), (1, 2, 4, 5, 7, 8), (1, 3, 4, 5, 8, 7), (2, 3, 4, 5, 7, 8), (1, 2, 3, 6, 7, 8), (1, 2, 4, 6, 8, 7), (1, 3, 4, 6, 7, 8), (2, 3, 4, 6, 8, 7), (1, 2, 5, 6, 7, 8), (1, 3, 5, 6, 8, 7), (2, 3, 5, 6, 7, 8), (1, 4, 5, 6, 7, 8), (2, 4, 5, 6, 8, 7), (3, 4, 5, 6, 7, 8), (1, 2, 3, 4, 5, 7, 6), (1, 2, 3, 4, 5, 6, 8), (1, 2, 3, 4, 5, 8, 7), (1, 2, 3, 4, 6, 7, 8), (1, 2, 3, 5, 6, 8, 7), (1, 2, 4, 5, 6, 7, 8), (1, 3, 4, 5, 6, 8, 7), (2, 3, 4, 5, 6, 7, 8), (1, 2, 3, 4, 5, 6, 7, 8))}"
+      },
+      "Delta_DI": 0.0,
+      "Delta_T_O": 2.0,
+      "QuantumClifford": {
+        "comm_XII_YII": 1
+      },
+      "carrier_mismatch_control": {
+        "fired": true
+      },
+      "lifted_path_grouping_gap": 1.0,
+      "matrix_associator_norm": 0.0,
+      "matrix_associator_overclaim_control": {
+        "fired": true
+      },
+      "pass": true
+    },
+    "P7_bracketing_boundary": {
+      "lifted_path_grouping_gap": 1.0,
+      "matrix_associator_norm": 0.0
+    },
+    "P8_shell_leakage": {
+      "aggregate_leakage": -0.007193697444,
+      "controls": {
+        "hardcoded_zero_leakage": {
+          "fired": true
+        },
+        "per_site_only_no_aggregate": {
+          "aggregate_present": true,
+          "fired": true
+        },
+        "wrong_shell_coordinate": {
+          "fired": true,
+          "wrong_coordinate": "sin(2 eta)"
+        }
+      },
+      "pass": true,
+      "per_site": [
+        {
+          "finite_time_class": "move_inward",
+          "leakage_integral_t0_t1": -0.062722325182,
+          "site_id": "q0",
+          "z_dot_t0": -0.058778525229
+        },
+        {
+          "finite_time_class": "move_outward",
+          "leakage_integral_t0_t1": 0.037784936225,
+          "site_id": "q1",
+          "z_dot_t0": 0.038042260652
+        },
+        {
+          "finite_time_class": "move_inward",
+          "leakage_integral_t0_t1": -0.018958060937,
+          "site_id": "q2",
+          "z_dot_t0": -0.019021130326
+        },
+        {
+          "finite_time_class": "move_outward",
+          "leakage_integral_t0_t1": 0.03670175245,
+          "site_id": "q3",
+          "z_dot_t0": 0.035267115138
+        }
+      ],
+      "s5_s6_generator_lineage": {
+        "current_z_cos_2eta_mirror_retained": true,
+        "emitted_classes": [
+          "cross_shell",
+          "leave_foliation",
+          "projected_shell_preserve_but_Hopf_leave"
+        ],
+        "method": "derive z_dot=e_z^T(A*r_eta+b) from committed S5 exported A,b on this packet's per-site shells",
+        "pass": true,
+        "rows": {
+          "Ne_Spiral_R": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "0",
+                "2*sqrt(3)/3",
+                "-2*sqrt(3)/3"
+              ],
+              [
+                "-2*sqrt(3)/3",
+                "0",
+                "2*sqrt(3)/3"
+              ],
+              [
+                "2*sqrt(3)/3",
+                "-2*sqrt(3)/3",
+                "0"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Ne_Spiral_R",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:79",
+            "sheet": "Spiral_R",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": 0.678715947274
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": -1.098185471395
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": 0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 1.098185471395
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": -0.678715947273
+              }
+            ],
+            "terrain_id": "Ne"
+          },
+          "Ne_Vortex_L": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "0",
+                "-2*sqrt(3)/3",
+                "2*sqrt(3)/3"
+              ],
+              [
+                "2*sqrt(3)/3",
+                "0",
+                "-2*sqrt(3)/3"
+              ],
+              [
+                "-2*sqrt(3)/3",
+                "2*sqrt(3)/3",
+                "0"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Ne_Vortex_L",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:78",
+            "sheet": "Vortex_L",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": 0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": -0.678715947274
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": 0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": 1.098185471395
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": -1.098185471395
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": 0.0,
+                "s6_class": "cross_shell",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.678715947273
+              }
+            ],
+            "terrain_id": "Ne"
+          },
+          "Ni_Pit_L": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "-1/4",
+                "-2*sqrt(3)/15",
+                "2*sqrt(3)/15"
+              ],
+              [
+                "2*sqrt(3)/15",
+                "-1/4",
+                "-2*sqrt(3)/15"
+              ],
+              [
+                "-2*sqrt(3)/15",
+                "2*sqrt(3)/15",
+                "-1/2"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "-1/2"
+            ],
+            "s5_row_id": "Ni_Pit_L",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:80",
+            "sheet": "Pit_L",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.636271242969,
+                "s6_class": "leave_foliation",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": -1.040251686642
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.856762745781,
+                "s6_class": "leave_foliation",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": -0.434871402908
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.238728757031,
+                "s6_class": "leave_foliation",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": -0.565128597091
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.018237254219,
+                "s6_class": "leave_foliation",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.040251686642
+              }
+            ],
+            "terrain_id": "Ni"
+          },
+          "Ni_Source_R": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "-1/4",
+                "2*sqrt(3)/15",
+                "-2*sqrt(3)/15"
+              ],
+              [
+                "-2*sqrt(3)/15",
+                "-1/4",
+                "2*sqrt(3)/15"
+              ],
+              [
+                "2*sqrt(3)/15",
+                "-2*sqrt(3)/15",
+                "-1/2"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "1/2"
+            ],
+            "s5_row_id": "Ni_Source_R",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:81",
+            "sheet": "Source_R",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.018237254219,
+                "s6_class": "leave_foliation",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": 0.231234692267
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.238728757031,
+                "s6_class": "leave_foliation",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": 0.125854408534
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.856762745781,
+                "s6_class": "leave_foliation",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 0.874145591466
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.636271242969,
+                "s6_class": "leave_foliation",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.768765307733
+              }
+            ],
+            "terrain_id": "Ni"
+          },
+          "Se_Cannon_R": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "-4/5",
+                "2*sqrt(3)/15",
+                "-2*sqrt(3)/15"
+              ],
+              [
+                "-2*sqrt(3)/15",
+                "-4/5",
+                "2*sqrt(3)/15"
+              ],
+              [
+                "2*sqrt(3)/15",
+                "-2*sqrt(3)/15",
+                "-4/5"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Se_Cannon_R",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:77",
+            "sheet": "Cannon_R",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": -0.511470406045
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": -0.466850689779
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 0.466850689779
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.511470406045
+              }
+            ],
+            "terrain_id": "Se"
+          },
+          "Se_Funnel_L": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "-4/5",
+                "-2*sqrt(3)/15",
+                "2*sqrt(3)/15"
+              ],
+              [
+                "2*sqrt(3)/15",
+                "-4/5",
+                "-2*sqrt(3)/15"
+              ],
+              [
+                "-2*sqrt(3)/15",
+                "2*sqrt(3)/15",
+                "-4/5"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Se_Funnel_L",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:76",
+            "sheet": "Funnel_L",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": -0.782956784955
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": -0.027576501221
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 0.027576501221
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -1.6,
+                "s6_class": "leave_foliation",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.782956784955
+              }
+            ],
+            "terrain_id": "Se"
+          },
+          "Si_Citadel_R": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "-2/5",
+                "-2/5"
+              ],
+              [
+                "0",
+                "2/5",
+                "-2/5"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Si_Citadel_R",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:83",
+            "sheet": "Citadel_R",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.52360679775,
+                "s6_class": "leave_foliation",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": -0.32360679775
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.07639320225,
+                "s6_class": "leave_foliation",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": -0.12360679775
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.07639320225,
+                "s6_class": "leave_foliation",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 0.12360679775
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.52360679775,
+                "s6_class": "leave_foliation",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.32360679775
+              }
+            ],
+            "terrain_id": "Si"
+          },
+          "Si_Hill_L": {
+            "derived_from_exported_A_b": true,
+            "s5_A": [
+              [
+                "-2/5",
+                "-2/5",
+                "0"
+              ],
+              [
+                "2/5",
+                "-2/5",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "s5_b": [
+              "0",
+              "0",
+              "0"
+            ],
+            "s5_row_id": "Si_Hill_L",
+            "s5_source_ref": "system_v5/READ ONLY Reference Docs/terrain math.md:82",
+            "sheet": "Hill_L",
+            "site_rows": [
+              {
+                "chi_from_site_theta": 0.0,
+                "eta": 0.314159265359,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.27639320225,
+                "s6_class": "projected_shell_preserve_but_Hopf_leave",
+                "site_id": "q0",
+                "z": 0.809016994375,
+                "z_dot_from_exported_A_b": 0.0
+              },
+              {
+                "chi_from_site_theta": 1.570796326795,
+                "eta": 0.628318530718,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.72360679775,
+                "s6_class": "projected_shell_preserve_but_Hopf_leave",
+                "site_id": "q1",
+                "z": 0.309016994375,
+                "z_dot_from_exported_A_b": 0.0
+              },
+              {
+                "chi_from_site_theta": 3.14159265359,
+                "eta": 0.942477796077,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.72360679775,
+                "s6_class": "projected_shell_preserve_but_Hopf_leave",
+                "site_id": "q2",
+                "z": -0.309016994375,
+                "z_dot_from_exported_A_b": 0.0
+              },
+              {
+                "chi_from_site_theta": 4.712388980385,
+                "eta": 1.256637061436,
+                "formula": "z_dot=e_z^T(A*r_eta+b)",
+                "purity_derivative_from_exported_A_b": -0.27639320225,
+                "s6_class": "projected_shell_preserve_but_Hopf_leave",
+                "site_id": "q3",
+                "z": -0.809016994375,
+                "z_dot_from_exported_A_b": 0.0
+              }
+            ],
+            "terrain_id": "Si"
+          }
+        },
+        "s5_pin_sha256": "ced1d4a8395b66077defbfa44dade651cac9c02ef7ea95cca9918a4019b0634a",
+        "s5_result_path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+        "s5_result_sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e",
+        "s6_class_taxonomy": [
+          "preserve_T_eta",
+          "projected_shell_preserve_but_Hopf_leave",
+          "move_leaf",
+          "cross_shell",
+          "leave_foliation"
+        ],
+        "s6_result_path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+        "s6_result_sha256": "5504eea079bc4f7f92b1874d83dfdb94a75e6a12d1da39cc0225305fdbbe4ae8"
+      },
+      "shell_coordinate": "z=cos(2 eta)"
+    },
+    "P9_tooling": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "CliffordAlgebras": "load_bearing",
+        "DifferentialEquations": "load_bearing",
+        "Graphs": "supportive",
+        "ITensorMPS": "supportive",
+        "ITensors": "load_bearing",
+        "JSON/Dates/SHA": "supportive",
+        "Manifolds": "load_bearing",
+        "QuantumClifford": "load_bearing",
+        "QuantumOptics": "load_bearing",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "CliffordAlgebras": {
+          "reason": "load-bearing Cl(8,0) carrier and pseudoscalar row",
+          "tried": true,
+          "used": true
+        },
+        "DifferentialEquations": {
+          "reason": "load-bearing ODEProblem/solve(Tsit5) shell leakage flow",
+          "tried": true,
+          "used": true
+        },
+        "Graphs": {
+          "reason": "supportive finite support graph connectedness; demoted because no green Graphs capability receipt is present for this gate",
+          "tried": true,
+          "used": true
+        },
+        "ITensorMPS": {
+          "reason": "supportive MPS product mirror for named 4Q support state; demoted because no green ITensorMPS capability receipt is present for this gate",
+          "tried": true,
+          "used": true
+        },
+        "ITensors": {
+          "reason": "load-bearing ITensor site support fixture",
+          "tried": true,
+          "used": true
+        },
+        "JSON/Dates/SHA": {
+          "reason": "supportive serialization, timestamping, and source hashing",
+          "tried": true,
+          "used": true
+        },
+        "Manifolds": {
+          "reason": "load-bearing Sphere metric support receipt",
+          "tried": true,
+          "used": true
+        },
+        "QuantumClifford": {
+          "reason": "load-bearing Pauli commutation control for the 4Q carrier",
+          "tried": true,
+          "used": true
+        },
+        "QuantumOptics": {
+          "reason": "load-bearing NLevelBasis/tensor/dm/ptrace/entropy_vn state and density rows",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing symbolic quotient-erasure identity side row",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia SMT mirror for density-only support recovery failure",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "blind_tripwires": {
+      "GHZ_non_nesting": {
+        "GHZ_non_nesting_binding": true,
+        "arrow_type": "tensor",
+        "claim": "Tr_one(|GHZ_4><GHZ_4|) is a rank-2 classical mixture, not |GHZ_3><GHZ_3|",
+        "distance_to_pure_GHZ3": 0.707106781187,
+        "pass": true,
+        "reduced_spectrum": [
+          0.5,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "W4_weighted_nesting": {
+        "claim": "Tr_one(|W_4><W_4|)=((n-1)/n)|W_3><W_3|+(1/n)|000><000| at n=4",
+        "distance_to_expected_weighted_state": 0.0,
+        "pass": true,
+        "reduced_spectrum": [
+          0.75,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "weights": {
+          "W3": 0.75,
+          "law": "(n-1)/n, 1/n",
+          "vacuum": 0.25
+        }
+      }
+    }
+  },
+  "schema_version": "stage_lifted_spinor_shell_n4_v0_leg_v1",
+  "seed": 20260610,
+  "sim_id": "stage_lifted_spinor_shell_n4_v0",
+  "source_path": "system_v6/sims/stage_lifted_spinor_shell_n4_v0/stage_lifted_spinor_shell_n4_v0_julia.jl",
+  "source_sha256": "a0c7587904494fb998d2205338ebdab165d3bd921e139052e9a5b626e7e39e71",
+  "tool_calls": [
+    {
+      "boundary_case": "single-site and bipartition reductions on d=16 carrier",
+      "demotion_condition": "if density reductions are hand-coded only, demote QuantumOptics to supportive",
+      "gates": [
+        "P3_density_quotient",
+        "P5_entropy"
+      ],
+      "input_object": "GHZ4/W4/product carrier states",
+      "negative_control": "GHZ pure-nesting tripwire rejects collapsed trace law",
+      "output_object": "density reductions and entropy rows",
+      "positive_case": "GHZ4 and W4 anchors match exact values",
+      "qualified_api": "QuantumOptics.NLevelBasis / tensor / dm / ptrace / entropy_vn",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "n=4 Cl(8) boundary",
+      "demotion_condition": "if CliffordAlgebras is not instantiated, demote to supportive",
+      "gates": [
+        "P6_order_gaps"
+      ],
+      "input_object": "CliffordAlgebra(8,0)",
+      "negative_control": "removing the Cl(8,0) constructor removes the package-backed carrier receipt",
+      "output_object": "Cl(8,0) carrier object receipt",
+      "positive_case": "Cl(8,0) construction succeeds alongside the Pauli max-clique certificate",
+      "qualified_api": "CliffordAlgebras.CliffordAlgebra",
+      "tool": "CliffordAlgebras"
+    },
+    {
+      "boundary_case": "single-site Pauli control boundary",
+      "demotion_condition": "if Pauli commutation is not package-computed, demote QuantumClifford to supportive",
+      "gates": [
+        "P6_order_gaps"
+      ],
+      "input_object": "Pauli strings XIII and YIII",
+      "negative_control": "commuting Pauli choices would not satisfy this control",
+      "output_object": "anticommutation control value",
+      "positive_case": "comm(XIII,YIII) returns the anticommuting control",
+      "qualified_api": "QuantumClifford.comm",
+      "tool": "QuantumClifford"
+    },
+    {
+      "boundary_case": "four-index n=4 support boundary",
+      "demotion_condition": "if ITensor support is not constructed, demote ITensors to supportive",
+      "gates": [
+        "P2_support_object"
+      ],
+      "input_object": "four shell qubit indices",
+      "negative_control": "label-only support would remove tensor anchor",
+      "output_object": "rank-4 support tensor receipt",
+      "positive_case": "nonzero anchor is written on the shell support tensor",
+      "qualified_api": "ITensors.Index / ITensor",
+      "tool": "ITensors"
+    },
+    {
+      "boundary_case": "tight tolerance Tsit5 integration at t=1",
+      "demotion_condition": "if ODE integration is replaced by constants, demote DifferentialEquations to supportive",
+      "gates": [
+        "P8_shell_leakage"
+      ],
+      "input_object": "eta vector and per-site rates",
+      "negative_control": "hardcoded-zero leakage control fires",
+      "output_object": "finite-time shell leakage vector",
+      "positive_case": "nonzero finite-time leakage integrates from rates",
+      "qualified_api": "DifferentialEquations.ODEProblem / solve / Tsit5",
+      "tool": "DifferentialEquations"
+    },
+    {
+      "boundary_case": "Sphere(2) shell geometry boundary",
+      "demotion_condition": "if metric distance is not package-computed, demote Manifolds to supportive",
+      "gates": [
+        "P2_support_object"
+      ],
+      "input_object": "orthogonal points on Sphere(2)",
+      "negative_control": "wrong manifold metric would not preserve this receipt",
+      "output_object": "sphere metric distance",
+      "positive_case": "orthogonal distance equals pi/2",
+      "qualified_api": "Manifolds.Sphere / Manifolds.distance",
+      "tool": "Manifolds"
+    },
+    {
+      "boundary_case": "symbolic quotient identity boundary",
+      "demotion_condition": "if symbolic expression is precomputed, demote Symbolics to supportive",
+      "gates": [
+        "P3_density_quotient"
+      ],
+      "input_object": "global phase quotient identity expression",
+      "negative_control": "removing Symbolics leaves only numeric phase comparison",
+      "output_object": "expanded symbolic identity row",
+      "positive_case": "phase-erasure identity is symbolically expanded",
+      "qualified_api": "Symbolics.@variables / Symbolics.expand",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "raw integer token boundary",
+      "demotion_condition": "if solver receives only derived booleans, demote Z3 to supportive",
+      "gates": [
+        "P3_density_quotient",
+        "P11_negative_controls"
+      ],
+      "input_object": "same density token with different shell ids",
+      "negative_control": "same shell ids make control sat",
+      "output_object": "UNSAT density-erasure proof and SAT control",
+      "positive_case": "different shell ids make uniqueness-from-rho assertion unsat",
+      "qualified_api": "Z3.Solver / Z3.IntVar / Z3.Not / Z3.And",
+      "tool": "Z3"
+    }
+  ],
+  "values": {
+    "GHZ_A_B_I": 1.38629436112,
+    "GHZ_A_B_conditional": -0.69314718056,
+    "aggregate_leakage": -0.007193697444,
+    "bracketing_path_gap": 1.0,
+    "ghz_non_nesting_distance": 0.707106781187,
+    "matrix_associator_norm": 0.0,
+    "order_gap_TO": 2.0,
+    "support_edge_count": 5.0,
+    "support_face_count": 2.0,
+    "support_node_count": 4.0
+  }
+}

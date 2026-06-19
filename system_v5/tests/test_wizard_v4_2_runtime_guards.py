@@ -8,9 +8,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
+COUNTED_MMM_PROOF = {
+    "saliency_preload_before_rules": True,
+    "slices_loaded": [
+        "~/wiki/wizard/packet-v4-2-current/mmm/COMPACT_MMM_v4_2.md",
+        "~/wiki/wizard/packet-v4-2-current/mmm/mini/full/voices/md/MMM_VOICE_HUME_FULL_v4_1.md",
+    ],
+    "route_local_mini_mmm_path": "~/wiki/wizard/packet-v4-2-current/mmm/mini/full/voices/md/MMM_VOICE_HUME_FULL_v4_1.md",
+}
+
 
 def run_python(*args: str) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(["python3", *args], cwd=ROOT, text=True, capture_output=True, check=False)
+    return subprocess.run([sys.executable, *args], cwd=ROOT, text=True, capture_output=True, check=False)
 
 
 def test_worker_receipt_validator_accepts_counted_codex_receipt(tmp_path: Path) -> None:
@@ -29,6 +38,7 @@ def test_worker_receipt_validator_accepts_counted_codex_receipt(tmp_path: Path) 
                 "artifact_path": "system_v5/wizard/receipts/example.json",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -55,6 +65,7 @@ def test_worker_receipt_validator_accepts_documented_extras(tmp_path: Path) -> N
                 "artifact_path": "system_v5/wizard/receipts/example.json",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
                 "proposed_queue_entries": ["tool_capability_z3"],
                 "model": "claude-opus-4-7",
                 "prompt_hash": "abc123",
@@ -84,6 +95,7 @@ def test_worker_receipt_validator_rejects_unknown_field(tmp_path: Path) -> None:
                 "artifact_path": "system_v5/wizard/receipts/example.json",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
                 "frobnicate": True,
             }
         )
@@ -158,6 +170,7 @@ def test_worker_receipt_validator_rejects_counted_missing_artifact_key(tmp_path:
                 "terminal_status": "completed",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -166,6 +179,33 @@ def test_worker_receipt_validator_rejects_counted_missing_artifact_key(tmp_path:
 
     assert result.returncode == 1
     assert "artifact_path" in result.stdout
+
+
+def test_worker_receipt_validator_rejects_counted_missing_mmm_proof(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Decision",
+                "parent_id": "parent-missing-mmm",
+                "child_id": "child-missing-mmm",
+                "pool": "codex-native",
+                "launch_surface": "spawn_agent",
+                "terminal_status": "completed",
+                "artifact_path": "system_v5/wizard/receipts/example.json",
+                "accepted_conclusion": "usable route result",
+                "counts_toward_topology": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 1
+    assert "saliency_preload_before_rules" in result.stdout
+    assert "slices_loaded" in result.stdout
 
 
 def test_worker_receipt_validator_schema_requires_codex_child_or_controller(tmp_path: Path) -> None:
@@ -183,6 +223,7 @@ def test_worker_receipt_validator_schema_requires_codex_child_or_controller(tmp_
                 "artifact_path": "system_v5/wizard/receipts/example.json",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -208,6 +249,7 @@ def test_worker_receipt_validator_rejects_uncounted_external_blur(tmp_path: Path
                 "artifact_path": "",
                 "accepted_conclusion": "",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -237,6 +279,7 @@ def test_worker_receipt_validator_can_require_existing_artifacts(tmp_path: Path)
                 "artifact_path": "missing/receipt.json",
                 "accepted_conclusion": "claimed result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -263,6 +306,7 @@ def test_worker_receipt_validator_rejects_codex_native_missing_child_id(tmp_path
                 "artifact_path": "system_v5/wizard/receipts/example.json",
                 "accepted_conclusion": "usable route result",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -289,6 +333,7 @@ def test_worker_receipt_validator_rejects_tool_topology_count(tmp_path: Path) ->
                 "artifact_path": "system_v5/wizard/receipts/tool.json",
                 "accepted_conclusion": "tool check passed",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )
@@ -313,6 +358,7 @@ def test_worker_receipt_validator_rejects_duplicate_topology_pair(tmp_path: Path
         "artifact_path": "system_v5/wizard/receipts/example.json",
         "accepted_conclusion": "usable route result",
         "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
     }
     receipt.write_text(json.dumps([row, row]))
 
@@ -334,6 +380,7 @@ def test_worker_receipt_validator_constrains_controller_marker(tmp_path: Path) -
         "artifact_path": "system_v5/wizard/receipts/controller.json",
         "accepted_conclusion": "controller-owned route check",
         "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
         "controller_marker": True,
     }
     missing_justification = tmp_path / "missing.json"
@@ -618,6 +665,7 @@ def test_runtime_audit_worker_receipt_check_rejects_bad_recent_receipt(tmp_path:
                 "artifact_path": "missing.json",
                 "accepted_conclusion": "bad counted tool",
                 "counts_toward_topology": True,
+                **COUNTED_MMM_PROOF,
             }
         )
     )

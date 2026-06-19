@@ -1,0 +1,101 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "independent_survivor_restriction_noncommutation_verify_v0",
+  "engine": "jax",
+  "computation_style": "vmap_batched_indicator_vector_symdiff",
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "f01_ancestry": "root_axioms:53 (finitude) via spec \u00a70",
+  "n01_ancestry": "root_axioms:51 (order as noncommutation) via spec \u00a71.2 R4",
+  "generated_at": "2026-06-16T07:05:09Z",
+  "source_sha256": "d86d2b683fd6a730cc27be648d6d4d5528f395faf23f57043a84b033e41f2289",
+  "core_sha256": "7341caa8a248314805e27b58245d4b3dafada4ab80c03ac09bcda6ac595fc98b",
+  "result_path": "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_jax_results.json",
+  "jax_recomputed_deltas": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0
+  },
+  "core_deltas": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_static_control_x_reactive": 3,
+    "delta_amnesic_ablation": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0
+  },
+  "jax_core_parity": {
+    "delta_history_dependent": true,
+    "delta_static_control_extensional": true,
+    "delta_mixed_history_dependent": true,
+    "delta_mixed_amnesic": true
+  },
+  "jax_core_parity_all": true,
+  "gnvw_index": {
+    "left_shift": -1,
+    "right_shift": 1,
+    "identity": 0
+  },
+  "phi_commuting_square_fidelity": 1.0,
+  "phi_square_fidelity_wrong_lex_control": 0.7777777777777778,
+  "phi_square_fidelity_scrambled_phi_control": 0.2777777777777778,
+  "audit_booleans": {
+    "history_pair_noncommutes": true,
+    "static_control_extensional_commutes": true,
+    "static_control_x_reactive_commutes": false,
+    "amnesic_fully_collapses": true,
+    "mixed_history_pair_noncommutes": true,
+    "mixed_amnesic_fully_collapses": true,
+    "gnvw_signs_flip": true,
+    "phi_square_closes": true
+  },
+  "smt_flip": {
+    "question": "is the measured (d_hist, d_mix_hist, d_mix_amn, d_ext) the memory-is-engine pattern (h>0, mh>0, ma==0, e==0)?",
+    "encoding": "Int equalities to the MEASURED deltas conjoined with the structural relations; NOT solver.add(n==count). Erased flip asserts ma>0 on the same h -> must be UNSAT.",
+    "z3_pattern": "sat",
+    "cvc5_pattern": "sat",
+    "z3_erased_amnesic_did_not_collapse": "unsat",
+    "smt_flip_confirmed": true
+  },
+  "package_versions": {
+    "jax": "0.10.1",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "jax",
+    "z3",
+    "cvc5"
+  ],
+  "aligned_packages_load_bearing": [
+    "jax",
+    "z3",
+    "cvc5"
+  ],
+  "TOOL_MANIFEST": {
+    "jax": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing vmap indicator-vector recompute of survivor symdiff counts, independent of CORE's set-len path"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing structural pattern check + erased-flip (amnesic-no-collapse -> UNSAT) on measured integers"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing independent second SMT confirming the same pattern"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing"
+  }
+}

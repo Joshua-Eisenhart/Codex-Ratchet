@@ -1,0 +1,1357 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "clifford": "supportive",
+    "cvc5": "load_bearing",
+    "e3nn": "supportive",
+    "geomstats": "supportive",
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing",
+    "torch_geometric": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "clifford": {
+      "reason": "supportive Cl(3) bivector carrier capability row for spinor/shell geometry; not a nesting gate",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent erased-placement SMT contradiction over computed non-preserve class count",
+      "tried": true,
+      "used": true
+    },
+    "e3nn": {
+      "reason": "supportive O(3) irrep dimension capability row for scalar/vector shell features; not a nesting gate",
+      "tried": true,
+      "used": true
+    },
+    "geomstats": {
+      "reason": "supportive Hypersphere distance capability row for shell geometry support; not a nesting gate",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact derivative sign row for z=cos(2 eta)",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive float64 tensor arithmetic and matrix exponential check",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev/vmap derivative row for shell coordinate leakage",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "supportive graph support degree capability row for the three shell sites; not a nesting gate",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing erased-placement SMT contradiction over computed non-preserve class count",
+      "tried": true,
+      "used": true
+    }
+  },
+  "acceptance": {
+    "ceiling": true,
+    "core_nest_pass": true,
+    "leakage_derivative": true,
+    "matrix_exponential_finite": true,
+    "smt_cvc5": true,
+    "smt_z3": true,
+    "sympy_identity": true
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": {
+    "graph_geometry": {
+      "clifford": {
+        "bivector": "(1^e12)",
+        "blade_count": 8,
+        "vector_dimension": 3
+      },
+      "e3nn": {
+        "feature_dim": 4,
+        "irreps": "1x0e+1x1o"
+      },
+      "geomstats": {
+        "backend": "pytorch",
+        "orthogonal_distance": 1.570796326795
+      },
+      "pass": true,
+      "torch_geometric": {
+        "degree": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "edge_count": 3,
+        "node_count": 3
+      }
+    },
+    "leakage_derivative": {
+      "dz_dot_deta": [
+        -0.141421356237,
+        0.0,
+        0.028284271247
+      ],
+      "nonzero_count": 3,
+      "pass": true,
+      "tool": "torch.func.jacrev/vmap",
+      "z_dot": [
+        -0.070710678119,
+        0.04,
+        -0.014142135624
+      ]
+    },
+    "sympy_receipt": {
+      "identity_residual": "0",
+      "pass": true,
+      "tool": "sympy.diff/simplify"
+    },
+    "torch_matrix_receipt": {
+      "norm": 0.449328964117,
+      "pass": true,
+      "tool": "torch.linalg.matrix_exp"
+    }
+  },
+  "claim_path_tools": [
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "collapsed_etas": {
+      "pass": true,
+      "unique_z_count_after_mutation": 1,
+      "z_values_after_mutation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "duplicate_etas": {
+      "eta_values_after_mutation": [
+        0.392699081699,
+        0.392699081699,
+        1.178097245096
+      ],
+      "pass": true,
+      "required_unique_eta_count": 3,
+      "unique_eta_count_after_mutation": 2
+    },
+    "level_a_byte_exact_s5": {
+      "bloch_generator_table_hash": "6ed879deaa25e4bb3f6a4cd952dd45400337eb90aa2fd4e82a83510f40895efb",
+      "pass": true,
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+      "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+    },
+    "naive_conditioning_fails": {
+      "failure": "P(A and T_eta)/P(T_eta) is 0/0, returned by SymPy as nan",
+      "naive_quotient": "nan",
+      "parent": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json",
+      "pass": true
+    },
+    "permuted_etas": {
+      "pass": true,
+      "permuted_signature": [
+        "Se_Funnel_L:q2:leave_foliation:0.788756439279",
+        "Se_Funnel_L:q1:leave_foliation:-0.084529946163",
+        "Se_Funnel_L:q0:leave_foliation:-0.728984741135",
+        "Ni_Pit_L:q2:leave_foliation:0.076624404923",
+        "Ni_Pit_L:q1:leave_foliation:-0.584529946162",
+        "Ni_Pit_L:q0:leave_foliation:-1.016852706779",
+        "Si_Hill_L:q2:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Si_Hill_L:q1:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Si_Hill_L:q0:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Se_Cannon_R:q2:leave_foliation:0.342614410619",
+        "Se_Cannon_R:q1:leave_foliation:0.084529946161",
+        "Se_Cannon_R:q0:leave_foliation:-0.402386108763"
+      ],
+      "real_signature": [
+        "Se_Funnel_L:q0:leave_foliation:-0.728984741135",
+        "Se_Funnel_L:q1:leave_foliation:-0.084529946163",
+        "Se_Funnel_L:q2:leave_foliation:0.788756439279",
+        "Ni_Pit_L:q0:leave_foliation:-1.016852706779",
+        "Ni_Pit_L:q1:leave_foliation:-0.584529946162",
+        "Ni_Pit_L:q2:leave_foliation:0.076624404923",
+        "Si_Hill_L:q0:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Si_Hill_L:q1:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Si_Hill_L:q2:projected_shell_preserve_but_Hopf_leave:0.0",
+        "Se_Cannon_R:q0:leave_foliation:-0.402386108763",
+        "Se_Cannon_R:q1:leave_foliation:0.084529946161",
+        "Se_Cannon_R:q2:leave_foliation:0.342614410619"
+      ]
+    },
+    "se_funnel_l_anchor_4_25": {
+      "bloch_angular_frequency_squared": "4/25",
+      "computed_in_packet": true,
+      "formula": "4*(1/5)^2",
+      "hamiltonian_coeff": "1/5",
+      "inherited_via_rung1": false,
+      "literal_anchor": "4/25",
+      "pass": true,
+      "terrain": "Se_Funnel_L"
+    },
+    "shell_blind_no_placement": {
+      "kills_leakage_rows": true,
+      "leakage_rows_without_sites": 0,
+      "pass": true
+    },
+    "spinor_blind_quotient_first": {
+      "kills_signed_rows": true,
+      "max_abs_signal_after_quotient": 0.0,
+      "pass": true
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "negative/erased_control": "bind actual to erased count after deleting shell placement",
+      "pass": true,
+      "ran": true,
+      "raw_values_bound": {
+        "actual": 12,
+        "erased": 0
+      },
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it",
+      "erased_control_verdict": "sat",
+      "load_bearing": true,
+      "negative/erased_control": "bind actual to erased count after deleting shell placement",
+      "pass": true,
+      "ran": true,
+      "raw_values_bound": {
+        "actual": 12,
+        "erased": 0
+      },
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T07:10:20Z",
+  "load_bearing_decomposition": {
+    "Ni_Pit_L": {
+      "level_a_bloch": {
+        "A": [
+          [
+            "-1/4",
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-1/4",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15",
+            "-1/2"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "-1/2"
+        ],
+        "flow_t1": [
+          0.597622463704,
+          0.082341617371,
+          -0.078805752204
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "parent": "geo_s5_terrain_flows_v0",
+        "pass": true,
+        "r0_shell_site": "q0"
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Ni_Pit_L",
+          "Ni_Source_R"
+        ],
+        "max_blind_abs_signal": 0.0,
+        "on_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.061367173122,
+            "index": 0,
+            "left_bloch_t1": [
+              0.597622463704,
+              0.082341617371,
+              -0.078805752204
+            ],
+            "mirror_counterpart_residual": 0.218978677529,
+            "right_bloch_t1": [
+              -0.467884274602,
+              0.035812903528,
+              -0.140172925325
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -1.061058336653,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.282325529463,
+              -0.696261931045,
+              -0.469464761164
+            ],
+            "mirror_counterpart_residual": 0.122128814325,
+            "right_bloch_t1": [
+              0.160372547545,
+              -0.670484799787,
+              0.591593575489
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -1.406328770918,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.528106679725,
+              0.521454934524,
+              -0.636854103088
+            ],
+            "mirror_counterpart_residual": 0.285087939979,
+            "right_bloch_t1": [
+              0.243018739746,
+              0.568409957492,
+              0.769474667829
+            ]
+          }
+        ],
+        "parent": "terrain_weyl_spinor_lr_v0",
+        "pass": true,
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ]
+      },
+      "level_c_shell": {
+        "max_abs_shell_conditioned_gamma5_shift": 0.927155609287,
+        "off_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.509102373471,
+            "index": 0,
+            "left_bloch_t1": [
+              0.220286352509,
+              -0.261073783444,
+              -0.293074075068
+            ],
+            "mirror_counterpart_residual": 0.077045776665,
+            "right_bloch_t1": [
+              -0.22140855593,
+              -0.274328890494,
+              0.216028298403
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -1.165698685169,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.074895402351,
+              0.262856744301,
+              -0.594556159982
+            ],
+            "mirror_counterpart_residual": 0.205558907911,
+            "right_bloch_t1": [
+              -0.130663505559,
+              0.281079248789,
+              0.571142525188
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.479173161631,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.274243815134,
+              0.140585268391,
+              -0.18841254674
+            ],
+            "mirror_counterpart_residual": 0.102348068151,
+            "right_bloch_t1": [
+              0.256383133295,
+              0.151253146111,
+              0.290760614891
+            ]
+          }
+        ],
+        "parent": "stage_lifted_spinor_shell_n3_v0",
+        "pass": true,
+        "shell_leakage": {
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "purity_derivative_formula": "-2*cos(eta)**4",
+          "site_rows": [
+            {
+              "eta": 0.392699081699,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.457106781186,
+              "shell_id": "shell_0",
+              "site_id": "q0",
+              "theta": 0.0,
+              "z_dot": -1.016852706779
+            },
+            {
+              "eta": 0.785398163397,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -0.500000000001,
+              "shell_id": "shell_1",
+              "site_id": "q1",
+              "theta": 2.094395102393,
+              "z_dot": -0.584529946162
+            },
+            {
+              "eta": 1.178097245096,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -0.042893218814,
+              "shell_id": "shell_2",
+              "site_id": "q2",
+              "theta": 4.188790204786,
+              "z_dot": 0.076624404923
+            }
+          ],
+          "terrain": "Ni_Pit_L",
+          "z_dot_formula": "2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 - 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - cos(2*eta)/2 - 1/2"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.570469546593,
+          0.104640348516,
+          -0.927155609287
+        ]
+      },
+      "native_operator_words": [
+        "TeNi = T_Ni o Te_q",
+        "NiTe = Te_q o T_Ni",
+        "FeNi = T_Ni o Fe_phi",
+        "NiFe = Fe_phi o T_Ni"
+      ]
+    },
+    "Se_Cannon_R": {
+      "level_a_bloch": {
+        "A": [
+          [
+            "-4/5",
+            "2*sqrt(3)/15",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "-4/5",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-2*sqrt(3)/15",
+            "-4/5"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "flow_t1": [
+          0.237929260135,
+          0.016720521208,
+          0.380797333678
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "parent": "geo_s5_terrain_flows_v0",
+        "pass": true,
+        "r0_shell_site": "q0"
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Se_Funnel_L",
+          "Se_Cannon_R"
+        ],
+        "max_blind_abs_signal": 0.0,
+        "on_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.618726593813,
+            "index": 0,
+            "left_bloch_t1": [
+              0.380797333679,
+              0.016720521208,
+              0.237929260135
+            ],
+            "mirror_counterpart_residual": 0.142868073543,
+            "right_bloch_t1": [
+              -0.237929260135,
+              -0.016720521208,
+              -0.380797333678
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.186800134288,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.135592004247,
+              -0.42507501376,
+              -0.053127761633
+            ],
+            "mirror_counterpart_residual": 0.080544611021,
+            "right_bloch_t1": [
+              0.115113631651,
+              -0.413251819829,
+              0.133672372655
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.486638952131,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.284919308001,
+              0.283852903535,
+              -0.200362259615
+            ],
+            "mirror_counterpart_residual": 0.128387677413,
+            "right_bloch_t1": [
+              0.156531630588,
+              0.308933685347,
+              0.286276692517
+            ]
+          }
+        ],
+        "parent": "terrain_weyl_spinor_lr_v0",
+        "pass": true,
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ]
+      },
+      "level_c_shell": {
+        "max_abs_shell_conditioned_gamma5_shift": 0.700329558083,
+        "off_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.207699274848,
+            "index": 0,
+            "left_bloch_t1": [
+              0.158431823642,
+              -0.177437058221,
+              0.078915763128
+            ],
+            "mirror_counterpart_residual": 0.0578901006,
+            "right_bloch_t1": [
+              -0.100541723042,
+              -0.190048465081,
+              -0.12878351172
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.297772228771,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.020410171331,
+              0.13210104888,
+              -0.156623773961
+            ],
+            "mirror_counterpart_residual": 0.076089109322,
+            "right_bloch_t1": [
+              -0.05567893799,
+              0.139194965239,
+              0.14114845481
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.213690605952,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.127435484788,
+              0.054726832862,
+              0.140107996544
+            ],
+            "mirror_counterpart_residual": 0.066525387136,
+            "right_bloch_t1": [
+              0.173756275201,
+              0.057091471648,
+              -0.073582609408
+            ]
+          }
+        ],
+        "parent": "stage_lifted_spinor_shell_n3_v0",
+        "pass": true,
+        "shell_leakage": {
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "purity_derivative_formula": "-8/5",
+          "site_rows": [
+            {
+              "eta": 0.392699081699,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_0",
+              "site_id": "q0",
+              "theta": 0.0,
+              "z_dot": -0.402386108763
+            },
+            {
+              "eta": 0.785398163397,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_1",
+              "site_id": "q1",
+              "theta": 2.094395102393,
+              "z_dot": 0.084529946161
+            },
+            {
+              "eta": 1.178097245096,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_2",
+              "site_id": "q2",
+              "theta": 4.188790204786,
+              "z_dot": 0.342614410619
+            }
+          ],
+          "terrain": "Se_Cannon_R",
+          "z_dot_formula": "-2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 + 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - 4*cos(2*eta)/5"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.411027318965,
+          0.110972094483,
+          -0.700329558083
+        ]
+      },
+      "native_operator_words": [
+        "TiSe = T_Se o Ti_q",
+        "SeTi = Ti_q o T_Se",
+        "FiSe = T_Se o Fi_theta",
+        "SeFi = Fi_theta o T_Se"
+      ]
+    },
+    "Se_Funnel_L": {
+      "level_a_bloch": {
+        "A": [
+          [
+            "-4/5",
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-4/5",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15",
+            "-4/5"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "flow_t1": [
+          0.380797333679,
+          0.016720521208,
+          0.237929260135
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "parent": "geo_s5_terrain_flows_v0",
+        "pass": true,
+        "r0_shell_site": "q0"
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Se_Funnel_L",
+          "Se_Cannon_R"
+        ],
+        "max_blind_abs_signal": 0.0,
+        "on_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.618726593813,
+            "index": 0,
+            "left_bloch_t1": [
+              0.380797333679,
+              0.016720521208,
+              0.237929260135
+            ],
+            "mirror_counterpart_residual": 0.142868073543,
+            "right_bloch_t1": [
+              -0.237929260135,
+              -0.016720521208,
+              -0.380797333678
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.186800134288,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.135592004247,
+              -0.42507501376,
+              -0.053127761633
+            ],
+            "mirror_counterpart_residual": 0.080544611021,
+            "right_bloch_t1": [
+              0.115113631651,
+              -0.413251819829,
+              0.133672372655
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.486638952131,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.284919308001,
+              0.283852903535,
+              -0.200362259615
+            ],
+            "mirror_counterpart_residual": 0.128387677413,
+            "right_bloch_t1": [
+              0.156531630588,
+              0.308933685347,
+              0.286276692517
+            ]
+          }
+        ],
+        "parent": "terrain_weyl_spinor_lr_v0",
+        "pass": true,
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ]
+      },
+      "level_c_shell": {
+        "max_abs_shell_conditioned_gamma5_shift": 0.700329558083,
+        "off_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.207699274848,
+            "index": 0,
+            "left_bloch_t1": [
+              0.158431823642,
+              -0.177437058221,
+              0.078915763128
+            ],
+            "mirror_counterpart_residual": 0.0578901006,
+            "right_bloch_t1": [
+              -0.100541723042,
+              -0.190048465081,
+              -0.12878351172
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.297772228771,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.020410171331,
+              0.13210104888,
+              -0.156623773961
+            ],
+            "mirror_counterpart_residual": 0.076089109322,
+            "right_bloch_t1": [
+              -0.05567893799,
+              0.139194965239,
+              0.14114845481
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.213690605952,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.127435484788,
+              0.054726832862,
+              0.140107996544
+            ],
+            "mirror_counterpart_residual": 0.066525387136,
+            "right_bloch_t1": [
+              0.173756275201,
+              0.057091471648,
+              -0.073582609408
+            ]
+          }
+        ],
+        "parent": "stage_lifted_spinor_shell_n3_v0",
+        "pass": true,
+        "shell_leakage": {
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "purity_derivative_formula": "-8/5",
+          "site_rows": [
+            {
+              "eta": 0.392699081699,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_0",
+              "site_id": "q0",
+              "theta": 0.0,
+              "z_dot": -0.728984741135
+            },
+            {
+              "eta": 0.785398163397,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_1",
+              "site_id": "q1",
+              "theta": 2.094395102393,
+              "z_dot": -0.084529946163
+            },
+            {
+              "eta": 1.178097245096,
+              "leakage_class": "leave_foliation",
+              "purity_derivative": -1.6,
+              "shell_id": "shell_2",
+              "site_id": "q2",
+              "theta": 4.188790204786,
+              "z_dot": 0.788756439279
+            }
+          ],
+          "terrain": "Se_Funnel_L",
+          "z_dot_formula": "2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 - 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - 4*cos(2*eta)/5"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.411027318965,
+          0.110972094483,
+          -0.700329558083
+        ]
+      },
+      "native_operator_words": [
+        "TiSe = T_Se o Ti_q",
+        "SeTi = Ti_q o T_Se",
+        "FiSe = T_Se o Fi_theta",
+        "SeFi = Fi_theta o T_Se"
+      ]
+    },
+    "Si_Hill_L": {
+      "level_a_bloch": {
+        "A": [
+          [
+            "-2/5",
+            "-2/5",
+            "0"
+          ],
+          [
+            "2/5",
+            "-2/5",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "flow_t1": [
+          0.436571720374,
+          0.184579562867,
+          0.707106781186
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "parent": "geo_s5_terrain_flows_v0",
+        "pass": true,
+        "r0_shell_site": "q0"
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Si_Hill_L",
+          "Si_Citadel_R"
+        ],
+        "max_blind_abs_signal": 0.0,
+        "on_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 1.14367850156,
+            "index": 0,
+            "left_bloch_t1": [
+              0.436571720374,
+              0.184579562867,
+              0.707106781186
+            ],
+            "mirror_counterpart_residual": 0.270535060813,
+            "right_bloch_t1": [
+              -0.707106781187,
+              0.184579562867,
+              -0.436571720374
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.226062872987,
+            "index": 1,
+            "left_bloch_t1": [
+              -0.082639950966,
+              -0.665206436095,
+              1e-12
+            ],
+            "mirror_counterpart_residual": 0.417360049034,
+            "right_bloch_t1": [
+              0.5,
+              -0.534688975522,
+              -0.226062872986
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -1.303529092023,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.378136450649,
+              0.285792418985,
+              -0.707106781186
+            ],
+            "mirror_counterpart_residual": 0.11068447035,
+            "right_bloch_t1": [
+              0.353553390593,
+              0.193502637551,
+              0.596422310836
+            ]
+          }
+        ],
+        "parent": "terrain_weyl_spinor_lr_v0",
+        "pass": true,
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ]
+      },
+      "level_c_shell": {
+        "max_abs_shell_conditioned_gamma5_shift": 1.561751491317,
+        "off_shell_gamma5_rows": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.643549184425,
+            "index": 0,
+            "left_bloch_t1": [
+              0.227895098038,
+              -0.194755274932,
+              0.333333333333
+            ],
+            "mirror_counterpart_residual": 0.034804656152,
+            "right_bloch_t1": [
+              -0.2,
+              -0.15995061878,
+              -0.310215851091
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": -0.699169243389,
+            "index": 1,
+            "left_bloch_t1": [
+              0.009533580561,
+              0.149584621695,
+              -0.4
+            ],
+            "mirror_counterpart_residual": 0.130517460572,
+            "right_bloch_t1": [
+              -0.1,
+              0.019067161123,
+              0.299169243389
+            ]
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.258222399294,
+            "index": 2,
+            "left_bloch_t1": [
+              -0.250480424656,
+              0.076040935632,
+              0.2
+            ],
+            "mirror_counterpart_residual": 0.141777600706,
+            "right_bloch_t1": [
+              0.3,
+              0.206558396204,
+              -0.058222399294
+            ]
+          }
+        ],
+        "parent": "stage_lifted_spinor_shell_n3_v0",
+        "pass": true,
+        "shell_leakage": {
+          "classes": [
+            "projected_shell_preserve_but_Hopf_leave"
+          ],
+          "pass": true,
+          "purity_derivative_formula": "-4*sin(2*eta)**2/5",
+          "site_rows": [
+            {
+              "eta": 0.392699081699,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "purity_derivative": -0.4,
+              "shell_id": "shell_0",
+              "site_id": "q0",
+              "theta": 0.0,
+              "z_dot": 0.0
+            },
+            {
+              "eta": 0.785398163397,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "purity_derivative": -0.8,
+              "shell_id": "shell_1",
+              "site_id": "q1",
+              "theta": 2.094395102393,
+              "z_dot": 0.0
+            },
+            {
+              "eta": 1.178097245096,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "purity_derivative": -0.4,
+              "shell_id": "shell_2",
+              "site_id": "q2",
+              "theta": 4.188790204786,
+              "z_dot": 0.0
+            }
+          ],
+          "terrain": "Si_Hill_L",
+          "z_dot_formula": "0"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.500129317135,
+          0.925232116376,
+          -1.561751491317
+        ]
+      },
+      "native_operator_words": [
+        "TeSi = T_Si o Te_q",
+        "SiTe = Te_q o T_Si",
+        "FeSi = T_Si o Fe_phi",
+        "SiFe = Fe_phi o T_Si"
+      ]
+    }
+  },
+  "package_versions": {
+    "clifford": "1.5.1",
+    "cvc5": "1.3.3",
+    "e3nn": "0.6.0",
+    "geomstats": "2.8.0",
+    "sympy": "1.14.0",
+    "torch": "2.11.0",
+    "torch-geometric": "2.7.0",
+    "z3-solver": "4.16.0.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "torch_geometric",
+    "geomstats",
+    "e3nn",
+    "clifford",
+    "sympy",
+    "z3",
+    "cvc5",
+    "pathlib"
+  ],
+  "pin_sha256": "5553a4a1c7f97b08b5c8d14ac86c7658fe0c8164ff0e5ec5d147d4ce430631e0",
+  "pin_spec": "terrain_spinor_shell_nest_v0|parents=terrain_weyl_spinor_lr_v0,terrain_exact_mirror_finder_v0,stage_lifted_spinor_shell_n3_v0,geo_s5_terrain_flows_v0,geo_disintegration_machinery_v0|rung1_unraveling_convention=standard quantum-jump unraveling: K_eff=-iH-1/2 sum_j L_j^dagger L_j for no-jump drift, jump maps psi -> L_j psi/||L_j psi||, ensemble density obeys the Lindblad generator. This is a choice; the density generator is the invariant object.|levels=(a:committed S5 Bloch affine terrain flow,b:rung-1 Weyl spinor L/R lift,c:n=3 shell-placed spinors plus shell leakage and conditioned gamma5 readout)|required_terrains=Se_Funnel_L,Ni_Pit_L,Si_Hill_L,Se_Cannon_R|si_frame=own_z_x_frames_not_H0_forced|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/terrain_spinor_shell_nest_v0/results/terrain_spinor_shell_nest_v0_pytorch_results.json",
+  "role_id": "pytorch_graph_network_sim_builder",
+  "schema_version": "terrain_spinor_shell_nest_v0.pytorch_result.v1",
+  "seed": 2026061007,
+  "si_frame_row": {
+    "Si_Citadel_R_frame": "x dephasing frame",
+    "Si_Hill_L_frame": "z dephasing frame",
+    "frame_map": {
+      "H0_sheet_override_forced": false,
+      "Si_Citadel_R_retained_axis": "x",
+      "Si_Hill_L_retained_axis": "z"
+    },
+    "honest_status": "own_frame_computed",
+    "incompatibility": "Committed Si uses z/x dephasing frames; the rung-1 H0 sheet override is not forced onto Si.",
+    "pass": true
+  },
+  "sim_id": "terrain_spinor_shell_nest_v0",
+  "smt_identity_values": {
+    "actual_non_preserve_shell_site_count": 12,
+    "erased_no_placement_non_preserve_count": 0,
+    "expected_erased_control_verdict": "sat",
+    "expected_real_verdict": "unsat",
+    "identity": "actual_non_preserve_shell_site_count == erased_no_placement_non_preserve_count"
+  },
+  "source_path": "system_v6/sims/terrain_spinor_shell_nest_v0/terrain_spinor_shell_nest_v0_pytorch.py",
+  "source_sha256": "e23202a12fbf662fe090ff3be599276a33f2497514c25b9610853f02b2f85c2d",
+  "supportive_checks": {
+    "graph_geometry": true
+  },
+  "three_level_property_matrix": {
+    "bloch_flow": {
+      "computed_support": "level_a rows reproduce committed S5 A,b and finite t=1 flow",
+      "level_a": "exists",
+      "level_b": "exists_with_spinor_lift_projection",
+      "level_c": "exists_on_shell_sites"
+    },
+    "conditioned_fixed_point_structure": {
+      "computed_support": "naive singleton conditioning fails; positive shell placement supplies finite site-conditioned readout",
+      "level_a": "degenerate",
+      "level_b": "degenerate",
+      "level_c": "exists_via_disintegration_rule"
+    },
+    "lr_signed_separation": {
+      "computed_support": "spinor-blind quotient control returns zero signed rows",
+      "level_a": "undefined",
+      "level_b": "exists",
+      "level_c": "exists_shell_conditioned"
+    },
+    "shell_conditioned_gamma5_shift": {
+      "computed_support": "4 required terrain rows have nonzero on-shell/off-shell gamma5 delta",
+      "level_a": "undefined",
+      "level_b": "degenerate",
+      "level_c": "exists"
+    },
+    "shell_leakage_class": {
+      "computed_support": "12 required terrain-site rows are non-preserve classes",
+      "level_a": "undefined",
+      "level_b": "undefined",
+      "level_c": "exists"
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "eta=pi/4 finite derivative",
+      "demotion_condition": "if derivative is zero for every site, demote shell leakage row",
+      "gates": [
+        "level_c_shell"
+      ],
+      "input_object": "shell eta vector and bounded terrain rates",
+      "negative/erased_control": "zero rate erases derivative",
+      "output_object": {
+        "dz_dot_deta": [
+          -0.141421356237,
+          0.0,
+          0.028284271247
+        ],
+        "nonzero_count": 3,
+        "pass": true,
+        "tool": "torch.func.jacrev/vmap",
+        "z_dot": [
+          -0.070710678119,
+          0.04,
+          -0.014142135624
+        ]
+      },
+      "positive_case": "nonzero shell leakage derivative",
+      "qualified_api/function": "torch.func.jacrev/vmap",
+      "tool": "torch.func"
+    },
+    {
+      "boundary_case": "one node remains valid but not n=3 support",
+      "demotion_condition": "support row only; no nesting gate",
+      "gates": [],
+      "input_object": "three shell sites and edge index",
+      "negative/erased_control": "drop edges to erase graph support",
+      "output_object": {
+        "degree": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "edge_count": 3,
+        "node_count": 3
+      },
+      "positive_case": "three-site support graph exists",
+      "qualified_api/function": "torch_geometric.data.Data/degree",
+      "tool": "torch_geometric"
+    },
+    {
+      "boundary_case": "pi/2 orthogonal boundary",
+      "demotion_condition": "support row only; no nesting gate",
+      "gates": [],
+      "input_object": "orthogonal shell support points",
+      "negative/erased_control": "coincident points erase distance",
+      "output_object": {
+        "backend": "pytorch",
+        "orthogonal_distance": 1.570796326795
+      },
+      "positive_case": "finite sphere distance",
+      "qualified_api/function": "geomstats.geometry.hypersphere.Hypersphere.metric.dist",
+      "tool": "geomstats"
+    },
+    {
+      "boundary_case": "0e+1o boundary",
+      "demotion_condition": "support row only; no nesting gate",
+      "gates": [],
+      "input_object": "scalar plus vector shell feature declaration",
+      "negative/erased_control": "scalar-only erases vector channel",
+      "output_object": {
+        "feature_dim": 4,
+        "irreps": "1x0e+1x1o"
+      },
+      "positive_case": "feature dimension is 4",
+      "qualified_api/function": "e3nn.o3.Irreps",
+      "tool": "e3nn"
+    },
+    {
+      "boundary_case": "Cl(3) dimension boundary",
+      "demotion_condition": "support row only; no nesting gate",
+      "gates": [],
+      "input_object": "Cl(3) bivector support carrier",
+      "negative/erased_control": "scalar-only row erases bivector",
+      "output_object": {
+        "bivector": "(1^e12)",
+        "blade_count": 8,
+        "vector_dimension": 3
+      },
+      "positive_case": "bivector row exists",
+      "qualified_api/function": "clifford.Cl",
+      "tool": "clifford"
+    },
+    {
+      "boundary_case": "eta=pi/4 boundary",
+      "demotion_condition": "if symbolic residual is nonzero, demote shell coordinate",
+      "gates": [
+        "shell_coordinate"
+      ],
+      "input_object": "z=cos(2 eta)",
+      "negative/erased_control": "wrong coordinate gives nonzero residual",
+      "output_object": {
+        "identity_residual": "0",
+        "pass": true,
+        "tool": "sympy.diff/simplify"
+      },
+      "positive_case": "closed derivative has zero residual",
+      "qualified_api/function": "sympy.diff/simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "actual=0 control is satisfiable",
+      "demotion_condition": "if erased flip does not change verdict, demote proof",
+      "gates": [
+        "crossover_proofs"
+      ],
+      "input_object": "computed non-preserve count and erased no-placement count",
+      "negative/erased_control": "erased count bound to actual zero count",
+      "output_object": {
+        "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it",
+        "erased_control_verdict": "sat",
+        "load_bearing": true,
+        "negative/erased_control": "bind actual to erased count after deleting shell placement",
+        "pass": true,
+        "ran": true,
+        "raw_values_bound": {
+          "actual": 12,
+          "erased": 0
+        },
+        "verdict": "unsat"
+      },
+      "positive_case": "actual count differs from erased count",
+      "qualified_api/function": "z3.Solver/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "actual=0 control is satisfiable",
+      "demotion_condition": "if erased flip does not change verdict, demote proof",
+      "gates": [
+        "crossover_proofs"
+      ],
+      "input_object": "computed non-preserve count and erased no-placement count",
+      "negative/erased_control": "erased count bound to actual zero count",
+      "output_object": {
+        "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it",
+        "erased_control_verdict": "sat",
+        "load_bearing": true,
+        "negative/erased_control": "bind actual to erased count after deleting shell placement",
+        "pass": true,
+        "ran": true,
+        "raw_values_bound": {
+          "actual": 12,
+          "erased": 0
+        },
+        "verdict": "unsat"
+      },
+      "positive_case": "actual count differs from erased count",
+      "qualified_api/function": "cvc5.Solver/checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "values": {
+    "non_preserve_shell_site_count": 12.0,
+    "required_terrain_count": 4.0,
+    "shell_conditioned_gamma5_positive_rows": 4.0,
+    "si_own_frame_pass": 1.0,
+    "site_count": 3.0,
+    "spinor_blind_max_signal": 0.0
+  }
+}

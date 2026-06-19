@@ -1,0 +1,53 @@
+{
+  "object_id": "wd_traj_order_winlose_parity",
+  "julia_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/wd_traj_order_winlose_julia_results.json",
+  "jax_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/wd_traj_order_winlose_jax_results.json",
+  "run_timestamp": "2026-06-04T14:57:37.535475",
+  "parity_checks": {
+    "cross_max_traj_div": {
+      "julia": 1.9229626863835643e-16,
+      "jax": 1.74029248602763e-16,
+      "abs_diff": 1.8267020035593422e-17,
+      "within_tol": true,
+      "note": "Both engines agree on ~0 trajectory divergence (machine epsilon)"
+    },
+    "within_pairs_max_div": {
+      "julia": 0.0,
+      "jax": 0.0,
+      "abs_diff": 0.0,
+      "within_tol": true,
+      "note": "Both engines agree on 0 within-pair divergence (same terrain+judge_fn always same rho_in)"
+    },
+    "n01_gap_mean_win": {
+      "julia": 0.75,
+      "jax": 0.75,
+      "abs_diff": 0.0,
+      "within_tol": true
+    },
+    "n01_gap_mean_lose": {
+      "julia": 0.75,
+      "jax": 0.75,
+      "abs_diff": 0.0,
+      "within_tol": true
+    },
+    "n01_gap_relative_diff": {
+      "julia": 0.0,
+      "jax": 0.0,
+      "abs_diff": 0.0,
+      "within_tol": true
+    },
+    "verdict_agreement": {
+      "julia": "grammar_terminal_all_levels",
+      "jax": "grammar_terminal_all_levels",
+      "agree": true
+    },
+    "same_direction_pairs": {
+      "julia": 8,
+      "jax": 8,
+      "agree": true
+    }
+  },
+  "all_pass": true,
+  "parity_max_diff": 1.8267020035593422e-17,
+  "verdict_agree": true
+}

@@ -1,0 +1,4406 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent discovered-table identity and SAT flip",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64/vmap status-matrix workhorse",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive x64 status tensor",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rho entropy recomputation",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing discovered-table identity and erased-object SAT flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "degenerate_flag": {
+      "degenerate_reason": "product-state bipartition makes S(A|B)=S(A) and I(A:B)=0",
+      "degenerate_witness": {
+        "product_state": true,
+        "rho_AB_diag": [
+          0.5,
+          0.0,
+          0.5,
+          0.0
+        ],
+        "rho_A_diag": [
+          0.5,
+          0.5
+        ],
+        "rho_B_diag": [
+          1.0,
+          0.0
+        ]
+      },
+      "observed_status": "degenerate",
+      "pass": true,
+      "step_id": "terrain_restriction"
+    },
+    "order_shuffle": {
+      "changed_by_type": {
+        "chart_uniform_differential_entropy": true,
+        "coherent_information": false,
+        "conditional_vn_and_mutual_information": false,
+        "counting_entropy": false,
+        "state_plus_record_conservation": true,
+        "von_neumann_entropy": true
+      },
+      "delay_record_until_saturation_sequence": [
+        {
+          "available_types": [
+            "counting_entropy"
+          ],
+          "step_id": "integrated_seed"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "counting_entropy"
+          ],
+          "step_id": "leaf_conditioning"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "lens_quotient"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "terrain_restriction"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_descended_phase_window"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_saturation"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_basin"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_operator"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_second_Z2_lens"
+        }
+      ],
+      "first_available_index_by_type": {
+        "delay_record_until_saturation": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 4,
+          "conditional_vn_and_mutual_information": 3,
+          "counting_entropy": 0,
+          "state_plus_record_conservation": 8,
+          "von_neumann_entropy": 2
+        },
+        "primary": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 4,
+          "conditional_vn_and_mutual_information": 3,
+          "counting_entropy": 0,
+          "state_plus_record_conservation": 5,
+          "von_neumann_entropy": 2
+        },
+        "swap_chart_and_density": {
+          "chart_uniform_differential_entropy": 2,
+          "coherent_information": 4,
+          "conditional_vn_and_mutual_information": 3,
+          "counting_entropy": 0,
+          "state_plus_record_conservation": 5,
+          "von_neumann_entropy": 1
+        }
+      },
+      "pass": true,
+      "prediction_2_status": "survived",
+      "primary_sequence": [
+        {
+          "available_types": [
+            "counting_entropy"
+          ],
+          "step_id": "integrated_seed"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "counting_entropy"
+          ],
+          "step_id": "leaf_conditioning"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "lens_quotient"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "terrain_restriction"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_descended_phase_window"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_second_Z2_lens"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_basin"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_operator"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_saturation"
+        }
+      ],
+      "swap_chart_and_density_sequence": [
+        {
+          "available_types": [
+            "counting_entropy"
+          ],
+          "step_id": "integrated_seed"
+        },
+        {
+          "available_types": [
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "lens_quotient"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "leaf_conditioning"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "terrain_restriction"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_descended_phase_window"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_second_Z2_lens"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_basin"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_terrain_operator"
+        },
+        {
+          "available_types": [
+            "chart_uniform_differential_entropy",
+            "coherent_information",
+            "conditional_vn_and_mutual_information",
+            "counting_entropy",
+            "state_plus_record_conservation",
+            "von_neumann_entropy"
+          ],
+          "step_id": "deep_saturation"
+        }
+      ]
+    },
+    "premature_evaluation": {
+      "chart_uniform_differential_entropy": {
+        "failure": {
+          "exception_path": "state.chart",
+          "exception_type": "MissingStructure",
+          "missing_structure": "chart_measure_layer",
+          "sentinel_number_returned": false,
+          "state_step": "integrated_seed",
+          "type_id": "chart_uniform_differential_entropy"
+        },
+        "pass": true,
+        "status": "undefined"
+      },
+      "coherent_information": {
+        "failure": {
+          "exception_path": "state.update_map",
+          "exception_type": "MissingStructure",
+          "missing_structure": "channel_update_map",
+          "sentinel_number_returned": false,
+          "state_step": "integrated_seed",
+          "type_id": "coherent_information"
+        },
+        "pass": true,
+        "status": "undefined"
+      },
+      "conditional_vn_and_mutual_information": {
+        "failure": {
+          "exception_path": "state.bipartition",
+          "exception_type": "MissingStructure",
+          "missing_structure": "bipartition_subsystem_split",
+          "sentinel_number_returned": false,
+          "state_step": "integrated_seed",
+          "type_id": "conditional_vn_and_mutual_information"
+        },
+        "pass": true,
+        "status": "undefined"
+      },
+      "counting_entropy": {
+        "not_premature": true,
+        "pass": true,
+        "reason": "finite support is present on the integrated seed"
+      },
+      "state_plus_record_conservation": {
+        "failure": {
+          "exception_path": "state.record_preimage_table",
+          "exception_type": "MissingStructure",
+          "missing_structure": "record_syndrome_preimage_table",
+          "sentinel_number_returned": false,
+          "state_step": "integrated_seed",
+          "type_id": "state_plus_record_conservation"
+        },
+        "pass": true,
+        "status": "undefined"
+      },
+      "von_neumann_entropy": {
+        "failure": {
+          "exception_path": "state.quotient_map -> state.rho",
+          "exception_type": "MissingStructure",
+          "missing_structure": "density_quotient_rho",
+          "sentinel_number_returned": false,
+          "state_step": "integrated_seed",
+          "type_id": "von_neumann_entropy"
+        },
+        "pass": true,
+        "status": "undefined"
+      }
+    },
+    "spoofed_enable": {
+      "pass": true,
+      "rejected_reason": "declared-enable shortcut rejected before construction",
+      "spoof": {
+        "shortcut_availability": "computable",
+        "step_id": "integrated_seed",
+        "type_id": "von_neumann_entropy"
+      }
+    },
+    "type_confusion": {
+      "cross_type_sum_without_convention": "rejected",
+      "pass": true,
+      "raised": "cross_type_sum_rejected:finite_counting_entropy_nats+von_neumann_entropy_nats"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "bound_cells": 54,
+      "boundary_case": "status codes are undefined/computable/degenerate integers",
+      "changed_cells": [
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 2,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 3,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 4,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 5,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 6,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 7,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 8,
+          "type_id": "von_neumann_entropy"
+        }
+      ],
+      "demotion_condition": "demote if the matrices are not produced by build_table construction attempts",
+      "load_bearing": true,
+      "negative/erased_control": "erased quotient-map path recomputes at least one different status and is SAT",
+      "perturbation": "erase quotient map before vN construction and recompute table",
+      "perturbed_construction_path_verdict": "sat",
+      "polarity": "negated_identity_over_discovered_status_matrix",
+      "positive_case": "primary and independent recomputed construction-derived status matrices cannot differ",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "bound_cells": 54,
+      "boundary_case": "status codes are undefined/computable/degenerate integers",
+      "changed_cells": [
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 2,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 3,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 4,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 5,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 6,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 7,
+          "type_id": "von_neumann_entropy"
+        },
+        {
+          "perturbed_status_code": 0,
+          "primary_status_code": 1,
+          "step_index": 8,
+          "type_id": "von_neumann_entropy"
+        }
+      ],
+      "demotion_condition": "demote if the matrices are not produced by build_table construction attempts",
+      "load_bearing": true,
+      "negative/erased_control": "erased quotient-map path recomputes at least one different status and is SAT",
+      "perturbation": "erase quotient map before vN construction and recompute table",
+      "perturbed_construction_path_verdict": "sat",
+      "polarity": "negated_identity_over_discovered_status_matrix",
+      "positive_case": "primary and independent recomputed construction-derived status matrices cannot differ",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "doctrine_table_comparison": {
+    "agreement": true,
+    "findings": [],
+    "interpretation": "doctrine enabling-layer table earned by discovery construction",
+    "rows": [
+      {
+        "agreement": true,
+        "discovered_step": "integrated_seed",
+        "doctrine_step": "integrated_seed",
+        "type_id": "counting_entropy"
+      },
+      {
+        "agreement": true,
+        "discovered_step": "leaf_conditioning",
+        "doctrine_step": "leaf_conditioning",
+        "type_id": "chart_uniform_differential_entropy"
+      },
+      {
+        "agreement": true,
+        "discovered_step": "lens_quotient",
+        "doctrine_step": "lens_quotient",
+        "type_id": "von_neumann_entropy"
+      },
+      {
+        "agreement": true,
+        "discovered_step": "terrain_restriction",
+        "doctrine_step": "terrain_restriction",
+        "type_id": "conditional_vn_and_mutual_information"
+      },
+      {
+        "agreement": true,
+        "discovered_step": "deep_descended_phase_window",
+        "doctrine_step": "deep_descended_phase_window",
+        "type_id": "coherent_information"
+      },
+      {
+        "agreement": true,
+        "discovered_step": "deep_second_Z2_lens",
+        "doctrine_step": "deep_second_Z2_lens",
+        "type_id": "state_plus_record_conservation"
+      }
+    ]
+  },
+  "engine": "jax",
+  "engine_values": {
+    "final_available_type_count": 6,
+    "rho_entropy_nats": 0.6931471805599454,
+    "table_hash": "d64d16b4ed503f1b75e3efbe9cd4da6ccc43d774fb1f407fc566adb937b44122"
+  },
+  "formal_admission_allowed": false,
+  "jax_status_receipt": {
+    "first_available_index_by_type": {
+      "chart_uniform_differential_entropy": 1,
+      "coherent_information": 4,
+      "conditional_vn_and_mutual_information": 3,
+      "counting_entropy": 0,
+      "state_plus_record_conservation": 5,
+      "von_neumann_entropy": 2
+    },
+    "row_available_type_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      6,
+      6,
+      6
+    ],
+    "status_checksum": 1317,
+    "status_matrix_shape": [
+      9,
+      6
+    ],
+    "x64": true
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat independently binds the same discovered table",
+    "sympy": "sp.Rational/sp.log/simplify recomputes rho entropy exact value from constructed rho diag",
+    "z3": "z3.Solver binds every discovered status code and SAT flip after quotient-map erasure"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "pathlib",
+    "importlib.metadata"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/entropy_type_ratchet_v1/results/entropy_type_ratchet_v1_jax_results.json",
+  "role_id": "jax_engine_builder",
+  "schema_version": "entropy_type_ratchet_v1_jax_result_v1",
+  "sim_id": "entropy_type_ratchet_v1",
+  "source_path": "system_v6/sims/entropy_type_ratchet_v1/entropy_type_ratchet_v1_jax.py",
+  "source_sha256": "ebf0818c961fa9cac3ddec68379051e57b9b5730545b269086f6c5287403f26a",
+  "sympy_exact_receipt": {
+    "matches_log2": true,
+    "ran": true,
+    "rho_diag_exact": [
+      "1/2",
+      "1/2"
+    ],
+    "rho_entropy_exact": "log(2)",
+    "rho_entropy_nats": 0.6931471805599453,
+    "tool": "sympy"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "two-point density quotient",
+      "demotion_condition": "demote if rho is local constant or not from the construction table",
+      "gates": [
+        "rho",
+        "entropy",
+        "all_pass"
+      ],
+      "input_object": "constructed rho diagonal from density quotient",
+      "negative/erased_control": "quotient-map-erased construction removes rho and flips vN status",
+      "output_object": "exact von Neumann entropy log(2)",
+      "positive_case": "rho diag [1/2,1/2] gives log(2)",
+      "qualified_api/function": "sp.Rational/sp.log/simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "status codes are undefined/computable/degenerate integers",
+      "demotion_condition": "demote if the matrices are not produced by build_table construction attempts",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "construction-derived status matrix plus erased-quotient recomputation",
+      "negative/erased_control": "erased quotient-map path recomputes at least one different status and is SAT",
+      "output_object": "UNSAT identity and SAT perturbation",
+      "positive_case": "primary and independent recomputed construction-derived status matrices cannot differ",
+      "qualified_api/function": "z3.Solver/z3.Int/solver.add/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "status codes are undefined/computable/degenerate integers",
+      "demotion_condition": "demote if the matrices are not produced by build_table construction attempts",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "same construction-derived status matrix",
+      "negative/erased_control": "erased quotient-map path recomputes at least one different status and is SAT",
+      "output_object": "independent UNSAT identity and SAT perturbation",
+      "positive_case": "primary and independent recomputed construction-derived status matrices cannot differ",
+      "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "tool_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "sympy": "1.14.0"
+  },
+  "type_admissibility_table": {
+    "availability_sequence": [
+      {
+        "available_types": [
+          "counting_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 0,
+          "coherent_information": 0,
+          "conditional_vn_and_mutual_information": 0,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 0,
+          "von_neumann_entropy": 0
+        },
+        "step_id": "integrated_seed"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "counting_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 0,
+          "conditional_vn_and_mutual_information": 0,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 0,
+          "von_neumann_entropy": 0
+        },
+        "step_id": "leaf_conditioning"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 0,
+          "conditional_vn_and_mutual_information": 0,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 0,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "lens_quotient"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 0,
+          "conditional_vn_and_mutual_information": 2,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 0,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "terrain_restriction"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 1,
+          "conditional_vn_and_mutual_information": 1,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 0,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "deep_descended_phase_window"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 1,
+          "conditional_vn_and_mutual_information": 1,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 1,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "deep_second_Z2_lens"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 1,
+          "conditional_vn_and_mutual_information": 1,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 1,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "deep_terrain_basin"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 1,
+          "conditional_vn_and_mutual_information": 1,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 1,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "deep_terrain_operator"
+      },
+      {
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "status_codes": {
+          "chart_uniform_differential_entropy": 1,
+          "coherent_information": 1,
+          "conditional_vn_and_mutual_information": 1,
+          "counting_entropy": 1,
+          "state_plus_record_conservation": 1,
+          "von_neumann_entropy": 1
+        },
+        "step_id": "deep_saturation"
+      }
+    ],
+    "change_steps": [
+      {
+        "available_now": [
+          "counting_entropy"
+        ],
+        "construction_row_hash": "6d05c7f1c0b0efc2f9449357e01a8f916a8137aa911810f42dc45518d0a88a8a",
+        "dropped_now": [],
+        "step_id": "integrated_seed"
+      },
+      {
+        "available_now": [
+          "chart_uniform_differential_entropy"
+        ],
+        "construction_row_hash": "d4dfe30e782463b634bc4620d04ddd3c28a6c10a2992f72ed13f448d21e608a5",
+        "dropped_now": [],
+        "step_id": "leaf_conditioning"
+      },
+      {
+        "available_now": [
+          "von_neumann_entropy"
+        ],
+        "construction_row_hash": "d7ea7d248249a9ca9fb12b4c51de9ca98664c89ee864439a2086673bf94d1322",
+        "dropped_now": [],
+        "step_id": "lens_quotient"
+      },
+      {
+        "available_now": [
+          "conditional_vn_and_mutual_information"
+        ],
+        "construction_row_hash": "df14c4ba23fb8e47e1c369346e94277039ae4b8890827daf37246afc5dc25df7",
+        "dropped_now": [],
+        "step_id": "terrain_restriction"
+      },
+      {
+        "available_now": [
+          "coherent_information"
+        ],
+        "construction_row_hash": "5691df51ae2f09a6979d6b1211921f6868a49d3630bae6999ca29f7a0911230b",
+        "dropped_now": [],
+        "step_id": "deep_descended_phase_window"
+      },
+      {
+        "available_now": [
+          "state_plus_record_conservation"
+        ],
+        "construction_row_hash": "36d6f5d008b94f79b45880666a05f4e614324a9435a5131a27061e031706c0cf",
+        "dropped_now": [],
+        "step_id": "deep_second_Z2_lens"
+      }
+    ],
+    "construction_rule": "attempt constructors against the live state object; availability is the constructor outcome",
+    "rows": [
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "counting_entropy"
+        ],
+        "constraint": "no new constraint; hash-bound seed state",
+        "constructed_objects_after_step": [
+          "finite_support"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.chart",
+              "exception_type": "MissingStructure",
+              "missing_structure": "chart_measure_layer",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "chart_uniform_differential_entropy"
+            },
+            "failure_mode": "MissingStructure:chart_measure_layer",
+            "missing_structure": "chart_measure_layer",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "chart_uniform_differential_entropy_nats"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "missing_structure": "channel_update_map",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "coherent_information_nats"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "conditional_vn_mutual_information_nats"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "seed_q0",
+                "seed_q1",
+                "seed_q2",
+                "seed_q3",
+                "seed_q4",
+                "seed_q5"
+              ],
+              "state_step": "integrated_seed",
+              "support_size": 8
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(8)",
+              "log_base": "e",
+              "nats": 2.0794415416798357,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 8"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "finite_state_plus_record_entropy_nats"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.quotient_map -> state.rho",
+              "exception_type": "MissingStructure",
+              "missing_structure": "density_quotient_rho",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "von_neumann_entropy"
+            },
+            "failure_mode": "MissingStructure:density_quotient_rho",
+            "missing_structure": "density_quotient_rho",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "von_neumann_entropy_nats"
+          }
+        },
+        "index": 0,
+        "lineage_tail": {
+          "operation": "seed_from_manifold_unified_run_v0",
+          "source_lock": {
+            "path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_step_trajectory_artifact.json",
+            "role": "integrated n=3 seed",
+            "row_sha256": "7e6e7631b5826d8741102c734e86bb4bc8c2b4a8fbcb2b12abad34a02b604a67"
+          },
+          "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+          "trajectory_step_id": "d58589bc511c8f18e9de35d57bb60c6f57f8ee8f085e59097ee78cceb3c326b6"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "family": "channel_update_probe",
+            "missing_structure": "channel_update_map",
+            "status": "failed"
+          },
+          "chart_volume_probe": {
+            "failure": {
+              "exception_path": "state.chart",
+              "exception_type": "MissingStructure",
+              "missing_structure": "chart_measure_layer",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "chart_uniform_differential_entropy"
+            },
+            "failure_mode": "MissingStructure:chart_measure_layer",
+            "family": "chart_volume_probe",
+            "missing_structure": "chart_measure_layer",
+            "status": "failed"
+          },
+          "density_CPTP_probe": {
+            "failure": {
+              "exception_path": "state.quotient_map -> state.rho",
+              "exception_type": "MissingStructure",
+              "missing_structure": "density_quotient_rho",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "von_neumann_entropy"
+            },
+            "failure_mode": "MissingStructure:density_quotient_rho",
+            "family": "density_CPTP_probe",
+            "missing_structure": "density_quotient_rho",
+            "status": "failed"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=8",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "family": "partial_trace_probe",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "failed"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "integrated_seed",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "family": "record_conditioned_reconstruction_probe",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "failed"
+          }
+        },
+        "row_hash": "6d05c7f1c0b0efc2f9449357e01a8f916a8137aa911810f42dc45518d0a88a8a",
+        "source_step": "manifold_unified_run_v0:trajectory.steps[0]",
+        "state_hash": "88905a015f1fafb8b97558e887d444d4fec079a269e213ec99b225e7b8390622",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "integrated_seed"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "counting_entropy"
+        ],
+        "constraint": "leaf-conditioning via committed k-leaf union weights",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "missing_structure": "channel_update_map",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "coherent_information_nats"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "conditional_vn_mutual_information_nats"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "seed_q0",
+                "seed_q1",
+                "seed_q2",
+                "seed_q3",
+                "seed_q4",
+                "seed_q5"
+              ],
+              "state_step": "leaf_conditioning",
+              "support_size": 8
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(8)",
+              "log_base": "e",
+              "nats": 2.0794415416798357,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 8"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "finite_state_plus_record_entropy_nats"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.quotient_map -> state.rho",
+              "exception_type": "MissingStructure",
+              "missing_structure": "density_quotient_rho",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "von_neumann_entropy"
+            },
+            "failure_mode": "MissingStructure:density_quotient_rho",
+            "missing_structure": "density_quotient_rho",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "von_neumann_entropy_nats"
+          }
+        },
+        "index": 1,
+        "lineage_tail": {
+          "constructed": "chart_measure_layer",
+          "operation": "apply_leaf_conditioning",
+          "source_step": "0cc576496c82dd09ec88d025f6e43fb0af7c2993cf94c04b9377de3bfedfe199"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "family": "channel_update_probe",
+            "missing_structure": "channel_update_map",
+            "status": "failed"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "failure": {
+              "exception_path": "state.quotient_map -> state.rho",
+              "exception_type": "MissingStructure",
+              "missing_structure": "density_quotient_rho",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "von_neumann_entropy"
+            },
+            "failure_mode": "MissingStructure:density_quotient_rho",
+            "family": "density_CPTP_probe",
+            "missing_structure": "density_quotient_rho",
+            "status": "failed"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=8",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "family": "partial_trace_probe",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "failed"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "leaf_conditioning",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "family": "record_conditioned_reconstruction_probe",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "failed"
+          }
+        },
+        "row_hash": "d4dfe30e782463b634bc4620d04ddd3c28a6c10a2992f72ed13f448d21e608a5",
+        "source_step": "manifold_unified_run_v0:trajectory.steps[1] + ratchet_deep_chain_v0:per_step_ledger.rows[step=1]",
+        "state_hash": "caa2e457b32aabc1c9efb72341d4c18c82720d425b3835ea528733ee30ecea76",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "leaf_conditioning"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "constraint": "lens quotient; global phase quotient preserves eta and density rows",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "missing_structure": "channel_update_map",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "coherent_information_nats"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "conditional_vn_mutual_information_nats"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "rho_class_0",
+                "rho_class_1"
+              ],
+              "state_step": "lens_quotient",
+              "support_size": 2
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 2"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "finite_state_plus_record_entropy_nats"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 2,
+        "lineage_tail": {
+          "constructed": "density_quotient_rho",
+          "operation": "apply_lens_quotient",
+          "source_step": "5ce605d4aa35517e0e97550d093e817d4375b1c65198b846710ca0598f114993"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "family": "channel_update_probe",
+            "missing_structure": "channel_update_map",
+            "status": "failed"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=2",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "failure": {
+              "exception_path": "state.bipartition",
+              "exception_type": "MissingStructure",
+              "missing_structure": "bipartition_subsystem_split",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "conditional_vn_and_mutual_information"
+            },
+            "failure_mode": "MissingStructure:bipartition_subsystem_split",
+            "family": "partial_trace_probe",
+            "missing_structure": "bipartition_subsystem_split",
+            "status": "failed"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "lens_quotient",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "family": "record_conditioned_reconstruction_probe",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "failed"
+          }
+        },
+        "row_hash": "d7ea7d248249a9ca9fb12b4c51de9ca98664c89ee864439a2086673bf94d1322",
+        "source_step": "manifold_unified_run_v0:trajectory.steps[2] + ratchet_deep_chain_v0:per_step_ledger.rows[step=2]",
+        "state_hash": "eb2ae1d15e1e9b2239d6bf4cca92817da66d4b74b9f45e177de75669c8e6d188",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "lens_quotient"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "constraint": "terrain restriction on committed S6/S7 terrain rows",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "terrain_restriction",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "missing_structure": "channel_update_map",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "coherent_information_nats"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "degenerate_reason": "product-state bipartition makes S(A|B)=S(A) and I(A:B)=0",
+            "degenerate_witness": {
+              "product_state": true,
+              "rho_AB_diag": [
+                0.5,
+                0.0,
+                0.5,
+                0.0
+              ],
+              "rho_A_diag": [
+                0.5,
+                0.5
+              ],
+              "rho_B_diag": [
+                1.0,
+                0.0
+              ]
+            },
+            "status": "degenerate",
+            "status_code": 2,
+            "value": {
+              "S_AB_exact": "log(2)",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "log(2)",
+              "S_A_given_B_nats": 0.6931471805599453,
+              "S_B_exact": "0",
+              "constructed_from": "tensor_factorization_of_live_product_state",
+              "mutual_information_exact": "0",
+              "mutual_information_nats": 0.0,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "bipartition exists before channel entangles the factors"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "rho_class_0",
+                "rho_class_1"
+              ],
+              "state_step": "terrain_restriction",
+              "support_size": 2
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 2"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "terrain_restriction",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "finite_state_plus_record_entropy_nats"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 3,
+        "lineage_tail": {
+          "constructed": "bipartition_subsystem_split",
+          "operation": "apply_terrain_restriction",
+          "source_step": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "failure": {
+              "exception_path": "state.update_map",
+              "exception_type": "MissingStructure",
+              "missing_structure": "channel_update_map",
+              "sentinel_number_returned": false,
+              "state_step": "terrain_restriction",
+              "type_id": "coherent_information"
+            },
+            "failure_mode": "MissingStructure:channel_update_map",
+            "family": "channel_update_probe",
+            "missing_structure": "channel_update_map",
+            "status": "failed"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=2",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=degenerate",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "terrain_restriction",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "family": "record_conditioned_reconstruction_probe",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "failed"
+          }
+        },
+        "row_hash": "df14c4ba23fb8e47e1c369346e94277039ae4b8890827daf37246afc5dc25df7",
+        "source_step": "manifold_unified_run_v0:trajectory.steps[3]",
+        "state_hash": "293e7942bc6db55096ac1da622930fe39a2658b50146993c24928d70b032bebd",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "terrain_restriction"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "von_neumann_entropy"
+        ],
+        "constraint": "descended_single_leaf_phase_window",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split",
+          "channel_update_map"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "channel": {
+              "channel_id": "descended_phase_window_to_bell_pair_channel",
+              "is_cptp": true,
+              "kraus_rank": 1,
+              "maps_product_split_to_entangled_boundary": true,
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "descended phase-window update map",
+                "row_sha256": "dece00370147675577f91aad1763143fdc7b6c9fb7fe64ee2eafd0815499c769"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "lineage_update_map_channel_object",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "coherent_information_nats"
+            },
+            "witness": "I_c = S(B)-S(AB)=log(2)-0 for the constructed channel object"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "S_AB_exact": "0",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "-log(2)",
+              "S_A_given_B_nats": -0.6931471805599453,
+              "S_B_exact": "log(2)",
+              "constructed_from": "channel-updated bipartite Bell boundary",
+              "mutual_information_exact": "2*log(2)",
+              "mutual_information_nats": 1.3862943611198906,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "update map exists and transforms the factored carrier into the Bell boundary"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "rho_class_0",
+                "rho_class_1"
+              ],
+              "state_step": "deep_descended_phase_window",
+              "support_size": 2
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 2"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "deep_descended_phase_window",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "undefined",
+            "status_code": 0,
+            "typed_label": "finite_state_plus_record_entropy_nats"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 4,
+        "lineage_tail": {
+          "constructed": "channel_update_map",
+          "deep_step": 3,
+          "operation": "apply_deep_descended_phase_window"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "application": "applied update channel descended_phase_window_to_bell_pair_channel",
+            "co_varies_with": "coherent_information",
+            "family": "channel_update_probe",
+            "status": "applied"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=2",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=computable",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "failure": {
+              "exception_path": "state.record_preimage_table",
+              "exception_type": "MissingStructure",
+              "missing_structure": "record_syndrome_preimage_table",
+              "sentinel_number_returned": false,
+              "state_step": "deep_descended_phase_window",
+              "type_id": "state_plus_record_conservation"
+            },
+            "failure_mode": "MissingStructure:record_syndrome_preimage_table",
+            "family": "record_conditioned_reconstruction_probe",
+            "missing_structure": "record_syndrome_preimage_table",
+            "status": "failed"
+          }
+        },
+        "row_hash": "5691df51ae2f09a6979d6b1211921f6868a49d3630bae6999ca29f7a0911230b",
+        "source_step": "ratchet_deep_chain_v0:per_step_ledger.rows[step=3]",
+        "state_hash": "ba1550b5986f955484ce8fbe24b2621a925b310ed8da84e730411dd93cf727bd",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "deep_descended_phase_window"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "constraint": "second_Z2_lens_on_quotient",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split",
+          "channel_update_map",
+          "record_syndrome_preimage_table"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "channel": {
+              "channel_id": "descended_phase_window_to_bell_pair_channel",
+              "is_cptp": true,
+              "kraus_rank": 1,
+              "maps_product_split_to_entangled_boundary": true,
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "descended phase-window update map",
+                "row_sha256": "dece00370147675577f91aad1763143fdc7b6c9fb7fe64ee2eafd0815499c769"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "lineage_update_map_channel_object",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "coherent_information_nats"
+            },
+            "witness": "I_c = S(B)-S(AB)=log(2)-0 for the constructed channel object"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "S_AB_exact": "0",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "-log(2)",
+              "S_A_given_B_nats": -0.6931471805599453,
+              "S_B_exact": "log(2)",
+              "constructed_from": "channel-updated bipartite Bell boundary",
+              "mutual_information_exact": "2*log(2)",
+              "mutual_information_nats": 1.3862943611198906,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "update map exists and transforms the factored carrier into the Bell boundary"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "orbit::x_minus::0",
+                "orbit::x_minus::1",
+                "orbit::x_minus::2",
+                "orbit::x_minus::3",
+                "orbit::x_plus::0",
+                "orbit::x_plus::1"
+              ],
+              "state_step": "deep_second_Z2_lens",
+              "support_size": 24
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(24)",
+              "log_base": "e",
+              "nats": 3.1780538303479458,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 24"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "record": {
+              "convention": "z4_syndrome_record_v0_preimage_table",
+              "deep_lens_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "second Z2 lens",
+                "row_sha256": "7758b1d0a29340057de445a524759d33f9b7151c98b5ed71c75d1eb088bb0497"
+              },
+              "positive_regime": {
+                "computed_defect_nats": 0.0,
+                "defect_log2_coefficient": 0,
+                "different_code_paths": true,
+                "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+                "record_code_path_id": "distribution_counts_to_shannon_entropy",
+                "record_log2_coefficient": 2,
+                "record_retained_nats": 1.3862943611198906,
+                "regime": "full_record",
+                "row_hash": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415",
+                "state_loss_log2_coefficient": 2,
+                "state_loss_without_record_nats": 1.3862943611198906,
+                "typed_entropy_label": "finite_counting_entropy_nats"
+              },
+              "preimage_table": {
+                "orbit::x_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::x_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_0",
+                    "representative_spinor": "1*(0,1)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_1",
+                    "representative_spinor": "i*(0,1)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_2",
+                    "representative_spinor": "-1*(0,1)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_3",
+                    "representative_spinor": "-i*(0,1)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_0",
+                    "representative_spinor": "1*(1,0)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_1",
+                    "representative_spinor": "i*(1,0)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_2",
+                    "representative_spinor": "-1*(1,0)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_3",
+                    "representative_spinor": "-i*(1,0)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ]
+              },
+              "source_lock": {
+                "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+                "role": "Z4 syndrome preimage table",
+                "row_sha256": "c3657b58e63500c828a132f8dea12964cec6da9ecc39ef01cd7c70f3ef1edea2"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "computed_defect_exact": "0",
+              "computed_defect_nats": 0.0,
+              "constructed_from": "z4_syndrome_record_v0_preimage_table_on_live_lens_state",
+              "record_retained_exact": "log(4)",
+              "record_retained_nats": 1.3862943611198906,
+              "state_loss_without_record_exact": "log(4)",
+              "state_loss_without_record_nats": 1.3862943611198906,
+              "typed_label": "finite_state_plus_record_entropy_nats"
+            },
+            "witness": "record table constructed from actual quotient preimages"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 5,
+        "lineage_tail": {
+          "constructed": "record_syndrome_preimage_table",
+          "deep_step": 4,
+          "operation": "apply_deep_second_z2_lens"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "application": "applied update channel descended_phase_window_to_bell_pair_channel",
+            "co_varies_with": "coherent_information",
+            "family": "channel_update_probe",
+            "status": "applied"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=24",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=computable",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "application": "record preimage groups=6",
+            "co_varies_with": "state_plus_record_conservation",
+            "family": "record_conditioned_reconstruction_probe",
+            "status": "applied"
+          }
+        },
+        "row_hash": "36d6f5d008b94f79b45880666a05f4e614324a9435a5131a27061e031706c0cf",
+        "source_step": "ratchet_deep_chain_v0:per_step_ledger.rows[step=4] + z4_syndrome_record_v0:syndrome_table",
+        "state_hash": "d56ae52c680298c98b9022b88008886991add22c2484ee2f04b59d17feeb852d",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "deep_second_Z2_lens"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "constraint": "terrain_basin_restriction_Se_Funnel_L",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split",
+          "channel_update_map",
+          "record_syndrome_preimage_table"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "channel": {
+              "channel_id": "descended_phase_window_to_bell_pair_channel",
+              "is_cptp": true,
+              "kraus_rank": 1,
+              "maps_product_split_to_entangled_boundary": true,
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "descended phase-window update map",
+                "row_sha256": "dece00370147675577f91aad1763143fdc7b6c9fb7fe64ee2eafd0815499c769"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "lineage_update_map_channel_object",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "coherent_information_nats"
+            },
+            "witness": "I_c = S(B)-S(AB)=log(2)-0 for the constructed channel object"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "S_AB_exact": "0",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "-log(2)",
+              "S_A_given_B_nats": -0.6931471805599453,
+              "S_B_exact": "log(2)",
+              "constructed_from": "channel-updated bipartite Bell boundary",
+              "mutual_information_exact": "2*log(2)",
+              "mutual_information_nats": 1.3862943611198906,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "update map exists and transforms the factored carrier into the Bell boundary"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "orbit::x_minus::0",
+                "orbit::x_minus::1",
+                "orbit::x_minus::2",
+                "orbit::x_minus::3",
+                "orbit::x_plus::0",
+                "orbit::x_plus::1"
+              ],
+              "state_step": "deep_terrain_basin",
+              "support_size": 24
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(24)",
+              "log_base": "e",
+              "nats": 3.1780538303479458,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 24"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "record": {
+              "convention": "z4_syndrome_record_v0_preimage_table",
+              "deep_lens_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "second Z2 lens",
+                "row_sha256": "7758b1d0a29340057de445a524759d33f9b7151c98b5ed71c75d1eb088bb0497"
+              },
+              "positive_regime": {
+                "computed_defect_nats": 0.0,
+                "defect_log2_coefficient": 0,
+                "different_code_paths": true,
+                "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+                "record_code_path_id": "distribution_counts_to_shannon_entropy",
+                "record_log2_coefficient": 2,
+                "record_retained_nats": 1.3862943611198906,
+                "regime": "full_record",
+                "row_hash": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415",
+                "state_loss_log2_coefficient": 2,
+                "state_loss_without_record_nats": 1.3862943611198906,
+                "typed_entropy_label": "finite_counting_entropy_nats"
+              },
+              "preimage_table": {
+                "orbit::x_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::x_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_0",
+                    "representative_spinor": "1*(0,1)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_1",
+                    "representative_spinor": "i*(0,1)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_2",
+                    "representative_spinor": "-1*(0,1)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_3",
+                    "representative_spinor": "-i*(0,1)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_0",
+                    "representative_spinor": "1*(1,0)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_1",
+                    "representative_spinor": "i*(1,0)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_2",
+                    "representative_spinor": "-1*(1,0)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_3",
+                    "representative_spinor": "-i*(1,0)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ]
+              },
+              "source_lock": {
+                "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+                "role": "Z4 syndrome preimage table",
+                "row_sha256": "c3657b58e63500c828a132f8dea12964cec6da9ecc39ef01cd7c70f3ef1edea2"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "computed_defect_exact": "0",
+              "computed_defect_nats": 0.0,
+              "constructed_from": "z4_syndrome_record_v0_preimage_table_on_live_lens_state",
+              "record_retained_exact": "log(4)",
+              "record_retained_nats": 1.3862943611198906,
+              "state_loss_without_record_exact": "log(4)",
+              "state_loss_without_record_nats": 1.3862943611198906,
+              "typed_label": "finite_state_plus_record_entropy_nats"
+            },
+            "witness": "record table constructed from actual quotient preimages"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 6,
+        "lineage_tail": {
+          "constructed": "no_new_type_object",
+          "deep_step": 5,
+          "operation": "apply_deep_terrain_basin"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "application": "applied update channel descended_phase_window_to_bell_pair_channel",
+            "co_varies_with": "coherent_information",
+            "family": "channel_update_probe",
+            "status": "applied"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=24",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=computable",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "application": "record preimage groups=6",
+            "co_varies_with": "state_plus_record_conservation",
+            "family": "record_conditioned_reconstruction_probe",
+            "status": "applied"
+          }
+        },
+        "row_hash": "72325a571d6c48dc80ca8acb5f696d4643b981412c2086ed7ab4bf7bfdc0d7de",
+        "source_step": "ratchet_deep_chain_v0:per_step_ledger.rows[step=5]",
+        "state_hash": "9d4625e52b8fc22634a52e7fbdfc7505e2471bb6003bf31cf52be2b26da96285",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "deep_terrain_basin"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "constraint": "terrain_then_operator_order_restriction",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split",
+          "channel_update_map",
+          "record_syndrome_preimage_table"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "channel": {
+              "channel_id": "descended_phase_window_to_bell_pair_channel",
+              "is_cptp": true,
+              "kraus_rank": 1,
+              "maps_product_split_to_entangled_boundary": true,
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "descended phase-window update map",
+                "row_sha256": "dece00370147675577f91aad1763143fdc7b6c9fb7fe64ee2eafd0815499c769"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "lineage_update_map_channel_object",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "coherent_information_nats"
+            },
+            "witness": "I_c = S(B)-S(AB)=log(2)-0 for the constructed channel object"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "S_AB_exact": "0",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "-log(2)",
+              "S_A_given_B_nats": -0.6931471805599453,
+              "S_B_exact": "log(2)",
+              "constructed_from": "channel-updated bipartite Bell boundary",
+              "mutual_information_exact": "2*log(2)",
+              "mutual_information_nats": 1.3862943611198906,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "update map exists and transforms the factored carrier into the Bell boundary"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "orbit::x_minus::0",
+                "orbit::x_minus::1",
+                "orbit::x_minus::2",
+                "orbit::x_minus::3",
+                "orbit::x_plus::0",
+                "orbit::x_plus::1"
+              ],
+              "state_step": "deep_terrain_operator",
+              "support_size": 24
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(24)",
+              "log_base": "e",
+              "nats": 3.1780538303479458,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 24"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "record": {
+              "convention": "z4_syndrome_record_v0_preimage_table",
+              "deep_lens_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "second Z2 lens",
+                "row_sha256": "7758b1d0a29340057de445a524759d33f9b7151c98b5ed71c75d1eb088bb0497"
+              },
+              "positive_regime": {
+                "computed_defect_nats": 0.0,
+                "defect_log2_coefficient": 0,
+                "different_code_paths": true,
+                "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+                "record_code_path_id": "distribution_counts_to_shannon_entropy",
+                "record_log2_coefficient": 2,
+                "record_retained_nats": 1.3862943611198906,
+                "regime": "full_record",
+                "row_hash": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415",
+                "state_loss_log2_coefficient": 2,
+                "state_loss_without_record_nats": 1.3862943611198906,
+                "typed_entropy_label": "finite_counting_entropy_nats"
+              },
+              "preimage_table": {
+                "orbit::x_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::x_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_0",
+                    "representative_spinor": "1*(0,1)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_1",
+                    "representative_spinor": "i*(0,1)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_2",
+                    "representative_spinor": "-1*(0,1)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_3",
+                    "representative_spinor": "-i*(0,1)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_0",
+                    "representative_spinor": "1*(1,0)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_1",
+                    "representative_spinor": "i*(1,0)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_2",
+                    "representative_spinor": "-1*(1,0)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_3",
+                    "representative_spinor": "-i*(1,0)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ]
+              },
+              "source_lock": {
+                "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+                "role": "Z4 syndrome preimage table",
+                "row_sha256": "c3657b58e63500c828a132f8dea12964cec6da9ecc39ef01cd7c70f3ef1edea2"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "computed_defect_exact": "0",
+              "computed_defect_nats": 0.0,
+              "constructed_from": "z4_syndrome_record_v0_preimage_table_on_live_lens_state",
+              "record_retained_exact": "log(4)",
+              "record_retained_nats": 1.3862943611198906,
+              "state_loss_without_record_exact": "log(4)",
+              "state_loss_without_record_nats": 1.3862943611198906,
+              "typed_label": "finite_state_plus_record_entropy_nats"
+            },
+            "witness": "record table constructed from actual quotient preimages"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 7,
+        "lineage_tail": {
+          "constructed": "no_new_type_object",
+          "deep_step": 6,
+          "operation": "apply_deep_terrain_operator"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "application": "applied update channel descended_phase_window_to_bell_pair_channel",
+            "co_varies_with": "coherent_information",
+            "family": "channel_update_probe",
+            "status": "applied"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=24",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=computable",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "application": "record preimage groups=6",
+            "co_varies_with": "state_plus_record_conservation",
+            "family": "record_conditioned_reconstruction_probe",
+            "status": "applied"
+          }
+        },
+        "row_hash": "e2637ff3aa76bf4a779fbf538c0e6f8d6e0e1f2e25344bb8b21551b5b33d43f5",
+        "source_step": "ratchet_deep_chain_v0:per_step_ledger.rows[step=6]",
+        "state_hash": "c01c1e14e50c4ef18a78732ea83da9276cc911cc47ed5ed43435208f6b57b2f6",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "deep_terrain_operator"
+      },
+      {
+        "availability_source": "construction_attempt",
+        "available_types": [
+          "chart_uniform_differential_entropy",
+          "coherent_information",
+          "conditional_vn_and_mutual_information",
+          "counting_entropy",
+          "state_plus_record_conservation",
+          "von_neumann_entropy"
+        ],
+        "constraint": "repeat_committed_T_pi_over_6_Z4_Z2_terrain_filters",
+        "constructed_objects_after_step": [
+          "finite_support",
+          "chart_measure_layer",
+          "density_quotient_rho",
+          "bipartition_subsystem_split",
+          "channel_update_map",
+          "record_syndrome_preimage_table"
+        ],
+        "entropy_types": {
+          "chart_uniform_differential_entropy": {
+            "availability_source": "construction_attempt",
+            "chart": {
+              "band_limit_convention": "Band-limit convention: measure-zero fixed-eta conditioning is defined as the committed disintegration limit from positive eta-bands. Committed text pin: conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification. Naive ambient singleton conditioning remains zero-denominator and is not used.",
+              "chart_volume_exact": "log(4*pi**2)",
+              "chart_volume_nats": 3.675754132818691,
+              "object": "conditioned Hopf torus T_eta at eta=pi/6",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "leaf chart measure",
+                "row_sha256": "562154a9cec0807b5e00d21836f855161126af78f70b97cb726f903160b9d25f"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "chart_measure_object_on_this_state",
+              "exact": "log(4*pi**2)",
+              "log_base": "e",
+              "nats": 3.675754132818691,
+              "typed_label": "chart_uniform_differential_entropy_nats"
+            },
+            "witness": "chart object exists on live state lineage"
+          },
+          "coherent_information": {
+            "availability_source": "construction_attempt",
+            "channel": {
+              "channel_id": "descended_phase_window_to_bell_pair_channel",
+              "is_cptp": true,
+              "kraus_rank": 1,
+              "maps_product_split_to_entangled_boundary": true,
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "descended phase-window update map",
+                "row_sha256": "dece00370147675577f91aad1763143fdc7b6c9fb7fe64ee2eafd0815499c769"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "lineage_update_map_channel_object",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599453,
+              "typed_label": "coherent_information_nats"
+            },
+            "witness": "I_c = S(B)-S(AB)=log(2)-0 for the constructed channel object"
+          },
+          "conditional_vn_and_mutual_information": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "S_AB_exact": "0",
+              "S_A_exact": "log(2)",
+              "S_A_given_B_exact": "-log(2)",
+              "S_A_given_B_nats": -0.6931471805599453,
+              "S_B_exact": "log(2)",
+              "constructed_from": "channel-updated bipartite Bell boundary",
+              "mutual_information_exact": "2*log(2)",
+              "mutual_information_nats": 1.3862943611198906,
+              "typed_label": "conditional_vn_mutual_information_nats"
+            },
+            "witness": "update map exists and transforms the factored carrier into the Bell boundary"
+          },
+          "counting_entropy": {
+            "availability_source": "construction_attempt",
+            "status": "computable",
+            "status_code": 1,
+            "support_object": {
+              "sample": [
+                "orbit::x_minus::0",
+                "orbit::x_minus::1",
+                "orbit::x_minus::2",
+                "orbit::x_minus::3",
+                "orbit::x_plus::0",
+                "orbit::x_plus::1"
+              ],
+              "state_step": "deep_saturation",
+              "support_size": 24
+            },
+            "value": {
+              "constructed_from": "enumerate_live_state_support",
+              "exact": "log(24)",
+              "log_base": "e",
+              "nats": 3.1780538303479458,
+              "typed_label": "finite_counting_entropy_nats"
+            },
+            "witness": "finite support enumerated from state.support with size 24"
+          },
+          "state_plus_record_conservation": {
+            "availability_source": "construction_attempt",
+            "record": {
+              "convention": "z4_syndrome_record_v0_preimage_table",
+              "deep_lens_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "second Z2 lens",
+                "row_sha256": "7758b1d0a29340057de445a524759d33f9b7151c98b5ed71c75d1eb088bb0497"
+              },
+              "positive_regime": {
+                "computed_defect_nats": 0.0,
+                "defect_log2_coefficient": 0,
+                "different_code_paths": true,
+                "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+                "record_code_path_id": "distribution_counts_to_shannon_entropy",
+                "record_log2_coefficient": 2,
+                "record_retained_nats": 1.3862943611198906,
+                "regime": "full_record",
+                "row_hash": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415",
+                "state_loss_log2_coefficient": 2,
+                "state_loss_without_record_nats": 1.3862943611198906,
+                "typed_entropy_label": "finite_counting_entropy_nats"
+              },
+              "preimage_table": {
+                "orbit::x_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_minus",
+                    "orbit_index": 3,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_minus",
+                    "representative_id": "x_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::x_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "x_plus",
+                    "orbit_index": 2,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::x_plus",
+                    "representative_id": "x_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),1/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_minus",
+                    "orbit_index": 5,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_minus",
+                    "representative_id": "y_minus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),-i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::y_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_0",
+                    "representative_spinor": "1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_1",
+                    "representative_spinor": "i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_2",
+                    "representative_spinor": "-1*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "y_plus",
+                    "orbit_index": 4,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::y_plus",
+                    "representative_id": "y_plus::phase_3",
+                    "representative_spinor": "-i*(1/sqrt(2),i/sqrt(2))",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_minus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_0",
+                    "representative_spinor": "1*(0,1)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_1",
+                    "representative_spinor": "i*(0,1)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_2",
+                    "representative_spinor": "-1*(0,1)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(0,1)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_minus",
+                    "orbit_index": 1,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_minus",
+                    "representative_id": "z_minus::phase_3",
+                    "representative_spinor": "-i*(0,1)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ],
+                "orbit::z_plus": [
+                  {
+                    "alpha": "0",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_0",
+                    "representative_spinor": "1*(1,0)",
+                    "syndrome": 0,
+                    "syndrome_bits": "00"
+                  },
+                  {
+                    "alpha": "pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_1",
+                    "representative_spinor": "i*(1,0)",
+                    "syndrome": 1,
+                    "syndrome_bits": "01"
+                  },
+                  {
+                    "alpha": "pi",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-1",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_2",
+                    "representative_spinor": "-1*(1,0)",
+                    "syndrome": 2,
+                    "syndrome_bits": "10"
+                  },
+                  {
+                    "alpha": "3*pi/2",
+                    "canonical_spinor": "(1,0)",
+                    "generator": "alpha += pi/2",
+                    "global_phase": "-i",
+                    "orbit_id": "z_plus",
+                    "orbit_index": 0,
+                    "orbit_order": 4,
+                    "quotient_output": "orbit::z_plus",
+                    "representative_id": "z_plus::phase_3",
+                    "representative_spinor": "-i*(1,0)",
+                    "syndrome": 3,
+                    "syndrome_bits": "11"
+                  }
+                ]
+              },
+              "source_lock": {
+                "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+                "role": "Z4 syndrome preimage table",
+                "row_sha256": "c3657b58e63500c828a132f8dea12964cec6da9ecc39ef01cd7c70f3ef1edea2"
+              }
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "computed_defect_exact": "0",
+              "computed_defect_nats": 0.0,
+              "constructed_from": "z4_syndrome_record_v0_preimage_table_on_live_lens_state",
+              "record_retained_exact": "log(4)",
+              "record_retained_nats": 1.3862943611198906,
+              "state_loss_without_record_exact": "log(4)",
+              "state_loss_without_record_nats": 1.3862943611198906,
+              "typed_label": "finite_state_plus_record_entropy_nats"
+            },
+            "witness": "record table constructed from actual quotient preimages"
+          },
+          "von_neumann_entropy": {
+            "availability_source": "construction_attempt",
+            "rho": {
+              "construction": "partial_trace_density_quotient_applied_to_live_state_vector",
+              "quotient_order": 4,
+              "rho_diag": [
+                0.4999999999999999,
+                0.4999999999999999
+              ],
+              "rho_matrix": [
+                [
+                  0.4999999999999999,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.4999999999999999
+                ]
+              ],
+              "source": "state_lineage.quotient_map",
+              "source_lock": {
+                "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+                "role": "Z4 finite phase lens quotient",
+                "row_sha256": "5f535bf87a733ee00efe0088061773dee8d5a9ae39e1bad71b95439dc3c9c599"
+              },
+              "trace": 0.9999999999999998
+            },
+            "status": "computable",
+            "status_code": 1,
+            "value": {
+              "constructed_from": "quotient_map_partial_trace_from_live_state_vector",
+              "exact": "log(2)",
+              "log_base": "e",
+              "nats": 0.6931471805599454,
+              "typed_label": "von_neumann_entropy_nats"
+            },
+            "witness": "rho constructed by applying the live quotient map to the current state vector"
+          }
+        },
+        "index": 8,
+        "lineage_tail": {
+          "constructed": "fixed_point_no_new_type_object",
+          "deep_step": 7,
+          "operation": "apply_deep_saturation"
+        },
+        "operator_co_ratchet": {
+          "channel_update_probe": {
+            "application": "applied update channel descended_phase_window_to_bell_pair_channel",
+            "co_varies_with": "coherent_information",
+            "family": "channel_update_probe",
+            "status": "applied"
+          },
+          "chart_volume_probe": {
+            "application": "read chart entropy log(4*pi**2)",
+            "co_varies_with": "chart_uniform_differential_entropy",
+            "family": "chart_volume_probe",
+            "status": "applied"
+          },
+          "density_CPTP_probe": {
+            "application": "applied identity CPTP map to rho_diag=[0.4999999999999999, 0.4999999999999999]",
+            "co_varies_with": "von_neumann_entropy",
+            "family": "density_CPTP_probe",
+            "status": "applied"
+          },
+          "finite_support_counter": {
+            "application": "counted support_size=24",
+            "co_varies_with": "counting_entropy",
+            "family": "finite_support_counter",
+            "status": "applied"
+          },
+          "partial_trace_probe": {
+            "application": "constructed factorization status=computable",
+            "co_varies_with": "conditional_vn_and_mutual_information",
+            "family": "partial_trace_probe",
+            "status": "applied"
+          },
+          "record_conditioned_reconstruction_probe": {
+            "application": "record preimage groups=6",
+            "co_varies_with": "state_plus_record_conservation",
+            "family": "record_conditioned_reconstruction_probe",
+            "status": "applied"
+          }
+        },
+        "row_hash": "06235b5260d8d26ce399d6f34be8f11be7dc70cdb39485a27af44150922bbc9b",
+        "source_step": "ratchet_deep_chain_v0:per_step_ledger.rows[step=7]",
+        "state_hash": "787552a06277dde2446707f1da61f9c65b3cf618ae83a2b25d2660e7ac3eeabe",
+        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+        "step_id": "deep_saturation"
+      }
+    ],
+    "schema": "entropy_type_ratchet_v1.discovered_table.v1",
+    "table_hash": "d64d16b4ed503f1b75e3efbe9cd4da6ccc43d774fb1f407fc566adb937b44122",
+    "type_order": [
+      "counting_entropy",
+      "chart_uniform_differential_entropy",
+      "von_neumann_entropy",
+      "conditional_vn_and_mutual_information",
+      "coherent_information",
+      "state_plus_record_conservation"
+    ]
+  }
+}

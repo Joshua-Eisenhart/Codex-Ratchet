@@ -1,0 +1,301 @@
+{
+  "axis6_split": {
+    "high_pressure_keys": [
+      "operator_pair:Fi_Fe",
+      "operator_pair:Te_Fe",
+      "operator_pair:Ti_Fi",
+      "operator_pair:Ti_Te",
+      "terrain_operator:TerrainX_Fe",
+      "terrain_operator:TerrainX_Ti",
+      "terrain_operator:TerrainZ_Fi",
+      "terrain_operator:TerrainZ_Te"
+    ],
+    "low_pressure_keys": [
+      "operator_pair:Te_Fi",
+      "operator_pair:Ti_Fe",
+      "terrain_operator:TerrainX_Fi",
+      "terrain_operator:TerrainX_Te",
+      "terrain_operator:TerrainZ_Fe",
+      "terrain_operator:TerrainZ_Ti"
+    ],
+    "pressure_threshold": 1e-10,
+    "split_respects_commuting_controls": true,
+    "split_respects_noncommuting_controls": true
+  },
+  "carrier_realization": "JAX complex128 L/R Weyl spinor-derived 2x2 density matrices",
+  "claim_ceiling": "bounded finite-map receipt; not layer-complete; not bridge",
+  "downstream_blocks": [
+    "full layer completion",
+    "Axis0",
+    "flux",
+    "bridge",
+    "physics"
+  ],
+  "engine": "jax",
+  "f01_check": {
+    "density_count": 576,
+    "density_shape": [
+      2,
+      2
+    ],
+    "density_validity": {
+      "all_valid_density_matrices": true,
+      "max_hermitian_error": 9.613852592255004e-17,
+      "max_trace_error": 4.442683649140744e-16,
+      "min_eigenvalue": -1.9049647537701303e-16
+    },
+    "finite": true,
+    "sheet_count": 2,
+    "site_count_per_sheet": 288
+  },
+  "finite_map": {
+    "axis6_action_side": "left-action commutator pressure plus density-channel composition order gap",
+    "closure_type": "composition",
+    "codomain_or_output": "named noncommutation-pressure monotone vector and high/low Axis-6 pressure split",
+    "domain": "finite L/R Weyl spinor density matrices on 2 shell radii x 6 phi x 6 chi x 4 eta sites, plus finite operator and terrain-generator pairs",
+    "rho_evaluation": "mean over all L and R local density matrices"
+  },
+  "generated_at": "2026-06-04T05:52:26Z",
+  "monotone_vector": {
+    "operator_pair:Fi_Fe:commutator_pressure": 0.17158738261756334,
+    "operator_pair:Fi_Fe:order_gap": 0.07954510141002069,
+    "operator_pair:Te_Fe:commutator_pressure": 0.5004038488635004,
+    "operator_pair:Te_Fe:order_gap": 5.969120354082105e-17,
+    "operator_pair:Te_Fi:commutator_pressure": 0.0,
+    "operator_pair:Te_Fi:order_gap": 1.962816938876577e-17,
+    "operator_pair:Ti_Fe:commutator_pressure": 0.0,
+    "operator_pair:Ti_Fe:order_gap": 0.0,
+    "operator_pair:Ti_Fi:commutator_pressure": 0.5004038488635004,
+    "operator_pair:Ti_Fi:order_gap": 0.0579947579719907,
+    "operator_pair:Ti_Te:commutator_pressure": 1.4593381409372588,
+    "operator_pair:Ti_Te:order_gap": 2.943923360032078e-17,
+    "terrain_operator:TerrainX_Fe:channel_order_gap": 5.969120354082105e-17,
+    "terrain_operator:TerrainX_Fe:commutator_pressure": 0.5004038488635004,
+    "terrain_operator:TerrainX_Fe:order_gap": 5.969120354082105e-17,
+    "terrain_operator:TerrainX_Fi:channel_order_gap": 1.962816938876577e-17,
+    "terrain_operator:TerrainX_Fi:commutator_pressure": 0.0,
+    "terrain_operator:TerrainX_Fi:order_gap": 1.962816938876577e-17,
+    "terrain_operator:TerrainX_Te:channel_order_gap": 0.0,
+    "terrain_operator:TerrainX_Te:commutator_pressure": 0.0,
+    "terrain_operator:TerrainX_Te:order_gap": 0.0,
+    "terrain_operator:TerrainX_Ti:channel_order_gap": 0.0,
+    "terrain_operator:TerrainX_Ti:commutator_pressure": 1.4593381409372588,
+    "terrain_operator:TerrainX_Ti:order_gap": 0.0,
+    "terrain_operator:TerrainZ_Fe:channel_order_gap": 0.0,
+    "terrain_operator:TerrainZ_Fe:commutator_pressure": 0.0,
+    "terrain_operator:TerrainZ_Fe:order_gap": 0.0,
+    "terrain_operator:TerrainZ_Fi:channel_order_gap": 0.0579947579719907,
+    "terrain_operator:TerrainZ_Fi:commutator_pressure": 0.5004038488635004,
+    "terrain_operator:TerrainZ_Fi:order_gap": 0.0579947579719907,
+    "terrain_operator:TerrainZ_Te:channel_order_gap": 0.0,
+    "terrain_operator:TerrainZ_Te:commutator_pressure": 1.4593381409372588,
+    "terrain_operator:TerrainZ_Te:order_gap": 0.0,
+    "terrain_operator:TerrainZ_Ti:channel_order_gap": 0.0,
+    "terrain_operator:TerrainZ_Ti:commutator_pressure": 0.0,
+    "terrain_operator:TerrainZ_Ti:order_gap": 0.0
+  },
+  "n01_check": {
+    "commuting_pairs_near_zero": {
+      "Te_Fi": 0.0,
+      "Ti_Fe": 0.0
+    },
+    "epsilon": 1e-10,
+    "expected_nonzero_keys_in_high_split": [
+      "operator_pair:Fi_Fe",
+      "operator_pair:Te_Fe",
+      "operator_pair:Ti_Fi",
+      "operator_pair:Ti_Te",
+      "terrain_operator:TerrainX_Fe",
+      "terrain_operator:TerrainX_Ti",
+      "terrain_operator:TerrainZ_Fi",
+      "terrain_operator:TerrainZ_Te"
+    ],
+    "expected_zero_keys_in_low_split": [
+      "operator_pair:Te_Fi",
+      "operator_pair:Ti_Fe",
+      "terrain_operator:TerrainX_Fi",
+      "terrain_operator:TerrainX_Te",
+      "terrain_operator:TerrainZ_Fe",
+      "terrain_operator:TerrainZ_Ti"
+    ],
+    "n01_pass": true,
+    "noncommuting_pairs_nonzero": {
+      "Te_Fe": 0.5004038488635004,
+      "Ti_Fi": 0.5004038488635004
+    }
+  },
+  "object_id": "ax6_noncommutation_pressure_jax",
+  "operator_basis": {
+    "Fe": "z-basis rotation exp(-i 0.7 Z/2)",
+    "Fi": "x-basis rotation exp(-i 0.7 X/2)",
+    "Te": "x-basis generator X",
+    "Ti": "z-basis generator Z"
+  },
+  "operator_pair_monotones": {
+    "Fi_Fe": {
+      "commutator_pressure": 0.17158738261756334,
+      "left_action_order_gap": 0.17158738261756334,
+      "lhs": "Fi",
+      "order_gap": 0.07954510141002069,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Fe"
+    },
+    "Te_Fe": {
+      "commutator_pressure": 0.5004038488635004,
+      "left_action_order_gap": 0.5004038488635004,
+      "lhs": "Te",
+      "order_gap": 5.969120354082105e-17,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Fe"
+    },
+    "Te_Fi": {
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "Te",
+      "order_gap": 1.962816938876577e-17,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Fi"
+    },
+    "Ti_Fe": {
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "Ti",
+      "order_gap": 0.0,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Fe"
+    },
+    "Ti_Fi": {
+      "commutator_pressure": 0.5004038488635004,
+      "left_action_order_gap": 0.5004038488635004,
+      "lhs": "Ti",
+      "order_gap": 0.0579947579719907,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Fi"
+    },
+    "Ti_Te": {
+      "commutator_pressure": 1.4593381409372588,
+      "left_action_order_gap": 1.4593381409372588,
+      "lhs": "Ti",
+      "order_gap": 2.943923360032078e-17,
+      "order_gap_definition": "density-channel composition ||A(B(rho))-B(A(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Te"
+    }
+  },
+  "peps3d_embedding": "finite local-cell anchor only: each shell/phi/chi/eta site is treated as a bounded PEPS3D-carried spinor-density cell; no downstream PEPS3D closure claim",
+  "per_site_axis6_split": {
+    "high_pressure_count": 156,
+    "low_pressure_count": 420,
+    "probe": "Ti_Fi commutator pressure over L/R local density cells",
+    "split_nontrivial": true,
+    "threshold": 0.6857956149109027
+  },
+  "promotion_allowed": false,
+  "root_constraints_in_force": [
+    "F01: finite carrier/probe/operator/path set",
+    "N01: noncommuting/order-sensitive operator control"
+  ],
+  "run_command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 /tmp/ax6_jax.py",
+  "source_path": "/tmp/ax6_jax.py",
+  "source_sha256": "2a0fff1e2ab92e16bcd19b04cf4ac399d69d1bf59ae1b1e0ba79ad732b9208dd",
+  "spinor_state": "psi_L/R(phi,chi,eta) = [exp(i(phi +/- chi)) cos(eta), exp(i(phi -/+ chi)) sin(eta)] normalized; rho = psi psi^dagger",
+  "terrain_channels": {
+    "TerrainX": "finite x-basis dephasing channel with generator X",
+    "TerrainZ": "finite z-basis dephasing channel with generator Z"
+  },
+  "terrain_operator_monotones": {
+    "TerrainX_Fe": {
+      "channel_order_gap": 5.969120354082105e-17,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 0.5004038488635004,
+      "left_action_order_gap": 0.5004038488635004,
+      "lhs": "TerrainX",
+      "order_gap": 5.969120354082105e-17,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Fe"
+    },
+    "TerrainX_Fi": {
+      "channel_order_gap": 1.962816938876577e-17,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "TerrainX",
+      "order_gap": 1.962816938876577e-17,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Fi"
+    },
+    "TerrainX_Te": {
+      "channel_order_gap": 0.0,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "TerrainX",
+      "order_gap": 0.0,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Te"
+    },
+    "TerrainX_Ti": {
+      "channel_order_gap": 0.0,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 1.4593381409372588,
+      "left_action_order_gap": 1.4593381409372588,
+      "lhs": "TerrainX",
+      "order_gap": 0.0,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Ti"
+    },
+    "TerrainZ_Fe": {
+      "channel_order_gap": 0.0,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "TerrainZ",
+      "order_gap": 0.0,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Fe"
+    },
+    "TerrainZ_Fi": {
+      "channel_order_gap": 0.0579947579719907,
+      "channel_pressure_class": "high",
+      "commutator_pressure": 0.5004038488635004,
+      "left_action_order_gap": 0.5004038488635004,
+      "lhs": "TerrainZ",
+      "order_gap": 0.0579947579719907,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Fi"
+    },
+    "TerrainZ_Te": {
+      "channel_order_gap": 0.0,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 1.4593381409372588,
+      "left_action_order_gap": 1.4593381409372588,
+      "lhs": "TerrainZ",
+      "order_gap": 0.0,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "high",
+      "rhs": "Te"
+    },
+    "TerrainZ_Ti": {
+      "channel_order_gap": 0.0,
+      "channel_pressure_class": "low",
+      "commutator_pressure": 0.0,
+      "left_action_order_gap": 0.0,
+      "lhs": "TerrainZ",
+      "order_gap": 0.0,
+      "order_gap_definition": "terrain channel versus operator channel composition ||T(O(rho))-O(T(rho))||_F",
+      "pressure_class": "low",
+      "rhs": "Ti"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load_bearing independent SAT/UNSAT proof over torch-derived coefficients",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load_bearing exact Rational/log(2) typed entropy row",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load_bearing vmap finite coefficient construction before solver binding",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load_bearing SAT/UNSAT proof over torch-derived coefficients",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "computed": {
+    "eta_C": {
+      "den": 2,
+      "num": 1,
+      "string": "1/2"
+    },
+    "landauer_min_erasure_cost": {
+      "exact": "ln(2)",
+      "ln2_coeff": {
+        "den": 1,
+        "num": 1,
+        "string": "1/1"
+      },
+      "unit": "nats"
+    },
+    "sympy_log2": "log(2)",
+    "szilard_single_bit_work": {
+      "exact": "ln(2)",
+      "ln2_coeff": {
+        "den": 1,
+        "num": 1,
+        "string": "1/1"
+      },
+      "unit": "nats"
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T23:58:51Z",
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "sympy": "1.14.0",
+    "torch": "2.11.0",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "proofs": {
+    "controls": {
+      "broken_fence_drop_carnot_constraint_super_carnot": {
+        "cvc5": "sat",
+        "expected": "sat",
+        "z3": "sat"
+      },
+      "shuffled_ledger_order": {
+        "n01_order_gap": 1,
+        "normal_order": [
+          "measure",
+          "feedback",
+          "erase"
+        ],
+        "normal_verdict": "sat",
+        "shuffled_order": [
+          "feedback",
+          "measure",
+          "erase"
+        ],
+        "shuffled_verdict": "unsat"
+      }
+    },
+    "details": {
+      "below_landauer_half_paid": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "carnot_equality_boundary": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "paid_erasure_one_bit": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "single_bath_positive_work": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "sub_carnot_eta_1_4": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "super_carnot_eta_3_4": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "trivial_zero_work": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "unpaid_erasure_surplus": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      }
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_pytorch_results.json",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "carnot_szilard_landauer_fence_v0",
+  "source_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_pytorch.py",
+  "source_sha256": "a45449fb3242fe1ea5649befa3e496a2ce268fc6c1e4fcbf91accc4f4854afae",
+  "tool_calls": [
+    {
+      "boundary_case": "eta = eta_C row",
+      "demotion_condition": "demote if torch coefficients do not feed solver rows",
+      "gates": [
+        "all_pass",
+        "coefficient_binding"
+      ],
+      "input_object": "finite integer row coefficient tensor",
+      "negative/erased_control": "forbidden rows and broken-fence SAT flip",
+      "output_object": "row coefficients consumed by z3/cvc5",
+      "positive_case": "admitted classical rows",
+      "qualified_api/function": "torch.func.vmap",
+      "tool": "torch.func"
+    }
+  ],
+  "torch_coefficients": [
+    [
+      1,
+      4,
+      1,
+      2
+    ],
+    [
+      1,
+      2,
+      1,
+      2
+    ],
+    [
+      0,
+      1,
+      1,
+      2
+    ],
+    [
+      3,
+      4,
+      1,
+      2
+    ],
+    [
+      1,
+      2,
+      0,
+      1
+    ],
+    [
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1
+    ]
+  ],
+  "typed_entropy_violations": []
+}

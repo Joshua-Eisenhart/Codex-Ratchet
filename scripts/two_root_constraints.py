@@ -245,6 +245,25 @@ TWO_ROOT_TOOL_MICRO_RECEIPTS = {
     "cotengra": "cotengra_contraction_order_pressure_micro_probe_results.json",
     "opt_einsum": "opt_einsum_index_order_contraction_micro_probe_results.json",
     "networkx": "sim_networkx_ordered_graph_readout_review_unknown_micro_probe_results.json",
+    "jax": "three_spinor_associator_lifted_bracketing_probe_results.json",
+    "julia": "three_spinor_associator_lifted_bracketing_probe_results.json",
+}
+
+WAVE_A_TOOL_CAPABILITY_OBJECT_ID = "wave_a_cs_ai_no_install_micro_probes"
+WAVE_A_TOOL_CAPABILITY_RECEIPT = f"{WAVE_A_TOOL_CAPABILITY_OBJECT_ID}_results.json"
+
+AGGREGATE_TOOL_CAPABILITY_RECEIPTS = {
+    WAVE_A_TOOL_CAPABILITY_RECEIPT: frozenset(
+        {
+            "cvc5",
+            "gudhi",
+            "pytorch",
+            "rustworkx",
+            "toponetx",
+            "torch_geometric",
+            "xgi",
+        }
+    )
 }
 
 NONCLASSICAL_NAME_MARKERS = (
@@ -348,6 +367,44 @@ def capability_probe_stem(tool: str) -> str:
 
 def is_two_root_tool(tool: str) -> bool:
     return canonical_tool_name(tool) in TWO_ROOT_TOOL_ADMISSIBILITY
+
+
+def micro_receipt_names(tool: str, *, include_aggregate: bool = False) -> list[str]:
+    """Return primary plus aggregate tool-capability receipts for a tool.
+
+    Aggregate receipts are scratch diagnostics only; they can prove the named
+    tool/function capability exists, but they do not promote a lego or claim.
+    """
+
+    canonical = canonical_tool_name(tool)
+    names: list[str] = []
+    primary = TWO_ROOT_TOOL_MICRO_RECEIPTS.get(canonical)
+    if primary:
+        names.append(primary)
+    if include_aggregate:
+        for receipt_name, tools in AGGREGATE_TOOL_CAPABILITY_RECEIPTS.items():
+            if canonical in tools:
+                names.append(receipt_name)
+    return list(dict.fromkeys(names))
+
+
+def receipt_admits_tool(payload: dict[str, Any], tool: str) -> bool:
+    canonical = canonical_tool_name(tool)
+    if not result_all_pass(payload):
+        return False
+    if canonical in set(load_bearing_tools(payload)):
+        return True
+    object_id = str(payload.get("object_id") or payload.get("name") or "")
+    if (
+        object_id == WAVE_A_TOOL_CAPABILITY_OBJECT_ID
+        and payload.get("classification") == "scratch_diagnostic"
+        and payload.get("evidence_level") == "tool_capability"
+        and canonical in AGGREGATE_TOOL_CAPABILITY_RECEIPTS[
+            WAVE_A_TOOL_CAPABILITY_RECEIPT
+        ]
+    ):
+        return True
+    return False
 
 
 def is_classical_or_admin_tool(tool: str) -> bool:

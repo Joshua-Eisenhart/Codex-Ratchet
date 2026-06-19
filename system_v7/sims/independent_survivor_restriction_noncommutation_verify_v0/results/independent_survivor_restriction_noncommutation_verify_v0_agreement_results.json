@@ -1,0 +1,43 @@
+{
+  "sim_id": "independent_survivor_restriction_noncommutation_verify_v0",
+  "engines": [
+    "jax",
+    "pytorch",
+    "julia"
+  ],
+  "agreed_values": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0,
+    "delta_static_control_x_reactive": 3
+  },
+  "gnvw_index_agreed": {
+    "left_shift": -1,
+    "right_shift": 1,
+    "identity": 0
+  },
+  "mismatches": [],
+  "three_engine_agreement": true,
+  "per_leg_self_parity_ok": true,
+  "audit": {
+    "legs_exit0": true,
+    "restriction_noncommutation_real": true,
+    "static_control_extensional_commutes": true,
+    "static_control_x_reactive_noncommutes": true,
+    "amnesic_collapses_clean_isolator": true,
+    "gnvw_signs_flip": true,
+    "phi_square_fidelity": 1.0,
+    "phi_square_wrong_lex_control": 0.7777777777777778,
+    "phi_square_scrambled_phi_control": 0.2777777777777778,
+    "smt_flip_confirmed": true
+  },
+  "engine_consensus": {
+    "independent": true,
+    "note": "JAX (vmap indicator XOR), PyTorch (boolean tensor XOR + permutation-matrix winding), and Julia (native Set symdiff + modular winding) are three distinct code paths; Julia is a from-scratch reimplementation in another language. reads_peer_result=false on all three."
+  },
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

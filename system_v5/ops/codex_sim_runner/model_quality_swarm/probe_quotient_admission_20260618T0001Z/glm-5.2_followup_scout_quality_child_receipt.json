@@ -1,0 +1,95 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "glm-5.2_followup_scout",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "```json\n{\n  \"diagnosis\": \"The object is classified scratch_diagnostic with formal_admission_allowed=false, but the admission packet (basename probe_quotient_fingerprint_floor_v1_three_engine, tool_target=jax) is being routed through wizard_sim_admission's nonclassical admission path. That path requires a load-bearing nonclassical tool registered in two_root_constraints.py. Since this is a scratch diagnostic \u2014 not a nonclassical manifold/engine claim \u2014 no such tool exists or should exist. The validator is applying nonclassical gates to an object that is not eligible for formal admission, producing the two missing-tool findings. The runner reruns deterministically and three-engine passes because those checks are correct; the failure is purely an admission-routing/guard problem.\",\n  \"smallest_executable_fix\": \"Add an early-exit guard in wizard_sim_admission.py: before running nonclassical load-bearing tool checks, read the result JSON's classification and formal_admission_allowed fields. If classification == 'scratch_diagnostic' or formal_admission_allowed == false, short-circuit with a structured 'not_eligible_for_formal_admission' verdict (not a failure, not a pass) and skip the nonclassical_load_bearing_tool_missing_two_root_registry and nonclassical_suitable_load_bearing_tool_missing checks entirely. Do not add any tool to two_root_constraints.py. Do not change tool_target. Do not alter the result JSON.\",\n  \"files_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/codex_sim_runner.py --object system_v7/sims/probe_quotient_fingerprint_floor_v1 --rerun\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/wizard_sim_admission.py --result system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json --tool-target jax\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python -m pytest tests/ -k admission -q\"\n  ],\n  \"stop_condition\": \"Stop after the admission validator returns not_eligible_for_formal_admission for this object with zero nonclassical-tool findings. Do not promote, do not flip formal_admission_allowed to true, do not reclassify as nonclassical, and do not register any tool in two_root_constraints.py. This object remains scratch_diagnostic.\",\n  \"one_risk\": \"The guard could be written too broadly \u2014 short-circuiting all objects with tool_target=jax rather than specifically objects with formal_admission_allowed=false \u2014 which would silently suppress legitimate nonclassical admission failures for real JAX-based nonclassical claims. The guard must key on formal_admission_allowed/classification, not on tool_target.\"\n}\n```\n\nThe user wants a compact JSON response diagnosing an admission failure for a scratch diagnostic object. Let me reason through this.\n\nThe object is `probe_quotient_fingerprint_floor_v1`, classified as `scratch_diagnostic` with `promotion_allowed=false` and `formal_admission_allowed=false`. The admission validator `wizard_sim_admission.py` is failing with findings about missing nonclassical load-bearing tools when `tool_target` is `jax`.\n\nThe key issue: this is a scratch diagnostic, not a nonclassical manifold/engine claim. The admission validator is apparently trying to validate it as if it were a nonclassical claim requiring load-bearing tools in the two-root registry. The result says z3/cvc5/Z3 are supportive, not load-bearing.\n\nThe findings:\n- `nonclassical_load_bearing_tool_missing_two_root_registry` \u2014 the validator is looking for a nonclassical load-bearing tool in the two-root registry and not finding it\n- `nonclassical_suitable_load_bearing_tool_missing` \u2014 no suitable nonclassical load-bearing tool found\n\nThe actual problem: the admission packet is being submitted/validated against nonclassical admission gates, but this object is a scratch diagnostic that should not go through nonclassical admission at all. The `tool_target=jax` is triggering a nonclassical admission path that requires load-bearing tools registered in the two-root registry.\n\nThe fix: The admission packet basename/claim `probe_quotient_fingerprint_floor_v1_three_engine` with `tool_target=jax` is being routed through nonclassical admission validation. Since `formal_admission_allowed=false`, the admission validator should reject this early or the runner should not be submitting it for formal admission. The fix is likely in how `codex_sim_runner.py` or the admission packet construction routes the object \u2014 it should not attempt nonclassical formal admission for scratch diagnostics.\n\nAlternatively, the fix could be in `wizard_sim_admission.py` to short-circuit/early-exit for objects with `formal_admission_allowed=false` or `classification=scratch_diagnostic`, returning a \"not eligible for admission\" rather than running nonclassical tool checks.\n\nLet me think about the smallest executable fix. The runner under patch is `scripts/codex_sim_runner.py`. The admission validator is `scripts/wizard_sim_admission.py`. \n\nThe most likely fix: In `wizard_sim_admission.py`, add an early-exit guard that checks the result's `formal_admission_allowed` field (or `classification`) before running nonclassical load-bearing tool checks. If `formal_admission_allowed=false`, return a non-admission result without checking for nonclassical tools.\n\nOr in `codex_sim_runner.py`, don't invoke `wizard_sim_admission` with nonclassical admission mode for scratch diagnostics.\n\nLet me produce the JSON.",
+  "content_sha256": "4e4b791f01b4131537c327b1054fdc8386308b407f6f52cedeb69395467930a6",
+  "created_at": "2026-06-18T07:10:15.585889+00:00",
+  "duration_ms": 24130,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": "OPENROUTER_API_KEY",
+  "evidence_role": "scout",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "content+reasoning+reasoning_details",
+    "extraction_status": "usable_content",
+    "finish_reason": "stop",
+    "native_finish_reason": "stop",
+    "output_text": "```json\n{\n  \"diagnosis\": \"The object is classified scratch_diagnostic with formal_admission_allowed=false, but the admission packet (basename probe_quotient_fingerprint_floor_v1_three_engine, tool_target=jax) is being routed through wizard_sim_admission's nonclassical admission path. That path requires a load-bearing nonclassical tool registered in two_root_constraints.py. Since this is a scratch diagnostic \u2014 not a nonclassical manifold/engine claim \u2014 no such tool exists or should exist. The validator is applying nonclassical gates to an object that is not eligible for formal admission, producing the two missing-tool findings. The runner reruns deterministically and three-engine passes because those checks are correct; the failure is purely an admission-routing/guard problem.\",\n  \"smallest_executable_fix\": \"Add an early-exit guard in wizard_sim_admission.py: before running nonclassical load-bearing tool checks, read the result JSON's classification and formal_admission_allowed fields. If classification == 'scratch_diagnostic' or formal_admission_allowed == false, short-circuit with a structured 'not_eligible_for_formal_admission' verdict (not a failure, not a pass) and skip the nonclassical_load_bearing_tool_missing_two_root_registry and nonclassical_suitable_load_bearing_tool_missing checks entirely. Do not add any tool to two_root_constraints.py. Do not change tool_target. Do not alter the result JSON.\",\n  \"files_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/codex_sim_runner.py --object system_v7/sims/probe_quotient_fingerprint_floor_v1 --rerun\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/wizard_sim_admission.py --result system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json --tool-target jax\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python -m pytest tests/ -k admission -q\"\n  ],\n  \"stop_condition\": \"Stop after the admission validator returns not_eligible_for_formal_admission for this object with zero nonclassical-tool findings. Do not promote, do not flip formal_admission_allowed to true, do not reclassify as nonclassical, and do not register any tool in two_root_constraints.py. This object remains scratch_diagnostic.\",\n  \"one_risk\": \"The guard could be written too broadly \u2014 short-circuiting all objects with tool_target=jax rather than specifically objects with formal_admission_allowed=false \u2014 which would silently suppress legitimate nonclassical admission failures for real JAX-based nonclassical claims. The guard must key on formal_admission_allowed/classification, not on tool_target.\"\n}\n```\n\nThe user wants a compact JSON response diagnosing an admission failure for a scratch diagnostic object. Let me reason through this.\n\nThe object is `probe_quotient_fingerprint_floor_v1`, classified as `scratch_diagnostic` with `promotion_allowed=false` and `formal_admission_allowed=false`. The admission validator `wizard_sim_admission.py` is failing with findings about missing nonclassical load-bearing tools when `tool_target` is `jax`.\n\nThe key issue: this is a scratch diagnostic, not a nonclassical manifold/engine claim. The admission validator is apparently trying to validate it as if it were a nonclassical claim requiring load-bearing tools in the two-root registry. The result says z3/cvc5/Z3 are supportive, not load-bearing.\n\nThe findings:\n- `nonclassical_load_bearing_tool_missing_two_root_registry` \u2014 the validator is looking for a nonclassical load-bearing tool in the two-root registry and not finding it\n- `nonclassical_suitable_load_bearing_tool_missing` \u2014 no suitable nonclassical load-bearing tool found\n\nThe actual problem: the admission packet is being submitted/validated against nonclassical admission gates, but this object is a scratch diagnostic that should not go through nonclassical admission at all. The `tool_target=jax` is triggering a nonclassical admission path that requires load-bearing tools registered in the two-root registry.\n\nThe fix: The admission packet basename/claim `probe_quotient_fingerprint_floor_v1_three_engine` with `tool_target=jax` is being routed through nonclassical admission validation. Since `formal_admission_allowed=false`, the admission validator should reject this early or the runner should not be submitting it for formal admission. The fix is likely in how `codex_sim_runner.py` or the admission packet construction routes the object \u2014 it should not attempt nonclassical formal admission for scratch diagnostics.\n\nAlternatively, the fix could be in `wizard_sim_admission.py` to short-circuit/early-exit for objects with `formal_admission_allowed=false` or `classification=scratch_diagnostic`, returning a \"not eligible for admission\" rather than running nonclassical tool checks.\n\nLet me think about the smallest executable fix. The runner under patch is `scripts/codex_sim_runner.py`. The admission validator is `scripts/wizard_sim_admission.py`. \n\nThe most likely fix: In `wizard_sim_admission.py`, add an early-exit guard that checks the result's `formal_admission_allowed` field (or `classification`) before running nonclassical load-bearing tool checks. If `formal_admission_allowed=false`, return a non-admission result without checking for nonclassical tools.\n\nOr in `codex_sim_runner.py`, don't invoke `wizard_sim_admission` with nonclassical admission mode for scratch diagnostics.\n\nLet me produce the JSON.",
+    "reasoning_present": true
+  },
+  "formal_admission_allowed": false,
+  "http_status": 200,
+  "launch_surface": "direct_openrouter_api",
+  "model": "z-ai/glm-5.2",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "openrouter",
+  "raw_response_excerpt": "{\"choices\": [{\"finish_reason\": \"stop\", \"index\": 0, \"logprobs\": null, \"message\": {\"content\": \"```json\\n{\\n  \\\"diagnosis\\\": \\\"The object is classified scratch_diagnostic with formal_admission_allowed=false, but the admission packet (basename probe_quotient_fingerprint_floor_v1_three_engine, tool_target=jax) is being routed through wizard_sim_admission's nonclassical admission path. That path requires a load-bearing nonclassical tool registered in two_root_constraints.py. Since this is a scratch diagnostic \\u2014 not a nonclassical manifold/engine claim \\u2014 no such tool exists or should exist. The validator is applying nonclassical gates to an object that is not eligible for formal admission, producing the two missing-tool findings. The runner reruns deterministically and three-engine passes because those checks are correct; the failure is purely an admission-routing/guard problem.\\\",\\n  \\\"smallest_executable_fix\\\": \\\"Add an early-exit guard in wizard_sim_admission.py: before running nonclassical load-bearing tool checks, read the result JSON's classification and formal_admission_allowed fields. If classification == 'scratch_diagnostic' or formal_admission_allowed == false, short-circuit with a structured 'not_eligible_for_formal_admission' verdict (not a failure, not a pass) and skip the nonclassical_load_bearing_tool_missing_two_root_registry and nonclassical_suitable_load_bearing_tool_missing checks entirely. Do not add any tool to two_root_constraints.py. Do not change tool_target. Do not alter the result JSON.\\\",\\n  \\\"files_to_touch\\\": [\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\\\"\\n  ],\\n  \\\"files_not_to_touch\\\": [\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\\\",\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\\\",\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\\\",\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/sys",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "followup_scout",
+  "runtime": "top-chinese-models",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 20,
+      "evidence_specificity": 20,
+      "extraction_health": 15,
+      "gate_alignment": 9,
+      "novel_failure_detection": 9,
+      "overclaim_resistance": 4
+    },
+    "penalties": [],
+    "total": 77,
+    "word_count": 720
+  },
+  "status": "completed",
+  "usage": {
+    "completion_tokens": 1353,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 585
+    },
+    "cost": 0.0066,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0059532,
+      "upstream_inference_cost": 0.0066,
+      "upstream_inference_prompt_cost": 0.0006468
+    },
+    "is_byok": false,
+    "prompt_tokens": 462,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 1815
+  }
+}

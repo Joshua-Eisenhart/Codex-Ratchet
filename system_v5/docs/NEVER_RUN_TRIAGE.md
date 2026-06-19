@@ -21,6 +21,7 @@ Named cohort rules:
 - `fep`: require a concrete observable and killed/open/survived status.
 - `igt`: require a finite game/payoff observable plus an explicit bridge/no-promotion boundary.
 - `gerbestack`: require topology/coexistence evidence before bridge claims.
+- `torch`: require a PyTorch role audit before queueing; legacy or helper-only torch rows stay blocked from nonclassical promotion unless removal changes the relevant observable.
 - `gerbe`: require topology evidence and no axis promotion language.
 - `integration`: require exact source receipts for each integrated component.
 - `leviathan`: require local runner contract and result target.

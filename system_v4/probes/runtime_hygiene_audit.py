@@ -80,9 +80,38 @@ def is_within(path: Path, root: Path) -> bool:
         return False
 
 
+def expand_make_value(value: str, variables: dict[str, str]) -> str:
+    def replace(match: re.Match[str]) -> str:
+        key = match.group(1)
+        return variables.get(key, match.group(0))
+
+    expanded = value
+    for _ in range(8):
+        next_value = re.sub(r"\$\(([A-Za-z_][A-Za-z0-9_]*)\)", replace, expanded)
+        if next_value == expanded:
+            break
+        expanded = next_value
+    return expanded
+
+
+def parse_make_vars(text: str) -> dict[str, str]:
+    variables: dict[str, str] = {}
+    pattern = re.compile(
+        r"^([A-Za-z_][A-Za-z0-9_]*)\s*(?P<op>:=|\?=|=)\s*(.+)$",
+        flags=re.MULTILINE,
+    )
+    for match in pattern.finditer(text):
+        name = match.group(1)
+        op = match.group("op")
+        value = match.group(3).strip()
+        if op == "?=" and name in variables:
+            continue
+        variables[name] = value
+    return {name: expand_make_value(value, variables) for name, value in variables.items()}
+
+
 def parse_make_var(text: str, name: str) -> str | None:
-    match = re.search(rf"^{re.escape(name)}\s*:=\s*(.+)$", text, flags=re.MULTILINE)
-    return match.group(1).strip() if match else None
+    return parse_make_vars(text).get(name)
 
 
 def parse_python_bin_from_bot(text: str) -> str | None:
@@ -269,7 +298,17 @@ def main() -> int:
                 "expected": str(make_python_path),
             })
 
-    if bot_python and make_python and Path(bot_python).expanduser() != Path(make_python).expanduser():
+    if bot_python and make_python:
+        bot_path = Path(bot_python).expanduser()
+        make_path = Path(make_python).expanduser()
+        if bot_path.exists() and make_path.exists():
+            paths_match = bot_path.resolve() == make_path.resolve()
+        else:
+            paths_match = bot_path == make_path
+    else:
+        paths_match = True
+
+    if not paths_match:
         blockers.append({
             "kind": "bot_makefile_python_mismatch",
             "bot_python": bot_python,

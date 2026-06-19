@@ -117,14 +117,14 @@ def compact_active_children(route: str, args: argparse.Namespace) -> list[str]:
     formal_children = FORMAL_CHILDREN.get(route, [])
     if not formal_children:
         return []
-    requested_count = max(1, args.sonnet_count, args.opus_count, args.haiku_count)
+    requested_count = max(1, args.sonnet_count, args.haiku_count)
     return formal_children[: min(requested_count, len(formal_children))]
 
 
 def route_command(args: argparse.Namespace, route: str, root: Path, repair_children: list[str] | None = None) -> list[str]:
     script = Path(__file__).with_name("wizard_child_matrix.py")
     sonnet_count = args.sonnet_count
-    opus_count = args.opus_count
+    opus_count = 0
     haiku_count = args.haiku_count
     if getattr(args, "mode", "full") == "compact" and not repair_children:
         formal_count = len(FORMAL_CHILDREN.get(route, []))
@@ -495,7 +495,7 @@ def main() -> int:
     parser.add_argument("--repair-first-pass-unclean", action="store_true", help="Also repair accepted routes that were not first-pass clean. Off by default to avoid costly cosmetic repair storms.")
     parser.add_argument("--capacity-preflight", action=argparse.BooleanOptionalAction, default=True, help="Run tiny external model probes before expensive v4.2 fanout.")
     parser.add_argument("--capacity-preflight-only", action="store_true", help="Run only external capacity preflight, then exit before council waves.")
-    parser.add_argument("--capacity-preflight-models", default="sonnet,opus,haiku")
+    parser.add_argument("--capacity-preflight-models", default="sonnet,haiku")
     parser.add_argument("--capacity-preflight-timeout-sec", type=int, default=45)
     parser.add_argument("--capacity-preflight-budget", type=float, default=0.5, help="Budget for tiny external model probes; must cover Claude cached context setup.")
     parser.add_argument("--dry-run", action="store_true", help="Forward dry-run to child matrices for local topology rehearsal only; never counts as FULL.")
@@ -506,8 +506,7 @@ def main() -> int:
         args.resolved_compact_profile = resolve_compact_profile(args.compact_profile, args.task)
         if args.sonnet_count == 0:
             args.sonnet_count = 1
-        if args.opus_count == 0:
-            args.opus_count = 1
+        args.opus_count = 0
         args.haiku_count = 0 if args.haiku_count == 1 else args.haiku_count
         args.full_model_council = False
         args.parallel_model_groups = False if args.compact_route_mode == "sequential" else args.parallel_model_groups

@@ -1,0 +1,208 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive committed-anchor envelope parsing",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hash",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT binding of verdict-table counts",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "heavy_local_not_run": [
+      "A0.CP.3_entropy_gradient_sign",
+      "A0.CP.4_pauli_participation_feedback_polarity",
+      "A0.CP.5_flux_direction_annular_or_edge_current",
+      "A0.CP.6_flux_continuity_n3_n4_current_sign",
+      "A0.CP.7_lyapunov_descent_direction",
+      "A0.CP.8_hopfield_energy_gradient_sign",
+      "A0.CP.9_holonomy_spectrum_sign"
+    ],
+    "phase": "phase-1 light-symbolic alias pass",
+    "promotion_allowed": false
+  },
+  "build_gates": {
+    "anchor_result_read": true,
+    "cp10_hamming_nonzero": true,
+    "cp1_hamming_nonzero": true,
+    "cp2_hamming_nonzero": true,
+    "heavy_rows_open_queued": true,
+    "julia_z3_flip_control_sat": true,
+    "julia_z3_positive_unsat": true
+  },
+  "candidate_verdicts": [
+    {
+      "classification": "alias",
+      "id": "A0.CP.0_committed_signed_outgoing_gradient_flux",
+      "verdict": "alias-of-anchor"
+    },
+    {
+      "classification": "excluded",
+      "id": "A0.CP.1_unweighted_edge_gradient_count_balance",
+      "verdict": "excluded-by-Hamming-disagreement-from-committed-sign-vector"
+    },
+    {
+      "classification": "excluded",
+      "id": "A0.CP.2_incoming_vs_outgoing_gradient_current",
+      "verdict": "excluded-by-source-sink-imbalance"
+    },
+    {
+      "classification": "wrong_distinction",
+      "id": "A0.CP.10_transition_graph_in_out_degree_imbalance",
+      "verdict": "excluded-by-degree-teeth-wrong-distinction"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.3_entropy_gradient_sign",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.4_pauli_participation_feedback_polarity",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.5_flux_direction_annular_or_edge_current",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.6_flux_continuity_n3_n4_current_sign",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.7_lyapunov_descent_direction",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.8_hopfield_energy_gradient_sign",
+      "verdict": "co-survivor-open"
+    },
+    {
+      "classification": "open",
+      "id": "A0.CP.9_holonomy_spectrum_sign",
+      "verdict": "co-survivor-open"
+    }
+  ],
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "classification": "alias",
+      "id": "control.anchor_self",
+      "verdict": "alias-of-anchor"
+    },
+    {
+      "classification": "alias",
+      "id": "control.sign_flipped_monotone_reparameterized_anchor",
+      "verdict": "alias-of-anchor"
+    },
+    {
+      "classification": "wrong_distinction",
+      "id": "control.axis6_style_order_readout",
+      "verdict": "not-axis0-contender-by-distinction-boundary"
+    }
+  ],
+  "counts": {
+    "alias_pair_table_count": 6,
+    "co_survivor_open_count": 7,
+    "control_alias_count": 2,
+    "control_wrong_distinction_count": 1,
+    "cp10_hamming_disagreement_count": 25,
+    "cp1_hamming_disagreement_count": 11,
+    "cp2_hamming_disagreement_count": 25,
+    "heavy_queued_count": 7,
+    "light_symbolic_registered_count": 4,
+    "registered_candidate_count": 11,
+    "wrong_distinction_count": 1
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "alias_pair_table_count": 6,
+        "co_survivor_open_count": 7,
+        "control_alias_count": 2,
+        "control_wrong_distinction_count": 1,
+        "cp10_hamming_disagreement_count": 25,
+        "cp1_hamming_disagreement_count": 11,
+        "cp2_hamming_disagreement_count": 25,
+        "heavy_queued_count": 7,
+        "light_symbolic_registered_count": 4,
+        "registered_candidate_count": 11,
+        "wrong_distinction_count": 1
+      },
+      "claim": "computed verdict-table counts and light-row witnesses are fixed",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one bound verdict-table count differs from the computed value",
+      "negative/erased_control": "mutating CP.1 hamming disagreement to zero is SAT and would be caught",
+      "positive_case": "negating the computed table bindings is UNSAT",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine_role_note": "Julia independently reads the committed anchor envelope, recomputes CP.1/CP.2/CP.10 light vectors, and binds verdict-table counts in Z3.jl.",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:11:02Z",
+  "negative": {
+    "cp10_hamming_disagreement_count": 25,
+    "cp1_hamming_disagreement_count": 11,
+    "cp2_hamming_disagreement_count": 25
+  },
+  "package_observables": {
+    "Z3": "Z3.Solver/check binds recomputed verdict-table counts and SAT flip control"
+  },
+  "packages_used": [
+    "JSON",
+    "SHA",
+    "Dates",
+    "Z3"
+  ],
+  "positive": {
+    "anchor_state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4"
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/axis0_contender_sweep_v0/results/axis0_contender_sweep_v0_julia_results.json",
+  "role_id": "julia_mirror_exact_light_registry_sweep",
+  "schema": "axis0_contender_sweep_v0_julia_lane_v1",
+  "sim_id": "axis0_contender_sweep_v0",
+  "source_path": "system_v6/sims/axis0_contender_sweep_v0/axis0_contender_sweep_v0_julia.jl",
+  "source_sha256": "e508fd05bc52c53b231233d9cb8dc8384289e58e7406d1761c3606ede790e9af",
+  "tool_calls": [
+    {
+      "boundary_case": "SMT binds the table shape, not Axis-0 admission",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "recomputed verdict-table counts",
+      "negative/erased_control": "mutating CP.1 hamming disagreement to zero is SAT and would be caught",
+      "output_object": "UNSAT positive binding and SAT mutated flip",
+      "positive_case": "negating the computed table bindings is UNSAT",
+      "qualified_api": "Z3.Solver/check",
+      "tool": "Z3"
+    }
+  ]
+}

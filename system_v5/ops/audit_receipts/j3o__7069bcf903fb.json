@@ -1,0 +1,34 @@
+{
+  "rung": "j3o",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r3_j3o_jordan_jax.py",
+  "source_sha256": "7069bcf903fbcdca4eb61d90419af7165fe83d1a8815e43117c099d7a9c14f5b",
+  "source_mtime": 1780881678.6092815,
+  "source_mtime_iso": "2026-06-08T01:21:18.609282Z",
+  "prompt_sha256": "a84f5cf9a6028d339eb8b01fd1a2b4cafe62e887686d6c83c0ca52045df14dcb",
+  "audited_at": "2026-06-08T02:58:19.513824Z",
+  "authority": {
+    "model": "codex1 gpt-5.5 xhigh (fresh read-only; separate instance from codex2 builder)",
+    "verdict": "GENUINE",
+    "raw": "      \"octonion structure constants. It is not a full 72-component formal proof.\"\n            ),\n            \"z3\": z3_proof,\n            \"cvc5\": cvc5_proof,\n            \"agree\": agree,\n        },\n        \"crossover_verdict\": z3_verdict if agree else \"disagree\",\n        \"negative_control_flip\": negative,\n        \"TOOL_MANIFEST\": {\n            \"jax\": {\"tried\": True, \"used\": True, \"reason\": \"x64 finite J3(O) residual computation and exact entry extraction\"},\n            \"z3\": {\"tried\": True, \"used\": True, \"reason\": \"load-bearing SMT derivation over bound A/B entries and octonion structure constants\"},\n            \"cvc5\": {\"tried\": True, \"used\": True, \"reason\": \"independent load-bearing SMT derivation over the same structural expression\"},\n        },\n        \"TOOL_INTEGRATION_DEPTH\": {\"jax\": \"supportive\", \"jax.numpy\": \"supportive\", \"z3\": \"load_bearing\", \"cvc5\": \"load_bearing\"},\n        \"runtime\": {\"sys_executable\": sys.executable, \"jax_enable_x64\": bool(jax.config.jax_enable_x64)},\n        \"all_pass\": bool(\n            agree\n            and z3_verdict == cvc5_verdict == \"unsat\"\n            and control_z3_verdict == control_cvc5_verdict == \"sat\"\n            and negative[\"flipped\"]\n            and values[\"jordan_identity_residual_norm\"] <= TOL\n            and values[\"primitive_idempotent_square_residual\"] <= TOL\n            and values[\"formal_reality_trace_sum_squares\"] > TOL\n        ),\n    }\n    RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    RESULT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    print(\n        \"SCOUT_DONE \"\n        f\"rung={RUNG_ID} z3={z3_verdict} cvc5={cvc5_verdict} \"\n        f\"control_z3={control_z3_verdict} control_cvc5={control_cvc5_verdict} \"\n        f\"component={component} negative_flip={negative['flipped']}\"\n    )\n    print(f\"wrote: {RESULT_PATH}\")\n    return 0 if result[\"all_pass\"] else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n\ndeprecated: `[features].codex_hooks` is deprecated. Use `[features].hooks` instead.\nEnable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.\ncodex\nVERDICT=GENUINE; LINE=337; REASON=The SMT assertion uses `jordan_component` computed symbolically inside Z3 from bound A/B variables and octonion structure constants, with the SAT control produced by swapping the in-solver product expression rather than rebinding a precomputed residual.\ntokens used\n30,761\n"
+  },
+  "alt_views": {
+    "grok420": {
+      "model_id": "grok-4.20-0309-reasoning",
+      "response_id": "8489852d-d35a-9b3a-8f1e-a459a6c878dd",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=405; REASON=solver derives UNSAT for Jordan residual !=0 (from structure constants + bound entries) but SAT for raw-product residual !=0, yielding the control flip via in-solver arithmetic."
+    },
+    "grok43": {
+      "model_id": "grok-4.3",
+      "response_id": "0e340c63-401b-93aa-8ff7-65ba1ac75da0",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=312; REASON=Solver builds residual expr inside Z3/CVC5 from bound A/B vars + octonion structure terms (z3/cvc5_oct_mul_component etc.), then negates it; drop-Jordan merely swaps the product fn while keeping identical bound inputs.\n\n(The negative-control flip therefore occurs by in-solver derivation, not by re-testing a pre-computed scalar.)"
+    },
+    "gemini": {
+      "model_id": "gemini-3.1-pro-preview",
+      "response_id": "gy8masTxGcvMjrEPuK6FmAY",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=342; REASON=The script symbolically reconstructs the Jordan identity and matrix multiplication natively using SMT variables, forcing the solver to algebraically compute the residual from bound matrix entries to derive the UNSAT contradiction."
+    }
+  }
+}

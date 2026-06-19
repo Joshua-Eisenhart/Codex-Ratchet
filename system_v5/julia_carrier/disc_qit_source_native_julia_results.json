@@ -1,0 +1,572 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia LinearAlgebra": "load_bearing",
+    "Julia peer backend": "load_bearing",
+    "Julia stdlib": "supportive",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "numpy": null
+  },
+  "TOOL_MANIFEST": {
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing Float64/ComplexF64 mirror backend for finite carrier mutation discriminator",
+      "tried": true,
+      "used": true
+    },
+    "Julia peer backend": {
+      "reason": "load-bearing peer result compared against JAX shared scalars and booleans",
+      "tried": true,
+      "used": true
+    },
+    "Julia stdlib": {
+      "reason": "supportive JSON, hashing, timestamps, and path handling",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source-native schedule/operator witness mirrored by the Julia QIT taxonomy runner",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing owner carrier construction from spinor lift to finite density matrix",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded; this Julia mirror uses no NumPy compute path",
+      "tried": false,
+      "used": false
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite scratch discriminator verdict for the face/knot/shell readout vector",
+    "dual-backend JAX/Julia parity over shared finite witnesses",
+    "owner-carrier load-bearing only when erasing the carrier changes the result"
+  ],
+  "backend": "julia_float64",
+  "blocked_consumers": [
+    "QIT engine admission",
+    "physics",
+    "gravity",
+    "dark-sector",
+    "Axis0",
+    "M(C)",
+    "bridge",
+    "PEPS3D",
+    "formal admission",
+    "promotion"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling": {
+      "blocked_consumers": [
+        "QIT engine admission",
+        "physics",
+        "gravity",
+        "dark-sector",
+        "Axis0",
+        "M(C)",
+        "bridge",
+        "PEPS3D",
+        "formal admission",
+        "promotion"
+      ],
+      "claim_ceiling": "QIT source-native face/knot/shell carrier-readout discriminator only. classification=scratch_diagnostic; promotion=false; formal_admission=false. No QIT admission, no physics, no gravity, no dark-sector, no Axis0, no M(C), no bridge, no PEPS3D, and no final manifold closure.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "honest_discriminator": {
+      "pass": true,
+      "row_verdict": "REAL_CARRIER",
+      "rule": "REAL_CARRIER iff owner present, null absent, and carrier mutation kills the face/knot/shell readout vector"
+    }
+  },
+  "carrier": {
+    "hilbert_dimension": 8,
+    "minimum_qubits": 3,
+    "mutation": "same engine schedule on maximally mixed 3-qubit carrier",
+    "owner": "density-matrix lift of three local spinors with finite entangling phase edges",
+    "roles": [
+      "left Weyl sheet",
+      "right Weyl sheet",
+      "cut/shell memory spinor"
+    ]
+  },
+  "claim_ceiling": "QIT source-native face/knot/shell carrier-readout discriminator only. classification=scratch_diagnostic; promotion=false; formal_admission=false. No QIT admission, no physics, no gravity, no dark-sector, no Axis0, no M(C), no bridge, no PEPS3D, and no final manifold closure.",
+  "classification": "scratch_diagnostic",
+  "face_knot_shell_present": true,
+  "finite_witness": {
+    "carrier_erased": {
+      "face_entropy_growth": -0.01136119717134894,
+      "face_three_cell_abs": 0.0,
+      "knot_bounded_mass": 0.0,
+      "shell_sync_gradient": 0.0
+    },
+    "carrier_erased_vector_norm": 0.01136119717134894,
+    "erase_delta": 0.6957985825211701,
+    "operator_erased": {
+      "face_entropy_growth": 0.6863454496754617,
+      "face_three_cell_abs": 5.750391472020864e-9,
+      "knot_bounded_mass": 0.010945531883063464,
+      "shell_sync_gradient": 0.0001820156543324231
+    },
+    "owner": {
+      "face_entropy_growth": 0.6838442903795023,
+      "face_three_cell_abs": 2.2661295874655274e-7,
+      "knot_bounded_mass": 0.02869813253434339,
+      "shell_sync_gradient": 0.001189414433249452
+    },
+    "owner_vector_norm": 0.6844472302539457,
+    "phase_erased": {
+      "face_entropy_growth": 0.6799635069041834,
+      "face_three_cell_abs": 6.724677764779329e-10,
+      "knot_bounded_mass": 0.022036329394351295,
+      "shell_sync_gradient": 0.0007118943774788058
+    },
+    "readout_map": {
+      "face_entropy_growth": "entropy_growth",
+      "face_three_cell_abs": "three_cell_abs",
+      "knot_bounded_mass": "bounded_knot_mass",
+      "shell_sync_gradient": "sync_gradient_gravity"
+    },
+    "survival_ratio": 0.01659908415018887,
+    "two_qubit_floor": {
+      "face_entropy_growth": 0.6626958891126203,
+      "face_three_cell_abs": 0.0,
+      "knot_bounded_mass": 2.220446049250313e-16,
+      "shell_sync_gradient": 4.930380657631324e-32
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T05:31:30Z",
+  "graveyard_companions": {
+    "carrier_erased_control": {
+      "pass": true,
+      "presence": {
+        "face_present": false,
+        "knot_present": false,
+        "shell_present": false
+      },
+      "readouts": {
+        "face_entropy_growth": -0.01136119717134894,
+        "face_three_cell_abs": 0.0,
+        "knot_bounded_mass": 0.0,
+        "shell_sync_gradient": 0.0
+      },
+      "reason": "maximally mixed carrier keeps schedule but erases the owner spinor/density carrier"
+    },
+    "operator_erased_control": {
+      "delta_from_owner": 0.017956210068033624,
+      "pass": true,
+      "readouts": {
+        "face_entropy_growth": 0.6863454496754617,
+        "face_three_cell_abs": 5.750391472020864e-9,
+        "knot_bounded_mass": 0.010945531883063464,
+        "shell_sync_gradient": 0.0001820156543324231
+      },
+      "reason": "same owner carrier with source operator kicks erased changes the finite readout vector"
+    },
+    "phase_erased_control": {
+      "delta_from_owner": 0.007724514668377578,
+      "pass": true,
+      "readouts": {
+        "face_entropy_growth": 0.6799635069041834,
+        "face_three_cell_abs": 6.724677764779329e-10,
+        "knot_bounded_mass": 0.022036329394351295,
+        "shell_sync_gradient": 0.0007118943774788058
+      },
+      "reason": "same local spinor densities without entangling phase edges changes the finite readout vector"
+    },
+    "two_qubit_floor_control": {
+      "pass": true,
+      "readouts": {
+        "face_entropy_growth": 0.6626958891126203,
+        "face_three_cell_abs": 0.0,
+        "knot_bounded_mass": 2.220446049250313e-16,
+        "shell_sync_gradient": 4.930380657631324e-32
+      },
+      "reason": "two-qubit floor lacks the third face/shell memory region; tripartite face readout is zero"
+    }
+  },
+  "name": "disc_qit_source_native_face_knot_shell_discriminator",
+  "nearby_variants": {
+    "passed": 4,
+    "total": 4,
+    "variants": [
+      "phase_erased_control",
+      "two_qubit_floor_control",
+      "carrier_erased_control",
+      "operator_erased_control"
+    ]
+  },
+  "numpy_compute_used": false,
+  "object_id": "disc_qit_source_native_face_knot_shell_discriminator",
+  "parity": {
+    "boolean_mismatches": [],
+    "diffs": {
+      "carrier_erased.face_entropy_growth": 0.0,
+      "carrier_erased.face_three_cell_abs": 1.281370601525967e-15,
+      "carrier_erased.knot_bounded_mass": 0.0,
+      "carrier_erased.shell_sync_gradient": 0.0,
+      "carrier_erased_vector_norm": 0.0,
+      "density_lift_local0_rebuild_residual": 0.0,
+      "erase_delta": 8.881784197001252e-16,
+      "n_qubits": 0.0,
+      "operator_erase_delta": 1.9081958235744878e-16,
+      "operator_erased.face_entropy_growth": 5.551115123125783e-16,
+      "operator_erased.knot_bounded_mass": 0.0,
+      "operator_erased.shell_sync_gradient": 0.0,
+      "owner.face_entropy_growth": 7.771561172376096e-16,
+      "owner.face_three_cell_abs": 1.2813705844199794e-15,
+      "owner.knot_bounded_mass": 2.220446049250313e-16,
+      "owner.shell_sync_gradient": 1.5612511283791264e-17,
+      "owner_vector_norm": 8.881784197001252e-16,
+      "phase_erase_delta": 5.672545766444159e-16,
+      "phase_erased.face_entropy_growth": 2.220446049250313e-16,
+      "phase_erased.knot_bounded_mass": 1.1102230246251565e-16,
+      "phase_erased.shell_sync_gradient": 7.26415455565288e-18,
+      "survival_ratio": 2.42861286636753e-17,
+      "two_qubit_floor.face_entropy_growth": 6.661338147750939e-16,
+      "two_qubit_floor.knot_bounded_mass": 2.220446049250313e-16,
+      "two_qubit_floor.shell_sync_gradient": 4.930380657631324e-32,
+      "twoq_delta": 1.214306433183765e-15
+    },
+    "missing_from_peer": [],
+    "missing_from_self": [],
+    "parity_max_diff": 1.281370601525967e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_qit_source_native_results.json",
+    "within_1e_9": true,
+    "worst_key": "carrier_erased.face_three_cell_abs"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_qit_source_native_results.json",
+  "positive": {
+    "density_matrix_spinor_lift_witness": {
+      "local0_bloch": [
+        0.09177436589047831,
+        -0.05522071337566904,
+        0.8392718064243206
+      ],
+      "local0_rebuild_residual": 1.1857187100668868e-16,
+      "pass": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl"
+    },
+    "dual_backend_parity": {
+      "parity": {
+        "boolean_mismatches": [],
+        "diffs": {
+          "carrier_erased.face_entropy_growth": 0.0,
+          "carrier_erased.face_three_cell_abs": 1.281370601525967e-15,
+          "carrier_erased.knot_bounded_mass": 0.0,
+          "carrier_erased.shell_sync_gradient": 0.0,
+          "carrier_erased_vector_norm": 0.0,
+          "density_lift_local0_rebuild_residual": 0.0,
+          "erase_delta": 8.881784197001252e-16,
+          "n_qubits": 0.0,
+          "operator_erase_delta": 1.9081958235744878e-16,
+          "operator_erased.face_entropy_growth": 5.551115123125783e-16,
+          "operator_erased.knot_bounded_mass": 0.0,
+          "operator_erased.shell_sync_gradient": 0.0,
+          "owner.face_entropy_growth": 7.771561172376096e-16,
+          "owner.face_three_cell_abs": 1.2813705844199794e-15,
+          "owner.knot_bounded_mass": 2.220446049250313e-16,
+          "owner.shell_sync_gradient": 1.5612511283791264e-17,
+          "owner_vector_norm": 8.881784197001252e-16,
+          "phase_erase_delta": 5.672545766444159e-16,
+          "phase_erased.face_entropy_growth": 2.220446049250313e-16,
+          "phase_erased.knot_bounded_mass": 1.1102230246251565e-16,
+          "phase_erased.shell_sync_gradient": 7.26415455565288e-18,
+          "survival_ratio": 2.42861286636753e-17,
+          "two_qubit_floor.face_entropy_growth": 6.661338147750939e-16,
+          "two_qubit_floor.knot_bounded_mass": 2.220446049250313e-16,
+          "two_qubit_floor.shell_sync_gradient": 4.930380657631324e-32,
+          "twoq_delta": 1.214306433183765e-15
+        },
+        "missing_from_peer": [],
+        "missing_from_self": [],
+        "parity_max_diff": 1.281370601525967e-15,
+        "peer_available": true,
+        "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_qit_source_native_results.json",
+        "within_1e_9": true,
+        "worst_key": "carrier_erased.face_three_cell_abs"
+      },
+      "pass": true
+    },
+    "face_knot_shell_owner_present": {
+      "pass": true,
+      "presence": {
+        "face_present": true,
+        "knot_present": true,
+        "shell_present": true
+      },
+      "readouts": {
+        "face_entropy_growth": 0.6838442903795023,
+        "face_three_cell_abs": 2.2661295874655274e-7,
+        "knot_bounded_mass": 0.02869813253434339,
+        "shell_sync_gradient": 0.001189414433249452
+      },
+      "thresholds": {
+        "face_entropy_growth": 0.05,
+        "knot_bounded_mass": 0.01,
+        "shell_sync_gradient": 0.0001
+      }
+    },
+    "owner_carrier_load_bearing": {
+      "carrier_erased_vector_norm": 0.01136119717134894,
+      "erase_delta": 0.6957985825211701,
+      "owner_vector_norm": 0.6844472302539457,
+      "pass": true,
+      "survival_ratio": 0.01659908415018887
+    },
+    "source_native_canonical_qit_witness": {
+      "checked_slots": [
+        {
+          "engine_type": 0,
+          "loop_class": "outer",
+          "operator": "Ti",
+          "perception": "Se",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 0,
+          "token": "TiSe"
+        },
+        {
+          "engine_type": 0,
+          "loop_class": "outer",
+          "operator": "Fi",
+          "perception": "Ne",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 1,
+          "token": "FiNe"
+        },
+        {
+          "engine_type": 0,
+          "loop_class": "outer",
+          "operator": "Ti",
+          "perception": "Ni",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 2,
+          "token": "TiNi"
+        },
+        {
+          "engine_type": 0,
+          "loop_class": "outer",
+          "operator": "Fi",
+          "perception": "Si",
+          "precedence": "terrain_first",
+          "same": true,
+          "sign": -1,
+          "substage_idx": 3,
+          "token": "SiFi"
+        },
+        {
+          "engine_type": 1,
+          "loop_class": "outer",
+          "operator": "Fi",
+          "perception": "Se",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 0,
+          "token": "FiSe"
+        },
+        {
+          "engine_type": 1,
+          "loop_class": "outer",
+          "operator": "Fe",
+          "perception": "Si",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 1,
+          "token": "FeSi"
+        },
+        {
+          "engine_type": 1,
+          "loop_class": "outer",
+          "operator": "Ti",
+          "perception": "Ni",
+          "precedence": "terrain_first",
+          "same": true,
+          "sign": -1,
+          "substage_idx": 2,
+          "token": "NiTi"
+        },
+        {
+          "engine_type": 1,
+          "loop_class": "outer",
+          "operator": "Fe",
+          "perception": "Ne",
+          "precedence": "operator_first",
+          "same": true,
+          "sign": 1,
+          "substage_idx": 3,
+          "token": "FeNe"
+        }
+      ],
+      "pass": true,
+      "schedule_match": true,
+      "slot_match": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py"
+    },
+    "three_qubit_minimum": {
+      "n_qubits": 3,
+      "pass": true,
+      "two_qubit_three_cell_abs": 0.0
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_qit_source_native_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "claim_ceiling": "QIT source-native face/knot/shell carrier-readout discriminator only. classification=scratch_diagnostic; promotion=false; formal_admission=false. No QIT admission, no physics, no gravity, no dark-sector, no Axis0, no M(C), no bridge, no PEPS3D, and no final manifold closure.",
+    "face_knot_shell_present": true,
+    "row_verdict": "REAL_CARRIER",
+    "source_native": true,
+    "survives_mutation": false,
+    "three_qubit_min": true
+  },
+  "row_verdict": "REAL_CARRIER",
+  "schema": "SCRATCH_DIAGNOSTIC_RESULT_v1",
+  "shared_booleans": {
+    "all_transition_channels_numeric_cptp": true,
+    "carrier_erased_present": false,
+    "density_lift_witness_pass": true,
+    "erase_changes_result": true,
+    "face_knot_shell_present": true,
+    "jax_enable_x64": true,
+    "numpy_compute_used": false,
+    "operator_erase_changes_result": true,
+    "phase_erase_changes_result": true,
+    "source_native": true,
+    "source_spec_witness_pass": true,
+    "survives_mutation": false,
+    "three_qubit_min": true,
+    "torch_compute_used": false,
+    "twoq_null_present": false
+  },
+  "shared_scalars": {
+    "carrier_erased.face_entropy_growth": -0.01136119717134894,
+    "carrier_erased.face_three_cell_abs": 0.0,
+    "carrier_erased.knot_bounded_mass": 0.0,
+    "carrier_erased.shell_sync_gradient": 0.0,
+    "carrier_erased_vector_norm": 0.01136119717134894,
+    "density_lift_local0_rebuild_residual": 1.1857187100668868e-16,
+    "erase_delta": 0.6957985825211701,
+    "n_qubits": 3.0,
+    "operator_erase_delta": 0.017956210068033624,
+    "operator_erased.face_entropy_growth": 0.6863454496754617,
+    "operator_erased.knot_bounded_mass": 0.010945531883063464,
+    "operator_erased.shell_sync_gradient": 0.0001820156543324231,
+    "owner.face_entropy_growth": 0.6838442903795023,
+    "owner.face_three_cell_abs": 2.2661295874655274e-7,
+    "owner.knot_bounded_mass": 0.02869813253434339,
+    "owner.shell_sync_gradient": 0.001189414433249452,
+    "owner_vector_norm": 0.6844472302539457,
+    "phase_erase_delta": 0.007724514668377578,
+    "phase_erased.face_entropy_growth": 0.6799635069041834,
+    "phase_erased.knot_bounded_mass": 0.022036329394351295,
+    "phase_erased.shell_sync_gradient": 0.0007118943774788058,
+    "survival_ratio": 0.01659908415018887,
+    "two_qubit_floor.face_entropy_growth": 0.6626958891126203,
+    "two_qubit_floor.knot_bounded_mass": 2.220446049250313e-16,
+    "two_qubit_floor.shell_sync_gradient": 4.930380657631324e-32,
+    "twoq_delta": 0.0356686472100892
+  },
+  "sim_class": "carrier_readout_discriminator_probe",
+  "sim_execution_kind": "scratch",
+  "source_alignment_category": "qit_source_native_face_knot_shell_carrier_mutation_discriminator",
+  "source_math_lock": {
+    "canonical_qit_engine_specs": "schedule and operator-slot witnesses compare canonical specs to the engine runner",
+    "density_matrix_spinor_lift": "owner local spinors are lifted to density matrices and checked by Bloch reconstruction",
+    "finite_carrier": "(C^2)^3 density matrix, Hilbert dimension 8"
+  },
+  "source_native": true,
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_qit_source_native_julia.jl",
+  "source_refs": {
+    "canonical_qit_engine_specs": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83"
+    },
+    "density_matrix_spinor_lift_julia": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "sha256": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424"
+    },
+    "jax_density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+      "sha256": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a"
+    },
+    "qit_engine_3qubit_face_knot_taxonomy_julia": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/qit_engine_3qubit_face_knot_taxonomy_julia.jl",
+      "sha256": "0a6b605d419b3fb432a2d49593fa37a41cadca3b008956e7c86a076311932524"
+    },
+    "self": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_qit_source_native_julia.jl",
+      "sha256": "c603edb7507ec74aafed9b7782ce625810cae66553ea3e9c24a6bb72f4f5803a"
+    }
+  },
+  "stop_condition_fired": false,
+  "survives_mutation": false,
+  "three_qubit_min": true,
+  "tool_integration_depth": {
+    "Julia LinearAlgebra": "load_bearing",
+    "Julia peer backend": "load_bearing",
+    "Julia stdlib": "supportive",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "numpy": null
+  },
+  "tool_manifest": {
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing Float64/ComplexF64 mirror backend for finite carrier mutation discriminator",
+      "tried": true,
+      "used": true
+    },
+    "Julia peer backend": {
+      "reason": "load-bearing peer result compared against JAX shared scalars and booleans",
+      "tried": true,
+      "used": true
+    },
+    "Julia stdlib": {
+      "reason": "supportive JSON, hashing, timestamps, and path handling",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source-native schedule/operator witness mirrored by the Julia QIT taxonomy runner",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing owner carrier construction from spinor lift to finite density matrix",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded; this Julia mirror uses no NumPy compute path",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_compute_used": false,
+  "why_not_v4_probes": {
+    "reason": "key-list or toy-knot readouts do not discriminate carrier dependence; this row mutates the actual 3-qubit carrier and measures finite readout death/survival"
+  }
+}

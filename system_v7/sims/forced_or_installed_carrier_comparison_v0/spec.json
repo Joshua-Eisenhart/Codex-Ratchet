@@ -1,0 +1,83 @@
+{
+  "sim_id": "forced_or_installed_carrier_comparison_v0",
+  "object": "Finite probe-table carrier discriminator using a qubit density carrier with explicit readout constraints",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "carrier_type": "qubit_density_2x2_real_coordinates",
+  "carrier_definition": "rho=[[a, b+i*c], [b-i*c, 1-a]] with 0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+  "readout_definition": {
+    "Z": "Tr(sigma_z rho)=2a-1",
+    "X": "Tr(sigma_x rho)=2b",
+    "Y": "declared sigma_y-orientation readout=2c"
+  },
+  "first_carrier": {
+    "label": "C1",
+    "a": "1/2",
+    "b": "1/8",
+    "c": "1/10"
+  },
+  "fixtures": {
+    "installed_incomplete": {
+      "expected_verdict": "installed",
+      "probe_set": ["Z", "X"],
+      "measured": {
+        "Z": "0",
+        "X": "1/4"
+      },
+      "why": "The Z/X table pins a and b but leaves c free, so a second coordinate-distinct density carrier can reproduce the measured table."
+    },
+    "forced_complete": {
+      "expected_verdict": "forced",
+      "probe_set": ["Z", "X", "Y"],
+      "measured": {
+        "Z": "0",
+        "X": "1/4",
+        "Y": "1/5"
+      },
+      "why": "The complete Z/X/Y table pins a,b,c to C1, so no coordinate-distinct C2 can reproduce it."
+    },
+    "installed_incomplete_scrambled": {
+      "expected_verdict": "installed",
+      "probe_set": ["Z", "X"],
+      "measured": {
+        "Z": "0",
+        "X": "-1/4"
+      },
+      "why": "Same cardinality as installed_incomplete, different measured X value; the satisfying C2 must change."
+    },
+    "forced_complete_scrambled": {
+      "expected_verdict": "installed",
+      "probe_set": ["Z", "X", "Y"],
+      "measured": {
+        "Z": "0",
+        "X": "1/4",
+        "Y": "-1/5"
+      },
+      "why": "Same complete probe set but a different measured Y value; this refutes a value-independent forced verdict."
+    },
+    "invalid_measured_z": {
+      "expected_verdict": "forced",
+      "probe_set": ["Z"],
+      "measured": {
+        "Z": "2"
+      },
+      "why": "No valid density carrier has Z readout 2; reproduce ON is UNSAT while reproduce OFF admits a mismatch witness."
+    }
+  },
+  "non_isomorphism_predicate": "C2 is coordinate-distinct iff at least one of a,b,c differs from C1; no gauge quotient is applied in v0.",
+  "decision_rule": "solver status sat => installed because a valid coordinate-distinct C2 exists; solver status unsat => forced because no such C2 exists; unknown fails the build",
+  "claim_ceiling": "FORCED here = no second carrier with DIFFERENT (a,b,c) coordinates reproduces the table = COORDINATE-uniqueness vs the reference, NOT isomorphic/ontological uniqueness; no gauge quotient is applied in v0. For these fixtures only: installed means a second density carrier reproduces the measured incomplete probe table. No rho exclusion, no Hilbert exclusion, no Rung-0.5 collapse, no promotion.",
+  "surviving_alternatives": [
+    {
+      "reading": "Rung-0.5 Boolean lattice reading",
+      "status": "live",
+      "statement": "The Boolean lattice of P-invariant subsets may be admitted as the exclusion-composition surface after Q."
+    },
+    {
+      "reading": "Rung-0.5 dual reading",
+      "status": "live",
+      "statement": "The Boolean lattice of P-invariant subsets may remain only a derived or dual presentation of Q; counting and cardinality stay open."
+    }
+  ]
+}

@@ -81,7 +81,7 @@ Meaning:
 
 ### G9. Clifford exploratory packets needed probe-local cache setup under the main interpreter
 Grounding:
-- 2026-04-18 reruns of `sim_operator_geometry_compatibility.py` and `sim_compound_operator_geometry.py` exposed the same `clifford` / `numba` cache failure under `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`
+- Historical physical-target receipt: 2026-04-18 reruns of `sim_operator_geometry_compatibility.py` and `sim_compound_operator_geometry.py` exposed the same `clifford` / `numba` cache failure under `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`
 - both probes now set repo-local `MPLCONFIGDIR` / `NUMBA_CACHE_DIR` before importing `clifford`, and both reran cleanly with real `clifford` load-bearing restored
 
 Meaning:

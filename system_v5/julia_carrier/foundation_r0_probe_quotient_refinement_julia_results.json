@@ -1,0 +1,526 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Dates": {
+      "reason": "supportive timestamp",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive Hermitian norm and eigenvalue checks for density admissibility",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing qubit states, density operators, projectors, and Born-rule probe distributions",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "all_pass": true,
+  "claim_ceiling": "R0 scratch_diagnostic probe-relative quotient refinement only: finite support qubit states under M_Z versus M_ZX. Not M(C), not R1/R2, not formal, not canonical, not bridge, not axis evidence.",
+  "classification": "scratch_diagnostic",
+  "core_checks": {
+    "all_admissible_density_matrices": true,
+    "all_pass": true,
+    "strict_quotient_refinement": true,
+    "z_to_zx_class_count_increase": 1
+  },
+  "density_admissibility": {
+    "rho_minus": {
+      "finite_object": true,
+      "hermitian_residual_fro": 0.0,
+      "min_eigenvalue": 0.0,
+      "psd": true,
+      "shape": [
+        2,
+        2
+      ],
+      "state_id": "rho_minus",
+      "trace_imag_abs": 0.0,
+      "trace_one": true,
+      "trace_real": 0.9999999999999998
+    },
+    "rho_plus": {
+      "finite_object": true,
+      "hermitian_residual_fro": 0.0,
+      "min_eigenvalue": 0.0,
+      "psd": true,
+      "shape": [
+        2,
+        2
+      ],
+      "state_id": "rho_plus",
+      "trace_imag_abs": 0.0,
+      "trace_one": true,
+      "trace_real": 0.9999999999999998
+    },
+    "rho_z0": {
+      "finite_object": true,
+      "hermitian_residual_fro": 0.0,
+      "min_eigenvalue": 0.0,
+      "psd": true,
+      "shape": [
+        2,
+        2
+      ],
+      "state_id": "rho_z0",
+      "trace_imag_abs": 0.0,
+      "trace_one": true,
+      "trace_real": 1.0
+    },
+    "rho_z1": {
+      "finite_object": true,
+      "hermitian_residual_fro": 0.0,
+      "min_eigenvalue": 0.0,
+      "psd": true,
+      "shape": [
+        2,
+        2
+      ],
+      "state_id": "rho_z1",
+      "trace_imag_abs": 0.0,
+      "trace_one": true,
+      "trace_real": 1.0
+    }
+  },
+  "engine": "julia",
+  "executable": "/opt/homebrew/bin/julia --startup-file=no",
+  "finite_support": {
+    "S": [
+      "rho_z0",
+      "rho_z1",
+      "rho_plus",
+      "rho_minus"
+    ],
+    "dimension": 2,
+    "state_kind": "finite support qubit density matrices"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T23:50:15Z",
+  "julia_version": "1.12.6",
+  "negative_controls": {
+    "cross_engine_agreement_is_plumbing_not_proof": {
+      "note": "This standalone Julia lane does not read peer JSON; any later agreement is envelope plumbing, not proof promotion.",
+      "pass": true
+    },
+    "duplicate_Z_does_not_refine": {
+      "Z_class_count": 3,
+      "duplicate_Z_class_count": 3,
+      "pass": true
+    },
+    "empty_probe_collapses_identity": {
+      "class_count": 1,
+      "pass": true
+    },
+    "invalid_density_candidates_rejected": {
+      "candidates": {
+        "invalid_nonhermitian_trace_one": {
+          "accepted_as_density": false,
+          "finite_object": true,
+          "hermitian_residual_fro": 1.4142135623730951,
+          "min_eigenvalue": null,
+          "psd": false,
+          "trace_imag_abs": 0.0,
+          "trace_one": true,
+          "trace_real": 1.0
+        },
+        "invalid_psd_trace_one_diagonal": {
+          "accepted_as_density": false,
+          "finite_object": true,
+          "hermitian_residual_fro": 0.0,
+          "min_eigenvalue": -0.2,
+          "psd": false,
+          "trace_imag_abs": 0.0,
+          "trace_one": true,
+          "trace_real": 1.0
+        },
+        "invalid_trace_two_identity": {
+          "accepted_as_density": false,
+          "finite_object": true,
+          "hermitian_residual_fro": 0.0,
+          "min_eigenvalue": 1.0,
+          "psd": true,
+          "trace_imag_abs": 0.0,
+          "trace_one": false,
+          "trace_real": 2.0
+        }
+      },
+      "pass": true
+    },
+    "relabel_Z_does_not_refine": {
+      "Z_class_count": 3,
+      "pass": true,
+      "relabel_Z_class_count": 3
+    }
+  },
+  "object_id": "foundation_r0_probe_quotient_refinement_v1",
+  "package_observables": {
+    "LinearAlgebra": "supportive Hermitian residual and PSD eigenvalue checks",
+    "QuantumOptics": "constructed qubit kets, density operators, projectors, Born-rule distributions, and trace observables"
+  },
+  "packages": {
+    "control_only": [],
+    "load_bearing": [
+      "QuantumOptics"
+    ],
+    "missing_required": [],
+    "supportive": [
+      "LinearAlgebra",
+      "JSON",
+      "Dates"
+    ]
+  },
+  "probe_families": {
+    "M_Z": [
+      "Z"
+    ],
+    "M_ZX": [
+      "Z",
+      "X"
+    ],
+    "M_Z_duplicate": [
+      "Z",
+      "Z_duplicate"
+    ],
+    "M_Z_relabel": [
+      "Z",
+      "Z_relabel"
+    ],
+    "M_empty": []
+  },
+  "promotion_allowed": false,
+  "quotient": {
+    "M_Z": {
+      "class_count": 3,
+      "classes": [
+        {
+          "class_id": "M_Z_q0",
+          "members": [
+            "rho_z1"
+          ],
+          "signature": [
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_q1",
+          "members": [
+            "rho_minus",
+            "rho_plus"
+          ],
+          "signature": [
+            [
+              0.5,
+              0.5
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_q2",
+          "members": [
+            "rho_z0"
+          ],
+          "signature": [
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "name": "M_Z",
+      "partition_member_ids": [
+        "rho_minus",
+        "rho_plus",
+        "rho_z0",
+        "rho_z1"
+      ],
+      "probe_names": [
+        "Z"
+      ]
+    },
+    "M_ZX": {
+      "class_count": 4,
+      "classes": [
+        {
+          "class_id": "M_ZX_q0",
+          "members": [
+            "rho_z1"
+          ],
+          "signature": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ]
+        },
+        {
+          "class_id": "M_ZX_q1",
+          "members": [
+            "rho_minus"
+          ],
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "class_id": "M_ZX_q2",
+          "members": [
+            "rho_plus"
+          ],
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "class_id": "M_ZX_q3",
+          "members": [
+            "rho_z0"
+          ],
+          "signature": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ]
+        }
+      ],
+      "name": "M_ZX",
+      "partition_member_ids": [
+        "rho_minus",
+        "rho_plus",
+        "rho_z0",
+        "rho_z1"
+      ],
+      "probe_names": [
+        "Z",
+        "X"
+      ]
+    },
+    "duplicate_Z_control": {
+      "class_count": 3,
+      "classes": [
+        {
+          "class_id": "M_Z_duplicate_q0",
+          "members": [
+            "rho_z1"
+          ],
+          "signature": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_duplicate_q1",
+          "members": [
+            "rho_minus",
+            "rho_plus"
+          ],
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_duplicate_q2",
+          "members": [
+            "rho_z0"
+          ],
+          "signature": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "name": "M_Z_duplicate",
+      "partition_member_ids": [
+        "rho_minus",
+        "rho_plus",
+        "rho_z0",
+        "rho_z1"
+      ],
+      "probe_names": [
+        "Z",
+        "Z_duplicate"
+      ]
+    },
+    "empty_probe": {
+      "class_count": 1,
+      "classes": [
+        {
+          "class_id": "empty_probe_q0",
+          "members": [
+            "rho_minus",
+            "rho_plus",
+            "rho_z0",
+            "rho_z1"
+          ],
+          "signature": []
+        }
+      ],
+      "name": "empty_probe",
+      "partition_member_ids": [
+        "rho_minus",
+        "rho_plus",
+        "rho_z0",
+        "rho_z1"
+      ],
+      "probe_names": []
+    },
+    "relabel_Z_control": {
+      "class_count": 3,
+      "classes": [
+        {
+          "class_id": "M_Z_relabel_q0",
+          "members": [
+            "rho_z1"
+          ],
+          "signature": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_relabel_q1",
+          "members": [
+            "rho_minus",
+            "rho_plus"
+          ],
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ]
+        },
+        {
+          "class_id": "M_Z_relabel_q2",
+          "members": [
+            "rho_z0"
+          ],
+          "signature": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "name": "M_Z_relabel",
+      "partition_member_ids": [
+        "rho_minus",
+        "rho_plus",
+        "rho_z0",
+        "rho_z1"
+      ],
+      "probe_names": [
+        "Z",
+        "Z_relabel"
+      ]
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r0_probe_quotient_refinement_julia_results.json",
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "sim_id": "foundation_r0_probe_quotient_refinement_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r0_probe_quotient_refinement_julia.jl",
+  "witness_pair": {
+    "X_distributions": {
+      "rho_minus": [
+        0.0,
+        1.0
+      ],
+      "rho_plus": [
+        1.0,
+        0.0
+      ]
+    },
+    "Z_distributions": {
+      "rho_minus": [
+        0.5,
+        0.5
+      ],
+      "rho_plus": [
+        0.5,
+        0.5
+      ]
+    },
+    "distinct_under_X": true,
+    "pair": [
+      "rho_plus",
+      "rho_minus"
+    ],
+    "same_Z_class": true,
+    "same_under_Z": true,
+    "split_ZX_class": true
+  }
+}

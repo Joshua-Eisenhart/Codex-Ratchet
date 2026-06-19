@@ -1,0 +1,1171 @@
+{
+  "Adm_C": {
+    "admissible_ids": [
+      "L_core_XY",
+      "L_core_XY_phase_pi",
+      "R_core_XY",
+      "R_core_XY_phase_pi",
+      "L_eta2_YX"
+    ],
+    "excluded": {
+      "commutative_XX_control": [
+        "N01_NONCOMMUTATION"
+      ],
+      "composition_projection_missing_control": [
+        "composition_rules"
+      ],
+      "nonfinite_global_coordinate_control": [
+        "F01_FINITUDE"
+      ],
+      "unnormalized_spinor_control": [
+        "F01_FINITUDE",
+        "state_on_algebra_probe_rules"
+      ]
+    },
+    "predicate": "F01 and N01 and state_on_algebra_probe_rules and composition_rules"
+  },
+  "C": {
+    "F01": "finite support row, normalized finite state, finite result witness",
+    "N01": "nonzero order gap in the finite Pauli probe algebra",
+    "composition_rules": "owner carrier composition projection remains enabled",
+    "constraints": [
+      "F01_FINITUDE",
+      "N01_NONCOMMUTATION",
+      "state_on_algebra_probe_rules",
+      "composition_rules"
+    ],
+    "probe_rules": "state-on-algebra trace/positivity proxy via finite Bloch probes plus explicit sheet/eta/order labels"
+  },
+  "S": {
+    "candidate_ids": [
+      "L_core_XY",
+      "L_core_XY_phase_pi",
+      "R_core_XY",
+      "R_core_XY_phase_pi",
+      "L_eta2_YX",
+      "commutative_XX_control",
+      "composition_projection_missing_control",
+      "nonfinite_global_coordinate_control",
+      "unnormalized_spinor_control"
+    ],
+    "definition": "finite admissibility space loaded from the real mc_first_admissibility_packet owner carrier",
+    "size": 9
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization and peer-result parity loading",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing mirror recomputation of owner carrier density, F01, N01, quotient, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing state norms, traces, and finite Pauli order gaps",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror; recorded false for the no-NumPy dual-backend boundary",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "adm_depends_on_finitude": true,
+  "all_pass": true,
+  "allowed_claims": [
+    "finite-support/state-on-algebra base-layer discriminator only; promotion=false, formal_admission=false; no final M(C), manifold closure, Axis0, bridge, engine, or physics claim"
+  ],
+  "backend": "julia",
+  "boundary": {
+    "claim_ceiling": "finite-support/state-on-algebra base-layer discriminator only; promotion=false, formal_admission=false; no final M(C), manifold closure, Axis0, bridge, engine, or physics claim",
+    "classification_is_scratch_diagnostic": true,
+    "formal_admission_allowed_false": true,
+    "promotion_allowed_false": true
+  },
+  "bridge_layer": "none",
+  "carrier_layer": "finite support / state-on-algebra base layer over owner mc_first_admissibility_packet rows",
+  "claim_ceiling": "finite-support/state-on-algebra base-layer discriminator only; promotion=false, formal_admission=false; no final M(C), manifold closure, Axis0, bridge, engine, or physics claim",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erase_F01_support_to_continuous": {
+      "admissible_ids": [
+        "L_core_XY",
+        "L_core_XY_phase_pi",
+        "R_core_XY",
+        "R_core_XY_phase_pi",
+        "L_eta2_YX",
+        "nonfinite_global_coordinate_control"
+      ],
+      "changes_admissible_set": true
+    },
+    "erase_N01_commutative_probe_algebra": {
+      "admissible_ids": [
+        "L_core_XY",
+        "L_core_XY_phase_pi",
+        "R_core_XY",
+        "R_core_XY_phase_pi",
+        "L_eta2_YX",
+        "commutative_XX_control"
+      ],
+      "changes_admissible_set": true
+    },
+    "erase_owner_layer_structure": {
+      "changes_result": true,
+      "quotient": {
+        "class_count": 1,
+        "classes": [
+          {
+            "class_id": "q0",
+            "members": [
+              "L_core_XY",
+              "L_core_XY_phase_pi",
+              "L_eta2_YX",
+              "R_core_XY",
+              "R_core_XY_phase_pi"
+            ],
+            "signature": [
+              "finite_support"
+            ]
+          }
+        ],
+        "partition_member_ids": [
+          "L_core_XY",
+          "L_core_XY_phase_pi",
+          "L_eta2_YX",
+          "R_core_XY",
+          "R_core_XY_phase_pi"
+        ],
+        "probe_names": [
+          "support_kind"
+        ]
+      }
+    },
+    "trivial_probe_family": {
+      "collapses": true,
+      "quotient": {
+        "class_count": 1,
+        "classes": [
+          {
+            "class_id": "q0",
+            "members": [
+              "L_core_XY",
+              "L_core_XY_phase_pi",
+              "L_eta2_YX",
+              "R_core_XY",
+              "R_core_XY_phase_pi"
+            ],
+            "signature": []
+          }
+        ],
+        "partition_member_ids": [
+          "L_core_XY",
+          "L_core_XY_phase_pi",
+          "L_eta2_YX",
+          "R_core_XY",
+          "R_core_XY_phase_pi"
+        ],
+        "probe_names": []
+      }
+    }
+  },
+  "cut_layer": "none",
+  "erase_finitude_changes_adm": true,
+  "erase_n01_changes_adm": true,
+  "finite_carrier_rows": [
+    {
+      "Adm_C": true,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 2.0000000000000013,
+        "order_orientation": -6.052251055007114e-17,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 0,
+        "order_word": "XY",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "L",
+        "support_kind": "finite_support"
+      },
+      "id": "L_core_XY",
+      "role": "positive_phase_representative",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": true,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 2.0000000000000013,
+        "order_orientation": -6.052251055007114e-17,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 0,
+        "order_word": "XY",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "L",
+        "support_kind": "finite_support"
+      },
+      "id": "L_core_XY_phase_pi",
+      "role": "positive_density_equivalent_phase",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": true,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 2.0000000000000013,
+        "order_orientation": -6.052251055007114e-17,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 0,
+        "order_word": "XY",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "R",
+        "support_kind": "finite_support"
+      },
+      "id": "R_core_XY",
+      "role": "positive_other_sheet",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": true,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 2.0000000000000013,
+        "order_orientation": -6.052251055007114e-17,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 0,
+        "order_word": "XY",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "R",
+        "support_kind": "finite_support"
+      },
+      "id": "R_core_XY_phase_pi",
+      "role": "positive_other_sheet_density_equivalent_phase",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": true,
+      "checks": {
+        "bloch": [
+          0.866025403784,
+          0.0,
+          0.5
+        ],
+        "order_gap": 2.0000000000000004,
+        "order_orientation": -1.0000000000000013,
+        "spinor_norm": 1.0000000000000007,
+        "trace_rho": 1.0000000000000007
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 2,
+        "order_gap_bin": 1,
+        "order_orientation_sign": -1,
+        "order_word": "YX",
+        "rho_bloch": [
+          0.866025403784,
+          0.0,
+          0.5
+        ],
+        "sheet": "L",
+        "support_kind": "finite_support"
+      },
+      "id": "L_eta2_YX",
+      "role": "positive_order_orientation_variant",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": false,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 0.0,
+        "order_orientation": 0.0,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": false,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [
+        "N01_NONCOMMUTATION"
+      ],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 0,
+        "order_orientation_sign": 0,
+        "order_word": "XX",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "L",
+        "support_kind": "finite_support"
+      },
+      "id": "commutative_XX_control",
+      "role": "graveyard_N01_commutative",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": false,
+      "checks": {
+        "bloch": [
+          0.866025403784,
+          0.0,
+          0.5
+        ],
+        "order_gap": 2.0000000000000004,
+        "order_orientation": 1.0000000000000013,
+        "spinor_norm": 1.0000000000000007,
+        "trace_rho": 1.0000000000000007
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": true,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": false,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [
+        "composition_rules"
+      ],
+      "finite_probe_outputs": {
+        "composition_projected": false,
+        "eta_index": 2,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 1,
+        "order_word": "XY",
+        "rho_bloch": [
+          0.866025403784,
+          0.0,
+          0.5
+        ],
+        "sheet": "L",
+        "support_kind": "finite_support"
+      },
+      "id": "composition_projection_missing_control",
+      "role": "graveyard_composition_rule",
+      "support_kind": "finite_support"
+    },
+    {
+      "Adm_C": false,
+      "checks": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "order_gap": 2.0000000000000013,
+        "order_orientation": -6.052251055007114e-17,
+        "spinor_norm": 1.0000000000000013,
+        "trace_rho": 1.0000000000000013
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": false,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": true
+      },
+      "fail_reasons": [
+        "F01_FINITUDE"
+      ],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 1,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 0,
+        "order_word": "XY",
+        "rho_bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "sheet": "L",
+        "support_kind": "continuous_or_nonfinite_proxy"
+      },
+      "id": "nonfinite_global_coordinate_control",
+      "role": "graveyard_F01_nonfinite_encoding",
+      "support_kind": "continuous_or_nonfinite_proxy"
+    },
+    {
+      "Adm_C": false,
+      "checks": {
+        "bloch": [
+          3.464101615138,
+          0.0,
+          2.0
+        ],
+        "order_gap": 4.000000000000001,
+        "order_orientation": 4.000000000000005,
+        "spinor_norm": 4.000000000000003,
+        "trace_rho": 4.000000000000003
+      },
+      "constraint_checks": {
+        "F01_FINITUDE": false,
+        "N01_NONCOMMUTATION": true,
+        "composition_rules": true,
+        "state_on_algebra_probe_rules": false
+      },
+      "fail_reasons": [
+        "F01_FINITUDE",
+        "state_on_algebra_probe_rules"
+      ],
+      "finite_probe_outputs": {
+        "composition_projected": true,
+        "eta_index": 2,
+        "order_gap_bin": 1,
+        "order_orientation_sign": 1,
+        "order_word": "XY",
+        "rho_bloch": [
+          3.464101615138,
+          0.0,
+          2.0
+        ],
+        "sheet": "R",
+        "support_kind": "finite_support"
+      },
+      "id": "unnormalized_spinor_control",
+      "role": "graveyard_F01_probe_norm",
+      "support_kind": "finite_support"
+    }
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T05:33:39Z",
+  "geometry_layer": "none; quotient is finite probe equivalence only",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "commutative_control_admitted_only_when_N01_erased": true,
+    "continuous_support_proxy_admitted_only_when_F01_erased": true,
+    "trivial_probe_family_collapses_quotient": true
+  },
+  "layer_verdict": "REAL_LAYER",
+  "n01_load_bearing": true,
+  "nearby_variants": {
+    "passed": 4,
+    "total": 4,
+    "variants": [
+      "F01_erased",
+      "N01_erased",
+      "trivial_probe_family",
+      "owner_layer_structure_erased"
+    ]
+  },
+  "object_id": "disc_finite_support_admissibility",
+  "owner_real_carrier_load_bearing": true,
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "candidate.unnormalized_spinor_control.trace_rho",
+    "missing_keys": [],
+    "parity_max_diff": 3.9968028886505635e-15,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_finite_support_admissibility_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.L_core_XY_phase_pi.spinor_norm"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.R_core_XY_phase_pi.spinor_norm"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 2.0,
+        "julia": 2.0000000000000013,
+        "key": "candidate.R_core_XY_phase_pi.order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "layer_erased_quotient_class_count"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.nonfinite_global_coordinate_control.spinor_norm"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 2.0,
+        "julia": 2.0000000000000013,
+        "key": "candidate.nonfinite_global_coordinate_control.order_gap"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.R_core_XY_phase_pi.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "candidate.commutative_XX_control.order_gap"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.L_core_XY_phase_pi.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0000000000000007,
+        "julia": 1.0000000000000007,
+        "key": "candidate.composition_projection_missing_control.spinor_norm"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.L_core_XY.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "trivial_probe_class_count"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.commutative_XX_control.trace_rho"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 2.0,
+        "julia": 2.0000000000000013,
+        "key": "candidate.L_core_XY.order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.0,
+        "julia": 6.0,
+        "key": "n01_erased_admissible_count"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 2.0,
+        "julia": 2.0000000000000013,
+        "key": "candidate.L_core_XY_phase_pi.order_gap"
+      },
+      {
+        "abs_diff": 1.7763568394002505e-15,
+        "jax": 3.999999999999999,
+        "julia": 4.000000000000001,
+        "key": "candidate.unnormalized_spinor_control.order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0000000000000004,
+        "julia": 2.0000000000000004,
+        "key": "candidate.composition_projection_missing_control.order_gap"
+      },
+      {
+        "abs_diff": 3.9968028886505635e-15,
+        "jax": 3.9999999999999987,
+        "julia": 4.000000000000003,
+        "key": "candidate.unnormalized_spinor_control.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0000000000000004,
+        "julia": 2.0000000000000004,
+        "key": "candidate.L_eta2_YX.order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.0,
+        "julia": 6.0,
+        "key": "S_quotient_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0000000000000007,
+        "julia": 1.0000000000000007,
+        "key": "candidate.composition_projection_missing_control.trace_rho"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.R_core_XY.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0000000000000007,
+        "julia": 1.0000000000000007,
+        "key": "candidate.L_eta2_YX.trace_rho"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "Adm_quotient_class_count"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.nonfinite_global_coordinate_control.trace_rho"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.L_core_XY.spinor_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 9.0,
+        "julia": 9.0,
+        "key": "S_size"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 2.0,
+        "julia": 2.0000000000000013,
+        "key": "candidate.R_core_XY.order_gap"
+      },
+      {
+        "abs_diff": 3.9968028886505635e-15,
+        "jax": 3.9999999999999987,
+        "julia": 4.000000000000003,
+        "key": "candidate.unnormalized_spinor_control.spinor_norm"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.commutative_XX_control.spinor_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.0,
+        "julia": 5.0,
+        "key": "admissible_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0000000000000007,
+        "julia": 1.0000000000000007,
+        "key": "candidate.L_eta2_YX.spinor_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.0,
+        "julia": 6.0,
+        "key": "f01_erased_admissible_count"
+      },
+      {
+        "abs_diff": 1.3322676295501878e-15,
+        "jax": 1.0,
+        "julia": 1.0000000000000013,
+        "key": "candidate.R_core_XY.spinor_norm"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "string_mismatches": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_finite_support_admissibility_results.json",
+  "positive": {
+    "adm_depends_on_finitude": {
+      "pass": true
+    },
+    "n01_load_bearing": {
+      "pass": true
+    },
+    "owner_real_carrier_load_bearing": {
+      "pass": true
+    },
+    "quotient_well_defined": {
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "scratch_diagnostic classification",
+    "promotion_allowed=false",
+    "formal_admission_allowed=false",
+    "single finite discriminator row only",
+    "does not admit final M(C), a full manifold, a bridge, Axis0, engine, or physics claim"
+  ],
+  "proof_surfaces_used": [],
+  "quotient_Adm_mod_M": {
+    "class_count": 3,
+    "classes": [
+      {
+        "class_id": "q0",
+        "members": [
+          "L_core_XY",
+          "L_core_XY_phase_pi"
+        ],
+        "signature": [
+          "L",
+          1,
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "XY",
+          1,
+          0
+        ]
+      },
+      {
+        "class_id": "q1",
+        "members": [
+          "L_eta2_YX"
+        ],
+        "signature": [
+          "L",
+          2,
+          [
+            0.866025403784,
+            0.0,
+            0.5
+          ],
+          "YX",
+          1,
+          -1
+        ]
+      },
+      {
+        "class_id": "q2",
+        "members": [
+          "R_core_XY",
+          "R_core_XY_phase_pi"
+        ],
+        "signature": [
+          "R",
+          1,
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "XY",
+          1,
+          0
+        ]
+      }
+    ],
+    "partition_member_ids": [
+      "L_core_XY",
+      "L_core_XY_phase_pi",
+      "L_eta2_YX",
+      "R_core_XY",
+      "R_core_XY_phase_pi"
+    ],
+    "probe_names": [
+      "sheet",
+      "eta_index",
+      "rho_bloch",
+      "order_word",
+      "order_gap_bin",
+      "order_orientation_sign"
+    ]
+  },
+  "quotient_S_mod_M": {
+    "class_count": 6,
+    "classes": [
+      {
+        "class_id": "q0",
+        "members": [
+          "commutative_XX_control"
+        ],
+        "signature": [
+          "L",
+          1,
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "XX",
+          0,
+          0
+        ]
+      },
+      {
+        "class_id": "q1",
+        "members": [
+          "L_core_XY",
+          "L_core_XY_phase_pi",
+          "nonfinite_global_coordinate_control"
+        ],
+        "signature": [
+          "L",
+          1,
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "XY",
+          1,
+          0
+        ]
+      },
+      {
+        "class_id": "q2",
+        "members": [
+          "composition_projection_missing_control"
+        ],
+        "signature": [
+          "L",
+          2,
+          [
+            0.866025403784,
+            0.0,
+            0.5
+          ],
+          "XY",
+          1,
+          1
+        ]
+      },
+      {
+        "class_id": "q3",
+        "members": [
+          "L_eta2_YX"
+        ],
+        "signature": [
+          "L",
+          2,
+          [
+            0.866025403784,
+            0.0,
+            0.5
+          ],
+          "YX",
+          1,
+          -1
+        ]
+      },
+      {
+        "class_id": "q4",
+        "members": [
+          "R_core_XY",
+          "R_core_XY_phase_pi"
+        ],
+        "signature": [
+          "R",
+          1,
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "XY",
+          1,
+          0
+        ]
+      },
+      {
+        "class_id": "q5",
+        "members": [
+          "unnormalized_spinor_control"
+        ],
+        "signature": [
+          "R",
+          2,
+          [
+            3.464101615138,
+            0.0,
+            2.0
+          ],
+          "XY",
+          1,
+          1
+        ]
+      }
+    ],
+    "partition_member_ids": [
+      "L_core_XY",
+      "L_core_XY_phase_pi",
+      "L_eta2_YX",
+      "R_core_XY",
+      "R_core_XY_phase_pi",
+      "commutative_XX_control",
+      "composition_projection_missing_control",
+      "nonfinite_global_coordinate_control",
+      "unnormalized_spinor_control"
+    ],
+    "probe_names": [
+      "sheet",
+      "eta_index",
+      "rho_bloch",
+      "order_word",
+      "order_gap_bin",
+      "order_orientation_sign"
+    ]
+  },
+  "quotient_well_defined": true,
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_finite_support_admissibility_julia_results.json",
+  "root_constraints_in_force": [
+    "F01_FINITUDE",
+    "N01_NONCOMMUTATION"
+  ],
+  "shared_booleans": {
+    "adm_depends_on_finitude": true,
+    "candidate.L_core_XY.Adm_C": true,
+    "candidate.L_core_XY.F01_FINITUDE": true,
+    "candidate.L_core_XY.N01_NONCOMMUTATION": true,
+    "candidate.L_core_XY.composition_rules": true,
+    "candidate.L_core_XY.state_on_algebra_probe_rules": true,
+    "candidate.L_core_XY_phase_pi.Adm_C": true,
+    "candidate.L_core_XY_phase_pi.F01_FINITUDE": true,
+    "candidate.L_core_XY_phase_pi.N01_NONCOMMUTATION": true,
+    "candidate.L_core_XY_phase_pi.composition_rules": true,
+    "candidate.L_core_XY_phase_pi.state_on_algebra_probe_rules": true,
+    "candidate.L_eta2_YX.Adm_C": true,
+    "candidate.L_eta2_YX.F01_FINITUDE": true,
+    "candidate.L_eta2_YX.N01_NONCOMMUTATION": true,
+    "candidate.L_eta2_YX.composition_rules": true,
+    "candidate.L_eta2_YX.state_on_algebra_probe_rules": true,
+    "candidate.R_core_XY.Adm_C": true,
+    "candidate.R_core_XY.F01_FINITUDE": true,
+    "candidate.R_core_XY.N01_NONCOMMUTATION": true,
+    "candidate.R_core_XY.composition_rules": true,
+    "candidate.R_core_XY.state_on_algebra_probe_rules": true,
+    "candidate.R_core_XY_phase_pi.Adm_C": true,
+    "candidate.R_core_XY_phase_pi.F01_FINITUDE": true,
+    "candidate.R_core_XY_phase_pi.N01_NONCOMMUTATION": true,
+    "candidate.R_core_XY_phase_pi.composition_rules": true,
+    "candidate.R_core_XY_phase_pi.state_on_algebra_probe_rules": true,
+    "candidate.commutative_XX_control.Adm_C": false,
+    "candidate.commutative_XX_control.F01_FINITUDE": true,
+    "candidate.commutative_XX_control.N01_NONCOMMUTATION": false,
+    "candidate.commutative_XX_control.composition_rules": true,
+    "candidate.commutative_XX_control.state_on_algebra_probe_rules": true,
+    "candidate.composition_projection_missing_control.Adm_C": false,
+    "candidate.composition_projection_missing_control.F01_FINITUDE": true,
+    "candidate.composition_projection_missing_control.N01_NONCOMMUTATION": true,
+    "candidate.composition_projection_missing_control.composition_rules": false,
+    "candidate.composition_projection_missing_control.state_on_algebra_probe_rules": true,
+    "candidate.nonfinite_global_coordinate_control.Adm_C": false,
+    "candidate.nonfinite_global_coordinate_control.F01_FINITUDE": false,
+    "candidate.nonfinite_global_coordinate_control.N01_NONCOMMUTATION": true,
+    "candidate.nonfinite_global_coordinate_control.composition_rules": true,
+    "candidate.nonfinite_global_coordinate_control.state_on_algebra_probe_rules": true,
+    "candidate.unnormalized_spinor_control.Adm_C": false,
+    "candidate.unnormalized_spinor_control.F01_FINITUDE": false,
+    "candidate.unnormalized_spinor_control.N01_NONCOMMUTATION": true,
+    "candidate.unnormalized_spinor_control.composition_rules": true,
+    "candidate.unnormalized_spinor_control.state_on_algebra_probe_rules": false,
+    "classification_is_scratch_diagnostic": true,
+    "erase_finitude_changes_adm": true,
+    "erase_n01_changes_adm": true,
+    "formal_admission_false": true,
+    "jax_enable_x64": true,
+    "n01_load_bearing": true,
+    "owner_real_carrier_load_bearing": true,
+    "promotion_false": true,
+    "quotient_well_defined": true,
+    "source_carrier_all_pass": true,
+    "trivial_probe_family_collapses": true
+  },
+  "shared_scalars": {
+    "Adm_quotient_class_count": 3.0,
+    "S_quotient_class_count": 6.0,
+    "S_size": 9.0,
+    "admissible_count": 5.0,
+    "candidate.L_core_XY.order_gap": 2.0000000000000013,
+    "candidate.L_core_XY.spinor_norm": 1.0000000000000013,
+    "candidate.L_core_XY.trace_rho": 1.0000000000000013,
+    "candidate.L_core_XY_phase_pi.order_gap": 2.0000000000000013,
+    "candidate.L_core_XY_phase_pi.spinor_norm": 1.0000000000000013,
+    "candidate.L_core_XY_phase_pi.trace_rho": 1.0000000000000013,
+    "candidate.L_eta2_YX.order_gap": 2.0000000000000004,
+    "candidate.L_eta2_YX.spinor_norm": 1.0000000000000007,
+    "candidate.L_eta2_YX.trace_rho": 1.0000000000000007,
+    "candidate.R_core_XY.order_gap": 2.0000000000000013,
+    "candidate.R_core_XY.spinor_norm": 1.0000000000000013,
+    "candidate.R_core_XY.trace_rho": 1.0000000000000013,
+    "candidate.R_core_XY_phase_pi.order_gap": 2.0000000000000013,
+    "candidate.R_core_XY_phase_pi.spinor_norm": 1.0000000000000013,
+    "candidate.R_core_XY_phase_pi.trace_rho": 1.0000000000000013,
+    "candidate.commutative_XX_control.order_gap": 0.0,
+    "candidate.commutative_XX_control.spinor_norm": 1.0000000000000013,
+    "candidate.commutative_XX_control.trace_rho": 1.0000000000000013,
+    "candidate.composition_projection_missing_control.order_gap": 2.0000000000000004,
+    "candidate.composition_projection_missing_control.spinor_norm": 1.0000000000000007,
+    "candidate.composition_projection_missing_control.trace_rho": 1.0000000000000007,
+    "candidate.nonfinite_global_coordinate_control.order_gap": 2.0000000000000013,
+    "candidate.nonfinite_global_coordinate_control.spinor_norm": 1.0000000000000013,
+    "candidate.nonfinite_global_coordinate_control.trace_rho": 1.0000000000000013,
+    "candidate.unnormalized_spinor_control.order_gap": 4.000000000000001,
+    "candidate.unnormalized_spinor_control.spinor_norm": 4.000000000000003,
+    "candidate.unnormalized_spinor_control.trace_rho": 4.000000000000003,
+    "f01_erased_admissible_count": 6.0,
+    "layer_erased_quotient_class_count": 1.0,
+    "n01_erased_admissible_count": 6.0,
+    "trivial_probe_class_count": 1.0
+  },
+  "shared_strings": {
+    "admissible_ids": "L_core_XY,L_core_XY_phase_pi,R_core_XY,R_core_XY_phase_pi,L_eta2_YX",
+    "f01_erased_ids": "L_core_XY,L_core_XY_phase_pi,R_core_XY,R_core_XY_phase_pi,L_eta2_YX,nonfinite_global_coordinate_control",
+    "layer_verdict": "REAL_LAYER",
+    "n01_erased_ids": "L_core_XY,L_core_XY_phase_pi,R_core_XY,R_core_XY_phase_pi,L_eta2_YX,commutative_XX_control"
+  },
+  "sim_class": "manifold_layer_discriminator",
+  "sim_execution_kind": "nonclassical",
+  "source_carrier_object_id": "mc_first_admissibility_packet",
+  "source_carrier_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mc_first_admissibility_packet_julia_results.json",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_finite_support_admissibility.jl",
+  "stop_condition_fired": false,
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "supportive result serialization and peer-result parity loading",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing mirror recomputation of owner carrier density, F01, N01, quotient, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing state norms, traces, and finite Pauli order gaps",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror; recorded false for the no-NumPy dual-backend boundary",
+      "tried": false,
+      "used": false
+    }
+  },
+  "topology_surfaces_used": [],
+  "why_not_v4_probes": "v5 scratch diagnostic dual-backend discriminator row; no v4 promotion language is claimed."
+}

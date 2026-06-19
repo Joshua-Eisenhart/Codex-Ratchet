@@ -1,0 +1,527 @@
+{
+  "computation_style": "exact_permutation_support_algebra",
+  "result_path": "system_v7/sims/finite_ring_block_partition_reversible_qca_gnvw_index_v0/results/finite_ring_block_partition_reversible_qca_gnvw_index_v0_julia_results.json",
+  "ring": {
+    "N": 8,
+    "oriented_cut": "3|4",
+    "local_dimension_d": 2
+  },
+  "does_not_self_upgrade": true,
+  "source_sha256": "ed7b4a93e622a2b34fa1410582fbaa78354fdc6dd36e8af06bcf3b19b073e874",
+  "packages_used": [
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "classification": "scratch_diagnostic",
+  "gnvw_index_values": {
+    "non_shift_partitioned": {
+      "flow_convention": "local_bipartition_control",
+      "steps": 1,
+      "index_log_value": 0.0,
+      "left_overlap_dim": 2,
+      "boundary_collar_width": 1,
+      "right_overlap_rank": 1,
+      "index_units_log_d": 0.0,
+      "right_overlap_dim": 2,
+      "left_overlap_rank": 1,
+      "support_images": {
+        "A4_Z": [
+          3,
+          4
+        ],
+        "A3_Z": [
+          1,
+          2,
+          3
+        ],
+        "A4_X": [
+          4,
+          5,
+          6
+        ],
+        "A3_X": [
+          3,
+          4
+        ]
+      }
+    },
+    "left_shift": {
+      "flow_convention": "oriented_local_cut_only",
+      "steps": 1,
+      "index_log_value": -0.6931471805599453,
+      "left_overlap_dim": 4,
+      "boundary_collar_width": 1,
+      "right_overlap_rank": 0,
+      "index_units_log_d": -1.0,
+      "right_overlap_dim": 1,
+      "left_overlap_rank": 2,
+      "support_images": {
+        "A4_Z": [
+          3
+        ],
+        "A3_Z": [
+          2
+        ],
+        "A4_X": [
+          3
+        ],
+        "A3_X": [
+          2
+        ]
+      }
+    },
+    "right_shift": {
+      "flow_convention": "oriented_local_cut_only",
+      "steps": 1,
+      "index_log_value": 0.6931471805599453,
+      "left_overlap_dim": 1,
+      "boundary_collar_width": 1,
+      "right_overlap_rank": 2,
+      "index_units_log_d": 1.0,
+      "right_overlap_dim": 4,
+      "left_overlap_rank": 0,
+      "support_images": {
+        "A4_Z": [
+          5
+        ],
+        "A3_Z": [
+          4
+        ],
+        "A4_X": [
+          5
+        ],
+        "A3_X": [
+          4
+        ]
+      }
+    },
+    "finite_depth_local_circuit": {
+      "flow_convention": "local_bipartition_control",
+      "steps": 1,
+      "index_log_value": 0.0,
+      "left_overlap_dim": 2,
+      "boundary_collar_width": 1,
+      "right_overlap_rank": 1,
+      "index_units_log_d": 0.0,
+      "right_overlap_dim": 2,
+      "left_overlap_rank": 1,
+      "support_images": {
+        "A4_Z": [
+          4
+        ],
+        "A3_Z": [
+          3
+        ],
+        "A4_X": [
+          3,
+          4,
+          5
+        ],
+        "A3_X": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    "identity": {
+      "flow_convention": "local_bipartition_control",
+      "steps": 1,
+      "index_log_value": 0.0,
+      "left_overlap_dim": 1,
+      "boundary_collar_width": 1,
+      "right_overlap_rank": 0,
+      "index_units_log_d": 0.0,
+      "right_overlap_dim": 1,
+      "left_overlap_rank": 0,
+      "support_images": {
+        "A4_Z": [
+          4
+        ],
+        "A3_Z": [
+          3
+        ],
+        "A4_X": [
+          4
+        ],
+        "A3_X": [
+          3
+        ]
+      }
+    }
+  },
+  "sim_id": "finite_ring_block_partition_reversible_qca_gnvw_index_v0",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "LinearAlgebra"
+  ],
+  "generated_at": "2026-06-14T22:00:03Z",
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive spec/result serialization"
+    },
+    "SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive source_sha256 provenance"
+    },
+    "Dates": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive UTC generated_at timestamp"
+    },
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing exact integer permutation/unitary reversibility checks and support-algebra overlap dimension calculation"
+    }
+  },
+  "operator_bonds": {
+    "even_bonds": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "odd_bonds": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        0
+      ]
+    ],
+    "shift_schedules": {
+      "right_shift": [
+        [
+          7,
+          0
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "left_shift": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          0
+        ]
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "LinearAlgebra": "load_bearing",
+    "JSON/SHA/Dates": "supportive"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "engine": "julia",
+  "index_operator_equals_reversibility_operator": true,
+  "shift_by_k_index_values": {
+    "left_shift": {
+      "1": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 1,
+        "index_log_value": -0.6931471805599453,
+        "left_overlap_dim": 4,
+        "boundary_collar_width": 1,
+        "right_overlap_rank": 0,
+        "index_units_log_d": -1.0,
+        "right_overlap_dim": 1,
+        "left_overlap_rank": 2,
+        "support_images": {
+          "A4_Z": [
+            3
+          ],
+          "A3_Z": [
+            2
+          ],
+          "A4_X": [
+            3
+          ],
+          "A3_X": [
+            2
+          ]
+        }
+      },
+      "2": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 2,
+        "index_log_value": -1.3862943611198906,
+        "left_overlap_dim": 16,
+        "boundary_collar_width": 2,
+        "right_overlap_rank": 0,
+        "index_units_log_d": -2.0,
+        "right_overlap_dim": 1,
+        "left_overlap_rank": 4,
+        "support_images": {
+          "A4_Z": [
+            2
+          ],
+          "A5_Z": [
+            3
+          ],
+          "A2_Z": [
+            0
+          ],
+          "A2_X": [
+            0
+          ],
+          "A3_Z": [
+            1
+          ],
+          "A4_X": [
+            2
+          ],
+          "A5_X": [
+            3
+          ],
+          "A3_X": [
+            1
+          ]
+        }
+      },
+      "3": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 3,
+        "index_log_value": -2.0794415416798357,
+        "left_overlap_dim": 64,
+        "boundary_collar_width": 3,
+        "right_overlap_rank": 0,
+        "index_units_log_d": -3.0,
+        "right_overlap_dim": 1,
+        "left_overlap_rank": 6,
+        "support_images": {
+          "A6_X": [
+            3
+          ],
+          "A3_Z": [
+            0
+          ],
+          "A2_X": [
+            7
+          ],
+          "A6_Z": [
+            3
+          ],
+          "A4_X": [
+            1
+          ],
+          "A5_X": [
+            2
+          ],
+          "A1_Z": [
+            6
+          ],
+          "A5_Z": [
+            2
+          ],
+          "A3_X": [
+            0
+          ],
+          "A1_X": [
+            6
+          ],
+          "A4_Z": [
+            1
+          ],
+          "A2_Z": [
+            7
+          ]
+        }
+      }
+    },
+    "right_shift": {
+      "1": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 1,
+        "index_log_value": 0.6931471805599453,
+        "left_overlap_dim": 1,
+        "boundary_collar_width": 1,
+        "right_overlap_rank": 2,
+        "index_units_log_d": 1.0,
+        "right_overlap_dim": 4,
+        "left_overlap_rank": 0,
+        "support_images": {
+          "A4_Z": [
+            5
+          ],
+          "A3_Z": [
+            4
+          ],
+          "A4_X": [
+            5
+          ],
+          "A3_X": [
+            4
+          ]
+        }
+      },
+      "2": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 2,
+        "index_log_value": 1.3862943611198906,
+        "left_overlap_dim": 1,
+        "boundary_collar_width": 2,
+        "right_overlap_rank": 4,
+        "index_units_log_d": 2.0,
+        "right_overlap_dim": 16,
+        "left_overlap_rank": 0,
+        "support_images": {
+          "A4_Z": [
+            6
+          ],
+          "A5_Z": [
+            7
+          ],
+          "A2_Z": [
+            4
+          ],
+          "A2_X": [
+            4
+          ],
+          "A3_Z": [
+            5
+          ],
+          "A4_X": [
+            6
+          ],
+          "A5_X": [
+            7
+          ],
+          "A3_X": [
+            5
+          ]
+        }
+      },
+      "3": {
+        "flow_convention": "oriented_local_cut_only",
+        "steps": 3,
+        "index_log_value": 2.0794415416798357,
+        "left_overlap_dim": 1,
+        "boundary_collar_width": 3,
+        "right_overlap_rank": 6,
+        "index_units_log_d": 3.0,
+        "right_overlap_dim": 64,
+        "left_overlap_rank": 0,
+        "support_images": {
+          "A6_X": [
+            1
+          ],
+          "A3_Z": [
+            6
+          ],
+          "A2_X": [
+            5
+          ],
+          "A6_Z": [
+            1
+          ],
+          "A4_X": [
+            7
+          ],
+          "A5_X": [
+            0
+          ],
+          "A1_Z": [
+            4
+          ],
+          "A5_Z": [
+            0
+          ],
+          "A3_X": [
+            6
+          ],
+          "A1_X": [
+            4
+          ],
+          "A4_Z": [
+            7
+          ],
+          "A2_Z": [
+            5
+          ]
+        }
+      }
+    }
+  },
+  "reversibility_ok": true,
+  "reversibility_checks": {
+    "cnot_block_permutation_ok": true,
+    "left_shift_permutation_ok": true,
+    "cnot_step_permutation_ok": true,
+    "right_shift_permutation_ok": true
+  }
+}

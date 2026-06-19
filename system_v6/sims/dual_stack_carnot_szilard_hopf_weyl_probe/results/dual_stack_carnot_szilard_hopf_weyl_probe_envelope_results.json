@@ -1,0 +1,968 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "json": {
+      "reason": "supportive envelope assembly from independently run engine receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result-path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "axis0_cut_summary": {
+    "Phi0_Ic_S_to_M": 0.4164955306996874,
+    "classical_measured_MI": 0.4164955306996874,
+    "quantum_coherent_MI": 0.8329910613993748,
+    "stage_labeled_cut_table": {
+      "after_F": {
+        "I_c_S_to_M": 0.0,
+        "mutual_information_S_M": 0.0,
+        "stage": "after_F"
+      },
+      "after_M": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "mutual_information_S_M": 0.8329910613993748,
+        "stage": "after_M"
+      },
+      "after_R": {
+        "I_c_S_to_M": 0.0,
+        "mutual_information_S_M": 0.0,
+        "stage": "after_R"
+      },
+      "before_R": {
+        "I_c_S_to_M": 0.0,
+        "mutual_information_S_M": 0.0,
+        "stage": "before_R"
+      }
+    }
+  },
+  "claim_ceiling": "finite-map dual-stack Carnot/Szilard Hopf-Weyl witness probe only; no engine, M(C), Axis0, bridge, or admission claim",
+  "claim_path_tools": [
+    "Z3",
+    "z3",
+    "cvc5",
+    "jax",
+    "jax.numpy",
+    "torch",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "controls": {
+    "chirality_erasure_H_L_equals_H_R": {
+      "chirality_erasure_death_value": 0.0,
+      "dies": true,
+      "gamma5_odd_L": 0.21614028910483657
+    },
+    "classical_diagonal_control": {
+      "I_c_S_to_M": 0.0,
+      "classical_measured_MI": 0.4164955306996874,
+      "qit_coherence_work_term": 0.0,
+      "work_extracted": 0.14644660940672627
+    },
+    "commuting_control": {
+      "commuting_control_delta_trace_norm": 0.0,
+      "commuting_pair_gap_trace_norm": 5.551115123125783e-17
+    },
+    "label_shuffle": {
+      "ledger_values_identical": true,
+      "maps_changed": false,
+      "max_ledger_scalar_diff": 0.0,
+      "permuted_labels": [
+        "U_spectral_2",
+        "E_open_gradient_2",
+        "U_spectral_1",
+        "E_open_gradient_1"
+      ]
+    },
+    "no_bath": {
+      "entropy_production": 0.0,
+      "state_trace_norm_from_input": 1.3133545835319447
+    },
+    "no_measurement": {
+      "I_c_S_to_M": 0.0,
+      "quantum_coherent_MI": 0.0,
+      "work_extracted": 0.0
+    },
+    "sign_flip_diagnostic": {
+      "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+      "gamma5_odd_L": 0.21614028910483657,
+      "sign_flip_diagnostic_trace_norm": 1.4375435363222038
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "Independent 4x4 joint M/F/R entry-wise bound superoperator equality check matches z3",
+      "commuting_control_verdict": "sat",
+      "load_bearing": true,
+      "object_scope": "4x4_joint_MFR_and_D_lifted_to_joint_memory",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "claim": "Julia Z3.jl binds the same 4x4 joint M/F/R object for the UNSAT equality; commuting control is explicitly reduced",
+      "commuting_control_verdict": "sat",
+      "load_bearing": true,
+      "object_scope": "4x4_joint_MFR_and_D_lifted_to_joint_memory",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "4x4 joint M/F/R object bound: D_joint after I_joint equals I_joint after D_joint is UNSAT",
+      "commuting_control_verdict": "sat",
+      "load_bearing": true,
+      "object_scope": "4x4_joint_MFR_and_D_lifted_to_joint_memory",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "comparison_rule": "same-named shared scalar readouts only",
+    "engine_values": {
+      "jax": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.049559683493157924,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672624,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 6.700788708272329e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672624,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483668,
+        "headline_delta_trace_norm": 1.2676116766357746,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283585,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283585,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.2676116766357746,
+        "max_tp_residual": 2.255319284735322e-16,
+        "min_choi_eig": -6.503612868900829e-16,
+        "min_second_law_gap": -1.096345236817342e-15,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.313354583531945,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.47613702710876,
+        "work_extracted": 0.14644660940672624
+      },
+      "julia": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.049559683493157806,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672627,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 5.551115123125783e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672627,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483657,
+        "headline_delta_trace_norm": 1.267611676635775,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283588,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283588,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.267611676635775,
+        "max_tp_residual": 2.322327646434043e-16,
+        "min_choi_eig": -4.4257000367151417e-16,
+        "min_second_law_gap": -1.4224732503009818e-16,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.3133545835319447,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.4761370271087597,
+        "work_extracted": 0.14644660940672627
+      },
+      "pytorch": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.04955968349315783,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672624,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 6.700788708272329e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672624,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483668,
+        "headline_delta_trace_norm": 1.2676116766357746,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283585,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283585,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.2676116766357746,
+        "max_tp_residual": 2.255319284735322e-16,
+        "min_choi_eig": -2.2031873760196121e-16,
+        "min_second_law_gap": -7.806255641895632e-16,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.3133545835319447,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.47613702710876,
+        "work_extracted": 0.14644660940672624
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 9.54097911787244e-16,
+    "tolerance": 5e-07
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/dual_stack_carnot_szilard_hopf_weyl_probe_jax.py",
+      "values": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.049559683493157924,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672624,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 6.700788708272329e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672624,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483668,
+        "headline_delta_trace_norm": 1.2676116766357746,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283585,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283585,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.2676116766357746,
+        "max_tp_residual": 2.255319284735322e-16,
+        "min_choi_eig": -6.503612868900829e-16,
+        "min_second_law_gap": -1.096345236817342e-15,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.313354583531945,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.47613702710876,
+        "work_extracted": 0.14644660940672624
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "LinearAlgebra",
+        "Z3",
+        "QuantumOptics",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/dual_stack_carnot_szilard_hopf_weyl_probe_julia.jl",
+      "values": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.049559683493157806,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672627,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 5.551115123125783e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672627,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483657,
+        "headline_delta_trace_norm": 1.267611676635775,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283588,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283588,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.267611676635775,
+        "max_tp_residual": 2.322327646434043e-16,
+        "min_choi_eig": -4.4257000367151417e-16,
+        "min_second_law_gap": -1.4224732503009818e-16,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.3133545835319447,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.4761370271087597,
+        "work_extracted": 0.14644660940672627
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_pytorch_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/dual_stack_carnot_szilard_hopf_weyl_probe_pytorch.py",
+      "values": {
+        "I_c_S_to_M": 0.4164955306996874,
+        "I_c_S_to_M_gate": 0.4164955307,
+        "ax6_order_gap_U_E_trace_norm": 0.04955968349315783,
+        "chirality_erasure_death_value": 0.0,
+        "classical_control_I_c_S_to_M": 0.0,
+        "classical_control_qit_coherence_work": 0.0,
+        "classical_control_work_extracted": 0.14644660940672624,
+        "classical_measured_MI": 0.4164955306996874,
+        "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+        "commuting_control_delta_trace_norm": 0.0,
+        "commuting_pair_gap_trace_norm": 6.700788708272329e-17,
+        "feedback_energy_after": 0.0,
+        "feedback_energy_before": 0.14644660940672624,
+        "gamma5_odd_HR_flip_diagnostic": -0.7057960972831447,
+        "gamma5_odd_L": 0.21614028910483668,
+        "headline_delta_trace_norm": 1.2676116766357746,
+        "information_gained_bits": 1.201752073385712,
+        "information_gained_nats": 0.8329910613993748,
+        "landauer_lower_bound_ln2_p_excited": 0.10150905441283585,
+        "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+        "landauer_reset_cost": 0.10150905441283585,
+        "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+        "literal_loop_g_DI_trace_norm": 1.2676116766357746,
+        "max_tp_residual": 2.255319284735322e-16,
+        "min_choi_eig": -2.2031873760196121e-16,
+        "min_second_law_gap": -7.806255641895632e-16,
+        "no_bath_entropy_production": 0.0,
+        "no_bath_state_trace_norm_from_input": 1.3133545835319447,
+        "no_measurement_I_c_S_to_M": 0.0,
+        "no_measurement_quantum_coherent_MI": 0.0,
+        "no_measurement_work_extracted": 0.0,
+        "quantum_coherent_MI": 0.8329910613993748,
+        "quantum_coherent_MI_gate": 0.832991061399,
+        "sign_flip_diagnostic_trace_norm": 1.4375435363222038,
+        "szilard_bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+        "type1_type2_trace_norm": 1.47613702710876,
+        "work_extracted": 0.14644660940672624
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:41:47Z",
+  "headline": {
+    "Delta_trace_norm": 1.267611676635775,
+    "Type1_vs_Type2_trace_norm": 1.4761370271087597,
+    "ax6_order_gap_U_E_trace_norm": 0.049559683493157806,
+    "coherent_reduced_delta_trace_norm": 1.3490341265562846,
+    "commuting_control_delta_trace_norm": 0.0,
+    "headline_loop": "section_15_literal_inductive_loop",
+    "legacy_reduced_delta_trace_norm": 1.3490341265562846,
+    "literal_loop_g_DI_trace_norm": 1.267611676635775
+  },
+  "joint_cptp_summary": {
+    "jax": {
+      "F": {
+        "choi_min_eig": -6.503612868900829e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "F_feedback_pi_flip",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "M": {
+        "choi_min_eig": -6.503612868900829e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "M_quantum_coherent_joint_CNOT",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "R": {
+        "choi_min_eig": 0.0,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "R_memory_reset",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      }
+    },
+    "joint_M_F_R_choi_16x16_psd_tp_all_engines": true,
+    "julia": {
+      "F": {
+        "choi_min_eig": -4.4257000367151417e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "F_feedback_pi_flip",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "M": {
+        "choi_min_eig": -4.4257000367151417e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "M_quantum_coherent_joint_CNOT",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "R": {
+        "choi_min_eig": 0.0,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "R_memory_reset",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      }
+    },
+    "pytorch": {
+      "F": {
+        "choi_min_eig": -2.2031873760196121e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "F_feedback_pi_flip",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "M": {
+        "choi_min_eig": -2.2031873760196121e-16,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "M_quantum_coherent_joint_CNOT",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      },
+      "R": {
+        "choi_min_eig": 0.0,
+        "choi_psd": true,
+        "choi_shape": [
+          16,
+          16
+        ],
+        "din": 4,
+        "dout": 4,
+        "name": "R_memory_reset",
+        "tp_residual_fro": 0.0,
+        "trace_preserving": true
+      }
+    }
+  },
+  "ledger_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_pytorch_results.json"
+  },
+  "object_id": "dual_stack_carnot_szilard_hopf_weyl_probe_envelope",
+  "out_of_tolerance_shared_scalars": {},
+  "pinned_spec": {
+    "H0": "(sigma_x+sigma_y+sigma_z)/sqrt(3)",
+    "H_L": "+H0",
+    "H_R": "-H0",
+    "amplitude_damping_p": 0.07225651367144714,
+    "chi": 0.2,
+    "eta": 0.39269908169872414,
+    "gamma": 0.15,
+    "phi": 0.3,
+    "stroke_t": 0.5
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_scalar_spreads": {
+    "I_c_S_to_M": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.4164955306996874,
+        "julia": 0.4164955306996874,
+        "pytorch": 0.4164955306996874
+      },
+      "within_tolerance": true
+    },
+    "I_c_S_to_M_gate": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.4164955307,
+        "julia": 0.4164955307,
+        "pytorch": 0.4164955307
+      },
+      "within_tolerance": true
+    },
+    "ax6_order_gap_U_E_trace_norm": {
+      "spread": 1.1796119636642288e-16,
+      "values": {
+        "jax": 0.049559683493157924,
+        "julia": 0.049559683493157806,
+        "pytorch": 0.04955968349315783
+      },
+      "within_tolerance": true
+    },
+    "chirality_erasure_death_value": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "classical_control_I_c_S_to_M": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "classical_control_qit_coherence_work": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "classical_control_work_extracted": {
+      "spread": 2.7755575615628914e-17,
+      "values": {
+        "jax": 0.14644660940672624,
+        "julia": 0.14644660940672627,
+        "pytorch": 0.14644660940672624
+      },
+      "within_tolerance": true
+    },
+    "classical_measured_MI": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.4164955306996874,
+        "julia": 0.4164955306996874,
+        "pytorch": 0.4164955306996874
+      },
+      "within_tolerance": true
+    },
+    "coherent_reduced_delta_trace_norm": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.3490341265562846,
+        "julia": 1.3490341265562846,
+        "pytorch": 1.3490341265562846
+      },
+      "within_tolerance": true
+    },
+    "commuting_control_delta_trace_norm": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "commuting_pair_gap_trace_norm": {
+      "spread": 1.149673585146546e-17,
+      "values": {
+        "jax": 6.700788708272329e-17,
+        "julia": 5.551115123125783e-17,
+        "pytorch": 6.700788708272329e-17
+      },
+      "within_tolerance": true
+    },
+    "feedback_energy_after": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "feedback_energy_before": {
+      "spread": 2.7755575615628914e-17,
+      "values": {
+        "jax": 0.14644660940672624,
+        "julia": 0.14644660940672627,
+        "pytorch": 0.14644660940672624
+      },
+      "within_tolerance": true
+    },
+    "gamma5_odd_HR_flip_diagnostic": {
+      "spread": 0.0,
+      "values": {
+        "jax": -0.7057960972831447,
+        "julia": -0.7057960972831447,
+        "pytorch": -0.7057960972831447
+      },
+      "within_tolerance": true
+    },
+    "gamma5_odd_L": {
+      "spread": 1.1102230246251565e-16,
+      "values": {
+        "jax": 0.21614028910483668,
+        "julia": 0.21614028910483657,
+        "pytorch": 0.21614028910483668
+      },
+      "within_tolerance": true
+    },
+    "headline_delta_trace_norm": {
+      "spread": 4.440892098500626e-16,
+      "values": {
+        "jax": 1.2676116766357746,
+        "julia": 1.267611676635775,
+        "pytorch": 1.2676116766357746
+      },
+      "within_tolerance": true
+    },
+    "information_gained_bits": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.201752073385712,
+        "julia": 1.201752073385712,
+        "pytorch": 1.201752073385712
+      },
+      "within_tolerance": true
+    },
+    "information_gained_nats": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.8329910613993748,
+        "julia": 0.8329910613993748,
+        "pytorch": 0.8329910613993748
+      },
+      "within_tolerance": true
+    },
+    "landauer_lower_bound_ln2_p_excited": {
+      "spread": 2.7755575615628914e-17,
+      "values": {
+        "jax": 0.10150905441283585,
+        "julia": 0.10150905441283588,
+        "pytorch": 0.10150905441283585
+      },
+      "within_tolerance": true
+    },
+    "landauer_margin_W_minus_reset_cost": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.04493755499389039,
+        "julia": 0.04493755499389039,
+        "pytorch": 0.04493755499389039
+      },
+      "within_tolerance": true
+    },
+    "landauer_reset_cost": {
+      "spread": 2.7755575615628914e-17,
+      "values": {
+        "jax": 0.10150905441283585,
+        "julia": 0.10150905441283588,
+        "pytorch": 0.10150905441283585
+      },
+      "within_tolerance": true
+    },
+    "legacy_reduced_delta_trace_norm": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.3490341265562846,
+        "julia": 1.3490341265562846,
+        "pytorch": 1.3490341265562846
+      },
+      "within_tolerance": true
+    },
+    "literal_loop_g_DI_trace_norm": {
+      "spread": 4.440892098500626e-16,
+      "values": {
+        "jax": 1.2676116766357746,
+        "julia": 1.267611676635775,
+        "pytorch": 1.2676116766357746
+      },
+      "within_tolerance": true
+    },
+    "max_tp_residual": {
+      "spread": 6.7008361698720824e-18,
+      "values": {
+        "jax": 2.255319284735322e-16,
+        "julia": 2.322327646434043e-16,
+        "pytorch": 2.255319284735322e-16
+      },
+      "within_tolerance": true
+    },
+    "min_choi_eig": {
+      "spread": 4.300425492881217e-16,
+      "values": {
+        "jax": -6.503612868900829e-16,
+        "julia": -4.4257000367151417e-16,
+        "pytorch": -2.2031873760196121e-16
+      },
+      "within_tolerance": true
+    },
+    "min_second_law_gap": {
+      "spread": 9.54097911787244e-16,
+      "values": {
+        "jax": -1.096345236817342e-15,
+        "julia": -1.4224732503009818e-16,
+        "pytorch": -7.806255641895632e-16
+      },
+      "within_tolerance": true
+    },
+    "no_bath_entropy_production": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "no_bath_state_trace_norm_from_input": {
+      "spread": 2.220446049250313e-16,
+      "values": {
+        "jax": 1.313354583531945,
+        "julia": 1.3133545835319447,
+        "pytorch": 1.3133545835319447
+      },
+      "within_tolerance": true
+    },
+    "no_measurement_I_c_S_to_M": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "no_measurement_quantum_coherent_MI": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "no_measurement_work_extracted": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "quantum_coherent_MI": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.8329910613993748,
+        "julia": 0.8329910613993748,
+        "pytorch": 0.8329910613993748
+      },
+      "within_tolerance": true
+    },
+    "quantum_coherent_MI_gate": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.832991061399,
+        "julia": 0.832991061399,
+        "pytorch": 0.832991061399
+      },
+      "within_tolerance": true
+    },
+    "sign_flip_diagnostic_trace_norm": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.4375435363222038,
+        "julia": 1.4375435363222038,
+        "pytorch": 1.4375435363222038
+      },
+      "within_tolerance": true
+    },
+    "szilard_bound_lhs_W_minus_kTln2I": {
+      "spread": 0.0,
+      "values": {
+        "jax": -0.6865444519926486,
+        "julia": -0.6865444519926486,
+        "pytorch": -0.6865444519926486
+      },
+      "within_tolerance": true
+    },
+    "type1_type2_trace_norm": {
+      "spread": 2.220446049250313e-16,
+      "values": {
+        "jax": 1.47613702710876,
+        "julia": 1.4761370271087597,
+        "pytorch": 1.47613702710876
+      },
+      "within_tolerance": true
+    },
+    "work_extracted": {
+      "spread": 2.7755575615628914e-17,
+      "values": {
+        "jax": 0.14644660940672624,
+        "julia": 0.14644660940672627,
+        "pytorch": 0.14644660940672624
+      },
+      "within_tolerance": true
+    }
+  },
+  "smt_verdicts": {
+    "commuting_control_cvc5": "sat",
+    "commuting_control_julia_z3": "sat",
+    "commuting_control_z3": "sat",
+    "cvc5": "unsat",
+    "julia_z3": "unsat",
+    "z3": "unsat"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/dual_stack_carnot_szilard_hopf_weyl_probe_envelope.py",
+  "szilard_ledger_summary": {
+    "I_c_S_to_M": 0.4164955306996874,
+    "I_c_S_to_M_gate": 0.4164955307,
+    "bound_lhs_W_minus_kTln2I": -0.6865444519926486,
+    "classical_control_I_c_S_to_M": 0.0,
+    "classical_measured_MI": 0.4164955306996874,
+    "feedback_energy_after": 0.0,
+    "feedback_energy_before": 0.14644660940672627,
+    "information_gained_bits": 1.201752073385712,
+    "information_gained_nats": 0.8329910613993748,
+    "landauer_lower_bound_ln2_p_excited": 0.10150905441283588,
+    "landauer_margin_W_minus_reset_cost": 0.04493755499389039,
+    "landauer_reset_cost": 0.10150905441283588,
+    "quantum_coherent_MI": 0.8329910613993748,
+    "quantum_coherent_MI_gate": 0.832991061399,
+    "work_extracted": 0.14644660940672627,
+    "work_placeholder": false,
+    "work_source": "feedback_energy_drop_Tr_H_rho_before_minus_after"
+  }
+}

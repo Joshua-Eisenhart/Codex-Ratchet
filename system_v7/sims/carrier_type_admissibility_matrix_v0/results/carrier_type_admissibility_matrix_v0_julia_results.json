@@ -1,0 +1,1903 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive read/write of spec and receipt JSON",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Z3.jl existence search over free carrier variables for each type and fixture",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "carrier_type_non_isomorphism": {
+    "basis": "structural category difference, not a hardcoded witness carrier",
+    "quotient": "finite probe-outcome fingerprint row with one free bounded readout variable per measured probe",
+    "classical_noncontextual": "simplex over deterministic Z/X/Y value assignments with non-disturbing sequential readout",
+    "real_rebit": "real-symmetric 2x2 PSD trace-1 density matrix rho_R=[[a,b],[b,1-a]]",
+    "complex_rho": "complex Hermitian 2x2 PSD trace-1 density matrix rho=[[a,b-i*c],[b+i*c,1-a]]"
+  },
+  "carrier_types": [
+    "quotient",
+    "classical_noncontextual",
+    "real_rebit",
+    "complex_rho"
+  ],
+  "claim_ceiling": "For these finite fixtures only: multiplicity across non-isomorphic carrier categories means the carrier type is installed, while UNSAT rows give fixture-local exclusions. The quotient carrier is a near-trivial null baseline with one bounded free variable per measured probe. The load-bearing carrier-type negative is the order_gap_clean classical_noncontextual exclusion: ZX=1/4 versus XZ=3/8 violates the non-disturbing classical joint. The y_phase real_rebit exclusion is by_construction because a real-symmetric rebit has Y=1/2 identically; it is a boundary/control, not load-bearing. The Luders readout maps encode one chosen measurement geometry, so the clean order-gap exclusion is fixture-local contextuality-flavored evidence under that geometry, not a general contextuality theorem. This does not exclude rho, does not promote beyond scratch_diagnostic, and leaves the Rung-0.5 Boolean/counting fork held.",
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "engine": "julia_z3",
+  "formal_admission_allowed": false,
+  "headline_checks": {
+    "all_pass": true,
+    "allowed_set_varies_across_matrix": true,
+    "excluded_set_varies_across_matrix": true,
+    "expected_fixture_sets_present": {
+      "marginal_multiplicity": true,
+      "order_gap_clean": true,
+      "order_gap_exclusion": true,
+      "scrambled_order_gap": true,
+      "y_phase_exclusion": true
+    },
+    "has_genuine_exclusion_fixture": true,
+    "multiplicity_fixture_admits_at_least_two_types": true,
+    "no_unknown_headline_or_controls": true,
+    "order_gap_clean_isolation_pass": true,
+    "reproduce_on_off_all_types_differ": true,
+    "reproduce_on_off_by_type": {
+      "classical_noncontextual": {
+        "differs": true,
+        "fixture": "order_gap_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "complex_rho": {
+        "differs": true,
+        "fixture": "scrambled_order_gap",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "quotient": {
+        "differs": true,
+        "fixture": "invalid_probability",
+        "fixture_group": "load_bearing_controls",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "real_rebit": {
+        "differs": true,
+        "fixture": "y_phase_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      }
+    },
+    "scramble_changes_allowed_set": true
+  },
+  "headline_matrix": {
+    "julia_z3": {
+      "marginal_multiplicity": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_classical_noncontextual_w_100 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_000 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_110 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_001 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_101 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_011 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_010 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_111 -> (/ 1.0 2.0)\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_complex_rho_c -> 0.0\njulia_marginal_multiplicity_complex_rho_a -> (/ 3.0 4.0)\njulia_marginal_multiplicity_complex_rho_b -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_quotient_X -> (/ 1.0 2.0)\njulia_marginal_multiplicity_quotient_Z -> (/ 3.0 4.0)\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_real_rebit_b -> 0.0\njulia_marginal_multiplicity_real_rebit_a -> (/ 3.0 4.0)\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "marginal_multiplicity",
+        "fixture_verdict": "installed",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "order_gap_clean": {
+        "allowed_set": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "excluded",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_complex_rho_c -> 0.0\njulia_order_gap_clean_complex_rho_b -> (/ 1.0 4.0)\njulia_order_gap_clean_complex_rho_a -> (/ 1.0 2.0)\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_quotient_XZ -> (/ 3.0 8.0)\njulia_order_gap_clean_quotient_X -> (/ 3.0 4.0)\njulia_order_gap_clean_quotient_Z -> (/ 1.0 2.0)\njulia_order_gap_clean_quotient_ZX -> (/ 1.0 4.0)\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_real_rebit_b -> (/ 1.0 4.0)\njulia_order_gap_clean_real_rebit_a -> (/ 1.0 2.0)\n"
+          }
+        },
+        "excluded_set": [
+          "classical_noncontextual"
+        ],
+        "fixture": "order_gap_clean",
+        "fixture_verdict": "installed",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "order_gap_exclusion": {
+        "allowed_set": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "excluded",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_complex_rho_a -> 1.0\njulia_order_gap_exclusion_complex_rho_c -> 0.0\njulia_order_gap_exclusion_complex_rho_b -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_quotient_Z -> 1.0\njulia_order_gap_exclusion_quotient_ZX -> (/ 1.0 2.0)\njulia_order_gap_exclusion_quotient_XZ -> (/ 1.0 4.0)\njulia_order_gap_exclusion_quotient_X -> (/ 1.0 2.0)\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_real_rebit_a -> 1.0\njulia_order_gap_exclusion_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [
+          "classical_noncontextual"
+        ],
+        "fixture": "order_gap_exclusion",
+        "fixture_verdict": "installed",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "scrambled_order_gap": {
+        "allowed_set": [
+          "quotient"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "excluded",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "complex_rho": {
+            "admission": "excluded",
+            "carrier_type": "complex_rho",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_scrambled_order_gap_quotient_Z -> 1.0\njulia_scrambled_order_gap_quotient_X -> (/ 1.0 2.0)\njulia_scrambled_order_gap_quotient_ZX -> (/ 3.0 4.0)\njulia_scrambled_order_gap_quotient_XZ -> (/ 1.0 4.0)\n"
+          },
+          "real_rebit": {
+            "admission": "excluded",
+            "carrier_type": "real_rebit",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          }
+        },
+        "excluded_set": [
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "fixture": "scrambled_order_gap",
+        "fixture_verdict": "single_allowed_by_panel",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "y_phase_exclusion": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_classical_noncontextual_w_011 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_010 -> (/ 1.0 4.0)\njulia_y_phase_exclusion_classical_noncontextual_w_100 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_111 -> (/ 1.0 4.0)\njulia_y_phase_exclusion_classical_noncontextual_w_101 -> (/ 1.0 4.0)\njulia_y_phase_exclusion_classical_noncontextual_w_001 -> (/ 1.0 4.0)\njulia_y_phase_exclusion_classical_noncontextual_w_000 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_110 -> 0.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_complex_rho_a -> (/ 1.0 2.0)\njulia_y_phase_exclusion_complex_rho_c -> (/ 1.0 4.0)\njulia_y_phase_exclusion_complex_rho_b -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_Y": "q_Y:Real",
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_quotient_Y -> (/ 3.0 4.0)\njulia_y_phase_exclusion_quotient_X -> (/ 1.0 2.0)\njulia_y_phase_exclusion_quotient_Z -> (/ 1.0 2.0)\n"
+          },
+          "real_rebit": {
+            "admission": "excluded",
+            "carrier_type": "real_rebit",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          }
+        },
+        "excluded_set": [
+          "real_rebit"
+        ],
+        "fixture": "y_phase_exclusion",
+        "fixture_verdict": "installed",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      }
+    },
+    "julia_z3_reproduce_off": {
+      "marginal_multiplicity": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_classical_noncontextual_w_100 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_000 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_110 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_001 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_101 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_011 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_010 -> 1.0\njulia_marginal_multiplicity_classical_noncontextual_w_111 -> 0.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_complex_rho_b -> 0.0\njulia_marginal_multiplicity_complex_rho_c -> 0.0\njulia_marginal_multiplicity_complex_rho_a -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_quotient_X -> 0.0\njulia_marginal_multiplicity_quotient_Z -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "marginal_multiplicity",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Z": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_marginal_multiplicity_real_rebit_a -> 0.0\njulia_marginal_multiplicity_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "marginal_multiplicity",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "order_gap_clean": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_classical_noncontextual_w_101 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_011 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_100 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_111 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_000 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_110 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_001 -> 0.0\njulia_order_gap_clean_classical_noncontextual_w_010 -> 1.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_complex_rho_a -> 0.0\njulia_order_gap_clean_complex_rho_c -> 0.0\njulia_order_gap_clean_complex_rho_b -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_quotient_XZ -> 0.0\njulia_order_gap_clean_quotient_X -> 0.0\njulia_order_gap_clean_quotient_Z -> 0.0\njulia_order_gap_clean_quotient_ZX -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "order_gap_clean",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "3/4",
+              "XZ": "3/8",
+              "Z": "1/2",
+              "ZX": "1/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_clean_real_rebit_a -> 0.0\njulia_order_gap_clean_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "order_gap_clean",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "order_gap_exclusion": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_classical_noncontextual_w_001 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_111 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_011 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_100 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_110 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_000 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_101 -> 0.0\njulia_order_gap_exclusion_classical_noncontextual_w_010 -> 1.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_complex_rho_b -> 0.0\njulia_order_gap_exclusion_complex_rho_c -> 0.0\njulia_order_gap_exclusion_complex_rho_a -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_quotient_Z -> 0.0\njulia_order_gap_exclusion_quotient_ZX -> 0.0\njulia_order_gap_exclusion_quotient_XZ -> 0.0\njulia_order_gap_exclusion_quotient_X -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "order_gap_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_order_gap_exclusion_real_rebit_b -> 0.0\njulia_order_gap_exclusion_real_rebit_a -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "order_gap_exclusion",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "scrambled_order_gap": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_scrambled_order_gap_classical_noncontextual_w_011 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_111 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_110 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_101 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_000 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_001 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_100 -> 0.0\njulia_scrambled_order_gap_classical_noncontextual_w_010 -> 1.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_scrambled_order_gap_complex_rho_b -> 0.0\njulia_scrambled_order_gap_complex_rho_a -> 0.0\njulia_scrambled_order_gap_complex_rho_c -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_XZ": "q_XZ:Real",
+              "q_Z": "q_Z:Real",
+              "q_ZX": "q_ZX:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_scrambled_order_gap_quotient_Z -> 0.0\njulia_scrambled_order_gap_quotient_X -> 0.0\njulia_scrambled_order_gap_quotient_ZX -> 0.0\njulia_scrambled_order_gap_quotient_XZ -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "scrambled_order_gap",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "XZ": "1/4",
+              "Z": "1",
+              "ZX": "3/4"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "ZX",
+              "XZ"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_scrambled_order_gap_real_rebit_a -> 0.0\njulia_scrambled_order_gap_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "scrambled_order_gap",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      },
+      "y_phase_exclusion": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_classical_noncontextual_w_011 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_010 -> 1.0\njulia_y_phase_exclusion_classical_noncontextual_w_100 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_111 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_101 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_001 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_000 -> 0.0\njulia_y_phase_exclusion_classical_noncontextual_w_110 -> 0.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_complex_rho_b -> 0.0\njulia_y_phase_exclusion_complex_rho_c -> 0.0\njulia_y_phase_exclusion_complex_rho_a -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "q_X": "q_X:Real",
+              "q_Y": "q_Y:Real",
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_quotient_Y -> 0.0\njulia_y_phase_exclusion_quotient_X -> 0.0\njulia_y_phase_exclusion_quotient_Z -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "y_phase_exclusion",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "X": "1/2",
+              "Y": "3/4",
+              "Z": "1/2"
+            },
+            "probes": [
+              "Z",
+              "X",
+              "Y"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_y_phase_exclusion_real_rebit_a -> 0.0\njulia_y_phase_exclusion_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "y_phase_exclusion",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      }
+    }
+  },
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "load_bearing_controls": {
+    "julia_z3": {
+      "invalid_probability": {
+        "allowed_set": [],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "excluded",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "complex_rho": {
+            "admission": "excluded",
+            "carrier_type": "complex_rho",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "quotient": {
+            "admission": "excluded",
+            "carrier_type": "quotient",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          },
+          "real_rebit": {
+            "admission": "excluded",
+            "carrier_type": "real_rebit",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": true,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "readout_T(C, probe) == measured_probe for every listed probe",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "unsat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": null
+          }
+        },
+        "excluded_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "fixture": "invalid_probability",
+        "fixture_verdict": "none_allowed",
+        "include_reproduce": true,
+        "solver": "julia_z3",
+        "unknown_set": []
+      }
+    },
+    "julia_z3_reproduce_off": {
+      "invalid_probability": {
+        "allowed_set": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "by_type": {
+          "classical_noncontextual": {
+            "admission": "admitted",
+            "carrier_type": "classical_noncontextual",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "w_z0x0y0": "w_z0x0y0:Real",
+              "w_z0x0y1": "w_z0x0y1:Real",
+              "w_z0x1y0": "w_z0x1y0:Real",
+              "w_z0x1y1": "w_z0x1y1:Real",
+              "w_z1x0y0": "w_z1x0y0:Real",
+              "w_z1x0y1": "w_z1x0y1:Real",
+              "w_z1x1y0": "w_z1x1y0:Real",
+              "w_z1x1y1": "w_z1x1y1:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "weights over deterministic Z/X/Y assignments are nonnegative and sum to 1",
+              "ZX and XZ are the same non-disturbing joint event"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_invalid_probability_classical_noncontextual_w_010 -> 1.0\njulia_invalid_probability_classical_noncontextual_w_100 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_110 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_101 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_001 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_000 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_011 -> 0.0\njulia_invalid_probability_classical_noncontextual_w_111 -> 0.0\n"
+          },
+          "complex_rho": {
+            "admission": "admitted",
+            "carrier_type": "complex_rho",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real",
+              "c": "c:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho=[[a,b-i*c],[b+i*c,1-a]], 0 <= a <= 1, a*(1-a)-b^2-c^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_invalid_probability_complex_rho_c -> 0.0\njulia_invalid_probability_complex_rho_a -> 0.0\njulia_invalid_probability_complex_rho_b -> 0.0\n"
+          },
+          "quotient": {
+            "admission": "admitted",
+            "carrier_type": "quotient",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "q_Z": "q_Z:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "0 <= q_probe <= 1 for each measured probe"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_invalid_probability_quotient_Z -> 0.0\n"
+          },
+          "real_rebit": {
+            "admission": "admitted",
+            "carrier_type": "real_rebit",
+            "fixture": "invalid_probability",
+            "free_variables": {
+              "a": "a:Real",
+              "b": "b:Real"
+            },
+            "include_reproduce": false,
+            "measured": {
+              "Z": "3/2"
+            },
+            "probes": [
+              "Z"
+            ],
+            "readout_binding": "omitted",
+            "solver": "Z3.jl",
+            "solver_logic": "QF_NRA",
+            "solver_status": "sat",
+            "validity_constraints": [
+              "rho_R=[[a,b],[b,1-a]], 0 <= a <= 1, a*(1-a)-b^2 >= 0"
+            ],
+            "verdict_source": "string(Z3.check(solver))",
+            "witness_model_string": "julia_invalid_probability_real_rebit_a -> 0.0\njulia_invalid_probability_real_rebit_b -> 0.0\n"
+          }
+        },
+        "excluded_set": [],
+        "fixture": "invalid_probability",
+        "fixture_verdict": "installed",
+        "include_reproduce": false,
+        "solver": "julia_z3",
+        "unknown_set": []
+      }
+    }
+  },
+  "multiplicity_witness": {
+    "classical_noncontextual": "julia_marginal_multiplicity_classical_noncontextual_w_100 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_000 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_110 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_001 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_101 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_011 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_010 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_111 -> (/ 1.0 2.0)\n",
+    "complex_rho": "julia_marginal_multiplicity_complex_rho_c -> 0.0\njulia_marginal_multiplicity_complex_rho_a -> (/ 3.0 4.0)\njulia_marginal_multiplicity_complex_rho_b -> 0.0\n",
+    "fixture": "marginal_multiplicity"
+  },
+  "order_gap_clean_isolation": {
+    "classical_noncontextual": {
+      "branch_Z_X_XZ": "sat",
+      "branch_Z_X_ZX": "sat",
+      "exclusion_mechanism": "one non-disturbing classical joint J cannot equal both ZX=1/4 and XZ=3/8",
+      "joint_Z_X_ZX_XZ": "unsat",
+      "marginals_Z_X": "sat"
+    },
+    "complex_rho": {
+      "joint_Z_X_ZX_XZ": "sat",
+      "witness_model_string": "julia_order_gap_clean_complex_rho_c -> 0.0\njulia_order_gap_clean_complex_rho_b -> (/ 1.0 4.0)\njulia_order_gap_clean_complex_rho_a -> (/ 1.0 2.0)\n"
+    },
+    "expected_clean_values": {
+      "X": "3/4",
+      "XZ": "3/8",
+      "Z": "1/2",
+      "ZX": "1/4",
+      "complex_rho_witness": {
+        "a": "1/2",
+        "b": "1/4"
+      }
+    },
+    "fixture": "order_gap_clean",
+    "passed": true,
+    "solver": "julia_z3"
+  },
+  "package_observables": {
+    "JSON": "spec/result JSON handling only",
+    "Z3": "SAT/UNSAT allowed-set matrix and reproduce controls over free carrier variables"
+  },
+  "packages_used": [
+    "JSON",
+    "SHA",
+    "Dates",
+    "Z3"
+  ],
+  "promotion_allowed": false,
+  "readout_definitions": {
+    "quotient": {
+      "validity": "0 <= q_probe <= 1 for every measured probe",
+      "Z": "q_Z",
+      "X": "q_X",
+      "Y": "q_Y",
+      "ZX": "q_ZX",
+      "XZ": "q_XZ"
+    },
+    "classical_noncontextual": {
+      "validity": "weights w_zxy >= 0 over deterministic z,x,y in {+,-}; sum weights = 1",
+      "Z": "sum_{z=+} w_zxy",
+      "X": "sum_{x=+} w_zxy",
+      "Y": "sum_{y=+} w_zxy",
+      "ZX": "sum_{z=+,x=+} w_zxy",
+      "XZ": "sum_{x=+,z=+} w_zxy, equal to ZX because the model is non-disturbing"
+    },
+    "real_rebit": {
+      "validity": "0 <= a <= 1 and a*(1-a)-b^2 >= 0",
+      "Z": "a",
+      "X": "1/2 + b",
+      "Y": "1/2",
+      "ZX": "a/2",
+      "XZ": "1/4 + b/2"
+    },
+    "complex_rho": {
+      "validity": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+      "Z": "a",
+      "X": "1/2 + b",
+      "Y": "1/2 + c",
+      "ZX": "a/2",
+      "XZ": "1/4 + b/2"
+    }
+  },
+  "reads_peer_result": false,
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "carrier_type_admissibility_matrix_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/carrier_type_admissibility_matrix_v0_julia.jl",
+  "source_sha256": "88a09bcd7265ca0360df3236d1da2462475810348f422e2a8fb2d90425cce34b",
+  "spec_sha256": "eac927d2dd8c72a4aa77a8f4ce454f43d6c409a10a0108a4247b0bf316f8c9e0",
+  "surviving_alternatives": [
+    "Rung-0.5 Boolean/counting fork remains held.",
+    "rho/complex carrier is admitted on some fixtures but not forced by finite probe data.",
+    "Classical noncontextual carriers remain admitted on marginal-only and Y-phase fixtures but are excluded by the clean order-gap fixture under the chosen measurement geometry."
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "scrambled_order_gap changes the allowed set",
+      "demotion_condition": "demote if Z3.jl returns unknown or reproduce ON/OFF does not differ for every carrier type",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "per-type free variables and readout equalities for each finite probe-table fixture",
+      "negative/erased_control": "order_gap_clean excludes classical_noncontextual through the non-disturbing joint; invalid_probability flips reproduce ON/OFF",
+      "output_object": "allowed/excluded carrier-type matrix",
+      "positive_case": "marginal_multiplicity admits multiple non-isomorphic carrier categories",
+      "qualified_api/function": "Z3.Solver/Z3.Const/Z3.add/Z3.check/Z3.model",
+      "tool": "Z3"
+    }
+  ],
+  "written_at": "2026-06-17T04:22:59Z"
+}

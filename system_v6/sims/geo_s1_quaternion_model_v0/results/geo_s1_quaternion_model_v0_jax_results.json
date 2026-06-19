@@ -1,0 +1,480 @@
+{
+  "Q_receipts": {
+    "Q1_model_dictionary": {
+      "group_law_max_deviation": 2.618455766672135e-16,
+      "pass": true,
+      "roundtrip_max_deviation": 0.0,
+      "su2_matrix_convention": "[[a+bi,c+di],[-c+di,a-bi]] for q=(a,b,c,d)"
+    },
+    "Q2_hopf_agreement": {
+      "R_quaternion_vector_to_complex_xyz": [
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "det_R": 1.0,
+      "dictionary": "z1=a+bi, z2=c-di for q=a+bi+cj+dk; this is the pinned SO(3)-orientation convention for q -> q*i*qbar",
+      "max_pointwise_deviation_after_R": 5.551115123125783e-16,
+      "pass": true,
+      "sample_count": 20000,
+      "wrong_convention_skip_R_deviation": 1.4142037812171875
+    },
+    "Q3_linking_hopf_invariant_method": {
+      "convergence": [
+        {
+          "abs_error": 0.0004017081549649859,
+          "n_eta": 32,
+          "normalization": "abs(int A^F)/(4*pi^2)",
+          "raw_abs_integral_A_wedge_F": 39.494276406654215,
+          "target": 1.0,
+          "value": 1.000401708154965
+        },
+        {
+          "abs_error": 0.0001004058641838057,
+          "n_eta": 64,
+          "normalization": "abs(int A^F)/(4*pi^2)",
+          "raw_abs_integral_A_wedge_F": 39.48238146899361,
+          "target": 1.0,
+          "value": 1.0001004058641838
+        },
+        {
+          "abs_error": 2.5100142951428595e-05,
+          "n_eta": 128,
+          "normalization": "abs(int A^F)/(4*pi^2)",
+          "raw_abs_integral_A_wedge_F": 39.479408518282796,
+          "target": 1.0,
+          "value": 1.0000251001429514
+        },
+        {
+          "abs_error": 6.2749530491679195e-06,
+          "n_eta": 256,
+          "normalization": "abs(int A^F)/(4*pi^2)",
+          "raw_abs_integral_A_wedge_F": 39.478665329574355,
+          "target": 1.0,
+          "value": 1.0000062749530492
+        }
+      ],
+      "final_value": 1.0000062749530492,
+      "method": "lattice integral of abs(A^F)/(4*pi^2) in Hopf chart",
+      "pass": true
+    },
+    "Q4_volume_metric_lattice_method": {
+      "convergence": [
+        {
+          "abs_error": 0.00792940114839169,
+          "corrected_volume": 19.747138203327108,
+          "cover_correction": "divide_by_2",
+          "n_eta": 32,
+          "naive_chart_integral_2_to_1_cover": 39.494276406654215,
+          "naive_target_4pi2": 39.47841760435743,
+          "target_2pi2": 19.739208802178716
+        },
+        {
+          "abs_error": 0.0019819323180882975,
+          "corrected_volume": 19.741190734496804,
+          "cover_correction": "divide_by_2",
+          "n_eta": 64,
+          "naive_chart_integral_2_to_1_cover": 39.48238146899361,
+          "naive_target_4pi2": 39.47841760435743,
+          "target_2pi2": 19.739208802178716
+        },
+        {
+          "abs_error": 0.0004954569626818284,
+          "corrected_volume": 19.739704259141398,
+          "cover_correction": "divide_by_2",
+          "n_eta": 128,
+          "naive_chart_integral_2_to_1_cover": 39.479408518282796,
+          "naive_target_4pi2": 39.47841760435743,
+          "target_2pi2": 19.739208802178716
+        },
+        {
+          "abs_error": 0.0001238626084614225,
+          "corrected_volume": 19.739332664787177,
+          "cover_correction": "divide_by_2",
+          "n_eta": 256,
+          "naive_chart_integral_2_to_1_cover": 39.478665329574355,
+          "naive_target_4pi2": 39.47841760435743,
+          "target_2pi2": 19.739208802178716
+        },
+        {
+          "abs_error": 3.096555010273505e-05,
+          "corrected_volume": 19.73923976772882,
+          "cover_correction": "divide_by_2",
+          "n_eta": 512,
+          "naive_chart_integral_2_to_1_cover": 39.47847953545764,
+          "naive_target_4pi2": 39.47841760435743,
+          "target_2pi2": 19.739208802178716
+        }
+      ],
+      "final_corrected_volume": 19.73923976772882,
+      "method": "metric determinant chart integration with explicit 2:1 cover correction",
+      "pass": true
+    },
+    "Q5_double_cover": {
+      "pass": true,
+      "path": "q(t)=exp(t*i/2) q0",
+      "path_sample_intervals": 16,
+      "path_samples": [
+        {
+          "index": 0,
+          "norm_qt_minus_q0": 0.0,
+          "norm_qt_plus_q0": 1.9999999999999996,
+          "psi_overlap_with_q0": 0.9999999999999996,
+          "q": [
+            0.3822093390389466,
+            0.682632279552219,
+            0.12788718710200553,
+            -0.6095687487395405
+          ],
+          "t_over_pi": 0.0,
+          "t_radians": 0.0
+        },
+        {
+          "index": 1,
+          "norm_qt_minus_q0": 0.39018064403225644,
+          "norm_qt_plus_q0": 1.9615705608064606,
+          "psi_overlap_with_q0": 0.9238795325112865,
+          "q": [
+            0.09188332169050129,
+            0.7769351730552344,
+            0.3514242156641247,
+            -0.5142277829032648
+          ],
+          "t_over_pi": 0.25,
+          "t_radians": 0.7853981633974483
+        },
+        {
+          "index": 2,
+          "norm_qt_minus_q0": 0.7653668647301792,
+          "norm_qt_plus_q0": 1.847759065022573,
+          "psi_overlap_with_q0": 0.7071067811865474,
+          "q": [
+            -0.2124310984609376,
+            0.7529567293954724,
+            0.5214600930598287,
+            -0.340600298606427
+          ],
+          "t_over_pi": 0.5,
+          "t_radians": 1.5707963267948966
+        },
+        {
+          "index": 3,
+          "norm_qt_minus_q0": 1.1111404660392041,
+          "norm_qt_plus_q0": 1.6629392246050902,
+          "psi_overlap_with_q0": 0.38268343236508967,
+          "q": [
+            -0.48440480956440163,
+            0.6143474492549985,
+            0.6121083983346886,
+            -0.11511950639615606
+          ],
+          "t_over_pi": 0.75,
+          "t_radians": 2.356194490192345
+        },
+        {
+          "index": 4,
+          "norm_qt_minus_q0": 1.4142135623730947,
+          "norm_qt_plus_q0": 1.4142135623730947,
+          "psi_overlap_with_q0": 1.3877787807814457e-17,
+          "q": [
+            -0.682632279552219,
+            0.38220933903894666,
+            0.6095687487395405,
+            0.1278871871020055
+          ],
+          "t_over_pi": 1.0,
+          "t_radians": 3.141592653589793
+        },
+        {
+          "index": 5,
+          "norm_qt_minus_q0": 1.66293922460509,
+          "norm_qt_plus_q0": 1.1111404660392044,
+          "psi_overlap_with_q0": -0.3826834323650895,
+          "q": [
+            -0.7769351730552344,
+            0.09188332169050129,
+            0.5142277829032648,
+            0.35142421566412463
+          ],
+          "t_over_pi": 1.25,
+          "t_radians": 3.9269908169872414
+        },
+        {
+          "index": 6,
+          "norm_qt_minus_q0": 1.847759065022573,
+          "norm_qt_plus_q0": 0.7653668647301796,
+          "psi_overlap_with_q0": -0.7071067811865472,
+          "q": [
+            -0.7529567293954724,
+            -0.2124310984609376,
+            0.340600298606427,
+            0.5214600930598287
+          ],
+          "t_over_pi": 1.5,
+          "t_radians": 4.71238898038469
+        },
+        {
+          "index": 7,
+          "norm_qt_minus_q0": 1.9615705608064604,
+          "norm_qt_plus_q0": 0.3901806440322566,
+          "psi_overlap_with_q0": -0.9238795325112864,
+          "q": [
+            -0.6143474492549986,
+            -0.4844048095644016,
+            0.11511950639615609,
+            0.6121083983346886
+          ],
+          "t_over_pi": 1.75,
+          "t_radians": 5.497787143782138
+        },
+        {
+          "index": 8,
+          "norm_qt_minus_q0": 1.9999999999999996,
+          "norm_qt_plus_q0": 1.3877787807814457e-16,
+          "psi_overlap_with_q0": -0.9999999999999996,
+          "q": [
+            -0.3822093390389467,
+            -0.682632279552219,
+            -0.12788718710200545,
+            0.6095687487395405
+          ],
+          "t_over_pi": 2.0,
+          "t_radians": 6.283185307179586
+        },
+        {
+          "index": 9,
+          "norm_qt_minus_q0": 1.9615705608064609,
+          "norm_qt_plus_q0": 0.39018064403225633,
+          "psi_overlap_with_q0": -0.9238795325112866,
+          "q": [
+            -0.0918833216905014,
+            -0.7769351730552345,
+            -0.35142421566412463,
+            0.5142277829032649
+          ],
+          "t_over_pi": 2.25,
+          "t_radians": 7.0685834705770345
+        },
+        {
+          "index": 10,
+          "norm_qt_minus_q0": 1.847759065022573,
+          "norm_qt_plus_q0": 0.7653668647301792,
+          "psi_overlap_with_q0": -0.7071067811865475,
+          "q": [
+            0.21243109846093755,
+            -0.7529567293954724,
+            -0.5214600930598287,
+            0.34060029860642704
+          ],
+          "t_over_pi": 2.5,
+          "t_radians": 7.853981633974483
+        },
+        {
+          "index": 11,
+          "norm_qt_minus_q0": 1.6629392246050905,
+          "norm_qt_plus_q0": 1.1111404660392037,
+          "psi_overlap_with_q0": -0.38268343236509006,
+          "q": [
+            0.48440480956440135,
+            -0.6143474492549987,
+            -0.6121083983346886,
+            0.1151195063961564
+          ],
+          "t_over_pi": 2.7499999999999996,
+          "t_radians": 8.63937979737193
+        },
+        {
+          "index": 12,
+          "norm_qt_minus_q0": 1.414213562373095,
+          "norm_qt_plus_q0": 1.4142135623730945,
+          "psi_overlap_with_q0": -1.8041124150158794e-16,
+          "q": [
+            0.6826322795522188,
+            -0.3822093390389467,
+            -0.6095687487395405,
+            -0.12788718710200542
+          ],
+          "t_over_pi": 3.0,
+          "t_radians": 9.42477796076938
+        },
+        {
+          "index": 13,
+          "norm_qt_minus_q0": 1.111140466039204,
+          "norm_qt_plus_q0": 1.6629392246050902,
+          "psi_overlap_with_q0": 0.38268343236508984,
+          "q": [
+            0.7769351730552344,
+            -0.09188332169050106,
+            -0.5142277829032647,
+            -0.3514242156641248
+          ],
+          "t_over_pi": 3.2500000000000004,
+          "t_radians": 10.210176124166829
+        },
+        {
+          "index": 14,
+          "norm_qt_minus_q0": 0.7653668647301797,
+          "norm_qt_plus_q0": 1.847759065022573,
+          "psi_overlap_with_q0": 0.707106781186547,
+          "q": [
+            0.7529567293954724,
+            0.21243109846093744,
+            -0.34060029860642704,
+            -0.5214600930598285
+          ],
+          "t_over_pi": 3.5,
+          "t_radians": 10.995574287564276
+        },
+        {
+          "index": 15,
+          "norm_qt_minus_q0": 0.3901806440322571,
+          "norm_qt_plus_q0": 1.9615705608064604,
+          "psi_overlap_with_q0": 0.9238795325112862,
+          "q": [
+            0.6143474492549988,
+            0.4844048095644013,
+            -0.11511950639615642,
+            -0.6121083983346886
+          ],
+          "t_over_pi": 3.7499999999999996,
+          "t_radians": 11.780972450961723
+        },
+        {
+          "index": 16,
+          "norm_qt_minus_q0": 2.435541875787129e-16,
+          "norm_qt_plus_q0": 1.9999999999999996,
+          "psi_overlap_with_q0": 0.9999999999999996,
+          "q": [
+            0.38220933903894677,
+            0.6826322795522188,
+            0.1278871871020054,
+            -0.6095687487395405
+          ],
+          "t_over_pi": 4.0,
+          "t_radians": 12.566370614359172
+        }
+      ],
+      "q_2pi_plus_q0_norm": 1.3877787807814457e-16,
+      "q_4pi_minus_q0_norm": 2.435541875787129e-16
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent raw-value UNSAT/SAT proof over computed multi-method linking integers",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive batched Haar sample and pointwise quaternion/complex agreement sweeps; demoted until a passing jax capability probe exists",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive array substrate for quaternion, SU(2), and chart arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive JSON, hashing, timestamps, and deterministic paths",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing raw-value UNSAT/SAT proof over computed multi-method linking integers",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "broken_dictionary_conjugation_error": {
+      "fired": true,
+      "measured_deviation": 1.9977971659835327
+    },
+    "scrambled_fiber_control": {
+      "cvc5": "sat",
+      "fired": true,
+      "raw_scaled": [
+        1000000,
+        1000000,
+        0
+      ],
+      "z3": "sat"
+    },
+    "single_method_control": {
+      "fired": true,
+      "flagged_example": "synthetic one-row invariant table is marked single_sourced and excluded from all_pass"
+    },
+    "wrong_convention_skip_R": {
+      "fired": true,
+      "measured_deviation": 1.4142037812171875
+    }
+  },
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:29:07.028463+00:00",
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "z3",
+    "cvc5"
+  ],
+  "pin_sha256": "18e45476c58584b6fe0f85fd3b1ad2ccda2558e3f208103a3f358fcd74274763",
+  "pin_spec": "geo_s1_quaternion_model_v0|stage:1|model:unit_quaternion|dictionary:z1=a+bi,z2=c-di for q=a+bi+cj+dk|hopf_quaternion=q*i*qbar|R=[[0,0,-1],[0,1,0],[1,0,0]]|complex_hopf=(2Re(z1*conj(z2)),2Im(z1*conj(z2)),|z1|^2-|z2|^2)|seed_ledger=jax.random.PRNGKey[42017:q_n20000,42018:r_n20000];torch.Generator.manual_seed[57001:volume_mc_n80000_160000_320000];numpy.default_rng[777:control_n15000]|rerun=SIM_PY geo_s1_quaternion_model_v0_{jax,julia,pytorch,numpy_control,envelope}|classification=scratch_diagnostic",
+  "promotion_allowed": false,
+  "proofs": {
+    "linking_methods_disagree_beyond_tolerance": {
+      "cvc5_verdict": "unsat",
+      "pass": true,
+      "raw_scaled_values": {
+        "crossing_count": 1000000,
+        "gauss": 1000000,
+        "hopf_integral": 1000000,
+        "scale": 1000000,
+        "tolerance_scaled": 1000
+      },
+      "scrambled_fiber_control_cvc5": "sat",
+      "scrambled_fiber_control_z3": "sat",
+      "z3_verdict": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_quaternion_model_v0/results/geo_s1_quaternion_model_v0_jax_results.json",
+  "role_id": "jax_batched_sweeps_and_smt",
+  "schema_version": "engine_leg_result_v1",
+  "shared_scalars": {
+    "group_law_max_deviation": 2.618455766672135e-16,
+    "hopf_after_R_max_deviation": 5.551115123125783e-16
+  },
+  "sim_id": "geo_s1_quaternion_model_v0",
+  "source_path": "system_v6/sims/geo_s1_quaternion_model_v0/geo_s1_quaternion_model_v0_jax.py",
+  "source_sha256": "08eb588ab92d5cbe2488f7e7e1f763fec7e9643d025288ec3735bf15b03a0c3a"
+}

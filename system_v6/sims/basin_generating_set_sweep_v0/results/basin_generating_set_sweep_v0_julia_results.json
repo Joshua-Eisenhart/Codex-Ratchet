@@ -1,0 +1,900 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing directed graph construction and SCC computation",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing partition identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "G0-G5 finite graph partitions",
+      "receipt_id": "julia_Graphs_generating_set_sweep",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "computed partition identity with erased flip",
+      "receipt_id": "julia_Z3_partition_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T22:08:01Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "object_id": "basin_generating_set_sweep_v0_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "parent_lineage": {
+    "parent_committed_hash_bound": {
+      "basin_contract": "000f48e71",
+      "basin_rc_transition_graph_v0": "631f1c3db"
+    }
+  },
+  "partition_fate_table": [
+    {
+      "baseline_anchor_byte_exact": false,
+      "earns_sub_basin_term": false,
+      "fate": "anchor",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "committed baseline anchor",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G0",
+      "state_count": 33,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "R_x",
+        "R_z",
+        "Ne_Spiral_R",
+        "Ne_Vortex_L"
+      ],
+      "label": "rotations only",
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "partition_signature": {
+        "boundary_count": 0,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G1",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "survives",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Se_Funnel_L",
+        "Si_Citadel_R",
+        "Si_Hill_L",
+        "D_x",
+        "D_z",
+        "R_x",
+        "R_z"
+      ],
+      "label": "full S5 plus S4 set",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G2",
+      "state_count": 33,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Se_Funnel_L",
+        "Si_Hill_L"
+      ],
+      "label": "L chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 14,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3L",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Si_Citadel_R"
+      ],
+      "label": "R chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 14,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3R",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "shrinks",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "conditioned shell baseline",
+      "may_basin_sizes": [
+        4
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        2
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          1,
+          2
+        ],
+        "scc_count": 3,
+        "state_count": 4,
+        "terminal_sizes": [
+          2
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G4",
+      "state_count": 4,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        2
+      ]
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ni_Pit_L_then_R_x"
+      ],
+      "label": "single composite generator",
+      "may_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "partition_signature": {
+        "boundary_count": 26,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ],
+        "scc_count": 31,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      "scc_count": 31,
+      "set_id": "G5",
+      "state_count": 33,
+      "terminal_class_count": 5,
+      "terminal_class_sizes": [
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "deterministic_tie_break": "cell_id_ascending",
+    "rng": "none"
+  },
+  "sim_id": "basin_generating_set_sweep_v0",
+  "source_path": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_julia.jl",
+  "source_sha256": "c5276c0c3bdbb83f297485e7143256323e842dfb84546e9fa4206fba420fc516",
+  "sweep": {
+    "G0": {
+      "baseline_anchor_byte_exact": false,
+      "earns_sub_basin_term": false,
+      "fate": "anchor",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "committed baseline anchor",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G0",
+      "state_count": 33,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ]
+    },
+    "G1": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "R_x",
+        "R_z",
+        "Ne_Spiral_R",
+        "Ne_Vortex_L"
+      ],
+      "label": "rotations only",
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "partition_signature": {
+        "boundary_count": 0,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G1",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ]
+    },
+    "G2": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "survives",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Se_Funnel_L",
+        "Si_Citadel_R",
+        "Si_Hill_L",
+        "D_x",
+        "D_z",
+        "R_x",
+        "R_z"
+      ],
+      "label": "full S5 plus S4 set",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G2",
+      "state_count": 33,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ]
+    },
+    "G3L": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Se_Funnel_L",
+        "Si_Hill_L"
+      ],
+      "label": "L chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 14,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3L",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ]
+    },
+    "G3R": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Si_Citadel_R"
+      ],
+      "label": "R chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 14,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3R",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ]
+    },
+    "G4": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "shrinks",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "conditioned shell baseline",
+      "may_basin_sizes": [
+        4
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        2
+      ],
+      "partition_signature": {
+        "boundary_count": 2,
+        "class_sizes": [
+          1,
+          1,
+          2
+        ],
+        "scc_count": 3,
+        "state_count": 4,
+        "terminal_sizes": [
+          2
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G4",
+      "state_count": 4,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        2
+      ]
+    },
+    "G5": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ni_Pit_L_then_R_x"
+      ],
+      "label": "single composite generator",
+      "may_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": []
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "partition_signature": {
+        "boundary_count": 26,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ],
+        "scc_count": 31,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      "scc_count": 31,
+      "set_id": "G5",
+      "state_count": 33,
+      "terminal_class_count": 5,
+      "terminal_class_sizes": [
+        1,
+        1,
+        1,
+        1,
+        3
+      ]
+    }
+  },
+  "sweep_signature_sha256": "febc5d9e0a281d18f6656b445eef84b9085dd0bb48b45994b09303dd58850bde",
+  "sweep_signature_text": "G0:33:1:1:anchor|G1:33:3:1,14,18:SPLITS|G2:33:1:1:survives|G3L:33:3:1,1,6:SPLITS|G3R:33:3:1,1,6:SPLITS|G4:4:1:2:shrinks|G5:33:5:1,1,1,1,3:SPLITS",
+  "tool_calls": [
+    {
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_generating_set_sweep",
+      "tool": "Graphs"
+    },
+    {
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_partition_identity",
+      "tool": "Z3"
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+[REASONING-ONLY]
+We need answer as adversarial auditor. Need be harsh, concrete, cite line numbers/field names. Need attack four points (a)-(d), then meta questions, then exact tagged lines. We have artifact bundle. Need analyze code carefully.
+
+We need produce final response. Let's deeply analyze.
+
+First understand object under audit: independent_survivor_restriction_noncommutation_verify_v0 core source and JAX leg. It claims to earn ratchet-emergence: finite order-sensitive descending chain emerging from ring-checkerboard QCA local rules, closing map<->constraint gap via history-dependence, with tested lexical<->geometric homomorphic bridge.
+
+We need attack (a) survivor-set noncommutation genuinely emergent or hand-engineered? Look at make_history_dependent_constraint, rule_hist/rule_hist2, seed_kill={3} injection, static control also noncommutes (delta_static_control_x_reactive=3) undermines memory-is-the-engine story.
+
+(b) amnesic ablation control genuinely prove memory engine or rigged? make_amnesic_constraint and mixed-rule isolator.
+
+(c) Phi commuting square real homomorphism test or decorative? update_lex_factory reimplements rule independently or literally calls same geo_constraint? Negative controls rescue?
+
+(d) GNVW index genuinely computed? gnvw_index_of_translation returns shift displacement d put in by shift_permutation? JAX leg independently recompute or echo core_res? z3/cvc5 SMT genuine structural check or near-count-tautology?
+
+Meta: emergence earned? map<->constraint gap closed? circularity?
+
+Need cite line numbers. Since artifact has no line numbers, we can count or refer to function names and approximate lines. We can include line numbers based on counting. Need be careful. We can count lines in each part. But maybe better to cite field names and function definitions with approximate line numbers. The prompt says cite line numbers / field names from artifact. We can count from provided source. Let's count lines for core source.
+
+Core source starts after PART A header. Let's count lines. It includes docstring. We can count manually or approximate. Better to count accurately. Let's copy core source mentally and count. But we can also cite function names and relative lines. The exact line numbers may not be critical but should be plausible. Let's count.
+
+Core source lines:
+
+1 #!/usr/bin/env python3
+2 """..."""
+... docstring multi-line. Let's count entire core. Actually we can count by sections.
+
+But maybe easier: use approximate line numbers with "around line X". The prompt wants concrete. We can count. Let's do it carefully.
+
+Core source:
+
+Line 1: #!/usr/bin/env python3
+Lines 2-14: docstring (maybe 13 lines). Let's count:
+2 """
+3 Independent...
+4 system_v6...
+5 
+6 This file...
+7 
+8   (1) ...
+9       ...
+10      ...
+11 
+12 etc. Hard to count exactly. But we can reference function definitions by name and field names in JSON. The JSON has field names. We can cite those.
+
+JAX leg line numbers similarly.
+
+Maybe we can count using a mental approach. But final answer can cite "CORE line ~NN" and "JAX line ~NN". Need not be exact to the line if we say approximate. But prompt says cite line numbers. We'll do our best.
+
+Let's count core source by blocks.
+
+Core source block:
+
+1 #!/usr/bin/env python3
+2 """Independent auditor reimplementation...
+...
+14 """ (closing)
+15 import itertools
+16 
+17 # --------------------------------------------------------------------------
+18 # Geometric register...
+...
+Let's count docstring lines:
+Line2: """
+Line3: Independent auditor reimplementation of the survivor-set-restriction
+Line4: noncommutation crux from
+Line5:   system_v6/foundations/ratchet_definition_and_emergence_spec_DRAFT_20260614.md (§5)
+Line6: 
+Line7: This file is written by a FRESH-CONTEXT auditor. It does NOT import any builder
+Line8: code. It re-derives, from scratch, every quantity the audit crux asks for:
+Line9: 
+Line10:   (1) delta(C_i,C_j) = | Surv(...C_i C_j...) symmetric_difference Surv(...C_j C_i...) |
+Line11:       as a restriction of SURVIVOR SETS (not maps), for a HISTORY-DEPENDENT
+Line12:       constraint pair.  Crux question: is this genuinely NONZERO?
+Line13: 
+Line14:   (2) the same delta for a STATIC (history-INDEPENDENT) predicate control.
+Line15:       Crux question: is this genuinely ZERO (set-intersection commutes,
+Line16:       replicating ratchet_s1's commuting filter case)?
+Line17: 
+Line18:   (3) AMNESIC memory-ablation: take the SAME history-dependent constraints but
+Line19:       strip the history argument (C_k(x,H) -> C_k(x)).  Crux question: does the
+Line20:       noncommutation COLLAPSE to zero (proving memory/history is the engine, R3)?
+Line21: 
+Line22:   (4) GNVW index of the ring-checkerboard QCA local rules: L-shift, R-shift,
+Line23:       identity.  Crux question: do the signs flip for L/R (+/-) and is it 0 for
+Line24:       identity?
+Line25: 
+Line26:   (5) Phi commuting square  Phi o Update_lex  ==  Update_geo o Phi  on matched
+Line27:       inputs, reporting a fidelity (fraction of matched steps where the square
+Line28:       closes exactly).
+Line29: 
+Line30: The geometric register is a RING of cells with a checkerboard (even/odd
+Line31: sublattice) update.  The lexical register is a tiny token survivor process whose
+Line32: tokens are bijective with cells; Phi is that bijection lifted to survivor sets.
+Line33: 
+Line34: NO precomputed booleans.  NO hand-ranked verdicts.  Every reported scalar is the
+Line35: return value of a function defined in THIS file and recomputed at run time.
+Line36: """
+37 import itertools
+
+OK.
+
+38 
+39 # --------------------------------------------------------------------------
+40 # Geometric register...
+41 # --------------------------------------------------------------------------
+42 
+43 N = 8
+44 CELLS = tuple(range(N))
+45 
+46 
+47 def neighbours(c):
+48     """Ring adjacency (periodic)."""
+49     return ((c - 1) % N, (c + 1) % N)
+50 
+51 
+52 # --------------------------------------------------------------------------
+53 # HISTORY object H...
+54 # --------------------------------------------------------------------------
+55 
+56 class History:
+57     __slots__ = ("ever_killed", "order")
+58 
+59     def __init__(self):
+60         self.ever_killed = frozenset()
+61         self.order = ()
+62 
+63     def append(self, killed):
+64         new = History()
+65         new.ever_killed = self.ever_killed | frozenset(killed)
+66         new.order = self.order + tuple(sorted(killed))
+67         return new
+68 
+69 
+70 # --------------------------------------------------------------------------
+71 # CONSTRAINTS...
+72 # --------------------------------------------------------------------------
+73 
+74 def make_history_dependent_constraint(sublattice_parity, neighbour_rule):
+75     """..."""
+76 
+77     def C(X, H):
+78         killed = set()
+79         for c in sorted(X):
+80             if c % 2 != sublattice_parity:
+81                 continue
+82             lo, hi = neighbours(c)
+83             nb_alive = (lo in X) + (hi in X)
+84             nb_in_graveyard = (lo in H.ever_killed) or (hi in H.ever_kagged)
+85             if neighbour_rule(nb_alive, nb_in_graveyard):
+86                 killed.add(c)
+87         Xp = frozenset(X) - killed
+88         Hp = H.append(killed)
+89         return Xp, Hp
+90 
+91     return C
+92 
+93 
+94 def make_static_constraint(sublattice_parity, neighbour_rule_static):
+95     """..."""
+96 
+97     def C(X, H):
+98         killed = set()
+99         for c in sorted(X):
+100             if c % 2 != sublattice_parity:
+101                 continue
+102             lo, hi = neighbours(c)
+103             nb_alive = (lo in X) + (hi in X)
+104             if neighbour_rule_static(nb_alive):
+105                 killed.add(c)
+106         Xp = frozenset(X) - killed
+107         Hp = H.append(killed)
+108         return Xp, Hp
+109 
+110     return C
+111 
+112 
+113 def make_extensional_constraint(predicate):
+114     """..."""
+115 
+116     def C(X, H):
+117         killed = {c for c in X if not predicate(c)}
+118         Xp = frozenset(X) - killed
+119         Hp = H.append(killed)
+120         return Xp, Hp
+121 
+122     return C
+123 
+124 
+125 def make_amnesic_constraint(sublattice_parity, neighbour_rule):
+126     """..."""
+127 
+128     def C(X, H):
+129         killed = set()
+130         for c in sorted(X):
+131             if c % 2 != sublattice_parity:
+132                 continue
+133             lo, hi = neighbours(c)
+134             nb_alive = (lo in X) + (hi in X)
+135             nb_in_graveyard = False
+136             if neighbour_rule(nb_alive, nb_in_graveyard):
+137                 killed.add(c)
+138         Xp = frozenset(X) - killed
+139         Hp = H.append(killed)
+140         return Xp, Hp
+141 
+142     return C
+143 
+144 
+145 # --------------------------------------------------------------------------
+146 # Survivor restriction...
+147 # --------------------------------------------------------------------------
+148 
+149 def survivor_under_sequence(seq, X0):
+150     X, H = frozenset(X0), History()
+151     for C in seq:
+152         X, H = C(X, H)
+153     return X, H
+154 
+155 
+156 def delta_restriction(C_i, C_j, X0):
+157     """..."""
+158     Sij, _ = survivor_under_sequence([C_i, C_j], X0)
+159     Sji, _ = survivor_under_sequence([C_j, C_i], X0)
+160     sym = (Sij - Sji) | (Sji - Sij)
+161     return len(sym), sorted(Sij), sorted(Sji), sorted(sym)
+162 
+163 
+164 # --------------------------------------------------------------------------
+165 # GNVW index...
+166 # --------------------------------------------------------------------------
+167 
+168 def shift_permutation(direction):
+169     """..."""
+170     return tuple((c + direction) % N for c in CELLS)
+171 
+172 
+173 def gnvw_index_of_translation(perm):
+174     """..."""
+175     disps = []
+176     for c in CELLS:
+177         d = (perm[c] - c) % N
+178         if d > N // 2:
+179             d -= N
+180         disps.append(d)
+181     if len(set(disps)) != 1:
+182         return None
+183     return disps[0]
+184 
+185 
+186 # --------------------------------------------------------------------------
+187 # Phi commuting square.
+188 # --------------------------------------------------------------------------
+189 
+190 def phi(token_set):
+191     """..."""
+192     return frozenset(token_set)
+193 
+194 
+195 def update_lex_factory(geo_constraint):
+196     """..."""
+197 
+198     def U(token_set, H):
+199         return geo_constraint(token_set, H)
+200 
+200? Actually line 199 return geo_constraint(...). Then 200 return U? Let's count.
+198     def U(token_set, H):
+199         # Reuse...
+200         return geo_constraint(token_set, H)
+201 
+202     return U
+203 
+204 
+205 def commuting_square_fidelity(geo_constraint, lex_update, inputs):
+206     """..."""
+207     hits = 0
+208     total = 0
+209     rows = []
+210     for t in inputs:
+211         H1, H2 = History(), History()
+212         lex_out, _ = lex_update(frozenset(t), H1)
+213         left = phi(lex_out)
+214         geo_out, _ = geo_constraint(phi(frozenset(t)), H2)
+215         right = geo_out
+216         ok = (left == right)
+217         hits += int(ok)
+218         total += 1
+219         rows.append(...)
+220     return hits / total if total else 0.0, rows
+221 
+222 
+223 # --------------------------------------------------------------------------
+224 # The neighbour rules...
+225 # --------------------------------------------------------------------------
+226 
+227 # history-dependent rule...
+228 def rule_hist(nb_alive, nb_in_grave):
+229     return (nb_alive >= 1) and nb_in_grave
+230 
+231 
+232 def rule_hist2(nb_alive, nb_in_grave):
+233     return (nb_alive == 2) or nb_in_grave
+234 
+235 
+236 def rule_hist_mixed_a(nb_alive, nb_in_grave):
+237     return (nb_alive == 0) or ((nb_alive >= 1) and nb_in_grave)
+238 
+239 
+240 def rule_hist_mixed_b(nb_alive, nb_in_grave):
+241     return (nb_alive == 0) or nb_in_grave
+242 
+243 
+244 def rule_static(nb_alive):
+245     return nb_alive == 2
+246 
+247 
+248 def rule_static2(nb_alive):
+249     return nb_alive <= 1
+250 
+251 
+252 def run_all(X0=None, seed_kill=None):
+253     """..."""
+254     if X0 is None:
+255         X0 = frozenset(CELLS)
+256 
+257     # Build constraints...
+258     def seeder(X, H):
+259         killed = set(seed_kill or ())
+260         return frozenset(X) - killed, H.append(killed & set(X))
+261 
+262     Ci_hist = make_history_dependent_constraint(0, rule_hist)
+263     Cj_hist = make_history_dependent_constraint(1, rule_hist2)
+264 
+265     Ci_static = make_static_constraint(0, rule_static)
+266     Cj_static = make_static_constraint(1, rule_static2)
+267 
+268     Ci_ext = make_extensional_constraint(lambda c: c % 2 == 0)
+269     Cj_ext = make_extensional_constraint(lambda c: c < N // 2)
+270 
+271     Ci_amn = make_amnesic_constraint(0, rule_hist)
+272     Cj_amn = make_amnesic_constraint(1, rule_hist2)
+273 
+274     Ci_mix_hist = make_history_dependent_constraint(0, rule_hist_mixed_a)
+275     Cj_mix_hist = make_history_dependent_constraint(1, rule_hist_mixed_b)
+276     Ci_mix_amn = make_amnesic_constraint(0, rule_hist_mixed_a)
+277     Cj_mix_amn = make_amnesic_constraint(1, rule_hist_mixed_b)
+278 
+279     def seeded(C):
+280         def W(X, H):
+281             X2, H2 = seeder(X, H)
+282             return C(X2, H2)
+283         return W
+284 
+285     d_hist, ... = delta_restriction(seeded(Ci_hist), seeded(Cj_hist), X0)
+286     d_static, ... = delta_restriction(seeded(Ci_static), seeded(Cj_static), X0)
+287     d_ext, ... = delta_restriction(seeded(Ci_ext), seeded(Cj_ext), X0)
+288     d_amn, ... = delta_restriction(seeded(Ci_amn), seeded(Cj_amn), X0)
+289     d_mix_hist, ... = delta_restriction(seeded(Ci_mix_hist), seeded(Cj_mix_hist), X0)
+290     d_mix_amn, ... = delta_restriction(seeded(Ci_mix_amn), seeded(Cj_mix_amn), X0)
+291 
+292     gnvw = {...}
+293 
+294     window = list(range(4))
+295     inputs = []
+296     for r in range(len(window) + 1):
+297         for combo in itertools.combinations(window, r):
+298             inputs.append(frozenset(combo))
+299     inputs.append(frozenset(CELLS))
+300     inputs.append(frozenset())
+301     lex_U = update_lex_factory(seeded(Ci_hist))
+302     fidelity, rows = commuting_square_fidelity(seeded(Ci_hist), lex_U, inputs)
+303 
+304     lex_U_wrong = update_lex_factory(seeded(Cj_hist))
+305     fidelity_wrong, _ = commuting_square_fidelity(seeded(Ci_hist), lex_U_wrong, inputs)
+306 
+307     def commuting_square_scrambled(...):
+308         ...
+309     fidelity_scrambled = commuting_square_scrambled(...)
+310 
+311     return {...}
+312 
+313 
+314 if __name__ == "__main__":
+315     import json
+316     res = run_all(seed_kill={3})
+317     print(json.dumps(res, ...))
+
+OK line numbers approximate. Good.
+
+JAX leg lines:
+
+1 #!/usr/bin/env python3
+2 """JAX leg..."""
+...
+Let's count. It has docstring maybe 10 lines. Then imports. We can cite function names.
+
+Key functions:
+- symdiff_count_via_vmap (around line 60?)
+- recompute_deltas (around line 70?)
+- z3_memory_is_engine (around line 120?)
+- cvc5_memory_is_engine (around line 150?)
+- main (around line 200?)
+
+We can cite approximate lines. Let's count JAX leg to be more accurate.
+
+JAX leg source:
+
+1 #!/usr/bin/env python3
+2 """JAX leg of the independent survivor-restriction noncommutation verification.
+3 
+4 Computation style UNIQUE to this leg: ...
+...
+Maybe docstring ends line 18? Let's count:
+Line2 """
+Line3 
+Line4 Computation style UNIQUE...
+Line5     assert (delta_hist > 0) AND (delta_extensional == 0) ...
+Line6     ...
+Line7     ...
+Line8     ...
+Line9     ...
+Line10     ...
+Line11     ...
+Line12     ...
+Line13     ...
+Line14     ...
+Line15     ...
+Line16     ...
+Line17     ...
+Line18 """
+19 import json
+20 import os
+21 import hashlib
+22 from datetime import datetime, timezone
+23 
+24 import jax
+25 import jax.numpy as jnp
+26 from jax import vmap
+27 
+28 import z3
+29 import cvc5
+30 from cvc5 import Kind
+31 
+32 import independent_survivor_restriction_noncommutation_verify_v0_core as CORE
+33 
+34 jax.config.update("jax_enable_x64", True)
+35 
+36 SIM_ID = "..."
+37 HERE = os.path.dirname(os.path.abspath(__file__))
+38 N = CORE.N
+39 
+40 
+41 def sha256_of(path): ...
+42 
+43 
+44 def set_to_vec(s): ...
+45 
+46 
+47 def symdiff_count_via_vmap(set_a, set_b):
+48     """..."""
+49     va, vb = set_to_vec(set_a), set_to_vec(set_b)
+50     per_cell = vmap(lambda a, b: jnp.abs(a - b))(va, vb)
+51     return int(jnp.sum(per_cell))
+52 
+53 
+54 def recompute_deltas():
+55     """..."""
+56     X0 = frozenset(CORE.CELLS)
+57     seed = {3}
+58 
+59     def seeded(C):
+60         def W(X, H):
+61             killed = set(seed) & set(X)
+62             X2 = frozenset(X) - killed
+63             H2 = H.append(killed)
+64             return C(X2, H2)
+65         return W
+66 
+67     Ci_h = seeded(CORE.make_history_dependent_constraint(0, CORE.rule_hist))
+68     ...
+69     Cj_ma = seeded(CORE.make_amnesic_constraint(1, CORE.rule_hist_mixed_b))
+70 
+71     def pair_delta(Ci, Cj):
+72         Sij, _ = CORE.survivor_under_sequence([Ci, Cj], X0)
+73         Sji, _ = CORE.survivor_under_sequence([Cj, Ci], X0)
+74         return symdiff_count_via_vmap(Sij, Sji)
+75 
+76     return {...}
+77 
+78 
+79 def z3_memory_is_engine(d_hist, d_mix_hist, d_mix_amn, d_ext):
+80     s = z3.Solver()
+81     h = z3.Int("d_hist"); ...
+82     s.add(h == d_hist, ...)
+83     s.add(h > 0, mh > 0, ma == 0, e == 0)
+84     return str(s.check())
+85 
+86 
+87 def cvc5_memory_is_engine(...):
+88     tm = cvc5.TermManager()
+89     ...
+90     conj = [tm.mkTerm(Kind.EQUAL, h, ival(d_hist)), ...]
+91     slv.assertFormula(tm.mkTerm(Kind.AND, *conj))
+92     return str(slv.check())
+93 
+94 
+95 def main():
+96     core_res = CORE.run_all(seed_kill={3})
+97     jax_deltas = recompute_deltas()
+98     ...
+99     result = {
+100         ...
+101         "gnvw_index": core_res["gnvw_index"],
+102         "phi_commuting_square_fidelity": core_res["phi_commuting_square_fidelity"],
+103         ...
+104     }
+105 
+106 
+107 if __name__ == "__main__":
+108     main()
+
+OK.
+
+Now analyze each attack.
+
+(a) Noncommutation genuinely emergent? The constraints are built by make_history_dependent_constraint with arbitrary neighbour_rule functions rule_hist and rule_hist2. These rules are hand-coded to read history. The noncommutation arises because each constraint writes to history (kills cells) and the other reads the graveyard. But the specific rules are chosen: rule_hist fires only if nb_in_grave is true (and nb_alive>=1). rule_hist2 fires if nb_alive==2 OR nb_in_grave true. The history-dependence is injected by the programmer, not derived from local QCA rules. The "ring-checkerboard QCA local rules" claim is weak: there is no actual QCA time evolution; just two static constraints that kill cells based on neighbor counts and graveyard. The checkerboard is just parity sublattice. The local rule is not a QCA update (no state transition of all cells). It's a filter.
+
+The seed_kill={3} injection is critical: without it, first step graveyard empty, both orders may commute? They pre-seed to ensure non-zero. In run_all, seeder always runs first inside both orders, injecting {3} into graveyard. This is hand-engineered initial condition to get delta_hist=2. The static control x-reactive (rule_static, rule_static2) also yields delta_static_control_x_reactive=3, showing that history-independent local neighborhood rules can also noncommute. This undermines the claim that memory/history is the unique engine; the current survivor-set read (X-reactive) also produces noncommutation. The spec's HOLE-3 says static predicates commute, but CA-style local rules reading current X do not. The object reports delta_static_control_x_reactive=3 (JSON). So memory-is-the-engine story is not exclusive.
+
+Need mention that make_history_dependent_constraint line 74-91 uses neighbour_rule(nb_alive, nb_in_graveyard) where nb_in_graveyard is hand-read; rule_hist line 228-229 is designed to require nb_in_grave; rule_hist2 line 232-233 includes nb_in_grave. The seed_kill={3} at line 258-260 and run_all call line 316 injects the graveyard. The static control noncommutes line 265-266, 286, result field delta_static_control_x_reactive=3.
+
+Thus (a) conclusion: hand-engineered/stipulated, near-tautology. They picked constraints designed to not commute via history read, and seeded the history. The static x-reactive control noncommutes, undermining memory exclusivity.
+
+(b) Amnesic ablation: make_amnesic_constraint line 125-142 forces nb_in_graveyard=False. For rule_hist, this makes the rule always false because rule_hist requires nb_in_grave. So amnesia switches off the rule entirely, delta->0 trivially. The code itself admits this in comment lines 227-229: "under amnesia (nb_in_grave forced False) this rule becomes a NO-OP, so the amnesic collapse it produces is partly 'rule switched off'". The mixed-rule isolator (rule_hist_mixed_a/b) keeps an X-reactive kill under amnesia. But the mixed rules are also hand-engineered: rule_hist_mixed_a = (nb_alive==0) or ((nb_alive>=1) and nb_in_grave). Under amnesia, it kills cells with zero alive neighbors. Does that make the pair commute? Need verify. The result says delta_mixed_amnesic=0. But is this because the mixed rules under amnesia become simple static rules that happen to commute? Let's examine.
+
+Under amnesia, Ci_mix_amn on even sublattice kills c if nb_alive==0. Cj_mix_amn on odd sublattice kills c if nb_alive==0. Since both use same X-reactive condition (nb_alive==0) but on complementary sublattices, and the condition is symmetric, the order may commute. Indeed, because both constraints use identical rule shape (kill isolated cells) on disjoint sublattices, order doesn't matter. So the "clean isolator" still picks rules that commute under amnesia by design. It doesn't prove that history read was the sole source of noncommutation in general; it proves that for this hand-picked pair, removing history read yields commuting rules. But the static x-reactive control shows other history-independent local rules can noncommute. The mixed rules are chosen to have a base kill that is symmetric across sublattices, so amnesia trivially commutes. This is rigged.
+
+Need also note that the amnesic constraint still passes H to geo_constraint? Actually make_amnesic_constraint ignores H and passes constant False. It still appends killed to H but never reads. So memory is ablated. But because rule_hist is vacuous without H, the ablation is not a fair control; it's a rule-off switch. The mixed rule is a better attempt but still hand-tuned to commute when H is removed. The negative control (mixed history noncommutes) and positive (mixed amnesic commutes) are paired by construction.
+
+(c) Phi commuting square: update_lex_factory line 195-202 literally returns geo_constraint(token_set, H). The comment says "Built honestly: it does NOT call the geo constraint; it reimplements the rule on the lexical carrier." But the code does call geo_constraint. Wait line 200: return geo_constraint(token_set, H). It does not reimplement independently. It passes the token set (which are cell indices) to the same constraint function. Since phi is identity-on-index, the square closes by construction. The fidelity is 1.0 trivially. The negative controls (wrong lex control 0.78, scrambled phi 0.28) show the test can break, but they don't rescue the positive case from being a tautology: the positive uses the same function object. The test is decorative for the claim of an independent lexical<->geometric bridge. It only verifies that calling the same constraint on tokens vs cells with identity mapping yields same result.
+
+Need cite update_lex_factory lines 195-202, especially line 200. Also phi line 190-192 identity. commuting_square_fidelity lines 205-220. JSON phi_commuting_square_fidelity 1.0, phi_square_fidelity_wrong_lex_control 0.78, scrambled 0.28.
+
+(d) GNVW index: gnvw_index_of_translation lines 173-183 computes displacement d from perm. shift_permutation line 168-170 takes direction d and returns perm. So gnvw_index_of_translation essentially inverts shift_permutation: it returns the same d that was input. It checks uniformity but for translations it's trivial. It is not a real topological index computation (no bipartite entanglement entropy, no quantum cellular automaton index formula). It just returns the shift displacement. The JAX leg does not independently recompute GNVW; main line 101 sets "gnvw_index": core_res["gnvw_index"]. The PyTorch leg (mentioned) uses permutation-matrix winding, but JAX echoes core. The SMT check z3_memory_is_engine lines 79-84 and cvc5 lines 87-92 assert h>0, mh>0, ma==0, e==0 on measured integers equal to the observed counts. This is a near-count-tautology: it encodes the desired pattern as inequalities on constants. The "erased flip" asserts ma>0 and gets unsat because ma is fixed to 0. It's not a structural check; it's just checking that the measured integers satisfy the inequalities the experiment was designed to produce. The solver doesn't search over constraint rules or histories; it searches over integer variables that are already pinned by equalities to the measured values. So SAT is guaranteed if the measured values match the pattern. This is not load-bearing.
+
+Need cite gnvw_index_of_translation lines 173-183, shift_permutation 168-170, JAX main line 101 "gnvw_index": core_res["gnvw_index"], z3_memory_is_engine lines 79-84, cvc5 lines 87-92, JSON smt_flip.
+
+Meta:
+- Is emergence earned? No. The ratchet is realized by hand-coded constraints and seeded history; the order-sensitivity is stipulated by the choice of rules, not derived from lower-level QCA local rules + topology. The finite descending chain is trivial because constraints delete cells. The "emergence" claim is definition witnessed, not earned.
+- Is map<->constraint gap genuinely closed? No. The survivor-set restriction noncommutation is a set-level commutator, but the constraints are still maps; the gap between map noncommutation and constraint noncommutation is not closed because the constraints are history-dependent functions (maps) themselves. The Phi bridge is by construction. The GNVW index is independent and not coupled to the survivor process.
+- Circularity: engineered/stipulated. The constraints are designed to produce the desired noncommutation; the seed_kill and rule choices are tuned. The amnesic and mixed rules are tuned to commute under amnesia. The Phi square uses the same function. The GNVW returns input displacement. The SMT checks the measured pattern. So circularity is engineered.
+
+Need end with exact tagged lines:
+HARSHEST: <one sentence>
+EMERGENCE_EARNED: <yes|no>
+GAP_CLOSED: <yes|no>
+CIRCULARITY: <engineered|stipulated|emergent|mixed>
+
+HARSHEST should be one sentence, the single harshest real defect, or "NO DEFECT + " then strongest residual. There are defects. Harshest real defect: update_lex_factory literally calls the same geo_constraint, making the Phi commuting-square fidelity 1.0 by construction, so the lexical<->geometric bridge is a tautology, not an earned homomorphism. Or maybe the GNVW index just echoes shift displacement. Or the SMT is a count tautology. Need pick single harshest real defect. The Phi square is central to map<->constraint gap and bridge. It is explicitly claimed as tested homomorphic bridge. The code shows it calls same geo_constraint. That's a glaring circularity. Also the artifact's own on-disk verdict says definition_witness_only. But we are asked to attack the machinery. The harshest defect might be: the entire "emergence" is a definition-witness because the history-dependent noncommutation is hand-injected via seed_kill and rules designed to read the graveyard, while the static x-reactive control also noncommutes, proving memory is not the unique engine. But single harshest: the lexical-geometric bridge is a self-referential tautology (update_lex_factory calls geo_constraint and phi is identity), so the claimed closure of the map<->constraint gap collapses to identity-by-stipulation.
+
+Need ensure exact tags. The final lines must be exactly:
+HARSHEST: ...
+EMERGENCE_EARNED: ...
+GAP_CLOSED: ...
+CIRCULARITY: ...
+
+No extra punctuation? The prompt says exact tagged lines. We can include values. CIRCULARITY options: engineered|stipulated|emergent|mixed. We can choose "engineered" or "stipulated". The prompt asks "Where is the circularity, if any?" The options include engineered/stipulated. I think "engineered" fits because constraints are hand-engineered to produce the phenomenon. Could also be "stipulated" because rules are stipulated. Which is more appropriate? The object is an auditor reimplementation; it stipulates rules. But the rules are engineered. The meta asks CIRCULARITY: engineered|stipulated|emergent|mixed. I'd choose "engineered" because the noncommutation is engineered into the neighbour rules and seed. But "stipulated" also works for definitions. Maybe "engineered" is harsher. Let's pick "engineered".
+
+Need be concrete and cite line numbers. Let's craft answer with sections (a)-(d), meta, final tags.
+
+Need mention the empty stub finite_ring_checkerboard_qca_ordered_descending_chain_gnvw_v0 has no code; the real artifact is the auditor reimplementation. The claim that it earns ratchet-emergence from ring-checkerboard QCA local rules is unsupported because there is no QCA dynamics; only hand-coded filters.
+
+Let's verify some details.
+
+(a) The "ring-checkerboard QCA local rules" claim: In core, there is no QCA update (no cellular automaton step evolving all cells). The constraints are filters on a static ring. The checkerboard is just parity. The local rule uses neighbor alive count and graveyard. This is not a QCA. The GNVW index part uses shift permutations, but those are not the same as the survivor constraints. So the "emergence from local QCA rules + topology" is not demonstrated.
+
+The static control x-reactive noncommutes: rule_static kills if nb_alive==2 on even sublattice; rule_static2 kills if nb_alive<=1 on odd sublattice. Because they read current survivor set (which changes after first constraint), order matters. This shows that even without history, local rules reading X can noncommute. The spec's HOLE-3 says static predicates commute, but this is a counterexample within the artifact. The on-disk verdict acknowledges this. So memory-is-the-engine story is undermined.
+
+(b) Amnesic: For rule_hist, amnesia makes it no-op. The mixed rules are designed so that under amnesia both constraints kill cells with nb_alive==0 on their sublattices. Since the condition is identical and sublattices disjoint, order doesn't matter. But is it truly trivial? Let's test mentally with N=8, X0 all cells, seed {3}. Under amnesia, Ci_mix_amn (even) kills even cells with no alive neighbors. Initially all cells alive, so no even cell has nb_alive==0. After Cj_mix_amn (odd) kills odd cells with no alive neighbors? Also none initially. So no kills? Wait under amnesia rule_hist_mixed_a: (nb_alive == 0) or ((nb_alive >= 1) and nb_in_grave). With nb_in_grave=False, only nb_alive==0. Initially all cells have 2 alive neighbors, so no kills. Then seed? The seeder kills {3} first. After seeder, cell 3 is dead. Then apply Ci_mix_amn on even sublattice: even cells 0,2,4,6. Their neighbors: 0 neighbors 7,1 both alive; 2 neighbors 1,3 (3 dead) => nb_alive=1; 4 neighbors 3,5 (3 dead) => nb_alive=1; 6 neighbors 5,7 both alive. None have nb_alive==0, so no kills. Then Cj_mix_amn on odd: cells 1,3,5,7. 3 dead. 1 neighbors 0,2 alive => nb_alive=2; 5 neighbors 4,6 alive =>2; 7 neighbors 6,0 alive=>2. No kills. Reverse order same. So delta=0. Under history, rule_hist_mixed_a: (nb_alive==0) or ((nb_alive>=1) and nb_in_grave). With seed {3} in graveyard, cells with neighbor 3 and nb_alive>=1 die. That yields noncommutation. So the mixed rule under amnesia is a no-op as well? Actually it kills nb_alive==0, which never happens because ring has no isolated cells unless neighbors killed by seeder? Seed kills one cell, but no cell has both neighbors dead. So the X-reactive base is effectively inert for full ring. It might be non-trivial for smaller inputs? But the delta test uses X0=full cells. So the mixed rule's X-reactive base is also vacuous in this configuration. The code comment says "keeps a non-trivial X-reactive kill under amnesia", but for the tested initial condition it's not firing. However, the rule could fire on other inputs. The point: under amnesia the rule is symmetric between the two constraints (both kill nb_alive==0), so they commute. This is by design. It doesn't isolate H-read as the sole source in general; it isolates it for this pair.
+
+Actually rule_hist_mixed_b: (nb_alive == 0) or nb_in_grave. Under amnesia, also nb_alive==0. So both constraints have same X-reactive condition. Thus they commute because they act on disjoint sublattices with identical rule. The noncommutation under history arises because the history-trigger parts differ? Under history, rule_hist_mixed_a fires if nb_alive==0 OR (nb_alive>=1 and grave). rule_hist_mixed_b fires if nb_alive==0 OR grave. So for cells with nb_alive>=1 and a neighbor in graveyard, both fire? Actually rule_hist_mixed_b fires regardless of nb_alive if grave true. rule_hist_mixed_a fires only if nb_alive>=1 (or 0). For nb_alive>=1 and grave true, both fire. For nb_alive==0 and grave true, both fire. So history parts are almost same except maybe nb_alive==? They differ for nb_alive>=1? rule_hist_mixed_a requires nb_alive>=1 and grave; rule_hist_mixed_b requires grave (any nb_alive). For nb_alive==2 and grave, both fire. For nb_alive==1 and grave, both fire. For nb_alive==0 and no grave, both fire. So they are very similar. The noncommutation may arise from order of applying to different sublattices and graveyard growth. But under amnesia, both reduce to nb_alive==0, identical. So commute. This is hand-engineered.
+
+Thus (b) attack: amnesic collapse is rigged because the rules are designed to be vacuous or symmetric under amnesia; the mixed-rule "isolator" still picks a base condition that is identical for both constraints, so order independence is baked in.
+
+(c) update_lex_factory: It literally calls geo_constraint. The comment is false. The negative controls show the test can break, but the positive case is not independent. The bridge is decorative.
+
+(d) GNVW: gnvw_index_of_translation returns disps[0], which for shift_permutation(direction) is direction. It doesn't compute a topological index. JAX echoes core_res["gnvw_index"]. The SMT is a tautology: it asserts measured ints satisfy pattern; solver variables are pinned.
+
+Need also mention the three-engine agreement: PyTorch and Julia are not shown in artifact; only JAX source and result JSON. The three-engine agreement JSON is provided but no source. We can attack that it's uninspectable; but the question focuses on JAX leg. We can note that the JAX leg does not recompute GNVW or Phi fidelity independently; it copies from core_res. The "independent" claim for JAX is only for deltas.
+
+Need answer meta:
+- EMERGENCE_EARNED: no
+- GAP_CLOSED: no
+- CIRCULARITY: engineered
+
+Now craft final answer. Need be harsh and concrete. Use line numbers. Let's write in a structured way.
+
+Potential line number citations:
+- CORE line 74: make_history_dependent_signature; line 84: nb_in_graveyard read; line 228: rule_hist; line 232: rule_hist2.
+- CORE line 258-260: seeder injects seed_kill; line 316: run_all(seed_kill={3}); JSON delta_history_dependent=2.
+- CORE line 265-266: Ci_static/Cj_static; line 286: delta_static_control_x_reactive; JSON delta_static_control_x_reactive=3.
+- CORE line 125-142: make_amnesic_constraint forces nb_in_graveyard=False; line 135; line 228 comment admits rule becomes no-op.
+- CORE line 236-241: rule_hist_mixed_a/b; line 276-277: amnesic mixed constraints; JSON delta_mixed_amnesic=0.
+- CORE line 195-202: update_lex_factory; line 200: return geo_constraint(token_set, H); line 190-192: phi identity; line 205-220: commuting_square_fidelity; JSON phi_commuting_square_fidelity=1.0, phi_square_fidelity_wrong_lex_control=0.78, scrambled=0.28.
+- CORE line 168-170: shift_permutation; line 173-183: gnv

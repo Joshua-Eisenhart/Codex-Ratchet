@@ -1,0 +1,363 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "torch": "supportive",
+    "torch.func": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent measured finite order-gap contradiction check",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "supportive exact parsing and formula normalization for cross-engine signature",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor substrate and matrix exponentials",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive batched z_dot evaluation from exported S5 A,b; demoted until a passing torch.func capability probe exists",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing measured finite order-gap contradiction check",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "build_gates": {
+    "claim_ceiling": true,
+    "loop_order_pass": true,
+    "s5_import_pass": true,
+    "signature_rows_eight": true,
+    "smt_pass": true,
+    "torch_batched_zdot_pass": true
+  },
+  "claim_path_tools": [
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "loop_order_pin": {
+      "E": "Si_Hill_L flow at t=1",
+      "U": "Ne_Vortex_L flow at t=1",
+      "carrier": "density/Bloch"
+    },
+    "mode": "RESTRICTED/STACKED",
+    "shell_coordinate": "z=cos(2*eta)",
+    "tested_shells": [
+      "pi/12",
+      "pi/6",
+      "pi/4",
+      "pi/3",
+      "5*pi/12"
+    ]
+  },
+  "cross_engine_signature": {
+    "leakage_rows": {
+      "Ne_Spiral_R": {
+        "avg_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "classes": [
+          "cross_shell"
+        ],
+        "inner_scaled": [
+          -574400079,
+          -994890121,
+          -1148800158,
+          -994890121,
+          -574400079
+        ],
+        "outer_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "z_dot_formula": "2*sqrt(6)*sin(2*eta)*cos(2*chi + pi/4)/3"
+      },
+      "Ne_Vortex_L": {
+        "avg_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "classes": [
+          "cross_shell"
+        ],
+        "inner_scaled": [
+          574400079,
+          994890121,
+          1148800158,
+          994890121,
+          574400079
+        ],
+        "outer_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "z_dot_formula": "-2*sqrt(6)*sin(2*eta)*cos(2*chi + pi/4)/3"
+      },
+      "Ni_Pit_L": {
+        "avg_scaled": [
+          -933012702,
+          -750000000,
+          -500000000,
+          -250000000,
+          -66987298
+        ],
+        "classes": [
+          "leave_foliation"
+        ],
+        "inner_scaled": [
+          -5747411684,
+          -4513410956,
+          -2911832622,
+          -1371818303,
+          -306013591
+        ],
+        "outer_scaled": [
+          -5862291700,
+          -4712388980,
+          -3141592654,
+          -1570796327,
+          -420893607
+        ],
+        "z_dot_formula": "2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 - 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - cos(2*eta)/2 - 1/2"
+      },
+      "Ni_Source_R": {
+        "avg_scaled": [
+          66987298,
+          250000000,
+          500000000,
+          750000000,
+          933012702
+        ],
+        "classes": [
+          "leave_foliation"
+        ],
+        "inner_scaled": [
+          306013591,
+          1371818303,
+          2911832622,
+          4513410956,
+          5747411684
+        ],
+        "outer_scaled": [
+          420893607,
+          1570796327,
+          3141592654,
+          4712388980,
+          5862291700
+        ],
+        "z_dot_formula": "-2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 + 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - cos(2*eta)/2 + 1/2"
+      },
+      "Se_Cannon_R": {
+        "avg_scaled": [
+          -692820323,
+          -400000000,
+          0,
+          400000000,
+          692820323
+        ],
+        "classes": [
+          "leave_foliation"
+        ],
+        "inner_scaled": [
+          -4467998490,
+          -2712252147,
+          -229760032,
+          2314296099,
+          4238238458
+        ],
+        "outer_scaled": [
+          -4353118474,
+          -2513274123,
+          0,
+          2513274123,
+          4353118474
+        ],
+        "z_dot_formula": "-2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 + 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - 4*cos(2*eta)/5"
+      },
+      "Se_Funnel_L": {
+        "avg_scaled": [
+          -692820323,
+          -400000000,
+          0,
+          400000000,
+          692820323
+        ],
+        "classes": [
+          "leave_foliation"
+        ],
+        "inner_scaled": [
+          -4238238458,
+          -2314296099,
+          229760032,
+          2712252147,
+          4467998490
+        ],
+        "outer_scaled": [
+          -4353118474,
+          -2513274123,
+          0,
+          2513274123,
+          4353118474
+        ],
+        "z_dot_formula": "2*sqrt(3)*sin(2*chi)*sin(2*eta)/15 - 2*sqrt(3)*sin(2*eta)*cos(2*chi)/15 - 4*cos(2*eta)/5"
+      },
+      "Si_Citadel_R": {
+        "avg_scaled": [
+          -346410162,
+          -200000000,
+          0,
+          200000000,
+          346410162
+        ],
+        "classes": [
+          "leave_foliation"
+        ],
+        "inner_scaled": [
+          -1194080820,
+          445065474,
+          1964956833,
+          2958339596,
+          3159037654
+        ],
+        "outer_scaled": [
+          -2176559237,
+          -1256637061,
+          0,
+          1256637061,
+          2176559237
+        ],
+        "z_dot_formula": "2*sin(2*chi)*sin(2*eta)/5 - 2*cos(2*eta)/5"
+      },
+      "Si_Hill_L": {
+        "avg_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "classes": [
+          "projected_shell_preserve_but_Hopf_leave"
+        ],
+        "inner_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "outer_scaled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "z_dot_formula": "0"
+      }
+    },
+    "loop_order_g_DI_scaled_1e9": 363413167,
+    "matrix64_overlay_count": 64,
+    "pin_sha256": "dc791e55b60911a4048fb8af4545b57a6ae0f89aeccf1d3ea67e12980f52ef72",
+    "placement_count": 16
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "bound_raw_values": {
+        "g_DI_scaled_1e9": 363413167
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "bound_raw_values": {
+        "g_DI_scaled_1e9": 363413167
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:12:30.751831+00:00",
+  "loop_order_gap": {
+    "commuting_control_matrix_delta": 5.551115123125783e-17,
+    "loop_order_g_DI_scaled_1e9": 363413167,
+    "max_g_DI_trace_norm": 0.3634131669165737,
+    "pass": true
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "pin_sha256": "dc791e55b60911a4048fb8af4545b57a6ae0f89aeccf1d3ea67e12980f52ef72",
+  "pin_spec": "geo_s6_stacked_flows_hopf_v0|mode=RESTRICTED_STACKED|arrow_types=(foliation,dynamical_flow,quotient_projection,covering_group_quotient,undefined_without_lift)|shell_coordinate=z=cos(2*eta)|r_eta=(sin(2*eta)cos(2*chi),sin(2*eta)sin(2*chi),cos(2*eta))|eta_rows=(pi/12,pi/6,pi/4,pi/3,5*pi/12)|chi0=pi/7|loop_period=2*pi_lifted_chart_cycle|leakage=dz_dt=e_z^T(A*r_eta+b)_from_S5_exported_A_b|Phi_D=U_E_U_E|Phi_I=E_U_E_U|U=Ne_Vortex_L_flow_t1|E=Si_Hill_L_flow_t1|carrier=density_bloch|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_pytorch_results.json",
+  "role_id": "pytorch_tensor_mirror",
+  "s5_source": {
+    "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+    "pin_sha256": "ced1d4a8395b66077defbfa44dade651cac9c02ef7ea95cca9918a4019b0634a",
+    "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+  },
+  "schema_version": "geo_s6_engine_result_v1",
+  "sim_id": "geo_s6_stacked_flows_hopf_v0",
+  "source_path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/geo_s6_stacked_flows_hopf_v0_pytorch.py",
+  "source_sha256": "2dc9bc22c3ac5113c5d245449421ce4eb1a2b517696b0158f697e6588f24ebbf",
+  "torch_batched_zdot": {
+    "eta": "pi/6",
+    "max_abs_zdot": 1.0000000000000002,
+    "method": "torch.func.vmap over terrain rows and chi samples computing e_z^T(A*r+b)",
+    "pass": true,
+    "row_ids": [
+      "Ne_Spiral_R",
+      "Ne_Vortex_L",
+      "Ni_Pit_L",
+      "Ni_Source_R",
+      "Se_Cannon_R",
+      "Se_Funnel_L",
+      "Si_Citadel_R",
+      "Si_Hill_L"
+    ],
+    "shape": [
+      8,
+      8
+    ]
+  }
+}

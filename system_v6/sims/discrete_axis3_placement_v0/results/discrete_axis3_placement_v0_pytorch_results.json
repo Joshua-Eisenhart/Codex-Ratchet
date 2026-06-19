@@ -1,0 +1,232 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "independent Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact symbolic horizontal-condition rows",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch vectorized density-distance readout",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "PyTorch loop-time edge_index carrier",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "vmap torch-native density-step norm check over loop-time edges",
+      "receipt_id": "pytorch_torch.func_axis3_placement_candidate",
+      "status": "used",
+      "tool": "torch.func"
+    },
+    {
+      "computed_what": "Data edge_index loop-time dynamics carrier",
+      "receipt_id": "pytorch_torch_geometric_axis3_placement_candidate",
+      "status": "used",
+      "tool": "torch_geometric"
+    },
+    {
+      "computed_what": "sp.symbols and sp.simplify exact horizontal condition A(dot gamma_out)=0",
+      "receipt_id": "pytorch_sympy_axis3_placement_candidate",
+      "status": "used",
+      "tool": "sympy"
+    },
+    {
+      "computed_what": "z3.Solver computed changed-edge identity and packet crossover proofs",
+      "receipt_id": "pytorch_z3_axis3_placement_candidate",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "cvc5.Solver computed changed-edge identity and packet crossover proofs",
+      "receipt_id": "pytorch_cvc5_axis3_placement_candidate",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "axis0_not_from_placement": true,
+    "base_count": 24,
+    "changed_edge_count": 192,
+    "fiber_count": 24,
+    "neutral_control_count": 8,
+    "placement_loop_count": 48,
+    "placement_not_from_axis0": true,
+    "readout_signature_sha256": "b0d0e1aea5165c5e91a54139c41fe2a0c940b91227497375425ec6440af79af8",
+    "stable_edge_count": 192
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis0_not_from_placement": 1,
+        "base_count": 24,
+        "changed_edge_count": 192,
+        "edge_count": 384,
+        "falsifier_reachable": 1,
+        "fiber_count": 24,
+        "neutral_control_count": 8,
+        "placement_not_from_axis0": 1,
+        "shuffled_connection_changed_count": 24,
+        "stable_edge_count": 192
+      },
+      "erased_flip_bindings": {
+        "axis0_not_from_placement": 0,
+        "base_count": 0,
+        "changed_edge_count": 384,
+        "falsifier_reachable": 0,
+        "fiber_count": 0,
+        "neutral_control_count": 0,
+        "placement_not_from_axis0": 0,
+        "shuffled_connection_changed_count": 0,
+        "stable_edge_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "fiber>0 and base>0 and neutral control>0 and stable>0 and changed>0 and A0/A3 identity recoveries blocked",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis0_not_from_placement": 1,
+        "base_count": 24,
+        "changed_edge_count": 192,
+        "edge_count": 384,
+        "falsifier_reachable": 1,
+        "fiber_count": 24,
+        "neutral_control_count": 8,
+        "placement_not_from_axis0": 1,
+        "shuffled_connection_changed_count": 24,
+        "stable_edge_count": 192
+      },
+      "erased_flip_bindings": {
+        "axis0_not_from_placement": 0,
+        "base_count": 0,
+        "changed_edge_count": 384,
+        "falsifier_reachable": 0,
+        "fiber_count": 0,
+        "neutral_control_count": 0,
+        "placement_not_from_axis0": 0,
+        "shuffled_connection_changed_count": 0,
+        "stable_edge_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "fiber>0 and base>0 and neutral control>0 and stable>0 and changed>0 and A0/A3 identity recoveries blocked",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "engine_mode": "all_three_full_sims",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:08:35Z",
+  "object_id": "discrete_axis3_placement_v0_pytorch",
+  "package_observables": {
+    "cvc5": "cvc5.Solver computed changed-edge identity and packet crossover proofs",
+    "sympy": "sp.symbols and sp.simplify exact horizontal condition A(dot gamma_out)=0",
+    "torch.func": "vmap torch-native density-step norm check over loop-time edges",
+    "torch_geometric": "Data edge_index loop-time dynamics carrier",
+    "z3": "z3.Solver computed changed-edge identity and packet crossover proofs"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis3_placement_v0",
+  "source_backing_probe": {
+    "cvc5_changed_not_zero": "unsat",
+    "pass": true,
+    "sympy_horizontal_base_A_dot_gamma": "0",
+    "torch_changed_density_edges": 192,
+    "torch_func_norms_nonnegative": true,
+    "torch_geometric_num_edges": 384,
+    "torch_geometric_num_nodes": 384,
+    "torch_stable_density_edges": 192,
+    "z3_changed_not_zero": "unsat"
+  },
+  "source_path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_pytorch.py",
+  "source_sha256": "8177395ff37a4b80b210e054994e87cfe57ae3ed7aa6e93b0bdcc434c2ff4559",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "vmap torch-native density-step norm check over loop-time edges",
+      "receipt_id": "pytorch_torch.func_axis3_placement_candidate",
+      "tool": "torch.func"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Data edge_index loop-time dynamics carrier",
+      "receipt_id": "pytorch_torch_geometric_axis3_placement_candidate",
+      "tool": "torch_geometric"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "sp.symbols and sp.simplify exact horizontal condition A(dot gamma_out)=0",
+      "receipt_id": "pytorch_sympy_axis3_placement_candidate",
+      "tool": "sympy"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "z3.Solver computed changed-edge identity and packet crossover proofs",
+      "receipt_id": "pytorch_z3_axis3_placement_candidate",
+      "tool": "z3"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "cvc5.Solver computed changed-edge identity and packet crossover proofs",
+      "receipt_id": "pytorch_cvc5_axis3_placement_candidate",
+      "tool": "cvc5"
+    }
+  ]
+}

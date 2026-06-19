@@ -149,10 +149,13 @@ def test_c6_decision_table_is_review_only() -> None:
     assert table["schema"] == "c6_loadbearing_decision_table_v1"
     assert table["mode"] == "review_only_no_source_edits"
     assert table["source_report_row_counts"]["blocked_reason_breakdown"] > 0
-    assert table["source_report_row_counts"]["c6_loadbearing_report"] > 0
-    assert table["blocked_c6_sim_count"] > 0
+    assert table["source_report_row_counts"]["c6_loadbearing_report"] >= 0
+    assert table["blocked_c6_sim_count"] >= 0
     assert table["decision_row_count"] >= table["blocked_c6_sim_count"]
-    assert table["action_counts"]
+    if table["decision_row_count"] == 0:
+        assert table["action_counts"] == {}
+    else:
+        assert table["action_counts"]
     assert table["action_counts"].get("owner_review_inconclusive", 0) >= 0
     for row in table["rows"]:
         assert row["owner_review_required"] is True

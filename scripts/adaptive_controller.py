@@ -28,13 +28,16 @@ import time
 from collections import Counter
 from datetime import datetime
 
-ROOT = pathlib.Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 PROBES = ROOT / "system_v4/probes"
 RESULTS = PROBES / "a2_state/sim_results"
 QUEUE = PROBES / "a2_state/queue"
 LOGS = ROOT / "overnight_logs"
 SKILL_LOG = ROOT / "system_v4" / "a1_state" / "skill_invocation_log.jsonl"
-PY = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+PY = os.environ.get(
+    "CODEX_RATCHET_PYTHON",
+    os.environ.get("SIM_PY", "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"),
+)
 STAGE_GATE_SCRIPT = ROOT / "scripts" / "stage_gate.py"
 CONTROLLER_PIDFILE = pathlib.Path("/tmp/codex_ratchet_adaptive_controller.pid")
 CYCLE_SEC = 300

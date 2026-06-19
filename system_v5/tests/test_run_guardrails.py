@@ -425,6 +425,10 @@ def test_receipt_requires_load_bearing_pytorch_for_nonclassical() -> None:
     with_torch = receipt_schema.validate_result_payload(
         _canonical_payload(
             sim_execution_kind="nonclassical",
+            two_root_constraints={
+                "finite_carrier_root": True,
+                "noncommutation_or_order_root": True,
+            },
             tool_manifest={
                 "torch": {
                     "tried": True,

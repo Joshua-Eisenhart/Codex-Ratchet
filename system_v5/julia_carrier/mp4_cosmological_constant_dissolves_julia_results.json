@@ -1,0 +1,1832 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/path": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "load_bearing",
+    "clifford_torus_nested_hopf_foliation receipt": "load_bearing",
+    "density_matrix_spinor_lift mirror": "load_bearing",
+    "division_algebra_ratchet_ladder receipt": "load_bearing",
+    "golden_weyl receipt and mirror": "load_bearing",
+    "octonion_G2_automorphism receipt": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/path": {
+      "reason": "supportive exact result writing and peer parity parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite mixed-state entropy, carrier amplitude, erasure controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror constants": {
+      "reason": "load-bearing mirror of H_L=+H0, H_R=-H0, MIRROR=SX, Lindblad matrices, operator slots, and 32-substage weights",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation receipt": {
+      "reason": "load-bearing nested Hopf shell metric factors and erasure boundary",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift mirror": {
+      "reason": "load-bearing density matrices and Bloch vectors used in finite entropy-growth profile",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder receipt": {
+      "reason": "load-bearing H/O ladder factors; division erasure changes result",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl receipt and mirror": {
+      "reason": "load-bearing shell spinors, linking/cocycle invariants, and flat-link control",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism receipt": {
+      "reason": "load-bearing G2 derivation dimension and automorphism residual; G2 erasure changes result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite mechanism witness",
+    "dual-backend parity witness",
+    "non-tautological erasure/control diagnostic",
+    "honest graveyard result for measured/open cosmology rungs"
+  ],
+  "backend": "julia_float64",
+  "blocked_consumers": [
+    "measured_Lambda_claim",
+    "cosmology_physics_admission",
+    "formal_admission",
+    "promotion",
+    "proof_of_cosmological_constant_problem"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_measured_lambda_and_physics": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_disallowed": {
+      "pass": true
+    },
+    "jax_x64_enabled": {
+      "pass": true
+    },
+    "numpy_compute_not_used": {
+      "pass": true
+    },
+    "promotion_disallowed": {
+      "pass": true
+    }
+  },
+  "canonical_qit_spec_used": {
+    "H_L": "+H0",
+    "H_R": "-H0",
+    "lindblad_labels": [
+      "Se",
+      "Ne",
+      "Ni",
+      "Si"
+    ],
+    "mirror": "SX",
+    "substage_count": 32
+  },
+  "carrier_invariants": {
+    "density_bloch_norm": 1.0,
+    "density_fiber_dim": 1.0,
+    "density_mixed_rank": 2.0,
+    "direct_g2_derivation_dim": 14.0,
+    "division_H_dim": 4.0,
+    "division_O_dim": 8.0,
+    "division_S_dim": 16.0,
+    "division_S_zero_divisors": 1344.0,
+    "g2_automorphism_residual": 3.41387042326792e-16,
+    "g2_derivation_dim": 14.0,
+    "golden_carrier_error_bound": 5.988110785004608e-9,
+    "golden_claimed_effect_gap": 0.9999999940118891,
+    "golden_cocycle_wL": 1.0,
+    "golden_cocycle_wR": -1.0,
+    "golden_flat_linking_abs": 6.83672465902998e-17,
+    "golden_linking": 0.9999999998157145,
+    "golden_n01_commutator_norm": 2.8284271247461903,
+    "hopf_metric_det_min": 0.08637287570313155,
+    "owner_density_bloch_norm": 0.9999999999999999,
+    "owner_density_trace_residual": 0.0,
+    "owner_hopf_metric_det_min": 0.08637287570313155,
+    "quaternion_ij_k_residual": 0.0
+  },
+  "claim_ceiling": "Finite reframing witness in the owner's entropic-monist frame only: a dark-energy-like positive expansion term is determined by finite substrate entropy/possibility growth on the owner carrier, while the tuned-vacuum-constant control requires an external free parameter. NOT a measured Lambda value, NOT a proof/derivation of the cosmological-constant problem, and no physics admission.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "entropy_growth_erasure_collapses_expansion": {
+      "frozen_entropy_term": 0.0,
+      "pass": true
+    },
+    "flat_hopf_or_weyl_link_control_collapses_term": {
+      "flat_link_term": 8.234817968930937e-18,
+      "pass": true
+    },
+    "owner_carrier_erasure_changes_result": {
+      "division_erased_term": 0.06022487651697946,
+      "flat_link_term": 8.234817968930937e-18,
+      "frozen_entropy_term": 0.0,
+      "full_expansion_term": 0.12044975303395893,
+      "g2_erased_term": 0.0,
+      "pass": true,
+      "qit_erased_term": 0.0
+    },
+    "tuned_vacuum_constant_requires_external_parameter": {
+      "default_lambda": 0.0,
+      "free_parameter_count": 1,
+      "lambda_to_match_finite_witness": 0.12044975303395893,
+      "pass": true,
+      "residual_after_tuning": 0.0,
+      "residual_without_tuning": 0.12044975303395893
+    }
+  },
+  "created_at": "2026-06-07T04:25:07Z",
+  "entropy_profile": {
+    "all_entropy_increments_nonnegative": true,
+    "entropy_final_minus_initial": 0.9348505037076151,
+    "entropy_growth_rate": 0.11747453420534947,
+    "entropy_increments": [
+      0.08138362745333186,
+      0.18299270374974244,
+      0.21008932144873965,
+      0.19487994411293685,
+      0.12761587579678257,
+      0.0797281132290204,
+      0.05816091791706135
+    ],
+    "entropy_profile": [
+      0.0,
+      0.08138362745333186,
+      0.2643763312030743,
+      0.47446565265181395,
+      0.6693455967647508,
+      0.7969614725615334,
+      0.8766895857905538,
+      0.9348505037076151
+    ],
+    "local_rates": [
+      0.06856099777858723,
+      0.15023789107196106,
+      0.16491738310370002,
+      0.16738139553869852,
+      0.11261787580667212,
+      0.07541009911992128,
+      0.06292940927555508
+    ],
+    "shell_rows": [
+      {
+        "chi": -0.31,
+        "eta": 0.18,
+        "hopf_metric_det": 0.03102428385738813,
+        "idx": 0,
+        "phi": 0.11,
+        "pure_bloch_norm": 0.9999999999999999,
+        "pure_density_trace_residual": 0.0,
+        "qit_weight": 1.1811806628950836,
+        "shell_weight": 1.2178259470675987
+      },
+      {
+        "chi": 0.08,
+        "eta": 0.29,
+        "hopf_metric_det": 0.07508255882421586,
+        "idx": 1,
+        "phi": 0.47,
+        "pure_bloch_norm": 1.0,
+        "pure_density_trace_residual": 0.0,
+        "qit_weight": 1.1041246297579435,
+        "shell_weight": 1.18702513222101
+      },
+      {
+        "chi": 0.63,
+        "eta": 0.41,
+        "hopf_metric_det": 0.13364355608175776,
+        "idx": 2,
+        "phi": 0.92,
+        "pure_bloch_norm": 1.0000000000000002,
+        "pure_density_trace_residual": 2.220446049250313e-16,
+        "qit_weight": 1.0744291229165555,
+        "shell_weight": 1.2180196516609278
+      },
+      {
+        "chi": 1.17,
+        "eta": 0.54,
+        "hopf_metric_det": 0.19446239328132667,
+        "idx": 3,
+        "phi": 1.48,
+        "pure_bloch_norm": 1.0000000000000002,
+        "pure_density_trace_residual": 2.220446049250313e-16,
+        "qit_weight": 1.0665103210921856,
+        "shell_weight": 1.2739064705910081
+      },
+      {
+        "chi": 1.86,
+        "eta": 0.68,
+        "hopf_metric_det": 0.2390547951739948,
+        "idx": 4,
+        "phi": 2.03,
+        "pure_bloch_norm": 1.0,
+        "pure_density_trace_residual": 0.0,
+        "qit_weight": 0.9396572072517949,
+        "shell_weight": 1.1642867684651408
+      },
+      {
+        "chi": 2.44,
+        "eta": 0.83,
+        "hopf_metric_det": 0.2480159471223144,
+        "idx": 5,
+        "phi": 2.71,
+        "pure_bloch_norm": 1.0,
+        "pure_density_trace_residual": 0.0,
+        "qit_weight": 0.9079819999543144,
+        "shell_weight": 1.1331760156429969
+      },
+      {
+        "chi": 3.02,
+        "eta": 1.0,
+        "hopf_metric_det": 0.20670545260795153,
+        "idx": 6,
+        "phi": 3.42,
+        "pure_bloch_norm": 1.0,
+        "pure_density_trace_residual": 2.220446049250313e-16,
+        "qit_weight": 0.8761545080063654,
+        "shell_weight": 1.0572604221383182
+      },
+      {
+        "chi": 3.77,
+        "eta": 1.19,
+        "hopf_metric_det": 0.1190508707327765,
+        "idx": 7,
+        "phi": 4.36,
+        "pure_bloch_norm": 0.9999999999999998,
+        "pure_density_trace_residual": 1.1102230246251565e-16,
+        "qit_weight": 0.8259005733517089,
+        "shell_weight": 0.9242247557479291
+      }
+    ],
+    "tau_increments": [
+      1.1870251322210097,
+      1.2180196516609278,
+      1.2739064705910081,
+      1.164286768465141,
+      1.1331760156429969,
+      1.0572604221383184,
+      0.9242247557479288
+    ],
+    "tau_profile": [
+      1.2178259470675987,
+      2.4048510792886084,
+      3.6228707309495363,
+      4.896777201540544,
+      6.061063970005685,
+      7.194239985648682,
+      8.251500407787,
+      9.17572516353493
+    ]
+  },
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "measured_lambda_value": {
+      "derived": false,
+      "pass": true,
+      "reason": "finite reframing witness does not derive or estimate the observed cosmological constant",
+      "value": null
+    },
+    "one_hundred_twenty_order_numeric_cancellation": {
+      "derived": false,
+      "pass": true,
+      "reason": "the witness removes the free constant in this frame; it does not compute a 120-order cancellation",
+      "value": null
+    },
+    "physics_admission": {
+      "derived": false,
+      "pass": true,
+      "reason": "no physics admission follows from this scratch diagnostic",
+      "value": null
+    }
+  },
+  "jax_enable_x64": false,
+  "local_all_pass": true,
+  "name": "mp4_cosmological_constant_dissolves",
+  "nearby_variants": {
+    "passed": 4,
+    "total": 4,
+    "variant_names": [
+      "entropy_growth_erasure_collapses_expansion",
+      "flat_hopf_or_weyl_link_control_collapses_term",
+      "owner_carrier_erasure_changes_result",
+      "tuned_vacuum_constant_requires_external_parameter"
+    ]
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp4_cosmological_constant_dissolves",
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "tau_profile.6",
+    "missing_keys": [],
+    "parity_max_diff": 1.7763568394002505e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_cosmological_constant_dissolves_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9999999998157145,
+        "julia": 0.9999999998157145,
+        "key": "carrier.golden_linking"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9438071618359376,
+        "julia": 0.9438071618359376,
+        "key": "qit_factor"
+      },
+      {
+        "abs_diff": 7.355227538141662e-16,
+        "jax": 0.0813836274533326,
+        "julia": 0.08138362745333186,
+        "key": "entropy_profile.1"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 9.17572516353493,
+        "julia": 9.17572516353493,
+        "key": "tau_profile.7"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "type_two_minus_h0_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "carrier.direct_g2_derivation_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -1.0,
+        "julia": -1.0,
+        "key": "carrier.golden_cocycle_wR"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 0.21008932144874054,
+        "julia": 0.21008932144873965,
+        "key": "entropy_increment.2"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.14981875,
+        "julia": 0.14981875000000003,
+        "key": "qit_lr_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9348505037076151,
+        "julia": 0.9348505037076151,
+        "key": "entropy_final_minus_initial"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0253265003239653,
+        "julia": 1.0253265003239653,
+        "key": "carrier_amplitude"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1344.0,
+        "julia": 1344.0,
+        "key": "carrier.division_S_zero_divisors"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.234817968930937e-18,
+        "julia": 8.234817968930937e-18,
+        "key": "flat_link_term"
+      },
+      {
+        "abs_diff": 7.355227538141662e-16,
+        "jax": 0.0813836274533326,
+        "julia": 0.08138362745333186,
+        "key": "entropy_increment.0"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0863728757031315,
+        "julia": 1.0863728757031315,
+        "key": "hopf_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "lindblad_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "carrier.g2_derivation_dim"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 6.0610639700056845,
+        "julia": 6.061063970005685,
+        "key": "tau_profile.4"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "qit_substage_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.0,
+        "julia": 0.0,
+        "key": "entropy_profile.0"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.12761587579678257,
+        "julia": 0.12761587579678257,
+        "key": "entropy_increment.4"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "substrate_free_parameter_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.owner_density_trace_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "g2_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "cc_is_substrate_not_tuned"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.7969614725615334,
+        "julia": 0.7969614725615334,
+        "key": "entropy_profile.5"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.896777201540544,
+        "julia": 4.896777201540544,
+        "key": "tau_profile.3"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9999999998157144,
+        "julia": 0.9999999998157144,
+        "key": "link_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "carrier.quaternion_ij_k_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.11747453420534947,
+        "julia": 0.11747453420534947,
+        "key": "entropy_growth_rate"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0797281132290204,
+        "julia": 0.0797281132290204,
+        "key": "entropy_increment.5"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "carrier.division_O_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.6779249999999999,
+        "julia": 0.6779249999999999,
+        "key": "qit_response_min"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.12044975303395893,
+        "julia": 0.12044975303395893,
+        "key": "tuned_residual_without_tuning"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.08637287570313155,
+        "julia": 0.08637287570313155,
+        "key": "carrier.owner_hopf_metric_det_min"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9999999999999999,
+        "julia": 0.9999999999999999,
+        "key": "density_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "qit_erased_term"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.12044975303395893,
+        "julia": 0.12044975303395893,
+        "key": "expansion_term"
+      },
+      {
+        "abs_diff": 6.661338147750939e-16,
+        "jax": 0.26437633120307363,
+        "julia": 0.2643763312030743,
+        "key": "entropy_profile.2"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 1.2178259470675985,
+        "julia": 1.2178259470675987,
+        "key": "tau_profile.0"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.05816091791706135,
+        "julia": 0.05816091791706135,
+        "key": "entropy_increment.6"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.96955,
+        "julia": 0.96955,
+        "key": "qit_response_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "tuned_free_parameter_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.82083125,
+        "julia": 0.82083125,
+        "key": "qit_mean_response"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.8284271247461903,
+        "julia": 2.8284271247461903,
+        "key": "carrier.golden_n01_commutator_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.12044975303395893,
+        "julia": 0.12044975303395893,
+        "key": "tuned_lambda_to_match"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "expansion_from_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.41387042326792e-16,
+        "julia": 3.41387042326792e-16,
+        "key": "carrier.g2_automorphism_residual"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 0.4744656526518142,
+        "julia": 0.47446565265181395,
+        "key": "entropy_profile.3"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 0.19487994411293663,
+        "julia": 0.19487994411293685,
+        "key": "entropy_increment.3"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "g2_erased_term"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "mirror_is_sx_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "owner_carrier_load_bearing"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "mirror_involution_residual"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 7.194239985648681,
+        "julia": 7.194239985648682,
+        "key": "tau_profile.5"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9999999940118891,
+        "julia": 0.9999999940118891,
+        "key": "carrier.golden_claimed_effect_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "division_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "tuned_residual_after_tuning"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "type_one_h0_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.83672465902998e-17,
+        "julia": 6.83672465902998e-17,
+        "key": "carrier.golden_flat_linking_abs"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "carrier.division_S_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.06022487651697946,
+        "julia": 0.06022487651697946,
+        "key": "division_erased_term"
+      },
+      {
+        "abs_diff": 1.7763568394002505e-15,
+        "jax": 8.251500407786999,
+        "julia": 8.251500407787,
+        "key": "tau_profile.6"
+      },
+      {
+        "abs_diff": 1.4155343563970746e-15,
+        "jax": 0.18299270374974103,
+        "julia": 0.18299270374974244,
+        "key": "entropy_increment.1"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9999999999999999,
+        "julia": 0.9999999999999999,
+        "key": "carrier.owner_density_bloch_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "carrier.density_fiber_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.8766895857905538,
+        "julia": 0.8766895857905538,
+        "key": "entropy_profile.6"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.6228707309495363,
+        "julia": 3.6228707309495363,
+        "key": "tau_profile.2"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "frozen_entropy_term"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9348505037076151,
+        "julia": 0.9348505037076151,
+        "key": "entropy_profile.7"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "carrier.golden_cocycle_wL"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.988110785004608e-9,
+        "julia": 5.988110785004608e-9,
+        "key": "carrier.golden_carrier_error_bound"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.08637287570313155,
+        "julia": 0.08637287570313155,
+        "key": "carrier.hopf_metric_det_min"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "carrier.density_mixed_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.4048510792886084,
+        "julia": 2.4048510792886084,
+        "key": "tau_profile.1"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "carrier.density_bloch_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "no_free_param"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "carrier.division_H_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.6693455967647508,
+        "julia": 0.6693455967647508,
+        "key": "entropy_profile.4"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_cosmological_constant_dissolves_results.json",
+  "plain_sentence": "Finite witness only: on the owner carrier, the dark-energy-like term is determined by entropy/possibility growth; the tuned-vacuum control needs a supplied constant, while measured Lambda remains graveyarded as derived=false.",
+  "positive": {
+    "cosmological_constant_reframed_as_substrate_growth": {
+      "claim": "dark-energy-like term is the carrier entropy-growth term in this finite frame, not a tuned vacuum constant",
+      "pass": true
+    },
+    "entropy_substrate_expansion_term_determined": {
+      "definition": "dimensionless finite witness term = carrier_amplitude * dS/dtau from prefix mixed density entropy",
+      "entropy_growth_rate": 0.11747453420534947,
+      "expansion_term": 0.12044975303395893,
+      "pass": true
+    },
+    "no_free_vacuum_constant_in_positive_model": {
+      "pass": true,
+      "substrate_free_parameter_count": 0,
+      "tuned_control_free_parameter_count": 1
+    }
+  },
+  "promotion_allowed": false,
+  "qit_substage_detail": [
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Ti",
+      "perception": "Se",
+      "response": 0.99205,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Fi",
+      "perception": "Se",
+      "response": 0.9288,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Te",
+      "perception": "Se",
+      "response": 0.881925,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Fe",
+      "perception": "Se",
+      "response": 0.875425,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Ti",
+      "perception": "Ne",
+      "response": 0.6349499999999999,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Fi",
+      "perception": "Ne",
+      "response": 0.6141999999999999,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Te",
+      "perception": "Ne",
+      "response": 0.5673249999999999,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Fe",
+      "perception": "Ne",
+      "response": 0.5263249999999999,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Fe",
+      "perception": "Ni",
+      "response": 0.95355,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Te",
+      "perception": "Ni",
+      "response": 0.9288,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Ti",
+      "perception": "Ni",
+      "response": 0.913925,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Fi",
+      "perception": "Ni",
+      "response": 0.8689250000000001,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Fe",
+      "perception": "Si",
+      "response": 0.90765,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Te",
+      "perception": "Si",
+      "response": 0.8764,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Ti",
+      "perception": "Si",
+      "response": 0.8710249999999999,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Fi",
+      "perception": "Si",
+      "response": 0.829525,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Fi",
+      "perception": "Se",
+      "response": 0.9470500000000001,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Ti",
+      "perception": "Se",
+      "response": 0.9608,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Te",
+      "perception": "Se",
+      "response": 0.881925,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Fe",
+      "perception": "Se",
+      "response": 0.875425,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Te",
+      "perception": "Si",
+      "response": 0.90765,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Fe",
+      "perception": "Si",
+      "response": 0.8764,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Ti",
+      "perception": "Si",
+      "response": 0.8710249999999999,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Fi",
+      "perception": "Si",
+      "response": 0.829525,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Te",
+      "perception": "Ni",
+      "response": 0.96005,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Fe",
+      "perception": "Ni",
+      "response": 0.9223,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Ti",
+      "perception": "Ni",
+      "response": 0.913925,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Fi",
+      "perception": "Ni",
+      "response": 0.8689250000000001,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Fi",
+      "perception": "Ne",
+      "response": 0.6454499999999999,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Ti",
+      "perception": "Ne",
+      "response": 0.6036999999999999,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Te",
+      "perception": "Ne",
+      "response": 0.5673249999999999,
+      "sign": 1,
+      "substage": 2
+    },
+    {
+      "engine_type": 0,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Fe",
+      "perception": "Ne",
+      "response": 0.5263249999999999,
+      "sign": -1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Fi",
+      "perception": "Se",
+      "response": 0.9470500000000001,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Ti",
+      "perception": "Se",
+      "response": 0.8838,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Te",
+      "perception": "Se",
+      "response": 0.881925,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 0,
+      "operator": "Fe",
+      "perception": "Se",
+      "response": 0.875425,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Te",
+      "perception": "Si",
+      "response": 0.90765,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Fe",
+      "perception": "Si",
+      "response": 0.8764,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Ti",
+      "perception": "Si",
+      "response": 0.8710249999999999,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 1,
+      "operator": "Fi",
+      "perception": "Si",
+      "response": 0.829525,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Te",
+      "perception": "Ni",
+      "response": 0.96005,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Fe",
+      "perception": "Ni",
+      "response": 0.9223,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Ti",
+      "perception": "Ni",
+      "response": 0.913925,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 2,
+      "operator": "Fi",
+      "perception": "Ni",
+      "response": 0.8689250000000001,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Fi",
+      "perception": "Ne",
+      "response": 0.6454499999999999,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Ti",
+      "perception": "Ne",
+      "response": 0.6036999999999999,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Te",
+      "perception": "Ne",
+      "response": 0.5673249999999999,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "outer",
+      "main_stage": 3,
+      "operator": "Fe",
+      "perception": "Ne",
+      "response": 0.5263249999999999,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Ti",
+      "perception": "Se",
+      "response": 0.99205,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Fi",
+      "perception": "Se",
+      "response": 0.9158000000000001,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Te",
+      "perception": "Se",
+      "response": 0.881925,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 4,
+      "operator": "Fe",
+      "perception": "Se",
+      "response": 0.875425,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Ti",
+      "perception": "Ne",
+      "response": 0.6349499999999999,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Fi",
+      "perception": "Ne",
+      "response": 0.5932,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Te",
+      "perception": "Ne",
+      "response": 0.5673249999999999,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 5,
+      "operator": "Fe",
+      "perception": "Ne",
+      "response": 0.5263249999999999,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Fe",
+      "perception": "Ni",
+      "response": 0.95355,
+      "sign": 1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Te",
+      "perception": "Ni",
+      "response": 0.9158000000000001,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Ti",
+      "perception": "Ni",
+      "response": 0.913925,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 6,
+      "operator": "Fi",
+      "perception": "Ni",
+      "response": 0.8689250000000001,
+      "sign": 1,
+      "substage": 3
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": true,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Fe",
+      "perception": "Si",
+      "response": 0.90765,
+      "sign": -1,
+      "substage": 0
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": true,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Te",
+      "perception": "Si",
+      "response": 0.8764,
+      "sign": 1,
+      "substage": 1
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Ti",
+      "perception": "Si",
+      "response": 0.8710249999999999,
+      "sign": -1,
+      "substage": 2
+    },
+    {
+      "engine_type": 1,
+      "is_chart_locked": false,
+      "is_native_operator": false,
+      "loop_class": "inner",
+      "main_stage": 7,
+      "operator": "Fi",
+      "perception": "Si",
+      "response": 0.829525,
+      "sign": 1,
+      "substage": 3
+    }
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_cosmological_constant_dissolves_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "cc_is_substrate_not_tuned": true,
+    "entropy_growth_rate": 0.11747453420534947,
+    "expansion_from_entropy": true,
+    "expansion_term": 0.12044975303395893,
+    "local_all_pass": true,
+    "no_free_param": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true
+  },
+  "root_constraints_in_force": [
+    "F01 finite carrier",
+    "N01 noncommuting/order-sensitive carrier"
+  ],
+  "schema": "MP4_COSMOLOGICAL_CONSTANT_DISSOLVES_DUAL_BACKEND_v1",
+  "shared_booleans": {
+    "boundary.claim_ceiling_blocks_measured_lambda_and_physics": true,
+    "boundary.classification_is_scratch_diagnostic": true,
+    "boundary.formal_admission_disallowed": true,
+    "boundary.jax_x64_enabled": true,
+    "boundary.numpy_compute_not_used": true,
+    "boundary.promotion_disallowed": true,
+    "control.entropy_growth_erasure_collapses_expansion": true,
+    "control.flat_hopf_or_weyl_link_control_collapses_term": true,
+    "control.owner_carrier_erasure_changes_result": true,
+    "control.tuned_vacuum_constant_requires_external_parameter": true,
+    "graveyard.measured_lambda_value.derived": false,
+    "graveyard.one_hundred_twenty_order_numeric_cancellation.derived": false,
+    "graveyard.physics_admission.derived": false,
+    "positive.cosmological_constant_reframed_as_substrate_growth": true,
+    "positive.entropy_substrate_expansion_term_determined": true,
+    "positive.no_free_vacuum_constant_in_positive_model": true,
+    "verdict.canonical_qit_spec_ok": true,
+    "verdict.cc_is_substrate_not_tuned": true,
+    "verdict.expansion_from_entropy": true,
+    "verdict.hard_open_rungs_graveyarded": true,
+    "verdict.no_free_param": true,
+    "verdict.owner_carrier_load_bearing": true
+  },
+  "shared_scalars": {
+    "carrier.density_bloch_norm": 1.0,
+    "carrier.density_fiber_dim": 1.0,
+    "carrier.density_mixed_rank": 2.0,
+    "carrier.direct_g2_derivation_dim": 14.0,
+    "carrier.division_H_dim": 4.0,
+    "carrier.division_O_dim": 8.0,
+    "carrier.division_S_dim": 16.0,
+    "carrier.division_S_zero_divisors": 1344.0,
+    "carrier.g2_automorphism_residual": 3.41387042326792e-16,
+    "carrier.g2_derivation_dim": 14.0,
+    "carrier.golden_carrier_error_bound": 5.988110785004608e-9,
+    "carrier.golden_claimed_effect_gap": 0.9999999940118891,
+    "carrier.golden_cocycle_wL": 1.0,
+    "carrier.golden_cocycle_wR": -1.0,
+    "carrier.golden_flat_linking_abs": 6.83672465902998e-17,
+    "carrier.golden_linking": 0.9999999998157145,
+    "carrier.golden_n01_commutator_norm": 2.8284271247461903,
+    "carrier.hopf_metric_det_min": 0.08637287570313155,
+    "carrier.owner_density_bloch_norm": 0.9999999999999999,
+    "carrier.owner_density_trace_residual": 0.0,
+    "carrier.owner_hopf_metric_det_min": 0.08637287570313155,
+    "carrier.quaternion_ij_k_residual": 0.0,
+    "carrier_amplitude": 1.0253265003239653,
+    "cc_is_substrate_not_tuned": 1.0,
+    "density_factor": 0.9999999999999999,
+    "division_erased_term": 0.06022487651697946,
+    "division_factor": 1.0,
+    "entropy_final_minus_initial": 0.9348505037076151,
+    "entropy_growth_rate": 0.11747453420534947,
+    "entropy_increment.0": 0.08138362745333186,
+    "entropy_increment.1": 0.18299270374974244,
+    "entropy_increment.2": 0.21008932144873965,
+    "entropy_increment.3": 0.19487994411293685,
+    "entropy_increment.4": 0.12761587579678257,
+    "entropy_increment.5": 0.0797281132290204,
+    "entropy_increment.6": 0.05816091791706135,
+    "entropy_profile.0": 0.0,
+    "entropy_profile.1": 0.08138362745333186,
+    "entropy_profile.2": 0.2643763312030743,
+    "entropy_profile.3": 0.47446565265181395,
+    "entropy_profile.4": 0.6693455967647508,
+    "entropy_profile.5": 0.7969614725615334,
+    "entropy_profile.6": 0.8766895857905538,
+    "entropy_profile.7": 0.9348505037076151,
+    "expansion_from_entropy": 1.0,
+    "expansion_term": 0.12044975303395893,
+    "flat_link_term": 8.234817968930937e-18,
+    "frozen_entropy_term": 0.0,
+    "g2_erased_term": 0.0,
+    "g2_factor": 1.0,
+    "hopf_factor": 1.0863728757031315,
+    "lindblad_count": 4.0,
+    "link_gap": 0.9999999998157144,
+    "mirror_involution_residual": 0.0,
+    "mirror_is_sx_residual": 0.0,
+    "no_free_param": 1.0,
+    "owner_carrier_load_bearing": 1.0,
+    "qit_erased_term": 0.0,
+    "qit_factor": 0.9438071618359376,
+    "qit_lr_delta": 0.14981875000000003,
+    "qit_mean_response": 0.82083125,
+    "qit_response_max": 0.96955,
+    "qit_response_min": 0.6779249999999999,
+    "qit_substage_count": 32.0,
+    "substrate_free_parameter_count": 0.0,
+    "tau_profile.0": 1.2178259470675987,
+    "tau_profile.1": 2.4048510792886084,
+    "tau_profile.2": 3.6228707309495363,
+    "tau_profile.3": 4.896777201540544,
+    "tau_profile.4": 6.061063970005685,
+    "tau_profile.5": 7.194239985648682,
+    "tau_profile.6": 8.251500407787,
+    "tau_profile.7": 9.17572516353493,
+    "tuned_free_parameter_count": 1.0,
+    "tuned_lambda_to_match": 0.12044975303395893,
+    "tuned_residual_after_tuning": 0.0,
+    "tuned_residual_without_tuning": 0.12044975303395893,
+    "type_one_h0_residual": 0.0,
+    "type_two_minus_h0_residual": 0.0
+  },
+  "sim_class": "finite_formal_scout",
+  "sim_execution_kind": "nonclassical_scratch_diagnostic",
+  "source_dependencies": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_jax_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_jax_results.json"
+  ],
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_cosmological_constant_dissolves_julia.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "summary": {
+    "all_pass": true,
+    "cc_is_substrate_not_tuned": true,
+    "entropy_growth_rate": 0.11747453420534947,
+    "expansion_from_entropy": true,
+    "expansion_term": 0.12044975303395893,
+    "local_all_pass": true,
+    "no_free_param": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true
+  },
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia JSON/path": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "load_bearing",
+    "clifford_torus_nested_hopf_foliation receipt": "load_bearing",
+    "density_matrix_spinor_lift mirror": "load_bearing",
+    "division_algebra_ratchet_ladder receipt": "load_bearing",
+    "golden_weyl receipt and mirror": "load_bearing",
+    "octonion_G2_automorphism receipt": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/path": {
+      "reason": "supportive exact result writing and peer parity parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite mixed-state entropy, carrier amplitude, erasure controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror constants": {
+      "reason": "load-bearing mirror of H_L=+H0, H_R=-H0, MIRROR=SX, Lindblad matrices, operator slots, and 32-substage weights",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation receipt": {
+      "reason": "load-bearing nested Hopf shell metric factors and erasure boundary",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift mirror": {
+      "reason": "load-bearing density matrices and Bloch vectors used in finite entropy-growth profile",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder receipt": {
+      "reason": "load-bearing H/O ladder factors; division erasure changes result",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl receipt and mirror": {
+      "reason": "load-bearing shell spinors, linking/cocycle invariants, and flat-link control",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism receipt": {
+      "reason": "load-bearing G2 derivation dimension and automorphism residual; G2 erasure changes result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdicts": {
+    "canonical_qit_spec_ok": true,
+    "cc_is_substrate_not_tuned": true,
+    "expansion_from_entropy": true,
+    "hard_open_rungs_graveyarded": true,
+    "no_free_param": true,
+    "owner_carrier_load_bearing": true
+  },
+  "why_not_v4_probes": [
+    "finite dual-backend scratch scout, not a v4 promotion probe",
+    "positive finite entropy-growth term is not a measured cosmological constant",
+    "tuned-vacuum control shows an external parameter boundary, not a physics theorem"
+  ]
+}

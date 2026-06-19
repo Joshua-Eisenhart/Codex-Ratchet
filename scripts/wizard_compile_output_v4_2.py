@@ -141,7 +141,7 @@ def route_repair_command(row: dict, receipt: dict, cwd: Path) -> str:
         "--sonnet-count",
         "1",
         "--opus-count",
-        "1",
+        "0",
         "--haiku-count",
         "0",
     ]
@@ -829,8 +829,8 @@ def main() -> int:
         lines.append("### 2. 🧑‍✈️ Promote Management Parents")
         lines.append("`Make management parents first-class v4.2 routes for run control, child health, route truth, output compiling, and strategy memory. Payoff: makes orchestration truth explicit. Use when accepted council topology is stable. Stop if management replaces council work instead of supervising it.`")
         lines.append("")
-        lines.append("### 3. 🔧 Repair Opus Receipt Shape")
-        lines.append("`Tune Opus child prompts so Opus returns required receipt fields while keeping deep audit quality. Payoff: improves model diversity instead of relying mostly on Sonnet. Use when Opus completions are blocked for shape errors. Stop if strict receipt gates are weakened.`")
+        lines.append("### 3. 🔧 Exercise Grok/Gemini Contrast")
+        lines.append("`Run a narrow Grok plus Gemini child-matrix contrast on the weakest accepted route. Payoff: tests external diversity without Opus. Use when Sonnet-only receipts look too uniform. Stop if strict receipt gates are weakened or provider calls block.`")
     lines.append("")
     lines.append("## 🧙 Footer")
     lines.append("")

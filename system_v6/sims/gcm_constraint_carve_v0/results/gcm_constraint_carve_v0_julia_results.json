@@ -1,0 +1,130 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON/Dates/SHA": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph components",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive serialization and hashing",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs"
+  ],
+  "all_pass": true,
+  "candidate_count": 125,
+  "classification": "scratch_diagnostic",
+  "component_receipt": {
+    "class_count": 4,
+    "component_count": 3,
+    "components": [
+      [
+        0,
+        1,
+        6,
+        7
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "edge_count": 6,
+    "edges": [
+      {
+        "dst": 1,
+        "src": 0,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 7,
+        "src": 0,
+        "update": "circulation_half_turn"
+      },
+      {
+        "dst": 0,
+        "src": 1,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 6,
+        "src": 1,
+        "update": "circulation_half_turn"
+      },
+      {
+        "dst": 4,
+        "src": 2,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 5,
+        "src": 3,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 2,
+        "src": 4,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 3,
+        "src": 5,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 7,
+        "src": 6,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 1,
+        "src": 6,
+        "update": "circulation_half_turn"
+      },
+      {
+        "dst": 6,
+        "src": 7,
+        "update": "hidden_probe_flip"
+      },
+      {
+        "dst": 0,
+        "src": 7,
+        "update": "circulation_half_turn"
+      }
+    ],
+    "node_count": 8
+  },
+  "density_count": 33,
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T20:53:01Z",
+  "package_observables": {
+    "Graphs": "SimpleGraph/add_edge!/connected_components over survivor adjacency"
+  },
+  "packages_used": [
+    "Graphs",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "quotient_class_count": 4,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_constraint_carve_v0/results/gcm_constraint_carve_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_constraint_carve_v0",
+  "source_path": "system_v6/sims/gcm_constraint_carve_v0/gcm_constraint_carve_v0_julia.jl",
+  "source_sha256": "9a8b19d67fcdd582a875b6e0de1c20f366ea58399b2e84df4e020adc6c61719d",
+  "survivor_count": 8
+}

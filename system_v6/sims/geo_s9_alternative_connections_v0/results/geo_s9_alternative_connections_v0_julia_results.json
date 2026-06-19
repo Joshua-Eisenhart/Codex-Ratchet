@@ -1,0 +1,88 @@
+{
+  "result_path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_julia_results.json",
+  "packages_used": [
+    "Z3",
+    "JSON",
+    "SHA"
+  ],
+  "source_sha256": "53515c431dbf20361fc231e63ef6b63069c0d8ee0600e53fb22d9b3eeafab76a",
+  "pin_sha256": "6ecc11b9be2f67a038f6b1194c8ef3a2c8b443cc8f093c2a3597b9d65bfc54c2",
+  "classification": "scratch_diagnostic",
+  "julia_version": "1.12.6",
+  "sim_id": "geo_s9_alternative_connections_v0",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "generated_at": "2026-06-11T10:06:04Z",
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive deterministic result serialization"
+    },
+    "SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive source and PIN hashing"
+    },
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing Julia-side SMT annular Stokes anchor proof with erased alternative flip"
+    }
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "build_gates": {
+    "classification_ceiling": true,
+    "reads_no_peer_result": true,
+    "z3_erased_flip": true,
+    "engine_values_bound": true
+  },
+  "tool_calls": [
+    {
+      "receipt": "proofs.julia_z3",
+      "load_bearing": true,
+      "claim": "annular Stokes SMT flip",
+      "tool": "Z3"
+    }
+  ],
+  "proofs": {
+    "julia_z3": {
+      "ran": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "asserted_precomputed_boolean": false,
+      "load_bearing": true,
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "real_verdict": "unsat",
+      "pass": true,
+      "real_units": {
+        "committed": 10,
+        "anchor": 10
+      },
+      "erased_flip_verdict": "sat"
+    }
+  },
+  "engine_values": {
+    "same_flux_stokes_twentieths": 9,
+    "full_battery_alternative_survivors": 0,
+    "topological_cosurvivors": 1,
+    "committed_stokes_twentieths": 10
+  },
+  "source_path": "system_v6/sims/geo_s9_alternative_connections_v0/geo_s9_alternative_connections_v0_julia.jl",
+  "schema_version": "julia_sidecar_result_v1",
+  "claim_path_tools": [
+    "Z3"
+  ]
+}
+

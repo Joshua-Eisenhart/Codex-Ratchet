@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 
 
-REPO_ROOT = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+REPO_ROOT = Path(__file__).resolve().parents[2]
 SIM_PATH = REPO_ROOT / "system_v4" / "probes" / "sim_hopf_fiber_equivalence.py"
 
 

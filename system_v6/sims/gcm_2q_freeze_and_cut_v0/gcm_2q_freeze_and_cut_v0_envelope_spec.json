@@ -1,0 +1,1015 @@
+{
+  "claim_path_tools": [
+    "QuantumOptics",
+    "builder_audit_boundary",
+    "cvc5",
+    "gcm_substrate_check",
+    "python_stdlib",
+    "qutip",
+    "sympy",
+    "torch.func",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "boundary_case": "monogamy row remains narrowed to 3Q rather than promoted",
+      "claim": "2Q registry and cut-separation counts match the pinned finite packet counts",
+      "gates": [
+        "all_pass",
+        "crossover_proofs",
+        "divergence"
+      ],
+      "input_object": {
+        "entangled_survivor_count": 16,
+        "one_q_product_embedding_count": 16,
+        "product_survivor_count": 528,
+        "two_q_class_count": 8,
+        "two_q_survivor_count": 544
+      },
+      "load_bearing": true,
+      "negative_control": "lineage-free substrate payload fails",
+      "positive_case": "544 survivors partition into 528 product and 16 entangled rows, with all 16 1Q survivors product-embedded",
+      "ran": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "boundary_case": "monogamy row remains narrowed to 3Q rather than promoted",
+      "claim": "2Q registry and cut-separation counts match the pinned finite packet counts",
+      "gates": [
+        "all_pass",
+        "crossover_proofs",
+        "divergence"
+      ],
+      "input_object": {
+        "entangled_survivor_count": 16,
+        "one_q_product_embedding_count": 16,
+        "product_survivor_count": 528,
+        "two_q_class_count": 8,
+        "two_q_survivor_count": 544
+      },
+      "load_bearing": true,
+      "negative_control": "lineage-free substrate payload fails",
+      "positive_case": "544 survivors partition into 528 product and 16 entangled rows, with all 16 1Q survivors product-embedded",
+      "ran": true,
+      "verdict": "sat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 544.0,
+      "julia": 544.0,
+      "pytorch": 544.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "expected_lanes": [
+    "julia",
+    "jax",
+    "pytorch"
+  ],
+  "extra_fields": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "QuantumOptics": "load_bearing",
+      "builder_audit_boundary": "load_bearing",
+      "cvc5": "load_bearing",
+      "gcm_substrate_check": "load_bearing",
+      "python_stdlib": "load_bearing",
+      "qutip": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_MANIFEST": {
+      "QuantumOptics": {
+        "reason": "Julia lane partial trace and von Neumann entropy mirror on the pinned A|B cut",
+        "tried": true,
+        "used": true
+      },
+      "builder_audit_boundary": {
+        "reason": "G.2a post-audit-idempotent builder/audit boundary from birth",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "independent SMT binding of the same finite count facts",
+        "tried": true,
+        "used": true
+      },
+      "gcm_substrate_check": {
+        "reason": "load-bearing 1Q and 2Q rung lineage checks plus lineage-free negative controls",
+        "tried": true,
+        "used": true
+      },
+      "python_stdlib": {
+        "reason": "content IDs, density construction, exact control bookkeeping, JSON, and SHA-256 locks",
+        "tried": true,
+        "used": true
+      },
+      "qutip": {
+        "reason": "JAX/Python lane Qobj partial-trace/entropy smoke checks on representative rows",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "exact integer guards for registry counts and cut-separation counts",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "PyTorch lane vmap over density matrices and partial-transpose spectra",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "SMT binding of finite registry and entanglement-separation count facts",
+        "tried": true,
+        "used": true
+      }
+    },
+    "all_pass": true,
+    "builder_gates": {
+      "G_2a_idempotency_from_birth": true,
+      "file_disjoint_packet": true,
+      "no_builder_audit_verdict": true,
+      "no_builder_audit_verdict_envelope_gate": true
+    },
+    "carrier_and_pins_relative": true,
+    "claim_ceiling": "scratch_diagnostic_carrier_and_pins_relative_2q_registry_and_first_cut",
+    "classification": "scratch_diagnostic",
+    "controls": {
+      "lineage_free_negatives_failed_as_required": true,
+      "one_q_regression": {
+        "S_rho_A_unique_values_per_1q_survivor": {
+          "surv_06c672578651d924d6a7": [
+            0.416495530699687
+          ],
+          "surv_0fde9ef29d269ef4f899": [
+            0.245775366668469
+          ],
+          "surv_20460071a13a82d25721": [
+            0.245775366668469
+          ],
+          "surv_4aac372b5240bda4da93": [
+            0.416495530699687
+          ],
+          "surv_57e755b7fbea4c5b17cd": [
+            0.416495530699687
+          ],
+          "surv_69fc80440765d72184c9": [
+            0.245775366668469
+          ],
+          "surv_71e9552459071f0c85d8": [
+            0.245775366668469
+          ],
+          "surv_7be9b68b5eaa21fd025d": [
+            0.245775366668469
+          ],
+          "surv_7c846270532f504b3233": [
+            0.245775366668469
+          ],
+          "surv_8c0f5e3a21ce522d7e5c": [
+            0.245775366668469
+          ],
+          "surv_b5f0c278bcd41bc2a5fa": [
+            0.416495530699687
+          ],
+          "surv_b6b75f537ad208c0b24f": [
+            0.416495530699687
+          ],
+          "surv_c4a049a10e7237b869f8": [
+            0.416495530699687
+          ],
+          "surv_cbb428726dfac0f03903": [
+            0.416495530699687
+          ],
+          "surv_df8410cc012bfc835668": [
+            0.245775366668469
+          ],
+          "surv_f315eeca8af2d707560f": [
+            0.416495530699687
+          ]
+        },
+        "all_A_fibers_have_expected_size": true,
+        "boundary_note": "The 2Q raw marginals map back to the frozen 1Q survivor IDs. The 1Q sweep's zero entropy is an attached-geometry density result and is not reused as raw 2Q marginal entropy.",
+        "partial_trace_A_fiber_counts_by_1q_survivor_id": {
+          "surv_06c672578651d924d6a7": 34,
+          "surv_0fde9ef29d269ef4f899": 34,
+          "surv_20460071a13a82d25721": 34,
+          "surv_4aac372b5240bda4da93": 34,
+          "surv_57e755b7fbea4c5b17cd": 34,
+          "surv_69fc80440765d72184c9": 34,
+          "surv_71e9552459071f0c85d8": 34,
+          "surv_7be9b68b5eaa21fd025d": 34,
+          "surv_7c846270532f504b3233": 34,
+          "surv_8c0f5e3a21ce522d7e5c": 34,
+          "surv_b5f0c278bcd41bc2a5fa": 34,
+          "surv_b6b75f537ad208c0b24f": 34,
+          "surv_c4a049a10e7237b869f8": 34,
+          "surv_cbb428726dfac0f03903": 34,
+          "surv_df8410cc012bfc835668": 34,
+          "surv_f315eeca8af2d707560f": 34
+        },
+        "partial_trace_A_image_equals_1q_survivor_set": true,
+        "partial_trace_A_reproduces_1q_id_degeneracy": true,
+        "upstream_1q_entropy_families_separating_8_classes": [],
+        "upstream_1q_entropy_sweep_zero_degeneracy": true
+      },
+      "product_entanglement_zero": {
+        "all_product_mutual_information_zero": true,
+        "all_product_negativity_zero": true,
+        "exact_zero_claim_scope": "analytic product rho_A tensor rho_B rows only",
+        "max_product_negativity": 0.0,
+        "product_count": 528
+      },
+      "scrambled_pairing": {
+        "coherent_positive_signal_destroyed": true,
+        "conditional_negative_signal_destroyed": true,
+        "control": "same-marginal correlation-erasure/productization control for the 16 purification rows",
+        "erased_rows": [
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_395f873a062ac2f6a173",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_79456cb8ae2f2db5481d",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_21617854fdaa584d624b",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_46219f756205e283baa3",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_242dc13aa652bc016054",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_b57453033b6ca121e0ba",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_d12604eaf6da0aeea9b1",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_df2d49b9eb669cb4c7c8",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_d741e11ede860ab19c56",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_661e0a93614dd27b30ee",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_88d1b3c9e8b09d35d5a1",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_0a0a018c1c6e386d9269",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_9713960b95870153b284",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_a881c6b12abf137de030",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.832991061398976,
+            "coherent_I_c_A_to_B": -0.416495530699687,
+            "conditional_S_A_given_B": 0.416495530699687,
+            "gcm_2q_survivor_id": "gcm2qsurv_45d4118545918cbf215d",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          },
+          {
+            "S_rho_AB": 0.491550733337518,
+            "coherent_I_c_A_to_B": -0.245775366668469,
+            "conditional_S_A_given_B": 0.245775366668469,
+            "gcm_2q_survivor_id": "gcm2qsurv_53a98ad53613cd44c020",
+            "mutual_I_A_B": 0.0,
+            "negativity": 0.0,
+            "rule": "replace rho_AB by rho_A tensor rho_B while preserving both marginals"
+          }
+        ],
+        "mutual_after_scramble_all_zero": true,
+        "negativity_after_scramble_all_zero": true
+      },
+      "substrate_lineage_free_negative_1q": {
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "registry_body_sha256 missing from lineage",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+        "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+      },
+      "substrate_lineage_free_negative_2q": {
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "lineage 2Q registry_body_sha256 mismatch: registry=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=[]",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+        "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+      },
+      "substrate_positive_1q": {
+        "errors": [],
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": true,
+        "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+        "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+      },
+      "substrate_positive_2q": {
+        "errors": [],
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": true,
+        "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+        "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+      }
+    },
+    "counts": {
+      "candidate_region_count": 6,
+      "entangled_survivor_count": 16,
+      "one_q_product_embedding_count": 16,
+      "product_survivor_count": 528,
+      "two_q_class_count": 8,
+      "two_q_survivor_count": 544
+    },
+    "cross_rung_lineage_summary": {
+      "partial_trace_A_image_equals_1q_survivor_set": true,
+      "partial_trace_B_resolved_to_1q_survivor_count": 256,
+      "product_control_embedding_all_survive": true,
+      "product_control_embedding_count": 16
+    },
+    "cut": {
+      "bipartition": "qubit A | qubit B",
+      "committed_tensor_structure_is_the_cut": true,
+      "id": "qubit_A_given_qubit_B",
+      "tensor_order": "computational basis |00>, |01>, |10>, |11> with index = 2*A + B"
+    },
+    "disallowed_claims": [
+      "canonical",
+      "formal admission",
+      "THE manifold",
+      "axis admission",
+      "3Q monogamy closure"
+    ],
+    "engine_consensus": {
+      "all_engine_lanes_pass": true,
+      "count_agreement": {
+        "candidate_region_count": true,
+        "embedded_1q_count": true,
+        "entangled_survivor_count": true,
+        "product_survivor_count": true,
+        "quotient_class_count": true,
+        "survivor_count": true
+      },
+      "counts_by_engine": {
+        "candidate_region_count": {
+          "jax": 6,
+          "julia": 6,
+          "pytorch": 6
+        },
+        "embedded_1q_count": {
+          "jax": 16,
+          "julia": 16,
+          "pytorch": 16
+        },
+        "entangled_survivor_count": {
+          "jax": 16,
+          "julia": 16,
+          "pytorch": 16
+        },
+        "product_survivor_count": {
+          "jax": 528,
+          "julia": 528,
+          "pytorch": 528
+        },
+        "quotient_class_count": {
+          "jax": 8,
+          "julia": 8,
+          "pytorch": 8
+        },
+        "survivor_count": {
+          "jax": 544,
+          "julia": 544,
+          "pytorch": 544
+        }
+      },
+      "metric_agreement_within_tolerance": {
+        "max_entangled_conditional": true,
+        "max_product_negativity": true,
+        "min_entangled_negativity": true
+      },
+      "metrics_by_engine": {
+        "max_entangled_conditional": {
+          "jax": -0.245775366668471,
+          "julia": -0.245775366668471,
+          "pytorch": -0.245775366668471
+        },
+        "max_product_negativity": {
+          "jax": 0.0,
+          "julia": 0.0,
+          "pytorch": 0.0
+        },
+        "min_entangled_negativity": {
+          "jax": 0.249999999999999,
+          "julia": 0.25,
+          "pytorch": 0.249999999999999
+        }
+      }
+    },
+    "engine_lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "entangled_vs_product_separation": {
+      "entangled_count": 16,
+      "metrics": {
+        "S_rho_AB": {
+          "entangled": {
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "unique_count": 1,
+            "unique_values": [
+              0.0
+            ],
+            "unique_values_truncated": false
+          },
+          "product": {
+            "max": 1.109642711259632,
+            "mean": 0.665417489593678,
+            "min": 0.245775366668469,
+            "unique_count": 9,
+            "unique_values": [
+              0.245775366668469,
+              0.416495530699687,
+              0.491550733336939,
+              0.662270897368156,
+              0.808110511287278,
+              0.832991061399374,
+              0.938922547228415,
+              0.978830675318493,
+              1.109642711259632
+            ],
+            "unique_values_truncated": false
+          },
+          "separates": true
+        },
+        "coherent_I_c_A_to_B": {
+          "entangled": {
+            "max": 0.416495530699289,
+            "mean": 0.331135448684169,
+            "min": 0.245775366669049,
+            "unique_count": 2,
+            "unique_values": [
+              0.245775366669049,
+              0.416495530699289
+            ],
+            "unique_values_truncated": false
+          },
+          "product": {
+            "max": -0.245775366668469,
+            "mean": -0.331135448684078,
+            "min": -0.416495530699687,
+            "unique_count": 4,
+            "unique_values": [
+              -0.416495530699687,
+              -0.416495530699685,
+              -0.24577536666847,
+              -0.245775366668469
+            ],
+            "unique_values_truncated": false
+          },
+          "separates_by_sign": true
+        },
+        "conditional_S_A_given_B": {
+          "entangled": {
+            "max": -0.245775366669049,
+            "mean": -0.331135448684169,
+            "min": -0.416495530699289,
+            "unique_count": 2,
+            "unique_values": [
+              -0.416495530699289,
+              -0.245775366669049
+            ],
+            "unique_values_truncated": false
+          },
+          "product": {
+            "max": 0.416495530699687,
+            "mean": 0.331135448684078,
+            "min": 0.245775366668469,
+            "unique_count": 4,
+            "unique_values": [
+              0.245775366668469,
+              0.24577536666847,
+              0.416495530699685,
+              0.416495530699687
+            ],
+            "unique_values_truncated": false
+          },
+          "separates_by_sign": true
+        },
+        "mutual_I_A_B": {
+          "entangled": {
+            "max": 0.832991061398976,
+            "mean": 0.662270897368247,
+            "min": 0.491550733337518,
+            "unique_count": 2,
+            "unique_values": [
+              0.491550733337518,
+              0.832991061398976
+            ],
+            "unique_values_truncated": false
+          },
+          "product": {
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "unique_count": 1,
+            "unique_values": [
+              0.0
+            ],
+            "unique_values_truncated": false
+          },
+          "separates": true
+        },
+        "negativity": {
+          "entangled": {
+            "max": 0.353553390593274,
+            "mean": 0.301776695296637,
+            "min": 0.25,
+            "unique_count": 2,
+            "unique_values": [
+              0.25,
+              0.353553390593274
+            ],
+            "unique_values_truncated": false
+          },
+          "product": {
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "unique_count": 1,
+            "unique_values": [
+              0.0
+            ],
+            "unique_values_truncated": false
+          },
+          "separates": true
+        }
+      },
+      "product_count": 528
+    },
+    "formal_admission_allowed": false,
+    "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+    "monogamy_row": {
+      "computed_2q_surrogate": {
+        "negativity_bound_N_le_1_over_2_all_rows": true,
+        "product_rows_have_pair_entanglement_zero": true,
+        "pure_entangled_rows": [
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_395f873a062ac2f6a173",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_79456cb8ae2f2db5481d",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_21617854fdaa584d624b",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_46219f756205e283baa3",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_242dc13aa652bc016054",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_b57453033b6ca121e0ba",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_d12604eaf6da0aeea9b1",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_df2d49b9eb669cb4c7c8",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_d741e11ede860ab19c56",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_661e0a93614dd27b30ee",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_88d1b3c9e8b09d35d5a1",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_0a0a018c1c6e386d9269",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_9713960b95870153b284",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_a881c6b12abf137de030",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.499999999999999,
+            "C_A_given_B_squared": 0.499999999999999,
+            "concurrence_AB": 0.707106781186547,
+            "gcm_2q_survivor_id": "gcm2qsurv_45d4118545918cbf215d",
+            "two_party_residual_if_no_C": 0.0
+          },
+          {
+            "C_AB_squared": 0.249999999999999,
+            "C_A_given_B_squared": 0.249999999999999,
+            "concurrence_AB": 0.499999999999999,
+            "gcm_2q_survivor_id": "gcm2qsurv_53a98ad53613cd44c020",
+            "two_party_residual_if_no_C": 0.0
+          }
+        ],
+        "pure_purification_rows_have_zero_two_party_residual_if_C_absent": true
+      },
+      "honest_narrowing": "CKW-style monogamy needs rho_ABC plus rho_AB and rho_AC. This 2Q packet has only A|B, so it cannot close the 2Q audit's monogamy OPEN row.",
+      "required_3q_next_object": {
+        "computed_quantities": [
+          "rho_AB",
+          "rho_AC",
+          "rho_A",
+          "C_A_given_BC",
+          "C_AB",
+          "C_AC"
+        ],
+        "inequality": "C_A|BC^2 >= C_AB^2 + C_AC^2",
+        "need": "tripartite state rho_ABC over a pinned A|B|C tensor structure"
+      },
+      "row_id": "monogamy_open_narrowed_to_3q",
+      "status": "OPEN_REQUIRES_3Q_FOR_CKW"
+    },
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "not_THE_manifold": true,
+    "promotion_allowed": false,
+    "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+    "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json",
+    "result_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_envelope_results.json",
+    "schema": "gcm_2q_freeze_and_cut_v0_envelope_v1",
+    "source_locks": {
+      "audit_standards": {
+        "exists": true,
+        "git_last_commit": "443e474b2",
+        "path": "system_v6/receipts/audit_standards_codex_v1.md",
+        "role": "G.2a standards",
+        "sha256": "6ed5b840a94eb43a08204b408c3efd1d86124f9af7fc4105bbc190924e8a3f27"
+      },
+      "axis_entropy_reference": {
+        "exists": true,
+        "git_last_commit": null,
+        "path": "/Users/joshuaeisenhart/wiki/concepts/axis-and-entropy-reference.md",
+        "role": "wiki entropy/axis availability reference",
+        "sha256": "37c5a34a648e5f30fcb481adbd195d92000ee8271e95059eed61c7d7b0d1c096"
+      },
+      "entropy_protocol": {
+        "exists": true,
+        "git_last_commit": null,
+        "path": "/Users/joshuaeisenhart/wiki/concepts/entropy-sweep-protocol.md",
+        "role": "wiki entropy sweep protocol",
+        "sha256": "c98f530aab7a27c6cadf1f99b3b4068963c40bd10fb583ca1407f3a97b93fcff"
+      },
+      "layer_stack_reference": {
+        "exists": true,
+        "git_last_commit": "e4f03353a",
+        "path": "system_v6/receipts/gcm_layer_stack_reference_20260612.md",
+        "role": "GCM layer stack reference",
+        "sha256": "89da568dbb990920e920d0872174340cda738be80428bb28f02e3f98bf9ddd9a"
+      },
+      "one_q_entropy_sweep_result": {
+        "exists": true,
+        "git_last_commit": "c6155e4d7",
+        "path": "system_v6/sims/gcm_entropy_family_sweep_v0/results/gcm_entropy_family_sweep_v0_results.json",
+        "role": "1Q entropy sweep availability ladder",
+        "sha256": "fdb7ae64029779789eeae869b17b4fc7850bf25ccd9bc2ee28c648c28b7b36f2"
+      },
+      "one_q_entropy_sweep_validator": {
+        "exists": true,
+        "git_last_commit": "c6155e4d7",
+        "path": "system_v6/sims/gcm_entropy_family_sweep_v0/results/gcm_entropy_family_sweep_v0_validator_results.json",
+        "role": "1Q entropy sweep validator",
+        "sha256": "3e1da41cca31d1c1c2cd1b727b7c1585c9038b5bf8f4668866c33b38886e21b4"
+      },
+      "one_q_freeze_registry": {
+        "exists": true,
+        "git_last_commit": "d9771ebe9",
+        "path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+        "role": "base 1Q object freeze by hash",
+        "sha256": "64cd715166cee039f89494166496adabf15300bae4b8cc79fee98fc0251189f2"
+      },
+      "two_q_carve_envelope": {
+        "exists": true,
+        "git_last_commit": "218fac1a1",
+        "path": "system_v6/sims/gcm_constraint_carve_2q_v0/results/gcm_constraint_carve_2q_v0_envelope_results.json",
+        "role": "2Q carve PASS audit source",
+        "sha256": "1c08bf4c90c318c8bd095d54fd240b72d56a95ab0a65ce35a316cf5466e406fc"
+      },
+      "two_q_carve_result": {
+        "exists": true,
+        "git_last_commit": "218fac1a1",
+        "path": "system_v6/sims/gcm_constraint_carve_2q_v0/results/gcm_constraint_carve_2q_v0_results.json",
+        "role": "2Q carve 544 survivors / 8 classes / 16 entangled",
+        "sha256": "b8de5e1303e6ed1e058a87631c34845eac1863ceceb041bcce595ff575aca417"
+      },
+      "two_q_carve_validator": {
+        "exists": true,
+        "git_last_commit": "218fac1a1",
+        "path": "system_v6/sims/gcm_constraint_carve_2q_v0/results/gcm_constraint_carve_2q_v0_validator_results.json",
+        "role": "2Q carve validator receipt",
+        "sha256": "fb8bdb3a8f377356356da3f165da9ccd0cc63c475623463006600e4c7480a87e"
+      }
+    },
+    "source_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/write_envelope_spec.py",
+    "three_coordinates": {
+      "layers": "3-12 entropy availability rung",
+      "nesting": "2Q freeze plus first bipartition cut",
+      "qubit_depth": "2Q"
+    },
+    "tool_intent": {
+      "claim_classes": [
+        "gcm_2q_content_id_registry",
+        "cross_rung_1q_2q_lineage",
+        "pinned_bipartition_cut_entropy",
+        "product_entanglement_zero_control",
+        "entangled_purification_separation",
+        "monogamy_open_narrowed_to_3q"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "qutip": "Qobj/tensor representative partial-trace and entropy checks against JAX vectorized rows.",
+          "sympy": "sp.Rational exact count guards for product/entangled/separation rows."
+        },
+        "julia": {
+          "QuantumOptics": "NLevelBasis/tensor/Operator/ptrace/entropy_vn recompute A|B reductions and entropy values."
+        },
+        "pytorch": {
+          "sympy": "sp.Rational exact count guards for product/entangled/separation rows.",
+          "torch.func": "vmap over 4x4 density matrices computes entropy, partial transpose, and negativity controls."
+        }
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "qutip",
+        "sympy"
+      ],
+      "candidate_region_count": 6,
+      "embedded_1q_count": 16,
+      "entangled_survivor_count": 16,
+      "metric_summary": {
+        "max_entangled_conditional": -0.245775366668471,
+        "max_product_negativity": 0.0,
+        "min_entangled_negativity": 0.249999999999999
+      },
+      "package_observables": {
+        "qutip": "Qobj(...).ptrace plus entropy_vn representative checks on the pinned A|B cut",
+        "sympy": "sp.Rational exact finite count guard for product/entangled/embedding counts"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "qutip",
+        "sympy"
+      ],
+      "product_survivor_count": 528,
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_jax_results.json",
+      "source_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/gcm_2q_freeze_and_cut_v0_jax.py",
+      "survivor_count": 544
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics"
+      ],
+      "candidate_region_count": 6,
+      "embedded_1q_count": 16,
+      "entangled_survivor_count": 16,
+      "metric_summary": {
+        "max_entangled_conditional": -0.245775366668471,
+        "max_product_negativity": 0.0,
+        "min_entangled_negativity": 0.25
+      },
+      "package_observables": {
+        "QuantumOptics": "NLevelBasis/tensor/Operator/ptrace/entropy_vn recompute A|B reductions and entropy values"
+      },
+      "packages_used": [
+        "QuantumOptics",
+        "LinearAlgebra",
+        "JSON"
+      ],
+      "product_survivor_count": 528,
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_julia_results.json",
+      "source_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/gcm_2q_freeze_and_cut_v0_julia.jl",
+      "survivor_count": 544
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy"
+      ],
+      "candidate_region_count": 6,
+      "embedded_1q_count": 16,
+      "entangled_survivor_count": 16,
+      "metric_summary": {
+        "max_entangled_conditional": -0.245775366668471,
+        "max_product_negativity": 0.0,
+        "min_entangled_negativity": 0.249999999999999
+      },
+      "package_observables": {
+        "sympy": "sp.Rational exact finite count guard for product/entangled/embedding counts",
+        "torch.func": "vmap(cut_metrics)(rho_AB) recomputes partial traces, entropy, partial transpose, and negativity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "product_survivor_count": 528,
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_pytorch_results.json",
+      "source_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/gcm_2q_freeze_and_cut_v0_pytorch.py",
+      "survivor_count": 544
+    }
+  },
+  "mode": "all_three_full_sims",
+  "parent_lineage": {
+    "base_gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "base_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+    "gcm_2q_registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+    "one_q_entropy_sweep_result_sha256": "fdb7ae64029779789eeae869b17b4fc7850bf25ccd9bc2ee28c648c28b7b36f2",
+    "two_q_carve_result_sha256": "b8de5e1303e6ed1e058a87631c34845eac1863ceceb041bcce595ff575aca417"
+  },
+  "promotion_allowed": false,
+  "sim_id": "gcm_2q_freeze_and_cut_v0",
+  "stability_pairs": [
+    {
+      "hash": "e214df7f8e55d948a1989b2c61a966aa00d785e76b34c7976bc8fbc4a284707c",
+      "subtree": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_results.json"
+    },
+    {
+      "hash": "e5abc5151265ca6d3c85e5e26957f93bc0ca6346eab4a95ad96bcc60b8996378",
+      "subtree": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    },
+    {
+      "hash": "85282134754464d50fec9d9378a58ab79eb55329ea4b80b0863437a636bfc48d",
+      "subtree": "gcm_2q_registry_and_cut_summary"
+    }
+  ]
+}

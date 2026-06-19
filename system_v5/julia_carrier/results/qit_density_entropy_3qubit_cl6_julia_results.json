@@ -1,0 +1,50 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates stdlib path support": "supportive",
+    "QuantumOptics": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates stdlib path support": {
+      "reason": "supportive result serialization and timestamping",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing construction of the 3-qubit tensor SpinBasis, GHZ Ket, density Operator, maximally mixed Operator, entropy_vn, and eigenstates",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-07T22:38:09Z",
+  "eigenvalue_call": "QuantumOptics.eigenstates(rho)[1]",
+  "eigenvalues": [
+    0.03749999999999995,
+    0.0375,
+    0.037500000000000006,
+    0.03750000000000001,
+    0.03750000000000001,
+    0.03750000000000001,
+    0.03750000000000001,
+    0.7374999999999994
+  ],
+  "engine": "julia",
+  "entropy_call": "QuantumOptics.entropy_vn(rho)",
+  "formal_admission_allowed": false,
+  "object_id": "qit_density_entropy_3qubit_cl6_julia",
+  "package": "QuantumOptics",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/qit_density_entropy_3qubit_cl6_julia_results.json",
+  "rho_spec": {
+    "basis": "computational e0..e7, |000>=e0, |111>=e7",
+    "dephasing": false,
+    "entropy_base": "e",
+    "formula": "(1-p)|psi><psi| + p*I8/8",
+    "p": 0.3,
+    "state": "GHZ_3qubit"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/qit_density_entropy_3qubit_cl6_julia.jl",
+  "vn_entropy": 1.0864570440180348
+}

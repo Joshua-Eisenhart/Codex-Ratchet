@@ -1,0 +1,653 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite DoF graph recomputation",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing computed-value SMT identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "DoF graph terminal classes and classifications",
+      "receipt_id": "julia_Graphs_dof_perturb_read",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "computed DoF count identity with erased flip",
+      "receipt_id": "julia_Z3_dof_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_ceiling": "basin_dof_readout_rows_only",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "boundary_dof_count": 6,
+    "dof_classification_summary": [
+      {
+        "classification": "RETURN",
+        "dof_id": "G0",
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "G1",
+        "terminal_class_cells": [
+          [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10,
+            14,
+            18,
+            22,
+            23,
+            25,
+            29,
+            31,
+            32
+          ],
+          [
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            15,
+            17,
+            19,
+            20,
+            21,
+            24,
+            26,
+            27,
+            28,
+            30
+          ],
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 3
+      },
+      {
+        "classification": "RETURN",
+        "dof_id": "G2",
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "G3L",
+        "terminal_class_cells": [
+          [
+            1
+          ],
+          [
+            2,
+            4,
+            5,
+            11,
+            12,
+            15
+          ],
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 3
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "G3R",
+        "terminal_class_cells": [
+          [
+            16
+          ],
+          [
+            17,
+            20,
+            21,
+            27,
+            28,
+            30
+          ],
+          [
+            31
+          ]
+        ],
+        "terminal_class_count": 3
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "G4",
+        "terminal_class_cells": [
+          [
+            3,
+            9
+          ]
+        ],
+        "terminal_class_count": 1
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "G5",
+        "terminal_class_cells": [
+          [
+            0
+          ],
+          [
+            5
+          ],
+          [
+            16
+          ],
+          [
+            27,
+            28,
+            30
+          ],
+          [
+            32
+          ]
+        ],
+        "terminal_class_count": 5
+      },
+      {
+        "classification": "RETURN",
+        "dof_id": "stage_shift_Rx_to_Rz",
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1
+      },
+      {
+        "classification": "BOUNDARY",
+        "dof_id": "loop_reverse_G5",
+        "terminal_class_cells": [
+          [
+            0
+          ],
+          [
+            5
+          ],
+          [
+            16
+          ],
+          [
+            26,
+            27,
+            30
+          ],
+          [
+            32
+          ]
+        ],
+        "terminal_class_count": 5
+      }
+    ],
+    "dof_signature_sha256": "f83d6b919789987b0faefd00a1b9babec158404a697f492b6f8302b2d5918239",
+    "dof_total": 9,
+    "pre_registered_expectation_2_pass": true,
+    "return_dof_count": 3,
+    "scrambling_dof_count": 0
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "boundary_dof_count": 6,
+        "dof_classification_summary": [
+          {
+            "classification": "RETURN",
+            "dof_id": "G0",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G1",
+            "terminal_class_cells": [
+              [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "RETURN",
+            "dof_id": "G2",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G3L",
+            "terminal_class_cells": [
+              [
+                1
+              ],
+              [
+                2,
+                4,
+                5,
+                11,
+                12,
+                15
+              ],
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G3R",
+            "terminal_class_cells": [
+              [
+                16
+              ],
+              [
+                17,
+                20,
+                21,
+                27,
+                28,
+                30
+              ],
+              [
+                31
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G4",
+            "terminal_class_cells": [
+              [
+                3,
+                9
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G5",
+            "terminal_class_cells": [
+              [
+                0
+              ],
+              [
+                5
+              ],
+              [
+                16
+              ],
+              [
+                27,
+                28,
+                30
+              ],
+              [
+                32
+              ]
+            ],
+            "terminal_class_count": 5
+          },
+          {
+            "classification": "RETURN",
+            "dof_id": "stage_shift_Rx_to_Rz",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "loop_reverse_G5",
+            "terminal_class_cells": [
+              [
+                0
+              ],
+              [
+                5
+              ],
+              [
+                16
+              ],
+              [
+                26,
+                27,
+                30
+              ],
+              [
+                32
+              ]
+            ],
+            "terminal_class_count": 5
+          }
+        ],
+        "dof_signature_sha256": "f83d6b919789987b0faefd00a1b9babec158404a697f492b6f8302b2d5918239",
+        "dof_total": 9,
+        "pre_registered_expectation_2_pass": true,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "dof_classification_summary": [
+    {
+      "classification": "RETURN",
+      "dof_id": "G0",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "G1",
+      "terminal_class_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3
+    },
+    {
+      "classification": "RETURN",
+      "dof_id": "G2",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "G3L",
+      "terminal_class_cells": [
+        [
+          1
+        ],
+        [
+          2,
+          4,
+          5,
+          11,
+          12,
+          15
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "G3R",
+      "terminal_class_cells": [
+        [
+          16
+        ],
+        [
+          17,
+          20,
+          21,
+          27,
+          28,
+          30
+        ],
+        [
+          31
+        ]
+      ],
+      "terminal_class_count": 3
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "G4",
+      "terminal_class_cells": [
+        [
+          3,
+          9
+        ]
+      ],
+      "terminal_class_count": 1
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "G5",
+      "terminal_class_cells": [
+        [
+          0
+        ],
+        [
+          5
+        ],
+        [
+          16
+        ],
+        [
+          27,
+          28,
+          30
+        ],
+        [
+          32
+        ]
+      ],
+      "terminal_class_count": 5
+    },
+    {
+      "classification": "RETURN",
+      "dof_id": "stage_shift_Rx_to_Rz",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1
+    },
+    {
+      "classification": "BOUNDARY",
+      "dof_id": "loop_reverse_G5",
+      "terminal_class_cells": [
+        [
+          0
+        ],
+        [
+          5
+        ],
+        [
+          16
+        ],
+        [
+          26,
+          27,
+          30
+        ],
+        [
+          32
+        ]
+      ],
+      "terminal_class_count": 5
+    }
+  ],
+  "engine": "julia",
+  "engine_mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:01:32Z",
+  "object_id": "basin_dof_perturb_and_read_v0_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_observables": {
+    "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components DoF terminal-class recomputation",
+    "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check computed DoF-count identity"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "basin_dof_perturb_and_read_v0",
+  "source_backing_probe": {
+    "Graphs_edge_count": 8,
+    "Graphs_vertex_count": 9,
+    "Z3_erased_flip_verdict": "sat",
+    "Z3_identity_verdict": "unsat",
+    "pass": true
+  },
+  "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_julia.jl",
+  "source_sha256": "84124a52563b184d5b85c9504ddaaec98eae81532347653afbd2428058c74125",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_dof_perturb_read",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_dof_identity",
+      "tool": "Z3"
+    }
+  ]
+}

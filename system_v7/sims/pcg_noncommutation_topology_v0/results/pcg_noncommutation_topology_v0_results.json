@@ -1,0 +1,365 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "gudhi": "load_bearing",
+    "networkx": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "independent SMT check of the same table-bound hole predicate",
+      "tried": true,
+      "used": true
+    },
+    "gudhi": {
+      "reason": "load-bearing Betti-1 computation from the finite clique complex",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "load-bearing construction of the measured commutation graph and clique enumeration",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT check that the hole predicate is bound to table variables and flips under target restoration",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "gudhi",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": false,
+  "build_status": "BUILD FAILED",
+  "claim_ceiling": {
+    "candidate_only": true,
+    "canon_claim": false,
+    "held_with_other_floor_candidates": [
+      "bare_quotient_floor",
+      "probe_inversion_branch"
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "complexes": {
+    "fully_commuting": {
+      "betti": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "cycle_basis": [
+        [
+          "x_guard",
+          "x_probe",
+          "z_guard"
+        ],
+        [
+          "x_guard",
+          "z_guard",
+          "z_probe"
+        ],
+        [
+          "x_probe",
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "dimension": 3,
+      "edge_count": 6,
+      "edges": [
+        [
+          "x_guard",
+          "x_probe"
+        ],
+        [
+          "x_guard",
+          "z_guard"
+        ],
+        [
+          "x_guard",
+          "z_probe"
+        ],
+        [
+          "x_probe",
+          "z_guard"
+        ],
+        [
+          "x_probe",
+          "z_probe"
+        ],
+        [
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "num_simplices": 15,
+      "simplex_counts_by_dim": {
+        "0": 4,
+        "1": 6,
+        "2": 4,
+        "3": 1
+      }
+    },
+    "noncommuting_cycle": {
+      "betti": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "cycle_basis": [
+        [
+          "x_guard",
+          "x_probe",
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "dimension": 1,
+      "edge_count": 4,
+      "edges": [
+        [
+          "x_guard",
+          "x_probe"
+        ],
+        [
+          "x_guard",
+          "z_probe"
+        ],
+        [
+          "x_probe",
+          "z_guard"
+        ],
+        [
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "num_simplices": 8,
+      "simplex_counts_by_dim": {
+        "0": 4,
+        "1": 4
+      }
+    },
+    "target_restored": {
+      "betti": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "cycle_basis": [
+        [
+          "x_guard",
+          "x_probe",
+          "z_probe"
+        ],
+        [
+          "x_probe",
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "dimension": 2,
+      "edge_count": 5,
+      "edges": [
+        [
+          "x_guard",
+          "x_probe"
+        ],
+        [
+          "x_guard",
+          "z_probe"
+        ],
+        [
+          "x_probe",
+          "z_guard"
+        ],
+        [
+          "x_probe",
+          "z_probe"
+        ],
+        [
+          "z_guard",
+          "z_probe"
+        ]
+      ],
+      "num_simplices": 11,
+      "simplex_counts_by_dim": {
+        "0": 4,
+        "1": 5,
+        "2": 2
+      }
+    }
+  },
+  "computation_style": "networkx_graph_gudhi_clique_complex_z3_cvc5_table_binding",
+  "decisive_flip_control": {
+    "failure_condition": "BUILD FAILED if fully_commuting_h1 != 0, noncommuting_cycle_h1 == 0, or target_restored_h1 != 0",
+    "fully_commuting_h1": 0,
+    "noncommuting_cycle_h1": 0,
+    "pass": false,
+    "target_restored_h1": 0
+  },
+  "does_not_self_upgrade": true,
+  "engine": "python",
+  "fixture_boundary": {
+    "accepted_witness_shape": "four-probe chordless cycle",
+    "boundary_note": "The target relation is necessary for this fixture; a bare two-probe relation is not enough for H1.",
+    "guard_forbidden_relation": [
+      "x_guard",
+      "z_guard"
+    ],
+    "target_forbidden_relation": [
+      "x_probe",
+      "z_probe"
+    ],
+    "two_probe_only_h1": {
+      "betti": {
+        "H0": 2,
+        "H1": 0,
+        "H2": 0
+      },
+      "boundary": "two probes alone do not carry a one-dimensional cycle",
+      "cycle_basis": [],
+      "edge_count": 0
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-19T03:56:21Z",
+  "packages_used": [
+    "networkx",
+    "gudhi",
+    "z3",
+    "cvc5"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v7/sims/pcg_noncommutation_topology_v0/results/pcg_noncommutation_topology_v0_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "pcg_noncommutation_topology_v0",
+  "smt_structural_checks": {
+    "binding": "Bool variables are the measured pair table; the derived H1 predicate flips with the target table entry while the cycle and guard rows are fixed.",
+    "cvc5": {
+      "all_unsat": true,
+      "free_variables": [
+        "x_guard__x_probe",
+        "x_guard__z_guard",
+        "x_guard__z_probe",
+        "x_probe__z_guard",
+        "x_probe__z_probe",
+        "z_guard__z_probe"
+      ],
+      "fully_commuting_no_hole": "unsat",
+      "noncommuting_cycle_hole": "unsat",
+      "relation_h1_equals_not_target_when_cycle_and_guard_fixed": "unsat",
+      "target_restored_no_hole": "unsat"
+    },
+    "pass": true,
+    "z3": {
+      "all_unsat": true,
+      "free_variables": [
+        "x_guard__x_probe",
+        "x_guard__z_guard",
+        "x_guard__z_probe",
+        "x_probe__z_guard",
+        "x_probe__z_probe",
+        "z_guard__z_probe"
+      ],
+      "fully_commuting_no_hole": "unsat",
+      "noncommuting_cycle_hole": "unsat",
+      "relation_h1_equals_not_target_when_cycle_and_guard_fixed": "unsat",
+      "target_restored_no_hole": "unsat"
+    }
+  },
+  "source_path": "system_v7/sims/pcg_noncommutation_topology_v0/pcg_noncommutation_topology_v0.py",
+  "source_sha256": "ac48d4e54a9567e1117c5ae761232043beb56737670c58920554c1934780d5ff",
+  "tables": {
+    "fully_commuting": {
+      "x_guard__x_probe": true,
+      "x_guard__z_guard": true,
+      "x_guard__z_probe": true,
+      "x_probe__z_guard": true,
+      "x_probe__z_probe": true,
+      "z_guard__z_probe": true
+    },
+    "noncommuting_cycle": {
+      "x_guard__x_probe": true,
+      "x_guard__z_guard": false,
+      "x_guard__z_probe": true,
+      "x_probe__z_guard": true,
+      "x_probe__z_probe": false,
+      "z_guard__z_probe": true
+    },
+    "pair_only_noncommuting": {
+      "x_probe__z_probe": false
+    },
+    "target_restored": {
+      "x_guard__x_probe": true,
+      "x_guard__z_guard": false,
+      "x_guard__z_probe": true,
+      "x_probe__z_guard": true,
+      "x_probe__z_probe": true,
+      "z_guard__z_probe": true
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "two-probe-only forbidden relation has H1=0",
+      "demotion_condition": "if clique enumeration disagrees with the table graph",
+      "gates": [
+        "all_pass",
+        "quotient"
+      ],
+      "input_object": "measured finite commutation graph",
+      "negative_erased_control": "fully commuting and target-restored controls close the cycle",
+      "output_object": "cliques inserted as finite simplices",
+      "positive_case": "chordless-cycle noncommuting table has one graph cycle",
+      "qualified_api": "networkx.enumerate_all_cliques",
+      "tool": "networkx"
+    },
+    {
+      "boundary_case": "pair_only_noncommuting H1 is zero",
+      "demotion_condition": "if H1 flip-control fails",
+      "gates": [
+        "all_pass",
+        "proof"
+      ],
+      "input_object": "finite clique complex",
+      "negative_erased_control": "fully_commuting and target_restored H1 are zero",
+      "output_object": "Betti vector with H1",
+      "positive_case": "noncommuting_cycle H1 is nonzero",
+      "qualified_api": "finite simplex insertion plus betti_numbers",
+      "tool": "gudhi"
+    },
+    {
+      "boundary_case": "cycle fixed and guard fixed gives H1 iff target is absent",
+      "demotion_condition": "if any denied predicate is sat",
+      "gates": [
+        "all_pass",
+        "proof"
+      ],
+      "input_object": "Bool variables for measured pair table",
+      "negative_erased_control": "target restored table rejects H1 predicate",
+      "output_object": "unsat certificates for denied flip predicates",
+      "positive_case": "noncommuting table entails H1 predicate",
+      "qualified_api": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "cycle fixed and guard fixed gives H1 iff target is absent",
+      "demotion_condition": "if any denied predicate is sat",
+      "gates": [
+        "all_pass",
+        "proof"
+      ],
+      "input_object": "same Bool table variables",
+      "negative_erased_control": "target restored table rejects H1 predicate",
+      "output_object": "independent unsat statuses for denied flip predicates",
+      "positive_case": "noncommuting table entails H1 predicate",
+      "qualified_api": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

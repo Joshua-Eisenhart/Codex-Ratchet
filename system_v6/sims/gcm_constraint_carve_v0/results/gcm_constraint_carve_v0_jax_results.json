@@ -1,0 +1,115 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "supportive x64 vector materialization",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive vectorized probe/radius checks",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "load-bearing graph component recomputation",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact count guard",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "component_count": 3,
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T20:53:00Z",
+  "jax_probe_receipt": {
+    "all_density_valid": true,
+    "coord_shape": [
+      8,
+      3
+    ],
+    "max_radius_squared": 0.5,
+    "unique_probe_signature_count": 4
+  },
+  "networkx_receipt": {
+    "component_match": true,
+    "quotient_component_match": true,
+    "quotient_components": [
+      [
+        "Q0",
+        "Q3"
+      ],
+      [
+        "Q1"
+      ],
+      [
+        "Q2"
+      ]
+    ],
+    "quotient_edge_count": 5,
+    "quotient_node_count": 4,
+    "survivor_components": [
+      [
+        0,
+        1,
+        6,
+        7
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "survivor_edge_count": 6,
+    "survivor_node_count": 8
+  },
+  "package_observables": {
+    "networkx": "nx.Graph connected_components over survivor and quotient adjacency",
+    "sympy": "sp.Rational exact candidate = survivor + killed count guard"
+  },
+  "package_versions": {
+    "jax": "0.10.1",
+    "networkx": "3.6.1",
+    "sympy": "1.14.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "networkx",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "quotient_class_count": 4,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_constraint_carve_v0/results/gcm_constraint_carve_v0_jax_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_constraint_carve_v0",
+  "source_path": "system_v6/sims/gcm_constraint_carve_v0/gcm_constraint_carve_v0_jax.py",
+  "source_sha256": "2ccbd8db3fcbd3a6c72b6cf22164b065d638c7511c80385499d1b69a41aca459",
+  "survivor_count": 8,
+  "sympy_guard": {
+    "candidate_partition_identity": "0",
+    "pass": true,
+    "quotient_class_count": "4",
+    "survivor_count": "8"
+  }
+}

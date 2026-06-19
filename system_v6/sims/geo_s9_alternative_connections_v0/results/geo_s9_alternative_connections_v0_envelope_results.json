@@ -1,0 +1,913 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "subprocess": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT mirror over the same exact annular units",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT proof of the same annular Stokes anchor and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source/result/PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic result serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    },
+    "subprocess": {
+      "reason": "supportive committed parent blob reads",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact connection coefficient, curvature, Chern, holonomy, and annular Stokes derivation",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT proof that committed annular Stokes units match the anchor, with erased alternative flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "survival matrix for the four named alternative connection families",
+    "topological-vs-geometric row split at scratch_diagnostic ceiling"
+  ],
+  "blocked_consumers": [
+    "formal admission",
+    "global stack uniqueness",
+    "S9 completion",
+    "bridge or axis claims"
+  ],
+  "build_gates": {
+    "classification_ceiling": true,
+    "committed_control_reproduces_all_anchors": true,
+    "erased_flip_controls_fire": true,
+    "file_disjoint_packet": true,
+    "flat_connection_dies_curvature_chern": true,
+    "julia_leg_loaded": true,
+    "julia_reads_no_peer_result": true,
+    "julia_values_match_python": true,
+    "no_alternative_full_battery_survivor": true,
+    "no_audit_verdict_written": true,
+    "one_to_one_tool_calls": true,
+    "parent_lineage_hash_bound": true,
+    "random_one_form_dies_validity": true,
+    "rescaled_connection_holonomy_control_fires": true,
+    "same_flux_candidate_c1_survives": true,
+    "same_flux_candidate_geometric_rows_die": true,
+    "topological_cosurvivor_present": true,
+    "z3_cvc5_agree": true
+  },
+  "capability_receipts": {
+    "cvc5_erased_flip": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat"
+    },
+    "julia_z3_leg": {
+      "load_bearing": true,
+      "path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_julia_results.json",
+      "ran": true
+    },
+    "sympy_exact_forms": {
+      "load_bearing": true,
+      "objects": [
+        "f(eta)",
+        "dA",
+        "c1",
+        "holonomy",
+        "stokes"
+      ],
+      "ran": true
+    },
+    "z3_erased_flip": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat"
+    }
+  },
+  "claim": "Scratch discriminator for whether flat, rescaled, same-c1 non-Hopf-density, or deterministic random one-form alternatives on the committed Hopf/transport bundle survive the S9 connection battery.",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "committed_anchor": {
+    "anchor_hash": "7b579295e2c60730843f983aa7bd5f846eac3036a6fefaa1be6720d21b6ec4e2",
+    "c1": "1",
+    "connection": "A = dphi + cos(2*eta)dchi",
+    "curvature": "F = -2*sin(2*eta) deta^dchi",
+    "holonomy_lifted_cycle": {
+      "pi/4": "0",
+      "pi/6": "-pi"
+    },
+    "leaf_coefficients": {
+      "pi/4": "0",
+      "pi/6": "1/2"
+    },
+    "stokes_pi_over_2": "pi/2"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "committed_stokes_twentieths": 10,
+        "full_battery_alternative_survivors": 0,
+        "same_flux_stokes_twentieths": 9,
+        "topological_cosurvivors": 1
+      },
+      "julia": {
+        "committed_stokes_twentieths": 10,
+        "full_battery_alternative_survivors": 0,
+        "same_flux_stokes_twentieths": 9,
+        "topological_cosurvivors": 1
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "divergence_log": [],
+  "eligible_consumers": [
+    "future S9 connection discriminator audits at scratch ceiling"
+  ],
+  "engine_contract": {
+    "audit_order": [
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph/network/autograd claim path"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_envelope_results.json",
+      "role_id": "python_exact_smt_workhorse",
+      "source_path": "system_v6/sims/geo_s9_alternative_connections_v0/geo_s9_alternative_connections_v0.py",
+      "source_sha256": "adc4797f20c95dbf9eff10d07d205b95fd0da62cb67027a9f3256f6541a8bf39"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "packages_used": [
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_julia_results.json",
+      "result_sha256": "b8036ec9224d280794aebb5e7e13917388be8b621912cbd416aafa19958f32fc",
+      "role_id": "julia_compact_survival_mirror",
+      "source_path": "system_v6/sims/geo_s9_alternative_connections_v0/geo_s9_alternative_connections_v0_julia.jl",
+      "source_sha256": "53515c431dbf20361fc231e63ef6b63069c0d8ee0600e53fb22d9b3eeafab76a"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T10:07:30Z",
+  "julia_leg": {
+    "engine_values": {
+      "committed_stokes_twentieths": 10,
+      "full_battery_alternative_survivors": 0,
+      "same_flux_stokes_twentieths": 9,
+      "topological_cosurvivors": 1
+    },
+    "loaded": true,
+    "path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_julia_results.json",
+    "reads_peer_result": false
+  },
+  "mode": "RATCHETED",
+  "negatives_run": [
+    "committed_hopf",
+    "A_flat_dphi",
+    "B_half_cos",
+    "C_same_c1_non_hopf_density",
+    "D_random_nonperiodic"
+  ],
+  "object_id": "geo_s9_alternative_connections_v0",
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "julia_expected": "recorded in julia result",
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.6",
+    "sympy": "1.14.0",
+    "z3": "4.16.0"
+  },
+  "parent_lineage": {
+    "geo_s2_connection_flux_foliation_v0": {
+      "allowed_use": "committed U(1) Hopf connection, curvature, c1, holonomy, and Stokes anchors",
+      "committed_tree_or_blob": "e645992999cd8ae1d43838ee3e8448acc0ae124f",
+      "envelope_blob": "dc4cc9581908b38a47fbadb0b7bf96a63dfed6b9",
+      "envelope_path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json",
+      "envelope_sha256": "47ecb1d4c83645ad0eb60286e3485871c40a6e5155263ca052867624234324d0",
+      "packet_path": "system_v6/sims/geo_s2_connection_flux_foliation_v0",
+      "source": "git show HEAD:<path>; committed parent citation only",
+      "top_source_blob": "7def7649a598bb26a171fdf0c00158dd6541c513",
+      "top_source_path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/geo_s2_connection_flux_foliation_v0_jax.py",
+      "top_source_sha256": "b2a5000e43537433f146622353be8d126ef6e823a186b1978af63e17a86cc93f"
+    },
+    "geo_s9_quat_path_ordered_transport_v0": {
+      "allowed_use": "path-ordered transport contrast and nonabelian holonomy boundary",
+      "committed_tree_or_blob": "e715609c416fbfdd2c43771b6c65244c80297264",
+      "envelope_blob": "b7b61871263fdd996e8fd1af7c00291b217e1f7b",
+      "envelope_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/results/geo_s9_quat_path_ordered_transport_v0_envelope_results.json",
+      "envelope_sha256": "d68e6ac799a5339299f4e9c5d1ff26581a2cb7afc36d153c4ef0571d8a1e0b3a",
+      "packet_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0",
+      "source": "git show HEAD:<path>; committed parent citation only",
+      "top_source_blob": "da345f221bed8ae0276f6ef5592c2c2860a211c2",
+      "top_source_path": "system_v6/sims/geo_s9_quat_path_ordered_transport_v0/geo_s9_quat_path_ordered_transport_v0_jax.py",
+      "top_source_sha256": "7bf111a3eca152b912ce7031e40660068d65952a535c6e1f2073849eec4ba673"
+    },
+    "geo_s9_quaternionic_hopf_stack_v0": {
+      "allowed_use": "S9 quaternionic Hopf stack and Sp(1) instanton c2=1 anchor",
+      "committed_tree_or_blob": "07fa4156f67198039dbfdf7783c53ebeb06f3461",
+      "envelope_blob": "be51dbb66cb5f6e73b8a60e26dee561f332d728f",
+      "envelope_path": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/results/geo_s9_quaternionic_hopf_stack_v0_envelope_results.json",
+      "envelope_sha256": "9d32d801041567cd36a71e7525e0e81a0986228c8b28c6a4407815733f076466",
+      "packet_path": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0",
+      "source": "git show HEAD:<path>; committed parent citation only",
+      "top_source_blob": "d226b7c62bb4dbe1f409e36dc6b32a17578a1d92",
+      "top_source_path": "system_v6/sims/geo_s9_quaternionic_hopf_stack_v0/geo_s9_quaternionic_hopf_stack_v0_envelope.py",
+      "top_source_sha256": "f1facd18e9da938d70a41ca26619861e9323f4d41cf0d90062e03dda3bdd9c6f"
+    },
+    "ratchet_s2_two_shell_flux_v0": {
+      "allowed_use": "two-shell Stokes/annular-flux pi/2 anchor",
+      "committed_tree_or_blob": "1c516c9553a2de2b2d1c3c884e2ce3cf338455b1",
+      "envelope_blob": "2eb48a4cb2111154f321d80934784097b966f5eb",
+      "envelope_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json",
+      "envelope_sha256": "1c37955b266d7245efb3dd23e50fd650c131823b300a6ed3a80dd6fa2e6eb9dd",
+      "packet_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0",
+      "source": "git show HEAD:<path>; committed parent citation only",
+      "top_source_blob": "349aa28576843d3850ffe949f185e482af2d1fb0",
+      "top_source_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0.py",
+      "top_source_sha256": "ce04687776a6d29ead64a5371620d61f266369029efd612b40c1d99fcab907de"
+    },
+    "stack_uniqueness_map_8f4fef471": {
+      "allowed_use": "identifies S9 transport/connection alternatives as an untested uniqueness-map gap",
+      "committed_tree_or_blob": "bd3b0ac6fcf2bd842be612820b28e1edc112fd43",
+      "envelope_blob": "dc6f9eaea68161385fda43b46e22bf4269613616",
+      "envelope_path": "system_v6/receipts/stack_uniqueness_map_20260611.md",
+      "envelope_sha256": "28d3c84c94ba1a3d4f0403c4e97b63c9a7cc2a951a6d36713fd47543b420f047",
+      "packet_path": "system_v6/receipts",
+      "source": "git show HEAD:<path>; committed parent citation only",
+      "top_source_blob": "dc6f9eaea68161385fda43b46e22bf4269613616",
+      "top_source_path": "system_v6/receipts/stack_uniqueness_map_20260611.md",
+      "top_source_sha256": "28d3c84c94ba1a3d4f0403c4e97b63c9a7cc2a951a6d36713fd47543b420f047"
+    }
+  },
+  "pin_sha256": "6ecc11b9be2f67a038f6b1194c8ef3a2c8b443cc8f093c2a3597b9d65bfc54c2",
+  "pin_spec": "geo_s9_alternative_connections_v0|parents=geo_s2_connection_flux_foliation_v0,geo_s9_quaternionic_hopf_stack_v0,geo_s9_quat_path_ordered_transport_v0,ratchet_s2_two_shell_flux_v0,stack_uniqueness_map_8f4fef471|committed=A=dphi+cos(2eta)dchi|alternatives=A_flat_dphi,B_half_cos,C_same_c1_non_hopf_density,D_random_nonperiodic|battery=validity,F=dA,c1,holonomy_spectrum,stokes_pi_over_2,gauge_vs_genuine|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "not a global connection uniqueness proof",
+    "does not promote S9 transport/connection closure",
+    "does not admit bridge, axis, physics, or manifold claims"
+  ],
+  "required_negatives": [
+    "flat connection",
+    "half coefficient",
+    "same c1 different density",
+    "random one-form"
+  ],
+  "result_path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_envelope_results.json",
+  "result_summary": {
+    "accepted_ceiling": "scratch_diagnostic",
+    "answer": "The committed Hopf connection is unique among the tested alternatives once the leaf holonomy spectrum and annular flux distribution are fixed. It is not unique at the c1/topological level: C_same_c1_non_hopf_density co-survives c1=1 but is gauge-inequivalent by curvature-density and holonomy-spectrum invariants.",
+    "promotion_allowed": false
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "seed_ledger": {
+    "julia_seed": 2026061109,
+    "leaf_etas": [
+      "pi/6",
+      "pi/4"
+    ],
+    "same_flux_deformation_epsilon": "1/5",
+    "smt_seed": 2026061109,
+    "smt_units": "twentieths_of_pi",
+    "status": "deterministic_exact_rows_no_rng_sampling",
+    "symbolic_seed": 2026061109
+  },
+  "sim_class": "geometry_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "geo_s9_alternative_connections_v0",
+  "smt_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "erased_units": {
+        "C_same_c1_non_hopf_density": 9,
+        "anchor": 10
+      },
+      "load_bearing": true,
+      "pass": true,
+      "polarity": "violation_assertion_real_unsat_erased_sat",
+      "ran": true,
+      "real_units": {
+        "anchor": 10,
+        "committed": 10
+      },
+      "real_verdict": "unsat"
+    }
+  },
+  "source_path": "system_v6/sims/geo_s9_alternative_connections_v0/geo_s9_alternative_connections_v0.py",
+  "source_sha256": "adc4797f20c95dbf9eff10d07d205b95fd0da62cb67027a9f3256f6541a8bf39",
+  "structural_answer": {
+    "committed_uniqueness_class": "The committed Hopf connection is unique among the tested alternatives once the leaf holonomy spectrum and annular flux distribution are fixed. It is not unique at the c1/topological level: C_same_c1_non_hopf_density co-survives c1=1 but is gauge-inequivalent by curvature-density and holonomy-spectrum invariants.",
+    "full_battery_survivors": [],
+    "geometric_committed_specific_rows": [
+      "curvature_density",
+      "holonomy_spectrum_on_committed_leaves",
+      "stokes_annular_flux_distribution"
+    ],
+    "same_flux_subtle_row": {
+      "c1_survives": true,
+      "candidate": "C_same_c1_non_hopf_density",
+      "genuine_not_gauge": true,
+      "holonomy_dies": true,
+      "stokes_dies": true
+    },
+    "topological_c1_co_survivors": [
+      "C_same_c1_non_hopf_density"
+    ],
+    "topological_rows": [
+      "chern_number_c1"
+    ]
+  },
+  "survival_matrix": {
+    "A_flat_dphi": {
+      "annular_flux_over_pi": "0",
+      "annular_flux_pi_over_6_to_pi_over_4": "0",
+      "candidate_class": "flat_connection",
+      "chern_number": "0",
+      "chern_number_c1_anchor": false,
+      "coefficient_f_eta": "0",
+      "connection_form": "A = dphi",
+      "curvature_F_eta_chi": "0",
+      "curvature_anchor_match": false,
+      "failed_rows": [
+        "curvature_anchor",
+        "chern_number_c1",
+        "holonomy_spectrum",
+        "stokes_annular_flux",
+        "gauge_vs_genuine_discrimination"
+      ],
+      "first_failure_row": "curvature_anchor",
+      "full_battery_match": false,
+      "gauge_equivalent_to_committed": false,
+      "gauge_invariant_comparison": {
+        "classification": "genuine_connection_alternative_or_invalid_control",
+        "curvature_density_matches": false,
+        "leaf_holonomy_spectrum_matches": false
+      },
+      "holonomy_lifted_cycle": {
+        "pi/4": "0",
+        "pi/6": "0"
+      },
+      "holonomy_spectrum_anchor": false,
+      "label": "A_flat_dphi",
+      "leaf_coefficients": {
+        "pi/4": "0",
+        "pi/6": "0"
+      },
+      "same_total_flux_as_committed": false,
+      "spectrum_sample": {
+        "0": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/12": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/2": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/3": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/4": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/6": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        }
+      },
+      "stokes_pi_over_2_anchor": false,
+      "survives_geometric_rows": false,
+      "survives_topological_row": false,
+      "validity": true
+    },
+    "B_half_cos": {
+      "annular_flux_over_pi": "1/4",
+      "annular_flux_pi_over_6_to_pi_over_4": "pi/4",
+      "candidate_class": "wrong_coefficient",
+      "chern_number": "1/2",
+      "chern_number_c1_anchor": false,
+      "coefficient_f_eta": "cos(2*eta)/2",
+      "connection_form": "A = dphi + (1/2)cos(2*eta)dchi",
+      "curvature_F_eta_chi": "-sin(2*eta)",
+      "curvature_anchor_match": false,
+      "failed_rows": [
+        "curvature_anchor",
+        "chern_number_c1",
+        "holonomy_spectrum",
+        "stokes_annular_flux",
+        "gauge_vs_genuine_discrimination"
+      ],
+      "first_failure_row": "curvature_anchor",
+      "full_battery_match": false,
+      "gauge_equivalent_to_committed": false,
+      "gauge_invariant_comparison": {
+        "classification": "genuine_connection_alternative_or_invalid_control",
+        "curvature_density_matches": false,
+        "leaf_holonomy_spectrum_matches": false
+      },
+      "holonomy_lifted_cycle": {
+        "pi/4": "0",
+        "pi/6": "-pi/2"
+      },
+      "holonomy_spectrum_anchor": false,
+      "label": "B_half_cos",
+      "leaf_coefficients": {
+        "pi/4": "0",
+        "pi/6": "1/4"
+      },
+      "same_total_flux_as_committed": false,
+      "spectrum_sample": {
+        "0": {
+          "coefficient": "1/2",
+          "lifted_holonomy": "-pi"
+        },
+        "pi/12": {
+          "coefficient": "sqrt(3)/4",
+          "lifted_holonomy": "-sqrt(3)*pi/2"
+        },
+        "pi/2": {
+          "coefficient": "-1/2",
+          "lifted_holonomy": "pi"
+        },
+        "pi/3": {
+          "coefficient": "-1/4",
+          "lifted_holonomy": "pi/2"
+        },
+        "pi/4": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/6": {
+          "coefficient": "1/4",
+          "lifted_holonomy": "-pi/2"
+        }
+      },
+      "stokes_pi_over_2_anchor": false,
+      "survives_geometric_rows": false,
+      "survives_topological_row": false,
+      "validity": true
+    },
+    "C_same_c1_non_hopf_density": {
+      "annular_flux_over_pi": "9/20",
+      "annular_flux_pi_over_6_to_pi_over_4": "9*pi/20",
+      "candidate_class": "same_total_flux_different_density",
+      "chern_number": "1",
+      "chern_number_c1_anchor": true,
+      "coefficient_f_eta": "sin(2*eta)**2/5 + cos(2*eta)",
+      "connection_form": "A = dphi + (cos(2*eta) + (1/5)sin(2*eta)^2)dchi",
+      "curvature_F_eta_chi": "-2*sin(2*eta) + 2*sin(4*eta)/5",
+      "curvature_anchor_match": false,
+      "failed_rows": [
+        "curvature_anchor",
+        "holonomy_spectrum",
+        "stokes_annular_flux",
+        "gauge_vs_genuine_discrimination"
+      ],
+      "first_failure_row": "curvature_anchor",
+      "full_battery_match": false,
+      "gauge_equivalent_to_committed": false,
+      "gauge_invariant_comparison": {
+        "classification": "genuine_connection_alternative_or_invalid_control",
+        "curvature_density_matches": false,
+        "leaf_holonomy_spectrum_matches": false
+      },
+      "holonomy_lifted_cycle": {
+        "pi/4": "-2*pi/5",
+        "pi/6": "-13*pi/10"
+      },
+      "holonomy_spectrum_anchor": false,
+      "label": "C_same_c1_non_hopf_density",
+      "leaf_coefficients": {
+        "pi/4": "1/5",
+        "pi/6": "13/20"
+      },
+      "same_total_flux_as_committed": true,
+      "spectrum_sample": {
+        "0": {
+          "coefficient": "1",
+          "lifted_holonomy": "-2*pi"
+        },
+        "pi/12": {
+          "coefficient": "1/20 + sqrt(3)/2",
+          "lifted_holonomy": "-pi*(1/10 + sqrt(3))"
+        },
+        "pi/2": {
+          "coefficient": "-1",
+          "lifted_holonomy": "2*pi"
+        },
+        "pi/3": {
+          "coefficient": "-7/20",
+          "lifted_holonomy": "7*pi/10"
+        },
+        "pi/4": {
+          "coefficient": "1/5",
+          "lifted_holonomy": "-2*pi/5"
+        },
+        "pi/6": {
+          "coefficient": "13/20",
+          "lifted_holonomy": "-13*pi/10"
+        }
+      },
+      "stokes_pi_over_2_anchor": false,
+      "survives_geometric_rows": false,
+      "survives_topological_row": true,
+      "validity": true
+    },
+    "D_random_nonperiodic": {
+      "annular_flux_over_pi": "-pi/12",
+      "annular_flux_pi_over_6_to_pi_over_4": "-pi**2/12",
+      "candidate_class": "deterministic_random_one_form_control",
+      "chern_number": "-pi/4",
+      "chern_number_c1_anchor": false,
+      "coefficient_f_eta": "eta + sqrt(2)/10",
+      "connection_form": "A = dphi + (eta + sqrt(2)/10)dchi",
+      "curvature_F_eta_chi": "1",
+      "curvature_anchor_match": false,
+      "failed_rows": [
+        "smoothness_periodicity_validity",
+        "curvature_anchor",
+        "chern_number_c1",
+        "holonomy_spectrum",
+        "stokes_annular_flux",
+        "gauge_vs_genuine_discrimination"
+      ],
+      "first_failure_row": "smoothness_periodicity_validity",
+      "full_battery_match": false,
+      "gauge_equivalent_to_committed": false,
+      "gauge_invariant_comparison": {
+        "classification": "genuine_connection_alternative_or_invalid_control",
+        "curvature_density_matches": false,
+        "leaf_holonomy_spectrum_matches": false
+      },
+      "holonomy_lifted_cycle": {
+        "pi/4": "-pi*(2*sqrt(2) + 5*pi)/10",
+        "pi/6": "-pi*(3*sqrt(2) + 5*pi)/15"
+      },
+      "holonomy_spectrum_anchor": false,
+      "label": "D_random_nonperiodic",
+      "leaf_coefficients": {
+        "pi/4": "sqrt(2)/10 + pi/4",
+        "pi/6": "sqrt(2)/10 + pi/6"
+      },
+      "same_total_flux_as_committed": false,
+      "spectrum_sample": {
+        "0": {
+          "coefficient": "sqrt(2)/10",
+          "lifted_holonomy": "-sqrt(2)*pi/5"
+        },
+        "pi/12": {
+          "coefficient": "sqrt(2)/10 + pi/12",
+          "lifted_holonomy": "-pi*(6*sqrt(2) + 5*pi)/30"
+        },
+        "pi/2": {
+          "coefficient": "sqrt(2)/10 + pi/2",
+          "lifted_holonomy": "-pi*(sqrt(2) + 5*pi)/5"
+        },
+        "pi/3": {
+          "coefficient": "sqrt(2)/10 + pi/3",
+          "lifted_holonomy": "-pi*(3*sqrt(2) + 10*pi)/15"
+        },
+        "pi/4": {
+          "coefficient": "sqrt(2)/10 + pi/4",
+          "lifted_holonomy": "-pi*(2*sqrt(2) + 5*pi)/10"
+        },
+        "pi/6": {
+          "coefficient": "sqrt(2)/10 + pi/6",
+          "lifted_holonomy": "-pi*(3*sqrt(2) + 5*pi)/15"
+        }
+      },
+      "stokes_pi_over_2_anchor": false,
+      "survives_geometric_rows": false,
+      "survives_topological_row": false,
+      "validity": false
+    },
+    "committed_hopf": {
+      "annular_flux_over_pi": "1/2",
+      "annular_flux_pi_over_6_to_pi_over_4": "pi/2",
+      "candidate_class": "committed_control",
+      "chern_number": "1",
+      "chern_number_c1_anchor": true,
+      "coefficient_f_eta": "cos(2*eta)",
+      "connection_form": "A = dphi + cos(2*eta)dchi",
+      "curvature_F_eta_chi": "-2*sin(2*eta)",
+      "curvature_anchor_match": true,
+      "failed_rows": [],
+      "first_failure_row": null,
+      "full_battery_match": true,
+      "gauge_equivalent_to_committed": true,
+      "gauge_invariant_comparison": {
+        "classification": "same_gauge_class_under_tested_invariants",
+        "curvature_density_matches": true,
+        "leaf_holonomy_spectrum_matches": true
+      },
+      "holonomy_lifted_cycle": {
+        "pi/4": "0",
+        "pi/6": "-pi"
+      },
+      "holonomy_spectrum_anchor": true,
+      "label": "committed_hopf",
+      "leaf_coefficients": {
+        "pi/4": "0",
+        "pi/6": "1/2"
+      },
+      "same_total_flux_as_committed": true,
+      "spectrum_sample": {
+        "0": {
+          "coefficient": "1",
+          "lifted_holonomy": "-2*pi"
+        },
+        "pi/12": {
+          "coefficient": "sqrt(3)/2",
+          "lifted_holonomy": "-sqrt(3)*pi"
+        },
+        "pi/2": {
+          "coefficient": "-1",
+          "lifted_holonomy": "2*pi"
+        },
+        "pi/3": {
+          "coefficient": "-1/2",
+          "lifted_holonomy": "pi"
+        },
+        "pi/4": {
+          "coefficient": "0",
+          "lifted_holonomy": "0"
+        },
+        "pi/6": {
+          "coefficient": "1/2",
+          "lifted_holonomy": "-pi"
+        }
+      },
+      "stokes_pi_over_2_anchor": true,
+      "survives_geometric_rows": true,
+      "survives_topological_row": true,
+      "validity": true
+    }
+  },
+  "tier": 3,
+  "tool_calls": [
+    {
+      "claim": "exact alternative-connection battery rows",
+      "load_bearing": true,
+      "receipt": "survival_matrix",
+      "tool": "sympy"
+    },
+    {
+      "claim": "annular Stokes SMT flip",
+      "load_bearing": true,
+      "receipt": "smt_proofs.z3",
+      "tool": "z3"
+    },
+    {
+      "claim": "annular Stokes SMT flip",
+      "load_bearing": true,
+      "receipt": "smt_proofs.cvc5",
+      "tool": "cvc5"
+    },
+    {
+      "claim": "Julia-side annular Stokes SMT flip",
+      "load_bearing": true,
+      "receipt": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_julia_results.json",
+      "tool": "Z3"
+    }
+  ],
+  "tool_integration_depth": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "subprocess": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "tool_manifest": {
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT mirror over the same exact annular units",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT proof of the same annular Stokes anchor and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source/result/PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic result serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    },
+    "subprocess": {
+      "reason": "supportive committed parent blob reads",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact connection coefficient, curvature, Chern, holonomy, and annular Stokes derivation",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT proof that committed annular Stokes units match the anchor, with erased alternative flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "validator": {
+    "path": "system_v6/sims/geo_s9_alternative_connections_v0/validate_geo_s9_alternative_connections_v0.py",
+    "result_path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_validator_results.json"
+  }
+}

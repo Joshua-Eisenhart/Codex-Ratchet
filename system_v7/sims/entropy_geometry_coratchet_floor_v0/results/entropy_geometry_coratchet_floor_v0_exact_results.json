@@ -1,0 +1,198 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "entropy_geometry_coratchet_floor_v0",
+  "engine": "exact",
+  "computation_style": "ring_checkerboard_typed_entropy_suite_exact_combinatorial",
+  "classification": "scratch_diagnostic",
+  "draft_unaudited": true,
+  "evidence_eligible": false,
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-17T19:04:41Z",
+  "source_sha256": "e9a253cb9a73893f80136380c4e1351c058d4decdd9dcfd40db47059f0a43c70",
+  "result_path": "system_v7/sims/entropy_geometry_coratchet_floor_v0/results/entropy_geometry_coratchet_floor_v0_exact_results.json",
+  "built_to_owner_spec": "Levos packet sim_targets/entropy_geometry_coratchet_floor_v0.md",
+  "ring": {
+    "N": 6,
+    "sublattice_A": [
+      0,
+      2,
+      4
+    ],
+    "sublattice_B": [
+      1,
+      3,
+      5
+    ],
+    "support_size": 64
+  },
+  "tests": {
+    "1_capacity_entropy_changes_under_restriction": {
+      "before": 6.0,
+      "after_one_carve": 5.0,
+      "changed": true
+    },
+    "2_quotient_entropy_changes_under_probe_add_erase": {
+      "full": 6.0,
+      "erased": 5.0,
+      "changed": true
+    },
+    "3_4_geometry_and_entropy_recompute_per_carve": {
+      "recomputed_per_carve": [
+        {
+          "carve": "x0==x1",
+          "capacity": 5.0,
+          "block": 5.0,
+          "geometry": {
+            "n": 32,
+            "edges": 64,
+            "components": 2
+          }
+        },
+        {
+          "carve": "x2==x3",
+          "capacity": 4.0,
+          "block": 4.0,
+          "geometry": {
+            "n": 16,
+            "edges": 16,
+            "components": 4
+          }
+        },
+        {
+          "carve": "x4==x5",
+          "capacity": 3.0,
+          "block": 3.0,
+          "geometry": {
+            "n": 8,
+            "edges": 0,
+            "components": 8
+          }
+        }
+      ],
+      "geometry_changes": true,
+      "entropy_changes": true
+    },
+    "5_order_AB_vs_BA_changes_readout": {
+      "static_pair_order_changes_readout": false,
+      "statedep_window_pairs_scanned": 15,
+      "statedep_window_pairs_noncommuting": 11,
+      "noncommuting_example": {
+        "win_a": [
+          0,
+          1
+        ],
+        "win_b": [
+          0,
+          1,
+          2
+        ],
+        "symdiff": 16,
+        "AB_capacity": 5.0,
+        "BA_capacity": 4.0
+      },
+      "finding": "static local ring constraints COMMUTE (order-independent). Order-dependence (N01) appears for STATE-DEPENDENT window-threshold constraints that read the running survivor set, and only for SOME window pairs -- N01 is located in state-dependence on the running set, and is not universal.",
+      "order_changes_readout": true
+    },
+    "6_ring_checkerboard_block_scc_basin_before_density": {
+      "block_entropy_full_S": 6.0,
+      "scc_basin": {
+        "num_basins": 21,
+        "basin_sizes": [
+          16,
+          16,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "basin_count_entropy_bits": 4.3923,
+        "shannon_over_basin_distribution_DIAGNOSTIC_uses_probability": 3.523
+      },
+      "uses_density_matrix": false
+    },
+    "7_von_neumann_blocked_until_density_earned": {
+      "attempt_premature": {
+        "available": false,
+        "reason": "density representation NOT earned -- von-Neumann/spectral entropy blocked"
+      },
+      "blocked": true
+    },
+    "8_fiber_residual_only_with_hopf_lift": {
+      "no_lift": {
+        "available": false
+      },
+      "absent_without_lift": true
+    },
+    "9_cut_entropy_only_with_cut": {
+      "no_cut": {
+        "available": false
+      },
+      "with_cut_A_sublattice": {
+        "available": true,
+        "value": 3.0
+      },
+      "absent_without_cut": true
+    }
+  },
+  "controls": {
+    "label_shuffle_entropy_invariant": {
+      "capacity_same": true
+    },
+    "same_cardinality_different_adjacency": {
+      "same_capacity": true,
+      "different_geometry": true
+    },
+    "commuting_constraints_order_invariant": {
+      "AB_eq_BA": true,
+      "order_invariant_entropy": true
+    },
+    "probe_erasure_drops_quotient_entropy": {
+      "drops": true
+    },
+    "premature_von_neumann_blocked": true
+  },
+  "all_9_tests_pass": true,
+  "load_bearing_result": "T5_order_AB_vs_BA_state_dependence",
+  "discriminator_class": {
+    "1_capacity_entropy_changes_under_restriction": "near_tautology",
+    "2_quotient_entropy_changes_under_probe_add_erase": "near_tautology",
+    "3_4_geometry_and_entropy_recompute_per_carve": "weak_discriminator",
+    "5_order_AB_vs_BA_changes_readout": "discriminator",
+    "6_ring_checkerboard_block_scc_basin_before_density": "mixed",
+    "7_von_neumann_blocked_until_density_earned": "guard",
+    "8_fiber_residual_only_with_hopf_lift": "guard",
+    "9_cut_entropy_only_with_cut": "guard"
+  },
+  "all_9_tests_pass_caveat": "all_9_tests_pass ANDs 9 booleans, but only T5 is a strong discriminator (3-model convergent: static 66/66 commute, state-dep 11/15 noncommute, fixed-threshold control 0/15). T7/T8/T9 pass by construction (guards); T1/T2 by monotone survivor shrinkage (near-tautology). See discriminator_class.",
+  "honest_scope": {
+    "earns": "the typed entropy/readout suite ratchets from the first finite ring-checkerboard support alongside recomputed geometry: capacity/quotient/block entropy and a COUNT-BASED SCC-basin readout (basin_count_entropy_bits = log2 #basins) are available + change under carve/probe/order, while von-Neumann is BLOCKED until density earned and fiber/cut entropy are ABSENT until their structure exists. The REPORTED readouts are count/structure-based with no probability measure, density matrix, or time; a Shannon-over-basin-distribution value is retained ONLY under an explicit *_DIAGNOSTIC_uses_probability key and is NOT part of the no-smuggle claim.",
+    "does_not_earn": "DRAFT_UNAUDITED -- not fleet-audited. A first faithful build of the owner's target, not a promoted result. scratch_diagnostic."
+  },
+  "TOOL_MANIFEST": {
+    "python-stdlib": {
+      "tried": true,
+      "used": true,
+      "reason": "exact combinatorial entropy/geometry/SCC-basin on the ring-checkerboard"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "python-stdlib": "load_bearing"
+  }
+}

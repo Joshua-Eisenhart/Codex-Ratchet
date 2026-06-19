@@ -1,0 +1,5569 @@
+{
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "Z3",
+    "networkx",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "boundary_dof_count": 6,
+        "dof_total": 9,
+        "n01_fired": 1,
+        "over_boundary": 1,
+        "probe_degraded": 1,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0,
+        "zero_return": 1
+      },
+      "erased_flip_bindings": {
+        "boundary_dof_count": 0,
+        "dof_total": 9,
+        "n01_fired": 0,
+        "over_boundary": 1,
+        "probe_degraded": 0,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0,
+        "zero_return": 1
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "boundary_dof_count": 6,
+        "dof_classification_summary": [
+          {
+            "classification": "RETURN",
+            "dof_id": "G0",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G1",
+            "terminal_class_cells": [
+              [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "RETURN",
+            "dof_id": "G2",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G3L",
+            "terminal_class_cells": [
+              [
+                1
+              ],
+              [
+                2,
+                4,
+                5,
+                11,
+                12,
+                15
+              ],
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G3R",
+            "terminal_class_cells": [
+              [
+                16
+              ],
+              [
+                17,
+                20,
+                21,
+                27,
+                28,
+                30
+              ],
+              [
+                31
+              ]
+            ],
+            "terminal_class_count": 3
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G4",
+            "terminal_class_cells": [
+              [
+                3,
+                9
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "G5",
+            "terminal_class_cells": [
+              [
+                0
+              ],
+              [
+                5
+              ],
+              [
+                16
+              ],
+              [
+                27,
+                28,
+                30
+              ],
+              [
+                32
+              ]
+            ],
+            "terminal_class_count": 5
+          },
+          {
+            "classification": "RETURN",
+            "dof_id": "stage_shift_Rx_to_Rz",
+            "terminal_class_cells": [
+              [
+                16
+              ]
+            ],
+            "terminal_class_count": 1
+          },
+          {
+            "classification": "BOUNDARY",
+            "dof_id": "loop_reverse_G5",
+            "terminal_class_cells": [
+              [
+                0
+              ],
+              [
+                5
+              ],
+              [
+                16
+              ],
+              [
+                26,
+                27,
+                30
+              ],
+              [
+                32
+              ]
+            ],
+            "terminal_class_count": 5
+          }
+        ],
+        "dof_signature_sha256": "f83d6b919789987b0faefd00a1b9babec158404a697f492b6f8302b2d5918239",
+        "dof_total": 9,
+        "pre_registered_expectation_2_pass": true,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "boundary_dof_count": 6,
+        "dof_total": 9,
+        "n01_fired": 1,
+        "over_boundary": 1,
+        "probe_degraded": 1,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0,
+        "zero_return": 1
+      },
+      "erased_flip_bindings": {
+        "boundary_dof_count": 0,
+        "dof_total": 9,
+        "n01_fired": 0,
+        "over_boundary": 1,
+        "probe_degraded": 0,
+        "return_dof_count": 3,
+        "scrambling_dof_count": 0,
+        "zero_return": 1
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "classification count code return*100 + boundary*10 + scrambling",
+    "engine_values": {
+      "jax": 360,
+      "julia": 360,
+      "pytorch": 360
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "tolerance": 0
+  },
+  "expected_lanes": [
+    "julia",
+    "jax",
+    "pytorch"
+  ],
+  "extra_fields": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "Graphs": "load_bearing",
+      "Z3": "load_bearing",
+      "cvc5": "load_bearing",
+      "networkx": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "torch_geometric": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_INTENT_MATRIX": {
+      "build_three_engine_envelope": {
+        "helper_path": "scripts/build_three_engine_envelope.py",
+        "reason": "standard envelope construction, not hand-rolled result schema",
+        "status": "required"
+      },
+      "builder_audit_boundary": {
+        "helper_path": "scripts/builder_audit_boundary.py",
+        "reason": "builder does not emit audit_verdict.md; validator calls helper",
+        "status": "required"
+      },
+      "smt_computed_value_bindings": {
+        "reason": "bind counts/control flags and erased flips",
+        "rows": [
+          "z3",
+          "cvc5"
+        ],
+        "status": "computed"
+      }
+    },
+    "TOOL_MANIFEST": {
+      "Graphs": {
+        "reason": "Julia finite DoF graph and terminal-class recomputation",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "Julia computed-value DoF identity and erased flip",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "independent Python SMT computed-value DoF identity and erased flip",
+        "tried": true,
+        "used": true
+      },
+      "networkx": {
+        "reason": "Python/JAX lane graph paths, SCC, terminal, and trajectory checks",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "exact rational readout/control count side checks",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "PyTorch vectorized DoF classification code check",
+        "tried": true,
+        "used": true
+      },
+      "torch_geometric": {
+        "reason": "PyTorch graph carrier for DoF table edge/count check",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "Python SMT computed-value DoF identity and erased flip",
+        "tried": true,
+        "used": true
+      }
+    },
+    "all_pass": true,
+    "allowed_claims": [
+      "finite DoF x RETURN/BOUNDARY/SCRAMBLING rows computed on the committed 33-cell carrier",
+      "axis0 readout is load-bearing for this perturb-and-read test",
+      "pre-registered expectation 2 is satisfied for this packet at scratch ceiling"
+    ],
+    "axis0_readout_rebuild": {
+      "carrier_edge_count": 198,
+      "carrier_state_count": 33,
+      "commit_hint": "5d330b427",
+      "gradient_signature_sha256": "5035880ae9c17a768b0568b8cbb0f22800d9ee7a5cc454ea529c2df3ef10d391",
+      "polarity_counts": {
+        "axis0_minus_homeostatic_response": 17,
+        "axis0_plus_allo_response": 15,
+        "neutral_no_polarity": 1
+      },
+      "readout_table_sha256": "90c766d7b4c788fcb92a996698d0821ca5f35755a9cf03a67d601c9484707743",
+      "recomputed": true,
+      "source_path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_common.py",
+      "source_sha256": "5b13716283cf32031995c513a0dec597c00c23a3d5fbf97726e9aba12b5eb9be",
+      "source_sim_id": "discrete_axis0_field_v0",
+      "state_object_id": "discrete_axis0_field_v0:eb8bcca90a805de53692bb9462c1e47e7d83d4888f0d69acd87400d09a734d8f"
+    },
+    "blocked_consumers": [
+      "axis_level_admission",
+      "manifold_existence_claim",
+      "basin_theorem",
+      "bridge_or_physics_inference"
+    ],
+    "build_helper_path": "scripts/build_three_engine_envelope.py",
+    "builder_gates": {
+      "file_disjoint_packet": true,
+      "no_builder_audit_verdict": true,
+      "no_builder_audit_verdict_envelope_gate": true,
+      "packet_audit_verdict_absent": true
+    },
+    "capability_receipts": {
+      "jax": [
+        {
+          "computed_what": "DoF transition rows, terminal classes, trajectories, and RETURN/BOUNDARY/SCRAMBLING table",
+          "receipt_id": "jax_networkx_dof_perturb_read",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_sympy_dof_identity",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_z3_dof_identity",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_cvc5_dof_identity",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "julia": [
+        {
+          "computed_what": "DoF graph terminal classes and classifications",
+          "receipt_id": "julia_Graphs_dof_perturb_read",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "computed DoF count identity with erased flip",
+          "receipt_id": "julia_Z3_dof_identity",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "pytorch": [
+        {
+          "computed_what": "DoF transition rows, terminal classes, trajectories, and RETURN/BOUNDARY/SCRAMBLING table",
+          "receipt_id": "pytorch_torch_geometric_dof_perturb_read",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_torch.func_dof_identity",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_sympy_dof_identity",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_z3_dof_identity",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_cvc5_dof_identity",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "claim_ceiling": "basin_dof_readout_rows_only",
+    "claim_sections": {
+      "boundary": [
+        "realization-relative",
+        "scratch_diagnostic only",
+        "claim_ceiling=basin_dof_readout_rows_only",
+        "no axis admission or basin theorem"
+      ],
+      "negative": [
+        "probe-erased control degrades classification",
+        "over-perturbation reaches a boundary",
+        "shuffled-order/N01 changes the order-sensitive result"
+      ],
+      "positive": [
+        "engine DoF perturbation rows over the committed 33-cell carrier",
+        "axis0 polarity readout rebuilt by source for each trajectory",
+        "at least one return row and at least one boundary row"
+      ]
+    },
+    "classification": "scratch_diagnostic",
+    "controls": {
+      "over_perturbation": {
+        "absent_exit_checked": true,
+        "base_state_count": 33,
+        "classification": "BOUNDARY",
+        "outside_adm_c_sample_cells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "partition_changed": true,
+        "past_basin_scale": true,
+        "root_off_state_count": 125,
+        "terminal_class_count": 1
+      },
+      "probe_erased_constant_field": {
+        "all_degenerate_no_polarity": true,
+        "axis_readout_load_bearing": true,
+        "base_return_boundary_signature": "4b977d2e09bbd36a608e3d78a7490eb2ca3f265b961dbbcf5e218ee0bff72120",
+        "classification": "DEGRADED",
+        "degrade_reason": "constant field erases polarity readout; spatial return/boundary rows lose the claimed axis-reading predicate",
+        "erased_signature": "7df69fb089fe4e0a1f703fe94905f97ac633d2f3164621fbd780ede742fb63a9",
+        "nonzero_gradient_edges": 0
+      },
+      "shuffled_order_N01": {
+        "base_terminal_class_count": 1,
+        "classification": "BOUNDARY",
+        "n01_order_control_fired": true,
+        "n01_terminal_class_count": 3,
+        "partition_changed": true,
+        "row": {
+          "absent_exit_checked": true,
+          "axis0_readout_reconverged": false,
+          "axis0_recomputed_by_source": true,
+          "boundary_found": true,
+          "claim_ceiling": "basin_dof_readout_rows_only",
+          "classification": "BOUNDARY",
+          "dof_family": "N01_order_control",
+          "dof_id": "shuffled_order_N01",
+          "escaped_to_different_terminal_class": true,
+          "generator_names": [
+            "Ne_Spiral_R",
+            "R_x"
+          ],
+          "label": "N01 shuffled/order-only control",
+          "partition_signature": {
+            "boundary_count": 33,
+            "class_sizes": [
+              1,
+              14,
+              18
+            ],
+            "scc_count": 3,
+            "state_count": 33,
+            "terminal_sizes": [
+              1,
+              14,
+              18
+            ]
+          },
+          "pinned_perturbation_sizes": [
+            0,
+            1,
+            2
+          ],
+          "pinned_seed_cells": [
+            0,
+            3,
+            15,
+            16,
+            17,
+            31
+          ],
+          "prior_terminal_class_cells": [
+            16
+          ],
+          "returned_to_prior_terminal_class": false,
+          "scrambling_found": false,
+          "state_count": 33,
+          "terminal_class_cells": [
+            [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            [
+              16
+            ]
+          ],
+          "terminal_class_count": 3,
+          "trajectory_rows": [
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 0,
+              "perturbed_cell": 0,
+              "seed_cell": 0,
+              "terminal_cell": 0,
+              "terminal_class_id": 0,
+              "trajectory": [
+                0
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_plus_allo_response",
+              "perturbation_size": 1,
+              "perturbed_cell": 7,
+              "seed_cell": 0,
+              "terminal_cell": 7,
+              "terminal_class_id": 0,
+              "trajectory": [
+                7
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_plus_allo_response",
+              "perturbation_size": 2,
+              "perturbed_cell": 9,
+              "seed_cell": 0,
+              "terminal_cell": 9,
+              "terminal_class_id": 0,
+              "trajectory": [
+                9
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 0,
+              "perturbed_cell": 3,
+              "seed_cell": 3,
+              "terminal_cell": 3,
+              "terminal_class_id": 0,
+              "trajectory": [
+                3
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 1,
+              "perturbed_cell": 0,
+              "seed_cell": 3,
+              "terminal_cell": 0,
+              "terminal_class_id": 0,
+              "trajectory": [
+                0
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 2,
+              "perturbed_cell": 0,
+              "seed_cell": 3,
+              "terminal_cell": 0,
+              "terminal_class_id": 0,
+              "trajectory": [
+                0
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_plus_allo_response",
+              "perturbation_size": 0,
+              "perturbed_cell": 15,
+              "seed_cell": 15,
+              "terminal_cell": 15,
+              "terminal_class_id": 1,
+              "trajectory": [
+                15
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 1,
+              "perturbed_cell": 11,
+              "seed_cell": 15,
+              "terminal_cell": 11,
+              "terminal_class_id": 1,
+              "trajectory": [
+                11
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_plus_allo_response",
+              "perturbation_size": 2,
+              "perturbed_cell": 19,
+              "seed_cell": 15,
+              "terminal_cell": 19,
+              "terminal_class_id": 1,
+              "trajectory": [
+                19
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": true,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "neutral_no_polarity",
+              "perturbation_size": 0,
+              "perturbed_cell": 16,
+              "seed_cell": 16,
+              "terminal_cell": 16,
+              "terminal_class_id": 2,
+              "trajectory": [
+                16
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": true,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "neutral_no_polarity",
+              "perturbation_size": 1,
+              "perturbed_cell": 16,
+              "seed_cell": 16,
+              "terminal_cell": 16,
+              "terminal_class_id": 2,
+              "trajectory": [
+                16
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": true,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "neutral_no_polarity",
+              "perturbation_size": 2,
+              "perturbed_cell": 16,
+              "seed_cell": 16,
+              "terminal_cell": 16,
+              "terminal_class_id": 2,
+              "trajectory": [
+                16
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 0,
+              "perturbed_cell": 17,
+              "seed_cell": 17,
+              "terminal_cell": 17,
+              "terminal_class_id": 1,
+              "trajectory": [
+                17
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 1,
+              "perturbed_cell": 21,
+              "seed_cell": 17,
+              "terminal_cell": 21,
+              "terminal_class_id": 1,
+              "trajectory": [
+                21
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 2,
+              "perturbed_cell": 13,
+              "seed_cell": 17,
+              "terminal_cell": 13,
+              "terminal_class_id": 1,
+              "trajectory": [
+                13
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 0,
+              "perturbed_cell": 31,
+              "seed_cell": 31,
+              "terminal_cell": 31,
+              "terminal_class_id": 0,
+              "trajectory": [
+                31
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 1,
+              "perturbed_cell": 31,
+              "seed_cell": 31,
+              "terminal_cell": 31,
+              "terminal_class_id": 0,
+              "trajectory": [
+                31
+              ],
+              "trajectory_length": 1
+            },
+            {
+              "axis0_reconverged_for_sample": false,
+              "baseline_axis0_polarity": "neutral_no_polarity",
+              "baseline_terminal_cell": 16,
+              "baseline_terminal_class_cells": [
+                16
+              ],
+              "final_axis0_polarity": "axis0_minus_homeostatic_response",
+              "perturbation_size": 2,
+              "perturbed_cell": 25,
+              "seed_cell": 31,
+              "terminal_cell": 25,
+              "terminal_class_id": 0,
+              "trajectory": [
+                25
+              ],
+              "trajectory_length": 1
+            }
+          ]
+        }
+      },
+      "zero_perturbation": {
+        "classification": "RETURN",
+        "rows": [
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              2,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              25,
+              18,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          }
+        ],
+        "sample_count": 6,
+        "trivial_return_calibration": true
+      }
+    },
+    "crossover_proofs": {
+      "cvc5": {
+        "asserted_precomputed_boolean": false,
+        "bound_values": {
+          "boundary_dof_count": 6,
+          "dof_total": 9,
+          "n01_fired": 1,
+          "over_boundary": 1,
+          "probe_degraded": 1,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_bindings": {
+          "boundary_dof_count": 0,
+          "dof_total": 9,
+          "n01_fired": 0,
+          "over_boundary": 1,
+          "probe_degraded": 0,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_verdict": "sat",
+        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+        "load_bearing": true,
+        "ran": true,
+        "tool": "cvc5",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "asserted_precomputed_boolean": false,
+        "bound_values": {
+          "boundary_dof_count": 6,
+          "dof_total": 9,
+          "n01_fired": 1,
+          "over_boundary": 1,
+          "probe_degraded": 1,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_bindings": {
+          "boundary_dof_count": 0,
+          "dof_total": 9,
+          "n01_fired": 0,
+          "over_boundary": 1,
+          "probe_degraded": 0,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_verdict": "sat",
+        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+        "load_bearing": true,
+        "ran": true,
+        "tool": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "disallowed_claims": [
+      "axis admission",
+      "basin theorem",
+      "manifold existence proof",
+      "bridge admission",
+      "physics",
+      "canonical promotion"
+    ],
+    "dof_classification_table": [
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": true,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": false,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "RETURN",
+        "dof_family": "generator_family",
+        "dof_id": "G0",
+        "escaped_to_different_terminal_class": false,
+        "generator_names": [
+          "Se_Funnel_L",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Ne_Spiral_R",
+          "D_z",
+          "R_x"
+        ],
+        "label": "committed baseline anchor",
+        "partition_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": true,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 5,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 5,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              2,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              2,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 2,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              2,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              25,
+              18,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              25,
+              18,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 30,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              30,
+              28,
+              17,
+              16
+            ],
+            "trajectory_length": 4
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "generator_family",
+        "dof_id": "G1",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "R_x",
+          "R_z",
+          "Ne_Spiral_R",
+          "Ne_Vortex_L"
+        ],
+        "label": "rotations only",
+        "partition_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "scc_count": 3,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10,
+            14,
+            18,
+            22,
+            23,
+            25,
+            29,
+            31,
+            32
+          ],
+          [
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            15,
+            17,
+            19,
+            20,
+            21,
+            24,
+            26,
+            27,
+            28,
+            30
+          ],
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 3,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 10,
+            "seed_cell": 0,
+            "terminal_cell": 10,
+            "terminal_class_id": 0,
+            "trajectory": [
+              10
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              3
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 1,
+            "seed_cell": 3,
+            "terminal_cell": 1,
+            "terminal_class_id": 0,
+            "trajectory": [
+              1
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 23,
+            "seed_cell": 3,
+            "terminal_cell": 23,
+            "terminal_class_id": 0,
+            "trajectory": [
+              23
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 15,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 20,
+            "seed_cell": 15,
+            "terminal_cell": 20,
+            "terminal_class_id": 1,
+            "trajectory": [
+              20
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 5,
+            "seed_cell": 15,
+            "terminal_cell": 5,
+            "terminal_class_id": 1,
+            "trajectory": [
+              5
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 2,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 2,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 2,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 17,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 12,
+            "seed_cell": 17,
+            "terminal_cell": 12,
+            "terminal_class_id": 1,
+            "trajectory": [
+              12
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 27,
+            "seed_cell": 17,
+            "terminal_cell": 27,
+            "terminal_class_id": 1,
+            "trajectory": [
+              27
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 31,
+            "terminal_class_id": 0,
+            "trajectory": [
+              31
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 25,
+            "seed_cell": 31,
+            "terminal_cell": 25,
+            "terminal_class_id": 0,
+            "trajectory": [
+              25
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 31,
+            "terminal_class_id": 0,
+            "trajectory": [
+              31
+            ],
+            "trajectory_length": 1
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": true,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": false,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "RETURN",
+        "dof_family": "generator_family",
+        "dof_id": "G2",
+        "escaped_to_different_terminal_class": false,
+        "generator_names": [
+          "Ne_Spiral_R",
+          "Ne_Vortex_L",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Se_Cannon_R",
+          "Se_Funnel_L",
+          "Si_Citadel_R",
+          "Si_Hill_L",
+          "D_x",
+          "D_z",
+          "R_x",
+          "R_z"
+        ],
+        "label": "full S5 plus S4 set",
+        "partition_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": true,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 7,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              10,
+              12,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 0,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              10,
+              12,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 11,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              11,
+              15,
+              16
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 21,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              21,
+              17,
+              16
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              30,
+              20,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              30,
+              20,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              30,
+              20,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "generator_family",
+        "dof_id": "G3L",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "Ne_Vortex_L",
+          "Ni_Pit_L",
+          "Se_Funnel_L",
+          "Si_Hill_L"
+        ],
+        "label": "L chirality terrain subset",
+        "partition_signature": {
+          "boundary_count": 22,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "scc_count": 8,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            1
+          ],
+          [
+            2,
+            4,
+            5,
+            11,
+            12,
+            15
+          ],
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 3,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 5,
+            "terminal_class_id": 2,
+            "trajectory": [
+              0,
+              5
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 3,
+            "seed_cell": 0,
+            "terminal_cell": 2,
+            "terminal_class_id": 2,
+            "trajectory": [
+              3,
+              2
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 2,
+            "seed_cell": 0,
+            "terminal_cell": 2,
+            "terminal_class_id": 2,
+            "trajectory": [
+              2
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 2,
+            "terminal_class_id": 2,
+            "trajectory": [
+              3,
+              2
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 10,
+            "seed_cell": 3,
+            "terminal_cell": 12,
+            "terminal_class_id": 2,
+            "trajectory": [
+              10,
+              12
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 10,
+            "seed_cell": 3,
+            "terminal_cell": 12,
+            "terminal_class_id": 2,
+            "trajectory": [
+              10,
+              12
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 15,
+            "terminal_class_id": 2,
+            "trajectory": [
+              15
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 4,
+            "seed_cell": 15,
+            "terminal_cell": 4,
+            "terminal_class_id": 2,
+            "trajectory": [
+              4
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 4,
+            "seed_cell": 15,
+            "terminal_cell": 4,
+            "terminal_class_id": 2,
+            "trajectory": [
+              4
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 28,
+            "seed_cell": 17,
+            "terminal_cell": 5,
+            "terminal_class_id": 2,
+            "trajectory": [
+              28,
+              27,
+              26,
+              19,
+              8,
+              6,
+              5
+            ],
+            "trajectory_length": 7
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 27,
+            "seed_cell": 17,
+            "terminal_cell": 5,
+            "terminal_class_id": 2,
+            "trajectory": [
+              27,
+              26,
+              19,
+              8,
+              6,
+              5
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              31,
+              30,
+              20,
+              21,
+              17,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              31,
+              30,
+              20,
+              21,
+              17,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 30,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              30,
+              20,
+              21,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "generator_family",
+        "dof_id": "G3R",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "Ne_Spiral_R",
+          "Ni_Source_R",
+          "Se_Cannon_R",
+          "Si_Citadel_R"
+        ],
+        "label": "R chirality terrain subset",
+        "partition_signature": {
+          "boundary_count": 22,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "scc_count": 8,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            16
+          ],
+          [
+            17,
+            20,
+            21,
+            27,
+            28,
+            30
+          ],
+          [
+            31
+          ]
+        ],
+        "terminal_class_count": 3,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 7,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 7,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              3,
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 0,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 0,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              0,
+              7,
+              14,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 11,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              11,
+              12,
+              2,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 7
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 12,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              12,
+              2,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 5,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 17,
+            "terminal_class_id": 6,
+            "trajectory": [
+              17
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 21,
+            "seed_cell": 17,
+            "terminal_cell": 21,
+            "terminal_class_id": 6,
+            "trajectory": [
+              21
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 21,
+            "seed_cell": 17,
+            "terminal_cell": 21,
+            "terminal_class_id": 6,
+            "trajectory": [
+              21
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 31,
+            "terminal_class_id": 7,
+            "trajectory": [
+              31
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 31,
+            "terminal_class_id": 7,
+            "trajectory": [
+              31
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 31,
+            "terminal_class_id": 7,
+            "trajectory": [
+              31
+            ],
+            "trajectory_length": 1
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "generator_family",
+        "dof_id": "G4",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "Se_Funnel_L",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Ne_Spiral_R",
+          "D_z",
+          "R_x"
+        ],
+        "label": "conditioned shell baseline",
+        "partition_signature": {
+          "boundary_count": 4,
+          "class_sizes": [
+            1,
+            1,
+            2
+          ],
+          "scc_count": 3,
+          "state_count": 4,
+          "terminal_sizes": [
+            2
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          3,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 4,
+        "terminal_class_cells": [
+          [
+            3,
+            9
+          ]
+        ],
+        "terminal_class_count": 1,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              3
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              3
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              3
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              31,
+              25,
+              3
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              31,
+              25,
+              3
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 3,
+            "terminal_class_id": 0,
+            "trajectory": [
+              31,
+              25,
+              3
+            ],
+            "trajectory_length": 3
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "generator_family",
+        "dof_id": "G5",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "Ni_Pit_L_then_R_x"
+        ],
+        "label": "single composite generator",
+        "partition_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "scc_count": 31,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            0
+          ],
+          [
+            5
+          ],
+          [
+            16
+          ],
+          [
+            27,
+            28,
+            30
+          ],
+          [
+            32
+          ]
+        ],
+        "terminal_class_count": 5,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              3,
+              4,
+              8,
+              6,
+              5
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 4,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              4,
+              8,
+              6,
+              5
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 8,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              8,
+              6,
+              5
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              15,
+              20,
+              17,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 20,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              20,
+              17,
+              16
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 17,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 28,
+            "terminal_class_id": 27,
+            "trajectory": [
+              31,
+              28
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 28,
+            "seed_cell": 31,
+            "terminal_cell": 28,
+            "terminal_class_id": 27,
+            "trajectory": [
+              28
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 27,
+            "seed_cell": 31,
+            "terminal_cell": 27,
+            "terminal_class_id": 27,
+            "trajectory": [
+              27
+            ],
+            "trajectory_length": 1
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": true,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": false,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "RETURN",
+        "dof_family": "stage_operator_direction",
+        "dof_id": "stage_shift_Rx_to_Rz",
+        "escaped_to_different_terminal_class": false,
+        "generator_names": [
+          "Se_Funnel_L",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Ne_Spiral_R",
+          "D_z",
+          "R_z"
+        ],
+        "label": "stage direction: replace R_x with R_z",
+        "partition_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": true,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            16
+          ]
+        ],
+        "terminal_class_count": 1,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              0,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 5,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 5,
+            "seed_cell": 0,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              25,
+              18,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              3,
+              25,
+              18,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 2,
+            "seed_cell": 3,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              2,
+              5,
+              4,
+              15,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              15,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              17,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              30,
+              27,
+              28,
+              17,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              31,
+              30,
+              27,
+              28,
+              17,
+              16
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 30,
+            "seed_cell": 31,
+            "terminal_cell": 16,
+            "terminal_class_id": 1,
+            "trajectory": [
+              30,
+              27,
+              28,
+              17,
+              16
+            ],
+            "trajectory_length": 5
+          }
+        ]
+      },
+      {
+        "absent_exit_checked": true,
+        "axis0_readout_reconverged": false,
+        "axis0_recomputed_by_source": true,
+        "boundary_found": true,
+        "claim_ceiling": "basin_dof_readout_rows_only",
+        "classification": "BOUNDARY",
+        "dof_family": "loop_order_direction",
+        "dof_id": "loop_reverse_G5",
+        "escaped_to_different_terminal_class": true,
+        "generator_names": [
+          "R_x_then_Ni_Pit_L"
+        ],
+        "label": "loop direction: reverse G5 word",
+        "partition_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "scc_count": 31,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ]
+        },
+        "pinned_perturbation_sizes": [
+          0,
+          1,
+          2
+        ],
+        "pinned_seed_cells": [
+          0,
+          3,
+          15,
+          16,
+          17,
+          31
+        ],
+        "prior_terminal_class_cells": [
+          16
+        ],
+        "returned_to_prior_terminal_class": false,
+        "scrambling_found": false,
+        "state_count": 33,
+        "terminal_class_cells": [
+          [
+            0
+          ],
+          [
+            5
+          ],
+          [
+            16
+          ],
+          [
+            26,
+            27,
+            30
+          ],
+          [
+            32
+          ]
+        ],
+        "terminal_class_count": 5,
+        "trajectory_rows": [
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 0,
+            "seed_cell": 0,
+            "terminal_cell": 0,
+            "terminal_class_id": 0,
+            "trajectory": [
+              0
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 3,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              3,
+              1,
+              7,
+              9,
+              2,
+              4,
+              8,
+              5
+            ],
+            "trajectory_length": 8
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 1,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              1,
+              7,
+              9,
+              2,
+              4,
+              8,
+              5
+            ],
+            "trajectory_length": 7
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_minus_homeostatic_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 7,
+            "seed_cell": 3,
+            "terminal_cell": 5,
+            "terminal_class_id": 5,
+            "trajectory": [
+              7,
+              9,
+              2,
+              4,
+              8,
+              5
+            ],
+            "trajectory_length": 6
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 15,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              15,
+              20,
+              16
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 20,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              20,
+              16
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 15,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 16,
+            "seed_cell": 16,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              16
+            ],
+            "trajectory_length": 1
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 0,
+            "perturbed_cell": 17,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              17,
+              11,
+              19,
+              20,
+              16
+            ],
+            "trajectory_length": 5
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 1,
+            "perturbed_cell": 11,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              11,
+              19,
+              20,
+              16
+            ],
+            "trajectory_length": 4
+          },
+          {
+            "axis0_reconverged_for_sample": true,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "neutral_no_polarity",
+            "perturbation_size": 2,
+            "perturbed_cell": 19,
+            "seed_cell": 17,
+            "terminal_cell": 16,
+            "terminal_class_id": 16,
+            "trajectory": [
+              19,
+              20,
+              16
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 0,
+            "perturbed_cell": 31,
+            "seed_cell": 31,
+            "terminal_cell": 26,
+            "terminal_class_id": 26,
+            "trajectory": [
+              31,
+              24,
+              26
+            ],
+            "trajectory_length": 3
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 1,
+            "perturbed_cell": 24,
+            "seed_cell": 31,
+            "terminal_cell": 26,
+            "terminal_class_id": 26,
+            "trajectory": [
+              24,
+              26
+            ],
+            "trajectory_length": 2
+          },
+          {
+            "axis0_reconverged_for_sample": false,
+            "baseline_axis0_polarity": "neutral_no_polarity",
+            "baseline_terminal_cell": 16,
+            "baseline_terminal_class_cells": [
+              16
+            ],
+            "final_axis0_polarity": "axis0_plus_allo_response",
+            "perturbation_size": 2,
+            "perturbed_cell": 26,
+            "seed_cell": 31,
+            "terminal_cell": 26,
+            "terminal_class_id": 26,
+            "trajectory": [
+              26
+            ],
+            "trajectory_length": 1
+          }
+        ]
+      }
+    ],
+    "envelope_built_with_helper": true,
+    "formal_admission_allowed": false,
+    "lane_comparison": {
+      "all_lanes_same_classification_counts": true,
+      "classification_count_values": {
+        "jax": 360,
+        "julia": 360,
+        "pytorch": 360
+      },
+      "return_boundary_counts": {
+        "jax": {
+          "boundary": 6,
+          "return": 3,
+          "scrambling": 0
+        },
+        "julia": {
+          "boundary": 6,
+          "return": 3,
+          "scrambling": 0
+        },
+        "pytorch": {
+          "boundary": 6,
+          "return": 3,
+          "scrambling": 0
+        }
+      }
+    },
+    "mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "one_to_one_tool_calls": {
+      "by_engine": {
+        "jax": {
+          "pass": true
+        },
+        "julia": {
+          "pass": true
+        },
+        "pytorch": {
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "promotion_allowed": false,
+    "result_integrity": {
+      "build_helper_path": "scripts/build_three_engine_envelope.py",
+      "build_helper_sha256": "199dae118fd09dec2150d7f65e388221bf4e4e3bdcd9feac0d3fbcc99ecc98dd",
+      "envelope_content_without_result_hash_sha256": "c0dec1bf8b0ed18cbc914d1be4a81a3e1002a80c5e137bbd4c7903b539afaa29",
+      "leg_result_sha256": {
+        "jax": "0fda89e076ab7b97b8452e2446749d404671efb4788cbedff30116fc5d88607d",
+        "julia": "b49d0cd9bfb68d34279a9355349ea0d7f300237ff10e3c6489ab2a0a9550804e",
+        "pytorch": "e7d86eed9cc90d8fbde84682027536fadb13f65dfe9fe764a4dde5f65f145138"
+      }
+    },
+    "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_envelope_results.json",
+    "result_summary": {
+      "boundary_dof_count": 6,
+      "claim_ceiling": "basin_dof_readout_rows_only",
+      "classification_counts": {
+        "BOUNDARY": 6,
+        "RETURN": 3
+      },
+      "dof_signature_sha256": "60ee122292fc32e035616dbe9e6d277e3e1942fb6646a846769570d1125ef5c2",
+      "dof_total": 9,
+      "pre_registered_expectation_2_pass": true,
+      "return_dof_count": 3,
+      "scrambling_dof_count": 0
+    },
+    "schema": "basin_dof_perturb_and_read_v0.envelope.v1",
+    "sim_id": "basin_dof_perturb_and_read_v0",
+    "smt_rows": {
+      "cvc5": {
+        "asserted_precomputed_boolean": false,
+        "bound_values": {
+          "boundary_dof_count": 6,
+          "dof_total": 9,
+          "n01_fired": 1,
+          "over_boundary": 1,
+          "probe_degraded": 1,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_bindings": {
+          "boundary_dof_count": 0,
+          "dof_total": 9,
+          "n01_fired": 0,
+          "over_boundary": 1,
+          "probe_degraded": 0,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_verdict": "sat",
+        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+        "load_bearing": true,
+        "ran": true,
+        "tool": "cvc5",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "asserted_precomputed_boolean": false,
+        "bound_values": {
+          "boundary_dof_count": 6,
+          "dof_total": 9,
+          "n01_fired": 1,
+          "over_boundary": 1,
+          "probe_degraded": 1,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_bindings": {
+          "boundary_dof_count": 0,
+          "dof_total": 9,
+          "n01_fired": 0,
+          "over_boundary": 1,
+          "probe_degraded": 0,
+          "return_dof_count": 3,
+          "scrambling_dof_count": 0,
+          "zero_return": 1
+        },
+        "erased_flip_verdict": "sat",
+        "identity": "return>=1 and boundary>=1 and return+boundary+scrambling=dof_total with mandatory controls firing",
+        "load_bearing": true,
+        "ran": true,
+        "tool": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "source_import_audit": {
+      "authority_and_parents": {
+        "basin_contract": {
+          "exists": true,
+          "git_last_commit": "000f48e71",
+          "path": "system_v6/receipts/attractor_basin_criterion_20260611.md",
+          "role": "authority_or_parent",
+          "sha256": "4c84dec9e19aba093493adfe76fc36233445d7f5cef40de5db179dc0a46431a0"
+        },
+        "basin_generating_set_sweep_v0_common": {
+          "exists": true,
+          "git_last_commit": "ba1bfc4d1",
+          "path": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_common.py",
+          "role": "authority_or_parent",
+          "sha256": "7da3e19e33f8ddbc5b69a7e7363cb1c315a8cbcdd40e42482f927bdbaf659875"
+        },
+        "basin_generating_set_sweep_v0_envelope": {
+          "commit_hint": "committed basin machinery",
+          "exists": true,
+          "git_last_commit": "ba1bfc4d1",
+          "path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+          "role": "authority_or_parent",
+          "sha256": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0"
+        },
+        "basin_rc_transition_graph_v0_common": {
+          "exists": true,
+          "git_last_commit": "631f1c3db",
+          "path": "system_v6/sims/basin_rc_transition_graph_v0/basin_rc_transition_graph_v0_common.py",
+          "role": "authority_or_parent",
+          "sha256": "5cbfa68172d9edc73ef47c00ec1d1f29c46187616a80cc330b7eec762d17315b"
+        },
+        "basin_rc_transition_graph_v0_envelope": {
+          "commit_hint": "committed 33-cell R_C machinery",
+          "exists": true,
+          "git_last_commit": "631f1c3db",
+          "path": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json",
+          "role": "authority_or_parent",
+          "sha256": "58f7cdce5974881bf86f68a9a94a7b967ca8cea6b69ffa3b1e3aea981ae9a0a8"
+        },
+        "discrete_axis0_field_v0_common": {
+          "exists": true,
+          "git_last_commit": "5d330b427",
+          "path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_common.py",
+          "role": "authority_or_parent",
+          "sha256": "5b13716283cf32031995c513a0dec597c00c23a3d5fbf97726e9aba12b5eb9be"
+        },
+        "discrete_axis0_field_v0_envelope": {
+          "commit_hint": "5d330b427",
+          "exists": true,
+          "git_last_commit": "5d330b427",
+          "path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+          "role": "authority_or_parent",
+          "sha256": "960bdd0b056ef8bf174561f30c52fc41d488614d917a50e1ae256ee30e2ab8ce"
+        },
+        "manifold_super_sim_v2_weld_envelope": {
+          "commit_hint": "d6815079e",
+          "exists": true,
+          "git_last_commit": "d6815079e",
+          "path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+          "role": "authority_or_parent",
+          "sha256": "d934e97b94164fcf21447f6f4eb91eec36e0d44013dcce30c77813ad22b7ed63"
+        },
+        "owner_doctrine_axes_as_existence_probes": {
+          "commit_hint": "fcf1b3858",
+          "exists": true,
+          "git_last_commit": "fcf1b3858",
+          "path": "system_v6/receipts/owner_doctrine_axes_as_existence_probes_20260612.md",
+          "role": "authority_or_parent",
+          "sha256": "80b2cc55ab9f62749c490e71c48e5a68d188a2579fa4baf8e7980b940d6910b9"
+        }
+      },
+      "axis0_consumption": {
+        "anti_collage": "axis0 common builder is imported and recomputed; result JSON is source-locked context, not copied as the claim path",
+        "commit_hint": "5d330b427",
+        "source_sim_id": "discrete_axis0_field_v0"
+      },
+      "flux_direction_status": {
+        "reason": "the committed flux packet operates on its lifted 64/4096 state carriers; this packet records only stage/loop directions realizable on the 33-cell carrier",
+        "status": "blocked_not_realizable_on_33_cell_carrier_without_lift"
+      },
+      "weld_substrate": {
+        "commit_hint": "d6815079e",
+        "role": "committed substrate/gate context; finite 33-cell carrier rebuilt through Family A/basin R_C rows"
+      }
+    },
+    "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/write_envelope_spec.py",
+    "source_sha256": "b83b6f623617cbfa376660727b4a7857d59312252ff2d3e5c54a240930a78d2a",
+    "tool_calls": {
+      "jax": [
+        {
+          "boundary_case": "over-perturbation root-off boundary",
+          "demotion_condition": "demote if readout is copied or constant-erased probe still passes",
+          "gates": [
+            "dof_classification_table",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "finite DoF graph rows and axis0 polarity table",
+          "load_bearing": true,
+          "negative/erased_control": "G1/G3/G5 boundary rows plus constant-field degrade",
+          "output_object": "DoF classification table and mandatory controls",
+          "positive_case": "G0/G2 return to prior terminal class with reconverged readout",
+          "qualified_api/function": "nx.DiGraph/nx.shortest_path/nx.strongly_connected_components",
+          "receipt_id": "jax_networkx_dof_perturb_read",
+          "tool": "networkx"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "sp.Rational",
+          "receipt_id": "jax_sympy_dof_identity",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "receipt_id": "jax_z3_dof_identity",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+          "receipt_id": "jax_cvc5_dof_identity",
+          "tool": "cvc5"
+        }
+      ],
+      "julia": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+          "receipt_id": "julia_Graphs_dof_perturb_read",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+          "receipt_id": "julia_Z3_dof_identity",
+          "tool": "Z3"
+        }
+      ],
+      "pytorch": [
+        {
+          "boundary_case": "over-perturbation root-off boundary",
+          "demotion_condition": "demote if readout is copied or constant-erased probe still passes",
+          "gates": [
+            "dof_classification_table",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "finite DoF graph rows and axis0 polarity table",
+          "load_bearing": true,
+          "negative/erased_control": "G1/G3/G5 boundary rows plus constant-field degrade",
+          "output_object": "DoF classification table and mandatory controls",
+          "positive_case": "G0/G2 return to prior terminal class with reconverged readout",
+          "qualified_api/function": "torch_geometric.data.Data plus torch.func.vmap",
+          "receipt_id": "pytorch_torch_geometric_dof_perturb_read",
+          "tool": "torch_geometric"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "torch.func",
+          "receipt_id": "pytorch_torch.func_dof_identity",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "sp.Rational",
+          "receipt_id": "pytorch_sympy_dof_identity",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "receipt_id": "pytorch_z3_dof_identity",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+          "receipt_id": "pytorch_cvc5_dof_identity",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "tool_intent": {
+      "claim_classes": [
+        "basin_dof_perturb_and_axis0_readout_rows",
+        "finite_33_cell_rc_trajectory_rows",
+        "return_boundary_scrambling_classification",
+        "probe_erasure_load_bearing_control",
+        "computed_smt_value_bindings"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat bind DoF counts and erased flips",
+          "networkx": "nx.DiGraph/nx.shortest_path/nx.strongly_connected_components recompute paths and terminal classes",
+          "sympy": "sp.Rational bind exact readout/control count ratios",
+          "z3": "z3.Solver/z3.Int/check bind DoF counts and erased flips"
+        },
+        "julia": {
+          "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components recompute terminal classes",
+          "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check bind DoF counts and erased flips"
+        },
+        "pytorch": {
+          "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat bind DoF counts and erased flips",
+          "sympy": "sp.Rational bind exact readout/control count ratios",
+          "torch.func": "torch.func.vmap vectorizes DoF class-code checks",
+          "torch_geometric": "torch_geometric.data.Data carries the DoF graph/control row carrier",
+          "z3": "z3.Solver/z3.Int/check bind DoF counts and erased flips"
+        }
+      }
+    },
+    "unrealized_dof_directions": {
+      "flux": {
+        "not_counted_as_dof_row": true,
+        "reason": "committed flux machinery lives in lifted flux carriers; this packet keeps the 33-cell carrier file-disjoint and realization-relative",
+        "status": "blocked_not_realizable_on_33_cell_carrier_without_lift"
+      }
+    },
+    "validator_expected_commands": [
+      "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_julia.jl",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_jax.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_pytorch.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/basin_dof_perturb_and_read_v0/write_envelope_spec.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/build_three_engine_envelope.py system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_envelope_spec.json > system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/basin_dof_perturb_and_read_v0/validate_basin_dof_perturb_and_read_v0.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/lint_sim_contract.py system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_common.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/basin_dof_perturb_and_read_v0/tests"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "DoF transition rows, terminal classes, trajectories, and RETURN/BOUNDARY/SCRAMBLING table",
+          "receipt_id": "jax_networkx_dof_perturb_read",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_sympy_dof_identity",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_z3_dof_identity",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "jax_cvc5_dof_identity",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "engine_mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+      "one_to_one_tool_calls": {
+        "pass": true
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver computed DoF-count identity and erased flip",
+        "networkx": "nx.DiGraph/nx.shortest_path terminal and DoF-row path checks",
+        "sympy": "sp.Rational exact return/boundary count ratio",
+        "z3": "z3.Solver computed DoF-count identity and erased flip"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_jax_results.json",
+      "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_jax.py",
+      "tool_calls": [
+        {
+          "boundary_case": "over-perturbation root-off boundary",
+          "demotion_condition": "demote if readout is copied or constant-erased probe still passes",
+          "gates": [
+            "dof_classification_table",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "finite DoF graph rows and axis0 polarity table",
+          "load_bearing": true,
+          "negative/erased_control": "G1/G3/G5 boundary rows plus constant-field degrade",
+          "output_object": "DoF classification table and mandatory controls",
+          "positive_case": "G0/G2 return to prior terminal class with reconverged readout",
+          "qualified_api/function": "nx.DiGraph/nx.shortest_path/nx.strongly_connected_components",
+          "receipt_id": "jax_networkx_dof_perturb_read",
+          "tool": "networkx"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "sp.Rational",
+          "receipt_id": "jax_sympy_dof_identity",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "receipt_id": "jax_z3_dof_identity",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+          "receipt_id": "jax_cvc5_dof_identity",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "DoF graph terminal classes and classifications",
+          "receipt_id": "julia_Graphs_dof_perturb_read",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "computed DoF count identity with erased flip",
+          "receipt_id": "julia_Z3_dof_identity",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "engine_mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+      "one_to_one_tool_calls": {
+        "pass": true
+      },
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components DoF terminal-class recomputation",
+        "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check computed DoF-count identity"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "LinearAlgebra",
+        "Dates",
+        "SHA"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_julia_results.json",
+      "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_julia.jl",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+          "receipt_id": "julia_Graphs_dof_perturb_read",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+          "receipt_id": "julia_Z3_dof_identity",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "DoF transition rows, terminal classes, trajectories, and RETURN/BOUNDARY/SCRAMBLING table",
+          "receipt_id": "pytorch_torch_geometric_dof_perturb_read",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_torch.func_dof_identity",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_sympy_dof_identity",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_z3_dof_identity",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "DoF count identity with erased flips",
+          "receipt_id": "pytorch_cvc5_dof_identity",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "engine_mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+      "one_to_one_tool_calls": {
+        "pass": true
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver computed DoF-count identity and erased flip",
+        "sympy": "sp.Rational exact return/boundary count ratio",
+        "torch.func": "vmap vectorized DoF classification code check",
+        "torch_geometric": "Data edge_index carrier for DoF-row graph/control table",
+        "z3": "z3.Solver computed DoF-count identity and erased flip"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_pytorch_results.json",
+      "source_path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_pytorch.py",
+      "tool_calls": [
+        {
+          "boundary_case": "over-perturbation root-off boundary",
+          "demotion_condition": "demote if readout is copied or constant-erased probe still passes",
+          "gates": [
+            "dof_classification_table",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "finite DoF graph rows and axis0 polarity table",
+          "load_bearing": true,
+          "negative/erased_control": "G1/G3/G5 boundary rows plus constant-field degrade",
+          "output_object": "DoF classification table and mandatory controls",
+          "positive_case": "G0/G2 return to prior terminal class with reconverged readout",
+          "qualified_api/function": "torch_geometric.data.Data plus torch.func.vmap",
+          "receipt_id": "pytorch_torch_geometric_dof_perturb_read",
+          "tool": "torch_geometric"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "torch.func",
+          "receipt_id": "pytorch_torch.func_dof_identity",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "sp.Rational",
+          "receipt_id": "pytorch_sympy_dof_identity",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "receipt_id": "pytorch_z3_dof_identity",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "over-perturbation control is encoded",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "proof",
+            "controls",
+            "all_pass"
+          ],
+          "input_object": "computed DoF classification counts and control flags",
+          "load_bearing": true,
+          "negative/erased_control": "boundary/probe/N01 values are erased",
+          "output_object": "UNSAT identity proof and SAT erased flip",
+          "positive_case": "return and boundary counts are both nonzero",
+          "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+          "receipt_id": "pytorch_cvc5_dof_identity",
+          "tool": "cvc5"
+        }
+      ]
+    }
+  },
+  "mode": "all_three_full_sims_basin_dof_axis0_readout_rows",
+  "parent_lineage": {
+    "basin_contract": "system_v6/receipts/attractor_basin_criterion_20260611.md",
+    "basin_generating_set_sweep_v0_common": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_common.py",
+    "basin_generating_set_sweep_v0_envelope": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+    "basin_rc_transition_graph_v0_common": "system_v6/sims/basin_rc_transition_graph_v0/basin_rc_transition_graph_v0_common.py",
+    "basin_rc_transition_graph_v0_envelope": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json",
+    "discrete_axis0_field_v0_common": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_common.py",
+    "discrete_axis0_field_v0_envelope": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+    "manifold_super_sim_v2_weld_envelope": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+    "owner_doctrine_axes_as_existence_probes": "system_v6/receipts/owner_doctrine_axes_as_existence_probes_20260612.md"
+  },
+  "promotion_allowed": false,
+  "sim_id": "basin_dof_perturb_and_read_v0",
+  "stability_pairs": [
+    {
+      "hash": "6ab81f24bbecaa3afe3a02f14a402973f3597aadb77f2cf30d3b37bfd0404d60",
+      "subtree": "dof_classification_table"
+    },
+    {
+      "hash": "a9c9ace1c729c56609cff47957a0d957ec0d166edfc61f941713a27f96b92160",
+      "subtree": "controls"
+    },
+    {
+      "hash": "f1df652c98abf9a5ce7a6f8fcfa8d53c7ceb27ba26e5a8a0e80fe3e366407d2d",
+      "subtree": "axis0_readout_rebuild"
+    }
+  ]
+}

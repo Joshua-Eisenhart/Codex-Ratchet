@@ -1,0 +1,429 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer backend": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "numpy": null,
+    "owner_hopf_lifted_spinor_carrier": "load_bearing",
+    "pytorch": null,
+    "three_spinor_associator_receipt": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer backend": {
+      "reason": "load-bearing independent backend parity over the same finite witness and controls",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Hopf S3 lift vs density quotient readouts",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded by request",
+      "tried": false,
+      "used": false
+    },
+    "owner_hopf_lifted_spinor_carrier": {
+      "reason": "load-bearing owner carrier layer: erasing the U(1) lift/fiber structure changes the layer verdict",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "explicitly excluded by request; stale C8 rule is not repaired by adding decorative torch",
+      "tried": false,
+      "used": false
+    },
+    "three_spinor_associator_receipt": {
+      "reason": "supportive independent cross-check: lifted associator is 2.0 while density quotient is 0.0",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "julia",
+    "linearalgebra",
+    "julia stdlib",
+    "three_spinor_associator_receipt"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "finite Hopf lift-vs-density discriminator verdict for this row",
+    "global phase is visible to the chosen lifted readout and erased by the density quotient",
+    "JAX and Julia agree on keyed finite scalars and booleans"
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia_results.json"
+  ],
+  "associator_confirms": true,
+  "backend": "julia_complexf64",
+  "blocked_consumers": [
+    "formal_admission",
+    "promotion",
+    "manifold_closure",
+    "layer_order_closure",
+    "bridge_admission",
+    "Axis0_admission",
+    "physics_admission"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream": {
+      "blocked_consumers": [
+        "formal_admission",
+        "promotion",
+        "manifold_closure",
+        "layer_order_closure",
+        "bridge_admission",
+        "Axis0_admission",
+        "physics_admission"
+      ],
+      "claim_ceiling": "scratch_diagnostic discriminator only: finite Hopf S3->S2 lifted spinor vs density quotient information-loss row. It may report REAL_LAYER, CONVENTION, GENERIC, PARTIAL, or OPEN for this row only; no promotion, formal admission, manifold closure, bridge, Axis0, physics, or downstream layer-order claim.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "honest_discriminator_verdict": {
+      "layer_verdict": "REAL_LAYER",
+      "note": "The verdict is computed from the finite readouts; all_pass does not promote the row.",
+      "pass": true
+    }
+  },
+  "branch_status_before_run": "discriminator row requested; survival not assumed",
+  "bridge_layer": "none",
+  "carrier_layer": "Hopf lifted spinor S3 with explicit U(1) fiber coordinate",
+  "claim_ceiling": "scratch_diagnostic discriminator only: finite Hopf S3->S2 lifted spinor vs density quotient information-loss row. It may report REAL_LAYER, CONVENTION, GENERIC, PARTIAL, or OPEN for this row only; no promotion, formal admission, manifold closure, bridge, Axis0, physics, or downstream layer-order claim.",
+  "classification": "scratch_diagnostic",
+  "codomain_or_output": "layer verdict, lift/density information booleans, associator cross-check, parity block",
+  "cut_layer": "density quotient erases global U(1) phase",
+  "density_quotient_loses_it": true,
+  "domain": "finite phase orbit of one normalized C2 spinor plus one base-changing control spinor",
+  "eligible_consumers": [],
+  "erased_layer_verdict": "CONVENTION",
+  "fail_rule": "phase readout fails on the lift, density sees the phase, owner erasure does not change the verdict, associator cross-check fails, or parity diverges",
+  "finite_map": "psi in S3 with finite U(1) phase orbit -> rho=|psi><psi| in S2 Bloch base -> keyed lift/density readout gaps -> layer verdict",
+  "finite_witness": {
+    "associator_crosscheck": {
+      "density_quotient_associator": 0.0,
+      "lifted_associator": 2.0,
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/three_spinor_associator_lifted_bracketing_probe_results.json",
+      "sha256": "ff8ef3b76e90861da73686b31401e7aa85e7b885db5e14b448e6c6c15066716e",
+      "source": "receipt"
+    },
+    "booleans": {
+      "associator_confirms": true,
+      "base_control_distinguishes_non_phase_change": true,
+      "classification_fence": true,
+      "density_quotient_loses_it": true,
+      "global_phase_invariant_readouts_do_not_distinguish": true,
+      "jax_x64_enabled": true,
+      "lift_carries_info": true,
+      "owner_erasure_changes_result": true,
+      "phase_is_the_lost_info": true,
+      "phase_sensitive_readouts_distinguish_lift": true
+    },
+    "density_phase_proxy_values": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "erased_layer_verdict": "CONVENTION",
+    "erased_phase_values": [
+      6.016292576253265e-18,
+      -2.1739283039375647e-17,
+      3.3855707793203073e-18,
+      3.377186819188218e-17
+    ],
+    "layer_verdict": "REAL_LAYER",
+    "lift_phase_values": [
+      6.016292576253265e-18,
+      0.37,
+      1.11,
+      2.22
+    ],
+    "phase_angles": [
+      0.0,
+      0.37,
+      1.11,
+      2.22
+    ],
+    "psi0": {
+      "bloch": [
+        0.7546914023644641,
+        -0.5274680563111,
+        0.39015168430823044
+      ],
+      "phi": -0.61,
+      "theta": 1.17
+    },
+    "values": {
+      "associator_density_quotient": 0.0,
+      "associator_lifted": 2.0,
+      "base_bloch_gap": 0.5274533307966988,
+      "base_density_fro_gap": 0.37296582696577696,
+      "base_expectation_gap": 0.5274533307966988,
+      "base_ray_fidelity_drop": 0.06955175404213265,
+      "bloch_global_phase_gap_max": 1.9229626863835638e-16,
+      "density_fro_global_phase_max": 1.5700924586837752e-16,
+      "density_phase_proxy_abs_max": 0.0,
+      "erased_layer_verdict_code": 1.0,
+      "erased_lift_phase_abs_max": 3.377186819188218e-17,
+      "expectation_global_phase_gap_max": 1.5700924586837752e-16,
+      "layer_verdict_code": 4.0,
+      "lift_phase_abs_max": 2.22,
+      "lift_phase_error_max": 6.016292576253265e-18,
+      "lift_vector_gap_max": 1.7913973713600955,
+      "phase_angle_count": 4.0,
+      "phase_angle_max": 2.22,
+      "ray_fidelity_drop_max": 4.440892098500626e-16
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T05:34:43Z",
+  "geometry_layer": "Hopf quotient S3 -> S2 represented by density matrix/Bloch vector base",
+  "graveyard_companions": {
+    "base_control_density_readout_moves_when_base_moves": {
+      "base_density_fro_gap": 0.37296582696577696,
+      "pass": true
+    },
+    "erased_u1_fiber_control_collapses": {
+      "erased_lift_phase_abs_max": 3.377186819188218e-17,
+      "pass": true
+    },
+    "global_phase_invariant_readouts_do_not_distinguish": {
+      "bloch_global_phase_gap_max": 1.9229626863835638e-16,
+      "density_fro_global_phase_max": 1.5700924586837752e-16,
+      "pass": true
+    }
+  },
+  "jax_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_hopf_lifted_vs_density_results.json",
+  "jax_source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_disc_hopf_lifted_vs_density_probe.py",
+  "jax_x64_enabled": true,
+  "law_or_candidate_tested": "A phase/fiber readout survives on the lifted spinor and dies on rho=|psi><psi|",
+  "layer_verdict": "REAL_LAYER",
+  "lift_carries_info": true,
+  "name": "disc_hopf_lifted_vs_density",
+  "nearby_variants": {
+    "passed": 1,
+    "total": 1,
+    "variants": [
+      "hopf_s3_to_s2_lifted_vs_density_u1_phase"
+    ]
+  },
+  "negative": {
+    "base_control_density_readout_moves_when_base_moves": {
+      "base_density_fro_gap": 0.37296582696577696,
+      "pass": true
+    },
+    "erased_u1_fiber_control_collapses": {
+      "erased_lift_phase_abs_max": 3.377186819188218e-17,
+      "pass": true
+    },
+    "global_phase_invariant_readouts_do_not_distinguish": {
+      "bloch_global_phase_gap_max": 1.9229626863835638e-16,
+      "density_fro_global_phase_max": 1.5700924586837752e-16,
+      "pass": true
+    }
+  },
+  "numpy_compute_used": false,
+  "object_id": "disc_hopf_lifted_vs_density",
+  "owner_carrier_load_bearing": true,
+  "parity": {
+    "boolean_mismatches": [],
+    "max_abs_diff": 2.220446049250313e-16,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_hopf_lifted_vs_density_results.json",
+    "scalar_diffs": [],
+    "string_mismatches": [],
+    "within_1e_9": true
+  },
+  "pass_rule": "classification fence, lift/density controls, owner-erasure ablation, associator cross-check, and dual-backend parity pass",
+  "phase_is_the_lost_info": true,
+  "positive": {
+    "associator_crosscheck": {
+      "density_quotient": 0.0,
+      "lifted": 2.0,
+      "pass": true
+    },
+    "density_quotient_erases_u1_fiber": {
+      "density_phase_proxy_abs_max": 0.0,
+      "pass": true
+    },
+    "finite_lifted_spinor_phase_readout": {
+      "lift_phase_error_max": 6.016292576253265e-18,
+      "pass": true
+    },
+    "owner_carrier_load_bearing": {
+      "erased_layer_verdict": "CONVENTION",
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "formal_admission",
+    "promotion",
+    "manifold_closure",
+    "layer_order_closure",
+    "bridge_admission",
+    "Axis0_admission",
+    "physics_admission"
+  ],
+  "promotion_status": "diagnostic_only",
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_hopf_lifted_vs_density_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia_results.json"
+  ],
+  "required_tools": [
+    "julia",
+    "linearalgebra",
+    "jax peer"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "associator_confirms": true,
+    "claim_ceiling": "scratch_diagnostic discriminator only: finite Hopf S3->S2 lifted spinor vs density quotient information-loss row. It may report REAL_LAYER, CONVENTION, GENERIC, PARTIAL, or OPEN for this row only; no promotion, formal admission, manifold closure, bridge, Axis0, physics, or downstream layer-order claim.",
+    "density_quotient_loses_it": true,
+    "layer_verdict": "REAL_LAYER",
+    "lift_carries_info": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "phase_is_the_lost_info": true
+  },
+  "root_constraints_in_force": {
+    "F01": "finite two-component spinor, finite global-phase orbit, finite density and Bloch readout table",
+    "N01": "phase-sensitive lifted readout is compared against quotient-erased density readouts and erasure controls"
+  },
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "shared_booleans": {
+    "associator_confirms": true,
+    "base_control_distinguishes_non_phase_change": true,
+    "classification_fence": true,
+    "density_quotient_loses_it": true,
+    "global_phase_invariant_readouts_do_not_distinguish": true,
+    "jax_x64_enabled": true,
+    "lift_carries_info": true,
+    "owner_erasure_changes_result": true,
+    "phase_is_the_lost_info": true,
+    "phase_sensitive_readouts_distinguish_lift": true
+  },
+  "shared_scalars": {
+    "associator_density_quotient": 0.0,
+    "associator_lifted": 2.0,
+    "base_bloch_gap": 0.5274533307966988,
+    "base_density_fro_gap": 0.37296582696577696,
+    "base_expectation_gap": 0.5274533307966988,
+    "base_ray_fidelity_drop": 0.06955175404213265,
+    "bloch_global_phase_gap_max": 1.9229626863835638e-16,
+    "density_fro_global_phase_max": 1.5700924586837752e-16,
+    "density_phase_proxy_abs_max": 0.0,
+    "erased_layer_verdict_code": 1.0,
+    "erased_lift_phase_abs_max": 3.377186819188218e-17,
+    "expectation_global_phase_gap_max": 1.5700924586837752e-16,
+    "layer_verdict_code": 4.0,
+    "lift_phase_abs_max": 2.22,
+    "lift_phase_error_max": 6.016292576253265e-18,
+    "lift_vector_gap_max": 1.7913973713600955,
+    "phase_angle_count": 4.0,
+    "phase_angle_max": 2.22,
+    "ray_fidelity_drop_max": 4.440892098500626e-16
+  },
+  "sim_class": "carrier_readout_discriminator_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "disc_hopf_lifted_vs_density",
+  "source_alignment_category": "hopf_s3_to_s2_lifted_vs_density_information_loss_discriminator",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia.jl",
+  "source_refs": {
+    "associator_jax_result": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/three_spinor_associator_lifted_bracketing_probe_results.json",
+      "sha256": "ff8ef3b76e90861da73686b31401e7aa85e7b885db5e14b448e6c6c15066716e"
+    },
+    "associator_julia_result": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/three_spinor_associator_lifted_bracketing_julia_results.json",
+      "sha256": "be30e7b3ba2602b8d1c3ed9685c6e9fc468eb565156c3759a243bfc90df39e8d"
+    },
+    "jax_source": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_disc_hopf_lifted_vs_density_probe.py",
+      "sha256": "4cea9bfd31452d2d2e8fdc6eb099524203349deeeeace830012cb8a89f90a93a"
+    },
+    "julia_result": {
+      "exists": false,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia_results.json",
+      "sha256": null
+    },
+    "julia_source": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_hopf_lifted_vs_density_julia.jl",
+      "sha256": "da26077856b0f88ff2c584d77e47157a78ce76c57b012b305f3a4deb45085590"
+    }
+  },
+  "source_sha256": "da26077856b0f88ff2c584d77e47157a78ce76c57b012b305f3a4deb45085590",
+  "stop_condition_fired": false,
+  "tier": "2 finite Hopf lift/base discriminator",
+  "tool_integration_depth": {
+    "JAX peer backend": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "numpy": null,
+    "owner_hopf_lifted_spinor_carrier": "load_bearing",
+    "pytorch": null,
+    "three_spinor_associator_receipt": "supportive"
+  },
+  "tool_manifest": {
+    "JAX peer backend": {
+      "reason": "load-bearing independent backend parity over the same finite witness and controls",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Hopf S3 lift vs density quotient readouts",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "explicitly excluded by request",
+      "tried": false,
+      "used": false
+    },
+    "owner_hopf_lifted_spinor_carrier": {
+      "reason": "load-bearing owner carrier layer: erasing the U(1) lift/fiber structure changes the layer verdict",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "explicitly excluded by request; stale C8 rule is not repaired by adding decorative torch",
+      "tried": false,
+      "used": false
+    },
+    "three_spinor_associator_receipt": {
+      "reason": "supportive independent cross-check: lifted associator is 2.0 while density quotient is 0.0",
+      "tried": true,
+      "used": true
+    }
+  },
+  "torch_compute_used": false,
+  "version": "1.0",
+  "why_not_v4_probes": {
+    "reason": "density/base-only probes cannot carry the U(1) global phase; this row explicitly compares lift readouts to the quotient-erased base"
+  },
+  "witness_trace_id": "hopf_s3_s2_u1_phase_orbit_density_quotient"
+}

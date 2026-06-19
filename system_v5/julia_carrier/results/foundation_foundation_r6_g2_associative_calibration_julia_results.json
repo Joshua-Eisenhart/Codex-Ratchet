@@ -1,0 +1,1166 @@
+{
+  "C": {
+    "density_guard": {
+      "hermitian": true,
+      "hermitian_defect": 0.0,
+      "normalization": "QuantumOptics rank-one projector guard; calibration result is from phi probes, not rho",
+      "psd": true,
+      "trace": 1.0,
+      "trace_eq_1": true
+    },
+    "hermitian": true,
+    "normalization": "orthonormal imaginary octonion basis; each coordinate 3-plane has unit volume",
+    "psd": true,
+    "rung_specific_constraint": "phi_ijk is computed from the Cayley-Dickson octonion table by e_i e_j = sum_k phi_ijk e_k on Im(O)",
+    "trace_eq_1": true
+  },
+  "M": {
+    "explicit_probe_family": "All 35 coordinate oriented 3-plane probes e_i wedge e_j wedge e_k, evaluated by phi(u,v,w) against unit volume.",
+    "finite_probe_counts": {
+      "calibrated_planes": 7,
+      "coordinate_3_planes": 35
+    },
+    "measurement_map": "M(P)=(phi(P), volume(P)=1, cross-product closure flag) for each coordinate 3-plane P",
+    "name": "G2 associative calibration probe family"
+  },
+  "S_mod_M": {
+    "calibrated_class_count": 7,
+    "calibrated_planes": [
+      {
+        "label": "span(e1,e2,e3)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          2,
+          3
+        ],
+        "plane": [
+          1,
+          2,
+          3
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e1,e4,e5)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          4,
+          5
+        ],
+        "plane": [
+          1,
+          4,
+          5
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e1,e6,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          7,
+          6
+        ],
+        "plane": [
+          1,
+          6,
+          7
+        ],
+        "sorted_phi": -1
+      },
+      {
+        "label": "span(e2,e4,e6)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          2,
+          4,
+          6
+        ],
+        "plane": [
+          2,
+          4,
+          6
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e2,e5,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          2,
+          5,
+          7
+        ],
+        "plane": [
+          2,
+          5,
+          7
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e3,e4,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          3,
+          4,
+          7
+        ],
+        "plane": [
+          3,
+          4,
+          7
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e3,e5,e6)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          3,
+          6,
+          5
+        ],
+        "plane": [
+          3,
+          5,
+          6
+        ],
+        "sorted_phi": -1
+      }
+    ],
+    "definition": "Coordinate 3-planes are equivalent by M when their calibration/closure probe vector agrees; calibrated class is phi=1 after orientation and closed under octonion cross product.",
+    "uncalibrated_class_count": 28
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing quaternion-stage crosscheck before accepting the Cayley-Dickson octonion table",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive finite norm/eigenvalue checks only; not the claim carrier",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing trace-one PSD Hermitian projector guard for the finite probe constraints",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT check deriving phi(u,v,w) from bound phi and plane coordinates",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "calibration": {
+    "coordinate_probe_summary": {
+      "calibrated_plane_count": 7,
+      "plane_count": 35,
+      "planes": [
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": 1.0,
+          "plane": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            2,
+            5
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            2,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            3,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": 1.0,
+          "plane": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            5,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            1,
+            5,
+            7
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": -1.0,
+          "plane": [
+            1,
+            6,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            3,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": 1.0,
+          "plane": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            4,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": 1.0,
+          "plane": [
+            2,
+            5,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": 1.0,
+          "plane": [
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "abs_phi": 1.0,
+          "calibrated_as_unoriented_plane": true,
+          "phi_on_sorted_orientation": -1.0,
+          "plane": [
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "abs_phi": 0.0,
+          "calibrated_as_unoriented_plane": false,
+          "phi_on_sorted_orientation": 0.0,
+          "plane": [
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "uncalibrated_plane_count": 28
+    },
+    "cross_product_closure": [
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          1,
+          2,
+          3
+        ],
+        "products": [
+          {
+            "pair": [
+              1,
+              2
+            ],
+            "support": [
+              3
+            ]
+          },
+          {
+            "pair": [
+              1,
+              3
+            ],
+            "support": [
+              2
+            ]
+          },
+          {
+            "pair": [
+              2,
+              1
+            ],
+            "support": [
+              3
+            ]
+          },
+          {
+            "pair": [
+              2,
+              3
+            ],
+            "support": [
+              1
+            ]
+          },
+          {
+            "pair": [
+              3,
+              1
+            ],
+            "support": [
+              2
+            ]
+          },
+          {
+            "pair": [
+              3,
+              2
+            ],
+            "support": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          1,
+          4,
+          5
+        ],
+        "products": [
+          {
+            "pair": [
+              1,
+              4
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              1,
+              5
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              4,
+              1
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              4,
+              5
+            ],
+            "support": [
+              1
+            ]
+          },
+          {
+            "pair": [
+              5,
+              1
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              5,
+              4
+            ],
+            "support": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          1,
+          6,
+          7
+        ],
+        "products": [
+          {
+            "pair": [
+              1,
+              6
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              1,
+              7
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              6,
+              1
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              6,
+              7
+            ],
+            "support": [
+              1
+            ]
+          },
+          {
+            "pair": [
+              7,
+              1
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              7,
+              6
+            ],
+            "support": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          2,
+          4,
+          6
+        ],
+        "products": [
+          {
+            "pair": [
+              2,
+              4
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              2,
+              6
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              4,
+              2
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              4,
+              6
+            ],
+            "support": [
+              2
+            ]
+          },
+          {
+            "pair": [
+              6,
+              2
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              6,
+              4
+            ],
+            "support": [
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          2,
+          5,
+          7
+        ],
+        "products": [
+          {
+            "pair": [
+              2,
+              5
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              2,
+              7
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              5,
+              2
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              5,
+              7
+            ],
+            "support": [
+              2
+            ]
+          },
+          {
+            "pair": [
+              7,
+              2
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              7,
+              5
+            ],
+            "support": [
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          3,
+          4,
+          7
+        ],
+        "products": [
+          {
+            "pair": [
+              3,
+              4
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              3,
+              7
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              4,
+              3
+            ],
+            "support": [
+              7
+            ]
+          },
+          {
+            "pair": [
+              4,
+              7
+            ],
+            "support": [
+              3
+            ]
+          },
+          {
+            "pair": [
+              7,
+              3
+            ],
+            "support": [
+              4
+            ]
+          },
+          {
+            "pair": [
+              7,
+              4
+            ],
+            "support": [
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "closed_under_cross_product": true,
+        "plane": [
+          3,
+          5,
+          6
+        ],
+        "products": [
+          {
+            "pair": [
+              3,
+              5
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              3,
+              6
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              5,
+              3
+            ],
+            "support": [
+              6
+            ]
+          },
+          {
+            "pair": [
+              5,
+              6
+            ],
+            "support": [
+              3
+            ]
+          },
+          {
+            "pair": [
+              6,
+              3
+            ],
+            "support": [
+              5
+            ]
+          },
+          {
+            "pair": [
+              6,
+              5
+            ],
+            "support": [
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "erased_first_fano_calibrated_count": 6,
+    "fano_lines": [
+      {
+        "label": "span(e1,e2,e3)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          2,
+          3
+        ],
+        "plane": [
+          1,
+          2,
+          3
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e1,e4,e5)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          4,
+          5
+        ],
+        "plane": [
+          1,
+          4,
+          5
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e1,e6,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          1,
+          7,
+          6
+        ],
+        "plane": [
+          1,
+          6,
+          7
+        ],
+        "sorted_phi": -1
+      },
+      {
+        "label": "span(e2,e4,e6)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          2,
+          4,
+          6
+        ],
+        "plane": [
+          2,
+          4,
+          6
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e2,e5,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          2,
+          5,
+          7
+        ],
+        "plane": [
+          2,
+          5,
+          7
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e3,e4,e7)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          3,
+          4,
+          7
+        ],
+        "plane": [
+          3,
+          4,
+          7
+        ],
+        "sorted_phi": 1
+      },
+      {
+        "label": "span(e3,e5,e6)",
+        "oriented_phi": 1,
+        "oriented_plane": [
+          3,
+          6,
+          5
+        ],
+        "plane": [
+          3,
+          5,
+          6
+        ],
+        "sorted_phi": -1
+      }
+    ],
+    "first_fano_oriented_plane": [
+      1,
+      2,
+      3
+    ],
+    "first_fano_phi": 1.0,
+    "forced_commutative_zero_phi_calibrated_count": 0,
+    "generic_control_phi": 0.0,
+    "generic_control_plane": [
+      1,
+      2,
+      4
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T04:30:53Z",
+  "julia_z3": {
+    "asserted_precomputed_scalar_literal": false,
+    "bound_phi_components": 343,
+    "bound_plane_coordinates": 21,
+    "claim": "SMT derives phi(u,v,w)=1 for the first Fano-line plane from bound phi and plane coordinates; asserting phi!=1 is UNSAT",
+    "derived_expression": "sum_ijk phi_ijk*u_i*v_j*w_k",
+    "erase_flip_unsat_to_sat": true,
+    "erased_fano_phi_not_one_status": "sat",
+    "fano_phi_not_one_status": "unsat",
+    "generic_phi_less_than_one_status": "sat",
+    "solver": "Z3.jl"
+  },
+  "negative_control_flip": {
+    "drop_one_fano_probe_count_7_to_6": true,
+    "force_commutative_zero_phi_count_7_to_0": true,
+    "generic_coordinate_plane_phi_less_than_one": true,
+    "julia_z3_erase_flip_unsat_to_sat": true
+  },
+  "object_id": "foundation_r6_g2_associative_calibration_julia",
+  "octonion_structure": {
+    "construction": "Cayley-Dickson R -> C -> H -> O",
+    "quaternion_stage_matches_CliffordAlgebras": true,
+    "table_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r6_g2_associative_calibration_julia_results.json",
+  "rung_id": "foundation_r6_g2_associative_calibration",
+  "runtime_preflight": {
+    "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "julia_version": "1.12.6"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r6_g2_associative_calibration_julia.jl",
+  "summary": {
+    "all_pass": true,
+    "calibrated_plane_count": 7,
+    "erased_first_fano_calibrated_count": 6,
+    "fano_line_count": 7,
+    "first_fano_phi": 1.0,
+    "forced_commutative_zero_phi_calibrated_count": 0,
+    "generic_control_phi": 0.0,
+    "julia_z3_erased_fano_phi_not_one": "sat",
+    "julia_z3_fano_phi_not_one": "unsat"
+  }
+}

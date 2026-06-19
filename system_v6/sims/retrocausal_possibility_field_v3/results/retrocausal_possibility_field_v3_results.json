@@ -1,0 +1,721 @@
+{
+  "ACCEPTANCE_GATE": {
+    "differs_from_forward_selection": true,
+    "differs_from_full_history_forward": true,
+    "differs_from_single_anchor_forward": true,
+    "honest_message": "EARNED: the present survivor distinguishes the global co-admissibility compressor from BOTH the single-anchor and the strongest full-history forward sequential selector",
+    "present_survivor_forward": "b2",
+    "present_survivor_forward_full_history": "b2",
+    "present_survivor_retro": "b8",
+    "retrocausal_earned": true
+  },
+  "all_invariants_hold": true,
+  "all_pass": true,
+  "blocked_downstream_consumers": [
+    "Axis0 claim",
+    "flux claim",
+    "physics claim",
+    "formal manifold admission",
+    "claim that this trivial carrier is THE retrocausal field of the real model",
+    "claim that global-vs-greedy separation demonstrates literal backward causation",
+    "claim that the boolean constraint C is a physical co-admissibility law"
+  ],
+  "branch_states": {
+    "b0": {
+      "a": 0,
+      "b": 0
+    },
+    "b1": {
+      "a": 0,
+      "b": 1
+    },
+    "b2": {
+      "a": 1,
+      "b": 0
+    },
+    "b3": {
+      "a": 1,
+      "b": 1
+    },
+    "b4": {
+      "a": 2,
+      "b": 0
+    },
+    "b5": {
+      "a": 2,
+      "b": 2
+    },
+    "b6": {
+      "a": 3,
+      "b": 1
+    },
+    "b7": {
+      "a": 3,
+      "b": 3
+    },
+    "b8": {
+      "a": 0,
+      "b": 3
+    }
+  },
+  "claim_ceiling": "'retrocausal' EARNED only as a GLOBAL-vs-GREEDY probe separation on a trivial finite carrier: the global co-admissibility compressor (present_survivor_retro=b8, co-adm pair count 2) is probe-distinguishable from BOTH the single-anchor forward selector (b2) AND the strongest full-history forward selector (b2, count 1), with compatibility DERIVED from a boolean co-admissibility constraint C ((a_p+a_q even) AND (|b_p-b_q|<=1)) and orientation DERIVED from measured fiber cardinality (many-to-one=INWARD, injective=OUTWARD). This is a COMPUTATIONAL separation (global optimum vs forward greedy), NOT literal backward causation, NOT a temporal arrow, NOT physics/Axis0/manifold/canonical.",
+  "classification": "scratch_diagnostic",
+  "compatibility_relation_C": {
+    "b0|b1": true,
+    "b0|b2": false,
+    "b0|b3": false,
+    "b0|b4": true,
+    "b0|b5": false,
+    "b0|b6": false,
+    "b0|b7": false,
+    "b0|b8": false,
+    "b1|b2": false,
+    "b1|b3": false,
+    "b1|b4": true,
+    "b1|b5": true,
+    "b1|b6": false,
+    "b1|b7": false,
+    "b1|b8": false,
+    "b2|b3": true,
+    "b2|b4": false,
+    "b2|b5": false,
+    "b2|b6": true,
+    "b2|b7": false,
+    "b2|b8": false,
+    "b3|b4": false,
+    "b3|b5": false,
+    "b3|b6": true,
+    "b3|b7": false,
+    "b3|b8": false,
+    "b4|b5": false,
+    "b4|b6": false,
+    "b4|b7": false,
+    "b4|b8": false,
+    "b5|b6": false,
+    "b5|b7": false,
+    "b5|b8": true,
+    "b6|b7": false,
+    "b6|b8": false,
+    "b7|b8": false
+  },
+  "compression_map": {
+    "constraint_family": "co_admissible(p,q) iff (a_p+a_q even) AND (|b_p-b_q|<=1)",
+    "direction": "INWARD",
+    "direction_is_derived_from_fiber_cardinality": true,
+    "global_coadm_pair_count": 2,
+    "global_joint_assignment": {
+      "Sigma_1": "b8",
+      "Sigma_2": "b5",
+      "Sigma_3": "b1"
+    },
+    "inward_strata_derived_orientations": {
+      "Sigma_1": "INWARD",
+      "Sigma_2": "INWARD",
+      "Sigma_3": "INWARD"
+    },
+    "num_future_strata": 3,
+    "per_stratum": [
+      {
+        "branches_on_shell": [
+          "b1",
+          "b6",
+          "b7"
+        ],
+        "chosen_branch": "b1",
+        "derived_orientation": "INWARD",
+        "fiber_cardinality": {
+          "distinct_images": 1,
+          "domain_size": 3,
+          "injective": false,
+          "many_to_one": true,
+          "max_fiber": 3
+        },
+        "shell_id": "Sigma_3",
+        "stratum_map": {
+          "b1": "b1",
+          "b6": "b1",
+          "b7": "b1"
+        }
+      },
+      {
+        "branches_on_shell": [
+          "b0",
+          "b4",
+          "b5"
+        ],
+        "chosen_branch": "b5",
+        "derived_orientation": "INWARD",
+        "fiber_cardinality": {
+          "distinct_images": 1,
+          "domain_size": 3,
+          "injective": false,
+          "many_to_one": true,
+          "max_fiber": 3
+        },
+        "shell_id": "Sigma_2",
+        "stratum_map": {
+          "b0": "b5",
+          "b4": "b5",
+          "b5": "b5"
+        }
+      },
+      {
+        "branches_on_shell": [
+          "b2",
+          "b3",
+          "b8"
+        ],
+        "chosen_branch": "b8",
+        "derived_orientation": "INWARD",
+        "fiber_cardinality": {
+          "distinct_images": 1,
+          "domain_size": 3,
+          "injective": false,
+          "many_to_one": true,
+          "max_fiber": 3
+        },
+        "shell_id": "Sigma_1",
+        "stratum_map": {
+          "b2": "b8",
+          "b3": "b8",
+          "b8": "b8"
+        }
+      }
+    ],
+    "present_survivor_retro": "b8",
+    "selector": "retrocausal_global_compressor",
+    "semantics": "global joint co-admissibility optimum over the shell-product; futures converge jointly to select the present (NOT a forward greedy walk)",
+    "shell_order_outer_to_inner": [
+      "Sigma_3",
+      "Sigma_2",
+      "Sigma_1"
+    ],
+    "shell_ordering_load_bearing": true,
+    "weights_computed_before_compression": true
+  },
+  "constraint_set": "C_coadmissible_parity_and_bounded_gap; retro=global_joint_optimum; forward=outer_first_greedy",
+  "criteria_checked": [
+    "HARD_STOP_future_continuations_ne_present_survivor",
+    "ORIENTATION_IS_EMERGENT_REVERSAL_FLIPS_LABEL",
+    "RETROCAUSAL_DIFFERS_FROM_FORWARD_SELECTION",
+    "SHELL_REASSIGNMENT_MOVES_SURVIVOR",
+    "compatibility_computed_before_compression",
+    "compatibility_is_boolean_constraint_relation_C",
+    "compression_compresses_multiple_strata",
+    "compression_map_distinct_from_outward_record",
+    "constraint_C_non_degenerate",
+    "future_continuations_future_indexed",
+    "future_continuations_lists_of_distinct_ge2",
+    "future_flow_inward_DERIVED_from_fiber_cardinality",
+    "has_record_shell",
+    "inward_strata_maps_are_many_to_one",
+    "no_stipulated_shell_orientation_string",
+    "outward_record_binds_inward_provenance",
+    "outward_record_hash_chain_recomputes",
+    "present_survivor_is_innermost_of_global_joint_assignment",
+    "record_outward_DERIVED_from_injectivity"
+  ],
+  "derived_orientations": {
+    "inward_strata": {
+      "Sigma_1": "INWARD",
+      "Sigma_2": "INWARD",
+      "Sigma_3": "INWARD"
+    },
+    "record_stratum": "OUTWARD"
+  },
+  "event_x": "event_x:apex_decision_node",
+  "first_class_keys_present": [
+    "event_x",
+    "shells",
+    "shell_radius_r",
+    "shell_orientation",
+    "future_continuations",
+    "branch_states",
+    "compatibility_weights",
+    "compression_map",
+    "present_survivor",
+    "outward_record"
+  ],
+  "formal_admission_allowed": false,
+  "forward_full_history_control": {
+    "committed_assignment": {
+      "Sigma_1": "b2",
+      "Sigma_2": "b0",
+      "Sigma_3": "b1"
+    },
+    "forward_path": [
+      [
+        "Sigma_3",
+        "b1"
+      ],
+      [
+        "Sigma_2",
+        "b0"
+      ],
+      [
+        "Sigma_1",
+        "b2"
+      ]
+    ],
+    "present_survivor_full_history": "b2",
+    "selector": "forward_full_history_selector",
+    "semantics": "strongest forward greedy: accumulate co-adm to ALL prior commits; still outer->inner irrevocable commitment, NO global revision",
+    "shell_order": [
+      "Sigma_3",
+      "Sigma_2",
+      "Sigma_1"
+    ]
+  },
+  "forward_sequential_control": {
+    "forward_path": [
+      [
+        "Sigma_3",
+        "b1"
+      ],
+      [
+        "Sigma_2",
+        "b0"
+      ],
+      [
+        "Sigma_1",
+        "b2"
+      ]
+    ],
+    "present_survivor_forward": "b2",
+    "selector": "forward_sequential_selector",
+    "semantics": "plain outer->inner forward greedy selection; NO inward/retrocausal semantics",
+    "shell_order": [
+      "Sigma_3",
+      "Sigma_2",
+      "Sigma_1"
+    ],
+    "steps": [
+      {
+        "branches_on_shell": [
+          "b1",
+          "b6",
+          "b7"
+        ],
+        "incoming_anchor": null,
+        "kind": "seed_within_shell_degree",
+        "selected": "b1",
+        "shell_id": "Sigma_3"
+      },
+      {
+        "branches_on_shell": [
+          "b0",
+          "b4",
+          "b5"
+        ],
+        "incoming_anchor": "b1",
+        "kind": "greedy_per_step_coadm_with_incoming_anchor",
+        "selected": "b0",
+        "shell_id": "Sigma_2"
+      },
+      {
+        "branches_on_shell": [
+          "b2",
+          "b3",
+          "b8"
+        ],
+        "incoming_anchor": "b0",
+        "kind": "greedy_per_step_coadm_with_incoming_anchor",
+        "selected": "b2",
+        "shell_id": "Sigma_1"
+      }
+    ]
+  },
+  "future_continuations": {
+    "Sigma_1": [
+      "b2",
+      "b3",
+      "b8"
+    ],
+    "Sigma_2": [
+      "b0",
+      "b4",
+      "b5"
+    ],
+    "Sigma_3": [
+      "b1",
+      "b6",
+      "b7"
+    ]
+  },
+  "independent_divergence_search": {
+    "forward_assignment": {
+      "Sigma_1": "b2",
+      "Sigma_2": "b0",
+      "Sigma_3": "b1"
+    },
+    "forward_coadm_pair_count": 1,
+    "forward_full_history_assignment": {
+      "Sigma_1": "b2",
+      "Sigma_2": "b0",
+      "Sigma_3": "b1"
+    },
+    "forward_full_history_coadm_pair_count": 1,
+    "global_assignment": {
+      "Sigma_1": "b8",
+      "Sigma_2": "b5",
+      "Sigma_3": "b1"
+    },
+    "global_beats_full_history_forward": true,
+    "global_beats_single_anchor_forward": true,
+    "global_coadm_pair_count": 2,
+    "present_survivor_forward": "b2",
+    "present_survivor_forward_full_history": "b2",
+    "present_survivor_retro": "b8",
+    "survivors_differ_from_full_history": true,
+    "survivors_differ_from_single_anchor": true
+  },
+  "invariants": {
+    "HARD_STOP_future_continuations_ne_present_survivor": true,
+    "ORIENTATION_IS_EMERGENT_REVERSAL_FLIPS_LABEL": true,
+    "RETROCAUSAL_DIFFERS_FROM_FORWARD_SELECTION": true,
+    "SHELL_REASSIGNMENT_MOVES_SURVIVOR": true,
+    "compatibility_computed_before_compression": true,
+    "compatibility_is_boolean_constraint_relation_C": true,
+    "compression_compresses_multiple_strata": true,
+    "compression_map_distinct_from_outward_record": true,
+    "constraint_C_non_degenerate": true,
+    "future_continuations_future_indexed": true,
+    "future_continuations_lists_of_distinct_ge2": true,
+    "future_flow_inward_DERIVED_from_fiber_cardinality": true,
+    "has_record_shell": true,
+    "inward_strata_maps_are_many_to_one": true,
+    "no_stipulated_shell_orientation_string": true,
+    "outward_record_binds_inward_provenance": true,
+    "outward_record_hash_chain_recomputes": true,
+    "present_survivor_is_innermost_of_global_joint_assignment": true,
+    "record_outward_DERIVED_from_injectivity": true
+  },
+  "name": "retrocausal_possibility_field_v3",
+  "negative_control_parity_drop": {
+    "full_C_survivor": "b8",
+    "gap_only_survivor": "b2",
+    "mechanism": "drop the parity clause from C (keep only the bounded-gap clause)",
+    "parity_clause_is_load_bearing": true
+  },
+  "negative_control_scramble_futures": {
+    "all_invariants_hold": false,
+    "control_breaks": true,
+    "mechanism": "scramble future_continuations to 1 distinct branch per shell"
+  },
+  "negative_control_uniform_constraint": {
+    "mechanism": "uniform (all-True) co-admissibility relation",
+    "present_survivor_forward": "b2",
+    "present_survivor_retro": "b2",
+    "still_differs_from_forward": false,
+    "uniform_correctly_kills_the_probe": true
+  },
+  "object_name": "RetrocausalPossibilityField",
+  "object_statement_sha256": "02f813d355b5812e1021eb023e5aca7c6006c00dcfc060cf94ff727b7cb8dd78",
+  "orientation_emergence_control": {
+    "base_record_orientation_instance": "OUTWARD",
+    "inward_actual_measure": {
+      "distinct_images": 1,
+      "domain_size": 3,
+      "injective": false,
+      "many_to_one": true,
+      "max_fiber": 3
+    },
+    "inward_actual_orientation": "INWARD",
+    "inward_orientation_flips_under_reversal": true,
+    "inward_reversed_measure": {
+      "distinct_images": 3,
+      "domain_size": 3,
+      "injective": true,
+      "many_to_one": false,
+      "max_fiber": 1
+    },
+    "inward_reversed_orientation": "OUTWARD",
+    "orientation_is_emergent": true,
+    "record_actual_measure": {
+      "distinct_images": 6,
+      "domain_size": 6,
+      "injective": true,
+      "many_to_one": false,
+      "max_fiber": 1
+    },
+    "record_actual_orientation": "OUTWARD",
+    "record_orientation_flips_end_to_end": true,
+    "record_orientation_flips_under_reversal": true,
+    "record_reversed_measure": {
+      "distinct_images": 1,
+      "domain_size": 6,
+      "injective": false,
+      "many_to_one": true,
+      "max_fiber": 6
+    },
+    "record_reversed_orientation": "INWARD",
+    "reversed_record_orientation_instance": "INWARD"
+  },
+  "orientation_is_emergent": true,
+  "outward_record": {
+    "append_only_recomputed": true,
+    "binds_present_survivor": "b8",
+    "compressed_events": [
+      "Sigma_1:b2",
+      "Sigma_1:b3",
+      "Sigma_2:b0",
+      "Sigma_2:b4",
+      "Sigma_3:b6",
+      "Sigma_3:b7"
+    ],
+    "inward_provenance_bound": true,
+    "record_entries": [
+      {
+        "branches_compressed_away": [
+          "b6",
+          "b7"
+        ],
+        "chosen_branch": "b1",
+        "final_present_survivor": "b8",
+        "from_shell": "Sigma_3",
+        "record_derived_orientation": "OUTWARD",
+        "source_derived_orientation": "INWARD"
+      },
+      {
+        "branches_compressed_away": [
+          "b0",
+          "b4"
+        ],
+        "chosen_branch": "b5",
+        "final_present_survivor": "b8",
+        "from_shell": "Sigma_2",
+        "record_derived_orientation": "OUTWARD",
+        "source_derived_orientation": "INWARD"
+      },
+      {
+        "branches_compressed_away": [
+          "b2",
+          "b3"
+        ],
+        "chosen_branch": "b8",
+        "final_present_survivor": "b8",
+        "from_shell": "Sigma_1",
+        "record_derived_orientation": "OUTWARD",
+        "source_derived_orientation": "INWARD"
+      }
+    ],
+    "record_fiber_cardinality": {
+      "distinct_images": 6,
+      "domain_size": 6,
+      "injective": true,
+      "many_to_one": false,
+      "max_fiber": 1
+    },
+    "record_final_hash": "8db18194a2275a5fdc2a3178baf9601366e811fc250cce1a857e0ae9d8220fc3",
+    "record_hash_chain": [
+      {
+        "entry_hashes": [
+          "05e9dcfdb0e9ec4a9643adde485c9546d1566932f4473fe2d916a6e6d8591ffc"
+        ],
+        "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "record_state_hash": "7d2fd38cce73ad862e57729f67a3d980592470f9244850f756ab4ca99a17eb4f",
+        "step": 0
+      },
+      {
+        "entry_hashes": [
+          "662632a999580a1f392e0e7d63e03f92f8679501926adb16cbf511560f375a5e"
+        ],
+        "previous_hash": "7d2fd38cce73ad862e57729f67a3d980592470f9244850f756ab4ca99a17eb4f",
+        "record_state_hash": "54b3415d96c4bd639695219c66ad3112c3d38750cc0743e886c45a1f702a552d",
+        "step": 1
+      },
+      {
+        "entry_hashes": [
+          "e3f6e5dbefb97919fccbfab49bff44fb31460271652bb93ed0f9f2a2afbc5739"
+        ],
+        "previous_hash": "54b3415d96c4bd639695219c66ad3112c3d38750cc0743e886c45a1f702a552d",
+        "record_state_hash": "8db18194a2275a5fdc2a3178baf9601366e811fc250cce1a857e0ae9d8220fc3",
+        "step": 2
+      }
+    ],
+    "record_map": {
+      "Sigma_1:b2": "Sigma_1:b2",
+      "Sigma_1:b3": "Sigma_1:b3",
+      "Sigma_2:b0": "Sigma_2:b0",
+      "Sigma_2:b4": "Sigma_2:b4",
+      "Sigma_3:b6": "Sigma_3:b6",
+      "Sigma_3:b7": "Sigma_3:b7"
+    },
+    "record_orientation": "OUTWARD",
+    "record_orientation_is_derived_from_fiber_cardinality": true,
+    "record_shell_id": "Sigma_record",
+    "reflects_per_shell_compression_steps": true
+  },
+  "present_survivor": "b8",
+  "present_survivor_forward": "b2",
+  "present_survivor_forward_full_history": "b2",
+  "probe_family": "M_boolean_coadmissibility_plus_global_vs_greedy_survivor_plus_fiber_cardinality_orientation",
+  "promotion_allowed": false,
+  "retrocausal_earned": true,
+  "shell_orientation": {
+    "Sigma_1": "INWARD",
+    "Sigma_2": "INWARD",
+    "Sigma_3": "INWARD",
+    "Sigma_record": "OUTWARD"
+  },
+  "shell_radius_r": [
+    3,
+    2,
+    1,
+    -1
+  ],
+  "shell_reassignment_control": {
+    "base_future_continuations": {
+      "Sigma_1": [
+        "b2",
+        "b3",
+        "b8"
+      ],
+      "Sigma_2": [
+        "b0",
+        "b4",
+        "b5"
+      ],
+      "Sigma_3": [
+        "b1",
+        "b6",
+        "b7"
+      ]
+    },
+    "base_global_assignment": {
+      "Sigma_1": "b8",
+      "Sigma_2": "b5",
+      "Sigma_3": "b1"
+    },
+    "base_present_survivor": "b8",
+    "reassigned_future_continuations": {
+      "Sigma_1": [
+        "b2",
+        "b3"
+      ],
+      "Sigma_2": [
+        "b0",
+        "b4",
+        "b5"
+      ],
+      "Sigma_3": [
+        "b1",
+        "b6",
+        "b7",
+        "b8"
+      ]
+    },
+    "reassigned_global_assignment": {
+      "Sigma_1": "b2",
+      "Sigma_2": "b0",
+      "Sigma_3": "b1"
+    },
+    "reassigned_present_survivor": "b2",
+    "shell_reassignment_moves_survivor": true,
+    "union": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "b4",
+      "b5",
+      "b6",
+      "b7",
+      "b8"
+    ],
+    "union_identical": true
+  },
+  "shell_reassignment_moves_survivor": true,
+  "shells": [
+    {
+      "role": "future possibility stratum (outer)",
+      "shell_id": "Sigma_3",
+      "shell_radius_r": 3,
+      "stratum_kind": "future"
+    },
+    {
+      "role": "future possibility stratum (mid)",
+      "shell_id": "Sigma_2",
+      "shell_radius_r": 2,
+      "stratum_kind": "future"
+    },
+    {
+      "role": "future possibility stratum (inner)",
+      "shell_id": "Sigma_1",
+      "shell_radius_r": 1,
+      "stratum_kind": "future"
+    },
+    {
+      "role": "survival record stratum",
+      "shell_id": "Sigma_record",
+      "shell_radius_r": -1,
+      "stratum_kind": "record"
+    }
+  ],
+  "tool_integration_depth": {
+    "copy": "supportive",
+    "hashlib": "load_bearing",
+    "itertools": "load_bearing",
+    "jax": null,
+    "json": "supportive",
+    "julia": null,
+    "numpy": null,
+    "pytorch": null,
+    "z3": null
+  },
+  "tool_manifest": {
+    "copy": {
+      "reason": "copy.deepcopy restores the branch-feature carrier in the state-mutation trap WITHOUT contaminating the serialized object (fixes the v1 b3.a=6 shallow-copy bug). Supportive (test hygiene), but required so the result JSON reflects the canonical carrier, not a mutated one.",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "append-only sha256 hash-chain is the outward_record machinery (reused from rpf v0/v1/v2); each chain entry binds one distinct compressed-away branch event, making the record map INJECTIVE -- and the record's OUTWARD orientation is DERIVED from that injectivity. Load-bearing for outward_record provenance AND for the measured record-stratum cardinality.",
+      "tried": true,
+      "used": true
+    },
+    "itertools": {
+      "reason": "itertools.product enumerates the finite shell-product so the retrocausal_global_compressor can pick the JOINT assignment that maximizes the count of co-admissible (future,future) pairs under C. The global optimum is precisely what a forward outer->inner greedy selector cannot compute; the enumeration is load-bearing for the global-vs-greedy probe separation that earns 'retrocausal'.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "not needed: trivial finite carrier; the global optimum is a tiny exhaustive product, not a batched/exhaustive numeric sweep needing JAX.",
+      "tried": false,
+      "used": false
+    },
+    "json": {
+      "reason": "canonical_json serialization for stable hash-chain digests and the result receipt; supportive (serialization, not the claim itself).",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "not needed: no Canon algebra artifact is consumed; field instantiation with a boolean-constraint global compressor only.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "available but deliberately NOT used: the carrier is a trivial finite set, the constraint is a boolean predicate, and the global optimum is a small exhaustive enumeration; pure-Python keeps the global-vs-greedy separation auditable. Heavy numeric tooling would re-enter the proxy basin.",
+      "tried": true,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not needed: no density matrix / network / autograd carrier; using it would be decorative and would re-enter the proxy basin.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "not needed: this is a field-instantiation receipt establishing a GLOBAL-vs-GREEDY probe separation by direct enumeration, not a structural-impossibility (UNSAT) proof. No formal admission is claimed.",
+      "tried": false,
+      "used": false
+    }
+  },
+  "trap_state_mutation": {
+    "base_survivor": "b8",
+    "carrier_restored_no_contamination": true,
+    "mutated_branch": "b5",
+    "mutated_survivor": "b3",
+    "mutation": "b5.a += 5 (on a deepcopy; global restored from a deep snapshot)",
+    "state_mutation_moves_survivor": true
+  }
+}

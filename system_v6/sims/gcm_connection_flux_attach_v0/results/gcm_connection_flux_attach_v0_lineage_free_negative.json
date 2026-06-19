@@ -1,0 +1,519 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Manifolds": "load_bearing",
+    "builder_audit_boundary": "load_bearing",
+    "cvc5": "load_bearing",
+    "gcm_substrate_check": "load_bearing",
+    "networkx": "load_bearing",
+    "python_stdlib": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Manifolds": {
+      "reason": "Julia scoped S3/Hopf shell carrier check for occupied strata.",
+      "tried": true,
+      "used": true
+    },
+    "builder_audit_boundary": {
+      "reason": "G.2a post-audit-idempotent builder/audit boundary from birth.",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "Independent SMT bind of the same shell-count/signature invariants.",
+      "tried": true,
+      "used": true
+    },
+    "gcm_substrate_check": {
+      "reason": "load-bearing frozen lineage consumption and lineage-free negative enforcement.",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX/Python lineage graph resolves survivor->class->region->shell.",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "canonical JSON, SHA-256 source locks, and deterministic packet writing.",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "Exact symbolic A/F/h/Stokes formulas reused from S2 feedstock and evaluated on survivors.",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch vmap recomputes holonomy and curvature density on occupied shell etas.",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "SMT binds shell-count/signature invariants from recomputed rows.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "builder_gates": {
+    "G_2a_idempotency_from_birth": true,
+    "boundary_helper_fully_used": true,
+    "file_disjoint_packet": true,
+    "lineage_free_negative_required": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "substrate_check_helper_script_side": true
+  },
+  "carrier_and_pins_relative": true,
+  "claim": "Evaluate Hopf connection A, F=dA, h(eta), shell flux, and leakage rows on the attached survivor geometry.",
+  "claim_ceiling": "scratch_diagnostic_layers_10_12_1Q_connection_flux_carrier_and_pins_relative",
+  "classification": "scratch_diagnostic",
+  "connection_flux_attachment": {
+    "formula_pin": {
+      "connection_form": "A = d phi + cos(2*eta) d chi",
+      "curvature_form": "F = -2*sin(2*eta) d eta wedge d chi",
+      "flux_type": "Hermes split: geometric curvature flux only; NEVER runtime/QIT flux.",
+      "holonomy_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)",
+      "source": "geo_s2_connection_flux_foliation_v0",
+      "stokes_pair": "h(eta_j)-h(eta_i)+int_[eta_i,eta_j]F = 0 for occupied-shell strips"
+    },
+    "geometric_flux_only_fence": {
+      "disallowed_flux_words": [
+        "runtime flux",
+        "QIT flux",
+        "memory flux",
+        "chirality flux"
+      ],
+      "runtime_or_qit_flux_claimed": false,
+      "statement": "Hermes flux split: this is Hopf curvature/geometric flux only; NEVER runtime/QIT flux."
+    },
+    "shell_occupation_signature": "2-4-4-4-2",
+    "shell_rows": [
+      {
+        "T_eta_label": "0",
+        "T_eta_rad": 0.0,
+        "connection": {
+          "A_chi": 1.0,
+          "A_eta": 0.0,
+          "A_phi": 1.0,
+          "local_section": "A = d phi + cos(2*eta) d chi"
+        },
+        "curvature": {
+          "F_eta_chi": 0.0,
+          "form": "F = -2*sin(2*eta) d eta wedge d chi"
+        },
+        "holonomy_lifted_cycle": {
+          "formula": "h(eta) = -2*pi*cos(2*eta)",
+          "value": -6.283185307179586
+        },
+        "occupied_survivor_count": 2,
+        "shell_flux": {
+          "formula": "F strip flux to previous occupied shell",
+          "occupied_weighted_flux": 0.0,
+          "previous_shell": null,
+          "stokes_residual": 0.0,
+          "strip_flux_value": 0.0
+        },
+        "source": "recomputed_on_survivor_loci"
+      },
+      {
+        "T_eta_label": "pi/8",
+        "T_eta_rad": 0.392699081698724,
+        "connection": {
+          "A_chi": 0.707106781186548,
+          "A_eta": 0.0,
+          "A_phi": 1.0,
+          "local_section": "A = d phi + cos(2*eta) d chi"
+        },
+        "curvature": {
+          "F_eta_chi": -1.414213562373095,
+          "form": "F = -2*sin(2*eta) d eta wedge d chi"
+        },
+        "holonomy_lifted_cycle": {
+          "formula": "h(eta) = -2*pi*cos(2*eta)",
+          "value": -4.442882938158366
+        },
+        "occupied_survivor_count": 4,
+        "shell_flux": {
+          "formula": "F strip flux to previous occupied shell",
+          "occupied_weighted_flux": -7.36120947608488,
+          "previous_shell": "0",
+          "stokes_residual": 0.0,
+          "strip_flux_value": -1.84030236902122
+        },
+        "source": "recomputed_on_survivor_loci"
+      },
+      {
+        "T_eta_label": "pi/4",
+        "T_eta_rad": 0.785398163397448,
+        "connection": {
+          "A_chi": 0.0,
+          "A_eta": 0.0,
+          "A_phi": 1.0,
+          "local_section": "A = d phi + cos(2*eta) d chi"
+        },
+        "curvature": {
+          "F_eta_chi": -2.0,
+          "form": "F = -2*sin(2*eta) d eta wedge d chi"
+        },
+        "holonomy_lifted_cycle": {
+          "formula": "h(eta) = -2*pi*cos(2*eta)",
+          "value": 0.0
+        },
+        "occupied_survivor_count": 4,
+        "shell_flux": {
+          "formula": "F strip flux to previous occupied shell",
+          "occupied_weighted_flux": -17.771531752633464,
+          "previous_shell": "pi/8",
+          "stokes_residual": 0.0,
+          "strip_flux_value": -4.442882938158366
+        },
+        "source": "recomputed_on_survivor_loci"
+      },
+      {
+        "T_eta_label": "3pi/8",
+        "T_eta_rad": 1.178097245096172,
+        "connection": {
+          "A_chi": -0.707106781186547,
+          "A_eta": 0.0,
+          "A_phi": 1.0,
+          "local_section": "A = d phi + cos(2*eta) d chi"
+        },
+        "curvature": {
+          "F_eta_chi": -1.414213562373095,
+          "form": "F = -2*sin(2*eta) d eta wedge d chi"
+        },
+        "holonomy_lifted_cycle": {
+          "formula": "h(eta) = -2*pi*cos(2*eta)",
+          "value": 4.442882938158366
+        },
+        "occupied_survivor_count": 4,
+        "shell_flux": {
+          "formula": "F strip flux to previous occupied shell",
+          "occupied_weighted_flux": -17.771531752633464,
+          "previous_shell": "pi/4",
+          "stokes_residual": 0.0,
+          "strip_flux_value": -4.442882938158366
+        },
+        "source": "recomputed_on_survivor_loci"
+      },
+      {
+        "T_eta_label": "pi/2",
+        "T_eta_rad": 1.570796326794897,
+        "connection": {
+          "A_chi": -1.0,
+          "A_eta": 0.0,
+          "A_phi": 1.0,
+          "local_section": "A = d phi + cos(2*eta) d chi"
+        },
+        "curvature": {
+          "F_eta_chi": 0.0,
+          "form": "F = -2*sin(2*eta) d eta wedge d chi"
+        },
+        "holonomy_lifted_cycle": {
+          "formula": "h(eta) = -2*pi*cos(2*eta)",
+          "value": 6.283185307179586
+        },
+        "occupied_survivor_count": 2,
+        "shell_flux": {
+          "formula": "F strip flux to previous occupied shell",
+          "occupied_weighted_flux": -3.680604738042441,
+          "previous_shell": "3pi/8",
+          "stokes_residual": 0.0,
+          "strip_flux_value": -1.840302369021221
+        },
+        "source": "recomputed_on_survivor_loci"
+      }
+    ]
+  },
+  "controls": {
+    "carve_erasure": {
+      "anchoring_breaks": true,
+      "control": "erase frozen survivor/class/region lineage",
+      "negative_errors": [
+        "gcm_object_id mismatch: cited=None registry='gcmobj_a40e54e13cec01466c9d675028b3574b'",
+        "registry_body_sha256 missing from lineage",
+        "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+      ],
+      "pass": true
+    },
+    "phase_quotient": {
+      "control": "remove vertical spinor phase and retain density/base shell data",
+      "lost": [
+        "anchored vertical fiber path as lower-layer coordinate"
+      ],
+      "pass": true,
+      "survives": [
+        "A_chi by eta",
+        "F_eta_chi by eta",
+        "h(eta)",
+        "shell occupancy"
+      ]
+    },
+    "shell_permutation": {
+      "control": "permute occupied shells before adjacency check",
+      "detects_order_change": true,
+      "pass": true,
+      "permuted_order": [
+        "0",
+        "pi/4",
+        "pi/8",
+        "3pi/8",
+        "pi/2"
+      ],
+      "permuted_stokes_residuals": [
+        1e-15,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "counts": {
+    "candidate_region_count": 6,
+    "occupied_shell_count": 5,
+    "quotient_class_count": 8,
+    "survivor_count": 16
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "independent CVC5 check of occupied shell count and survivor count",
+      "input_object": {
+        "shell_count": 5,
+        "survivor_count": 16
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "claim": "occupied shell count and survivor count match the frozen attached geometry after step-4 recomputation",
+      "input_object": {
+        "shell_count": 5,
+        "survivor_count": 16
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat"
+    }
+  },
+  "disallowed_claims": [
+    "THE manifold",
+    "terrain admission",
+    "axis admission",
+    "runtime flux",
+    "QIT flux",
+    "physics admission",
+    "formal admission"
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T22:45:20Z",
+  "leakage_analysis": {
+    "adjacency_rows": [
+      {
+        "between_shells": [
+          "0",
+          "pi/8"
+        ],
+        "flux_delta": -1.84030236902122,
+        "holonomy_delta": 1.84030236902122,
+        "leakage_status": "closed_edge",
+        "stokes_residual": 0.0
+      },
+      {
+        "between_shells": [
+          "pi/8",
+          "pi/4"
+        ],
+        "flux_delta": -4.442882938158366,
+        "holonomy_delta": 4.442882938158366,
+        "leakage_status": "closed_edge",
+        "stokes_residual": 0.0
+      },
+      {
+        "between_shells": [
+          "pi/4",
+          "3pi/8"
+        ],
+        "flux_delta": -4.442882938158366,
+        "holonomy_delta": 4.442882938158366,
+        "leakage_status": "closed_edge",
+        "stokes_residual": 0.0
+      },
+      {
+        "between_shells": [
+          "3pi/8",
+          "pi/2"
+        ],
+        "flux_delta": -1.840302369021221,
+        "holonomy_delta": 1.84030236902122,
+        "leakage_status": "closed_edge",
+        "stokes_residual": 0.0
+      }
+    ],
+    "claim_boundary": "Closure is Stokes closure of the carved geometric-flux rows only, not admission.",
+    "honest_outcome": "nontrivial_closed_flux",
+    "status": "closed"
+  },
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "not_THE_manifold": true,
+  "promotion_allowed": false,
+  "readout_declaration": {
+    "families": [
+      "geometric_curvature_flux",
+      "Hopf holonomy",
+      "shell adjacency Stokes residual"
+    ],
+    "not_entropy_promotion": "These are readouts on an attached 1Q carrier, not full ladder entropy admission."
+  },
+  "result_sha256": "a771cf7bcc2dc6fb73eb7f90c4aa471d293120a978fa8d92df70e4ecb4718bad",
+  "schema": "gcm_connection_flux_attach_v0_result_v1",
+  "seven_audit_questions": {
+    "what_broke_when_removed": "lineage-free substrate negative breaks anchoring; shell permutation breaks the declared shell order; phase quotient loses fiber anchoring while base geometric rows remain.",
+    "which_entropy_readout_families_varied": [
+      "geometric_curvature_flux",
+      "Hopf holonomy",
+      "shell adjacency Stokes residual"
+    ],
+    "which_layer": "layers 10-12",
+    "which_nesting_relation": "integrated-onto-the-carve",
+    "which_qubit_depth": "1Q",
+    "which_surface_network": "attached survivor shell strata on frozen GCM object, not a ring-checkerboard/CA-QCA runner",
+    "which_three_engines_ran": [
+      "julia",
+      "jax",
+      "pytorch"
+    ]
+  },
+  "sim_id": "gcm_connection_flux_attach_v0",
+  "source_locks": {
+    "builder_audit_boundary": {
+      "exists": true,
+      "git_last_commit": "aed311e85",
+      "path": "scripts/builder_audit_boundary.py",
+      "sha256": "ed25d7cef8fda4a1f0e84d71d280b39c32682e14dafd833ccce8766c60d5f67b"
+    },
+    "frozen_registry": {
+      "exists": true,
+      "git_last_commit": "d9771ebe9",
+      "path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+      "sha256": "64cd715166cee039f89494166496adabf15300bae4b8cc79fee98fc0251189f2"
+    },
+    "geometry_attach_result": {
+      "exists": true,
+      "git_last_commit": "748fca97c",
+      "path": "system_v6/sims/gcm_geometry_attach_v0/results/gcm_geometry_attach_v0_results.json",
+      "sha256": "a5aaea50a144ca7fe6b95446d6a4aae4e47e85967c150f45d409454983848db8"
+    },
+    "ladder_contract": {
+      "exists": true,
+      "git_last_commit": null,
+      "path": "/Users/joshuaeisenhart/wiki/concepts/nested-qubit-ladder-entropy-surface-sim-contract.md",
+      "sha256": "f896fe819d37e6ab0d4c8b0d0673550b19ed5e2b6eae19bc021df8b2b87ebe20"
+    },
+    "layer_stack_reference": {
+      "exists": true,
+      "git_last_commit": "e4f03353a",
+      "path": "system_v6/receipts/gcm_layer_stack_reference_20260612.md",
+      "sha256": "89da568dbb990920e920d0872174340cda738be80428bb28f02e3f98bf9ddd9a"
+    },
+    "s2_connection_flux_feedstock": {
+      "exists": true,
+      "git_last_commit": "5d8a6f1de",
+      "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/geo_s2_connection_flux_foliation_v0_jax.py",
+      "sha256": "b2a5000e43537433f146622353be8d126ef6e823a186b1978af63e17a86cc93f"
+    },
+    "substrate_check_helper": {
+      "exists": true,
+      "git_last_commit": "d9771ebe9",
+      "path": "scripts/gcm_substrate_check.py",
+      "sha256": "5e769e1635a27398a13d7621457f10b4451e27c7a48613f5ab7c3fcdeaa6800f"
+    }
+  },
+  "substrate_enforcement": {
+    "helper": "scripts/gcm_substrate_check.py",
+    "lineage_free_negative": {
+      "errors": [
+        "gcm_object_id mismatch: cited=None registry='gcmobj_a40e54e13cec01466c9d675028b3574b'",
+        "registry_body_sha256 missing from lineage",
+        "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+      ],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": false,
+      "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+      "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+    },
+    "negative_failed_as_required": true,
+    "positive_payload_ok": {
+      "errors": [],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+      "registry_path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json"
+    }
+  },
+  "three_axis_declaration": {
+    "layer": {
+      "layer_range": "10-12",
+      "layers": [
+        "10 Hopf connection A on the attached survivor geometry",
+        "11 curvature/geometric flux F=dA on the attached survivor geometry",
+        "12 occupied Hopf shell strata with holonomy and shell-flux rows"
+      ],
+      "step_4_verb": "A, F=dA, holonomy, shell flux, leakage ON the attached geometry"
+    },
+    "nesting": {
+      "coordinate": "integrated-onto-the-carve",
+      "definition": "same gcm_object_id plus survivor/class/region mappings inherited from gcm_geometry_attach_v0 results by hash"
+    },
+    "qubit_depth": {
+      "anti_bias_boundary": "1Q connection and geometric curvature flux only; no runtime/QIT/terrain/axis/physics claim.",
+      "coordinate": "1Q"
+    }
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "frozen_lineage_connection_flux_attachment",
+      "occupied_shell_holonomy",
+      "geometric_flux_only_fence",
+      "shell_adjacency_leakage_rows",
+      "lineage_free_negative_red"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "networkx": "nx.Graph resolves survivor/class/region/shell paths for every occupied locus.",
+        "sympy": "sp.Rational guards shell counts and signature before JAX numeric rows are accepted."
+      },
+      "julia": {
+        "Manifolds": "Manifolds.Sphere(3) anchors the S3 carrier while Julia recomputes shell holonomy rows."
+      },
+      "pytorch": {
+        "sympy": "sp.Rational guards exact shell count and shell occupation signature.",
+        "torch.func": "vmap recomputes h(eta) and F_eta_chi over the five occupied shell etas."
+      }
+    }
+  },
+  "upstream_conditionals": {
+    "gcm_geometry_attach_v0": {
+      "audit_status": "in_flight",
+      "claim_condition": "This packet consumes gcm_geometry_attach_v0 RESULTS by hash; claims are conditional on that packet's audit verdict.",
+      "file_sha256": "a5aaea50a144ca7fe6b95446d6a4aae4e47e85967c150f45d409454983848db8",
+      "path": "system_v6/sims/gcm_geometry_attach_v0/results/gcm_geometry_attach_v0_results.json",
+      "result_sha256": "fb8c29ff653571e2dd98415233f0418fd319a4259fb40f48406ccf85523e6eeb"
+    },
+    "gcm_object_id_freeze_v0": {
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "path": "system_v6/sims/gcm_object_id_freeze_v0/results/gcm_object_id_freeze_v0_registry.json",
+      "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed"
+    },
+    "geo_s2_connection_flux_foliation_v0": {
+      "file_sha256": "b2a5000e43537433f146622353be8d126ef6e823a186b1978af63e17a86cc93f",
+      "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/geo_s2_connection_flux_foliation_v0_jax.py",
+      "reuse": "formula pin for A, F=dA, h(eta), and Stokes shell flux; recomputed on frozen survivor loci."
+    }
+  }
+}

@@ -1,0 +1,1502 @@
+{
+  "C": {
+    "hermitian": true,
+    "normalization": true,
+    "psd": true,
+    "rung_specific_constraint": "All four readout maps consume the same fixed support S of four Cl(6)-spinor density states; no readout consumes another readout and no lens identity is asserted.",
+    "trace_eq_1": true
+  },
+  "M": {
+    "explicit_finite_probe_family": [
+      "QIT: von Neumann entropy, l1 coherence, purity, first-qubit subsystem entropy",
+      "IGT lens only: abs(P[i,j]-P[j,i]) over qubit-Z payoff probes derived from carrier density",
+      "Holodeck/runtime: ordered diagonal trajectory accumulator/reachability signature",
+      "Physics/math: Cl(3,0) grade-1 vector content from first-qubit Pauli coordinates"
+    ],
+    "lens_order": [
+      "qit",
+      "igt",
+      "holodeck_runtime",
+      "physics_math"
+    ],
+    "matrix_shape": [
+      4,
+      4
+    ]
+  },
+  "S_mod_M": {
+    "S": [
+      "basis_uuu",
+      "ghz_phase",
+      "w_single_down",
+      "biased_phase"
+    ],
+    "carrier_erased_class_count": 1,
+    "carrier_erased_signatures": [
+      [
+        2.897588722,
+        0.0,
+        2.689236111,
+        0.0
+      ],
+      [
+        2.897588722,
+        0.0,
+        2.689236111,
+        0.0
+      ],
+      [
+        2.897588722,
+        0.0,
+        2.689236111,
+        0.0
+      ],
+      [
+        2.897588722,
+        0.0,
+        2.689236111,
+        0.0
+      ]
+    ],
+    "equivalence_relation": "s ~_M t iff every scalarized readout probe in the four-lens matrix agrees after rounding to 1e-9",
+    "full_probe_class_count": 4,
+    "full_signatures": [
+      [
+        1.0,
+        0.0,
+        2.433738426,
+        2.0
+      ],
+      [
+        2.693147181,
+        0.0,
+        2.52025463,
+        0.0
+      ],
+      [
+        3.636514168,
+        0.0,
+        2.735821759,
+        0.666666667
+      ],
+      [
+        4.325776801,
+        0.5,
+        3.03443287,
+        0.5
+      ]
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "SHA": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Clifford grade-vector content for the physics/math readout column",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "supportive UTC timestamp",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive trace, eigenvalue, and matrix hygiene checks; not the carrier authority",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing construction of carrier density operators plus von Neumann and subsystem entropy readouts",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source fingerprint",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras"
+  ],
+  "all_pass": true,
+  "backend": "julia_authoritative_quantumoptics_cliffordalgebras",
+  "carrier_source_pin": {
+    "read_only": true,
+    "rebuilt": false,
+    "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/three_engine_clifford_spinor_carrier_envelope_results.json",
+    "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_three_engine_clifford_spinor_carrier_envelope.py"
+  },
+  "claim_ceiling": "Scratch diagnostic cross-model readout matrix only: four readout lenses over one fixed Clifford-spinor support S. No identity, canon, bridge, IGT truth, physics truth, Axis0, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "control_rows": {
+    "carrier_erasure_rows": [
+      {
+        "amplitudes": "maximally_mixed_density_no_spinor_amplitudes",
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.125,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 21,
+            "normalized_signature": [
+              0.21875,
+              1.0,
+              1.0,
+              0.4704861111111111
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1626
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 0.3535533905932738,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.0
+          },
+          "qit": {
+            "coherence_l1": 0.0,
+            "purity": 0.125,
+            "subsystem_entropy_q0": 0.6931471805599453,
+            "von_neumann_entropy": 2.0794415416798357
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.689236111111111,
+          "igt": 0.0,
+          "physics_math": 0.0,
+          "qit": 2.897588722239781
+        },
+        "state_id": "basis_uuu",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": "maximally_mixed_density_no_spinor_amplitudes",
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.125,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 21,
+            "normalized_signature": [
+              0.21875,
+              1.0,
+              1.0,
+              0.4704861111111111
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1626
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 0.3535533905932738,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.0
+          },
+          "qit": {
+            "coherence_l1": 0.0,
+            "purity": 0.125,
+            "subsystem_entropy_q0": 0.6931471805599453,
+            "von_neumann_entropy": 2.0794415416798357
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.689236111111111,
+          "igt": 0.0,
+          "physics_math": 0.0,
+          "qit": 2.897588722239781
+        },
+        "state_id": "ghz_phase",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": "maximally_mixed_density_no_spinor_amplitudes",
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.125,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 21,
+            "normalized_signature": [
+              0.21875,
+              1.0,
+              1.0,
+              0.4704861111111111
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1626
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 0.3535533905932738,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.0
+          },
+          "qit": {
+            "coherence_l1": 0.0,
+            "purity": 0.125,
+            "subsystem_entropy_q0": 0.6931471805599453,
+            "von_neumann_entropy": 2.0794415416798357
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.689236111111111,
+          "igt": 0.0,
+          "physics_math": 0.0,
+          "qit": 2.897588722239781
+        },
+        "state_id": "w_single_down",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": "maximally_mixed_density_no_spinor_amplitudes",
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.125,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 21,
+            "normalized_signature": [
+              0.21875,
+              1.0,
+              1.0,
+              0.4704861111111111
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1626
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 0.3535533905932738,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.0
+          },
+          "qit": {
+            "coherence_l1": 0.0,
+            "purity": 0.125,
+            "subsystem_entropy_q0": 0.6931471805599453,
+            "von_neumann_entropy": 2.0794415416798357
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.689236111111111,
+          "igt": 0.0,
+          "physics_math": 0.0,
+          "qit": 2.897588722239781
+        },
+        "state_id": "biased_phase",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      }
+    ],
+    "order_reversal_rows": [
+      {
+        "amplitudes": [
+          {
+            "imag": 0.0,
+            "real": 1.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          }
+        ],
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.0,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 16,
+            "normalized_signature": [
+              0.16666666666666666,
+              1.0,
+              1.0,
+              0.49623842592592593
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1715
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 1.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 1.0,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 1.0
+          },
+          "qit": {
+            "coherence_l1": 0.0,
+            "purity": 1.0,
+            "subsystem_entropy_q0": 0.0,
+            "von_neumann_entropy": 0.0
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.662905092592593,
+          "igt": 0.0,
+          "physics_math": 2.0,
+          "qit": 1.0
+        },
+        "state_id": "basis_uuu",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": [
+          {
+            "imag": 0.0,
+            "real": 0.7071067811865475
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.7071067811865475
+          }
+        ],
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": 0.0,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 19,
+            "normalized_signature": [
+              0.19791666666666666,
+              1.0,
+              0.875,
+              0.44733796296296297
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 7,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1546
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.0,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 0.9999999999999998,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.0
+          },
+          "qit": {
+            "coherence_l1": 0.9999999999999998,
+            "purity": 0.9999999999999996,
+            "subsystem_entropy_q0": 0.6931471805599454,
+            "von_neumann_entropy": 2.220446049250313e-16
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.5202546296296298,
+          "igt": 0.0,
+          "physics_math": 0.0,
+          "qit": 2.693147180559945
+        },
+        "state_id": "ghz_phase",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": [
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.5773502691896258
+          },
+          {
+            "imag": 0.0,
+            "real": 0.5773502691896258
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.5773502691896258
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          }
+        ],
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": -1.7110202791409588e-16,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 45,
+            "normalized_signature": [
+              0.46875,
+              0.875,
+              1.0,
+              0.5115740740740741
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 8,
+            "unique_runtime_states": 7,
+            "weighted_path_sum": 1768
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.0,
+              "q1_q2": 0.0
+            },
+            "asymmetry_sum": 0.0,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.3333333333333334,
+              0.3333333333333334,
+              0.3333333333333334
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.3333333333333334,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 1.0000000000000002,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.3333333333333334
+          },
+          "qit": {
+            "coherence_l1": 2.0000000000000004,
+            "purity": 1.0000000000000007,
+            "subsystem_entropy_q0": 0.6365141682948128,
+            "von_neumann_entropy": -2.220446049250313e-16
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.855324074074074,
+          "igt": 0.0,
+          "physics_math": 0.6666666666666669,
+          "qit": 3.6365141682948137
+        },
+        "state_id": "w_single_down",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      },
+      {
+        "amplitudes": [
+          {
+            "imag": 0.0,
+            "real": 0.7071067811865476
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.5
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          },
+          {
+            "imag": 0.3535533905932738,
+            "real": 0.0
+          },
+          {
+            "imag": 0.0,
+            "real": 0.3535533905932738
+          },
+          {
+            "imag": 0.0,
+            "real": 0.0
+          }
+        ],
+        "constraints": {
+          "hermitian": true,
+          "min_eigenvalue": -1.6600879653882658e-16,
+          "normalization": true,
+          "psd": true,
+          "trace_eq_1": true
+        },
+        "readouts": {
+          "holodeck_runtime": {
+            "final_accumulator_mod97": 53,
+            "normalized_signature": [
+              0.5520833333333334,
+              1.0,
+              0.75,
+              0.5098379629629629
+            ],
+            "ordered_basis": [
+              "uuu",
+              "duu",
+              "udu",
+              "ddu",
+              "uud",
+              "dud",
+              "udd",
+              "ddd"
+            ],
+            "threshold_step_mod11_zero": 6,
+            "unique_runtime_states": 8,
+            "weighted_path_sum": 1762
+          },
+          "igt": {
+            "asymmetry_pairs": {
+              "q0_q1": 0.0,
+              "q0_q2": 0.25,
+              "q1_q2": 0.25
+            },
+            "asymmetry_sum": 0.5,
+            "observable": "win_lose_payoff_asymmetry_only",
+            "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+            "z_expectations": [
+              0.2500000000000001,
+              0.2500000000000001,
+              0.5000000000000001
+            ]
+          },
+          "physics_math": {
+            "clifford_grade1_norm": 0.2500000000000001,
+            "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+            "density_frobenius_norm": 1.0,
+            "pauli_x_q0": 0.0,
+            "pauli_y_q0": 0.0,
+            "pauli_z_q0": 0.2500000000000001
+          },
+          "qit": {
+            "coherence_l1": 2.664213562373096,
+            "purity": 1.0000000000000002,
+            "subsystem_entropy_q0": 0.6615632381579819,
+            "von_neumann_entropy": 2.220446049250313e-16
+          }
+        },
+        "scalar_profile": {
+          "holodeck_runtime": 2.8119212962962963,
+          "igt": 0.5,
+          "physics_math": 0.5000000000000002,
+          "qit": 4.325776800531077
+        },
+        "state_id": "biased_phase",
+        "support_index_labels": [
+          "uuu",
+          "duu",
+          "udu",
+          "ddu",
+          "uud",
+          "dud",
+          "udd",
+          "ddd"
+        ]
+      }
+    ]
+  },
+  "controls": {
+    "carrier_erasure": {
+      "erased_class_count": 1,
+      "erased_structure_norm": 0.0,
+      "falsifies": "carrier-agnostic decorative readouts",
+      "flips": true,
+      "full_class_count": 4,
+      "real_structure_norm": 2.4355307218273383,
+      "structure_drop": 2.4355307218273383
+    },
+    "label_shuffle": {
+      "falsifies": "Rosetta-style relabeling where all lenses carry the same chart",
+      "flips": true,
+      "matrix_l1_delta": 25.178353150623522,
+      "original_lens_order": [
+        "qit",
+        "igt",
+        "holodeck_runtime",
+        "physics_math"
+      ],
+      "shuffled_lens_order": [
+        "igt",
+        "physics_math",
+        "qit",
+        "holodeck_runtime"
+      ]
+    },
+    "order_composition_reversal": {
+      "basis_order": [
+        "uuu",
+        "duu",
+        "udu",
+        "ddu",
+        "uud",
+        "dud",
+        "udd",
+        "ddd"
+      ],
+      "falsifies": "runtime readout ignoring its ordered carrier composition",
+      "flips": true,
+      "matrix_l1_delta": 0.5711805555555558,
+      "reversed_basis_order": [
+        "ddd",
+        "udd",
+        "dud",
+        "uud",
+        "ddu",
+        "udu",
+        "duu",
+        "uuu"
+      ]
+    },
+    "readout_map_erasure": {
+      "column_structure_after": 0.0,
+      "column_structure_before": 0.21650635094610965,
+      "erased_lens": "igt",
+      "falsifies": "a readout column that remains structured after replacing A_i with a constant map",
+      "flips": true
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T19:22:17Z",
+  "object_id": "foundation_cross_model_readout_matrix_v0_julia",
+  "package_table": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Clifford grade-vector content for the physics/math readout column",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "supportive UTC timestamp",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive trace, eigenvalue, and matrix hygiene checks; not the carrier authority",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing construction of carrier density operators plus von Neumann and subsystem entropy readouts",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source fingerprint",
+      "tried": true,
+      "used": true
+    }
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "ran": true,
+  "readout_rows": [
+    {
+      "amplitudes": [
+        {
+          "imag": 0.0,
+          "real": 1.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        }
+      ],
+      "constraints": {
+        "hermitian": true,
+        "min_eigenvalue": 0.0,
+        "normalization": true,
+        "psd": true,
+        "trace_eq_1": true
+      },
+      "readouts": {
+        "holodeck_runtime": {
+          "final_accumulator_mod97": 22,
+          "normalized_signature": [
+            0.22916666666666666,
+            1.0,
+            0.75,
+            0.45457175925925924
+          ],
+          "ordered_basis": [
+            "uuu",
+            "duu",
+            "udu",
+            "ddu",
+            "uud",
+            "dud",
+            "udd",
+            "ddd"
+          ],
+          "threshold_step_mod11_zero": 6,
+          "unique_runtime_states": 8,
+          "weighted_path_sum": 1571
+        },
+        "igt": {
+          "asymmetry_pairs": {
+            "q0_q1": 0.0,
+            "q0_q2": 0.0,
+            "q1_q2": 0.0
+          },
+          "asymmetry_sum": 0.0,
+          "observable": "win_lose_payoff_asymmetry_only",
+          "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+          "z_expectations": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "physics_math": {
+          "clifford_grade1_norm": 1.0,
+          "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+          "density_frobenius_norm": 1.0,
+          "pauli_x_q0": 0.0,
+          "pauli_y_q0": 0.0,
+          "pauli_z_q0": 1.0
+        },
+        "qit": {
+          "coherence_l1": 0.0,
+          "purity": 1.0,
+          "subsystem_entropy_q0": 0.0,
+          "von_neumann_entropy": 0.0
+        }
+      },
+      "scalar_profile": {
+        "holodeck_runtime": 2.433738425925926,
+        "igt": 0.0,
+        "physics_math": 2.0,
+        "qit": 1.0
+      },
+      "state_id": "basis_uuu",
+      "support_index_labels": [
+        "uuu",
+        "duu",
+        "udu",
+        "ddu",
+        "uud",
+        "dud",
+        "udd",
+        "ddd"
+      ]
+    },
+    {
+      "amplitudes": [
+        {
+          "imag": 0.0,
+          "real": 0.7071067811865475
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.7071067811865475
+        }
+      ],
+      "constraints": {
+        "hermitian": true,
+        "min_eigenvalue": 0.0,
+        "normalization": true,
+        "psd": true,
+        "trace_eq_1": true
+      },
+      "readouts": {
+        "holodeck_runtime": {
+          "final_accumulator_mod97": 19,
+          "normalized_signature": [
+            0.19791666666666666,
+            1.0,
+            0.875,
+            0.44733796296296297
+          ],
+          "ordered_basis": [
+            "uuu",
+            "duu",
+            "udu",
+            "ddu",
+            "uud",
+            "dud",
+            "udd",
+            "ddd"
+          ],
+          "threshold_step_mod11_zero": 7,
+          "unique_runtime_states": 8,
+          "weighted_path_sum": 1546
+        },
+        "igt": {
+          "asymmetry_pairs": {
+            "q0_q1": 0.0,
+            "q0_q2": 0.0,
+            "q1_q2": 0.0
+          },
+          "asymmetry_sum": 0.0,
+          "observable": "win_lose_payoff_asymmetry_only",
+          "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+          "z_expectations": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "physics_math": {
+          "clifford_grade1_norm": 0.0,
+          "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+          "density_frobenius_norm": 0.9999999999999998,
+          "pauli_x_q0": 0.0,
+          "pauli_y_q0": 0.0,
+          "pauli_z_q0": 0.0
+        },
+        "qit": {
+          "coherence_l1": 0.9999999999999998,
+          "purity": 0.9999999999999996,
+          "subsystem_entropy_q0": 0.6931471805599454,
+          "von_neumann_entropy": 2.220446049250313e-16
+        }
+      },
+      "scalar_profile": {
+        "holodeck_runtime": 2.5202546296296298,
+        "igt": 0.0,
+        "physics_math": 0.0,
+        "qit": 2.693147180559945
+      },
+      "state_id": "ghz_phase",
+      "support_index_labels": [
+        "uuu",
+        "duu",
+        "udu",
+        "ddu",
+        "uud",
+        "dud",
+        "udd",
+        "ddd"
+      ]
+    },
+    {
+      "amplitudes": [
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.5773502691896258
+        },
+        {
+          "imag": 0.0,
+          "real": 0.5773502691896258
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.5773502691896258
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        }
+      ],
+      "constraints": {
+        "hermitian": true,
+        "min_eigenvalue": -1.7110202791409588e-16,
+        "normalization": true,
+        "psd": true,
+        "trace_eq_1": true
+      },
+      "readouts": {
+        "holodeck_runtime": {
+          "final_accumulator_mod97": 52,
+          "normalized_signature": [
+            0.5416666666666666,
+            0.875,
+            1.0,
+            0.3191550925925926
+          ],
+          "ordered_basis": [
+            "uuu",
+            "duu",
+            "udu",
+            "ddu",
+            "uud",
+            "dud",
+            "udd",
+            "ddd"
+          ],
+          "threshold_step_mod11_zero": 8,
+          "unique_runtime_states": 7,
+          "weighted_path_sum": 1103
+        },
+        "igt": {
+          "asymmetry_pairs": {
+            "q0_q1": 0.0,
+            "q0_q2": 0.0,
+            "q1_q2": 0.0
+          },
+          "asymmetry_sum": 0.0,
+          "observable": "win_lose_payoff_asymmetry_only",
+          "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+          "z_expectations": [
+            0.3333333333333334,
+            0.3333333333333334,
+            0.3333333333333334
+          ]
+        },
+        "physics_math": {
+          "clifford_grade1_norm": 0.3333333333333334,
+          "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+          "density_frobenius_norm": 1.0000000000000002,
+          "pauli_x_q0": 0.0,
+          "pauli_y_q0": 0.0,
+          "pauli_z_q0": 0.3333333333333334
+        },
+        "qit": {
+          "coherence_l1": 2.0000000000000004,
+          "purity": 1.0000000000000007,
+          "subsystem_entropy_q0": 0.6365141682948128,
+          "von_neumann_entropy": -2.220446049250313e-16
+        }
+      },
+      "scalar_profile": {
+        "holodeck_runtime": 2.735821759259259,
+        "igt": 0.0,
+        "physics_math": 0.6666666666666669,
+        "qit": 3.6365141682948137
+      },
+      "state_id": "w_single_down",
+      "support_index_labels": [
+        "uuu",
+        "duu",
+        "udu",
+        "ddu",
+        "uud",
+        "dud",
+        "udd",
+        "ddd"
+      ]
+    },
+    {
+      "amplitudes": [
+        {
+          "imag": 0.0,
+          "real": 0.7071067811865476
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.5
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        },
+        {
+          "imag": 0.3535533905932738,
+          "real": 0.0
+        },
+        {
+          "imag": 0.0,
+          "real": 0.3535533905932738
+        },
+        {
+          "imag": 0.0,
+          "real": 0.0
+        }
+      ],
+      "constraints": {
+        "hermitian": true,
+        "min_eigenvalue": -1.6600879653882658e-16,
+        "normalization": true,
+        "psd": true,
+        "trace_eq_1": true
+      },
+      "readouts": {
+        "holodeck_runtime": {
+          "final_accumulator_mod97": 51,
+          "normalized_signature": [
+            0.53125,
+            1.0,
+            1.0,
+            0.5031828703703703
+          ],
+          "ordered_basis": [
+            "uuu",
+            "duu",
+            "udu",
+            "ddu",
+            "uud",
+            "dud",
+            "udd",
+            "ddd"
+          ],
+          "threshold_step_mod11_zero": 8,
+          "unique_runtime_states": 8,
+          "weighted_path_sum": 1739
+        },
+        "igt": {
+          "asymmetry_pairs": {
+            "q0_q1": 0.0,
+            "q0_q2": 0.25,
+            "q1_q2": 0.25
+          },
+          "asymmetry_sum": 0.5,
+          "observable": "win_lose_payoff_asymmetry_only",
+          "payoff_definition": "P[i,j]=max(0, z_i-z_j); report abs(P[i,j]-P[j,i]) == abs(z_i-z_j)",
+          "z_expectations": [
+            0.2500000000000001,
+            0.2500000000000001,
+            0.5000000000000001
+          ]
+        },
+        "physics_math": {
+          "clifford_grade1_norm": 0.2500000000000001,
+          "coordinate_source": "first-qubit Pauli coordinates read as Cl(3,0) grade-1 vector",
+          "density_frobenius_norm": 1.0,
+          "pauli_x_q0": 0.0,
+          "pauli_y_q0": 0.0,
+          "pauli_z_q0": 0.2500000000000001
+        },
+        "qit": {
+          "coherence_l1": 2.664213562373096,
+          "purity": 1.0000000000000002,
+          "subsystem_entropy_q0": 0.6615632381579819,
+          "von_neumann_entropy": 2.220446049250313e-16
+        }
+      },
+      "scalar_profile": {
+        "holodeck_runtime": 3.0344328703703702,
+        "igt": 0.5,
+        "physics_math": 0.5000000000000002,
+        "qit": 4.325776800531077
+      },
+      "state_id": "biased_phase",
+      "support_index_labels": [
+        "uuu",
+        "duu",
+        "udu",
+        "ddu",
+        "uud",
+        "dud",
+        "udd",
+        "ddd"
+      ]
+    }
+  ],
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_cross_model_readout_matrix_v0_julia_results.json",
+  "rung_id": "cross_model_readout_matrix_v0",
+  "runtime_seconds": 0.600269,
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_cross_model_readout_matrix_v0_julia.jl",
+  "source_sha256": "ee5951fafaab17e208f93fd991f31bab86619dafbbd23809f605a5864d52be36",
+  "summary": {
+    "all_constraints_ok": true,
+    "carrier_erased_class_count": 1,
+    "erased_structure_norm": 0.0,
+    "full_probe_class_count": 4,
+    "label_shuffle_delta": 25.178353150623522,
+    "lens_count": 4,
+    "order_reversal_delta": 0.5711805555555558,
+    "readout_map_erasure_after": 0.0,
+    "readout_map_erasure_before": 0.21650635094610965,
+    "real_structure_norm": 2.4355307218273383,
+    "support_size": 4
+  }
+}

@@ -1,0 +1,1143 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source hashing and PIN checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from independently generated lane receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "blind_diff": {
+    "checks": {
+      "jax": {
+        "GHZ3_Tr_last_purity": true,
+        "GHZ3_Tr_last_spectrum": true,
+        "W4_Tr_last_weights": true,
+        "cluster4_Tr_last_spectrum": true,
+        "first_sites_n4_chirality_relation": true,
+        "product4_Tr_middle_spectrum": true,
+        "quotient_square_samples": true
+      },
+      "julia": {
+        "GHZ3_Tr_last_purity": true,
+        "GHZ3_Tr_last_spectrum": true,
+        "W4_Tr_last_weights": true,
+        "cluster4_Tr_last_spectrum": true,
+        "first_sites_n4_chirality_relation": true,
+        "product4_Tr_middle_spectrum": true,
+        "quotient_square_samples": true
+      },
+      "pytorch": {
+        "GHZ3_Tr_last_purity": true,
+        "GHZ3_Tr_last_spectrum": true,
+        "W4_Tr_last_weights": true,
+        "cluster4_Tr_last_spectrum": true,
+        "first_sites_n4_chirality_relation": true,
+        "product4_Tr_middle_spectrum": true,
+        "quotient_square_samples": true
+      }
+    },
+    "hashes": [
+      "d743e8a84feb5c638e42dd03a5f50d848c351f728331c7678950889f41330536"
+    ]
+  },
+  "build_gates": {
+    "arrow_types_named_allowed": {
+      "details": {
+        "jax": [
+          "algebra extension",
+          "filtration",
+          "principal-bundle / fibration",
+          "quotient",
+          "subset/submanifold",
+          "tensor"
+        ],
+        "julia": [
+          "algebra extension",
+          "filtration",
+          "principal-bundle / fibration",
+          "quotient",
+          "subset/submanifold",
+          "tensor"
+        ],
+        "pytorch": [
+          "algebra extension",
+          "filtration",
+          "principal-bundle / fibration",
+          "quotient",
+          "subset/submanifold",
+          "tensor"
+        ]
+      },
+      "gate": "arrow_types_named_allowed",
+      "pass": true
+    },
+    "blind_diff_all_pass": {
+      "details": {
+        "jax": {
+          "GHZ3_Tr_last_purity": true,
+          "GHZ3_Tr_last_spectrum": true,
+          "W4_Tr_last_weights": true,
+          "cluster4_Tr_last_spectrum": true,
+          "first_sites_n4_chirality_relation": true,
+          "product4_Tr_middle_spectrum": true,
+          "quotient_square_samples": true
+        },
+        "julia": {
+          "GHZ3_Tr_last_purity": true,
+          "GHZ3_Tr_last_spectrum": true,
+          "W4_Tr_last_weights": true,
+          "cluster4_Tr_last_spectrum": true,
+          "first_sites_n4_chirality_relation": true,
+          "product4_Tr_middle_spectrum": true,
+          "quotient_square_samples": true
+        },
+        "pytorch": {
+          "GHZ3_Tr_last_purity": true,
+          "GHZ3_Tr_last_spectrum": true,
+          "W4_Tr_last_weights": true,
+          "cluster4_Tr_last_spectrum": true,
+          "first_sites_n4_chirality_relation": true,
+          "product4_Tr_middle_spectrum": true,
+          "quotient_square_samples": true
+        }
+      },
+      "gate": "blind_diff_all_pass",
+      "pass": true
+    },
+    "ceiling_exact": {
+      "details": {
+        "jax": "scratch_diagnostic",
+        "julia": "scratch_diagnostic",
+        "pytorch": "scratch_diagnostic"
+      },
+      "gate": "ceiling_exact",
+      "pass": true
+    },
+    "divergence_zero": {
+      "details": {
+        "comparison": {
+          "exact_match": true,
+          "rows": [
+            {
+              "exact_match": true,
+              "key": "F1_embedding_row_count",
+              "values": {
+                "jax": "9",
+                "julia": "9",
+                "pytorch": "9"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "F1_n4_first_generated_dimension",
+              "values": {
+                "jax": "64",
+                "julia": "64",
+                "pytorch": "64"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "F2_trace_row_count",
+              "values": {
+                "jax": "36",
+                "julia": "36",
+                "pytorch": "36"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "F3_commutator_zero_count",
+              "values": {
+                "jax": "36",
+                "julia": "36",
+                "pytorch": "36"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "F4_all_samples_pass",
+              "values": {
+                "jax": "true",
+                "julia": "true",
+                "pytorch": "true"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "F4_sample_count",
+              "values": {
+                "jax": "3",
+                "julia": "3",
+                "pytorch": "3"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "GHZ3_Tr_last_nonzero_spectrum",
+              "values": {
+                "jax": "1/2|1/2",
+                "julia": "1/2|1/2",
+                "pytorch": "1/2|1/2"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "W4_Tr_last_weights",
+              "values": {
+                "jax": "3/4|1/4",
+                "julia": "3/4|1/4",
+                "pytorch": "3/4|1/4"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "cluster4_Tr_last_nonzero_spectrum",
+              "values": {
+                "jax": "1/2|1/2",
+                "julia": "1/2|1/2",
+                "pytorch": "1/2|1/2"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "product4_Tr_middle_nonzero_spectrum",
+              "values": {
+                "jax": "1",
+                "julia": "1",
+                "pytorch": "1"
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "promoted_variant",
+              "values": {
+                "jax": "None",
+                "julia": "None",
+                "pytorch": "None"
+              }
+            }
+          ]
+        },
+        "engine_values": {
+          "jax": {
+            "F1_embedding_row_count": "9",
+            "F1_n4_first_generated_dimension": "64",
+            "F2_trace_row_count": "36",
+            "F3_commutator_zero_count": "36",
+            "F4_all_samples_pass": "true",
+            "F4_sample_count": "3",
+            "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "W4_Tr_last_weights": "3/4|1/4",
+            "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "product4_Tr_middle_nonzero_spectrum": "1",
+            "promoted_variant": "None"
+          },
+          "julia": {
+            "F1_embedding_row_count": "9",
+            "F1_n4_first_generated_dimension": "64",
+            "F2_trace_row_count": "36",
+            "F3_commutator_zero_count": "36",
+            "F4_all_samples_pass": "true",
+            "F4_sample_count": "3",
+            "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "W4_Tr_last_weights": "3/4|1/4",
+            "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "product4_Tr_middle_nonzero_spectrum": "1",
+            "promoted_variant": "None"
+          },
+          "pytorch": {
+            "F1_embedding_row_count": "9",
+            "F1_n4_first_generated_dimension": "64",
+            "F2_trace_row_count": "36",
+            "F3_commutator_zero_count": "36",
+            "F4_all_samples_pass": "true",
+            "F4_sample_count": "3",
+            "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "W4_Tr_last_weights": "3/4|1/4",
+            "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+            "product4_Tr_middle_nonzero_spectrum": "1",
+            "promoted_variant": "None"
+          }
+        },
+        "julia_authoritative": true,
+        "max_divergence": 0,
+        "meaning": "exact string/scalar family comparison, not floating tolerance"
+      },
+      "gate": "divergence_zero",
+      "pass": true
+    },
+    "legs_exit_0_by_receipt": {
+      "details": {
+        "jax": true,
+        "julia": true,
+        "pytorch": true
+      },
+      "gate": "legs_exit_0_by_receipt",
+      "pass": true
+    },
+    "no_variant_promoted": {
+      "details": {
+        "jax": "None",
+        "julia": "None",
+        "pytorch": "None"
+      },
+      "gate": "no_variant_promoted",
+      "pass": true
+    },
+    "pin_identical": {
+      "details": [
+        "62dd283b5e23ecd1009a7cf0a5406603f139ef0d27bf4cf16151acd9dc5c24e5"
+      ],
+      "gate": "pin_identical",
+      "pass": true
+    },
+    "raw_value_smt_tripwires": {
+      "details": {
+        "jax": {
+          "cvc5": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+              "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+              "W4_weight_W3_numerator_over_4": 3,
+              "W4_weight_zero_numerator_over_4": 1
+            },
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "strength_label": "exact_smt",
+            "w4_weight_negation": "unsat"
+          },
+          "z3": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+              "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+              "W4_weight_W3_numerator_over_4": 3,
+              "W4_weight_zero_numerator_over_4": 1
+            },
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "strength_label": "exact_smt",
+            "w4_weight_negation": "unsat"
+          }
+        },
+        "julia": {
+          "asserted_precomputed_boolean": false,
+          "bound_raw_values": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "can_fail_wrong_weight_control": "sat",
+          "ghz_pure_nesting_forced_equality": "unsat",
+          "load_bearing": true,
+          "ran": true,
+          "solver": "Z3.jl",
+          "strength_label": "exact_smt",
+          "w4_weight_negation": "unsat"
+        },
+        "pytorch": {
+          "cvc5": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+              "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+              "W4_weight_W3_numerator_over_4": 3,
+              "W4_weight_zero_numerator_over_4": 1
+            },
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "strength_label": "exact_smt",
+            "w4_weight_negation": "unsat"
+          },
+          "z3": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+              "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+              "W4_weight_W3_numerator_over_4": 3,
+              "W4_weight_zero_numerator_over_4": 1
+            },
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "strength_label": "exact_smt",
+            "w4_weight_negation": "unsat"
+          }
+        }
+      },
+      "gate": "raw_value_smt_tripwires",
+      "pass": true
+    },
+    "source_sha256_present": {
+      "details": {
+        "jax": "045f42a42ad02f51c7cbf4caf5d91c8b72f3bce937195b75eb5d331f1eab9e77",
+        "julia": "1b5ba287fa33b6b724208f9be04e92e79e9a8b2816a5a0b6d23693d74a1202ac",
+        "pytorch": "5a446b6f096db85145ef8353884b587bca1a34f25181c4253330d30cccee5359"
+      },
+      "gate": "source_sha256_present",
+      "pass": true
+    }
+  },
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "Hermitian Pauli Jordan-Wigner generators; Gamma_m=(-i)^m product gamma_1..gamma_2m",
+    "consumer_policy": "independent engine recomputation; no peer-result reads",
+    "proof_pass": true,
+    "proof_tag": "nesting_family_cliffordalgebras_z3_raw_value",
+    "receipt_path": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "1b5ba287fa33b6b724208f9be04e92e79e9a8b2816a5a0b6d23693d74a1202ac",
+    "table_version": "nesting_consistency_family_v0"
+  },
+  "claim": "The inter-rung/inter-stage nesting relations are computed as a family of nesting maps with embedding, trace, arrow-order, and quotient-chain variants compared; no variant is promoted.",
+  "claim_boundary": {
+    "ceiling": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "not_claimed": "no canonical nesting variant, no rung promotion, no bridge/axis-level claim",
+    "promotion_allowed": false
+  },
+  "claim_path_tools": [
+    "CliffordAlgebras",
+    "Z3",
+    "cvc5",
+    "sympy",
+    "torch.func",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "load_bearing": true,
+      "proofs": {
+        "can_fail": "sat",
+        "jax_ghz": "unsat",
+        "pytorch_ghz": "unsat",
+        "w_weight": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "control": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "load_bearing": true,
+      "proofs": {
+        "can_fail": "sat",
+        "jax_ghz": "unsat",
+        "julia_ghz": "unsat",
+        "pytorch_ghz": "unsat",
+        "w_weight": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "comparison": {
+      "exact_match": true,
+      "rows": [
+        {
+          "exact_match": true,
+          "key": "F1_embedding_row_count",
+          "values": {
+            "jax": "9",
+            "julia": "9",
+            "pytorch": "9"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "F1_n4_first_generated_dimension",
+          "values": {
+            "jax": "64",
+            "julia": "64",
+            "pytorch": "64"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "F2_trace_row_count",
+          "values": {
+            "jax": "36",
+            "julia": "36",
+            "pytorch": "36"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "F3_commutator_zero_count",
+          "values": {
+            "jax": "36",
+            "julia": "36",
+            "pytorch": "36"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "F4_all_samples_pass",
+          "values": {
+            "jax": "true",
+            "julia": "true",
+            "pytorch": "true"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "F4_sample_count",
+          "values": {
+            "jax": "3",
+            "julia": "3",
+            "pytorch": "3"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "GHZ3_Tr_last_nonzero_spectrum",
+          "values": {
+            "jax": "1/2|1/2",
+            "julia": "1/2|1/2",
+            "pytorch": "1/2|1/2"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "W4_Tr_last_weights",
+          "values": {
+            "jax": "3/4|1/4",
+            "julia": "3/4|1/4",
+            "pytorch": "3/4|1/4"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "cluster4_Tr_last_nonzero_spectrum",
+          "values": {
+            "jax": "1/2|1/2",
+            "julia": "1/2|1/2",
+            "pytorch": "1/2|1/2"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "product4_Tr_middle_nonzero_spectrum",
+          "values": {
+            "jax": "1",
+            "julia": "1",
+            "pytorch": "1"
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "promoted_variant",
+          "values": {
+            "jax": "None",
+            "julia": "None",
+            "pytorch": "None"
+          }
+        }
+      ]
+    },
+    "engine_values": {
+      "jax": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      },
+      "julia": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      },
+      "pytorch": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "meaning": "exact string/scalar family comparison, not floating tolerance"
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engine_result_paths": {
+    "jax": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_jax_results.json",
+    "julia": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_julia_results.json",
+    "pytorch": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_pytorch_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "blind_diff_pass": true,
+      "claim_path_tools": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "pin_sha256": "62dd283b5e23ecd1009a7cf0a5406603f139ef0d27bf4cf16151acd9dc5c24e5",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_jax_results.json",
+      "role_id": "jax_rich_mirror_sim_builder",
+      "shared_scalars": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      },
+      "source_path": "system_v6/sims/nesting_consistency_family_v0/nesting_consistency_family_v0_jax.py",
+      "source_sha256": "045f42a42ad02f51c7cbf4caf5d91c8b72f3bce937195b75eb5d331f1eab9e77",
+      "tool_calls": [
+        {
+          "boundary_case": "Tr_middle n=2 lower-middle convention",
+          "demotion_condition": "if exact matrices are replaced by floats, lower to numeric diagnostic",
+          "gates": [
+            "all_pass",
+            "divergence",
+            "quotient"
+          ],
+          "input_object": "JW generators, density matrices, partial traces, and quotient samples",
+          "negative/erased_control": "GHZ/W/cluster pure nesting rejected",
+          "output_object": "exact family receipts",
+          "positive_case": "product and quotient-square positive controls pass",
+          "qualified_api/function": "sympy.Matrix/eigenvals/kronecker_product/simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "raw scaled integers bound",
+          "demotion_condition": "if solver binds booleans only, SMT is decorative",
+          "gates": [
+            "proof",
+            "all_pass"
+          ],
+          "input_object": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "negative/erased_control": "wrong W numerator can-fail control is SAT",
+          "output_object": {
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "w4_weight_negation": "unsat"
+          },
+          "positive_case": "wrong pure GHZ nesting and W-weight negation are UNSAT",
+          "qualified_api/function": "z3.Solver.add/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "QF_LIA integer binding",
+          "demotion_condition": "if cvc5 is removed, crossover proof drops to single-solver",
+          "gates": [
+            "proof",
+            "all_pass"
+          ],
+          "input_object": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "negative/erased_control": "wrong W numerator can-fail control is SAT",
+          "output_object": {
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "w4_weight_negation": "unsat"
+          },
+          "positive_case": "matches z3 polarity",
+          "qualified_api/function": "cvc5.Solver.mkTerm/assertFormula/checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "python_stdlib": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent raw-value SMT matching z3",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 runtime lane marker",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive x64 sanity operation",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive hashing, timestamps, paths, and JSON serialization",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact matrices, spectra, Clifford/JW family checks, and quotient samples",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing raw-value SMT for GHZ non-nesting and W weights",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "CliffordAlgebras",
+        "Z3"
+      ],
+      "blind_diff_pass": true,
+      "claim_path_tools": [
+        "CliffordAlgebras",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "CliffordAlgebras",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "pin_sha256": "62dd283b5e23ecd1009a7cf0a5406603f139ef0d27bf4cf16151acd9dc5c24e5",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_julia_results.json",
+      "role_id": "julia_authoritative_sim_builder",
+      "shared_scalars": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      },
+      "source_path": "system_v6/sims/nesting_consistency_family_v0/nesting_consistency_family_v0_julia.jl",
+      "source_sha256": "1b5ba287fa33b6b724208f9be04e92e79e9a8b2816a5a0b6d23693d74a1202ac",
+      "tool_calls": [
+        {
+          "boundary_case": "variant labels identify first, last, and interleaved JW images",
+          "demotion_condition": "if package call is removed, Julia lane drops below remediated Clifford standard",
+          "gates": [
+            "all_pass",
+            "divergence"
+          ],
+          "input_object": "Cl(2n-2,0) for n=2,3,4 under each embedding variant",
+          "negative/erased_control": "literal chirality remains separate from n-site chirality",
+          "output_object": "package dimension and e1 square receipts",
+          "positive_case": "dimension equals 2^(2n-2) and e1^2=+1",
+          "qualified_api/function": "CliffordAlgebras.CliffordAlgebra/dimension/basevector",
+          "tool": "CliffordAlgebras"
+        },
+        {
+          "boundary_case": "raw scaled integers bound as values",
+          "demotion_condition": "if raw values are replaced by booleans, SMT is decorative",
+          "gates": [
+            "proof",
+            "all_pass"
+          ],
+          "input_object": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "negative/erased_control": "wrong W numerator can-fail control is SAT",
+          "output_object": {
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "w4_weight_negation": "unsat"
+          },
+          "positive_case": "wrong pure GHZ nesting and W-weight negation are UNSAT",
+          "qualified_api/function": "Z3.Solver/add/check",
+          "tool": "Z3"
+        }
+      ],
+      "tool_integration_depth": {
+        "CliffordAlgebras": "load_bearing",
+        "JSON/Dates/SHA": "supportive",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "CliffordAlgebras": {
+          "reason": "load-bearing CliffordAlgebra(2n-2,0) package receipts for the Cl subalgebra dimensions and generator square route",
+          "tried": true,
+          "used": true
+        },
+        "JSON/Dates/SHA": {
+          "reason": "supportive result serialization, timestamping, and source hashing",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side raw-value SMT polarity checks for GHZ non-nesting and W exact weights",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "blind_diff_pass": true,
+      "claim_path_tools": [
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "pin_sha256": "62dd283b5e23ecd1009a7cf0a5406603f139ef0d27bf4cf16151acd9dc5c24e5",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_pytorch_results.json",
+      "role_id": "pytorch_graph_network_sim_builder",
+      "shared_scalars": {
+        "F1_embedding_row_count": "9",
+        "F1_n4_first_generated_dimension": "64",
+        "F2_trace_row_count": "36",
+        "F3_commutator_zero_count": "36",
+        "F4_all_samples_pass": "true",
+        "F4_sample_count": "3",
+        "GHZ3_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "W4_Tr_last_weights": "3/4|1/4",
+        "cluster4_Tr_last_nonzero_spectrum": "1/2|1/2",
+        "product4_Tr_middle_nonzero_spectrum": "1",
+        "promoted_variant": "None"
+      },
+      "source_path": "system_v6/sims/nesting_consistency_family_v0/nesting_consistency_family_v0_pytorch.py",
+      "source_sha256": "5a446b6f096db85145ef8353884b587bca1a34f25181c4253330d30cccee5359",
+      "tool_calls": [
+        {
+          "boundary_case": "integer-pair complex tensors, not floating torch tensors",
+          "demotion_condition": "if vmap gate is removed, PyTorch lane becomes symbolic mirror only",
+          "gates": [
+            "all_pass",
+            "divergence"
+          ],
+          "input_object": "stacked exact integer-pair n=4 first-sites gamma tensors",
+          "negative/erased_control": "pairwise anticommutation table separately gates failures",
+          "output_object": {
+            "anticommutation_pair_failures": 0,
+            "arrow_type": "algebra extension",
+            "id": "torch_func_n4_first_sites_gamma_gate",
+            "labels": [
+              "XIII",
+              "YIII",
+              "ZXII",
+              "ZYII",
+              "ZZXI",
+              "ZZYI",
+              "ZZZX",
+              "ZZZY",
+              "ZZZZ"
+            ],
+            "pass": true,
+            "strength_label": "exact_integer_combinatorial",
+            "torch_func_vmap_square_identity_pass": true
+          },
+          "positive_case": "all gamma square deltas are zero under vmap",
+          "qualified_api/function": "torch.func.vmap",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "Tr_middle n=2 lower-middle convention",
+          "demotion_condition": "if exact matrices are replaced by floats, lower to numeric diagnostic",
+          "gates": [
+            "all_pass",
+            "divergence",
+            "quotient"
+          ],
+          "input_object": "family matrices and projective quotient samples",
+          "negative/erased_control": "GHZ/W/cluster pure nesting rejected",
+          "output_object": "exact family receipts",
+          "positive_case": "product and quotient-square positive controls pass",
+          "qualified_api/function": "sympy.Matrix/eigenvals/kronecker_product/simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "raw scaled integers bound",
+          "demotion_condition": "if solver binds booleans only, SMT is decorative",
+          "gates": [
+            "proof",
+            "all_pass"
+          ],
+          "input_object": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "negative/erased_control": "wrong W numerator can-fail control is SAT",
+          "output_object": {
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "w4_weight_negation": "unsat"
+          },
+          "positive_case": "wrong pure GHZ nesting and W-weight negation are UNSAT",
+          "qualified_api/function": "z3.Solver.add/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "QF_LIA integer binding",
+          "demotion_condition": "if cvc5 is removed, crossover proof drops to single-solver",
+          "gates": [
+            "proof",
+            "all_pass"
+          ],
+          "input_object": {
+            "GHZ2_pure_target_offdiag_scaled_by_2": 1,
+            "GHZ3_Tr_last_offdiag_scaled_by_2": 0,
+            "W4_weight_W3_numerator_over_4": 3,
+            "W4_weight_zero_numerator_over_4": 1
+          },
+          "negative/erased_control": "wrong W numerator can-fail control is SAT",
+          "output_object": {
+            "can_fail_wrong_weight_control": "sat",
+            "ghz_pure_nesting_forced_equality": "unsat",
+            "w4_weight_negation": "unsat"
+          },
+          "positive_case": "matches z3 polarity",
+          "qualified_api/function": "cvc5.Solver.mkTerm/assertFormula/checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "python_stdlib": "supportive",
+        "sympy": "load_bearing",
+        "torch": "supportive",
+        "torch.func": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent raw-value SMT binding matching z3",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive hashing, timestamps, paths, and JSON serialization",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact family matrices, spectra, and projective quotient samples",
+          "tried": true,
+          "used": true
+        },
+        "torch": {
+          "reason": "supportive exact integer-pair tensor substrate for the torch.func gate",
+          "tried": true,
+          "used": true
+        },
+        "torch.func": {
+          "reason": "load-bearing vmap gate over torch exact integer-pair gamma-square deltas",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing raw-value SMT binding for GHZ non-nesting and W exact weights",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "family_comparison": {
+    "arrow_type": "filtration",
+    "embedding_variant_count": 9,
+    "id": "F5_family_comparison",
+    "pass": true,
+    "promoted_variant": null,
+    "strength_label": "diagnostic_family_comparison",
+    "trace_row_count": 36,
+    "what_breaks": {
+      "GHZ": "pure nesting",
+      "W": "pure nesting",
+      "linear_cluster": "pure nesting"
+    },
+    "what_changes": {
+      "chirality": "Gamma_n = Gamma_old_image * Z_new, not literal old chirality"
+    },
+    "what_nests": {
+      "product_plus": "exact under all single-site trace variants",
+      "quotient_square": "exact on point samples"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "role": "SymPy plus z3/cvc5 exact SMT lane with JAX x64 marker"
+    },
+    "julia": {
+      "packages": [
+        "CliffordAlgebras",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "CliffordAlgebras/Z3 semantic receipt"
+    },
+    "pytorch": {
+      "packages": [
+        "torch",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "role": "torch.func exact tensor gate plus SymPy/z3/cvc5 lane"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T20:16:17.313558+00:00",
+  "object_id": "nesting_consistency_family_v0",
+  "pin_sha256": "62dd283b5e23ecd1009a7cf0a5406603f139ef0d27bf4cf16151acd9dc5c24e5",
+  "pin_spec": "nesting_consistency_family_v0|family_not_canonical|embedding_variants=first-sites,last-sites,interleaved-jw-order|trace_variants=Tr_last,Tr_first,Tr_middle|n=2,3,4|states=GHZ,W,product_plus,linear_cluster|arrow_order_hybrids=trace_phase_quotient|quotient_chain=S7_CP3_in_S15_CP7|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/nesting_consistency_family_v0/results/nesting_consistency_family_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "nesting_consistency_family_v0",
+  "source_path": "system_v6/sims/nesting_consistency_family_v0/nesting_consistency_family_v0_envelope.py",
+  "source_sha256": "8ff0b530448d737b808e91be86e8e1ad65d461c003b3a90da2c0f0877398f8c7"
+}

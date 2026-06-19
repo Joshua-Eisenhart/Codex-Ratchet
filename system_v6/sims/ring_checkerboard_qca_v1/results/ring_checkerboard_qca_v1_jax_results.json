@@ -1,0 +1,1463 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "qutip": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent computed index proof",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive x64 vector carrier for computed index rows",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive integer vector checks over signed indices",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "load-bearing local unitary/CPTP gate checks",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational rank-ratio check",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing computed index calibration proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "qutip",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "qutip",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "same-sign R mutation reaches a SAT/UNSAT flip",
+      "positive_case": "actual computed index table satisfies the contract",
+      "proof_row": "cvc5 mirror of computed index calibration and L/R sign contract",
+      "ran": true,
+      "tautological_flip_guard": "cvc5 binds integer variables to computed table entries first",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "mutating R to the same left-flow sign makes the opposite-sign equality satisfiable only by contradiction, so the failure branch is reachable",
+      "positive_case": "actual right/left/zero calibration and L/R opposite signs satisfy the contract",
+      "proof_row": "bind computed signed indices and assert that calibration/opposite-sign contract can fail",
+      "ran": true,
+      "tautological_flip_guard": "solver variables are bound to computed index table entries before the contract query",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_specific_checks": {
+    "cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "jax_index_checks": {
+      "calibration_vector": [
+        1,
+        -1,
+        0,
+        -1,
+        1
+      ],
+      "exact_ratio_strings": [
+        "2",
+        "1/2",
+        "1",
+        "1/2",
+        "2",
+        "1",
+        "1",
+        "2",
+        "1"
+      ],
+      "index_lookup": {
+        "calibration_left_shift": -1,
+        "calibration_nonshifting_onsite": 0,
+        "calibration_right_shift": 1,
+        "engine_L_flux_in_left": -1,
+        "engine_L_index0_control": 0,
+        "engine_R_flux_out_right": 1,
+        "engine_R_index0_control": 0,
+        "gauge_reparameterized_right_shift": 1,
+        "paired_block_index0": 0
+      },
+      "jax_enable_x64": true,
+      "load_bearing_pass": true,
+      "sympy_ratio_check": true
+    },
+    "qutip_quantum_local_gate_checks": {
+      "H_unitarity_gap": 4.440892098500626e-16,
+      "SWAP_unitarity_gap": 0.0,
+      "dephase_z_cptp_gap": 0.0,
+      "load_bearing_pass": true,
+      "qutip_objects": [
+        "qutip.Qobj(H)",
+        "qutip.Qobj(SWAP)",
+        "qutip.tensor(I,I)",
+        "dephase Kraus Qobj"
+      ]
+    },
+    "z3": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine_values": {
+    "L_engine_index": -1,
+    "R_engine_index": 1,
+    "global_terminal_count": 160,
+    "left_shift_index": -1,
+    "local_terminal_count": 1600,
+    "right_shift_index": 1,
+    "zero_index": 0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:19:42Z",
+  "one_to_one_tool_calls": {
+    "calls": [
+      {
+        "output_object": {
+          "H_unitarity_gap": 4.440892098500626e-16,
+          "SWAP_unitarity_gap": 0.0,
+          "dephase_z_cptp_gap": 0.0,
+          "load_bearing_pass": true,
+          "qutip_objects": [
+            "qutip.Qobj(H)",
+            "qutip.Qobj(SWAP)",
+            "qutip.tensor(I,I)",
+            "dephase Kraus Qobj"
+          ]
+        },
+        "qualified_api/function": "qutip.Qobj/qutip.tensor",
+        "tool": "qutip"
+      },
+      {
+        "output_object": true,
+        "qualified_api/function": "sp.Rational/sp.simplify",
+        "tool": "sympy"
+      },
+      {
+        "output_object": {
+          "load_bearing": true,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "unsat"
+        },
+        "qualified_api/function": "z3.Solver/z3.Int/check",
+        "tool": "z3"
+      },
+      {
+        "output_object": {
+          "load_bearing": true,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "unsat"
+        },
+        "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+        "tool": "cvc5"
+      }
+    ],
+    "pass": true
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed index calibration proof",
+    "qutip": "qutip.Qobj/qutip.tensor verify local unitary gates and dephase-Z CPTP Kraus completeness",
+    "sympy": "sp.Rational exact overlap-rank ratio arithmetic for standard index rows",
+    "z3": "z3.Solver binds computed signed index calibration and proves the negated calibration contract UNSAT"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "qutip",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "pathlib"
+  ],
+  "packet": {
+    "all_pass": true,
+    "boundary_section": {
+      "claim_ceiling": "scratch diagnostic; no promotion, no canonical QCA classification, no v4 coupling admission",
+      "finite_depth_circuit_boundary": "nonzero shift index is represented as a locality-preserving QCA wire flow, not as a finite-depth circuit claim",
+      "full_binary_configuration_enumerated": false,
+      "resource_guard": "primary_n=4 support cells, matched-state locality comparison only"
+    },
+    "classical_limit": {
+      "alternating_period_2_present": true,
+      "alternating_period_histogram": {
+        "2": 576
+      },
+      "paired_period_4_present": true,
+      "paired_period_histogram": {
+        "4": 576
+      },
+      "phase_structure_reproduced": true,
+      "source": "ring_checkerboard_automaton_v0.build_packet()",
+      "v0_verdict": "PASS_DISTINGUISHABLE_CLASSICAL_FLOOR"
+    },
+    "classification": "scratch_diagnostic",
+    "crossover_proofs": {
+      "cvc5": {
+        "computed_perturbation_flip_verdict": "sat",
+        "load_bearing": true,
+        "negative_control": "same-sign R mutation reaches a SAT/UNSAT flip",
+        "positive_case": "actual computed index table satisfies the contract",
+        "proof_row": "cvc5 mirror of computed index calibration and L/R sign contract",
+        "ran": true,
+        "tautological_flip_guard": "cvc5 binds integer variables to computed table entries first",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "computed_perturbation_flip_verdict": "sat",
+        "load_bearing": true,
+        "negative_control": "mutating R to the same left-flow sign makes the opposite-sign equality satisfiable only by contradiction, so the failure branch is reachable",
+        "positive_case": "actual right/left/zero calibration and L/R opposite signs satisfy the contract",
+        "proof_row": "bind computed signed indices and assert that calibration/opposite-sign contract can fail",
+        "ran": true,
+        "tautological_flip_guard": "solver variables are bound to computed index table entries before the contract query",
+        "verdict": "unsat"
+      }
+    },
+    "formal_admission_allowed": false,
+    "index_controls": {
+      "L_R_realization": {
+        "L_signed_index": -1,
+        "R_signed_index": 1,
+        "expectation_2_status": "earned",
+        "opposite_signs": true
+      },
+      "all_pass": true,
+      "calibration": {
+        "left_shift_minus_one": true,
+        "onsite_zero": true,
+        "right_shift_plus_one": true
+      },
+      "falsifier_branch": {
+        "expectation_2_status": "killed_as_expected",
+        "mutated_L_signed_index": -1,
+        "mutated_R_signed_index": -1,
+        "name": "force_R_engine_to_left_shift",
+        "opposite_signs": false,
+        "reachable": true
+      },
+      "gauge_local_basis_invariance": {
+        "base_rule": "calibration_right_shift",
+        "gauge_rule": "gauge_reparameterized_right_shift",
+        "same_index": true,
+        "same_ratio": true
+      },
+      "index0_control": {
+        "L_control_index": 0,
+        "R_control_index": 0,
+        "alignment_killed": false,
+        "lr_distinction_detected": false,
+        "probe_family": [
+          "signed_log2_index",
+          "standard_index_ratio",
+          "information_flux_qubits_per_step"
+        ]
+      }
+    },
+    "index_table": [
+      {
+        "basis_reparameterization": null,
+        "engine_side": null,
+        "family": "calibration",
+        "information_flux_qubits_per_step": 1,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "2/1",
+          "right_support_algebra_rank": 2
+        },
+        "phase_form": "partitioned full right shift across each ring cut",
+        "rule_id": "calibration_right_shift",
+        "signed_log2_index": 1,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "2/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 1
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": null,
+        "family": "calibration",
+        "information_flux_qubits_per_step": -1,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 2,
+          "rank_ratio_exact": "1/2",
+          "right_support_algebra_rank": 1
+        },
+        "phase_form": "partitioned full left shift across each ring cut",
+        "rule_id": "calibration_left_shift",
+        "signed_log2_index": -1,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "1/2",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 1,
+          "right_crossing_qubit_wires": 0
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": null,
+        "family": "calibration",
+        "information_flux_qubits_per_step": 0,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "1/1",
+          "right_support_algebra_rank": 1
+        },
+        "phase_form": "onsite H/S/dephase control with no crossing wire",
+        "rule_id": "calibration_nonshifting_onsite",
+        "signed_log2_index": 0,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "1/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 0
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": "L_Type1_flux_IN_left",
+        "family": "L_R_realization",
+        "information_flux_qubits_per_step": -1,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 2,
+          "rank_ratio_exact": "1/2",
+          "right_support_algebra_rank": 1
+        },
+        "phase_form": "even phase then odd phase, left-moving partitioned QCA wire",
+        "rule_id": "engine_L_flux_in_left",
+        "signed_log2_index": -1,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "1/2",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 1,
+          "right_crossing_qubit_wires": 0
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": "R_Type2_flux_OUT_right",
+        "family": "L_R_realization",
+        "information_flux_qubits_per_step": 1,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "2/1",
+          "right_support_algebra_rank": 2
+        },
+        "phase_form": "even phase then odd phase, right-moving partitioned QCA wire",
+        "rule_id": "engine_R_flux_out_right",
+        "signed_log2_index": 1,
+        "stage_order": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "standard_index_ratio": "2/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 1
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": "L_control",
+        "family": "index0_control",
+        "information_flux_qubits_per_step": 0,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "1/1",
+          "right_support_algebra_rank": 1
+        },
+        "phase_form": "non-chiral onsite channel with L label retained only as metadata",
+        "rule_id": "engine_L_index0_control",
+        "signed_log2_index": 0,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "1/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 0
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": "R_control",
+        "family": "index0_control",
+        "information_flux_qubits_per_step": 0,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "1/1",
+          "right_support_algebra_rank": 1
+        },
+        "phase_form": "non-chiral onsite channel with R label retained only as metadata",
+        "rule_id": "engine_R_index0_control",
+        "signed_log2_index": 0,
+        "stage_order": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "standard_index_ratio": "1/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 0
+        }
+      },
+      {
+        "basis_reparameterization": "H_on_every_cell * shift_right * H_on_every_cell",
+        "engine_side": null,
+        "family": "gauge_invariance_control",
+        "information_flux_qubits_per_step": 1,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 1,
+          "rank_ratio_exact": "2/1",
+          "right_support_algebra_rank": 2
+        },
+        "phase_form": "right shift conjugated by onsite H basis changes before/after",
+        "rule_id": "gauge_reparameterized_right_shift",
+        "signed_log2_index": 1,
+        "stage_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "standard_index_ratio": "2/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 0,
+          "right_crossing_qubit_wires": 1
+        }
+      },
+      {
+        "basis_reparameterization": null,
+        "engine_side": null,
+        "family": "paired_block_form",
+        "information_flux_qubits_per_step": 0,
+        "local_dimension": 2,
+        "overlap_rank_data": {
+          "left_support_algebra_rank": 2,
+          "rank_ratio_exact": "1/1",
+          "right_support_algebra_rank": 2
+        },
+        "phase_form": "paired two-cell block swaps one wire each way; net index zero",
+        "rule_id": "paired_block_index0",
+        "signed_log2_index": 0,
+        "stage_order": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "standard_index_ratio": "1/1",
+        "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+        "wire_flow": {
+          "left_crossing_qubit_wires": 1,
+          "right_crossing_qubit_wires": 1
+        }
+      }
+    ],
+    "local_quantum_gates": {
+      "cptp_channel_control": {
+        "dephase_z_kraus": [
+          "|0><0|",
+          "|1><1|"
+        ],
+        "dephase_z_kraus_count": 2,
+        "purpose": "classical-limit channel control; not used to inflate the QCA index",
+        "trace_preserving_symbolic": true
+      },
+      "single_qubit": {
+        "H": {
+          "determinant_abs_squared": "1",
+          "dimension": 2,
+          "gate_id": "H",
+          "rank": 2,
+          "unitary": true
+        },
+        "S": {
+          "determinant_abs_squared": "1",
+          "dimension": 2,
+          "gate_id": "S",
+          "rank": 2,
+          "unitary": true
+        }
+      },
+      "two_qubit": {
+        "CNOT": {
+          "determinant_abs_squared": "1",
+          "dimension": 4,
+          "gate_id": "CNOT",
+          "rank": 4,
+          "unitary": true
+        },
+        "SWAP": {
+          "determinant_abs_squared": "1",
+          "dimension": 4,
+          "gate_id": "SWAP",
+          "rank": 4,
+          "unitary": true
+        }
+      }
+    },
+    "locality_comparison": {
+      "claim_ceiling": "bounded matched-state functional-graph comparison; not a v4 coupling admission",
+      "expectation_3_status": "survived",
+      "global_v3_style": {
+        "sample_states": [
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 0,
+              "R_stage": "Se"
+            },
+            "state_id": 0
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 1,
+              "R_stage": "Se"
+            },
+            "state_id": 1
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 2,
+              "R_stage": "Se"
+            },
+            "state_id": 2
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 3,
+              "R_stage": "Se"
+            },
+            "state_id": 3
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 4,
+              "R_stage": "Se"
+            },
+            "state_id": 4
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 5,
+              "R_stage": "Se"
+            },
+            "state_id": 5
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 6,
+              "R_stage": "Se"
+            },
+            "state_id": 6
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 7,
+              "R_stage": "Se"
+            },
+            "state_id": 7
+          }
+        ],
+        "signature": {
+          "edge_count": 6400,
+          "kind": "global_v3_style",
+          "period_histogram": {
+            "40": 6400
+          },
+          "scc_count": 160,
+          "state_count": 6400,
+          "terminal_class_count": 160,
+          "terminal_sizes": [
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40,
+            40
+          ]
+        },
+        "signature_sha256": "da2335d521f4526d74b6613964ceb0e9e36dee8641527f5d7b48e477928a263d"
+      },
+      "local_brickwork": {
+        "sample_states": [
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 0,
+              "R_stage": "Se"
+            },
+            "state_id": 0
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 1,
+              "R_stage": "Se"
+            },
+            "state_id": 1
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 2,
+              "R_stage": "Se"
+            },
+            "state_id": 2
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 3,
+              "R_stage": "Se"
+            },
+            "state_id": 3
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 4,
+              "R_stage": "Se"
+            },
+            "state_id": 4
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 5,
+              "R_stage": "Se"
+            },
+            "state_id": 5
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 6,
+              "R_stage": "Se"
+            },
+            "state_id": 6
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 7,
+              "R_stage": "Se"
+            },
+            "state_id": 7
+          }
+        ],
+        "signature": {
+          "edge_count": 6400,
+          "kind": "local_brickwork",
+          "period_histogram": {
+            "4": 6400
+          },
+          "scc_count": 1600,
+          "state_count": 6400,
+          "terminal_class_count": 1600,
+          "terminal_sizes": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "signature_sha256": "0c920ea7d234a1567af363a923845a9cf4fe0985d2ab626ab6c23831834370b3"
+      },
+      "matched_state_count": 6400,
+      "order_shuffle_changes_local_structure": true,
+      "order_shuffle_control": {
+        "sample_states": [
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 0,
+              "R_stage": "Se"
+            },
+            "state_id": 0
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 1,
+              "R_stage": "Se"
+            },
+            "state_id": 1
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 2,
+              "R_stage": "Se"
+            },
+            "state_id": 2
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 3,
+              "R_stage": "Se"
+            },
+            "state_id": 3
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 4,
+              "R_stage": "Se"
+            },
+            "state_id": 4
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 5,
+              "R_stage": "Se"
+            },
+            "state_id": 5
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 6,
+              "R_stage": "Se"
+            },
+            "state_id": 6
+          },
+          {
+            "state": {
+              "L_cell": 0,
+              "L_stage": "Se",
+              "R_cell": 7,
+              "R_stage": "Se"
+            },
+            "state_id": 7
+          }
+        ],
+        "signature": {
+          "edge_count": 6400,
+          "kind": "order_shuffle_control",
+          "period_histogram": {
+            "4": 6400
+          },
+          "scc_count": 1600,
+          "state_count": 6400,
+          "terminal_class_count": 1600,
+          "terminal_sizes": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "signature_sha256": "8b2317089df5a8bdeb1089914a3cbf22ed02c335029c040cd7c8129acaf47b5b"
+      },
+      "terminal_or_orbit_structure_differs": true
+    },
+    "negative_section": {
+      "falsifier_branch": {
+        "expectation_2_status": "killed_as_expected",
+        "mutated_L_signed_index": -1,
+        "mutated_R_signed_index": -1,
+        "name": "force_R_engine_to_left_shift",
+        "opposite_signs": false,
+        "reachable": true
+      },
+      "index0_control": {
+        "L_control_index": 0,
+        "R_control_index": 0,
+        "alignment_killed": false,
+        "lr_distinction_detected": false,
+        "probe_family": [
+          "signed_log2_index",
+          "standard_index_ratio",
+          "information_flux_qubits_per_step"
+        ]
+      },
+      "order_shuffle_control": {
+        "changed": true,
+        "control_signature": {
+          "edge_count": 6400,
+          "kind": "order_shuffle_control",
+          "period_histogram": {
+            "4": 6400
+          },
+          "scc_count": 1600,
+          "state_count": 6400,
+          "terminal_class_count": 1600,
+          "terminal_sizes": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        }
+      }
+    },
+    "object": {
+      "index_definition": "signed_log2_index = log2(dim(right support algebra)/dim(left support algebra))",
+      "index_definition_status": "standard_math_alignment_not_owner_source",
+      "kind": "finite ring-checkerboard partitioned QCA diagnostic",
+      "qubits_on_cells": true,
+      "raw_standard_index_ratio_retained": true,
+      "same_support_as_v0": true,
+      "support_source": "ring_checkerboard_automaton_v0.support_cells"
+    },
+    "positive_section": {
+      "expectation_2_LR_opposite_indices": {
+        "L_signed_index": -1,
+        "R_signed_index": 1,
+        "expectation_2_status": "earned",
+        "opposite_signs": true
+      },
+      "expectation_3_locality_changes_coupling": "survived",
+      "index_calibrations": {
+        "left_shift_minus_one": true,
+        "onsite_zero": true,
+        "right_shift_plus_one": true
+      }
+    },
+    "primary_n": 4,
+    "promotion_allowed": false,
+    "sim_id": "ring_checkerboard_qca_v1",
+    "support": {
+      "attached_ring_count": 4,
+      "base_ring_steps": 4,
+      "cell_sample": [
+        {
+          "anchor": -1,
+          "cell_id": 0,
+          "kappa": 0,
+          "label": "base:s00",
+          "layer": 0,
+          "ring_label": "base",
+          "step": 0
+        },
+        {
+          "anchor": -1,
+          "cell_id": 1,
+          "kappa": 1,
+          "label": "base:s01",
+          "layer": 0,
+          "ring_label": "base",
+          "step": 1
+        },
+        {
+          "anchor": -1,
+          "cell_id": 2,
+          "kappa": 0,
+          "label": "base:s02",
+          "layer": 0,
+          "ring_label": "base",
+          "step": 2
+        },
+        {
+          "anchor": -1,
+          "cell_id": 3,
+          "kappa": 1,
+          "label": "base:s03",
+          "layer": 0,
+          "ring_label": "base",
+          "step": 3
+        },
+        {
+          "anchor": 0,
+          "cell_id": 4,
+          "kappa": 1,
+          "label": "attached:a00:s00",
+          "layer": 1,
+          "ring_label": "attached:a00",
+          "step": 0
+        },
+        {
+          "anchor": 0,
+          "cell_id": 5,
+          "kappa": 0,
+          "label": "attached:a00:s01",
+          "layer": 1,
+          "ring_label": "attached:a00",
+          "step": 1
+        },
+        {
+          "anchor": 0,
+          "cell_id": 6,
+          "kappa": 1,
+          "label": "attached:a00:s02",
+          "layer": 1,
+          "ring_label": "attached:a00",
+          "step": 2
+        },
+        {
+          "anchor": 0,
+          "cell_id": 7,
+          "kappa": 0,
+          "label": "attached:a00:s03",
+          "layer": 1,
+          "ring_label": "attached:a00",
+          "step": 3
+        },
+        {
+          "anchor": 1,
+          "cell_id": 8,
+          "kappa": 1,
+          "label": "attached:a01:s00",
+          "layer": 1,
+          "ring_label": "attached:a01",
+          "step": 0
+        },
+        {
+          "anchor": 1,
+          "cell_id": 9,
+          "kappa": 0,
+          "label": "attached:a01:s01",
+          "layer": 1,
+          "ring_label": "attached:a01",
+          "step": 1
+        },
+        {
+          "anchor": 1,
+          "cell_id": 10,
+          "kappa": 1,
+          "label": "attached:a01:s02",
+          "layer": 1,
+          "ring_label": "attached:a01",
+          "step": 2
+        },
+        {
+          "anchor": 1,
+          "cell_id": 11,
+          "kappa": 0,
+          "label": "attached:a01:s03",
+          "layer": 1,
+          "ring_label": "attached:a01",
+          "step": 3
+        }
+      ],
+      "kappa_rule": "kappa(v)=(ring_layer + step) mod 2, inherited from v0",
+      "n": 4,
+      "qubit_local_dimension": 2,
+      "ring_count": 5,
+      "rings": {
+        "attached:a00": [
+          {
+            "anchor": 0,
+            "cell_id": 4,
+            "kappa": 1,
+            "label": "attached:a00:s00",
+            "layer": 1,
+            "step": 0
+          },
+          {
+            "anchor": 0,
+            "cell_id": 5,
+            "kappa": 0,
+            "label": "attached:a00:s01",
+            "layer": 1,
+            "step": 1
+          },
+          {
+            "anchor": 0,
+            "cell_id": 6,
+            "kappa": 1,
+            "label": "attached:a00:s02",
+            "layer": 1,
+            "step": 2
+          },
+          {
+            "anchor": 0,
+            "cell_id": 7,
+            "kappa": 0,
+            "label": "attached:a00:s03",
+            "layer": 1,
+            "step": 3
+          }
+        ],
+        "attached:a01": [
+          {
+            "anchor": 1,
+            "cell_id": 8,
+            "kappa": 1,
+            "label": "attached:a01:s00",
+            "layer": 1,
+            "step": 0
+          },
+          {
+            "anchor": 1,
+            "cell_id": 9,
+            "kappa": 0,
+            "label": "attached:a01:s01",
+            "layer": 1,
+            "step": 1
+          },
+          {
+            "anchor": 1,
+            "cell_id": 10,
+            "kappa": 1,
+            "label": "attached:a01:s02",
+            "layer": 1,
+            "step": 2
+          },
+          {
+            "anchor": 1,
+            "cell_id": 11,
+            "kappa": 0,
+            "label": "attached:a01:s03",
+            "layer": 1,
+            "step": 3
+          }
+        ],
+        "attached:a02": [
+          {
+            "anchor": 2,
+            "cell_id": 12,
+            "kappa": 1,
+            "label": "attached:a02:s00",
+            "layer": 1,
+            "step": 0
+          },
+          {
+            "anchor": 2,
+            "cell_id": 13,
+            "kappa": 0,
+            "label": "attached:a02:s01",
+            "layer": 1,
+            "step": 1
+          },
+          {
+            "anchor": 2,
+            "cell_id": 14,
+            "kappa": 1,
+            "label": "attached:a02:s02",
+            "layer": 1,
+            "step": 2
+          },
+          {
+            "anchor": 2,
+            "cell_id": 15,
+            "kappa": 0,
+            "label": "attached:a02:s03",
+            "layer": 1,
+            "step": 3
+          }
+        ],
+        "attached:a03": [
+          {
+            "anchor": 3,
+            "cell_id": 16,
+            "kappa": 1,
+            "label": "attached:a03:s00",
+            "layer": 1,
+            "step": 0
+          },
+          {
+            "anchor": 3,
+            "cell_id": 17,
+            "kappa": 0,
+            "label": "attached:a03:s01",
+            "layer": 1,
+            "step": 1
+          },
+          {
+            "anchor": 3,
+            "cell_id": 18,
+            "kappa": 1,
+            "label": "attached:a03:s02",
+            "layer": 1,
+            "step": 2
+          },
+          {
+            "anchor": 3,
+            "cell_id": 19,
+            "kappa": 0,
+            "label": "attached:a03:s03",
+            "layer": 1,
+            "step": 3
+          }
+        ],
+        "base": [
+          {
+            "anchor": -1,
+            "cell_id": 0,
+            "kappa": 0,
+            "label": "base:s00",
+            "layer": 0,
+            "step": 0
+          },
+          {
+            "anchor": -1,
+            "cell_id": 1,
+            "kappa": 1,
+            "label": "base:s01",
+            "layer": 0,
+            "step": 1
+          },
+          {
+            "anchor": -1,
+            "cell_id": 2,
+            "kappa": 0,
+            "label": "base:s02",
+            "layer": 0,
+            "step": 2
+          },
+          {
+            "anchor": -1,
+            "cell_id": 3,
+            "kappa": 1,
+            "label": "base:s03",
+            "layer": 0,
+            "step": 3
+          }
+        ]
+      },
+      "source": "ring_checkerboard_automaton_v0.support_cells",
+      "support_cell_count": 20
+    },
+    "typed_information_flux_rows": [
+      {
+        "counting_entropy_bits_per_cut": 1,
+        "information_flux_qubits_per_step": 1,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "calibration_right_shift",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+        "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+      },
+      {
+        "counting_entropy_bits_per_cut": 1,
+        "information_flux_qubits_per_step": -1,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "calibration_left_shift",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "-1*log(2)",
+        "von_neumann_entropy_flux_nats_float": -0.6931471805599453
+      },
+      {
+        "counting_entropy_bits_per_cut": 0,
+        "information_flux_qubits_per_step": 0,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "calibration_nonshifting_onsite",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "0",
+        "von_neumann_entropy_flux_nats_float": 0.0
+      },
+      {
+        "counting_entropy_bits_per_cut": 1,
+        "information_flux_qubits_per_step": -1,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "engine_L_flux_in_left",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "-1*log(2)",
+        "von_neumann_entropy_flux_nats_float": -0.6931471805599453
+      },
+      {
+        "counting_entropy_bits_per_cut": 1,
+        "information_flux_qubits_per_step": 1,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "engine_R_flux_out_right",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+        "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+      },
+      {
+        "counting_entropy_bits_per_cut": 0,
+        "information_flux_qubits_per_step": 0,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "engine_L_index0_control",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "0",
+        "von_neumann_entropy_flux_nats_float": 0.0
+      },
+      {
+        "counting_entropy_bits_per_cut": 0,
+        "information_flux_qubits_per_step": 0,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "engine_R_index0_control",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "0",
+        "von_neumann_entropy_flux_nats_float": 0.0
+      },
+      {
+        "counting_entropy_bits_per_cut": 1,
+        "information_flux_qubits_per_step": 1,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "gauge_reparameterized_right_shift",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+        "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+      },
+      {
+        "counting_entropy_bits_per_cut": 0,
+        "information_flux_qubits_per_step": 0,
+        "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+        "rule_id": "paired_block_index0",
+        "typed_label": "qca_signed_information_flux",
+        "von_neumann_entropy_flux_nats_exact": "0",
+        "von_neumann_entropy_flux_nats_float": 0.0
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_jax_results.json",
+  "schema": "ring_checkerboard_qca_v1_jax_result_v1",
+  "sim_id": "ring_checkerboard_qca_v1",
+  "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_jax.py",
+  "source_sha256": "f8f95599627f277d0bd274833db7312eda5de49912a4a45890425679c69a4f67"
+}

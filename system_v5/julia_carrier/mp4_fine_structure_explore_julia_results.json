@@ -1,0 +1,772 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia Float64/ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "clifford_torus_nested_hopf_foliation": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "load_bearing",
+    "octonion_G2_automorphism": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia Float64/ComplexF64": {
+      "reason": "load-bearing independent mirror scalar, carrier ablation, target-fit control, and parity arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing H0, schedule, manifold-layer, and operator-slot factors; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "load-bearing Hopf torus metric/vector factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing spinor, density, Bloch, mixed-purity, and fiber/rank factors; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing quaternion and octonion algebra factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "load-bearing linking/cocycle/N01 factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism": {
+      "reason": "load-bearing G2 derivation/control factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite mechanism witness",
+    "dual-backend parity witness",
+    "non-tautological owner-carrier erasure/control diagnostic",
+    "honest graveyard result for fine-structure derivation"
+  ],
+  "alpha_attempt": {
+    "alpha_value": 0.011490294021831287,
+    "derived": false,
+    "derived_not_fit": false,
+    "fit_control": {
+      "fit_alpha_value": 0.0072992700729927005,
+      "fit_only": true,
+      "fit_scale": 0.6352552910416618,
+      "matches_137": true
+    },
+    "fit_or_tuned": false,
+    "matches_137": false,
+    "target_alpha_1_over_137": 0.0072992700729927005,
+    "tuned_to_target": false,
+    "underdetermined": true
+  },
+  "backend": "julia_float64",
+  "blocked_consumers": [
+    "fine_structure_constant_derivation",
+    "measured_alpha_claim",
+    "physics_admission",
+    "formal_admission",
+    "promotion",
+    "standard_model_parameter_derivation"
+  ],
+  "blockers": [],
+  "boundary": {
+    "hard_open_rung_not_forced": {
+      "pass": true,
+      "reason": "the alpha rung is graveyarded instead of forced into a claimed derivation"
+    },
+    "scratch_diagnostic_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission": false,
+      "pass": true,
+      "promotion": false,
+      "reason": "the result is fenced by request and by claim ceiling"
+    },
+    "single_status_control": {
+      "derived_not_fit": false,
+      "fit_or_tuned": false,
+      "pass": true,
+      "reason": "exactly one alpha-status bucket is active for the primary untuned value",
+      "underdetermined": true
+    }
+  },
+  "claim_ceiling": "Finite MECHANISM witness in the owner's entropic-monist carrier frame: an untuned carrier geometry/coupling scalar can be computed and ablated. This is not a derivation or proof of the fine-structure constant, not a physics admission, not formal admission, and not promotion.",
+  "classification": "scratch_diagnostic",
+  "construction": "Untuned finite scalar built from real owner carrier invariants, with source-erasure ablations and a separate explicit target-fit control.",
+  "controls": {
+    "carrier_erasure_changes_result": {
+      "min_abs_delta": 0.0028921742674284014,
+      "pass": true,
+      "reason": "the owner carrier is not decorative under the attempted scalar"
+    },
+    "flat_carrier_control_not_same_value": {
+      "control_value": 0.0026828662161367646,
+      "pass": true,
+      "reason": "removing nested/golden Weyl information changes the scalar rather than leaving a tautology"
+    },
+    "target_fit_control_is_explicitly_tuned": {
+      "fit_alpha_value": 0.0072992700729927005,
+      "fit_matches_137": true,
+      "fit_scale": 0.6352552910416618,
+      "pass": true,
+      "reason": "hitting 1/137 is possible only by multiplying by a free target-fit parameter, so it is not admitted",
+      "used_for_primary": false
+    }
+  },
+  "created_at": "2026-06-07T04:34:20Z",
+  "divergence_log": [
+    "Primary scalar is untuned and does not match 1/137 within the declared window.",
+    "Target match is possible only through an explicit free multiplicative scale chosen from 1/137.",
+    "Every named owner carrier erasure changes the attempted scalar.",
+    "Fine-structure derivation remains graveyarded: derived=false."
+  ],
+  "formal_admission": false,
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "fine_structure_constant_derivation": {
+      "derived": false,
+      "derived_not_fit": false,
+      "matches_137": false,
+      "pass": true,
+      "reason": "the carrier produced an untuned diagnostic scalar, but no derivation of alpha from the carrier constraints was found",
+      "value": 0.011490294021831287
+    },
+    "physics_admission": {
+      "derived": false,
+      "pass": true,
+      "reason": "no physics admission follows from this scratch diagnostic",
+      "value": null
+    },
+    "target_matched_fit": {
+      "derived": false,
+      "fit_only": true,
+      "matches_137": true,
+      "pass": true,
+      "reason": "the target can be hit only by adding an external scale chosen from the target",
+      "tuning_parameter": 0.6352552910416618,
+      "value": 0.0072992700729927005
+    }
+  },
+  "local_all_pass": true,
+  "name": "MP4 fine-structure constant exploration scratch diagnostic",
+  "nearby_variants": {
+    "all_pass": true,
+    "passed": 3,
+    "summary": {
+      "carrier_erased_controls": "each named owner carrier is erased one at a time",
+      "fit_control": "external multiplicative scale chosen from target alpha is recorded but not used",
+      "flat_golden_control": "nested/golden Weyl contribution removed"
+    },
+    "total": 3,
+    "variants": [
+      "carrier_erased_controls",
+      "flat_golden_control",
+      "fit_control"
+    ]
+  },
+  "object_id": "mp4_fine_structure_explore",
+  "owner_carrier": {
+    "ablation_deltas": {
+      "canonical_qit_engine_specs.py": 0.11358062975486584,
+      "clifford_torus_nested_hopf_foliation": 0.0028921742674284014,
+      "density_matrix_spinor_lift": 0.004268740516490394,
+      "division_algebra_ratchet_ladder": 0.04596117608732523,
+      "golden_weyl": 0.008807427805694521,
+      "octonion_G2_automorphism": 0.017791866332490414
+    },
+    "ablation_results": {
+      "canonical_qit_engine_specs.py": {
+        "abs_delta_from_full": 0.11358062975486584,
+        "alpha_value": 0.12507092377669712,
+        "factors": {
+          "density_factor": 3.58,
+          "division_factor": 5.000000000000007,
+          "g2_factor": 2.730456085559158,
+          "golden_factor": 4.282842712290334,
+          "hopf_factor": 1.3363728757031315,
+          "mixed_rank_factor": 3.0,
+          "qit_factor": 0.25
+        }
+      },
+      "clifford_torus_nested_hopf_foliation": {
+        "abs_delta_from_full": 0.0028921742674284014,
+        "alpha_value": 0.008598119754402885,
+        "factors": {
+          "density_factor": 3.58,
+          "division_factor": 5.000000000000007,
+          "g2_factor": 2.730456085559158,
+          "golden_factor": 4.282842712290334,
+          "hopf_factor": 1.0,
+          "mixed_rank_factor": 3.0,
+          "qit_factor": 0.02296755647688781
+        }
+      },
+      "density_matrix_spinor_lift": {
+        "abs_delta_from_full": 0.004268740516490394,
+        "alpha_value": 0.007221553505340893,
+        "factors": {
+          "density_factor": 1.5,
+          "division_factor": 5.000000000000007,
+          "g2_factor": 2.730456085559158,
+          "golden_factor": 4.282842712290334,
+          "hopf_factor": 1.3363728757031315,
+          "mixed_rank_factor": 2.0,
+          "qit_factor": 0.02296755647688781
+        }
+      },
+      "division_algebra_ratchet_ladder": {
+        "abs_delta_from_full": 0.04596117608732523,
+        "alpha_value": 0.057451470109156515,
+        "factors": {
+          "density_factor": 3.58,
+          "division_factor": 1.0,
+          "g2_factor": 2.730456085559158,
+          "golden_factor": 4.282842712290334,
+          "hopf_factor": 1.3363728757031315,
+          "mixed_rank_factor": 3.0,
+          "qit_factor": 0.02296755647688781
+        }
+      },
+      "golden_weyl": {
+        "abs_delta_from_full": 0.008807427805694521,
+        "alpha_value": 0.0026828662161367646,
+        "factors": {
+          "density_factor": 3.58,
+          "division_factor": 5.000000000000007,
+          "g2_factor": 2.730456085559158,
+          "golden_factor": 1.0,
+          "hopf_factor": 1.3363728757031315,
+          "mixed_rank_factor": 3.0,
+          "qit_factor": 0.02296755647688781
+        }
+      },
+      "octonion_G2_automorphism": {
+        "abs_delta_from_full": 0.017791866332490414,
+        "alpha_value": 0.029282160354321702,
+        "factors": {
+          "density_factor": 3.58,
+          "division_factor": 5.000000000000007,
+          "g2_factor": 1.0714285714285714,
+          "golden_factor": 4.282842712290334,
+          "hopf_factor": 1.3363728757031315,
+          "mixed_rank_factor": 3.0,
+          "qit_factor": 0.02296755647688781
+        }
+      }
+    },
+    "load_bearing": true
+  },
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "factor.golden_factor",
+    "missing_keys": [],
+    "parity_max_diff": 2.6645352591003757e-15,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_fine_structure_explore_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "density.fiber_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.7808969202141856,
+        "julia": 0.7808969202141856,
+        "key": "qit.h0_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 5.8436486844732665,
+        "julia": 5.8436486844732665,
+        "key": "g2.random_tracefree_derivation_residual"
+      },
+      {
+        "abs_diff": 3.469446951953614e-18,
+        "jax": 0.004191023948838583,
+        "julia": 0.004191023948838586,
+        "key": "alpha_abs_delta_from_target"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.1250709237766971,
+        "julia": 0.12507092377669712,
+        "key": "ablation_value.canonical_qit_engine_specs.py"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 13.0,
+        "julia": 13.0,
+        "key": "qit.manifold_layer_count"
+      },
+      {
+        "abs_diff": 2.6645352591003757e-15,
+        "jax": 4.282842712290331,
+        "julia": 4.282842712290334,
+        "key": "factor.golden_factor"
+      },
+      {
+        "abs_diff": 1.0408340855860843e-17,
+        "jax": 0.02928216035432169,
+        "julia": 0.029282160354321702,
+        "key": "ablation_value.octonion_G2_automorphism"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.08637287570313155,
+        "julia": 0.08637287570313155,
+        "key": "hopf.torus_metric_det_min"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "division.h_commutator_norm"
+      },
+      {
+        "abs_diff": 3.469446951953614e-18,
+        "jax": 0.011490294021831283,
+        "julia": 0.011490294021831287,
+        "key": "alpha_value"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0028921742674284014,
+        "julia": 0.0028921742674284014,
+        "key": "ablation_delta.clifford_torus_nested_hopf_foliation"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.730456085559158,
+        "julia": 2.730456085559158,
+        "key": "factor.g2_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "qit.schedule_total_len"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.8284271247461903,
+        "julia": 2.8284271247461903,
+        "key": "golden.n01_commutator_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "hopf.hopf_vec_norm"
+      },
+      {
+        "abs_diff": 2.4424906541753444e-15,
+        "jax": 0.9999999998157121,
+        "julia": 0.9999999998157145,
+        "key": "golden.linking_number"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.58,
+        "julia": 3.58,
+        "key": "factor.density_factor"
+      },
+      {
+        "abs_diff": 8.673617379884035e-19,
+        "jax": 0.004268740516490393,
+        "julia": 0.004268740516490394,
+        "key": "ablation_delta.density_matrix_spinor_lift"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "division.o_associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0072992700729927005,
+        "julia": 0.0072992700729927005,
+        "key": "target_alpha_1_over_137"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.11358062975486581,
+        "julia": 0.11358062975486584,
+        "key": "ablation_delta.canonical_qit_engine_specs.py"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "factor.mixed_rank_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "density.bloch_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5800000000000001,
+        "julia": 0.5800000000000001,
+        "key": "density.mixed_purity"
+      },
+      {
+        "abs_diff": 3.469446951953614e-17,
+        "jax": 0.05745147010915648,
+        "julia": 0.057451470109156515,
+        "key": "ablation_value.division_algebra_ratchet_ladder"
+      },
+      {
+        "abs_diff": 6.938893903907228e-18,
+        "jax": 0.017791866332490407,
+        "julia": 0.017791866332490414,
+        "key": "ablation_delta.octonion_G2_automorphism"
+      },
+      {
+        "abs_diff": 1.7763568394002505e-15,
+        "jax": 5.000000000000005,
+        "julia": 5.000000000000007,
+        "key": "factor.division_factor"
+      },
+      {
+        "abs_diff": 1.7004579143496587e-15,
+        "jax": 5.296590029624932e-15,
+        "julia": 6.9970479439745904e-15,
+        "key": "division.o_alternator_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.02296755647688781,
+        "julia": 0.02296755647688781,
+        "key": "factor.qit_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.3363728757031315,
+        "julia": 1.3363728757031315,
+        "key": "factor.hopf_factor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0072992700729927005,
+        "julia": 0.0072992700729927005,
+        "key": "fit_alpha_value"
+      },
+      {
+        "abs_diff": 3.469446951953614e-18,
+        "jax": 0.008807427805694518,
+        "julia": 0.008807427805694521,
+        "key": "ablation_delta.golden_weyl"
+      },
+      {
+        "abs_diff": 3.469446951953614e-18,
+        "jax": 0.008598119754402882,
+        "julia": 0.008598119754402885,
+        "key": "ablation_value.clifford_torus_nested_hopf_foliation"
+      },
+      {
+        "abs_diff": 3.469446951953614e-17,
+        "jax": 0.045961176087325195,
+        "julia": 0.04596117608732523,
+        "key": "ablation_delta.division_algebra_ratchet_ladder"
+      },
+      {
+        "abs_diff": 2.6020852139652106e-18,
+        "jax": 0.00722155350534089,
+        "julia": 0.007221553505340893,
+        "key": "ablation_value.density_matrix_spinor_lift"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "golden.cocycle_gap"
+      },
+      {
+        "abs_diff": 8.673617379884035e-19,
+        "jax": 0.0026828662161367655,
+        "julia": 0.0026828662161367646,
+        "key": "ablation_value.golden_weyl"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 0.635255291041662,
+        "julia": 0.6352552910416618,
+        "key": "fit_scale_to_target"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "g2.der_O_dim"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp4_fine_structure_explore_results.json",
+  "positive": {
+    "finite_carrier_scalar_computed": {
+      "abs_delta_from_target": 0.004191023948838586,
+      "alpha_value": 0.011490294021831287,
+      "pass": true,
+      "reason": "an untuned finite carrier geometry/coupling scalar was computed on the owner carrier",
+      "target_alpha_1_over_137": 0.0072992700729927005
+    },
+    "julia_float64_mirror": {
+      "pass": true,
+      "reason": "Julia Float64/ComplexF64 mirror emitted the same parity keys"
+    },
+    "owner_carrier_load_bearing": {
+      "ablation_deltas": {
+        "canonical_qit_engine_specs.py": 0.11358062975486584,
+        "clifford_torus_nested_hopf_foliation": 0.0028921742674284014,
+        "density_matrix_spinor_lift": 0.004268740516490394,
+        "division_algebra_ratchet_ladder": 0.04596117608732523,
+        "golden_weyl": 0.008807427805694521,
+        "octonion_G2_automorphism": 0.017791866332490414
+      },
+      "pass": true,
+      "reason": "erasing each named owner carrier changes the attempted scalar",
+      "threshold": 1.0e-8
+    }
+  },
+  "promotion": false,
+  "promotion_allowed": false,
+  "question": "Can the owner carrier derive alpha near 1/137 from geometry/coupling without tuning?",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_fine_structure_explore_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "alpha_value": 0.011490294021831287,
+    "derived": false,
+    "derived_not_fit": false,
+    "fit_control_matches_137": true,
+    "fit_or_tuned": false,
+    "local_all_pass": true,
+    "matches_137": false,
+    "owner_carrier_load_bearing": true,
+    "parity_max_diff": 2.6645352591003757e-15,
+    "parity_within_1e_9": true,
+    "target_alpha_1_over_137": 0.0072992700729927005,
+    "underdetermined": true
+  },
+  "schema": "codex-ratchet.formal_scout.dual_backend.v1",
+  "shared_booleans": {
+    "derived": false,
+    "derived_not_fit": false,
+    "fit_control_matches_137": true,
+    "fit_or_tuned": false,
+    "formal_admission": false,
+    "matches_137": false,
+    "owner_carrier_load_bearing": true,
+    "promotion": false,
+    "underdetermined": true
+  },
+  "shared_scalars": {
+    "ablation_delta.canonical_qit_engine_specs.py": 0.11358062975486584,
+    "ablation_delta.clifford_torus_nested_hopf_foliation": 0.0028921742674284014,
+    "ablation_delta.density_matrix_spinor_lift": 0.004268740516490394,
+    "ablation_delta.division_algebra_ratchet_ladder": 0.04596117608732523,
+    "ablation_delta.golden_weyl": 0.008807427805694521,
+    "ablation_delta.octonion_G2_automorphism": 0.017791866332490414,
+    "ablation_value.canonical_qit_engine_specs.py": 0.12507092377669712,
+    "ablation_value.clifford_torus_nested_hopf_foliation": 0.008598119754402885,
+    "ablation_value.density_matrix_spinor_lift": 0.007221553505340893,
+    "ablation_value.division_algebra_ratchet_ladder": 0.057451470109156515,
+    "ablation_value.golden_weyl": 0.0026828662161367646,
+    "ablation_value.octonion_G2_automorphism": 0.029282160354321702,
+    "alpha_abs_delta_from_target": 0.004191023948838586,
+    "alpha_value": 0.011490294021831287,
+    "density.bloch_norm": 1.0,
+    "density.fiber_dim": 1.0,
+    "density.mixed_purity": 0.5800000000000001,
+    "division.h_commutator_norm": 2.0,
+    "division.o_alternator_residual": 6.9970479439745904e-15,
+    "division.o_associator_max": 2.0,
+    "factor.density_factor": 3.58,
+    "factor.division_factor": 5.000000000000007,
+    "factor.g2_factor": 2.730456085559158,
+    "factor.golden_factor": 4.282842712290334,
+    "factor.hopf_factor": 1.3363728757031315,
+    "factor.mixed_rank_factor": 3.0,
+    "factor.qit_factor": 0.02296755647688781,
+    "fit_alpha_value": 0.0072992700729927005,
+    "fit_scale_to_target": 0.6352552910416618,
+    "g2.der_O_dim": 14.0,
+    "g2.random_tracefree_derivation_residual": 5.8436486844732665,
+    "golden.cocycle_gap": 2.0,
+    "golden.linking_number": 0.9999999998157145,
+    "golden.n01_commutator_norm": 2.8284271247461903,
+    "hopf.hopf_vec_norm": 1.0,
+    "hopf.torus_metric_det_min": 0.08637287570313155,
+    "qit.h0_norm": 0.7808969202141856,
+    "qit.manifold_layer_count": 13.0,
+    "qit.schedule_total_len": 16.0,
+    "target_alpha_1_over_137": 0.0072992700729927005
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_fine_structure_explore_julia.jl",
+  "source_refs": {
+    "canonical_qit_engine_specs.py": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83"
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "sha256": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af"
+    },
+    "density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "sha256": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424"
+    },
+    "density_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift_julia_results.json",
+      "sha256": "95f1bc01dfddb8d0b90a59e230c871872249fc1e198dd3cb6960c251aaafd8d0"
+    },
+    "division_algebra_ratchet_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "sha256": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878"
+    },
+    "division_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_julia_results.json",
+      "sha256": "b7707f01d268010231c1a791a39d8988a4058f4103301240fe18f988511bd4e0"
+    },
+    "g2_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_julia_results.json",
+      "sha256": "0076abf08cf436bcf9099a905ec1a3b7d071a61188beac361cc1d34b8ea42e4d"
+    },
+    "golden_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+      "sha256": "2193864486f0e5d9198ed589c7e44f2ee49b0457b23676a2d25a51b40415488d"
+    },
+    "golden_weyl": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "sha256": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070"
+    },
+    "golden_weyl_jax": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+      "sha256": "2bad22d3ab60ece229a59e36bc75d247ea2ff5acea834868eb1c276cb4d590ab"
+    },
+    "hopf_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation_julia_results.json",
+      "sha256": "b997e0b4a071190312333dc13903db60351aa10c43b82fb705085232349c4e74"
+    },
+    "jax_clifford_torus_nested_hopf_foliation": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+      "sha256": "a55594e5dbc0629d0b8419beed97811925f113c299c0b8b0a86f5912f9472a02"
+    },
+    "jax_density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+      "sha256": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a"
+    },
+    "jax_division_algebra_ratchet_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+      "sha256": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24"
+    },
+    "jax_octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+      "sha256": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a"
+    },
+    "octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "sha256": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347"
+    }
+  },
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "summary": {
+    "all_pass": true,
+    "alpha_value": 0.011490294021831287,
+    "derived": false,
+    "derived_not_fit": false,
+    "fit_control_matches_137": true,
+    "fit_or_tuned": false,
+    "local_all_pass": true,
+    "matches_137": false,
+    "owner_carrier_load_bearing": true,
+    "parity_max_diff": 2.6645352591003757e-15,
+    "parity_within_1e_9": true,
+    "target_alpha_1_over_137": 0.0072992700729927005,
+    "underdetermined": true
+  },
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia Float64/ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "clifford_torus_nested_hopf_foliation": "load_bearing",
+    "density_matrix_spinor_lift": "load_bearing",
+    "division_algebra_ratchet_ladder": "load_bearing",
+    "golden_weyl": "load_bearing",
+    "octonion_G2_automorphism": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia Float64/ComplexF64": {
+      "reason": "load-bearing independent mirror scalar, carrier ablation, target-fit control, and parity arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing H0, schedule, manifold-layer, and operator-slot factors; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "reason": "load-bearing Hopf torus metric/vector factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "density_matrix_spinor_lift": {
+      "reason": "load-bearing spinor, density, Bloch, mixed-purity, and fiber/rank factors; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "division_algebra_ratchet_ladder": {
+      "reason": "load-bearing quaternion and octonion algebra factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "golden_weyl": {
+      "reason": "load-bearing linking/cocycle/N01 factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    },
+    "octonion_G2_automorphism": {
+      "reason": "load-bearing G2 derivation/control factor; erasing it changes the attempted scalar",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": [
+    "scratch diagnostic only, not a formal admission candidate",
+    "alpha is a hard/open physics constant and this carrier does not derive it",
+    "the matched 1/137 value appears only in the explicit target-fit control"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "foundation_envelope_audit_receipt_v1",
+  "receipt_kind": "foundation_envelope_hash_pin",
+  "rung": "foundation_r5_weyl_chirality_pair",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r5_weyl_chirality_pair_envelope.py",
+  "file_realpath": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r5_weyl_chirality_pair_envelope.py",
+  "source_sha256": "e0df358a546c55fab97361f84ab72cc1b849ad4809314024ba4f122bd2e66b07",
+  "source_size_bytes": 11751,
+  "source_mtime": 1780885902.5606282,
+  "source_mtime_iso": "2026-06-08T02:31:42Z",
+  "envelope_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_envelope_results.json",
+  "envelope_result_source_sha256": "e0df358a546c55fab97361f84ab72cc1b849ad4809314024ba4f122bd2e66b07",
+  "audited_at": "2026-06-08T05:19:18Z",
+  "validator": {
+    "command": [
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "/Users/joshuaeisenhart/Codex-Ratchet/scripts/validate_three_engine_sim_result.py",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_envelope_results.json",
+      "--require-pytorch"
+    ],
+    "returncode": 0,
+    "ok": true,
+    "stdout": "{\n  \"ok\": true,\n  \"result_json\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_envelope_results.json\"\n}",
+    "stdout_json": {
+      "ok": true,
+      "result_json": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_envelope_results.json"
+    },
+    "stderr": ""
+  },
+  "max_divergence": 0.0,
+  "constituent_legs": {
+    "julia": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r5_weyl_chirality_pair_julia.jl",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r5_weyl_chirality_pair_julia_results.json",
+      "source_sha256": "c76d28fdcca348b02e0d6f18856fb6b83556cc3beb5121dd8ff3679e1be7e38b",
+      "durable_audit_receipt": {
+        "exists": false,
+        "path": null
+      }
+    },
+    "jax": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r5_weyl_chirality_pair_jax.py",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_jax_results.json",
+      "source_sha256": "545198fbeae0c5287e3ff6f307ce22d1eff524572cfc63a1b608bdc1cf070bd6",
+      "durable_audit_receipt": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/audit_receipts/weyl_chirality_pair__545198fbeae0.json",
+        "authority_verdict": "GENUINE"
+      }
+    },
+    "pytorch": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r5_weyl_chirality_pair_pytorch.py",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r5_weyl_chirality_pair_pytorch_results.json",
+      "source_sha256": "d88762839b22af77dcc8158885cdf465fd2f8279de7a7338d563d009008fd05b",
+      "durable_audit_receipt": {
+        "exists": false,
+        "path": null
+      }
+    }
+  },
+  "authority": {
+    "model": "local scripts/validate_three_engine_sim_result.py --require-pytorch",
+    "returncode": 0,
+    "verdict": "GENUINE",
+    "raw": "{\"recorded_source_sha256_matches_current\": true, \"validator_ok\": true}"
+  },
+  "alt_views": {},
+  "classification": "infrastructure_scratch",
+  "promotion_allowed": false
+}

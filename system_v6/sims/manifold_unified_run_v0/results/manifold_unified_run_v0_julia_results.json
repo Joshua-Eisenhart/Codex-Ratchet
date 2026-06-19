@@ -1,0 +1,248 @@
+{
+    "trajectory_artifact": {
+        "artifact_path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_step_trajectory_artifact.json",
+        "artifact_sha_path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_step_trajectory_artifact.sha256",
+        "verified_file_sha256": "a7b502700bf37019974e57490f468d06141f2c6ddb2d45f8233a83e15f712254",
+        "content_sha256": "63e283d11bba8ab88ead11d1fe2aff215161864e45bfc7f3722208fa01d1317c",
+        "artifact_file_sha256": "a7b502700bf37019974e57490f468d06141f2c6ddb2d45f8233a83e15f712254",
+        "verified": true
+    },
+    "package_versions": {
+        "JSON3": "1.14.3",
+        "Z3": "1.0.4",
+        "QuantumOptics": "1.2.6"
+    },
+    "result_path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_julia_results.json",
+    "mode": "RATCHETED",
+    "packages_used": [
+        "JSON3",
+        "QuantumOptics",
+        "Z3",
+        "Dates",
+        "SHA"
+    ],
+    "source_sha256": "4214c74d9cb31e0e48682ec6e7a76a26a99c29409811575407b88a414f899e27",
+    "classification": "scratch_diagnostic",
+    "sim_id": "manifold_unified_run_v0",
+    "ceiling": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "reads_peer_result": false,
+    "generated_at": "2026-06-11T08:56:49Z",
+    "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+    ],
+    "TOOL_MANIFEST": {
+        "Z3": {
+            "used": true,
+            "tried": true,
+            "reason": "load-bearing Julia-Z3 continuity identity with erased flip"
+        },
+        "QuantumOptics": {
+            "used": true,
+            "tried": true,
+            "reason": "load-bearing NLevelBasis/Ket/tensor/dm density trace on the same n=3 spinor sites"
+        },
+        "JSON3/Dates/SHA": {
+            "used": true,
+            "tried": true,
+            "reason": "supportive serialization and hashing"
+        }
+    },
+    "all_pass": true,
+    "object_id": "manifold_unified_run_v0",
+    "promotion_allowed": false,
+    "TOOL_INTEGRATION_DEPTH": {
+        "Z3": "load_bearing",
+        "QuantumOptics": "load_bearing",
+        "JSON3/Dates/SHA": "supportive"
+    },
+    "tool_calls": [
+        {
+            "demotion_condition": "demote if source omits QuantumOptics API calls",
+            "input_object": "same n=3 committed site spinors",
+            "output_object": "density trace",
+            "positive_case": "trace equals 1",
+            "gates": [
+                "julia_density_trace"
+            ],
+            "negative/erased_control": "not a proof engine",
+            "qualified_api/function": "QuantumOptics.NLevelBasis/Ket/tensor/dm",
+            "tool": "QuantumOptics",
+            "boundary_case": "three two-level sites"
+        },
+        {
+            "demotion_condition": "demote if solver is fed a precomputed boolean",
+            "input_object": "step3 edge-current rows and site-balance rows",
+            "output_object": "continuity UNSAT and erased SAT",
+            "positive_case": "negated continuity identity is UNSAT",
+            "gates": [
+                "julia_z3_cross_layer_identity"
+            ],
+            "negative/erased_control": "erased target flips SAT",
+            "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+            "tool": "Z3",
+            "boundary_case": "integer-scaled rows"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "proof_row": {
+                "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                "edge_formula_rows": [
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "5d9ddf0063a9c99fffc2d2a5368cf68bd54088bae0db02d3a6be938f85f93e54",
+                        "coupling_strength_scaled": 251559530197,
+                        "current_src_to_dst_scaled": -88939724837,
+                        "edge_id": "e01",
+                        "row_step_class": "STEP-DEPENDENT",
+                        "src": "q0",
+                        "row_family": "flux_continuity",
+                        "population_src_minus_dst_scaled": -353553390593,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                        "dst": "q1",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "rounding_residual_scaled2": 131519236821
+                    },
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "641668633cf7add658f1381360c7435fdc12ce03fad0efa4b3d5097670f27d1a",
+                        "coupling_strength_scaled": 232526406501,
+                        "current_src_to_dst_scaled": -82210499421,
+                        "edge_id": "e12",
+                        "row_step_class": "STEP-DEPENDENT",
+                        "src": "q1",
+                        "row_family": "flux_continuity",
+                        "population_src_minus_dst_scaled": -353553390593,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                        "dst": "q2",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "rounding_residual_scaled2": -165252554907
+                    },
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "71c5939b4b283a78db494e6d0015c15b739d82fb9443b26d88369658d51f8986",
+                        "coupling_strength_scaled": 101152402040,
+                        "current_src_to_dst_scaled": -71525549416,
+                        "edge_id": "e02",
+                        "row_step_class": "STEP-DEPENDENT",
+                        "src": "q0",
+                        "row_family": "flux_continuity",
+                        "population_src_minus_dst_scaled": -707106781187,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                        "dst": "q2",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "rounding_residual_scaled2": -162267578520
+                    }
+                ],
+                "row_step_lineage_id": "1840da1c5a93d82e016fab35c6a84dbba393cb87ad414ee6b88c3eb51a173eae",
+                "network_population_flow_scaled": 524957644820,
+                "derived_edge_divergence_scaled": -160465274253,
+                "row_step_class": "STEP-DEPENDENT",
+                "identity_target_scaled": 524957644820,
+                "site_id": "q0",
+                "row_family": "flux_continuity",
+                "edge_divergence_scaled": -160465274253,
+                "solver_derivation": "edge currents are bound by scaled current formulas, site divergence is derived from edge-current variables, and population balance is asserted in solver space",
+                "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                "local_population_flow_scaled": 364492370567,
+                "erased_control": "subtract one scaled unit from the derived site balance target before asserting the negated identity",
+                "site_balance_rows": [
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "26df843fc908c767dcf21e0bcdfcf5aee9f0b4c244556cff250c58dfdf7da17b",
+                        "network_population_flow_scaled": 524957644820,
+                        "balance_residual_scaled": 0,
+                        "derived_edge_divergence_scaled": -160465274253,
+                        "row_step_class": "STEP-DEPENDENT",
+                        "identity_target_scaled": 524957644820,
+                        "incoming_edge_ids": [
+                        ],
+                        "derived_divergence_matches_row": true,
+                        "site_id": "q0",
+                        "row_family": "flux_continuity",
+                        "edge_divergence_scaled": -160465274253,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "local_population_flow_scaled": 364492370567,
+                        "outgoing_edge_ids": [
+                            "e01",
+                            "e02"
+                        ]
+                    },
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "99be66ba89376ec082c5d10dfbef5263603c821c04ffa71ca88ab540da01e899",
+                        "network_population_flow_scaled": 35535747665,
+                        "balance_residual_scaled": 0,
+                        "derived_edge_divergence_scaled": 6729225416,
+                        "row_step_class": "STEP-DEPENDENT",
+                        "identity_target_scaled": 35535747665,
+                        "incoming_edge_ids": [
+                            "e01"
+                        ],
+                        "derived_divergence_matches_row": true,
+                        "site_id": "q1",
+                        "row_family": "flux_continuity",
+                        "edge_divergence_scaled": 6729225416,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "local_population_flow_scaled": 42264973081,
+                        "outgoing_edge_ids": [
+                            "e12"
+                        ]
+                    },
+                    {
+                        "row_step_class_why": "Continuity rows are derived from the current step's terrain-flow edge and balance rows, not injected from a base row.",
+                        "row_step_lineage_id": "138171c3c116bd88393f88474d40e595ce946732536a9845fe89a334d63e7c9d",
+                        "network_population_flow_scaled": -548114268477,
+                        "balance_residual_scaled": 0,
+                        "derived_edge_divergence_scaled": 153736048837,
+                        "row_step_class": "STEP-DEPENDENT",
+                        "identity_target_scaled": -548114268477,
+                        "incoming_edge_ids": [
+                            "e12",
+                            "e02"
+                        ],
+                        "derived_divergence_matches_row": true,
+                        "site_id": "q2",
+                        "row_family": "flux_continuity",
+                        "edge_divergence_scaled": 153736048837,
+                        "trajectory_step_id": "b255bc3f236ab96e2c5292f951f0f862c8410282d9f786fd3dcdecc4c036d592",
+                        "state_object_id": "b3f17fa7b1294471d51e917da05219c1b6431908a33e7a4bb05b99af879ac1fd",
+                        "local_population_flow_scaled": -394378219640,
+                        "outgoing_edge_ids": [
+                        ]
+                    }
+                ]
+            },
+            "formula_terms_bound": true,
+            "edge_current_terms_in_solver": true,
+            "load_bearing": true,
+            "verdict": "unsat",
+            "divergence_derived_in_solver": true,
+            "erased_flip_verdict": "sat"
+        }
+    },
+    "engine_values": {
+        "conditioned_total_abs_current": 0.242675773674
+    },
+    "source_path": "system_v6/sims/manifold_unified_run_v0/manifold_unified_run_v0_julia.jl",
+    "schema_version": "manifold_unified_run_v0_julia_leg_v1",
+    "quantumoptics_receipt": {
+        "density_trace": 1,
+        "site_count": 3,
+        "pass": true,
+        "tool": "QuantumOptics.NLevelBasis/Ket/tensor/dm"
+    },
+    "claim_path_tools": [
+        "QuantumOptics",
+        "Z3"
+    ]
+}

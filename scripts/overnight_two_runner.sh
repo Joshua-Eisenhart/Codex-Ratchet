@@ -4,8 +4,8 @@
 # independent background pools, each claiming from its own queue directory.
 set -uo pipefail
 
-ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
-PY="${PY:-/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3}"
+ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
+PY="${CODEX_RATCHET_PYTHON:-${SIM_PY:-${PY:-/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3}}}"
 LOCK="/tmp/codex_ratchet_overnight.lock"
 LOCK_META="/tmp/codex_ratchet_overnight.lock.meta"
 RUNNER_COMMAND_GREP="overnight_two_runner.sh"

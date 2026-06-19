@@ -57,7 +57,7 @@ Use this checklist immediately before starting a real automated run.
 - [ ] file sets for parallel workers are non-overlapping
 
 ## Confirm canonical interpreter
-- [ ] `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`
+- [ ] `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3`
 
 ## Confirm per-packet run pattern
 - [ ] `system_v4/probes/cleanup_first_guard.py --context sim`

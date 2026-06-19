@@ -1,0 +1,433 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing topology construction, degree, edge count, and cycle-rank rows",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive result serialization, timestamp, and hash binding",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing closed-cycle obstruction with erased closing-edge control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "derived_expression": "degree_i=sum_j e_ij over bound adjacency variables; require all degree_i==2 for the cycle row",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "negative_control_verdict": "sat",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_values": {
+    "complete_cost_n16": 64.0,
+    "complete_survives": 0.0,
+    "mobius_lens_well_defined_n8": 0.0,
+    "mobius_survives": 0.0,
+    "path_degree_min_n8": 1.0,
+    "path_survives": 0.0,
+    "ring_survives": 1.0,
+    "star_survives": 0.0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T09:41:29Z",
+  "graph_rows": {
+    "A_path": {
+      "12": {
+        "N": 12,
+        "cycle_rank": 0,
+        "degree_max": 2,
+        "degree_min": 1,
+        "degree_sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "edge_count": 11,
+        "has_closed_cycle_candidate": false
+      },
+      "16": {
+        "N": 16,
+        "cycle_rank": 0,
+        "degree_max": 2,
+        "degree_min": 1,
+        "degree_sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "edge_count": 15,
+        "has_closed_cycle_candidate": false
+      },
+      "8": {
+        "N": 8,
+        "cycle_rank": 0,
+        "degree_max": 2,
+        "degree_min": 1,
+        "degree_sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "edge_count": 7,
+        "has_closed_cycle_candidate": false
+      }
+    },
+    "B_star": {
+      "12": {
+        "N": 12,
+        "cycle_rank": 0,
+        "degree_max": 11,
+        "degree_min": 1,
+        "degree_sequence": [
+          11,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "edge_count": 11,
+        "has_closed_cycle_candidate": false
+      },
+      "16": {
+        "N": 16,
+        "cycle_rank": 0,
+        "degree_max": 15,
+        "degree_min": 1,
+        "degree_sequence": [
+          15,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "edge_count": 15,
+        "has_closed_cycle_candidate": false
+      },
+      "8": {
+        "N": 8,
+        "cycle_rank": 0,
+        "degree_max": 7,
+        "degree_min": 1,
+        "degree_sequence": [
+          7,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "edge_count": 7,
+        "has_closed_cycle_candidate": false
+      }
+    },
+    "C_complete": {
+      "12": {
+        "N": 12,
+        "cycle_rank": 55,
+        "degree_max": 11,
+        "degree_min": 11,
+        "degree_sequence": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "edge_count": 66,
+        "has_closed_cycle_candidate": true
+      },
+      "16": {
+        "N": 16,
+        "cycle_rank": 105,
+        "degree_max": 15,
+        "degree_min": 15,
+        "degree_sequence": [
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15
+        ],
+        "edge_count": 120,
+        "has_closed_cycle_candidate": true
+      },
+      "8": {
+        "N": 8,
+        "cycle_rank": 21,
+        "degree_max": 7,
+        "degree_min": 7,
+        "degree_sequence": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "edge_count": 28,
+        "has_closed_cycle_candidate": true
+      }
+    },
+    "mobius_grid": {
+      "12": {
+        "N": 12,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 12,
+        "has_closed_cycle_candidate": true
+      },
+      "16": {
+        "N": 16,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 16,
+        "has_closed_cycle_candidate": true
+      },
+      "8": {
+        "N": 8,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 8,
+        "has_closed_cycle_candidate": true
+      }
+    },
+    "ring_anchor": {
+      "12": {
+        "N": 12,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 12,
+        "has_closed_cycle_candidate": true
+      },
+      "16": {
+        "N": 16,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 16,
+        "has_closed_cycle_candidate": true
+      },
+      "8": {
+        "N": 8,
+        "cycle_rank": 1,
+        "degree_max": 2,
+        "degree_min": 2,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "edge_count": 8,
+        "has_closed_cycle_candidate": true
+      }
+    }
+  },
+  "graph_rows_sha256": "3031fa5b5ca3a6889b58086a7c110445f305600e5658699e0766d94d78a6d26f",
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s67_alternative_topologies_v0/results/geo_s67_alternative_topologies_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "geo_s67_alternative_topologies_v0",
+  "source_path": "system_v6/sims/geo_s67_alternative_topologies_v0/geo_s67_alternative_topologies_v0_julia.jl",
+  "source_sha256": "e60e020d2a46a99f37d63768dfeb88055e043650a759e134ae3af61fd3d22feb",
+  "tool_calls": [
+    {
+      "input_object": "topology variants",
+      "load_bearing": true,
+      "output_object": "graph rows",
+      "qualified_api": "Graphs.SimpleGraph/Graphs.add_edge!/Graphs.degree",
+      "tool": "Graphs"
+    },
+    {
+      "input_object": "bound path adjacency variables",
+      "load_bearing": true,
+      "output_object": "closed-cycle obstruction",
+      "qualified_api": "Z3.Solver/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  }
+}

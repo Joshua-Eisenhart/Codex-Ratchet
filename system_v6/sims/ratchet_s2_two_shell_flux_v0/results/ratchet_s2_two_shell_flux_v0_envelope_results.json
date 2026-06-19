@@ -1,0 +1,1224 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Julia carrier Z3.jl proof of the same scaled Stokes identity",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT proof of the same scaled Stokes identity",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source, PIN, subtree, and byte-exact control hashes",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic envelope serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result path binding",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact union weights, per-leaf geometry, flux, Stokes, quotient, and control derivation",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT proof of the scaled Stokes identity with wrong-orientation erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_gates": {
+    "capability_receipts_present": true,
+    "ceilings_preserved": true,
+    "controls_fired": true,
+    "inter_shell_stokes_match": true,
+    "julia_engine_values_match_python_exact_rows": true,
+    "julia_reads_no_peer_result": true,
+    "julia_result_loaded": true,
+    "julia_source_hash_matches": true,
+    "julia_z3_positive_and_erased_flip": true,
+    "mode_declared_ratcheted": true,
+    "noncommuting_variant_present": true,
+    "one_to_one_tool_calls": true,
+    "parent_lineage_hashes_present": true,
+    "path_pair_honestly_marked_commuting": true,
+    "per_leaf_geometry_computed": true,
+    "smt_positive_and_erased_flip": true,
+    "union_rule_cited": true,
+    "union_weights_exact": true,
+    "z4_quotient_flux_survives": true
+  },
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "not_applicable_Hopf_annulus_flux",
+    "consumer_policy": "independent Julia Z3.jl and Python SymPy/z3/cvc5 exact rows; no peer-result reads",
+    "proof_pass": true,
+    "proof_tag": "ratchet_s2_two_shell_flux_v0_julia_z3_stokes",
+    "receipt_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "9c2195a82e8c2e770540badcba405a53503287175e987d8cfdda5a16ad9a28bd",
+    "table_version": null
+  },
+  "capability_receipts": {
+    "cvc5": {
+      "api_smoke": "unsat",
+      "version": "1.3.3"
+    },
+    "julia": {
+      "Z3": {
+        "api_smoke": "unsat",
+        "package_version": "1.0.4"
+      },
+      "julia": {
+        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "version": "1.12.6"
+      }
+    },
+    "python": {
+      "executable_policy": "Makefile SIM_PY",
+      "version": "3.13.6"
+    },
+    "sympy": {
+      "api_smoke": "0",
+      "version": "1.14.0"
+    },
+    "z3": {
+      "api_smoke": "unsat",
+      "version": "4.16.0"
+    }
+  },
+  "ceiling": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "not_earned": [
+      "formal admission",
+      "promotion",
+      "arbitrary union theorem",
+      "transverse conditioning",
+      "boundary leaf conditioning",
+      "general order theorem",
+      "manifold/axis/bridge/physics claim"
+    ],
+    "promotion_allowed": false
+  },
+  "claim": "Two-shell RATCHETED diagnostic: condition S3 to the committed T_pi/6 union T_pi/4 joint object, recompute per-leaf geometry, derive the inter-shell chi holonomy gap and annular curvature flux, prove Stokes consistency, then recompute surviving rows after the Z4 lens quotient.",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_subtree_hashes": {
+    "controls": "f88ae187cb7e6c139235561476d75d54e621b732d5bb854847cafc2df3ef0909",
+    "crossover_proofs_python_z3_cvc5": "c4dc827e8591ecba1606926d20b2501c6bf46d4d0e9d2835d67e2d87b39af975",
+    "crossover_proofs_with_julia_z3": "71625326b0111df639a1145fd93fd362db5ffb279f0d442e94fa55bee4228fee",
+    "hash_algorithm": "sha256(stable_json(sort_keys=True,separators=(',',':')))",
+    "kind": "builder_hash_receipt",
+    "parent_lineage": "a715263cbb122492803d731095a6c015dce75c35c3d41843cf7a4ea24b4c20b6",
+    "ratchet_sequence": "41308615bf19d64877b240411cd702d476dfb1fbe249cee400b368fe49c11f58",
+    "ratchet_signatures": "eb0390a0f99d2b58625db6155b92f674ee9a8204dd7787eda4f3709161df8b3e"
+  },
+  "controls": {
+    "boundary_leaf_fence": {
+      "eta0": "0",
+      "eta_pi_over_2": "pi/2",
+      "reason": "Hopf torus degenerates at the boundary leaves in the committed nested packet scope fences",
+      "status": "fenced_not_conditioned"
+    },
+    "empty_intersection_mortality_refired": {
+      "intersection": "T_pi/6 INTERSECT T_pi/4",
+      "pass": true,
+      "sin_squared_difference": "-1/4",
+      "source": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json#/receipts/R4_intersection_empty_branch_mortality",
+      "status": "undefined_empty_branch_mortality"
+    },
+    "identity_constraint_excludes_nothing": {
+      "after_sha256": "f97d93d95b8b044081057fc931c1dee23ef5b7cbf8908d3c2fb6719dbe0a05e8",
+      "applied_to": "step1_exact_joint_object",
+      "before_sha256": "f97d93d95b8b044081057fc931c1dee23ef5b7cbf8908d3c2fb6719dbe0a05e8",
+      "byte_exact_on_exact_rows": true,
+      "constraint": "C_true",
+      "induced_geometry_equal_previous": true
+    },
+    "naive_joint_conditioning_fails": {
+      "constraint_set": "T_pi/6 union T_pi/4",
+      "denominator_mass": "0",
+      "failure": "P(A and (T_eta1 union T_eta2))/P(T_eta1 union T_eta2) is 0/0",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true,
+      "source_control": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json#/controls/naive_union_conditioning"
+    },
+    "wrong_order_stokes_orientation": {
+      "control_fired": true,
+      "expected_boundary_gap": "pi/2",
+      "expected_flux": "pi/2",
+      "flipped_orientation_flux": "-pi/2"
+    },
+    "wrong_weights_union_equal_weights": {
+      "computed_defect_equal_minus_correct": "7/4 - sqrt(3)",
+      "control_fired": true,
+      "correct_weighted_chi_coefficient": "-3/2 + sqrt(3)",
+      "equal_weight_value": "1/4",
+      "physical_flux_defect": "pi*(7 - 4*sqrt(3))/4"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "boundary_case_verdict": "unsat",
+      "erased_flip": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "load_bearing": true,
+      "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "boundary_case_verdict": "unsat",
+      "erased_flip": "flip annulus orientation so flux_pi_over_2_units=-1 while boundary_gap_pi_over_2_units=1",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "gates": [
+        "stokes_identity",
+        "proof",
+        "all_pass"
+      ],
+      "identity": "flux_pi_over_2_units == boundary_gap_pi_over_2_units",
+      "load_bearing": true,
+      "positive_case": "negated Stokes identity is UNSAT",
+      "ran": true,
+      "result": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_julia_results.json",
+      "source": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0_julia.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "boundary_case_verdict": "unsat",
+      "erased_flip": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+      "erased_flip_detected": true,
+      "erased_flip_verdict": "unsat",
+      "load_bearing": true,
+      "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "boundary_holonomy_difference_physical": "pi/2",
+        "chi_coefficient_gap": "1/2",
+        "eta1_connection_dchi": "1/2",
+        "eta2_connection_dchi": "0",
+        "flux_physical": "pi/2",
+        "julia_z3_stokes_identity_verified": 1,
+        "union_weight_eta1": "-3 + 2*sqrt(3)",
+        "union_weight_eta2": "4 - 2*sqrt(3)",
+        "wrong_weight_defect_coefficient": "7/4 - sqrt(3)",
+        "z4_z1_alpha_holonomy_gap": "pi/2"
+      },
+      "julia": {
+        "boundary_holonomy_difference_physical": "pi/2",
+        "chi_coefficient_gap": "1/2",
+        "eta1_connection_dchi": "1/2",
+        "eta2_connection_dchi": "0",
+        "flux_physical": "pi/2",
+        "julia_z3_stokes_identity_verified": 1,
+        "union_weight_eta1": "-3 + 2*sqrt(3)",
+        "union_weight_eta2": "4 - 2*sqrt(3)",
+        "wrong_weight_defect_coefficient": "7/4 - sqrt(3)",
+        "z4_z1_alpha_holonomy_gap": "pi/2"
+      }
+    },
+    "interpretation": "Actual Julia carrier values and Python exact/SMT values agree on the declared exact rows.",
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "per_observable": {
+      "boundary_holonomy_difference_physical": {
+        "engine_values": {
+          "jax": "pi/2",
+          "julia": "pi/2"
+        },
+        "max_divergence": 0.0
+      },
+      "chi_coefficient_gap": {
+        "engine_values": {
+          "jax": "1/2",
+          "julia": "1/2"
+        },
+        "max_divergence": 0.0
+      },
+      "eta1_connection_dchi": {
+        "engine_values": {
+          "jax": "1/2",
+          "julia": "1/2"
+        },
+        "max_divergence": 0.0
+      },
+      "eta2_connection_dchi": {
+        "engine_values": {
+          "jax": "0",
+          "julia": "0"
+        },
+        "max_divergence": 0.0
+      },
+      "flux_physical": {
+        "engine_values": {
+          "jax": "pi/2",
+          "julia": "pi/2"
+        },
+        "max_divergence": 0.0
+      },
+      "julia_z3_stokes_identity_verified": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      },
+      "union_weight_eta1": {
+        "engine_values": {
+          "jax": "-3 + 2*sqrt(3)",
+          "julia": "-3 + 2*sqrt(3)"
+        },
+        "max_divergence": 0.0
+      },
+      "union_weight_eta2": {
+        "engine_values": {
+          "jax": "4 - 2*sqrt(3)",
+          "julia": "4 - 2*sqrt(3)"
+        },
+        "max_divergence": 0.0
+      },
+      "wrong_weight_defect_coefficient": {
+        "engine_values": {
+          "jax": "7/4 - sqrt(3)",
+          "julia": "7/4 - sqrt(3)"
+        },
+        "max_divergence": 0.0
+      },
+      "z4_z1_alpha_holonomy_gap": {
+        "engine_values": {
+          "jax": "pi/2",
+          "julia": "pi/2"
+        },
+        "max_divergence": 0.0
+      }
+    },
+    "structural_disagreements": []
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "RATCHETED",
+    "no_peer_result_reads": true,
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph, network, autograd, torch_geometric, or PyTorch-specific claim path in this RATCHETED flux packet"
+    },
+    "packet_validator_expected_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ratchet_s2_two_shell_flux_v0/validate_ratchet_s2_two_shell_flux_v0.py system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json",
+    "repo_validator_expected_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json",
+    "scoped_lanes": {
+      "jax": "Python exact/SymPy plus z3/cvc5 proof lane; no peer-result read",
+      "julia": "actual Julia carrier execution with load-bearing Z3.jl Stokes proof"
+    },
+    "source_backed_validator_expected_command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-source-backed system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "scope": "Python exact symbolic/SMT lane; declared jax lane follows ratcheted packet validator convention and does not imply JAX array evidence",
+      "source_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0.py",
+      "source_sha256": "ce04687776a6d29ead64a5371620d61f266369029efd612b40c1d99fcab907de"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "command": "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0_julia.jl",
+      "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "packages_used": [
+        "JSON3",
+        "Pkg",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_julia_results.json",
+      "result_sha256": "d2466cb58bd1ba0f0a356fc9254bbdc10cdd024fd6e81c36d179133f59fa0471",
+      "scope": "actual Julia carrier lane with load-bearing Z3.jl Stokes identity proof",
+      "source_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0_julia.jl",
+      "source_sha256": "9c2195a82e8c2e770540badcba405a53503287175e987d8cfdda5a16ad9a28bd"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "role": "exact symbolic/SMT workhorse lane"
+    },
+    "julia": {
+      "packages": [
+        "JSON3",
+        "Pkg",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "semantic-owner exact row and Z3.jl proof lane"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "omitted_no_graph_network_autograd_claim_path"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission": false,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T04:26:35Z",
+  "lineage_citations": {
+    "connection_flux_convention": "system_v6/sims/geo_s2_connection_flux_foliation_v0/geo_s2_connection_flux_foliation_v0_jax.py#/curvature_and_stokes_rows",
+    "s1_hardening_addendum": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_builder_hardening_addendum.json",
+    "s1_template_audit": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/audit_verdict.md",
+    "single_leaf_rule": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py#/PIN_SPEC",
+    "union_rule": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_common.py#/PIN_SPEC",
+    "union_scope_fences": "system_v6/sims/geo_nested_disintegration_v0/audit_verdict.md#Q7-Closure"
+  },
+  "mode": "RATCHETED",
+  "object_id": "ratchet_s2_two_shell_flux_v0",
+  "parent_lineage": {
+    "geo_disintegration_machinery_v0": {
+      "allowed_use": "fixed-eta Hopf torus single-leaf disintegration only",
+      "audit": {
+        "path": "system_v6/sims/geo_disintegration_machinery_v0/audit_verdict.md",
+        "sha256": "6253ee4c3017faa96760dc98f570d76f26443fcbed9ff47273a75e8283aefd83"
+      },
+      "pin": {
+        "path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py#/PIN_SPEC",
+        "sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d"
+      },
+      "result": {
+        "path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json",
+        "sha256": "ef95598ac9f7117107cb160826c50ebe8111eec0af60bcbe2b9f8e24d24aa1b6"
+      },
+      "source": {
+        "path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py",
+        "sha256": "c0e7de711a6977936fe191717fa444b8f4f2716ef6540bb1451b22049be7970a"
+      }
+    },
+    "geo_nested_disintegration_v0": {
+      "allowed_use": "explicit two-leaf union T_pi/6 union T_pi/4 and Hopf-compatible tower only",
+      "audit": {
+        "path": "system_v6/sims/geo_nested_disintegration_v0/audit_verdict.md",
+        "sha256": "a7f28825e3d66303cef0634836de0766cc3facfcd7ad1167335a93cd62f7dbbd"
+      },
+      "pin": {
+        "path": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_common.py#/PIN_SPEC",
+        "sha256": "97e4059cd221866ace841b5f3c58a98d4d85538dad7b75aadc2be558a3a07fc0"
+      },
+      "result": {
+        "path": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json",
+        "sha256": "2d071070fdcc3782eaa7beabbd79535491290d2a73749974f9a8e2a09663a3a4"
+      },
+      "source": {
+        "path": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_common.py",
+        "sha256": "293fd2de8bf3565e4eebb06e4a35753c99cfd124acef585e5b7f673aaa853c8f"
+      }
+    },
+    "geo_s2_connection_flux_foliation_v0_supporting_anchor": {
+      "allowed_use": "Hopf connection A=dphi+cos(2eta)dchi and curvature F=-2*sin(2eta)deta^dchi convention only",
+      "audit": {
+        "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/audit_verdict.md",
+        "sha256": "c81f15d236e7123e548cc82f1a1cc60cfea157b7f7abe9584556b12fe73762ad"
+      },
+      "result": {
+        "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json",
+        "sha256": "47ecb1d4c83645ad0eb60286e3485871c40a6e5155263ca052867624234324d0"
+      },
+      "source": {
+        "path": "system_v6/sims/geo_s2_connection_flux_foliation_v0/geo_s2_connection_flux_foliation_v0_jax.py",
+        "sha256": "b2a5000e43537433f146622353be8d126ef6e823a186b1978af63e17a86cc93f"
+      }
+    },
+    "ratchet_s1_single_shell_pilot_v0_template": {
+      "allowed_use": "ratcheted packet structure, real Julia Z3.jl leg, gap-kind wording, and no audit output",
+      "audit": {
+        "path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/audit_verdict.md",
+        "sha256": "747bb3ddadb70dddd38dfd5b8d67ee5ec9d7c58701593b4c6688707f6c1c93eb"
+      },
+      "hardening_addendum": {
+        "path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_builder_hardening_addendum.json",
+        "sha256": "d9eac2d4c31af6f374484d82f148eff179d8b0693fce50a7eceefe4297506fcc"
+      }
+    }
+  },
+  "pin_sha256": "a85b7f628c5dac66265581f0fcd0190133fd98c40884a63ddc6ba16889cbd8d5",
+  "pin_spec": "ratchet_s2_two_shell_flux_v0|mode=RATCHETED|two_shell_joint_object|step0=FREE_S3_round_measure|step1=T_pi/6_union_T_pi/4_via_geo_nested_disintegration_v0_union_rule|union_weights=sin(2eta_i)/sum_j_sin(2eta_j)=sqrt(3)/(sqrt(3)+2),2/(sqrt(3)+2)|per_leaf_metric_and_connection_A=dphi+cos(2eta)dchi|eta_pi/4_chi_coefficient_zero_square_self_dual_leaf|step2=inter_shell_flux_F=-2sin(2eta)deta^dchi_between_eta_pi/6_and_pi/4|physical_chi_period=pi_honors_2_to_1_cover|stokes=flux_equals_boundary_chi_holonomy_difference=pi/2|step3=Z4_lens_quotient_on_both_leaves_recompute_primitive_holonomies|path_pair_condition_then_quotient_equals_quotient_then_condition_on_joint_object|noncommuting_variant=single_leaf_phase_window_non_Z4_saturated_leaf_specific|scope=Hopf_compatible_orders_only_no_transverse_nonleaf_or_boundary_conditioning|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "ratchet_sequence": {
+    "controls": {
+      "empty_intersection_mortality_refired": {
+        "intersection": "T_pi/6 INTERSECT T_pi/4",
+        "pass": true,
+        "sin_squared_difference": "-1/4",
+        "source": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json#/receipts/R4_intersection_empty_branch_mortality",
+        "status": "undefined_empty_branch_mortality"
+      },
+      "naive_joint_conditioning_fails": {
+        "constraint_set": "T_pi/6 union T_pi/4",
+        "denominator_mass": "0",
+        "failure": "P(A and (T_eta1 union T_eta2))/P(T_eta1 union T_eta2) is 0/0",
+        "naive_quotient": "nan",
+        "numerator_mass": "0",
+        "pass": true,
+        "source_control": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json#/controls/naive_union_conditioning"
+      },
+      "wrong_order_stokes_orientation": {
+        "control_fired": true,
+        "expected_boundary_gap": "pi/2",
+        "expected_flux": "pi/2",
+        "flipped_orientation_flux": "-pi/2"
+      },
+      "wrong_weights_union_equal_weights": {
+        "computed_defect_equal_minus_correct": "7/4 - sqrt(3)",
+        "control_fired": true,
+        "correct_weighted_chi_coefficient": "-3/2 + sqrt(3)",
+        "equal_weight_value": "1/4",
+        "physical_flux_defect": "pi*(7 - 4*sqrt(3))/4"
+      }
+    },
+    "path_specificity": {
+      "noncommuting_variant": {
+        "breaks_leaf_exchange_symmetry": true,
+        "claim_kind": "quotient_well_definedness_equivariance_failure",
+        "condition_then_quotient": "cuts only eta=pi/6 Z4 orbits before quotient identification",
+        "eta1_membership_in_window": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "eta2_leaf_unwindowed": true,
+        "is_Z4_saturated": false,
+        "noncommuting": true,
+        "not_numeric_order_gap_family": true,
+        "quotient_then_condition": "not well-defined on T_pi/6/Z4 because the phase window is not invariant on quotient orbits",
+        "variant": "single-leaf phase window on eta=pi/6 only: 0 <= alpha < pi before quotient",
+        "why_within_fences": "positive-measure phase window inside one already-conditioned Hopf leaf; no transverse, non-leaf, boundary, or empty-intersection conditioning",
+        "within_committed_fences": true,
+        "witness_orbit_under_Z4_on_eta1": [
+          "pi/4",
+          "3*pi/4",
+          "5*pi/4",
+          "7*pi/4"
+        ]
+      },
+      "requested_joint_pair": {
+        "condition_then_quotient_sha256": "2500fd2db7a7c6ee29e3a0ad6beafcdaac81af101ecf948b23a0595f3496cdb1",
+        "quotient_then_condition_sha256": "2500fd2db7a7c6ee29e3a0ad6beafcdaac81af101ecf948b23a0595f3496cdb1",
+        "reason": "the Z4 global phase action preserves eta, so it preserves the committed two-leaf union and its marginal-ratio weights",
+        "reported_honestly_as_commuting_pair": true,
+        "same_pair_commutes": true
+      }
+    },
+    "scalars": {
+      "coefficient_gap": "1/2",
+      "cos_2eta1": "1/2",
+      "cos_2eta2": "0",
+      "eta1": "pi/6",
+      "eta2": "pi/4",
+      "flux_physical": "pi/2",
+      "physical_chi_period": "pi",
+      "stokes_units": "pi/2",
+      "wrong_weight_defect_coefficient": "7/4 - sqrt(3)",
+      "wrong_weight_defect_physical": "pi*(7 - 4*sqrt(3))/4"
+    },
+    "step0": {
+      "committed_anchors": [
+        "system_v6/sims/geo_disintegration_machinery_v0",
+        "system_v6/sims/geo_nested_disintegration_v0"
+      ],
+      "connection_flux_anchor": "system_v6/sims/geo_s2_connection_flux_foliation_v0",
+      "constraint": "FREE",
+      "dimension": 3,
+      "object": "S3 with round measure",
+      "step": 0,
+      "volume": "2*pi**2"
+    },
+    "step1": {
+      "ambient_s3_measure": "0",
+      "conditional_mass": "1",
+      "constraint": "T_pi/6 UNION T_pi/4",
+      "dimension_per_leaf": 2,
+      "exact_joint_object": {
+        "object": "T_pi/6 union T_pi/4",
+        "per_leaf_geometry": {
+          "eta_pi_over_4": {
+            "connection_pullback": {
+              "alpha_beta_basis": {
+                "dalpha": "1/2",
+                "dbeta": "1/2"
+              },
+              "formula": "A|_T = dphi + cos(2*eta) dchi",
+              "phi_chi_basis": {
+                "dchi": "0",
+                "dphi": "1"
+              }
+            },
+            "eta": "pi/4",
+            "holonomies": {
+              "alpha_cycle_pi_pi": "pi",
+              "beta_cycle_pi_neg_pi": "pi",
+              "double_chart_chi_period_2pi": "0",
+              "global_phi_cycle_2pi": "2*pi",
+              "physical_chi_period_pi": "0"
+            },
+            "metric_alpha_beta": {
+              "basis": [
+                "alpha=phi+chi",
+                "beta=phi-chi"
+              ],
+              "matrix": [
+                [
+                  "1/2",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1/2"
+                ]
+              ],
+              "radii": {
+                "alpha": "sqrt(2)/2",
+                "beta": "sqrt(2)/2"
+              }
+            },
+            "metric_phi_chi": {
+              "basis": [
+                "phi",
+                "chi"
+              ],
+              "determinant": "1",
+              "matrix": [
+                [
+                  "1",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1"
+                ]
+              ]
+            },
+            "square_self_dual_point": true,
+            "vanishing_chi_coefficient_meaning": "cos(2*pi/4)=0, so A|_T has no dchi term; the physical chi-cycle connection holonomy is zero while the phi/global cycle remains nonzero."
+          },
+          "eta_pi_over_6": {
+            "connection_pullback": {
+              "alpha_beta_basis": {
+                "dalpha": "3/4",
+                "dbeta": "1/4"
+              },
+              "formula": "A|_T = dphi + cos(2*eta) dchi",
+              "phi_chi_basis": {
+                "dchi": "1/2",
+                "dphi": "1"
+              }
+            },
+            "eta": "pi/6",
+            "holonomies": {
+              "alpha_cycle_pi_pi": "3*pi/2",
+              "beta_cycle_pi_neg_pi": "pi/2",
+              "double_chart_chi_period_2pi": "pi",
+              "global_phi_cycle_2pi": "2*pi",
+              "physical_chi_period_pi": "pi/2"
+            },
+            "metric_alpha_beta": {
+              "basis": [
+                "alpha=phi+chi",
+                "beta=phi-chi"
+              ],
+              "matrix": [
+                [
+                  "3/4",
+                  "0"
+                ],
+                [
+                  "0",
+                  "1/4"
+                ]
+              ],
+              "radii": {
+                "alpha": "sqrt(3)/2",
+                "beta": "1/2"
+              }
+            },
+            "metric_phi_chi": {
+              "basis": [
+                "phi",
+                "chi"
+              ],
+              "determinant": "3/4",
+              "matrix": [
+                [
+                  "1",
+                  "1/2"
+                ],
+                [
+                  "1/2",
+                  "1"
+                ]
+              ]
+            }
+          }
+        },
+        "rule": "committed geo_nested_disintegration_v0 union conditional",
+        "weights": {
+          "ratio": "sqrt(3)/2 : 1",
+          "rho_eta1": "sqrt(3)/2",
+          "rho_eta2": "1",
+          "sum": "1",
+          "weight_eta1": "-3 + 2*sqrt(3)",
+          "weight_eta1_ratio_form": "sqrt(3)/(sqrt(3)+2)",
+          "weight_eta2": "4 - 2*sqrt(3)",
+          "weight_eta2_ratio_form": "2/(sqrt(3)+2)"
+        }
+      },
+      "object": "two-leaf mixture",
+      "step": 1
+    },
+    "step2": {
+      "constraint": "inter-shell annulus between eta=pi/6 and eta=pi/4",
+      "new_content": "holonomy difference, curvature flux, and Stokes consistency",
+      "step": 2,
+      "stokes": {
+        "boundary_holonomy_difference_physical_chi_period": "pi/2",
+        "chi_cycle_holonomy_gap_normalized_by_period": "1/2",
+        "coefficient_gap": "1/2",
+        "curvature": "F = -2*sin(2*eta) d_eta ^ d_chi",
+        "diagnostic_double_chart_flux_if_cover_not_reduced": "pi",
+        "diagnostic_double_chart_period": "2*pi",
+        "flux_integral_physical_chi_period": "pi/2",
+        "load_bearing": true,
+        "orientation": "boundary chi-cycle at eta1 minus boundary chi-cycle at eta2",
+        "physical_chi_period_honoring_2_to_1_cover": "pi",
+        "stokes_match": "0"
+      }
+    },
+    "step3": {
+      "constraint": "Z4 lens quotient on both leaves of the joint object",
+      "quotient_rows": {
+        "action": "(phi, chi) -> (phi + pi/2, chi), preserving eta and the two-leaf union",
+        "flux_row_survives": true,
+        "primitive_generators": {
+          "q_global": {
+            "delta_phi_chi": [
+              "pi/2",
+              "0"
+            ],
+            "eta1_holonomy": "pi/2",
+            "eta2_holonomy": "pi/2",
+            "gap": "0"
+          },
+          "relative_chi_nonprimitive": {
+            "delta_phi_chi": [
+              "0",
+              "2*pi"
+            ],
+            "eta1_holonomy": "pi",
+            "eta2_holonomy": "0",
+            "gap": "pi",
+            "note": "double physical chi period; not the load-bearing physical-period Stokes row"
+          },
+          "z1_alpha": {
+            "delta_phi_chi": [
+              "pi",
+              "pi"
+            ],
+            "eta1_holonomy": "3*pi/2",
+            "eta2_holonomy": "pi",
+            "gap": "pi/2",
+            "survives_flux_row": true
+          },
+          "z2_beta": {
+            "delta_phi_chi": [
+              "pi",
+              "-pi"
+            ],
+            "eta1_holonomy": "pi/2",
+            "eta2_holonomy": "pi",
+            "gap": "-pi/2",
+            "orientation_reversed_gap": true
+          }
+        },
+        "quotient": "Z4 global phase quotient on both leaves",
+        "reason": "Z4 acts in the global phase direction, preserves eta and chi classes, and does not erase the annular eta-chi curvature row."
+      },
+      "step": 3
+    }
+  },
+  "ratchet_signatures": {
+    "alteration": {
+      "altered": true,
+      "computed": true,
+      "inter_shell_gap_after_quotient": {
+        "q_global": {
+          "delta_phi_chi": [
+            "pi/2",
+            "0"
+          ],
+          "eta1_holonomy": "pi/2",
+          "eta2_holonomy": "pi/2",
+          "gap": "0"
+        },
+        "relative_chi_nonprimitive": {
+          "delta_phi_chi": [
+            "0",
+            "2*pi"
+          ],
+          "eta1_holonomy": "pi",
+          "eta2_holonomy": "0",
+          "gap": "pi",
+          "note": "double physical chi period; not the load-bearing physical-period Stokes row"
+        },
+        "z1_alpha": {
+          "delta_phi_chi": [
+            "pi",
+            "pi"
+          ],
+          "eta1_holonomy": "3*pi/2",
+          "eta2_holonomy": "pi",
+          "gap": "pi/2",
+          "survives_flux_row": true
+        },
+        "z2_beta": {
+          "delta_phi_chi": [
+            "pi",
+            "-pi"
+          ],
+          "eta1_holonomy": "pi/2",
+          "eta2_holonomy": "pi",
+          "gap": "-pi/2",
+          "orientation_reversed_gap": true
+        }
+      },
+      "inter_shell_gap_before_quotient": {
+        "coefficient_gap": "1/2",
+        "physical_flux": "pi/2"
+      },
+      "per_leaf_induced_geometry": {
+        "eta_pi_over_4": {
+          "connection_pullback": {
+            "alpha_beta_basis": {
+              "dalpha": "1/2",
+              "dbeta": "1/2"
+            },
+            "formula": "A|_T = dphi + cos(2*eta) dchi",
+            "phi_chi_basis": {
+              "dchi": "0",
+              "dphi": "1"
+            }
+          },
+          "eta": "pi/4",
+          "holonomies": {
+            "alpha_cycle_pi_pi": "pi",
+            "beta_cycle_pi_neg_pi": "pi",
+            "double_chart_chi_period_2pi": "0",
+            "global_phi_cycle_2pi": "2*pi",
+            "physical_chi_period_pi": "0"
+          },
+          "metric_alpha_beta": {
+            "basis": [
+              "alpha=phi+chi",
+              "beta=phi-chi"
+            ],
+            "matrix": [
+              [
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1/2"
+              ]
+            ],
+            "radii": {
+              "alpha": "sqrt(2)/2",
+              "beta": "sqrt(2)/2"
+            }
+          },
+          "metric_phi_chi": {
+            "basis": [
+              "phi",
+              "chi"
+            ],
+            "determinant": "1",
+            "matrix": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ]
+          },
+          "square_self_dual_point": true,
+          "vanishing_chi_coefficient_meaning": "cos(2*pi/4)=0, so A|_T has no dchi term; the physical chi-cycle connection holonomy is zero while the phi/global cycle remains nonzero."
+        },
+        "eta_pi_over_6": {
+          "connection_pullback": {
+            "alpha_beta_basis": {
+              "dalpha": "3/4",
+              "dbeta": "1/4"
+            },
+            "formula": "A|_T = dphi + cos(2*eta) dchi",
+            "phi_chi_basis": {
+              "dchi": "1/2",
+              "dphi": "1"
+            }
+          },
+          "eta": "pi/6",
+          "holonomies": {
+            "alpha_cycle_pi_pi": "3*pi/2",
+            "beta_cycle_pi_neg_pi": "pi/2",
+            "double_chart_chi_period_2pi": "pi",
+            "global_phi_cycle_2pi": "2*pi",
+            "physical_chi_period_pi": "pi/2"
+          },
+          "metric_alpha_beta": {
+            "basis": [
+              "alpha=phi+chi",
+              "beta=phi-chi"
+            ],
+            "matrix": [
+              [
+                "3/4",
+                "0"
+              ],
+              [
+                "0",
+                "1/4"
+              ]
+            ],
+            "radii": {
+              "alpha": "sqrt(3)/2",
+              "beta": "1/2"
+            }
+          },
+          "metric_phi_chi": {
+            "basis": [
+              "phi",
+              "chi"
+            ],
+            "determinant": "3/4",
+            "matrix": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "narrowing": {
+      "computed": true,
+      "rows": [
+        {
+          "dimension": 3,
+          "normalized_mass": "1",
+          "object": "S3",
+          "step": 0,
+          "volume": "2*pi**2"
+        },
+        {
+          "ambient_s3_measure": "0",
+          "conditional_mass": "1",
+          "dimension": "two 2D leaves as a mixture",
+          "mixture_weights": {
+            "ratio": "sqrt(3)/2 : 1",
+            "rho_eta1": "sqrt(3)/2",
+            "rho_eta2": "1",
+            "sum": "1",
+            "weight_eta1": "-3 + 2*sqrt(3)",
+            "weight_eta1_ratio_form": "sqrt(3)/(sqrt(3)+2)",
+            "weight_eta2": "4 - 2*sqrt(3)",
+            "weight_eta2_ratio_form": "2/(sqrt(3)+2)"
+          },
+          "object": "T_pi/6 union T_pi/4",
+          "step": 1
+        },
+        {
+          "dimension": 2,
+          "flux_physical": "pi/2",
+          "not_a_new_conditioning_claim": true,
+          "object": "annulus between the two leaves in the Hopf-compatible chi base",
+          "step": 2
+        },
+        {
+          "dimension": "two quotient leaves",
+          "flux_row_survives": true,
+          "object": "(T_pi/6 union T_pi/4)/Z4",
+          "quotient_order": 4,
+          "step": 3
+        }
+      ]
+    },
+    "path_specificity": {
+      "noncommuting_variant": {
+        "breaks_leaf_exchange_symmetry": true,
+        "claim_kind": "quotient_well_definedness_equivariance_failure",
+        "condition_then_quotient": "cuts only eta=pi/6 Z4 orbits before quotient identification",
+        "eta1_membership_in_window": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "eta2_leaf_unwindowed": true,
+        "is_Z4_saturated": false,
+        "noncommuting": true,
+        "not_numeric_order_gap_family": true,
+        "quotient_then_condition": "not well-defined on T_pi/6/Z4 because the phase window is not invariant on quotient orbits",
+        "variant": "single-leaf phase window on eta=pi/6 only: 0 <= alpha < pi before quotient",
+        "why_within_fences": "positive-measure phase window inside one already-conditioned Hopf leaf; no transverse, non-leaf, boundary, or empty-intersection conditioning",
+        "within_committed_fences": true,
+        "witness_orbit_under_Z4_on_eta1": [
+          "pi/4",
+          "3*pi/4",
+          "5*pi/4",
+          "7*pi/4"
+        ]
+      },
+      "requested_joint_pair": {
+        "condition_then_quotient_sha256": "2500fd2db7a7c6ee29e3a0ad6beafcdaac81af101ecf948b23a0595f3496cdb1",
+        "quotient_then_condition_sha256": "2500fd2db7a7c6ee29e3a0ad6beafcdaac81af101ecf948b23a0595f3496cdb1",
+        "reason": "the Z4 global phase action preserves eta, so it preserves the committed two-leaf union and its marginal-ratio weights",
+        "reported_honestly_as_commuting_pair": true,
+        "same_pair_commutes": true
+      }
+    }
+  },
+  "result_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "scope_fences": {
+    "allowed": [
+      "explicit two-leaf union T_pi/6 union T_pi/4",
+      "Hopf-compatible eta-chi annulus between the two leaves",
+      "Z4 global phase quotient preserving eta",
+      "single-leaf positive-measure phase window as noncommuting variant"
+    ],
+    "classification": "scratch_diagnostic",
+    "fenced": [
+      "arbitrary finite/countable unions",
+      "transverse or non-leaf conditioning",
+      "boundary leaves eta=0 or eta=pi/2",
+      "general Fubini/Tonelli or arbitrary order commutation",
+      "manifold, axis, bridge, physics, promotion, or formal admission claims"
+    ],
+    "formal_admission_allowed": false,
+    "promotion_allowed": false
+  },
+  "seed_ledger": {
+    "eta_shells": [
+      "pi/6",
+      "pi/4"
+    ],
+    "julia_seed": 2026061102,
+    "smt_seed": 2026061102,
+    "status": "deterministic_exact_rows_no_rng_sampling",
+    "symbolic_seed": 2026061102,
+    "z4_quotient_order": 4
+  },
+  "sim_id": "ratchet_s2_two_shell_flux_v0",
+  "source_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0.py",
+  "source_sha256": "ce04687776a6d29ead64a5371620d61f266369029efd612b40c1d99fcab907de",
+  "summary": {
+    "all_pass": true,
+    "chi_coefficient_gap": "1/2",
+    "eta_shells": [
+      "pi/6",
+      "pi/4"
+    ],
+    "flux_physical": "pi/2",
+    "noncommuting_variant": "single-leaf phase window on eta=pi/6 only: 0 <= alpha < pi before quotient",
+    "requested_pair_commutes": true,
+    "stokes_match": "0",
+    "union_weights": {
+      "ratio": "sqrt(3)/2 : 1",
+      "rho_eta1": "sqrt(3)/2",
+      "rho_eta2": "1",
+      "sum": "1",
+      "weight_eta1": "-3 + 2*sqrt(3)",
+      "weight_eta1_ratio_form": "sqrt(3)/(sqrt(3)+2)",
+      "weight_eta2": "4 - 2*sqrt(3)",
+      "weight_eta2_ratio_form": "2/(sqrt(3)+2)"
+    },
+    "z4_z1_alpha_gap": "pi/2"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "eta1=eta2 zero-gap row; boundary leaves eta=0,pi/2 fenced",
+      "demotion_condition": "demote if exact symbolic rows do not simplify or if period/cover convention is mixed",
+      "gates": [
+        "union_weights",
+        "stokes_identity",
+        "controls"
+      ],
+      "input_object": "eta1=pi/6, eta2=pi/4 Hopf leaf geometry, union weights, and annular flux",
+      "load_bearing": true,
+      "negative/erased_control": "equal union weights and wrong Stokes orientation produce nonzero defects",
+      "output_object": "exact two-shell ratchet sequence, Stokes row, quotient rows, and controls",
+      "positive_case": "flux integral and boundary holonomy difference both simplify to pi/2",
+      "qualified_api/function": "sympy.simplify / sympy.sin / sympy.cos",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "demotion_condition": "demote if z3 does not make the negated Stokes identity UNSAT",
+      "gates": [
+        "stokes_identity"
+      ],
+      "input_object": "flux_pi_over_2_units == boundary_gap_pi_over_2_units",
+      "load_bearing": true,
+      "negative/erased_control": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+      "output_object": {
+        "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+        "boundary_case_verdict": "unsat",
+        "erased_flip": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "load_bearing": true,
+        "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "demotion_condition": "demote if cvc5 does not agree with z3 on the bound Stokes identity",
+      "gates": [
+        "stokes_identity"
+      ],
+      "input_object": "flux_pi_over_2_units == boundary_gap_pi_over_2_units",
+      "load_bearing": true,
+      "negative/erased_control": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+      "output_object": {
+        "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+        "boundary_case_verdict": "unsat",
+        "erased_flip": "flip annulus orientation so flux=-1 while boundary=1 and force equality",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "load_bearing": true,
+        "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "positive_case": "negated Stokes identity is UNSAT with flux=1 and boundary=1 in pi/2 units",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+      "demotion_condition": "demote if Julia Z3.jl does not independently prove the same scaled Stokes identity",
+      "gates": [
+        "stokes_identity"
+      ],
+      "input_object": "flux_pi_over_2_units == boundary_gap_pi_over_2_units",
+      "load_bearing": true,
+      "negative/erased_control": "flip annulus orientation so flux_pi_over_2_units=-1 while boundary_gap_pi_over_2_units=1",
+      "output_object": {
+        "boundary_case": "eta1=eta2 gives zero coefficient gap and zero flux",
+        "boundary_case_verdict": "unsat",
+        "erased_flip": "flip annulus orientation so flux_pi_over_2_units=-1 while boundary_gap_pi_over_2_units=1",
+        "erased_flip_detected": true,
+        "erased_flip_verdict": "unsat",
+        "gates": [
+          "stokes_identity",
+          "proof",
+          "all_pass"
+        ],
+        "identity": "flux_pi_over_2_units == boundary_gap_pi_over_2_units",
+        "load_bearing": true,
+        "positive_case": "negated Stokes identity is UNSAT",
+        "ran": true,
+        "result": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_julia_results.json",
+        "source": "system_v6/sims/ratchet_s2_two_shell_flux_v0/ratchet_s2_two_shell_flux_v0_julia.jl",
+        "verdict": "unsat"
+      },
+      "positive_case": "negated Stokes identity is UNSAT",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "validator": {
+    "expected_ok": true,
+    "expected_result_path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_validator_results.json",
+    "packet_validator": "system_v6/sims/ratchet_s2_two_shell_flux_v0/validate_ratchet_s2_two_shell_flux_v0.py",
+    "repo_validator": "scripts/validate_three_engine_sim_result.py"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "package_versions": {
+    "julia": "1.12.6",
+    "Z3": "package"
+  },
+  "package_observables": {
+    "Z3": "Z3.Solver proves the finite routing/index contract and forced-R-left falsifier"
+  },
+  "result_path": "system_v6/sims/ecd02_chiral_information_routing_v0/results/ecd02_chiral_information_routing_v0_julia_results.json",
+  "claim_ceiling": "capability_discriminator_only",
+  "packages_used": [
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "source_sha256": "7793c8d5ccff2021ee50d7925a50c6524cd9ce757d1c91e4854b46a6b7b9e443",
+  "classification": "scratch_diagnostic",
+  "sim_id": "ecd02_chiral_information_routing_v0",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "generated_at": "2026-06-12T09:01:01Z",
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing Julia SMT proof for routing/index contract"
+    }
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "forced R-left falsifier",
+      "demotion_condition": "demote if Z3 no longer binds computed rows",
+      "output_object": "UNSAT negated routing contract",
+      "positive_case": "opposite L/R index-routed directions",
+      "negative/erased_control": "Szilard/index0 rows at zero asymmetry",
+      "qualified_api/function": "Z3.Solver",
+      "tool": "Z3",
+      "input_object": "finite integer index/asymmetry rows"
+    }
+  ],
+  "engine": "julia",
+  "crossover_proofs": {
+    "julia_z3": {
+      "ran": true,
+      "load_bearing": true,
+      "verdict": "unsat",
+      "solver": "Z3.jl",
+      "forced_R_left_falsifier_verdict": "unsat",
+      "erased_flip_verdict": "sat",
+      "claim": "Z3.jl binds Julia integer routing/index rows and proves the negated contract UNSAT"
+    }
+  },
+  "engine_values": {
+    "L_index": -1,
+    "index0": 0,
+    "R_routing_asymmetry": 1.0,
+    "L_routing_asymmetry": -1.0,
+    "diode_pass": 1,
+    "R_index": 1,
+    "szilard_routing_asymmetry": 0.0,
+    "mirror_pass": 1
+  },
+  "source_path": "system_v6/sims/ecd02_chiral_information_routing_v0/ecd02_chiral_information_routing_v0_julia.jl",
+  "schema_version": "three_engine_leg_result_v1"
+}
+

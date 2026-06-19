@@ -1,0 +1,87 @@
+{
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_metric": {
+    "comparison_pass": true,
+    "metric_id": "pairwise_channel_distance_diversity_count",
+    "qit_distinct_channel_count": 3,
+    "qit_diversity_strictly_exceeds_computed_szilard": true,
+    "qit_diversity_strictly_exceeds_szilard": true,
+    "qit_minus_szilard_margin": 1,
+    "qit_pairwise_positive_count": 3,
+    "szilard_distinct_channel_count": 2,
+    "szilard_max_distinct_channel_count": 2,
+    "szilard_pairwise_positive_count": 1,
+    "verdict_if_baseline_catches_up": "ECD.01 dies if computed Szilard distinct channel count >= QIT distinct channel count"
+  },
+  "channel_hash_classes": {
+    "UEEU": "2705c4665c658e7c2745df21a41d9e863b8acf8fff637c2a0af84d06d01e8cfc",
+    "UEUE": "c194b12814e83f2958302cda582d6bf635e65ed1f8c3db5dfae705cca9fef507",
+    "UUEE": "b5230fc54923e6a9e67a4946aad340a5600075f9e6614c53b4d4619be7ac1333"
+  },
+  "claim_ceiling": "capability_discriminator_only",
+  "classification": "scratch_diagnostic",
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "observables": {
+    "cvc5_smoke_status": "sat",
+    "jax_device": "cpu:0",
+    "jnp_vector_norm": 0.8487049341201782,
+    "networkx_edges": 5,
+    "networkx_nodes": 33,
+    "sympy_symbolic_nonzero_at_7_10": true,
+    "z3_smoke_status": "sat"
+  },
+  "package_observables": {
+    "cvc5": "independent diversity inequality proof row plus lane smoke solver",
+    "networkx": "finite carrier graph node/edge count smoke check",
+    "sympy": "symbolic lambda commutator nonzero at 7/10",
+    "z3": "diversity inequality proof row plus lane smoke solver"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/ecd01_order_programmable_computer_v1/results/ecd01_order_programmable_computer_v1_jax_results.json",
+  "schema": "ecd01_order_programmable_computer_v1_jax_lane_v1",
+  "sim_id": "ecd01_order_programmable_computer_v1",
+  "smt_rows": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "commuting_distinct_channel_count": 1,
+        "qit_distinct_channel_count": 3,
+        "szilard_distinct_channel_count": 2
+      },
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "polarity": "negated discriminator assertion qit_distinct <= szilard_distinct; real expects UNSAT, erased expects SAT",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "commuting_distinct_channel_count": 1,
+        "qit_distinct_channel_count": 3,
+        "szilard_distinct_channel_count": 2
+      },
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "polarity": "negated discriminator assertion qit_distinct <= szilard_distinct; real expects UNSAT, erased expects SAT",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "source_path": "system_v6/sims/ecd01_order_programmable_computer_v1/ecd01_order_programmable_computer_v1_jax.py"
+}

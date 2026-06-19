@@ -1,0 +1,943 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source, result, and PIN hash checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from fresh Julia and JAX receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_gates": {
+    "ceilings_preserved": true,
+    "double_cover_conditionals_honored": true,
+    "engine_legs_pass": true,
+    "identical_pin_sha256": true,
+    "julia_symbolics_disintegration_property": true,
+    "julia_z3_finite_recovery": true,
+    "naive_conditioning_failure_computed": true,
+    "no_peer_result_reads": true,
+    "null_set_scope_exhibited": true,
+    "positive_measure_band_agrees": true,
+    "pytorch_omission_declared": true,
+    "source_sha256_current": true,
+    "summary_boundary_present": true,
+    "sympy_disintegration_property": true,
+    "sympy_eta_marginal_area_law": true,
+    "volume_anchor_matches_committed": true,
+    "wrong_flat_marginal_fails": true,
+    "z3_cvc5_finite_recovery": true
+  },
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "not_applicable_measure_disintegration_over_Hopf_eta_foliation",
+    "consumer_policy": "independent Julia Symbolics/Z3 and Python SymPy/z3/cvc5 recovery; no peer-result reads",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "geo_disintegration_machinery_v0_julia_symbolics_z3",
+    "receipt_path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "b60c789b38411cf541c6b6af5fd19486bc7737dcc06903fd66c4b92e7825b61e",
+    "table_version": null
+  },
+  "capability_receipts": {
+    "jax": {
+      "api_smoke": {
+        "cvc5_positive_verdict": "unsat",
+        "jax_sin_pi_over_2": 1.0,
+        "sympy_integrate": "1",
+        "z3_positive_verdict": "unsat"
+      },
+      "cvc5_version": "1.3.3",
+      "jax_version": "0.10.1",
+      "jax_x64_enabled": true,
+      "sympy_version": "1.14.0",
+      "z3_version": "4.16.0"
+    },
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "load_path": "@:@stdlib",
+      "symbolics_num_type": "Num",
+      "z3_positive_verdict": "unsat"
+    }
+  },
+  "claim": "Mode-4 prerequisite disintegration machinery for conditioning round S3 measure on measure-zero Hopf torus leaves T_eta.",
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3",
+    "cvc5",
+    "sympy",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "finite_erased_controls": {
+      "cvc5_double_cover": "unsat",
+      "cvc5_flat": "unsat",
+      "julia_z3_double_cover": "unsat",
+      "julia_z3_flat": "unsat",
+      "z3_double_cover": "unsat",
+      "z3_flat": "unsat"
+    },
+    "naive_singleton_conditioning": {
+      "constraint_set": "T_eta at eta=pi/4",
+      "denominator_mass": "0",
+      "exact_strength": "measure_theorem",
+      "failure": "P(A and T_eta)/P(T_eta) is 0/0, returned by SymPy as nan",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true
+    },
+    "null_set_pathology": {
+      "exact_strength": "measure_theorem",
+      "global_integrated_defect": "0",
+      "modified_eta": "pi/4",
+      "pass": true,
+      "pointwise_conditional_difference_for_cos_phi": 1,
+      "scope": "conditional measures are determined only eta-a.e.; changing one eta leaf does not change global recovery",
+      "singleton_eta_mass": "0"
+    },
+    "positive_eta_band": {
+      "band": "[pi/6, pi/3]",
+      "defect": "0",
+      "denominator_mass": "1/2",
+      "disintegrated_conditioning_value": "35/12",
+      "exact_strength": "closed_form_integral",
+      "naive_conditioning_value": "35/12",
+      "pass": true
+    },
+    "wrong_flat_marginal": {
+      "computed_nonzero_defect": "-1/6",
+      "correct_recovery": "2/3",
+      "exact_strength": "closed_form_integral",
+      "flat_eta_marginal": "2/pi",
+      "observable": "sin(2*eta)**2",
+      "pass": true,
+      "wrong_flat_recovery": "1/2"
+    }
+  },
+  "convention_pin": {
+    "conditional_chart_density": "1/(4*pi^2) d_phi d_chi",
+    "coordinate_chart": "z1=cos(eta) exp(i(phi+chi)), z2=sin(eta) exp(i(phi-chi))",
+    "double_cover": "(phi, chi) ~ (phi + pi, chi + pi)",
+    "eta_range": "[0, pi/2]",
+    "finite_grid_rule": "even N chart has N^2 points and N^2/2 physical quotient classes",
+    "normalized_eta_marginal": "sin(2*eta) d_eta",
+    "physical_torus_area": "2*pi^2*sin(2*eta)",
+    "s3_volume": "2*pi^2",
+    "volume_form_double_chart": "(1/2)*sin(2*eta) d_eta d_phi d_chi"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "Julia Symbolics and Python SymPy independently return zero recovery defect; solver rows agree on finite recovery.",
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "pytorch": {
+      "reason": "No graph/network/autograd claim path; PyTorch would be decorative for this measure-disintegration prerequisite.",
+      "scoped": false
+    }
+  },
+  "engines": {
+    "jax": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "python_stdlib": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load-bearing independent finite discretization recovery proof over the same bound integer values and erased controls",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 vectorized area and finite-grid diagnostic rows",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive x64 vectorized eta-shell arithmetic",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive JSON, hashing, timestamps, and deterministic path binding",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact symbolic integrals for eta marginal, band conditioning, wrong marginal defect, and recovery identity",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing finite discretization recovery proof over bound integer values and erased controls",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": {
+        "api_smoke": {
+          "cvc5_positive_verdict": "unsat",
+          "jax_sin_pi_over_2": 1.0,
+          "sympy_integrate": "1",
+          "z3_positive_verdict": "unsat"
+        },
+        "cvc5_version": "1.3.3",
+        "jax_version": "0.10.1",
+        "jax_x64_enabled": true,
+        "sympy_version": "1.14.0",
+        "z3_version": "4.16.0"
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "pin_sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_jax_results.json",
+      "result_sha256": "2141dc6b88531f6c5f70bf456b446493d1f7fd9b1addb4b9f4e345ab7d049c38",
+      "role_id": "jax_sympy_solver_disintegration_builder",
+      "source_hash_current": true,
+      "source_path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_jax.py",
+      "source_sha256": "1cf7a46ba41f0acbe03098ec638939ac94a8e195af9f1c8bffd2d8a460d5718e",
+      "tool_calls": [
+        {
+          "boundary_case": "positive eta-band has nonzero denominator",
+          "demotion_condition": "demote if formulas are copied without symbolic integration",
+          "gates": [
+            "R1",
+            "R2",
+            "C2",
+            "C3"
+          ],
+          "input_object": "S3 Hopf eta, phi, chi chart density and test function",
+          "negative/erased_control": "flat eta marginal gives nonzero defect",
+          "output_object": "0",
+          "positive_case": "global and disintegrated symbolic integrals agree",
+          "qualified_api/function": "sympy.integrate/simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "eta=pi/4 Clifford torus area row",
+          "demotion_condition": "demote if x64 is disabled or rows are not recomputed",
+          "gates": [
+            "R1",
+            "double_cover"
+          ],
+          "input_object": "eta shells and even-N chart/quotient counts",
+          "negative/erased_control": "N^2 physical-count control would double the mass",
+          "output_object": "volume and torus-area diagnostic rows",
+          "positive_case": "2*pi^2 volume and N^2/2 rows match committed anchors",
+          "qualified_api/function": "jax.numpy.sin/vectorized x64 arithmetic",
+          "tool": "jax"
+        },
+        {
+          "boundary_case": "N=8, eta layers pi/12, pi/4, 5*pi/12",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_recovery"
+          ],
+          "input_object": "finite scaled eta weights, class count, and layer values",
+          "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+          "output_object": "unsat",
+          "positive_case": "valid recovery violation is UNSAT",
+          "qualified_api/function": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "QF_LIA integer row",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_recovery"
+          ],
+          "input_object": "same finite scaled recovery row as z3",
+          "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+          "output_object": "unsat",
+          "positive_case": "valid recovery violation is UNSAT",
+          "qualified_api/function": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "JSON": "supportive",
+        "SHA": "supportive",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "JSON": {
+          "reason": "supportive receipt serialization",
+          "tried": true,
+          "used": true
+        },
+        "SHA": {
+          "reason": "supportive source and PIN hashing",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing symbolic algebra for transformed marginal and polynomial recovery defect",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side finite recovery proof over bound integer values",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "capability_receipts": {
+        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "load_path": "@:@stdlib",
+        "symbolics_num_type": "Num",
+        "z3_positive_verdict": "unsat"
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "pin_sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_julia_results.json",
+      "result_sha256": "cd18f284e7ba313decfe888bcdc3353de7691cee3e87f1e8b08a588b8da30c0a",
+      "role_id": "julia_symbolics_z3_disintegration_builder",
+      "source_hash_current": true,
+      "source_path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_julia.jl",
+      "source_sha256": "b60c789b38411cf541c6b6af5fd19486bc7737dcc06903fd66c4b92e7825b61e",
+      "tool_calls": [
+        {
+          "boundary_case": "single eta leaf modification has zero eta mass",
+          "demotion_condition": "demote if Symbolics does not participate in the algebraic check",
+          "gates": [
+            "symbolic_recovery"
+          ],
+          "input_object": "x=cos(2*eta) transformed marginal and polynomial shell-average family",
+          "negative/erased_control": "wrong flat eta marginal gives -1/6 on sin(2eta)^2",
+          "output_object": "0",
+          "positive_case": "Symbolics simplifies recovery defect to 0",
+          "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+          "tool": "Symbolics"
+        },
+        {
+          "boundary_case": "N=8, eta layers pi/12, pi/4, 5*pi/12",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_recovery"
+          ],
+          "input_object": "finite scaled eta weights, class count, and layer values",
+          "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+          "output_object": "unsat",
+          "positive_case": "valid recovery violation is UNSAT",
+          "qualified_api/function": "Z3.Solver / Z3.IntVar / Z3.add / Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    }
+  },
+  "finite_discretization_recovery": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "role": "SymPy exact derivation, JAX x64 diagnostics, z3/cvc5 finite proof"
+    },
+    "julia": {
+      "packages": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "Symbolics/Z3 semantic owner"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "omitted_no_graph_network_autograd_claim_path"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T00:08:18Z",
+  "jax_diagnostics": {
+    "abs_diff_vs_committed_geomstats_probe": 2.12843076496938e-11,
+    "api": "jax.numpy vectorized x64 eta-shell arithmetic",
+    "clifford_torus_area": 19.739208802178716,
+    "clifford_torus_area_target": 19.739208802178716,
+    "committed_geomstats_probe_value": 19.7392088022,
+    "eta_rows": [
+      {
+        "eta": 0.2617993877991494,
+        "eta_label": "pi/12",
+        "eta_marginal_density": 0.49999999999999994,
+        "torus_area": 9.869604401089356
+      },
+      {
+        "eta": 0.39269908169872414,
+        "eta_label": "pi/8",
+        "eta_marginal_density": 0.7071067811865475,
+        "torus_area": 13.957728399277757
+      },
+      {
+        "eta": 0.5235987755982988,
+        "eta_label": "pi/6",
+        "eta_marginal_density": 0.8660254037844386,
+        "torus_area": 17.094656273292166
+      },
+      {
+        "eta": 0.7853981633974483,
+        "eta_label": "pi/4",
+        "eta_marginal_density": 1.0,
+        "torus_area": 19.739208802178716
+      },
+      {
+        "eta": 1.0471975511965976,
+        "eta_label": "pi/3",
+        "eta_marginal_density": 0.8660254037844387,
+        "torus_area": 17.09465627329217
+      },
+      {
+        "eta": 1.1780972450961724,
+        "eta_label": "3*pi/8",
+        "eta_marginal_density": 0.7071067811865476,
+        "torus_area": 13.957728399277759
+      },
+      {
+        "eta": 1.3089969389957472,
+        "eta_label": "5*pi/12",
+        "eta_marginal_density": 0.49999999999999994,
+        "torus_area": 9.869604401089356
+      }
+    ],
+    "finite_grid_double_cover_rows": [
+      {
+        "N": 4,
+        "chart_point_weight": 0.0625,
+        "chart_points": 16,
+        "conditional_total_mass_chart": 1.0,
+        "double_cover_honored": true,
+        "physical_class_weight": 0.125,
+        "physical_points": 8,
+        "target_N_squared_over_2": 8
+      },
+      {
+        "N": 8,
+        "chart_point_weight": 0.015625,
+        "chart_points": 64,
+        "conditional_total_mass_chart": 1.0,
+        "double_cover_honored": true,
+        "physical_class_weight": 0.03125,
+        "physical_points": 32,
+        "target_N_squared_over_2": 32
+      },
+      {
+        "N": 16,
+        "chart_point_weight": 0.00390625,
+        "chart_points": 256,
+        "conditional_total_mass_chart": 1.0,
+        "double_cover_honored": true,
+        "physical_class_weight": 0.0078125,
+        "physical_points": 128,
+        "target_N_squared_over_2": 128
+      },
+      {
+        "N": 64,
+        "chart_point_weight": 0.000244140625,
+        "chart_points": 4096,
+        "conditional_total_mass_chart": 1.0,
+        "double_cover_honored": true,
+        "physical_class_weight": 0.00048828125,
+        "physical_points": 2048,
+        "target_N_squared_over_2": 2048
+      }
+    ],
+    "pass": true,
+    "s3_volume_exact": 19.739208802178716,
+    "x64_enabled": true
+  },
+  "lineage_citations": {
+    "geometry_program_mode4": [
+      "system_v6/receipts/geometry_sim_program_canonical_20260610.md:10-14",
+      "system_v6/receipts/geometry_sim_program_canonical_20260610.md:18"
+    ],
+    "geomstats_volume_anchor": [
+      "system_v6/receipts/toolset_expansion_20260610.md:60-61"
+    ],
+    "s2_torus_area_and_cover": [
+      "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json#/receipts/S2.T",
+      "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json#/receipts/S2.G",
+      "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json#/receipts/S2.K"
+    ],
+    "s6_shell_mode_boundary": [
+      "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json#/claim",
+      "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json#/build_gates"
+    ],
+    "s7_finite_cover_anchor": [
+      "system_v6/sims/geo_s7_discrete_refinement_v0/results/geo_s7_discrete_refinement_v0_envelope_results.json#/parity_cover",
+      "system_v6/sims/geo_s7_discrete_refinement_v0/results/geo_s7_discrete_refinement_v0_envelope_results.json#/area_curve"
+    ]
+  },
+  "mode": "RATCHETED_prerequisite_disintegration_rule",
+  "object_id": "geo_disintegration_machinery_v0",
+  "pin_sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d",
+  "pin_spec": "geo_disintegration_machinery_v0|purpose=mode4_RATCHETED_prerequisite_conditioning_on_measure_zero_constraint_sets|base_measure=round_uniform_S3_volume|foliation=S3_union_eta_T_eta|eta_range=[0,pi/2]|hopf_torus_area=2*pi^2*sin(2*eta)|S3_volume=2*pi^2|eta_marginal_normalized=sin(2*eta)|conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification|solver_row=finite_discretized_recovery_with_erased_controls|engine_mode=julia_canon_plus_jax_diagnostic|pytorch_omitted=no_graph_network_autograd_claim|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "receipts": {
+    "C1_naive_singleton_conditioning_fails": {
+      "constraint_set": "T_eta at eta=pi/4",
+      "denominator_mass": "0",
+      "exact_strength": "measure_theorem",
+      "failure": "P(A and T_eta)/P(T_eta) is 0/0, returned by SymPy as nan",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true
+    },
+    "C2_positive_eta_band_agrees": {
+      "band": "[pi/6, pi/3]",
+      "defect": "0",
+      "denominator_mass": "1/2",
+      "disintegrated_conditioning_value": "35/12",
+      "exact_strength": "closed_form_integral",
+      "naive_conditioning_value": "35/12",
+      "pass": true
+    },
+    "C3_wrong_flat_marginal_fails": {
+      "computed_nonzero_defect": "-1/6",
+      "correct_recovery": "2/3",
+      "exact_strength": "closed_form_integral",
+      "flat_eta_marginal": "2/pi",
+      "observable": "sin(2*eta)**2",
+      "pass": true,
+      "wrong_flat_recovery": "1/2"
+    },
+    "C4_null_set_disintegration_scope": {
+      "exact_strength": "measure_theorem",
+      "global_integrated_defect": "0",
+      "modified_eta": "pi/4",
+      "pass": true,
+      "pointwise_conditional_difference_for_cos_phi": 1,
+      "scope": "conditional measures are determined only eta-a.e.; changing one eta leaf does not change global recovery",
+      "singleton_eta_mass": "0"
+    },
+    "J1_symbolics_recovery_identity": {
+      "coordinate_transform": "x=cos(2*eta), sin(2*eta)d_eta=-dx/2, eta marginal becomes uniform density 1/2 on x in [-1,1]",
+      "defect": "0",
+      "disintegrated_integral_over_x": "a + c / 3",
+      "exact_strength": "symbolic_identity",
+      "global_integral_over_x": "a + c / 3",
+      "pass": true,
+      "test_family": "a + b*x + c*(x^2)"
+    },
+    "J2_symbolics_marginal_transform": {
+      "eta_density": "sin(2*eta)",
+      "exact_strength": "symbolic_identity",
+      "pass": true,
+      "x_density_after_transform": "1//2"
+    },
+    "J3_wrong_flat_marginal_defect": {
+      "computed_nonzero_defect": "-1//6",
+      "correct_recovery": "2/3",
+      "exact_strength": "closed_form_integral",
+      "flat_marginal_recovery": "1/2",
+      "observable": "sin(2*eta)^2",
+      "pass": true
+    },
+    "J4_null_set_scope": {
+      "exact_strength": "measure_theorem",
+      "global_integrated_defect": "0",
+      "modified_eta": "pi/4",
+      "pass": true,
+      "pointwise_conditional_difference_for_cos_phi": 1,
+      "singleton_eta_mass": "0"
+    },
+    "R1_eta_marginal_area_law": {
+      "conditional_chart_density": "1/(4*pi**2)",
+      "conditional_total_mass": "1",
+      "exact_strength": "closed_form_integral",
+      "normalized_eta_marginal": "sin(2*eta)",
+      "pass": true,
+      "s3_volume": "2*pi**2",
+      "torus_layer_area_from_chart": "2*pi**2*sin(2*eta)",
+      "volume_density_on_double_chart": "(1/2)*sin(2*eta)",
+      "volume_target": "2*pi**2"
+    },
+    "R2_symbolic_disintegration_recovery": {
+      "conditional_average": "a + b*cos(2*eta) + c*sin(2*eta)**2",
+      "defect": "0",
+      "disintegrated_integral": "a + 2*c/3",
+      "exact_strength": "symbolic_identity",
+      "global_integral": "a + 2*c/3",
+      "pass": true,
+      "test_function": "a + b*cos(2*eta) + c*sin(2*eta)**2 + d*cos(phi) + e*sin(chi) + f*cos(chi + phi)"
+    }
+  },
+  "result_path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seed": {
+    "finite_eta_layers": [
+      "pi/12",
+      "pi/4",
+      "5*pi/12"
+    ],
+    "finite_solver_grid_N": 8,
+    "julia": 2026061004,
+    "python_jax": 2026061004
+  },
+  "sim_id": "geo_disintegration_machinery_v0",
+  "source_path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_envelope.py",
+  "source_sha256": "cf27cd9de21ddd1acf610adda1a35f61b7dd832b09036080240c268602c09415",
+  "stage": "mode4_prerequisite",
+  "summary": {
+    "anchor_values": {
+      "committed_geomstats_probe_value": 19.7392088022,
+      "conditional_chart_density": "1/(4*pi^2)",
+      "eta_marginal_density": "sin(2*eta)",
+      "finite_grid_physical_points": "N^2/2",
+      "s3_volume": "2*pi^2",
+      "torus_layer_area": "2*pi^2*sin(2*eta)"
+    },
+    "ceiling": "scratch_diagnostic",
+    "does_not_enable": "no ratchet sim is run here; no manifold, axis, bridge, physics, or canonical admission claim is made",
+    "enables": "mode-4 cards may now cite the disintegration rule for conditioning on fixed-eta Hopf torus leaves T_eta, despite mu(T_eta)=0",
+    "pytorch_omission": "no graph/network/autograd claim path; engine mode is julia_canon_plus_jax_diagnostic"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "single eta leaf modification has zero eta mass",
+      "demotion_condition": "demote if Symbolics does not participate in the algebraic check",
+      "gates": [
+        "symbolic_recovery"
+      ],
+      "input_object": "x=cos(2*eta) transformed marginal and polynomial shell-average family",
+      "negative/erased_control": "wrong flat eta marginal gives -1/6 on sin(2eta)^2",
+      "output_object": "0",
+      "positive_case": "Symbolics simplifies recovery defect to 0",
+      "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "N=8, eta layers pi/12, pi/4, 5*pi/12",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_recovery"
+      ],
+      "input_object": "finite scaled eta weights, class count, and layer values",
+      "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+      "output_object": "unsat",
+      "positive_case": "valid recovery violation is UNSAT",
+      "qualified_api/function": "Z3.Solver / Z3.IntVar / Z3.add / Z3.check",
+      "tool": "Z3"
+    },
+    {
+      "boundary_case": "positive eta-band has nonzero denominator",
+      "demotion_condition": "demote if formulas are copied without symbolic integration",
+      "gates": [
+        "R1",
+        "R2",
+        "C2",
+        "C3"
+      ],
+      "input_object": "S3 Hopf eta, phi, chi chart density and test function",
+      "negative/erased_control": "flat eta marginal gives nonzero defect",
+      "output_object": "0",
+      "positive_case": "global and disintegrated symbolic integrals agree",
+      "qualified_api/function": "sympy.integrate/simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "eta=pi/4 Clifford torus area row",
+      "demotion_condition": "demote if x64 is disabled or rows are not recomputed",
+      "gates": [
+        "R1",
+        "double_cover"
+      ],
+      "input_object": "eta shells and even-N chart/quotient counts",
+      "negative/erased_control": "N^2 physical-count control would double the mass",
+      "output_object": "volume and torus-area diagnostic rows",
+      "positive_case": "2*pi^2 volume and N^2/2 rows match committed anchors",
+      "qualified_api/function": "jax.numpy.sin/vectorized x64 arithmetic",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "N=8, eta layers pi/12, pi/4, 5*pi/12",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_recovery"
+      ],
+      "input_object": "finite scaled eta weights, class count, and layer values",
+      "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+      "output_object": "unsat",
+      "positive_case": "valid recovery violation is UNSAT",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "QF_LIA integer row",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_recovery"
+      ],
+      "input_object": "same finite scaled recovery row as z3",
+      "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+      "output_object": "unsat",
+      "positive_case": "valid recovery violation is UNSAT",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "validator_path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_exact_strength_validator.py"
+}

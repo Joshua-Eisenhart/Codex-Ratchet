@@ -1,6 +1,8 @@
 # Codex Ratchet — common tasks
-# Use codex-ratchet env (torch 2.11.0) — not homebrew python (torch 2.8.0)
-PYTHON := /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+# Use the shared sim-stack alias, not bare/homebrew python.
+SIM_STACK := /Users/joshuaeisenhart/.local/share/sim-stack
+SIM_PY ?= $(SIM_STACK)/bin/python3
+PYTHON ?= $(SIM_PY)
 PROBES := system_v4/probes
 MPLCONFIGDIR := /tmp/codex-mpl
 NUMBA_CACHE_DIR := /tmp/codex-numba
@@ -20,7 +22,7 @@ sim:
 
 # Check newly staged direct sim filenames before commit without re-auditing legacy debt.
 sim-name-gate:
-	@git diff --cached --name-only --diff-filter=ACR -- '$(PROBES)/*.py' | while IFS= read -r path; do \
+	@git diff --cached --name-only --diff-filter=ACM -- '$(PROBES)/*.py' | while IFS= read -r path; do \
 		name=$$(basename "$$path" .py); \
 		MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/direct_sim_semantic_guard.py --name "$$name" --probes-dir "$(PROBES)" || exit $$?; \
 	done

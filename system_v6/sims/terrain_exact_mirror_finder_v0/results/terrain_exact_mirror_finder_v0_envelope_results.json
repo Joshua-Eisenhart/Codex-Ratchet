@@ -1,0 +1,1435 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "julia": {
+      "JSON": "supportive",
+      "Symbolics": "load_bearing",
+      "Z3": "load_bearing"
+    },
+    "python": {
+      "cvc5": "load_bearing",
+      "numpy": "supportive",
+      "scipy": "supportive",
+      "sympy": "load_bearing",
+      "z3": "load_bearing"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "julia": {
+      "JSON": {
+        "reason": "supportive result serialization",
+        "tried": true,
+        "used": true
+      },
+      "Symbolics": {
+        "reason": "load-bearing symbolic H0/kernel identities",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "load-bearing SMT identity controls",
+        "tried": true,
+        "used": true
+      }
+    },
+    "python": {
+      "cvc5": {
+        "reason": "load-bearing independent SMT identity/control checks",
+        "tried": true,
+        "used": true
+      },
+      "numpy": {
+        "reason": "supportive array carrier for lift row",
+        "tried": true,
+        "used": true
+      },
+      "scipy": {
+        "reason": "supportive spinor/Lindblad lift consistency row",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "load-bearing exact symbolic solve and residual coefficient extraction",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load-bearing SMT identity/control checks",
+        "tried": true,
+        "used": true
+      }
+    }
+  },
+  "all_pass": true,
+  "capability_receipts": {
+    "julia": {
+      "Symbolics": "6.58.0",
+      "Z3": "1.0.4",
+      "julia_version": "1.12.6"
+    },
+    "python": {
+      "deterministic_random_orthogonal": [
+        [
+          "2/3",
+          "1/3",
+          "2/3"
+        ],
+        [
+          "1/3",
+          "2/3",
+          "-2/3"
+        ],
+        [
+          "-2/3",
+          "2/3",
+          "1/3"
+        ]
+      ],
+      "python_versions": {
+        "cvc5": "1.3.3",
+        "numpy": "2.3.4",
+        "scipy": "1.17.1",
+        "sympy": "1.14.0",
+        "z3-solver": "4.16.0.0"
+      },
+      "seed": 20260610
+    }
+  },
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "claim_under_test": "Find exact O(3) maps M with M A_L M^T=A_R and M b_L=b_R for the committed S5 L/R terrain families.",
+  "classification": "scratch_diagnostic",
+  "common_intersection": {
+    "Se_Ne_Ni_common_representative": [
+      [
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "-1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "-1"
+      ]
+    ],
+    "Se_Ne_Ni_common_representative_rows": [
+      {
+        "candidate": "M_Ni_unique",
+        "det": "1",
+        "exact": true,
+        "family": "Se",
+        "left_generator": "Se_Funnel_L",
+        "max_abs_residual": 0.0,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Se_Cannon_R"
+      },
+      {
+        "candidate": "M_Ni_unique",
+        "det": "1",
+        "exact": true,
+        "family": "Ne",
+        "left_generator": "Ne_Vortex_L",
+        "max_abs_residual": 0.0,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Ne_Spiral_R"
+      },
+      {
+        "candidate": "M_Ni_unique",
+        "det": "1",
+        "exact": true,
+        "family": "Ni",
+        "left_generator": "Ni_Pit_L",
+        "max_abs_residual": 0.0,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Ni_Source_R"
+      },
+      {
+        "candidate": "M_Ni_unique",
+        "det": "1",
+        "exact": false,
+        "family": "Si",
+        "left_generator": "Si_Hill_L",
+        "max_abs_residual": 0.4,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "2/5",
+            "-2/5",
+            "0"
+          ],
+          [
+            "2/5",
+            "0",
+            "-2/5"
+          ],
+          [
+            "0",
+            "2/5",
+            "-2/5"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Si_Citadel_R"
+      }
+    ],
+    "Si_representatives": [
+      {
+        "candidate": "M_Si_proper_canonical",
+        "det": "1",
+        "exact": true,
+        "family": "Si",
+        "left_generator": "Si_Hill_L",
+        "max_abs_residual": 0.0,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Si_Citadel_R"
+      },
+      {
+        "candidate": "M_Si_reflection_canonical",
+        "det": "-1",
+        "exact": true,
+        "family": "Si",
+        "left_generator": "Si_Hill_L",
+        "max_abs_residual": 0.0,
+        "orthogonal_exact": true,
+        "residual_A": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "right_generator": "Si_Citadel_R"
+      }
+    ],
+    "common_all_four_exists": false,
+    "common_all_four_solution_set": "empty",
+    "owner_chirality_reading_single_mirror_survives": false,
+    "reason": "The first three families require det(M)*M*h0=-h0; Ni further collapses that to M_Ni_unique. That unique matrix fails the Si z-frame to x-frame conjugacy residual, so the four-way intersection is empty."
+  },
+  "component_results": {
+    "julia": {
+      "all_pass": true,
+      "path": "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_julia_results.json",
+      "sha256": "fa5bd1114415f2e55440967ae9ea1864c828ace4d5d9ac73cc45c97a0105886b"
+    },
+    "python": {
+      "all_pass": true,
+      "path": "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_python_results.json",
+      "sha256": "f8654f49c3b5c78a8452b0f3e0d64fd9e1c61d8afc630b6918a8b5834cf61b89"
+    }
+  },
+  "computed_subtree_hashes": {
+    "fresh_current_hashes": [
+      {
+        "hash": "f04d6d3bf27236fe2381b3e8cb810f0306a66e308d97f58a1a370bbe1dece361",
+        "subtree": "python.per_family_solution_sets"
+      },
+      {
+        "hash": "36d154971f98af968a0a775ddc51509501145db92ffb55ec3dddf3497fad186f",
+        "subtree": "python.common_intersection"
+      },
+      {
+        "hash": "fa1cee84dab421f9ed5a56e31302c124a500ba061d1b22e06392387bc78a5915",
+        "subtree": "python.controls"
+      },
+      {
+        "hash": "bb6e869715d94fac2f749fda88285d85256e0c63badb18db2314abe246c2df01",
+        "subtree": "python.smt_solve_space_identities"
+      },
+      {
+        "hash": "68b42af4987023ebde703086d2e5824b06593bb02015afef41780a259fdb8fa3",
+        "subtree": "julia.symbolics_rows"
+      },
+      {
+        "hash": "6935c411a23b6fe749db72b3e071a9f61f43875f7a59af0b3a6e36098516232a",
+        "subtree": "julia.z3_rows"
+      }
+    ],
+    "fresh_full_rerun": true,
+    "hash_algorithm": "sha256(stable_json(sort_keys=True,separators=(',',':')))"
+  },
+  "controls": {
+    "identity_candidate": {
+      "all_fail": true,
+      "rows": [
+        {
+          "candidate": "identity",
+          "det": "1",
+          "exact": false,
+          "family": "Se",
+          "left_generator": "Se_Funnel_L",
+          "max_abs_residual": 0.4618802153517006,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "4*sqrt(3)/15",
+              "-4*sqrt(3)/15"
+            ],
+            [
+              "-4*sqrt(3)/15",
+              "0",
+              "4*sqrt(3)/15"
+            ],
+            [
+              "4*sqrt(3)/15",
+              "-4*sqrt(3)/15",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Se_Cannon_R"
+        },
+        {
+          "candidate": "identity",
+          "det": "1",
+          "exact": false,
+          "family": "Ne",
+          "left_generator": "Ne_Vortex_L",
+          "max_abs_residual": 2.309401076758503,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "4*sqrt(3)/3",
+              "-4*sqrt(3)/3"
+            ],
+            [
+              "-4*sqrt(3)/3",
+              "0",
+              "4*sqrt(3)/3"
+            ],
+            [
+              "4*sqrt(3)/3",
+              "-4*sqrt(3)/3",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Ne_Spiral_R"
+        },
+        {
+          "candidate": "identity",
+          "det": "1",
+          "exact": false,
+          "family": "Ni",
+          "left_generator": "Ni_Pit_L",
+          "max_abs_residual": 1.0,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "4*sqrt(3)/15",
+              "-4*sqrt(3)/15"
+            ],
+            [
+              "-4*sqrt(3)/15",
+              "0",
+              "4*sqrt(3)/15"
+            ],
+            [
+              "4*sqrt(3)/15",
+              "-4*sqrt(3)/15",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "1"
+          ],
+          "right_generator": "Ni_Source_R"
+        },
+        {
+          "candidate": "identity",
+          "det": "1",
+          "exact": false,
+          "family": "Si",
+          "left_generator": "Si_Hill_L",
+          "max_abs_residual": 0.4,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "2/5",
+              "2/5",
+              "0"
+            ],
+            [
+              "-2/5",
+              "0",
+              "-2/5"
+            ],
+            [
+              "0",
+              "2/5",
+              "-2/5"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Si_Citadel_R"
+        }
+      ]
+    },
+    "random_orthogonal_candidate": {
+      "all_fail": true,
+      "matrix": [
+        [
+          "2/3",
+          "1/3",
+          "2/3"
+        ],
+        [
+          "1/3",
+          "2/3",
+          "-2/3"
+        ],
+        [
+          "-2/3",
+          "2/3",
+          "1/3"
+        ]
+      ],
+      "rows": [
+        {
+          "candidate": "deterministic_random_orthogonal",
+          "det": "1",
+          "exact": false,
+          "family": "Se",
+          "left_generator": "Se_Funnel_L",
+          "max_abs_residual": 0.6158402871356008,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "8*sqrt(3)/45",
+              "-8*sqrt(3)/45"
+            ],
+            [
+              "-8*sqrt(3)/45",
+              "0",
+              "16*sqrt(3)/45"
+            ],
+            [
+              "8*sqrt(3)/45",
+              "-16*sqrt(3)/45",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Se_Cannon_R"
+        },
+        {
+          "candidate": "deterministic_random_orthogonal",
+          "det": "1",
+          "exact": false,
+          "family": "Ne",
+          "left_generator": "Ne_Vortex_L",
+          "max_abs_residual": 3.079201435678004,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "8*sqrt(3)/9",
+              "-8*sqrt(3)/9"
+            ],
+            [
+              "-8*sqrt(3)/9",
+              "0",
+              "16*sqrt(3)/9"
+            ],
+            [
+              "8*sqrt(3)/9",
+              "-16*sqrt(3)/9",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Ne_Spiral_R"
+        },
+        {
+          "candidate": "deterministic_random_orthogonal",
+          "det": "1",
+          "exact": false,
+          "family": "Ni",
+          "left_generator": "Ni_Pit_L",
+          "max_abs_residual": 0.6713958426911564,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "1/9",
+              "-1/9 + 8*sqrt(3)/45",
+              "1/18 - 8*sqrt(3)/45"
+            ],
+            [
+              "-8*sqrt(3)/45 - 1/9",
+              "1/9",
+              "-1/18 + 16*sqrt(3)/45"
+            ],
+            [
+              "1/18 + 8*sqrt(3)/45",
+              "-16*sqrt(3)/45 - 1/18",
+              "-2/9"
+            ]
+          ],
+          "residual_b": [
+            "1/3",
+            "-1/3",
+            "2/3"
+          ],
+          "right_generator": "Ni_Source_R"
+        },
+        {
+          "candidate": "deterministic_random_orthogonal",
+          "det": "1",
+          "exact": false,
+          "family": "Si",
+          "left_generator": "Si_Hill_L",
+          "max_abs_residual": 0.35555555555555557,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "2/9",
+              "14/45",
+              "8/45"
+            ],
+            [
+              "2/45",
+              "-8/45",
+              "-2/45"
+            ],
+            [
+              "-16/45",
+              "2/9",
+              "-2/45"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Si_Citadel_R"
+        }
+      ]
+    },
+    "sigma_y_candidate": {
+      "all_fail": true,
+      "matches_committed_refutation": true,
+      "refutation_anchor_rows": [
+        {
+          "family": "Se",
+          "fresh_sigma_y_max_abs_residual": 0.4618802153517006,
+          "matches_refutation": true,
+          "refutation_sigma_y_max_abs_residual": 0.4618802153517006
+        },
+        {
+          "family": "Ne",
+          "fresh_sigma_y_max_abs_residual": 2.309401076758503,
+          "matches_refutation": true,
+          "refutation_sigma_y_max_abs_residual": 2.309401076758503
+        },
+        {
+          "family": "Ni",
+          "fresh_sigma_y_max_abs_residual": 0.4618802153517006,
+          "matches_refutation": true,
+          "refutation_sigma_y_max_abs_residual": 0.4618802153517006
+        },
+        {
+          "family": "Si",
+          "fresh_sigma_y_max_abs_residual": 0.4,
+          "matches_refutation": true,
+          "refutation_sigma_y_max_abs_residual": 0.4
+        }
+      ],
+      "rows": [
+        {
+          "candidate": "sigma_y_diag(-1,1,-1)",
+          "det": "1",
+          "exact": false,
+          "family": "Se",
+          "left_generator": "Se_Funnel_L",
+          "max_abs_residual": 0.4618802153517006,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "0",
+              "-4*sqrt(3)/15"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "4*sqrt(3)/15",
+              "0",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Se_Cannon_R"
+        },
+        {
+          "candidate": "sigma_y_diag(-1,1,-1)",
+          "det": "1",
+          "exact": false,
+          "family": "Ne",
+          "left_generator": "Ne_Vortex_L",
+          "max_abs_residual": 2.309401076758503,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "0",
+              "-4*sqrt(3)/3"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "4*sqrt(3)/3",
+              "0",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Ne_Spiral_R"
+        },
+        {
+          "candidate": "sigma_y_diag(-1,1,-1)",
+          "det": "1",
+          "exact": false,
+          "family": "Ni",
+          "left_generator": "Ni_Pit_L",
+          "max_abs_residual": 0.4618802153517006,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "0",
+              "0",
+              "-4*sqrt(3)/15"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "4*sqrt(3)/15",
+              "0",
+              "0"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Ni_Source_R"
+        },
+        {
+          "candidate": "sigma_y_diag(-1,1,-1)",
+          "det": "1",
+          "exact": false,
+          "family": "Si",
+          "left_generator": "Si_Hill_L",
+          "max_abs_residual": 0.4,
+          "orthogonal_exact": true,
+          "residual_A": [
+            [
+              "2/5",
+              "-2/5",
+              "0"
+            ],
+            [
+              "2/5",
+              "0",
+              "-2/5"
+            ],
+            [
+              "0",
+              "2/5",
+              "-2/5"
+            ]
+          ],
+          "residual_b": [
+            "0",
+            "0",
+            "0"
+          ],
+          "right_generator": "Si_Citadel_R"
+        }
+      ]
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_control": "identity_erased_flip_control_nonzero.force_zero is unsat",
+      "load_bearing": true,
+      "ran": true,
+      "row": "solve_space_identity_Se_Ne_Ni_M_Ni_zero.any_nonzero",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "row": "M_Ni_first_three_zero.any_nonzero",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_control": "identity_erased_flip_control_nonzero.force_zero is unsat",
+      "load_bearing": true,
+      "ran": true,
+      "row": "solve_space_identity_Se_Ne_Ni_M_Ni_zero.any_nonzero",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "common_all_four_exists": 0,
+        "identity_all_fail": 1,
+        "owner_single_mirror_survives": 0,
+        "python_smt_all_pass": 1,
+        "random_orthogonal_all_fail": 1,
+        "sigma_y_all_fail": 1,
+        "spinor_lift_pass": 1,
+        "xz_positive_control_exact": 1
+      },
+      "julia": {
+        "M_Ni_Si_exact": 0,
+        "M_Ni_first_three_exact": 1,
+        "julia_z3_pass": 1,
+        "sigma_y_all_fail": 1,
+        "symbolics_pass": 1
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "per_observable": {
+      "common_all_four_exists": {
+        "engine_values": {
+          "jax": 0,
+          "julia": 0
+        },
+        "max_divergence": 0.0,
+        "note": "Julia verifies M_Ni fails Si; Python records the full empty intersection."
+      },
+      "sigma_y_all_fail": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      },
+      "solve_space_controls": {
+        "engine_values": {
+          "jax": 1,
+          "julia": 1
+        },
+        "max_divergence": 0.0
+      }
+    }
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "FIELD",
+    "no_peer_result_reads": true,
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph, network, autograd, torch_geometric, or PyTorch-specific claim path in this packet"
+    },
+    "scoped_lanes": {
+      "jax": "Python exact diagnostic lane represented as the validator JAX/workhorse lane; uses sympy plus z3/cvc5 for exact solve-space identities",
+      "julia": "Symbolics/Z3.jl independent exact/control leg"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "omission_note": "No native jax package is claimed; this packet is an exact symbolic field diagnostic.",
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "scipy",
+        "numpy"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_python_results.json",
+      "result_sha256": "f8654f49c3b5c78a8452b0f3e0d64fd9e1c61d8afc630b6918a8b5834cf61b89",
+      "scope": "exact solve-space and controls lane; declared as JAX/workhorse envelope lane for standard validator compatibility",
+      "source_path": "system_v6/sims/terrain_exact_mirror_finder_v0/terrain_exact_mirror_finder_v0.py",
+      "source_sha256": "2700e4b03bcddc6512186b2ac1d74ab88571b25ee77cf2e99abc2c66c36b0c02",
+      "tool_calls": [
+        {
+          "boundary_case": "Hxz positive control recovers sigma_y as an exact member",
+          "demotion_condition": "Any nonzero residual in an asserted solution set demotes the finding to BROKEN",
+          "gates": [
+            "all_pass",
+            "solution_sets",
+            "controls"
+          ],
+          "input_object": "committed S5 pinned A,b matrices and symbolic candidate O(3) parameterizations",
+          "negative_control": "sigma_y, identity, and deterministic random orthogonal candidates fail all-four exactness",
+          "output_object": "per-family exact solution sets and residual expressions",
+          "positive_case": "M_Ni_unique residuals vanish for Se/Ne/Ni; Si canonical representatives vanish for Si",
+          "qualified_api": "sympy.Matrix/sympy.simplify/sympy.det",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "Hxz sigma_y residual coefficients are all zero",
+          "demotion_condition": "Any disagreement with cvc5 or expected polarity demotes proof rows",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "integer-scaled rational+sqrt3 residual coefficients",
+          "negative_control": "identity-erased flip and sigma_y all-four exactness are UNSAT when forced zero",
+          "output_object": "sat/unsat zero and nonzero verdicts",
+          "positive_case": "Se/Ne/Ni M_Ni residual coefficients are all zero",
+          "qualified_api": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "Hxz sigma_y residual coefficients are all zero",
+          "demotion_condition": "Any disagreement with z3 or expected polarity demotes proof rows",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "same integer-scaled residual coefficients as z3",
+          "negative_control": "identity-erased flip and sigma_y all-four exactness are UNSAT when forced zero",
+          "output_object": "sat/unsat zero and nonzero verdicts",
+          "positive_case": "Se/Ne/Ni M_Ni residual coefficients are all zero",
+          "qualified_api": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Symbolics",
+        "Z3"
+      ],
+      "packages_used": [
+        "Symbolics",
+        "Z3",
+        "JSON"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_julia_results.json",
+      "result_sha256": "fa5bd1114415f2e55440967ae9ea1864c828ace4d5d9ac73cc45c97a0105886b",
+      "scope": "independent Julia Symbolics/Z3.jl rows for H0 flip/kernel identities and zero/nonzero controls",
+      "source_path": "system_v6/sims/terrain_exact_mirror_finder_v0/terrain_exact_mirror_finder_v0_julia.jl",
+      "source_sha256": "259b7fee3d951f56049ced9ececcfb938a49913b35d8da816e9999ff5ad0aed0",
+      "tool_calls": [
+        {
+          "boundary_case": "z-frame to x-frame representative",
+          "demotion_condition": "nonzero symbolic residual",
+          "gates": [
+            "all_pass"
+          ],
+          "input_object": "M_Ni, H0 vector, Si proper representative, e_z/e_x kernel vectors",
+          "negative_control": "Si remains nonzero under M_Ni in numeric residual rows",
+          "output_object": "zero symbolic residuals",
+          "positive_case": "M_Ni flips H0 and Si proper representative maps e_z to e_x",
+          "qualified_api": "Symbolics.substitute/Symbolics.simplify",
+          "tool": "Symbolics"
+        },
+        {
+          "boundary_case": "first-three solved identity",
+          "demotion_condition": "wrong polarity",
+          "gates": [
+            "all_pass"
+          ],
+          "input_object": "integer residual coefficient rows",
+          "negative_control": "Si erased-flip row is UNSAT when forced zero",
+          "output_object": "sat/unsat verdicts",
+          "positive_case": "M_Ni first-three zero row is UNSAT for any-nonzero",
+          "qualified_api": "Z3.Solver/Z3.check",
+          "tool": "Z3.jl"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T06:26:28.843857+00:00",
+  "honest_outcome": "No single common exact mirror exists for all four committed families. Se/Ne share a continuum, Ni selects one proper pi rotation within that continuum, and Si has a separate z-frame to x-frame continuum.",
+  "owner_single_mirror_reading_survives": false,
+  "parent_lineage": {
+    "committed_s5": {
+      "expected_sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e",
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+      "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+    },
+    "terrain_weyl_spinor_lr_v0_refutation": {
+      "commit": "a706208c4",
+      "result_path": "system_v6/sims/terrain_weyl_spinor_lr_v0/results/terrain_weyl_spinor_lr_v0_python_results.json",
+      "result_sha256": "a26e8c5734dcbcc0b6e88096069d5957e97a9c0811630db19d58b583c2be5312",
+      "source_path": "system_v6/sims/terrain_weyl_spinor_lr_v0/terrain_weyl_spinor_lr_v0.py",
+      "source_sha256": "f2916d48c2958fb15c871b705e058a3d49f4f91a20d0c53181bcf9087422a289"
+    }
+  },
+  "per_family_solution_sets": {
+    "Ne": {
+      "H0_action_geometry": {
+        "O_minus_branch": "M*h0=+h0",
+        "SO_branch": "M*h0=-h0",
+        "relation": "proper mirrors flip H0; improper mirrors fix H0 while still reversing the axial generator through det(M)",
+        "solution_set_rule": "det(M)*M*h0=-h0"
+      },
+      "candidate_class_a_pi_rotations": "all R(n)=2*n*n^T-I with n.h0=0 and n.n=1",
+      "candidate_class_b_reflections": "all Householder reflections I-2*n*n^T with n.h0=0; equivalently det(M)=-1 and M*h0=h0",
+      "derivation": "A_L=[2*h0]_x, A_R=-[2*h0]_x, b_L=b_R=0; O(3) conjugacy gives M[w]_xM^T=det(M)[Mw]_x.",
+      "dimension": "one_parameter_continuum",
+      "general_orthogonal_solve": "nonempty continuum; SO branch flips h0, O-minus branch fixes h0",
+      "representative_exact": true,
+      "representative_used_for_controls": [
+        [
+          "0",
+          "-1",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1"
+        ]
+      ],
+      "solution_set": "{M in O(3): det(M) * M * h0 = -h0, h0=(1,1,1)/sqrt(3)}"
+    },
+    "Ni": {
+      "H0_action_geometry": {
+        "M_h0": [
+          "-sqrt(3)/3",
+          "-sqrt(3)/3",
+          "-sqrt(3)/3"
+        ],
+        "det": "1",
+        "relation": "flips_H0",
+        "representative": "M_Ni_unique"
+      },
+      "M": [
+        [
+          "0",
+          "-1",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1"
+        ]
+      ],
+      "M_description": "proper pi rotation about axis (1,-1,0)/sqrt(2)",
+      "candidate_class_a_pi_rotations": "one member: n=(1,-1,0)/sqrt(2), perpendicular to h0",
+      "candidate_class_b_reflections": "empty after b_L -> b_R and anisotropic symmetric-part constraints",
+      "derivation": "b_L=(0,0,-1/2), b_R=(0,0,1/2) force M e_z=-e_z; the xy-degenerate dissipative symmetric part forces block form diag(Q,-1); skew chirality then forces det(Q)=-1 and Q(1,1)=-(1,1), giving Q=[[0,-1],[-1,0]].",
+      "dimension": "zero",
+      "general_orthogonal_solve": "unique",
+      "representative_exact": true,
+      "solution_set": "single matrix"
+    },
+    "Se": {
+      "H0_action_geometry": {
+        "O_minus_branch": "M*h0=+h0",
+        "SO_branch": "M*h0=-h0",
+        "relation": "proper mirrors flip H0; improper mirrors fix H0 while still reversing the axial generator through det(M)",
+        "solution_set_rule": "det(M)*M*h0=-h0"
+      },
+      "candidate_class_a_pi_rotations": "all R(n)=2*n*n^T-I with n.h0=0 and n.n=1",
+      "candidate_class_b_reflections": "all Householder reflections I-2*n*n^T with n.h0=0; equivalently det(M)=-1 and M*h0=h0",
+      "derivation": "A_L=-4/5 I + [2*h0/5]_x, A_R=-4/5 I - [2*h0/5]_x, b_L=b_R=0; O(3) conjugacy gives M[w]_xM^T=det(M)[Mw]_x.",
+      "dimension": "one_parameter_continuum",
+      "general_orthogonal_solve": "nonempty continuum; SO branch flips h0, O-minus branch fixes h0",
+      "representative_exact": true,
+      "representative_used_for_controls": [
+        [
+          "0",
+          "-1",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1"
+        ]
+      ],
+      "solution_set": "{M in O(3): det(M) * M * h0 = -h0, h0=(1,1,1)/sqrt(3)}"
+    },
+    "Si": {
+      "H0_action_geometry": {
+        "proper_M_h0": [
+          "sqrt(3)/3",
+          "sqrt(3)/3",
+          "-sqrt(3)/3"
+        ],
+        "reflection_M_h0": [
+          "-sqrt(3)/3",
+          "sqrt(3)/3",
+          "-sqrt(3)/3"
+        ],
+        "relation": "neither canonical Si representative fixes or flips H0; Si is a z-frame to x-frame terrain map, not a global H0 chirality map",
+        "representative": "Si canonical proper/reflection representatives"
+      },
+      "candidate_class_a_pi_rotations_perp_h0": "empty",
+      "candidate_class_b_reflections": "nonempty; representative Householder normal (1,0,1)/sqrt(2) gives M e_z=-e_x",
+      "derivation": "A_L=-2/5(I-e_z e_z^T)+[2 e_z/5]_x and A_R=-2/5(I-e_x e_x^T)+[2 e_x/5]_x; symmetric kernels require M e_z=+/-e_x and skew orientation fixes the sign to det(M).",
+      "dimension": "one_parameter_continuum",
+      "general_orthogonal_solve": "nonempty continuum; SO branch maps z-frame to +x-frame, O-minus branch maps z-frame to -x-frame",
+      "proper_representative": [
+        [
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0"
+        ]
+      ],
+      "proper_representative_exact": true,
+      "reflection_representative": [
+        [
+          "0",
+          "0",
+          "-1"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0"
+        ]
+      ],
+      "reflection_representative_exact": true,
+      "solution_set": "{M in O(3): M*e_z = det(M)*e_x}"
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "terrain_exact_mirror_finder_v0",
+  "source_path": "system_v6/sims/terrain_exact_mirror_finder_v0/terrain_exact_mirror_finder_v0_envelope.py",
+  "source_sha256": "d1f98af6244f7fe91dbe2071f220ae5ce76b30fb18afce4b3c78c4342df411cf",
+  "spinor_lift_consistency": {
+    "H_left": "(sigma_x+sigma_y+sigma_z)/(5*sqrt(3))",
+    "H_right": "-(sigma_x+sigma_y+sigma_z)/(5*sqrt(3))",
+    "M": "M_Ni_unique",
+    "family": "Ni",
+    "hamiltonian_lift_residual_norm": 6.798699777552591e-17,
+    "jump_left": "sigma_minus/sqrt(2)",
+    "jump_lift_residual_norm": 1.1102230246251565e-16,
+    "jump_phase": "i",
+    "jump_right": "sigma_plus/sqrt(2)",
+    "liouvillian_intertwining_residual_norm": 2.2371143170757376e-17,
+    "pass": true,
+    "spinor_unitary": "U=-i*((sigma_x-sigma_y)/sqrt(2)); SU(2) lift of pi rotation about (1,-1,0)/sqrt(2)",
+    "unitary_matrix": [
+      [
+        [
+          0.0,
+          -0.0
+        ],
+        [
+          0.7071067811865475,
+          -0.7071067811865475
+        ]
+      ],
+      [
+        [
+          -0.7071067811865475,
+          -0.7071067811865475
+        ],
+        [
+          0.0,
+          -0.0
+        ]
+      ]
+    ]
+  },
+  "standard_schema_notes": {
+    "fixture_wording": "none",
+    "mode": "FIELD",
+    "promotion_ceiling": "scratch_diagnostic; promotion_allowed=false; formal_admission_allowed=false"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "Hxz positive control recovers sigma_y as an exact member",
+      "demotion_condition": "Any nonzero residual in an asserted solution set demotes the finding to BROKEN",
+      "gates": [
+        "all_pass",
+        "solution_sets",
+        "controls"
+      ],
+      "input_object": "committed S5 pinned A,b matrices and symbolic candidate O(3) parameterizations",
+      "negative_control": "sigma_y, identity, and deterministic random orthogonal candidates fail all-four exactness",
+      "output_object": "per-family exact solution sets and residual expressions",
+      "positive_case": "M_Ni_unique residuals vanish for Se/Ne/Ni; Si canonical representatives vanish for Si",
+      "qualified_api": "sympy.Matrix/sympy.simplify/sympy.det",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "Hxz sigma_y residual coefficients are all zero",
+      "demotion_condition": "Any disagreement with cvc5 or expected polarity demotes proof rows",
+      "gates": [
+        "all_pass",
+        "crossover_proofs"
+      ],
+      "input_object": "integer-scaled rational+sqrt3 residual coefficients",
+      "negative_control": "identity-erased flip and sigma_y all-four exactness are UNSAT when forced zero",
+      "output_object": "sat/unsat zero and nonzero verdicts",
+      "positive_case": "Se/Ne/Ni M_Ni residual coefficients are all zero",
+      "qualified_api": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "Hxz sigma_y residual coefficients are all zero",
+      "demotion_condition": "Any disagreement with z3 or expected polarity demotes proof rows",
+      "gates": [
+        "all_pass",
+        "crossover_proofs"
+      ],
+      "input_object": "same integer-scaled residual coefficients as z3",
+      "negative_control": "identity-erased flip and sigma_y all-four exactness are UNSAT when forced zero",
+      "output_object": "sat/unsat zero and nonzero verdicts",
+      "positive_case": "Se/Ne/Ni M_Ni residual coefficients are all zero",
+      "qualified_api": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "z-frame to x-frame representative",
+      "demotion_condition": "nonzero symbolic residual",
+      "gates": [
+        "all_pass"
+      ],
+      "input_object": "M_Ni, H0 vector, Si proper representative, e_z/e_x kernel vectors",
+      "negative_control": "Si remains nonzero under M_Ni in numeric residual rows",
+      "output_object": "zero symbolic residuals",
+      "positive_case": "M_Ni flips H0 and Si proper representative maps e_z to e_x",
+      "qualified_api": "Symbolics.substitute/Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "first-three solved identity",
+      "demotion_condition": "wrong polarity",
+      "gates": [
+        "all_pass"
+      ],
+      "input_object": "integer residual coefficient rows",
+      "negative_control": "Si erased-flip row is UNSAT when forced zero",
+      "output_object": "sat/unsat verdicts",
+      "positive_case": "M_Ni first-three zero row is UNSAT for any-nonzero",
+      "qualified_api": "Z3.Solver/Z3.check",
+      "tool": "Z3.jl"
+    }
+  ],
+  "tool_manifest": {
+    "julia": {
+      "JSON": {
+        "depth": "supportive",
+        "reason": "read committed S5 and write result",
+        "version": "0.21.4"
+      },
+      "Symbolics": {
+        "depth": "load_bearing",
+        "reason": "symbolic H0 flip and Si kernel-map identities",
+        "version": "6.58.0"
+      },
+      "Z3": {
+        "depth": "load_bearing",
+        "reason": "Julia SMT zero/nonzero controls for solved and erased-flip identities",
+        "version": "1.0.4"
+      }
+    },
+    "python": {
+      "cvc5": {
+        "depth": "load_bearing",
+        "reason": "Independent SMT checks for the same coefficient identities and controls.",
+        "version": "1.3.3"
+      },
+      "numpy": {
+        "depth": "supportive",
+        "reason": "Array carrier for spinor lift consistency row; not in claim_path_tools.",
+        "version": "2.3.4"
+      },
+      "scipy": {
+        "depth": "supportive",
+        "reason": "Spinor/Lindblad lift numerical matrix norm consistency row.",
+        "version": "1.17.1"
+      },
+      "sympy": {
+        "depth": "load_bearing",
+        "reason": "Exact symbolic O(3) solve-space derivations, residuals, and coefficient extraction.",
+        "version": "1.14.0"
+      },
+      "z3": {
+        "depth": "load_bearing",
+        "reason": "SMT checks for zero/nonzero residual coefficient identities and erased-flip controls.",
+        "version": "4.16.0.0"
+      }
+    }
+  },
+  "xz_frame_positive_control": {
+    "boundary_case": "Hxz=(sigma_x+sigma_z)/sqrt(2)",
+    "exact": true,
+    "max_abs_residual": 0.0,
+    "recovered_candidate": "sigma_y Bloch pi rotation diag(-1,1,-1)",
+    "residual_A": [
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "smt": {
+      "cvc5_any_nonzero": {
+        "query": "bound_values_and_assert_any_nonzero",
+        "solver": "cvc5",
+        "status": "unsat"
+      },
+      "cvc5_force_zero": {
+        "query": "bound_values_and_force_all_zero",
+        "solver": "cvc5",
+        "status": "sat"
+      },
+      "expected": "zero",
+      "label": "Hxz_sigma_y_positive_control",
+      "pass": true,
+      "scaled_coefficients": {
+        "any_nonzero": false,
+        "basis": "rational_plus_rational_times_sqrt3",
+        "scale": 1,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "z3_any_nonzero": {
+        "query": "bound_values_and_assert_any_nonzero",
+        "solver": "z3",
+        "status": "unsat"
+      },
+      "z3_force_zero": {
+        "query": "bound_values_and_force_all_zero",
+        "solver": "z3",
+        "status": "sat"
+      }
+    },
+    "solution_set_note": "For a pure Hxz axial generator the O(3) solution set is still a continuum; sigma_y is recovered as the y-axis pi-rotation member selected by the committed boundary check."
+  }
+}

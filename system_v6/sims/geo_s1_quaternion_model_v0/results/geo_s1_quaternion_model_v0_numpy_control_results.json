@@ -1,0 +1,37 @@
+{
+  "all_pass": true,
+  "claim_path_tools": [],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "single_method_control": {
+      "fired": true,
+      "table": {
+        "admitted": false,
+        "invariant": "synthetic_control",
+        "methods": [
+          "numpy_only"
+        ],
+        "single_sourced": true
+      }
+    },
+    "wrong_convention_skip_R": {
+      "fired": true,
+      "measured_deviation": 1.414184016752861
+    }
+  },
+  "engine": "numpy_control",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:29:36.018704+00:00",
+  "pin_sha256": "18e45476c58584b6fe0f85fd3b1ad2ccda2558e3f208103a3f358fcd74274763",
+  "pin_spec": "geo_s1_quaternion_model_v0|stage:1|model:unit_quaternion|dictionary:z1=a+bi,z2=c-di for q=a+bi+cj+dk|hopf_quaternion=q*i*qbar|R=[[0,0,-1],[0,1,0],[1,0,0]]|complex_hopf=(2Re(z1*conj(z2)),2Im(z1*conj(z2)),|z1|^2-|z2|^2)|seed_ledger=jax.random.PRNGKey[42017:q_n20000,42018:r_n20000];torch.Generator.manual_seed[57001:volume_mc_n80000_160000_320000];numpy.default_rng[777:control_n15000]|rerun=SIM_PY geo_s1_quaternion_model_v0_{jax,julia,pytorch,numpy_control,envelope}|classification=scratch_diagnostic",
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/geo_s1_quaternion_model_v0/results/geo_s1_quaternion_model_v0_numpy_control_results.json",
+  "schema_version": "control_lane_result_v1",
+  "shared_scalars": {
+    "after_R_deviation": 5.551115123125783e-16,
+    "skip_R_deviation": 1.414184016752861
+  },
+  "sim_id": "geo_s1_quaternion_model_v0",
+  "source_path": "system_v6/sims/geo_s1_quaternion_model_v0/geo_s1_quaternion_model_v0_numpy_control.py",
+  "source_sha256": "5049255a51be5d4336ea31158c3d45fccfc9caceb77fdd4d7f16a62591a576aa"
+}

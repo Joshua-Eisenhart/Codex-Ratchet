@@ -1,0 +1,553 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "SHA": "supportive",
+    "numpy": null,
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer": {
+      "reason": "load-bearing same-run peer backend reference",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive current JAX receipt read and Julia result write",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent finite density, quotient, carrier, and operation-algebra scalar readouts",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing traces, eigenvalues, and norm computations",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive parity digest over the shared scalar/boolean/string payload",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used in Julia mirror",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: explicit rung fence says no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "JAX peer"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "Finite R3 scalar readout-dependence taxonomy over verified R0-R3 foundation receipts; scratch diagnostic only."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_readout_invariants_julia_results.json"
+  ],
+  "backend": "julia",
+  "blocked_claims": [
+    "formal_admission",
+    "promotion",
+    "top_floor_claim",
+    "physics_claim",
+    "downstream_doctrine_claim"
+  ],
+  "blocked_consumers": [
+    "formal_admission",
+    "promotion",
+    "top_floor_claim",
+    "physics_claim",
+    "downstream_doctrine_claim"
+  ],
+  "boundary": {
+    "classification_fence": {
+      "pass": true
+    },
+    "commuting_noncommuting_operation_boundary": {
+      "pass": true
+    },
+    "quaternion_octonion_associator_boundary": {
+      "pass": true
+    }
+  },
+  "carrier_dependent": [
+    "associator_defect"
+  ],
+  "claim_ceiling": "Allowed only: finite bottom-up scalar readout taxonomy and mutation classifier. No formal admission, no promotion, no physics/top-floor consumer.",
+  "classification": "scratch_diagnostic",
+  "classification_genuine": true,
+  "control_comparison_pairs": [
+    {
+      "can_fail": true,
+      "gap": 0.2876820724517808,
+      "left_expression_id": "quotient_resolution.base",
+      "left_quantity_id": "quotient_resolution_base_value",
+      "name": "quotient_resolution_positive_mutation",
+      "right_expression_id": "quotient_resolution.mutate_M",
+      "right_quantity_id": "quotient_resolution_mutate_M_value"
+    },
+    {
+      "can_fail": true,
+      "gap": 2.0,
+      "left_expression_id": "commutation_order_signature.base",
+      "left_quantity_id": "commutation_order_signature_base_value",
+      "name": "commutation_order_signature_positive_mutation",
+      "right_expression_id": "commutation_order_signature.mutate_operation_algebra",
+      "right_quantity_id": "commutation_order_signature_mutate_operation_algebra_value"
+    },
+    {
+      "can_fail": true,
+      "gap": 1.0,
+      "left_expression_id": "quotient_class_count.base",
+      "left_quantity_id": "quotient_class_count_base_value",
+      "name": "quotient_class_count_positive_mutation",
+      "right_expression_id": "quotient_class_count.mutate_M",
+      "right_quantity_id": "quotient_class_count_mutate_M_value"
+    },
+    {
+      "can_fail": true,
+      "gap": 2.0,
+      "left_expression_id": "associator_defect.base",
+      "left_quantity_id": "associator_defect_base_value",
+      "name": "associator_defect_positive_mutation",
+      "right_expression_id": "associator_defect.mutate_carrier",
+      "right_quantity_id": "associator_defect_mutate_carrier_value"
+    },
+    {
+      "can_fail": true,
+      "gap": 0.5,
+      "left_expression_id": "purity.base",
+      "left_quantity_id": "purity_base_value",
+      "name": "purity_positive_mutation",
+      "right_expression_id": "purity.mutate_density",
+      "right_quantity_id": "purity_mutate_density_value"
+    },
+    {
+      "can_fail": true,
+      "gap": 0.693147180559945,
+      "left_expression_id": "von_neumann_entropy.base",
+      "left_quantity_id": "von_neumann_entropy_base_value",
+      "name": "von_neumann_entropy_positive_mutation",
+      "right_expression_id": "von_neumann_entropy.mutate_density",
+      "right_quantity_id": "von_neumann_entropy_mutate_density_value"
+    }
+  ],
+  "density_derived": [
+    "purity",
+    "von_neumann_entropy"
+  ],
+  "eligible_consumers": [],
+  "fail_rule": "any misclassified readout, stale JAX reference, missing parity, self-diff control, or fence violation",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T09:37:39Z",
+  "jax_reference_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_readout_invariants_results.json",
+  "jax_reference_shared_value_digest": "9f49a6a34608abedddd40b45f35e68bd521d50cdcafb3bf0f655b3e657a9b8b2",
+  "jax_reference_within_run_id": "r3_readout_invariants:d74169dc-6774-4cf4-bdb9-e0034f03ae3f",
+  "name": "r3_readout_invariants",
+  "negative": {
+    "self_diff_control_rejected": {
+      "pass": true
+    },
+    "top_floor_blocked": {
+      "blocked_claims": [
+        "formal_admission",
+        "promotion",
+        "top_floor_claim",
+        "physics_claim",
+        "downstream_doctrine_claim"
+      ],
+      "pass": true
+    },
+    "wrong_probe_dependence_controls_stable": {
+      "pass": true
+    }
+  },
+  "no_self_diff": true,
+  "numpy_compute_used": false,
+  "numpy_imported": false,
+  "object_id": "r3_readout_invariants",
+  "operation_algebra_dependent": [
+    "commutation_order_signature"
+  ],
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "commutation_order_signature.base"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.2876820724517808,
+        "julia": 0.2876820724517808,
+        "key": "quotient_resolution.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "quotient_class_count.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "commutation_order_signature.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "purity.base"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "quotient_class_count.base"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5,
+        "julia": 0.5,
+        "key": "purity.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.0,
+        "julia": 0.0,
+        "key": "von_neumann_entropy.base"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "associator_defect.base"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "associator_defect.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.693147180559945,
+        "julia": 0.693147180559945,
+        "key": "von_neumann_entropy.positive_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0986122886681098,
+        "julia": 1.0986122886681098,
+        "key": "quotient_resolution.base"
+      }
+    ],
+    "parity_max_diff": 0.0,
+    "parity_within_run": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_readout_invariants_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_1e_12": true
+  },
+  "parity_within_run": true,
+  "pass_rule": "all readouts classify by iff mutation, no self-diff controls, fenced scratch diagnostic, and same-run JAX/Julia parity",
+  "positive": {
+    "classification_genuine": {
+      "pass": true
+    },
+    "dual_backend_parity": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "readout_classifier_all_pass": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "classifier_rule": "a readout is assigned to the only mutation factor that changes it above tolerance",
+    "mutation_factors": [
+      "M",
+      "density",
+      "carrier",
+      "operation_algebra"
+    ],
+    "readouts": [
+      "associator_defect",
+      "commutation_order_signature",
+      "purity",
+      "quotient_class_count",
+      "quotient_resolution",
+      "von_neumann_entropy"
+    ]
+  },
+  "probe_dependent": [
+    "quotient_class_count",
+    "quotient_resolution"
+  ],
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "purpose": "Julia mirror classifies finite R3 scalar readouts by genuine mutation dependence.",
+  "readout_dependence_map": {
+    "associator_defect": "CARRIER_DEPENDENT",
+    "commutation_order_signature": "OPERATION_ALGEBRA_DEPENDENT",
+    "purity": "DENSITY_DERIVED",
+    "quotient_class_count": "PROBE_DEPENDENT",
+    "quotient_resolution": "PROBE_DEPENDENT",
+    "von_neumann_entropy": "DENSITY_DERIVED"
+  },
+  "readout_rows": {
+    "associator_defect": {
+      "base_value": 2.0,
+      "can_misclassify": true,
+      "classification": "CARRIER_DEPENDENT",
+      "control_deltas": {
+        "mutate_M": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 2.0,
+      "positive_mutation_factor": "carrier",
+      "positive_mutation_value": 0.0,
+      "readout": "associator_defect"
+    },
+    "commutation_order_signature": {
+      "base_value": 2.0,
+      "can_misclassify": true,
+      "classification": "OPERATION_ALGEBRA_DEPENDENT",
+      "control_deltas": {
+        "carrier_relabel": 0.0,
+        "mutate_density": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 2.0,
+      "positive_mutation_factor": "operation_algebra",
+      "positive_mutation_value": 0.0,
+      "readout": "commutation_order_signature"
+    },
+    "purity": {
+      "base_value": 1.0,
+      "can_misclassify": true,
+      "classification": "DENSITY_DERIVED",
+      "control_deltas": {
+        "carrier_relabel": 0.0,
+        "mutate_M": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 0.5,
+      "positive_mutation_factor": "density",
+      "positive_mutation_value": 0.5,
+      "readout": "purity"
+    },
+    "quotient_class_count": {
+      "base_value": 3.0,
+      "can_misclassify": true,
+      "classification": "PROBE_DEPENDENT",
+      "control_deltas": {
+        "carrier_relabel": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 1.0,
+      "positive_mutation_factor": "M",
+      "positive_mutation_value": 4.0,
+      "readout": "quotient_class_count"
+    },
+    "quotient_resolution": {
+      "base_value": 1.0986122886681098,
+      "can_misclassify": true,
+      "classification": "PROBE_DEPENDENT",
+      "control_deltas": {
+        "carrier_relabel": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 0.2876820724517808,
+      "positive_mutation_factor": "M",
+      "positive_mutation_value": 1.3862943611198906,
+      "readout": "quotient_resolution"
+    },
+    "von_neumann_entropy": {
+      "base_value": 0.0,
+      "can_misclassify": true,
+      "classification": "DENSITY_DERIVED",
+      "control_deltas": {
+        "carrier_relabel": 0.0,
+        "mutate_M": 0.0
+      },
+      "iff_rule": "only the declared dependence mutation changes this scalar above tolerance",
+      "pass": true,
+      "positive_delta": 0.693147180559945,
+      "positive_mutation_factor": "density",
+      "positive_mutation_value": 0.693147180559945,
+      "readout": "von_neumann_entropy"
+    }
+  },
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_readout_invariants_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_readout_invariants_julia_results.json"
+  ],
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JAX peer"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_readout_invariants_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "carrier_dependent": [
+      "associator_defect"
+    ],
+    "classification_genuine": true,
+    "density_derived": [
+      "purity",
+      "von_neumann_entropy"
+    ],
+    "no_self_diff": true,
+    "parity_within_run": true,
+    "probe_dependent": [
+      "quotient_class_count",
+      "quotient_resolution"
+    ],
+    "readouts_count": 6
+  },
+  "schema": "codex_ratchet.julia_carrier.scratch_diagnostic.v1",
+  "shared_booleans": {
+    "classification_genuine": true,
+    "classification_is_scratch_diagnostic": true,
+    "formal_admission_false": true,
+    "jax_enable_x64": true,
+    "no_self_diff": true,
+    "no_top_floor": true,
+    "numpy_compute_used": false,
+    "parent_receipts_verified": true,
+    "promotion_false": true,
+    "readout_classifier_all_pass": true,
+    "torch_compute_used": false
+  },
+  "shared_scalars": {
+    "associator_defect.base": 2.0,
+    "associator_defect.positive_delta": 2.0,
+    "commutation_order_signature.base": 2.0,
+    "commutation_order_signature.positive_delta": 2.0,
+    "purity.base": 1.0,
+    "purity.positive_delta": 0.5,
+    "quotient_class_count.base": 3.0,
+    "quotient_class_count.positive_delta": 1.0,
+    "quotient_resolution.base": 1.0986122886681098,
+    "quotient_resolution.positive_delta": 0.2876820724517808,
+    "von_neumann_entropy.base": 0.0,
+    "von_neumann_entropy.positive_delta": 0.693147180559945
+  },
+  "shared_strings": {
+    "allowed_claim": "Finite R3 scalar readout-dependence taxonomy over verified R0-R3 foundation receipts; scratch diagnostic only.",
+    "claim_ceiling": "Allowed only: finite bottom-up scalar readout taxonomy and mutation classifier. No formal admission, no promotion, no physics/top-floor consumer.",
+    "dependence_map": "associator_defect=CARRIER_DEPENDENT|commutation_order_signature=OPERATION_ALGEBRA_DEPENDENT|purity=DENSITY_DERIVED|quotient_class_count=PROBE_DEPENDENT|quotient_resolution=PROBE_DEPENDENT|von_neumann_entropy=DENSITY_DERIVED",
+    "object_id": "r3_readout_invariants"
+  },
+  "shared_value_digest": "400f558f62ee941c5a6cd1aa668621666e2a3be2c03cbe58ca9d9c0b0f975fce",
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "r3_readout_invariants",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_readout_invariants.jl",
+  "stop_condition_fired": false,
+  "tier": "R3_readout_invariants_taxonomy",
+  "tol": 1.0e-12,
+  "tool_integration_depth": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "SHA": "supportive",
+    "numpy": null,
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JAX peer": {
+      "reason": "load-bearing same-run peer backend reference",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive current JAX receipt read and Julia result write",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent finite density, quotient, carrier, and operation-algebra scalar readouts",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing traces, eigenvalues, and norm computations",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive parity digest over the shared scalar/boolean/string payload",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used in Julia mirror",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: explicit rung fence says no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_compute_used": false,
+  "torch_imported": false,
+  "version": "1.0",
+  "why_not_v4_probes": "This is a v5 scratch diagnostic bottom-up formal-scout receipt with no promotion or formal admission.",
+  "within_run_id": "b5a6db1b-22fa-4102-ad0d-e9648a13766b"
+}

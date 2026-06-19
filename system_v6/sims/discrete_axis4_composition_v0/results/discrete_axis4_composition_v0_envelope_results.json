@@ -1,0 +1,7269 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_INTENT_MATRIX": {
+    "build_three_engine_envelope": {
+      "helper_path": "scripts/build_three_engine_envelope.py",
+      "reason": "standard envelope construction, not hand-rolled result schema",
+      "status": "required"
+    },
+    "builder_audit_boundary": {
+      "helper_path": "scripts/builder_audit_boundary.py",
+      "reason": "builder packet does not emit audit_verdict.md",
+      "status": "required"
+    },
+    "smt_computed_value_bindings": {
+      "reason": "bind computed counts and erased flips, not prose booleans",
+      "rows": [
+        "z3",
+        "cvc5"
+      ],
+      "status": "computed"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia finite carrier graph and Axis-4 stability counts",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX-slot finite directed graph carrier and adjacency metadata",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact symbolic generator commutator and panel-form rows",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch vectorized Axis-4 sign recomputation",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "PyTorch directed edge_index carrier",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite Axis-4 composition readout candidate computed on Family A 33-cell carrier",
+    "pinned R_x/D_z order-gap table emitted",
+    "commuting, leading-order, shuffled-order, and 4-vs-6 controls computed",
+    "readout-only 0/4 and 6/4 same-carrier non-recovery rows computed with identity-leak caveat"
+  ],
+  "axis0_alignment": {
+    "axis0_source_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+    "axis0_source_sha256": "960bdd0b056ef8bf174561f30c52fc41d488614d917a50e1ae256ee30e2ab8ce",
+    "axis0_state_object_id": "discrete_axis0_field_v0:eb8bcca90a805de53692bb9462c1e47e7d83d4888f0d69acd87400d09a734d8f",
+    "same_carrier": true
+  },
+  "axis4_contender_registry_staged_rows": [
+    {
+      "contender_id": "trace_norm_D_minus_I_first_nonzero_yzx_sign",
+      "demotion_condition": "demote if commuting control is not all-neutral, if panel leading order fails, or if same-carrier Axis-6 predicts it perfectly",
+      "readout": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)) with W4 trace-norm neutral gate",
+      "status": "run_primary_candidate"
+    },
+    {
+      "contender_id": "W4_magnitude_only",
+      "readout": "magnitude bucket of ||Phi_D-Phi_I||_1",
+      "status": "staged_not_run",
+      "teeth": "must beat neutral and identity-leak controls without hiding polarity"
+    },
+    {
+      "contender_id": "z_projection_sign_only",
+      "readout": "sign of z component of Delta_D_minus_I",
+      "status": "staged_not_run",
+      "teeth": "must not collapse to an Axis-6 weighted-z precedence proxy"
+    }
+  ],
+  "axis4_counts": {
+    "by_label": {
+      "deductive_positive_D_minus_I": 14,
+      "inductive_positive_I_minus_D": 14,
+      "neutral_commuting_or_zero_gap": 5
+    },
+    "negative": 14,
+    "neutral": 5,
+    "nonneutral": 28,
+    "positive": 14,
+    "total": 33
+  },
+  "axis4_functional": {
+    "Phi_D": "exp(tau_R L_R) after exp(tau_C L_C)",
+    "Phi_I": "exp(tau_C L_C) after exp(tau_R L_R)",
+    "declared_before_classification": true,
+    "difference": "Phi_D - Phi_I",
+    "eps": 1e-10,
+    "neutral_rule": "neutral iff W4 <= EPS",
+    "sign_functional": "first nonzero sign of (Delta_y, Delta_z, Delta_x)",
+    "witness": "W4 = ||Phi_D(rho)-Phi_I(rho)||_1 = ||Delta Bloch||_2 for qubit density differences"
+  },
+  "axis4_readout_table": [
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        -0.7,
+        0.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": -0.35
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.35
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.7,
+        0.0,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": -0.35
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.35
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.0,
+      "axis4_label": "neutral_commuting_or_zero_gap",
+      "axis4_sign": 0,
+      "cell_id": 0,
+      "coord": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        -2,
+        0,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": -0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": -0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 1,
+      "coord": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.0,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.0,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 2,
+      "coord": [
+        -0.5,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        -0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        -0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 3,
+      "coord": [
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 4,
+      "coord": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.0,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.0,
+      "axis4_label": "neutral_commuting_or_zero_gap",
+      "axis4_sign": 0,
+      "cell_id": 5,
+      "coord": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        -0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        -0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 6,
+      "coord": [
+        -0.5,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": -0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": -0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 7,
+      "coord": [
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        0.0,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        0.0,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.0,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 8,
+      "coord": [
+        -0.5,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        -0.35,
+        -0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.25,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        -0.35,
+        -0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.175,
+            "re": -0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": -0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 9,
+      "coord": [
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.3
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.0,
+        -0.7
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.15
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.85
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 1.0
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.3,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 10,
+      "coord": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        -2,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": -0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": -0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 11,
+      "coord": [
+        0.0,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.0,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 12,
+      "coord": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        -0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        -0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 13,
+      "coord": [
+        0.0,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.3,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.5,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.5,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.7,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.35,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.35,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.3,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 14,
+      "coord": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        -2
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 15,
+      "coord": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.0,
+      "axis4_label": "neutral_commuting_or_zero_gap",
+      "axis4_sign": 0,
+      "cell_id": 16,
+      "coord": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        -0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 17,
+      "coord": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.5,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.5,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        -0.7,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.35,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.35,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.3,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 18,
+      "coord": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        2
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": -0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": -0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 19,
+      "coord": [
+        0.0,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.0,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 20,
+      "coord": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        -0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.25,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        -0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.175,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 21,
+      "coord": [
+        0.0,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        -0.3
+      ],
+      "Phi_D_bloch": [
+        0.0,
+        0.0,
+        0.7
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.85
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.15
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 1.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.0
+          },
+          {
+            "im": 0.0,
+            "re": 0.0
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.3,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 22,
+      "coord": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        2,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": -0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": -0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 23,
+      "coord": [
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.0,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.0,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 24,
+      "coord": [
+        0.5,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        -0.5,
+        -0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.325
+          },
+          {
+            "im": 0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.675
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        -0.35,
+        -0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.25
+          },
+          {
+            "im": 0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.75
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 25,
+      "coord": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": -0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 26,
+      "coord": [
+        0.5,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.0,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.0,
+      "axis4_label": "neutral_commuting_or_zero_gap",
+      "axis4_sign": 0,
+      "cell_id": 27,
+      "coord": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        -0.5,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        -0.35,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 28,
+      "coord": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": -0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": -0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "deductive_positive_D_minus_I",
+      "axis4_sign": 1,
+      "cell_id": 29,
+      "coord": [
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        -1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        0.0,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        0.0,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.0,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.15,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 30,
+      "coord": [
+        0.5,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        -0.15,
+        -0.15
+      ],
+      "Phi_D_bloch": [
+        0.35,
+        -0.5,
+        0.35
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.675
+          },
+          {
+            "im": 0.25,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.25,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.325
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.35,
+        -0.35,
+        0.5
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.75
+          },
+          {
+            "im": 0.175,
+            "re": 0.175
+          }
+        ],
+        [
+          {
+            "im": -0.175,
+            "re": 0.175
+          },
+          {
+            "im": 0.0,
+            "re": 0.25
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.212132034355964,
+      "axis4_label": "inductive_positive_I_minus_D",
+      "axis4_sign": -1,
+      "cell_id": 31,
+      "coord": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        1
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    },
+    {
+      "Delta_D_minus_I_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Phi_D_bloch": [
+        0.7,
+        0.0,
+        0.0
+      ],
+      "Phi_D_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.35
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.35
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_D_expression": "exp(tau_R L_R)(exp(tau_C L_C)(rho_cell))",
+      "Phi_I_bloch": [
+        0.7,
+        0.0,
+        0.0
+      ],
+      "Phi_I_density": [
+        [
+          {
+            "im": 0.0,
+            "re": 0.5
+          },
+          {
+            "im": 0.0,
+            "re": 0.35
+          }
+        ],
+        [
+          {
+            "im": 0.0,
+            "re": 0.35
+          },
+          {
+            "im": 0.0,
+            "re": 0.5
+          }
+        ]
+      ],
+      "Phi_I_expression": "exp(tau_C L_C)(exp(tau_R L_R)(rho_cell))",
+      "W4_trace_norm": 0.0,
+      "axis4_label": "neutral_commuting_or_zero_gap",
+      "axis4_sign": 0,
+      "cell_id": 32,
+      "coord": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        2,
+        0,
+        0
+      ],
+      "functional": "sign(first_nonzero(Delta_y, Delta_z, Delta_x)); neutral iff ||Delta r||_2 <= EPS"
+    }
+  ],
+  "axis6_alignment": {
+    "axis6_readout_parent_commit": "b6fafc67f",
+    "axis6_source_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
+    "axis6_source_sha256": "82edf1eec990f123174f75dd9dd8d84a86af80848d2b386343e35b167a184ba1",
+    "axis6_state_object_id": "discrete_axis6_precedence_v0:f67776c123bf30fe7ec0a7c693a0393595ca0863107cd2fe5fb7a2dbeb37cc09",
+    "same_carrier": true
+  },
+  "blocked_consumers": [
+    "axis_level_admission",
+    "bridge_or_cut_inference",
+    "physics_interpretation",
+    "scientific_lego_coupling"
+  ],
+  "build_helper_path": "scripts/build_three_engine_envelope.py",
+  "builder_gates": {
+    "file_disjoint_packet": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "no_git_add_commit": true,
+    "packet_audit_verdict_absent": true
+  },
+  "capability_receipts": {
+    "jax": [
+      {
+        "computed_what": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+        "receipt_id": "jax_networkx_axis4_composition_candidate",
+        "status": "used",
+        "tool": "networkx"
+      },
+      {
+        "computed_what": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+        "receipt_id": "jax_sympy_axis4_composition_candidate",
+        "status": "used",
+        "tool": "sympy"
+      },
+      {
+        "computed_what": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+        "receipt_id": "jax_z3_axis4_composition_candidate",
+        "status": "used",
+        "tool": "z3"
+      },
+      {
+        "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+        "receipt_id": "jax_cvc5_axis4_composition_candidate",
+        "status": "used",
+        "tool": "cvc5"
+      }
+    ],
+    "julia": [
+      {
+        "computed_what": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+        "receipt_id": "julia_Graphs_axis4_composition_candidate",
+        "status": "used",
+        "tool": "Graphs"
+      },
+      {
+        "computed_what": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip",
+        "receipt_id": "julia_Z3_axis4_composition_candidate",
+        "status": "used",
+        "tool": "Z3"
+      }
+    ],
+    "pytorch": [
+      {
+        "computed_what": "vmap vectorized Axis-4 sign recomputation over 33 Bloch vectors",
+        "receipt_id": "pytorch_torch.func_axis4_composition_candidate",
+        "status": "used",
+        "tool": "torch.func"
+      },
+      {
+        "computed_what": "Data edge_index carrier with 33 nodes and 198 committed directed generator edges",
+        "receipt_id": "pytorch_torch_geometric_axis4_composition_candidate",
+        "status": "used",
+        "tool": "torch_geometric"
+      },
+      {
+        "computed_what": "sp.Matrix/sp.log exact R_x/D_z generator commutator source probe",
+        "receipt_id": "pytorch_sympy_axis4_composition_candidate",
+        "status": "used",
+        "tool": "sympy"
+      },
+      {
+        "computed_what": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+        "receipt_id": "pytorch_z3_axis4_composition_candidate",
+        "status": "used",
+        "tool": "z3"
+      },
+      {
+        "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+        "receipt_id": "pytorch_cvc5_axis4_composition_candidate",
+        "status": "used",
+        "tool": "cvc5"
+      }
+    ]
+  },
+  "carrier": {
+    "edge_count": 198,
+    "family_a_commit": "42542f120",
+    "family_b_commit": "29e133f2f",
+    "generator_count": 6,
+    "generator_names": [
+      "Se_Funnel_L",
+      "Ni_Pit_L",
+      "Ni_Source_R",
+      "Ne_Spiral_R",
+      "D_z",
+      "R_x"
+    ],
+    "raw_transition_graph_persisted_here": false,
+    "source_rows_sha256": "a8b7bda7b52c286a17314e0737cc2bac497e69e52767b914976c4028d1631072",
+    "state_count": 33,
+    "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+    "terminal_components": [
+      1
+    ],
+    "transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0",
+    "weld_commit": "d6815079e",
+    "weld_state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76"
+  },
+  "carrier_cells": [
+    {
+      "Adm_C": true,
+      "cell_id": 0,
+      "conditioned_shell_member": false,
+      "coord": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        -2,
+        0,
+        0
+      ],
+      "radius_squared": 1.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 1,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        -1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 2,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        0
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 3,
+      "conditioned_shell_member": true,
+      "coord": [
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        -1,
+        1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 4,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        -1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 5,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        0
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 6,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        0,
+        1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 7,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        -1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 8,
+      "conditioned_shell_member": false,
+      "coord": [
+        -0.5,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        0
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 9,
+      "conditioned_shell_member": true,
+      "coord": [
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        -1,
+        1,
+        1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 10,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        -2,
+        0
+      ],
+      "radius_squared": 1.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 11,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        -1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 12,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        0
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 13,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        -1,
+        1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 14,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        -2
+      ],
+      "radius_squared": 1.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 15,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        -1
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 16,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        0
+      ],
+      "radius_squared": 0.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 17,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        1
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 18,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "coord_scaled": [
+        0,
+        0,
+        2
+      ],
+      "radius_squared": 1.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 19,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        -1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 20,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        0
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 21,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        0,
+        1,
+        1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 22,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "coord_scaled": [
+        0,
+        2,
+        0
+      ],
+      "radius_squared": 1.0
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 23,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        -1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 24,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        -0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        0
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 25,
+      "conditioned_shell_member": true,
+      "coord": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        -1,
+        1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 26,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        0.0,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        -1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 27,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        0
+      ],
+      "radius_squared": 0.25
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 28,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        0,
+        1
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 29,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        -1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 30,
+      "conditioned_shell_member": false,
+      "coord": [
+        0.5,
+        0.5,
+        0.0
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        0
+      ],
+      "radius_squared": 0.5
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 31,
+      "conditioned_shell_member": true,
+      "coord": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "coord_scaled": [
+        1,
+        1,
+        1
+      ],
+      "radius_squared": 0.75
+    },
+    {
+      "Adm_C": true,
+      "cell_id": 32,
+      "conditioned_shell_member": false,
+      "coord": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "coord_scaled": [
+        2,
+        0,
+        0
+      ],
+      "radius_squared": 1.0
+    }
+  ],
+  "carrier_edges": [
+    {
+      "dst": 5,
+      "edge_id": 0,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.66141219773,
+        -0.081340834388,
+        0.072432986082
+      ],
+      "src": 0
+    },
+    {
+      "dst": 0,
+      "edge_id": 1,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.884208299665,
+        -0.09464168628,
+        -0.130730059379
+      ],
+      "src": 0
+    },
+    {
+      "dst": 0,
+      "edge_id": 2,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.883228914448,
+        0.108813189869,
+        0.119476348413
+      ],
+      "src": 0
+    },
+    {
+      "dst": 7,
+      "edge_id": 3,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.693534870579,
+        0.332590934883,
+        -0.639056064305
+      ],
+      "src": 0
+    },
+    {
+      "dst": 5,
+      "edge_id": 4,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.7,
+        0.0,
+        0.0
+      ],
+      "src": 0
+    },
+    {
+      "dst": 0,
+      "edge_id": 5,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "src": 0
+    },
+    {
+      "dst": 1,
+      "edge_id": 6,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.335160023018,
+        -0.335160023018,
+        -0.335160023018
+      ],
+      "src": 1
+    },
+    {
+      "dst": 1,
+      "edge_id": 7,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.451286530389,
+        -0.431952565573,
+        -0.609880003507
+      ],
+      "src": 1
+    },
+    {
+      "dst": 2,
+      "edge_id": 8,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.456398394912,
+        -0.424881930617,
+        -0.169380604263
+      ],
+      "src": 1
+    },
+    {
+      "dst": 1,
+      "edge_id": 9,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "src": 1
+    },
+    {
+      "dst": 1,
+      "edge_id": 10,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        -0.35,
+        -0.5
+      ],
+      "src": 1
+    },
+    {
+      "dst": 7,
+      "edge_id": 11,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "src": 1
+    },
+    {
+      "dst": 2,
+      "edge_id": 12,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.294489605824,
+        -0.371376516059,
+        -0.004453924153
+      ],
+      "src": 2
+    },
+    {
+      "dst": 2,
+      "edge_id": 13,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.400899854784,
+        -0.476712385695,
+        -0.225876555105
+      ],
+      "src": 2
+    },
+    {
+      "dst": 2,
+      "edge_id": 14,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.501158215033,
+        -0.374495255012,
+        0.214622844139
+      ],
+      "src": 2
+    },
+    {
+      "dst": 5,
+      "edge_id": 15,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.666295467442,
+        -0.180471967848,
+        -0.153232564711
+      ],
+      "src": 2
+    },
+    {
+      "dst": 2,
+      "edge_id": 16,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        -0.35,
+        0.0
+      ],
+      "src": 2
+    },
+    {
+      "dst": 4,
+      "edge_id": 17,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "src": 2
+    },
+    {
+      "dst": 3,
+      "edge_id": 18,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.25381918863,
+        -0.4075930091,
+        0.326252174712
+      ],
+      "src": 3
+    },
+    {
+      "dst": 2,
+      "edge_id": 19,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.350513179179,
+        -0.521472205816,
+        0.158126893297
+      ],
+      "src": 3
+    },
+    {
+      "dst": 3,
+      "edge_id": 20,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.545918035155,
+        -0.324108579407,
+        0.598626292541
+      ],
+      "src": 3
+    },
+    {
+      "dst": 0,
+      "edge_id": 21,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.832590934883,
+        0.139056064305,
+        0.193534870579
+      ],
+      "src": 3
+    },
+    {
+      "dst": 3,
+      "edge_id": 22,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        -0.35,
+        0.5
+      ],
+      "src": 3
+    },
+    {
+      "dst": 1,
+      "edge_id": 23,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "src": 3
+    },
+    {
+      "dst": 4,
+      "edge_id": 24,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.371376516059,
+        -0.004453924153,
+        -0.294489605824
+      ],
+      "src": 4
+    },
+    {
+      "dst": 4,
+      "edge_id": 25,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.49909197538,
+        0.003550434317,
+        -0.559493327902
+      ],
+      "src": 4
+    },
+    {
+      "dst": 5,
+      "edge_id": 26,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.402966094437,
+        0.010621069273,
+        -0.214140424384
+      ],
+      "src": 4
+    },
+    {
+      "dst": 15,
+      "edge_id": 27,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.180471967848,
+        -0.153232564711,
+        -0.666295467442
+      ],
+      "src": 4
+    },
+    {
+      "dst": 4,
+      "edge_id": 28,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.0,
+        -0.5
+      ],
+      "src": 4
+    },
+    {
+      "dst": 8,
+      "edge_id": 29,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.5,
+        0.0
+      ],
+      "src": 4
+    },
+    {
+      "dst": 5,
+      "edge_id": 30,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.330706098865,
+        -0.040670417194,
+        0.036216493041
+      ],
+      "src": 5
+    },
+    {
+      "dst": 5,
+      "edge_id": 31,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.448705299775,
+        -0.041209385805,
+        -0.1754898795
+      ],
+      "src": 5
+    },
+    {
+      "dst": 5,
+      "edge_id": 32,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.447725914559,
+        0.061007744877,
+        0.169863024017
+      ],
+      "src": 5
+    },
+    {
+      "dst": 4,
+      "edge_id": 33,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.346767435289,
+        0.166295467442,
+        -0.319528032152
+      ],
+      "src": 5
+    },
+    {
+      "dst": 5,
+      "edge_id": 34,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.0,
+        0.0
+      ],
+      "src": 5
+    },
+    {
+      "dst": 5,
+      "edge_id": 35,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "src": 5
+    },
+    {
+      "dst": 6,
+      "edge_id": 36,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.290035681671,
+        -0.076886910235,
+        0.366922591906
+      ],
+      "src": 6
+    },
+    {
+      "dst": 5,
+      "edge_id": 37,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.398318624171,
+        -0.085969205927,
+        0.208513568901
+      ],
+      "src": 6
+    },
+    {
+      "dst": 6,
+      "edge_id": 38,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.492485734681,
+        0.111394420482,
+        0.553866472419
+      ],
+      "src": 6
+    },
+    {
+      "dst": 8,
+      "edge_id": 39,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.513062902731,
+        0.485823499594,
+        0.027239403137
+      ],
+      "src": 6
+    },
+    {
+      "dst": 6,
+      "edge_id": 40,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.0,
+        0.5
+      ],
+      "src": 6
+    },
+    {
+      "dst": 2,
+      "edge_id": 41,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        -0.5,
+        0.0
+      ],
+      "src": 6
+    },
+    {
+      "dst": 7,
+      "edge_id": 42,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.4075930091,
+        0.326252174712,
+        -0.25381918863
+      ],
+      "src": 7
+    },
+    {
+      "dst": 7,
+      "edge_id": 43,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.546897420372,
+        0.439053434206,
+        -0.509106652298
+      ],
+      "src": 7
+    },
+    {
+      "dst": 7,
+      "edge_id": 44,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.349533793963,
+        0.446124069162,
+        -0.258900244506
+      ],
+      "src": 7
+    },
+    {
+      "dst": 14,
+      "edge_id": 45,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.139056064305,
+        0.193534870579,
+        -0.832590934883
+      ],
+      "src": 7
+    },
+    {
+      "dst": 7,
+      "edge_id": 46,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.35,
+        -0.5
+      ],
+      "src": 7
+    },
+    {
+      "dst": 9,
+      "edge_id": 47,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "src": 7
+    },
+    {
+      "dst": 8,
+      "edge_id": 48,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.366922591906,
+        0.290035681671,
+        0.076886910235
+      ],
+      "src": 8
+    },
+    {
+      "dst": 8,
+      "edge_id": 49,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.496510744767,
+        0.394293614084,
+        -0.125103203896
+      ],
+      "src": 8
+    },
+    {
+      "dst": 8,
+      "edge_id": 50,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.394293614084,
+        0.496510744767,
+        0.125103203896
+      ],
+      "src": 8
+    },
+    {
+      "dst": 19,
+      "edge_id": 51,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.027239403137,
+        0.513062902731,
+        -0.485823499594
+      ],
+      "src": 8
+    },
+    {
+      "dst": 8,
+      "edge_id": 52,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.35,
+        0.0
+      ],
+      "src": 8
+    },
+    {
+      "dst": 6,
+      "edge_id": 53,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        0.0,
+        0.5
+      ],
+      "src": 8
+    },
+    {
+      "dst": 9,
+      "edge_id": 54,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.326252174712,
+        0.25381918863,
+        0.4075930091
+      ],
+      "src": 9
+    },
+    {
+      "dst": 9,
+      "edge_id": 55,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.446124069162,
+        0.349533793963,
+        0.258900244506
+      ],
+      "src": 9
+    },
+    {
+      "dst": 9,
+      "edge_id": 56,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.439053434206,
+        0.546897420372,
+        0.509106652298
+      ],
+      "src": 9
+    },
+    {
+      "dst": 22,
+      "edge_id": 57,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.193534870579,
+        0.832590934883,
+        -0.139056064305
+      ],
+      "src": 9
+    },
+    {
+      "dst": 9,
+      "edge_id": 58,
+      "generator": "D_z",
+      "image_before_quantization": [
+        -0.35,
+        0.35,
+        0.5
+      ],
+      "src": 9
+    },
+    {
+      "dst": 3,
+      "edge_id": 59,
+      "generator": "R_x",
+      "image_before_quantization": [
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "src": 9
+    },
+    {
+      "dst": 12,
+      "edge_id": 60,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.072432986082,
+        -0.66141219773,
+        -0.081340834388
+      ],
+      "src": 10
+    },
+    {
+      "dst": 10,
+      "edge_id": 61,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.082408590097,
+        -0.85878308511,
+        -0.321023050832
+      ],
+      "src": 10
+    },
+    {
+      "dst": 10,
+      "edge_id": 62,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.119087515618,
+        -0.857803699893,
+        0.309769339866
+      ],
+      "src": 10
+    },
+    {
+      "dst": 3,
+      "edge_id": 63,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.639056064305,
+        -0.693534870579,
+        0.332590934883
+      ],
+      "src": 10
+    },
+    {
+      "dst": 12,
+      "edge_id": 64,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        -0.7,
+        0.0
+      ],
+      "src": 10
+    },
+    {
+      "dst": 14,
+      "edge_id": 65,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "src": 10
+    },
+    {
+      "dst": 11,
+      "edge_id": 66,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.004453924153,
+        -0.294489605824,
+        -0.371376516059
+      ],
+      "src": 11
+    },
+    {
+      "dst": 11,
+      "edge_id": 67,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.015783530499,
+        -0.378520265098,
+        -0.654639823629
+      ],
+      "src": 11
+    },
+    {
+      "dst": 12,
+      "edge_id": 68,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.020895395022,
+        -0.472687375608,
+        -0.118993928658
+      ],
+      "src": 11
+    },
+    {
+      "dst": 12,
+      "edge_id": 69,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.153232564711,
+        -0.666295467442,
+        -0.180471967848
+      ],
+      "src": 11
+    },
+    {
+      "dst": 11,
+      "edge_id": 70,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        -0.35,
+        -0.5
+      ],
+      "src": 11
+    },
+    {
+      "dst": 19,
+      "edge_id": 71,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.5,
+        -0.5
+      ],
+      "src": 11
+    },
+    {
+      "dst": 12,
+      "edge_id": 72,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.036216493041,
+        -0.330706098865,
+        -0.040670417194
+      ],
+      "src": 12
+    },
+    {
+      "dst": 11,
+      "edge_id": 73,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.034603145106,
+        -0.42328008522,
+        -0.270636375227
+      ],
+      "src": 12
+    },
+    {
+      "dst": 13,
+      "edge_id": 74,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.065655215144,
+        -0.422300700004,
+        0.265009519744
+      ],
+      "src": 12
+    },
+    {
+      "dst": 2,
+      "edge_id": 75,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.319528032152,
+        -0.346767435289,
+        0.166295467442
+      ],
+      "src": 12
+    },
+    {
+      "dst": 12,
+      "edge_id": 76,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        -0.35,
+        0.0
+      ],
+      "src": 12
+    },
+    {
+      "dst": 15,
+      "edge_id": 77,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "src": 12
+    },
+    {
+      "dst": 13,
+      "edge_id": 78,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.076886910235,
+        -0.366922591906,
+        0.290035681671
+      ],
+      "src": 13
+    },
+    {
+      "dst": 12,
+      "edge_id": 79,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.08498982071,
+        -0.468039905342,
+        0.113367073175
+      ],
+      "src": 13
+    },
+    {
+      "dst": 13,
+      "edge_id": 80,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.110415035266,
+        -0.371914024399,
+        0.649012968146
+      ],
+      "src": 13
+    },
+    {
+      "dst": 6,
+      "edge_id": 81,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.485823499594,
+        -0.027239403137,
+        0.513062902731
+      ],
+      "src": 13
+    },
+    {
+      "dst": 13,
+      "edge_id": 82,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        -0.35,
+        0.5
+      ],
+      "src": 13
+    },
+    {
+      "dst": 11,
+      "edge_id": 83,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        -0.5,
+        -0.5
+      ],
+      "src": 13
+    },
+    {
+      "dst": 15,
+      "edge_id": 84,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.081340834388,
+        0.072432986082,
+        -0.66141219773
+      ],
+      "src": 14
+    },
+    {
+      "dst": 14,
+      "edge_id": 85,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.113975651095,
+        0.101742554913,
+        -0.988256596426
+      ],
+      "src": 14
+    },
+    {
+      "dst": 15,
+      "edge_id": 86,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.077296725574,
+        -0.087571051324,
+        -0.547757197182
+      ],
+      "src": 14
+    },
+    {
+      "dst": 23,
+      "edge_id": 87,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.332590934883,
+        -0.639056064305,
+        -0.693534870579
+      ],
+      "src": 14
+    },
+    {
+      "dst": 14,
+      "edge_id": 88,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "src": 14
+    },
+    {
+      "dst": 22,
+      "edge_id": 89,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "src": 14
+    },
+    {
+      "dst": 15,
+      "edge_id": 90,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.040670417194,
+        0.036216493041,
+        -0.330706098865
+      ],
+      "src": 15
+    },
+    {
+      "dst": 15,
+      "edge_id": 91,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.063588975491,
+        0.056982734791,
+        -0.604253148024
+      ],
+      "src": 15
+    },
+    {
+      "dst": 16,
+      "edge_id": 92,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.032536905452,
+        -0.037184375719,
+        -0.16375374878
+      ],
+      "src": 15
+    },
+    {
+      "dst": 11,
+      "edge_id": 93,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.166295467442,
+        -0.319528032152,
+        -0.346767435289
+      ],
+      "src": 15
+    },
+    {
+      "dst": 15,
+      "edge_id": 94,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "src": 15
+    },
+    {
+      "dst": 20,
+      "edge_id": 95,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "src": 15
+    },
+    {
+      "dst": 16,
+      "edge_id": 96,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "src": 16
+    },
+    {
+      "dst": 16,
+      "edge_id": 97,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.013202299886,
+        0.012222914669,
+        -0.220249699622
+      ],
+      "src": 16
+    },
+    {
+      "dst": 16,
+      "edge_id": 98,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.012222914669,
+        0.013202299886,
+        0.220249699622
+      ],
+      "src": 16
+    },
+    {
+      "dst": 16,
+      "edge_id": 99,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "src": 16
+    },
+    {
+      "dst": 16,
+      "edge_id": 100,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "src": 16
+    },
+    {
+      "dst": 16,
+      "edge_id": 101,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "src": 16
+    },
+    {
+      "dst": 17,
+      "edge_id": 102,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.040670417194,
+        -0.036216493041,
+        0.330706098865
+      ],
+      "src": 17
+    },
+    {
+      "dst": 16,
+      "edge_id": 103,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.037184375719,
+        -0.032536905452,
+        0.16375374878
+      ],
+      "src": 17
+    },
+    {
+      "dst": 17,
+      "edge_id": 104,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.056982734791,
+        0.063588975491,
+        0.604253148024
+      ],
+      "src": 17
+    },
+    {
+      "dst": 21,
+      "edge_id": 105,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.166295467442,
+        0.319528032152,
+        0.346767435289
+      ],
+      "src": 17
+    },
+    {
+      "dst": 17,
+      "edge_id": 106,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "src": 17
+    },
+    {
+      "dst": 12,
+      "edge_id": 107,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "src": 17
+    },
+    {
+      "dst": 17,
+      "edge_id": 108,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.081340834388,
+        -0.072432986082,
+        0.66141219773
+      ],
+      "src": 18
+    },
+    {
+      "dst": 17,
+      "edge_id": 109,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.087571051324,
+        -0.077296725574,
+        0.547757197182
+      ],
+      "src": 18
+    },
+    {
+      "dst": 18,
+      "edge_id": 110,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.101742554913,
+        0.113975651095,
+        0.988256596426
+      ],
+      "src": 18
+    },
+    {
+      "dst": 9,
+      "edge_id": 111,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.332590934883,
+        0.639056064305,
+        0.693534870579
+      ],
+      "src": 18
+    },
+    {
+      "dst": 18,
+      "edge_id": 112,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "src": 18
+    },
+    {
+      "dst": 10,
+      "edge_id": 113,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "src": 18
+    },
+    {
+      "dst": 19,
+      "edge_id": 114,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.076886910235,
+        0.366922591906,
+        -0.290035681671
+      ],
+      "src": 19
+    },
+    {
+      "dst": 19,
+      "edge_id": 115,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.111394420482,
+        0.492485734681,
+        -0.553866472419
+      ],
+      "src": 19
+    },
+    {
+      "dst": 20,
+      "edge_id": 116,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.085969205927,
+        0.398318624171,
+        -0.208513568901
+      ],
+      "src": 19
+    },
+    {
+      "dst": 26,
+      "edge_id": 117,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.485823499594,
+        0.027239403137,
+        -0.513062902731
+      ],
+      "src": 19
+    },
+    {
+      "dst": 19,
+      "edge_id": 118,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.35,
+        -0.5
+      ],
+      "src": 19
+    },
+    {
+      "dst": 21,
+      "edge_id": 119,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.5,
+        0.5
+      ],
+      "src": 19
+    },
+    {
+      "dst": 20,
+      "edge_id": 120,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.036216493041,
+        0.330706098865,
+        0.040670417194
+      ],
+      "src": 20
+    },
+    {
+      "dst": 20,
+      "edge_id": 121,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.061007744877,
+        0.447725914559,
+        -0.169863024017
+      ],
+      "src": 20
+    },
+    {
+      "dst": 20,
+      "edge_id": 122,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.041209385805,
+        0.448705299775,
+        0.1754898795
+      ],
+      "src": 20
+    },
+    {
+      "dst": 30,
+      "edge_id": 123,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.319528032152,
+        0.346767435289,
+        -0.166295467442
+      ],
+      "src": 20
+    },
+    {
+      "dst": 20,
+      "edge_id": 124,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.35,
+        0.0
+      ],
+      "src": 20
+    },
+    {
+      "dst": 17,
+      "edge_id": 125,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "src": 20
+    },
+    {
+      "dst": 21,
+      "edge_id": 126,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.004453924153,
+        0.294489605824,
+        0.371376516059
+      ],
+      "src": 21
+    },
+    {
+      "dst": 20,
+      "edge_id": 127,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.010621069273,
+        0.402966094437,
+        0.214140424384
+      ],
+      "src": 21
+    },
+    {
+      "dst": 21,
+      "edge_id": 128,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        -0.003550434317,
+        0.49909197538,
+        0.559493327902
+      ],
+      "src": 21
+    },
+    {
+      "dst": 20,
+      "edge_id": 129,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.153232564711,
+        0.666295467442,
+        0.180471967848
+      ],
+      "src": 21
+    },
+    {
+      "dst": 21,
+      "edge_id": 130,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.35,
+        0.5
+      ],
+      "src": 21
+    },
+    {
+      "dst": 13,
+      "edge_id": 131,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        -0.5,
+        0.5
+      ],
+      "src": 21
+    },
+    {
+      "dst": 20,
+      "edge_id": 132,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        -0.072432986082,
+        0.66141219773,
+        0.081340834388
+      ],
+      "src": 22
+    },
+    {
+      "dst": 22,
+      "edge_id": 133,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        -0.108813189869,
+        0.883228914448,
+        -0.119476348413
+      ],
+      "src": 22
+    },
+    {
+      "dst": 22,
+      "edge_id": 134,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.09464168628,
+        0.884208299665,
+        0.130730059379
+      ],
+      "src": 22
+    },
+    {
+      "dst": 29,
+      "edge_id": 135,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.639056064305,
+        0.693534870579,
+        -0.332590934883
+      ],
+      "src": 22
+    },
+    {
+      "dst": 20,
+      "edge_id": 136,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.0,
+        0.7,
+        0.0
+      ],
+      "src": 22
+    },
+    {
+      "dst": 18,
+      "edge_id": 137,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "src": 22
+    },
+    {
+      "dst": 23,
+      "edge_id": 138,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.326252174712,
+        -0.25381918863,
+        -0.4075930091
+      ],
+      "src": 23
+    },
+    {
+      "dst": 23,
+      "edge_id": 139,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.41971946939,
+        -0.325087964624,
+        -0.69939964375
+      ],
+      "src": 23
+    },
+    {
+      "dst": 24,
+      "edge_id": 140,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.414607604867,
+        -0.5204928206,
+        -0.068607253053
+      ],
+      "src": 23
+    },
+    {
+      "dst": 10,
+      "edge_id": 141,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.193534870579,
+        -0.832590934883,
+        0.139056064305
+      ],
+      "src": 23
+    },
+    {
+      "dst": 23,
+      "edge_id": 142,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        -0.35,
+        -0.5
+      ],
+      "src": 23
+    },
+    {
+      "dst": 29,
+      "edge_id": 143,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "src": 23
+    },
+    {
+      "dst": 24,
+      "edge_id": 144,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.366922591906,
+        -0.290035681671,
+        -0.076886910235
+      ],
+      "src": 24
+    },
+    {
+      "dst": 23,
+      "edge_id": 145,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.470106144995,
+        -0.369847784746,
+        -0.315396195349
+      ],
+      "src": 24
+    },
+    {
+      "dst": 25,
+      "edge_id": 146,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.369847784746,
+        -0.470106144995,
+        0.315396195349
+      ],
+      "src": 24
+    },
+    {
+      "dst": 13,
+      "edge_id": 147,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.027239403137,
+        -0.513062902731,
+        0.485823499594
+      ],
+      "src": 24
+    },
+    {
+      "dst": 24,
+      "edge_id": 148,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        -0.35,
+        0.0
+      ],
+      "src": 24
+    },
+    {
+      "dst": 26,
+      "edge_id": 149,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.0,
+        -0.5
+      ],
+      "src": 24
+    },
+    {
+      "dst": 25,
+      "edge_id": 150,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.4075930091,
+        -0.326252174712,
+        0.25381918863
+      ],
+      "src": 25
+    },
+    {
+      "dst": 24,
+      "edge_id": 151,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.5204928206,
+        -0.414607604867,
+        0.068607253053
+      ],
+      "src": 25
+    },
+    {
+      "dst": 25,
+      "edge_id": 152,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.325087964624,
+        -0.41971946939,
+        0.69939964375
+      ],
+      "src": 25
+    },
+    {
+      "dst": 18,
+      "edge_id": 153,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        -0.139056064305,
+        -0.193534870579,
+        0.832590934883
+      ],
+      "src": 25
+    },
+    {
+      "dst": 25,
+      "edge_id": 154,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        -0.35,
+        0.5
+      ],
+      "src": 25
+    },
+    {
+      "dst": 23,
+      "edge_id": 155,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        -0.5,
+        -0.5
+      ],
+      "src": 25
+    },
+    {
+      "dst": 26,
+      "edge_id": 156,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.290035681671,
+        0.076886910235,
+        -0.366922591906
+      ],
+      "src": 26
+    },
+    {
+      "dst": 26,
+      "edge_id": 157,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.371914024399,
+        0.110415035266,
+        -0.649012968146
+      ],
+      "src": 26
+    },
+    {
+      "dst": 27,
+      "edge_id": 158,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.468039905342,
+        -0.08498982071,
+        -0.113367073175
+      ],
+      "src": 26
+    },
+    {
+      "dst": 24,
+      "edge_id": 159,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.513062902731,
+        -0.485823499594,
+        -0.027239403137
+      ],
+      "src": 26
+    },
+    {
+      "dst": 26,
+      "edge_id": 160,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.0,
+        -0.5
+      ],
+      "src": 26
+    },
+    {
+      "dst": 30,
+      "edge_id": 161,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.5,
+        0.0
+      ],
+      "src": 26
+    },
+    {
+      "dst": 27,
+      "edge_id": 162,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.330706098865,
+        0.040670417194,
+        -0.036216493041
+      ],
+      "src": 27
+    },
+    {
+      "dst": 26,
+      "edge_id": 163,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.422300700004,
+        0.065655215144,
+        -0.265009519744
+      ],
+      "src": 27
+    },
+    {
+      "dst": 28,
+      "edge_id": 164,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.42328008522,
+        -0.034603145106,
+        0.270636375227
+      ],
+      "src": 27
+    },
+    {
+      "dst": 28,
+      "edge_id": 165,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.346767435289,
+        -0.166295467442,
+        0.319528032152
+      ],
+      "src": 27
+    },
+    {
+      "dst": 27,
+      "edge_id": 166,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.0,
+        0.0
+      ],
+      "src": 27
+    },
+    {
+      "dst": 27,
+      "edge_id": 167,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "src": 27
+    },
+    {
+      "dst": 28,
+      "edge_id": 168,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.371376516059,
+        0.004453924153,
+        0.294489605824
+      ],
+      "src": 28
+    },
+    {
+      "dst": 27,
+      "edge_id": 169,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.472687375608,
+        0.020895395022,
+        0.118993928658
+      ],
+      "src": 28
+    },
+    {
+      "dst": 28,
+      "edge_id": 170,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.378520265098,
+        0.015783530499,
+        0.654639823629
+      ],
+      "src": 28
+    },
+    {
+      "dst": 17,
+      "edge_id": 171,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.180471967848,
+        0.153232564711,
+        0.666295467442
+      ],
+      "src": 28
+    },
+    {
+      "dst": 28,
+      "edge_id": 172,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.0,
+        0.5
+      ],
+      "src": 28
+    },
+    {
+      "dst": 24,
+      "edge_id": 173,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        -0.5,
+        0.0
+      ],
+      "src": 28
+    },
+    {
+      "dst": 29,
+      "edge_id": 174,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.25381918863,
+        0.4075930091,
+        -0.326252174712
+      ],
+      "src": 29
+    },
+    {
+      "dst": 29,
+      "edge_id": 175,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.324108579407,
+        0.545918035155,
+        -0.598626292541
+      ],
+      "src": 29
+    },
+    {
+      "dst": 30,
+      "edge_id": 176,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.521472205816,
+        0.350513179179,
+        -0.158126893297
+      ],
+      "src": 29
+    },
+    {
+      "dst": 32,
+      "edge_id": 177,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.832590934883,
+        -0.139056064305,
+        -0.193534870579
+      ],
+      "src": 29
+    },
+    {
+      "dst": 29,
+      "edge_id": 178,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.35,
+        -0.5
+      ],
+      "src": 29
+    },
+    {
+      "dst": 31,
+      "edge_id": 179,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "src": 29
+    },
+    {
+      "dst": 30,
+      "edge_id": 180,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.294489605824,
+        0.371376516059,
+        0.004453924153
+      ],
+      "src": 30
+    },
+    {
+      "dst": 30,
+      "edge_id": 181,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.374495255012,
+        0.501158215033,
+        -0.214622844139
+      ],
+      "src": 30
+    },
+    {
+      "dst": 30,
+      "edge_id": 182,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.476712385695,
+        0.400899854784,
+        0.225876555105
+      ],
+      "src": 30
+    },
+    {
+      "dst": 27,
+      "edge_id": 183,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.666295467442,
+        0.180471967848,
+        0.153232564711
+      ],
+      "src": 30
+    },
+    {
+      "dst": 30,
+      "edge_id": 184,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.35,
+        0.0
+      ],
+      "src": 30
+    },
+    {
+      "dst": 28,
+      "edge_id": 185,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "src": 30
+    },
+    {
+      "dst": 31,
+      "edge_id": 186,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.335160023018,
+        0.335160023018,
+        0.335160023018
+      ],
+      "src": 31
+    },
+    {
+      "dst": 30,
+      "edge_id": 187,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.424881930617,
+        0.456398394912,
+        0.169380604263
+      ],
+      "src": 31
+    },
+    {
+      "dst": 31,
+      "edge_id": 188,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.431952565573,
+        0.451286530389,
+        0.609880003507
+      ],
+      "src": 31
+    },
+    {
+      "dst": 31,
+      "edge_id": 189,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "src": 31
+    },
+    {
+      "dst": 31,
+      "edge_id": 190,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.35,
+        0.35,
+        0.5
+      ],
+      "src": 31
+    },
+    {
+      "dst": 25,
+      "edge_id": 191,
+      "generator": "R_x",
+      "image_before_quantization": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "src": 31
+    },
+    {
+      "dst": 27,
+      "edge_id": 192,
+      "generator": "Se_Funnel_L",
+      "image_before_quantization": [
+        0.66141219773,
+        0.081340834388,
+        -0.072432986082
+      ],
+      "src": 32
+    },
+    {
+      "dst": 32,
+      "edge_id": 193,
+      "generator": "Ni_Pit_L",
+      "image_before_quantization": [
+        0.857803699893,
+        0.119087515618,
+        -0.309769339866
+      ],
+      "src": 32
+    },
+    {
+      "dst": 32,
+      "edge_id": 194,
+      "generator": "Ni_Source_R",
+      "image_before_quantization": [
+        0.85878308511,
+        -0.082408590097,
+        0.321023050832
+      ],
+      "src": 32
+    },
+    {
+      "dst": 25,
+      "edge_id": 195,
+      "generator": "Ne_Spiral_R",
+      "image_before_quantization": [
+        0.693534870579,
+        -0.332590934883,
+        0.639056064305
+      ],
+      "src": 32
+    },
+    {
+      "dst": 27,
+      "edge_id": 196,
+      "generator": "D_z",
+      "image_before_quantization": [
+        0.7,
+        0.0,
+        0.0
+      ],
+      "src": 32
+    },
+    {
+      "dst": 32,
+      "edge_id": 197,
+      "generator": "R_x",
+      "image_before_quantization": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "src": 32
+    }
+  ],
+  "carrier_honest_independence_matrix": [
+    {
+      "ambiguous_keys": {
+        "-1": {
+          "-1": 9,
+          "0": 3,
+          "1": 5
+        },
+        "1": {
+          "-1": 5,
+          "0": 1,
+          "1": 9
+        }
+      },
+      "carrier_honest": true,
+      "majority_accuracy": 0.5757575757575758,
+      "no_identity_leak_rule": "cell identity, coordinates, and direct target readout fingerprints are excluded from the pass/fail predictor.",
+      "pass": true,
+      "predictor": "axis0_polarity_sign",
+      "row_id": "axis4_not_recoverable_from_axis0_response",
+      "target": "axis4_sign",
+      "witness_pair": {
+        "key": "-1",
+        "left_axis4_sign": 0,
+        "left_cell_id": 0,
+        "right_axis4_sign": 1,
+        "right_cell_id": 1,
+        "same_axis0_polarity_sign": true
+      }
+    },
+    {
+      "ambiguous_keys": {
+        "-1": {
+          "-1": 9,
+          "1": 5
+        },
+        "0": {
+          "-1": 3,
+          "0": 1,
+          "1": 1
+        },
+        "1": {
+          "-1": 5,
+          "1": 9
+        }
+      },
+      "carrier_honest": true,
+      "majority_accuracy": 0.6363636363636364,
+      "no_identity_leak_rule": "cell identity, coordinates, and direct target readout fingerprints are excluded from the pass/fail predictor.",
+      "pass": true,
+      "predictor": "axis4_sign",
+      "row_id": "axis0_response_not_recoverable_from_axis4",
+      "target": "axis0_polarity_sign",
+      "witness_pair": {
+        "key": "-1",
+        "left_axis0_polarity_sign": -1,
+        "left_cell_id": 3,
+        "right_axis0_polarity_sign": 1,
+        "right_cell_id": 8,
+        "same_axis4_sign": true
+      }
+    },
+    {
+      "ambiguous_keys": {
+        "-1": {
+          "-1": 5,
+          "0": 2,
+          "1": 7
+        },
+        "0": {
+          "-1": 2,
+          "0": 1,
+          "1": 2
+        },
+        "1": {
+          "-1": 7,
+          "0": 2,
+          "1": 5
+        }
+      },
+      "carrier_honest": true,
+      "majority_accuracy": 0.48484848484848486,
+      "no_identity_leak_rule": "cell identity, coordinates, and direct target readout fingerprints are excluded from the pass/fail predictor.",
+      "pass": true,
+      "predictor": "b6_sign",
+      "row_id": "axis4_not_recoverable_from_axis6_precedence",
+      "target": "axis4_sign",
+      "witness_pair": {
+        "key": "-1",
+        "left_axis4_sign": 1,
+        "left_cell_id": 10,
+        "right_axis4_sign": -1,
+        "right_cell_id": 13,
+        "same_b6_sign": true
+      }
+    },
+    {
+      "ambiguous_keys": {
+        "-1": {
+          "-1": 5,
+          "0": 2,
+          "1": 7
+        },
+        "0": {
+          "-1": 2,
+          "0": 1,
+          "1": 2
+        },
+        "1": {
+          "-1": 7,
+          "0": 2,
+          "1": 5
+        }
+      },
+      "carrier_honest": true,
+      "majority_accuracy": 0.48484848484848486,
+      "no_identity_leak_rule": "cell identity, coordinates, and direct target readout fingerprints are excluded from the pass/fail predictor.",
+      "pass": true,
+      "predictor": "axis4_sign",
+      "row_id": "axis6_precedence_not_recoverable_from_axis4",
+      "target": "b6_sign",
+      "witness_pair": {
+        "key": "-1",
+        "left_b6_sign": 1,
+        "left_cell_id": 3,
+        "right_b6_sign": -1,
+        "right_cell_id": 13,
+        "same_axis4_sign": true
+      }
+    },
+    {
+      "full_feature_report_included": true,
+      "identity_inclusive_ambiguous_key_count": 0,
+      "identity_inclusive_fields": [
+        "cell_id",
+        "coord_scaled",
+        "axis4_sign",
+        "W4_trace_norm"
+      ],
+      "identity_inclusive_majority_accuracy": 1.0,
+      "identity_leak_detected": true,
+      "identity_leak_excluded_best_accuracy": 0.6060606060606061,
+      "identity_leak_excluded_best_predictor": "axis0_axis6_readout_pair",
+      "identity_leak_excluded_candidate_rows": [
+        {
+          "ambiguous_key_count": 2,
+          "fields": [
+            "axis0_polarity_sign"
+          ],
+          "majority_accuracy": 0.5757575757575758,
+          "predictor_id": "axis0_readout_only"
+        },
+        {
+          "ambiguous_key_count": 3,
+          "fields": [
+            "b6_sign"
+          ],
+          "majority_accuracy": 0.48484848484848486,
+          "predictor_id": "axis6_readout_only"
+        },
+        {
+          "ambiguous_key_count": 4,
+          "fields": [
+            "axis0_polarity_sign",
+            "b6_sign"
+          ],
+          "majority_accuracy": 0.6060606060606061,
+          "predictor_id": "axis0_axis6_readout_pair"
+        },
+        {
+          "ambiguous_key_count": 2,
+          "fields": [
+            "kappa",
+            "nesting",
+            "conditioned_shell_member"
+          ],
+          "majority_accuracy": 0.5757575757575758,
+          "predictor_id": "low_dimensional_tags_only"
+        }
+      ],
+      "identity_leak_exclusion_rule": "The pass rows use readout-only or low-dimensional tag predictors. Cell id, coordinates, W4, and direct Axis-4 fingerprints are reported as leaks and excluded.",
+      "pass": true,
+      "row_id": "best_predictor_full_0_4_6_feature_report",
+      "status": "carrier_honest_readout_only_with_identity_leak_caveat"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "Z3",
+    "networkx",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "claim_sections": {
+    "boundary": [
+      "scratch_diagnostic only",
+      "promotion_allowed=false",
+      "formal_admission_allowed=false",
+      "claim_ceiling=axis_readout_candidate_only"
+    ],
+    "negative": [
+      "no Axis-4 admission",
+      "no Axis-6 claim",
+      "no bridge or physics claim",
+      "not canon"
+    ],
+    "positive": [
+      "one finite Axis-4 composition readout candidate over the committed Family A 33-cell carrier",
+      "pinned S4 R_x/D_z generators with tau_R=tau_C=1 before classification",
+      "carrier-honest 0/4 and 6/4 rows reported with identity-leak caveat",
+      "panel-7 leading-order 2ue[A,B] control computed separately from the finite two-factor readout"
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "axis4_vs_axis6_discriminator": {
+      "axis6_commit": "b6fafc67f",
+      "axis6_parent": "discrete_axis6_precedence_v0",
+      "axis6_predicts_axis4_majority_accuracy": 0.48484848484848486,
+      "fired": true,
+      "pass": true,
+      "same_cells": 33,
+      "why": "Axis-6 b6_sign on the same cells does not perfectly recover the Axis-4 composition sign.",
+      "witness_pair": {
+        "key": "-1",
+        "left_axis4_sign": 1,
+        "left_cell_id": 10,
+        "right_axis4_sign": -1,
+        "right_cell_id": 13,
+        "same_b6_sign": true
+      }
+    },
+    "commuting_pair_all_neutral": {
+      "all_cells_neutral": true,
+      "falsifier_reachability": "A commuting generator pair reaches the all-neutral outcome under the same functional.",
+      "fired": true,
+      "max_W4": 0.0,
+      "neutral_count": 33,
+      "pair": "exp(L_R) with exp(0.5 L_R), same x-rotation generator family"
+    },
+    "panel7_leading_order_2ue_commutator": {
+      "A": "L_R",
+      "B": "L_C",
+      "e": 0.001,
+      "fired": true,
+      "gap_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.120327551576e-06
+        ],
+        [
+          0.0,
+          -1.120327551577e-06,
+          0.0
+        ]
+      ],
+      "gap_norm": 1.58438241774e-06,
+      "leading_norm": 1.584665022894e-06,
+      "leading_order_2ue_commutator": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.120527383597e-06
+        ],
+        [
+          0.0,
+          -1.120527383597e-06,
+          0.0
+        ]
+      ],
+      "panel_form": "D=UEUE, I=EUEU, leading order D-I = 2ue[A,B]",
+      "pass": true,
+      "relative_error": 0.00017833747193845168,
+      "residual_norm": 2.82605154e-10,
+      "threshold": 0.0005,
+      "u": 0.001
+    },
+    "shuffled_order_not_primary": {
+      "changed_count": 14,
+      "fired": true,
+      "match_count": 19,
+      "pass": true,
+      "primary_order": "R C versus C R",
+      "primary_signature_sha256": "34a87ba8c72dd3d3259736c835586dc841e8b1d75c544076a50fc82b84df232a",
+      "shuffled_order": "R C C R versus C R R C",
+      "shuffled_signature_sha256": "ee1c19d70d325f50508e0e176101c110df23bbcf199bb00dac32934ed48be154"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "axis admission",
+    "Axis-6 precedence claim",
+    "bridge admission",
+    "physics",
+    "manifold promotion",
+    "canonical Axis-4 readout"
+  ],
+  "divergence": {
+    "basis": "positive/negative/neutral/nonneutral Axis-4 sign count agreement across three lanes",
+    "engine_count_rows": {
+      "jax": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      },
+      "julia": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      },
+      "pytorch": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      }
+    },
+    "engine_values": {
+      "jax": 28,
+      "julia": 28,
+      "pytorch": 28
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "tolerance": 0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+          "receipt_id": "jax_networkx_axis4_composition_candidate",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+          "receipt_id": "jax_sympy_axis4_composition_candidate",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+          "receipt_id": "jax_z3_axis4_composition_candidate",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+          "receipt_id": "jax_cvc5_axis4_composition_candidate",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+        "networkx": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+        "sympy": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+        "z3": "z3.Solver/z3.Int computed positive/negative Axis-4 identity"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_jax_results.json",
+      "result_sha256": "f614572301f67d7c59f1b1a813f4569153cbbffbffb1ed2fd99e84761f36222a",
+      "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_jax.py",
+      "source_sha256": "243dcaeed7dfe74154d90e7adf964c5e355ecaedc287d6e270cfb33afeb15956",
+      "state_object_id": "discrete_axis4_composition_v0:a968f1fc7688f60050f7d20c61c73086aff05e9788ae3ad04fa77e56bdef2632",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+          "receipt_id": "jax_networkx_axis4_composition_candidate",
+          "tool": "networkx"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+          "receipt_id": "jax_sympy_axis4_composition_candidate",
+          "tool": "sympy"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+          "receipt_id": "jax_z3_axis4_composition_candidate",
+          "tool": "z3"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+          "receipt_id": "jax_cvc5_axis4_composition_candidate",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+          "receipt_id": "julia_Graphs_axis4_composition_candidate",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip",
+          "receipt_id": "julia_Z3_axis4_composition_candidate",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+        "Z3": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip"
+      },
+      "packages_used": [
+        "Graphs",
+        "JSON",
+        "LinearAlgebra",
+        "SHA",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_julia_results.json",
+      "result_sha256": "54013a1893417f7a3675b6da42ce48129cdb2479346a60b66f78ebf3604b9d25",
+      "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_julia.jl",
+      "source_sha256": "f4903d4b59d0d8f1e2aa23cdeec86ad4c30a104415962cab8f328f67c79b2e7b",
+      "state_object_id": null,
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+          "receipt_id": "julia_Graphs_axis4_composition_candidate",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip",
+          "receipt_id": "julia_Z3_axis4_composition_candidate",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "vmap vectorized Axis-4 sign recomputation over 33 Bloch vectors",
+          "receipt_id": "pytorch_torch.func_axis4_composition_candidate",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "Data edge_index carrier with 33 nodes and 198 committed directed generator edges",
+          "receipt_id": "pytorch_torch_geometric_axis4_composition_candidate",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "sp.Matrix/sp.log exact R_x/D_z generator commutator source probe",
+          "receipt_id": "pytorch_sympy_axis4_composition_candidate",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+          "receipt_id": "pytorch_z3_axis4_composition_candidate",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+          "receipt_id": "pytorch_cvc5_axis4_composition_candidate",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+        "sympy": "sp.Matrix/sp.log exact R_x/D_z generator commutator source probe",
+        "torch.func": "vmap vectorized Axis-4 sign recomputation over 33 Bloch vectors",
+        "torch_geometric": "Data edge_index carrier with 33 nodes and 198 committed directed generator edges",
+        "z3": "z3.Solver/z3.Int computed positive/negative Axis-4 identity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_pytorch_results.json",
+      "result_sha256": "739da69f6884261e95b8cb68fcb692eb840d8a0215ca1db1c611edadecb2858a",
+      "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_pytorch.py",
+      "source_sha256": "e3b48b80b455619aa6451acd8a475478cde2c76e51b5250139693a196ee12f09",
+      "state_object_id": "discrete_axis4_composition_v0:a968f1fc7688f60050f7d20c61c73086aff05e9788ae3ad04fa77e56bdef2632",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "vmap vectorized Axis-4 sign recomputation over 33 Bloch vectors",
+          "receipt_id": "pytorch_torch.func_axis4_composition_candidate",
+          "tool": "torch.func"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Data edge_index carrier with 33 nodes and 198 committed directed generator edges",
+          "receipt_id": "pytorch_torch_geometric_axis4_composition_candidate",
+          "tool": "torch_geometric"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "sp.Matrix/sp.log exact R_x/D_z generator commutator source probe",
+          "receipt_id": "pytorch_sympy_axis4_composition_candidate",
+          "tool": "sympy"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+          "receipt_id": "pytorch_z3_axis4_composition_candidate",
+          "tool": "z3"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+          "receipt_id": "pytorch_cvc5_axis4_composition_candidate",
+          "tool": "cvc5"
+        }
+      ]
+    }
+  },
+  "envelope_built_with_helper": true,
+  "falsifier_branches": {
+    "branches": [
+      "axis4_vs_axis6_discriminator",
+      "commuting_pair_all_neutral",
+      "panel7_leading_order_2ue_commutator",
+      "shuffled_order_not_primary"
+    ],
+    "reachable": true,
+    "required_to_fire": [
+      "axis4_vs_axis6_discriminator",
+      "commuting_pair_all_neutral",
+      "panel7_leading_order_2ue_commutator",
+      "shuffled_order_not_primary"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T08:24:35Z",
+  "independence_auxiliary": {
+    "best_non_identity": {
+      "ambiguous_key_count": 4,
+      "fields": [
+        "axis0_polarity_sign",
+        "b6_sign"
+      ],
+      "majority_accuracy": 0.6060606060606061,
+      "predictor_id": "axis0_axis6_readout_pair"
+    },
+    "identity_inclusive_accuracy": 1.0
+  },
+  "lane_comparison": {
+    "all_lanes_same_counts": true,
+    "engine_values": {
+      "jax": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      },
+      "julia": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      },
+      "pytorch": {
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14
+      }
+    },
+    "readout_signatures": {
+      "jax": "16aec93ddb27d67adc7d6791630ceb30157e7604e92171dcf499d08808ae4cc9",
+      "julia": "julia_counts_only",
+      "pytorch": "16aec93ddb27d67adc7d6791630ceb30157e7604e92171dcf499d08808ae4cc9"
+    }
+  },
+  "mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "discrete_axis4_composition_v0",
+  "parent_lineage": {
+    "axis0_envelope": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+    "axis6_envelope": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
+    "dual_stack_prior": "system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_envelope_results.json",
+    "geo_s4_envelope": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+    "geo_s6_loop_prior": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+    "panel7_envelope": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_envelope_results.json"
+  },
+  "pinning": {
+    "C": {
+      "L": [
+        [
+          -0.356674943938732,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.356674943938732,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "M": [
+        [
+          0.7,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "c": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "committed_pinned": {
+        "M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "id": "S4:D_z",
+      "lambda": 0.7,
+      "max_abs_delta_vs_committed": 0.0,
+      "name": "D_z",
+      "symbolic": {
+        "M": [
+          [
+            "1 - q_z",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1 - q_z",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "tau": 1.0
+    },
+    "R": {
+      "L": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.570796326794897
+        ],
+        [
+          0.0,
+          1.570796326794897,
+          0.0
+        ]
+      ],
+      "M": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "c": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "committed_pinned": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "id": "S4:R_x",
+      "max_abs_delta_vs_committed": 0.0,
+      "name": "R_x",
+      "symbolic": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "cos(theta_x)",
+            "-sin(theta_x)"
+          ],
+          [
+            "0",
+            "sin(theta_x)",
+            "cos(theta_x)"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "tau": 1.0
+    },
+    "finite_exponential_semantics": "L_R is the real pi/2 x-rotation generator whose tau_R=1 exponential is committed R_x; L_C is diag(log(7/10), log(7/10), 0) whose tau_C=1 exponential is committed D_z.",
+    "source": {
+      "path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+      "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+      "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_envelope_results.json",
+  "schema": "discrete_axis4_composition_v0.envelope.v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "discrete_axis4_composition_v0",
+  "smt_rows": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "source_import_audit": {
+    "anti_conflation_rule": "Axis-4 here is R_x/D_z composition order over Family A; Axis-6 is imported only as a same-carrier discriminator parent.",
+    "authority_and_context": {
+      "axis6_contender_registry": {
+        "exists": true,
+        "git_last_commit": "94adbe824",
+        "path": "system_v6/receipts/axis6_contender_probe_registry_20260612.md",
+        "role": "axis4_axis6_never_merge_boundary_context",
+        "sha256": "e941e12afc6533c7638809423b17b0777b7f3598ca6a0f1c39eecc9ec130a4e5"
+      },
+      "axis_work_order": {
+        "commit_hint": "f6112e407",
+        "exists": true,
+        "git_last_commit": "49fb35cd8",
+        "path": "system_v6/receipts/axis_work_order_20260612.md",
+        "role": "work_order_axis4_row",
+        "sha256": "70edd197f6c593faa922fa689fa272b0e0e38d992aaab2e177c3eface418fba7"
+      },
+      "coupling_law_mine": {
+        "exists": true,
+        "git_last_commit": "7ba33df91",
+        "path": "system_v6/receipts/coupling_law_mining_raw_20260611.json",
+        "role": "Phi_D_Phi_I_owner_formula_context",
+        "sha256": "9a24fbe2ff5a0cfc86dcebf53187b72084b054175e4a318b82ed00f7380ab951"
+      },
+      "panel7_build_card": {
+        "commit_hint": "1f8ddb9e1",
+        "exists": true,
+        "git_last_commit": "ffe6e1c38",
+        "path": "system_v6/sims/carnot_szilard_basin_cycle_v0/build_card.md",
+        "role": "panel7_q3_leading_order_pin",
+        "sha256": "47f82d235d6735d60b2d1191f440765b218905075f59faa01545d1fb361eec7c"
+      }
+    },
+    "parent_hash_pins": {
+      "axis0_envelope": {
+        "commit_hint": "5d330b427",
+        "exists": true,
+        "git_last_commit": "5d330b427",
+        "path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_envelope_results.json",
+        "role": "committed_axis0_family_a_carrier_and_response_rows",
+        "sha256": "960bdd0b056ef8bf174561f30c52fc41d488614d917a50e1ae256ee30e2ab8ce"
+      },
+      "axis6_envelope": {
+        "commit_hint": "b6fafc67f",
+        "exists": true,
+        "git_last_commit": "b6fafc67f",
+        "path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_envelope_results.json",
+        "role": "committed_axis6_same_carrier_discriminator_parent",
+        "sha256": "82edf1eec990f123174f75dd9dd8d84a86af80848d2b386343e35b167a184ba1"
+      },
+      "dual_stack_prior": {
+        "commit_hint": "9dad43b2b",
+        "exists": true,
+        "git_last_commit": "439624ec9",
+        "path": "system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_envelope_results.json",
+        "role": "committed_DI_gap_prior_art_context_only",
+        "sha256": "1e25526aae313cae276e47e772004ee97138475b91cef44c451ddf3e2e0d4e45"
+      },
+      "geo_s4_envelope": {
+        "exists": true,
+        "git_last_commit": "307b8ddf1",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+        "role": "committed_Rx_Dz_generator_pin",
+        "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
+      },
+      "geo_s6_loop_prior": {
+        "commit_hint": "7dc512454",
+        "exists": true,
+        "git_last_commit": "6aa75cc96",
+        "path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+        "role": "committed_axis4_style_prior_art_trajectories_differ_commuting_collapses",
+        "sha256": "5504eea079bc4f7f92b1874d83dfdb94a75e6a12d1da39cc0225305fdbbe4ae8"
+      },
+      "panel7_envelope": {
+        "commit_hint": "ffe6e1c38",
+        "exists": true,
+        "git_last_commit": "ffe6e1c38",
+        "path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_envelope_results.json",
+        "role": "panel7_small_stroke_2ue_commutator_anchor",
+        "sha256": "ada5d4ff5f497afede0eac52bbfc69a0a3fb8640ea77d0f5e7f77bdf5c44e8c7"
+      }
+    },
+    "raw_parent_classification_imported": false
+  },
+  "source_path": "system_v6/sims/discrete_axis4_composition_v0/write_envelope_spec.py",
+  "source_sha256": "5196b8dd3acbb705f78c50af9953dc75890b8dc992b36dfa5b3c3d439d3a0156",
+  "stability_pairs": [
+    {
+      "hash": "9d79428822eb6fd10e02c797cb2ab0a67d35b04399d183f18df18ed79f5f980d",
+      "subtree": "axis4_readout_table"
+    },
+    {
+      "hash": "faf484318b23145aad2b72dc4b820f2d717040ee446618e4e7c0381c0759c89a",
+      "subtree": "carrier_honest_independence_matrix"
+    },
+    {
+      "hash": "8dd00dbab357148c54832b06cf83f1124a52de87bc5b92734a06031d827812a3",
+      "subtree": "controls"
+    }
+  ],
+  "stability_under_committed_dynamics": {
+    "by_generator": {
+      "D_z": {
+        "changed": 0,
+        "stable": 33
+      },
+      "Ne_Spiral_R": {
+        "changed": 12,
+        "stable": 21
+      },
+      "Ni_Pit_L": {
+        "changed": 7,
+        "stable": 26
+      },
+      "Ni_Source_R": {
+        "changed": 8,
+        "stable": 25
+      },
+      "R_x": {
+        "changed": 14,
+        "stable": 19
+      },
+      "Se_Funnel_L": {
+        "changed": 0,
+        "stable": 33
+      }
+    },
+    "changed_edges": 41,
+    "changed_fraction": 0.20707070707070707,
+    "edge_count": 198,
+    "neither_trivial_nor_frozen": true,
+    "sample_rows": [
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 0,
+        "generator": "Se_Funnel_L",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 0,
+        "dst_axis4_sign": 0,
+        "edge_id": 1,
+        "generator": "Ni_Pit_L",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 0,
+        "dst_axis4_sign": 0,
+        "edge_id": 2,
+        "generator": "Ni_Source_R",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 3,
+        "generator": "Ne_Spiral_R",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": false
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 4,
+        "generator": "D_z",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 0,
+        "dst_axis4_sign": 0,
+        "edge_id": 5,
+        "generator": "R_x",
+        "src": 0,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 1,
+        "dst_axis4_sign": 1,
+        "edge_id": 6,
+        "generator": "Se_Funnel_L",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 1,
+        "dst_axis4_sign": 1,
+        "edge_id": 7,
+        "generator": "Ni_Pit_L",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 8,
+        "generator": "Ni_Source_R",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 1,
+        "dst_axis4_sign": 1,
+        "edge_id": 9,
+        "generator": "Ne_Spiral_R",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 1,
+        "dst_axis4_sign": 1,
+        "edge_id": 10,
+        "generator": "D_z",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 11,
+        "generator": "R_x",
+        "src": 1,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 12,
+        "generator": "Se_Funnel_L",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 13,
+        "generator": "Ni_Pit_L",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 14,
+        "generator": "Ni_Source_R",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 15,
+        "generator": "Ne_Spiral_R",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": false
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 16,
+        "generator": "D_z",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 4,
+        "dst_axis4_sign": 1,
+        "edge_id": 17,
+        "generator": "R_x",
+        "src": 2,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 3,
+        "dst_axis4_sign": -1,
+        "edge_id": 18,
+        "generator": "Se_Funnel_L",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 19,
+        "generator": "Ni_Pit_L",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 3,
+        "dst_axis4_sign": -1,
+        "edge_id": 20,
+        "generator": "Ni_Source_R",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 0,
+        "dst_axis4_sign": 0,
+        "edge_id": 21,
+        "generator": "Ne_Spiral_R",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 3,
+        "dst_axis4_sign": -1,
+        "edge_id": 22,
+        "generator": "D_z",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 1,
+        "dst_axis4_sign": 1,
+        "edge_id": 23,
+        "generator": "R_x",
+        "src": 3,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 4,
+        "dst_axis4_sign": 1,
+        "edge_id": 24,
+        "generator": "Se_Funnel_L",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 4,
+        "dst_axis4_sign": 1,
+        "edge_id": 25,
+        "generator": "Ni_Pit_L",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 26,
+        "generator": "Ni_Source_R",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": false
+      },
+      {
+        "dst": 15,
+        "dst_axis4_sign": 1,
+        "edge_id": 27,
+        "generator": "Ne_Spiral_R",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 4,
+        "dst_axis4_sign": 1,
+        "edge_id": 28,
+        "generator": "D_z",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 29,
+        "generator": "R_x",
+        "src": 4,
+        "src_axis4_sign": 1,
+        "survives_update": false
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 30,
+        "generator": "Se_Funnel_L",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 31,
+        "generator": "Ni_Pit_L",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 32,
+        "generator": "Ni_Source_R",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 4,
+        "dst_axis4_sign": 1,
+        "edge_id": 33,
+        "generator": "Ne_Spiral_R",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": false
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 34,
+        "generator": "D_z",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 35,
+        "generator": "R_x",
+        "src": 5,
+        "src_axis4_sign": 0,
+        "survives_update": true
+      },
+      {
+        "dst": 6,
+        "dst_axis4_sign": -1,
+        "edge_id": 36,
+        "generator": "Se_Funnel_L",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 5,
+        "dst_axis4_sign": 0,
+        "edge_id": 37,
+        "generator": "Ni_Pit_L",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 6,
+        "dst_axis4_sign": -1,
+        "edge_id": 38,
+        "generator": "Ni_Source_R",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 39,
+        "generator": "Ne_Spiral_R",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 6,
+        "dst_axis4_sign": -1,
+        "edge_id": 40,
+        "generator": "D_z",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 2,
+        "dst_axis4_sign": 1,
+        "edge_id": 41,
+        "generator": "R_x",
+        "src": 6,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 42,
+        "generator": "Se_Funnel_L",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 43,
+        "generator": "Ni_Pit_L",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 44,
+        "generator": "Ni_Source_R",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 14,
+        "dst_axis4_sign": 1,
+        "edge_id": 45,
+        "generator": "Ne_Spiral_R",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 7,
+        "dst_axis4_sign": 1,
+        "edge_id": 46,
+        "generator": "D_z",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 9,
+        "dst_axis4_sign": -1,
+        "edge_id": 47,
+        "generator": "R_x",
+        "src": 7,
+        "src_axis4_sign": 1,
+        "survives_update": false
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 48,
+        "generator": "Se_Funnel_L",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 49,
+        "generator": "Ni_Pit_L",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 50,
+        "generator": "Ni_Source_R",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 19,
+        "dst_axis4_sign": 1,
+        "edge_id": 51,
+        "generator": "Ne_Spiral_R",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": false
+      },
+      {
+        "dst": 8,
+        "dst_axis4_sign": -1,
+        "edge_id": 52,
+        "generator": "D_z",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 6,
+        "dst_axis4_sign": -1,
+        "edge_id": 53,
+        "generator": "R_x",
+        "src": 8,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 9,
+        "dst_axis4_sign": -1,
+        "edge_id": 54,
+        "generator": "Se_Funnel_L",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 9,
+        "dst_axis4_sign": -1,
+        "edge_id": 55,
+        "generator": "Ni_Pit_L",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 9,
+        "dst_axis4_sign": -1,
+        "edge_id": 56,
+        "generator": "Ni_Source_R",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 22,
+        "dst_axis4_sign": -1,
+        "edge_id": 57,
+        "generator": "Ne_Spiral_R",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 9,
+        "dst_axis4_sign": -1,
+        "edge_id": 58,
+        "generator": "D_z",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 3,
+        "dst_axis4_sign": -1,
+        "edge_id": 59,
+        "generator": "R_x",
+        "src": 9,
+        "src_axis4_sign": -1,
+        "survives_update": true
+      },
+      {
+        "dst": 12,
+        "dst_axis4_sign": 1,
+        "edge_id": 60,
+        "generator": "Se_Funnel_L",
+        "src": 10,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 10,
+        "dst_axis4_sign": 1,
+        "edge_id": 61,
+        "generator": "Ni_Pit_L",
+        "src": 10,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 10,
+        "dst_axis4_sign": 1,
+        "edge_id": 62,
+        "generator": "Ni_Source_R",
+        "src": 10,
+        "src_axis4_sign": 1,
+        "survives_update": true
+      },
+      {
+        "dst": 3,
+        "dst_axis4_sign": -1,
+        "edge_id": 63,
+        "generator": "Ne_Spiral_R",
+        "src": 10,
+        "src_axis4_sign": 1,
+        "survives_update": false
+      }
+    ],
+    "scope": "one_step_edges_on_committed_family_a_carrier",
+    "stable_edges": 157,
+    "stable_fraction": 0.7929292929292929
+  },
+  "state_object_id": "discrete_axis4_composition_v0:a968f1fc7688f60050f7d20c61c73086aff05e9788ae3ad04fa77e56bdef2632",
+  "tool_intent": {
+    "claim_classes": [
+      "finite_axis4_composition_readout_candidate",
+      "pinned_Rx_Dz_order_gap",
+      "panel7_small_stroke_2ue_commutator_control",
+      "carrier_honest_axis0_axis4_and_axis6_axis4_discriminators",
+      "computed_negative_controls_only"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent SMT binding of the same computed Axis-4 counts with erased flips",
+        "networkx": "build the directed 33-cell graph and verify carrier adjacency metadata for the Axis-4 sign table",
+        "sympy": "compute exact symbolic R_x/D_z generator commutator rows and the 2ue[A,B] panel form",
+        "z3": "bind computed Axis-4 counts in SMT and prove nonzero identity cannot be erased"
+      },
+      "julia": {
+        "Graphs": "rebuild the 33-cell carrier graph and count Axis-4 sign stability over generator edges",
+        "Z3": "bind computed Axis-4 counts and commuting-control counts, then prove the negated identity unsat with erased flips sat"
+      },
+      "pytorch": {
+        "cvc5": "independent SMT binding of the same computed Axis-4 counts with erased flips",
+        "sympy": "exact symbolic D_z/R_x commutator source probe",
+        "torch.func": "vectorized Axis-4 sign recomputation over the 33 Family-A Bloch vectors",
+        "torch_geometric": "Data edge_index carrier for the committed 198 directed generator edges",
+        "z3": "bind computed Axis-4 counts in SMT and prove nonzero identity cannot be erased"
+      }
+    }
+  },
+  "validator_expected_commands": [
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_jax.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_pytorch.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/discrete_axis4_composition_v0/write_envelope_spec.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/build_three_engine_envelope.py system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_envelope_spec.json > system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/discrete_axis4_composition_v0/validate_discrete_axis4_composition_v0.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/discrete_axis4_composition_v0/tests"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "computation_style": "exact_hermitian_eigendecomposition",
+  "psd_all_states": true,
+  "result_path": "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_julia_results.json",
+  "finite_set_size": 4,
+  "does_not_self_upgrade": true,
+  "source_sha256": "3135710e1f8b49e8d9a2ef81e8693d5e2c79f08fad3ecf69f2aa0d2c3f664909",
+  "packages_used": [
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "flip_pair": [
+    "s1",
+    "s2"
+  ],
+  "classification": "scratch_diagnostic",
+  "sim_id": "distinguishability_quotient_floor_v0",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "LinearAlgebra"
+  ],
+  "generated_at": "2026-06-16T23:07:56Z",
+  "state_labels": [
+    "s0",
+    "s1",
+    "s2",
+    "s3"
+  ],
+  "TOOL_MANIFEST": {
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing exact Hermitian eigendecomposition (eigen/Hermitian) for eigenvalues + von Neumann entropy"
+    },
+    "JSON/SHA/Dates": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive: spec read, source hashing, timestamp"
+    }
+  },
+  "quotient_class_count_full": 4,
+  "quotient_classes_full": [
+    [
+      "s0"
+    ],
+    [
+      "s1"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "promotion_allowed": false,
+  "quotient_classes_erased": [
+    [
+      "s0"
+    ],
+    [
+      "s1",
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "TOOL_INTEGRATION_DEPTH": {
+    "LinearAlgebra": "load_bearing",
+    "JSON/SHA/Dates": "supportive"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "probe_expectations_full": {
+    "s1": [
+      0.5,
+      0.0,
+      0.30000000000000004
+    ],
+    "s0": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "s2": [
+      0.5,
+      0.0,
+      -0.30000000000000004
+    ],
+    "s3": [
+      0.0,
+      0.6,
+      0.0
+    ]
+  },
+  "engine": "julia",
+  "von_neumann_entropy": {
+    "s1": 0.5118989915874357,
+    "s0": 0.6931471805599453,
+    "s2": 0.5118989915874357,
+    "s3": 0.5004024235381879
+  },
+  "quotient_class_count_erased": 3,
+  "eigenvalues": {
+    "s1": [
+      0.20845240525773498,
+      0.791547594742265
+    ],
+    "s0": [
+      0.5,
+      0.5
+    ],
+    "s2": [
+      0.20845240525773498,
+      0.791547594742265
+    ],
+    "s3": [
+      0.2,
+      0.8
+    ]
+  },
+  "probe_expectations_erased": {
+    "s1": [
+      0.5,
+      0.0
+    ],
+    "s0": [
+      0.0,
+      0.0
+    ],
+    "s2": [
+      0.5,
+      0.0
+    ],
+    "s3": [
+      0.0,
+      0.6
+    ]
+  }
+}

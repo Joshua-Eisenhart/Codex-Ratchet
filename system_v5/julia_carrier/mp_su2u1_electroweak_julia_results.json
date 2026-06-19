@@ -1,0 +1,452 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "supportive",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend parity over the same owner-carrier values",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive result serialization, source hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing backend for matrix algebra, commutator closure, doublet action, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "supportive current 32-substage metadata only; it does not carry this algebraic witness",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing include/call of division_algebra_ratchet_ladder.jl quaternion and octonion construction; erasing/replacing this carrier changes the result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia",
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream": {
+      "claim_ceiling": "Scratch diagnostic only: re-derives one SU(2)_L x U(1)_Y finite doublet from the owner's H/O division-algebra carrier construction. No Standard Model, M(C), Axis0, bridge, basin, manifold-closure, promotion, or formal admission claim.",
+      "pass": true
+    },
+    "finite_owner_h_carrier_one_doublet_only": {
+      "complex_doublet_count": 1,
+      "pass": true,
+      "real_dim": 4
+    },
+    "qit_metadata_supportive_only": {
+      "pass": true,
+      "qit_spec": {
+        "H0_formula": "0.77*SZ + 0.13*SX",
+        "n_substages_per_engine": 32,
+        "operator_slot_sequence": [
+          "Ti",
+          "Te",
+          "Fi",
+          "Fe"
+        ],
+        "perceptions": [
+          "Ne",
+          "Ni",
+          "Se",
+          "Si"
+        ],
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+        "type_one_h_sign": 1,
+        "type_one_schedule_len": 8,
+        "type_two_h_sign": -1,
+        "type_two_schedule_len": 8
+      }
+    }
+  },
+  "carrier_layer": "owner_H_subalgebra_inside_owner_O_from_division_algebra_ratchet_ladder",
+  "claim_ceiling": "Scratch diagnostic only: re-derives one SU(2)_L x U(1)_Y finite doublet from the owner's H/O division-algebra carrier construction. No Standard Model, M(C), Axis0, bridge, basin, manifold-closure, promotion, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-07T03:53:54.535",
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "erased_owner_carrier_breaks_result": {
+      "control_kind": "real_vs_erased_owner_carrier_flip",
+      "erased_doublet_ok": false,
+      "erased_su2_closes": false,
+      "erased_u1_norm": 0.0,
+      "pass": true
+    },
+    "promotion_and_formal_admission_fenced": {
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "wrong_owner_h_multiplication_sign_breaks_result": {
+      "control_kind": "real_vs_wrong_owner_table_flip",
+      "pass": true,
+      "real_closure_residual": 0.0,
+      "wrong_closure_residual": 0.8660254037844386,
+      "wrong_doublet_ok": false
+    }
+  },
+  "local_all_pass": true,
+  "name": "mp_su2u1_electroweak",
+  "nearby_variants": {
+    "passed": 3,
+    "total": 3,
+    "variants": [
+      "erased_owner_carrier_breaks_result",
+      "promotion_and_formal_admission_fenced",
+      "wrong_owner_h_multiplication_sign_breaks_result"
+    ]
+  },
+  "object_id": "mp_su2u1_electroweak",
+  "owner_carrier_objects": {
+    "system_v5/julia_carrier/division_algebra_ratchet_ladder.jl": {
+      "exists": true,
+      "sha256": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878"
+    },
+    "system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py": {
+      "exists": true,
+      "sha256": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24"
+    }
+  },
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": null,
+    "missing_keys": [],
+    "parity_max_diff": 0.0,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_su2u1_electroweak_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "Y_down_minus_y_down"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "u1_commutator_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "T3_down_plus_half_down"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "T3_up_minus_half_up"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.8660254037844386,
+        "julia": 0.8660254037844386,
+        "key": "wrong_closure_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "owner_h_closure_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "qit_substages_per_engine"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "Tminus_up_minus_down"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "owner_h_structure_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "Y_up_minus_y_up"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "erased_u1_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "u1_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "complex_doublet_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "owner_h_from_o_max_abs_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "Tplus_down_minus_up"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "su2_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "su2_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "real_carrier_dim"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "positive": {
+    "one_isospin_doublet_from_owner_h": {
+      "basis": {
+        "down": "(j + i*i)/sqrt(2) in owner H basis",
+        "up": "(1 + i*k)/sqrt(2)"
+      },
+      "pass": true,
+      "residuals": {
+        "T3_down_plus_half_down": 0.0,
+        "T3_up_minus_half_up": 0.0,
+        "Tminus_up_minus_down": 0.0,
+        "Tplus_down_minus_up": 0.0,
+        "Y_down_minus_y_down": 0.0,
+        "Y_up_minus_y_up": 0.0
+      }
+    },
+    "owner_carrier_declared_and_used_load_bearing": {
+      "depth": "load_bearing",
+      "pass": true
+    },
+    "owner_division_h_o_construction_loaded": {
+      "h_from_o_max_abs_residual": 0.0,
+      "owner_sources": {
+        "system_v5/julia_carrier/division_algebra_ratchet_ladder.jl": {
+          "exists": true,
+          "sha256": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878"
+        },
+        "system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py": {
+          "exists": true,
+          "sha256": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24"
+        }
+      },
+      "pass": true
+    },
+    "owner_h_identity_y_commutes": {
+      "pass": true,
+      "u1_commutator_residual": 0.0,
+      "u1_norm": 2.0
+    },
+    "owner_h_left_action_su2_closes": {
+      "closure_residual": 0.0,
+      "pass": true,
+      "structure_rank": 3
+    },
+    "su2_rank_one_dimension_three": {
+      "pass": true,
+      "su2_dim": 3,
+      "su2_rank": 1
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_su2u1_electroweak_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "claim_ceiling": "Scratch diagnostic only: re-derives one SU(2)_L x U(1)_Y finite doublet from the owner's H/O division-algebra carrier construction. No Standard Model, M(C), Axis0, bridge, basin, manifold-closure, promotion, or formal admission claim.",
+    "closes": true,
+    "erase_owner_changes": true,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "su2_dim": 3,
+    "u1_present": true,
+    "wrong_fails": true
+  },
+  "root_constraints_in_force": [
+    "finite_bounded_carrier",
+    "noncommuting_order_sensitive_structure"
+  ],
+  "shared_booleans": {
+    "controls_fire": true,
+    "doublet_ok": true,
+    "erase_owner_changes": true,
+    "formal_admission_allowed": false,
+    "owner_carrier_load_bearing": true,
+    "promotion_allowed": false,
+    "su2_closes": true,
+    "u1_present": true,
+    "wrong_fails": true
+  },
+  "shared_scalars": {
+    "T3_down_plus_half_down": 0.0,
+    "T3_up_minus_half_up": 0.0,
+    "Tminus_up_minus_down": 0.0,
+    "Tplus_down_minus_up": 0.0,
+    "Y_down_minus_y_down": 0.0,
+    "Y_up_minus_y_up": 0.0,
+    "complex_doublet_count": 1.0,
+    "erased_u1_norm": 0.0,
+    "owner_h_closure_residual": 0.0,
+    "owner_h_from_o_max_abs_residual": 0.0,
+    "owner_h_structure_rank": 3.0,
+    "qit_substages_per_engine": 32.0,
+    "real_carrier_dim": 4.0,
+    "su2_dim": 3.0,
+    "su2_rank": 1.0,
+    "u1_commutator_residual": 0.0,
+    "u1_norm": 2.0,
+    "wrong_closure_residual": 0.8660254037844386
+  },
+  "sim_class": "finite_owner_carrier_formal_scout",
+  "sim_execution_kind": "nonclassical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_su2u1_electroweak_julia.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "supportive",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend parity over the same owner-carrier values",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive result serialization, source hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing backend for matrix algebra, commutator closure, doublet action, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "supportive current 32-substage metadata only; it does not carry this algebraic witness",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing include/call of division_algebra_ratchet_ladder.jl quaternion and octonion construction; erasing/replacing this carrier changes the result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "version": "2.0",
+  "why_not_v4_probes": {
+    "finite_witness_only": "one owner-carrier-derived doublet; no physical adequacy, bridge, Axis0, or manifold admission",
+    "owner_carrier_ablation_required": "all_pass requires wrong-owner and erased-owner controls to change the result",
+    "scratch_diagnostic_by_request": "classification intentionally remains scratch_diagnostic"
+  },
+  "witnesses": {
+    "erased_owner_table_control": {
+      "doublet_ok": false,
+      "su2_closes": false,
+      "u1_norm": 0.0
+    },
+    "isospin_doublet": {
+      "T3_eigenvalues": {
+        "down": -0.5,
+        "up": 0.5
+      },
+      "basis": {
+        "down": "(j + i*i)/sqrt(2) in owner H basis",
+        "up": "(1 + i*k)/sqrt(2)"
+      },
+      "hypercharge": 1.0
+    },
+    "owner_h_identity_u1": {
+      "commutator_residual": 0.0,
+      "generator": "Y = left multiplication by owner H identity"
+    },
+    "owner_h_su2_left_action": {
+      "closure_residual": 0.0,
+      "coeff_rows": [
+        [
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "structure_rank": 3
+    },
+    "wrong_owner_table_control": {
+      "closure_residual": 0.8660254037844386,
+      "coeff_rows": [
+        [
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.0
+        ]
+      ],
+      "structure_rank": 3
+    }
+  }
+}

@@ -77,8 +77,8 @@ def test_complete_uses_exact_claim_path(tmp_path: Path, monkeypatch: pytest.Monk
     module = _load_queue_claim_module()
     monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
 
-    module.enqueue("lane_A", "system_v4/probes/sim_first.py")
-    module.enqueue("lane_A", "system_v4/probes/sim_second.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_first.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_second.py")
 
     first_claim = module.claim("lane_A", "laneA_w1")
     second_claim = module.claim("lane_A", "laneA_w1")
@@ -99,7 +99,7 @@ def test_complete_blocks_duplicate_done_records(tmp_path: Path, monkeypatch: pyt
     module = _load_queue_claim_module()
     monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
 
-    module.enqueue("lane_A", "system_v4/probes/sim_first.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_first.py")
     first_claim = module.claim("lane_A", "laneA_w1")
     assert first_claim is not None
 
@@ -138,8 +138,8 @@ def test_resolve_claim_path_fails_closed_when_worker_is_ambiguous(
     module = _load_queue_claim_module()
     monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
 
-    module.enqueue("lane_A", "system_v4/probes/sim_first.py")
-    module.enqueue("lane_A", "system_v4/probes/sim_second.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_first.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_second.py")
     module.claim("lane_A", "laneA_w1")
     module.claim("lane_A", "laneA_w1")
 
@@ -151,7 +151,7 @@ def test_complete_blocks_nonzero_exit(tmp_path: Path, monkeypatch: pytest.Monkey
     module = _load_queue_claim_module()
     monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
 
-    module.enqueue("lane_A", "system_v4/probes/sim_bad.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_bad.py")
     claim = module.claim("lane_A", "laneA_w1")
 
     blocked_path = module.complete(claim, 2, "/tmp/artifact-bad.log")
@@ -173,7 +173,7 @@ def test_complete_require_receipt_blocks_failed_validation(
         lambda path: subprocess.CompletedProcess(["validate"], 1, "bad receipt", ""),
     )
 
-    module.enqueue("lane_A", "system_v4/probes/sim_bad_receipt.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_bad_receipt.py")
     claim = module.claim("lane_A", "laneA_w1")
 
     blocked_path = module.complete(claim, 0, "/tmp/artifact.log", require_receipt=True)
@@ -195,7 +195,7 @@ def test_complete_require_receipt_admits_successful_validation(
         lambda path: subprocess.CompletedProcess(["validate"], 0, '{"all_pass": true}', ""),
     )
 
-    module.enqueue("lane_A", "system_v4/probes/sim_good_receipt.py")
+    module.enqueue("lane_A", "system_v4/probes/classical_baseline_good_receipt.py")
     claim = module.claim("lane_A", "laneA_w1")
 
     done_path = module.complete(claim, 0, "/tmp/artifact.log", require_receipt=True)

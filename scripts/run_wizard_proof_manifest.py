@@ -22,7 +22,7 @@ import importlib.util
 import json
 import pathlib
 import sys
-p = pathlib.Path('/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_weyl_geometry_graph_proof_alignment.py')
+p = pathlib.Path.cwd() / 'system_v4/probes/sim_weyl_geometry_graph_proof_alignment.py'
 sys.path.insert(0, str(p.parent))
 spec = importlib.util.spec_from_file_location('weyl_graph_proof_alignment', p)
 if spec is None or spec.loader is None:
@@ -64,9 +64,9 @@ def default_gates() -> list[dict[str, Any]]:
                 "python3",
                 "-m",
                 "pytest",
-                "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/tests/test_wizard_behavior_harness.py",
-                "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/tests/test_run_wizard_system.py",
-                "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/tests/test_package_wizard_candidate.py",
+                str(ROOT / "system_v5/tests/test_wizard_behavior_harness.py"),
+                str(ROOT / "system_v5/tests/test_run_wizard_system.py"),
+                str(ROOT / "system_v5/tests/test_package_wizard_candidate.py"),
                 "-q",
             ],
             "expected_exit": 0,

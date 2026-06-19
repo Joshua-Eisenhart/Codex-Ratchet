@@ -1,0 +1,214 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source and PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing symbolic algebra for transformed marginal and polynomial recovery defect",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side finite recovery proof over bound integer values",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "build_gates": {
+    "julia_z3_finite_recovery": true,
+    "null_set_scope": true,
+    "symbolics_marginal_transform": true,
+    "symbolics_recovery_identity": true,
+    "wrong_flat_marginal_defect": true
+  },
+  "capability_receipts": {
+    "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "load_path": "@:@stdlib",
+    "symbolics_num_type": "Num",
+    "z3_positive_verdict": "unsat"
+  },
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "conditional_chart_density": "1/(4*pi^2) d_phi d_chi",
+    "coordinate_chart": "z1=cos(eta) exp(i(phi+chi)), z2=sin(eta) exp(i(phi-chi))",
+    "double_cover": "(phi, chi) ~ (phi + pi, chi + pi)",
+    "eta_range": "[0, pi/2]",
+    "finite_grid_rule": "even N chart has N^2 points and N^2/2 physical quotient classes",
+    "normalized_eta_marginal": "sin(2*eta) d_eta",
+    "physical_torus_area": "2*pi^2*sin(2*eta)",
+    "s3_volume": "2*pi^2",
+    "volume_form_double_chart": "(1/2)*sin(2*eta) d_eta d_phi d_chi"
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "finite_discretization_recovery": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite eta-layer disintegration recovery from bound integer layer weights, class count, and layer values",
+      "derived_expression": "sum_i weight_i * (physical_class_count * value_i) == target * physical_class_count",
+      "double_cover_control_defect": 30,
+      "erased_controls_flip": true,
+      "erased_double_cover_control_verdict": "unsat",
+      "erased_flat_marginal_control_verdict": "unsat",
+      "expected_for_valid_recovery": "unsat",
+      "flat_control_defect": -7,
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "eta_weight_scaled_by_pi_squared": [
+          1,
+          2,
+          1
+        ],
+        "layer_values": [
+          5,
+          7,
+          11
+        ],
+        "physical_class_count": 32,
+        "target_recovered_scaled": 30
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T00:07:08Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "packages_used": [
+    "Symbolics",
+    "Z3",
+    "JSON",
+    "SHA"
+  ],
+  "pin_sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d",
+  "pin_spec": "geo_disintegration_machinery_v0|purpose=mode4_RATCHETED_prerequisite_conditioning_on_measure_zero_constraint_sets|base_measure=round_uniform_S3_volume|foliation=S3_union_eta_T_eta|eta_range=[0,pi/2]|hopf_torus_area=2*pi^2*sin(2*eta)|S3_volume=2*pi^2|eta_marginal_normalized=sin(2*eta)|conditional_on_T_eta=normalized_flat_torus_measure_in_phi_chi_chart|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|conditional_chart_density=1/(4*pi^2)|finite_grid_physical_points=N^2/2|controls=naive_zero_denominator,positive_eta_band,flat_marginal_wrong,null_set_modification|solver_row=finite_discretized_recovery_with_erased_controls|engine_mode=julia_canon_plus_jax_diagnostic|pytorch_omitted=no_graph_network_autograd_claim|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "receipts": {
+    "J1_symbolics_recovery_identity": {
+      "coordinate_transform": "x=cos(2*eta), sin(2*eta)d_eta=-dx/2, eta marginal becomes uniform density 1/2 on x in [-1,1]",
+      "defect": "0",
+      "disintegrated_integral_over_x": "a + c / 3",
+      "exact_strength": "symbolic_identity",
+      "global_integral_over_x": "a + c / 3",
+      "pass": true,
+      "test_family": "a + b*x + c*(x^2)"
+    },
+    "J2_symbolics_marginal_transform": {
+      "eta_density": "sin(2*eta)",
+      "exact_strength": "symbolic_identity",
+      "pass": true,
+      "x_density_after_transform": "1//2"
+    },
+    "J3_wrong_flat_marginal_defect": {
+      "computed_nonzero_defect": "-1//6",
+      "correct_recovery": "2/3",
+      "exact_strength": "closed_form_integral",
+      "flat_marginal_recovery": "1/2",
+      "observable": "sin(2*eta)^2",
+      "pass": true
+    },
+    "J4_null_set_scope": {
+      "exact_strength": "measure_theorem",
+      "global_integrated_defect": "0",
+      "modified_eta": "pi/4",
+      "pass": true,
+      "pointwise_conditional_difference_for_cos_phi": 1,
+      "singleton_eta_mass": "0"
+    }
+  },
+  "result_path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_julia_results.json",
+  "role_id": "julia_symbolics_z3_disintegration_builder",
+  "schema_version": "engine_result_v1",
+  "seed": 2026061004,
+  "sim_id": "geo_disintegration_machinery_v0",
+  "source_path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_julia.jl",
+  "source_sha256": "b60c789b38411cf541c6b6af5fd19486bc7737dcc06903fd66c4b92e7825b61e",
+  "summary": {
+    "does_not_enable": "no ratchet sim is run; no manifold, axis, bridge, physics, or canonical admission claim is made",
+    "enables": "mode-4 cards may cite the disintegration rule for conditioning on fixed-eta Hopf tori with zero S3 measure",
+    "pytorch_omission": "no graph/network/autograd claim path; engine mode is julia_canon_plus_jax_diagnostic"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "single eta leaf modification has zero eta mass",
+      "demotion_condition": "demote if Symbolics does not participate in the algebraic check",
+      "gates": [
+        "symbolic_recovery"
+      ],
+      "input_object": "x=cos(2*eta) transformed marginal and polynomial shell-average family",
+      "negative/erased_control": "wrong flat eta marginal gives -1/6 on sin(2eta)^2",
+      "output_object": "0",
+      "positive_case": "Symbolics simplifies recovery defect to 0",
+      "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "N=8, eta layers pi/12, pi/4, 5*pi/12",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_recovery"
+      ],
+      "input_object": "finite scaled eta weights, class count, and layer values",
+      "negative/erased_control": "flat marginal and double-cover erasure controls are UNSAT when forced to target",
+      "output_object": "unsat",
+      "positive_case": "valid recovery violation is UNSAT",
+      "qualified_api/function": "Z3.Solver / Z3.IntVar / Z3.add / Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

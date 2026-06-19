@@ -1,0 +1,262 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing second SMT engine for the same identity and flip",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact symbolic ln identity check",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing jacrev observable on theta-carrier coherent information",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT identity and flip over computed table values",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "torch.func",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "classification": "scratch_diagnostic",
+  "continuity_anchors": {
+    "dual_stack": {
+      "Phi0_Ic_S_to_M": {
+        "abs_divergence": 1.6653345369377348e-16,
+        "all_match": true,
+        "computed": 0.4164955306996876,
+        "expected": 0.4164955306996874
+      },
+      "source": "system_v6/sims/dual_stack_carnot_szilard_hopf_weyl_probe/results/dual_stack_carnot_szilard_hopf_weyl_probe_envelope_results.json"
+    },
+    "nested_ratchet": {
+      "all_match": true,
+      "max_abs_divergence": 0.0,
+      "object_note": "continuity fixture reproduces committed 0 -> -0.362073 -> -0.678632 S(A|B) trajectory",
+      "rows": [
+        {
+          "abs_divergence": 0.0,
+          "bipartition_id": "q0__q1q2",
+          "computed_S_A_given_B_nats": 0.0,
+          "expected_S_A_given_B_nats": 0.0,
+          "state_id": "nested_r1_theta_0"
+        },
+        {
+          "abs_divergence": 0.0,
+          "bipartition_id": "q0__q1q2",
+          "computed_S_A_given_B_nats": -0.36207321415030524,
+          "expected_S_A_given_B_nats": -0.36207321415030524,
+          "state_id": "nested_r2_theta_0_35"
+        },
+        {
+          "abs_divergence": 0.0,
+          "bipartition_id": "q0__q1q2",
+          "computed_S_A_given_B_nats": -0.6786324023685925,
+          "expected_S_A_given_B_nats": -0.6786324023685925,
+          "state_id": "nested_r3_theta_0_70"
+        }
+      ],
+      "source": "system_v6/receipts/nested_ratchet_support/nr_fresh_audit_verdict.md"
+    }
+  },
+  "controls": {
+    "entangled_positive_case": {
+      "I_c_nats": -0.4893671630542926,
+      "S_A_given_B_nats": 0.4893671630542926,
+      "negativity": 0.050000000000000155,
+      "pass": true,
+      "state_id": "werner_p04_q0q1_spectator_q2"
+    },
+    "erased_channel_Ic_flip": {
+      "coherent_Ic_positive": true,
+      "erased_Ic_nonpositive": true,
+      "half_erasure_zero": true,
+      "pass": true,
+      "rows": [
+        {
+          "I_c_nats": 0.6931471805599453,
+          "epsilon": 0.0,
+          "formula": "(1-2 epsilon) ln 2"
+        },
+        {
+          "I_c_nats": 0.0,
+          "epsilon": 0.5,
+          "formula": "(1-2 epsilon) ln 2"
+        },
+        {
+          "I_c_nats": -0.6931471805599453,
+          "epsilon": 1.0,
+          "formula": "(1-2 epsilon) ln 2"
+        }
+      ]
+    },
+    "premature_evaluation": {
+      "bipartition_missing": {
+        "control": "bipartition_missing",
+        "exception_type": "MissingStructure",
+        "message": "bipartition object must be constructed before evaluation",
+        "pass": true
+      },
+      "channel_missing": {
+        "control": "channel_missing",
+        "exception_type": "MissingStructure",
+        "message": "channel object must be constructed before I_c evaluation",
+        "pass": true
+      }
+    },
+    "separable_state_control": {
+      "classical_bound_Ic_nats": 0.0,
+      "pass": true,
+      "rows": [
+        {
+          "I_c_nats": 0.0,
+          "S_A_given_B_nats": 0.0,
+          "negativity": 0.0,
+          "state_id": "product_000"
+        },
+        {
+          "I_c_nats": -0.36207321415030524,
+          "S_A_given_B_nats": 0.36207321415030524,
+          "negativity": 0.0,
+          "state_id": "separable_r2_theta_0_35"
+        },
+        {
+          "I_c_nats": -0.6786324023685925,
+          "S_A_given_B_nats": 0.6786324023685925,
+          "negativity": 0.0,
+          "state_id": "separable_r3_theta_0_70"
+        }
+      ]
+    },
+    "typed_confusion_rejection": {
+      "exception_type": "TypeConfusion",
+      "message": "cannot add S(A|B) nats to negativity without explicit typed convention",
+      "pass": true
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "load_bearing": true,
+      "perturbed_construction_path_verdict": "sat",
+      "ran": true,
+      "scale": 1000000000000,
+      "scaled_identity": "round(1e12*S(A|B)) + round(1e12*I_c) == 0",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "load_bearing": true,
+      "perturbed_construction_path_verdict": "sat",
+      "ran": true,
+      "scale": 1000000000000,
+      "scaled_identity": "round(1e12*S(A|B)) + round(1e12*I_c) == 0",
+      "verdict": "unsat"
+    }
+  },
+  "engine_values": {
+    "Bell_q0q1_spectator_q2.q0__q1q2.I_A_colon_B": 1.3862943611198904,
+    "Bell_q0q1_spectator_q2.q0__q1q2.I_c": 0.6931471805599452,
+    "Bell_q0q1_spectator_q2.q0__q1q2.S_A_given_B": -0.6931471805599452,
+    "Bell_q0q1_spectator_q2.q0__q1q2.negativity": 0.5000000000000002,
+    "GHZ.q0__q1q2.I_A_colon_B": 1.3862943611198904,
+    "GHZ.q0__q1q2.I_c": 0.6931471805599452,
+    "GHZ.q0__q1q2.S_A_given_B": -0.6931471805599452,
+    "GHZ.q0__q1q2.negativity": 0.5000000000000002,
+    "W.q0__q1q2.I_A_colon_B": 1.2730283365896256,
+    "W.q0__q1q2.I_c": 0.6365141682948128,
+    "W.q0__q1q2.S_A_given_B": -0.6365141682948128,
+    "W.q0__q1q2.negativity": 0.471404520791032,
+    "dual_stack_phi0_fixture.q0__q1q2.I_A_colon_B": 0.8329910613993752,
+    "dual_stack_phi0_fixture.q0__q1q2.I_c": 0.4164955306996876,
+    "dual_stack_phi0_fixture.q0__q1q2.S_A_given_B": -0.4164955306996876,
+    "dual_stack_phi0_fixture.q0__q1q2.negativity": 0.35355339059327373,
+    "nested_r2_theta_0_35.q0__q1q2.I_A_colon_B": 0.7241464283006105,
+    "nested_r2_theta_0_35.q0__q1q2.I_c": 0.36207321415030524,
+    "nested_r2_theta_0_35.q0__q1q2.S_A_given_B": -0.36207321415030524,
+    "nested_r2_theta_0_35.q0__q1q2.negativity": 0.3221088436188455,
+    "nested_r3_theta_0_70.q0__q1q2.I_A_colon_B": 1.357264804737185,
+    "nested_r3_theta_0_70.q0__q1q2.I_c": 0.6786324023685925,
+    "nested_r3_theta_0_70.q0__q1q2.S_A_given_B": -0.6786324023685925,
+    "nested_r3_theta_0_70.q0__q1q2.negativity": 0.4927248649942302
+  },
+  "formal_admission_allowed": false,
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkTerm/assertFormula/checkSat mirrors the scaled identity and flip",
+    "sympy": "sp.symbols/Rational/log/simplify certifies ln base-e identity used by table",
+    "torch.func": "torch.func.jacrev differentiates the constructed theta-carrier I_c receipt",
+    "z3": "z3.Solver/add/check proves scaled S(A|B)+I_c identity UNSAT with perturbed SAT flip"
+  },
+  "package_receipts": {
+    "sympy": {
+      "identity": "0",
+      "pass": true
+    },
+    "torch.func": {
+      "I_c_nats": 0.36207321415030524,
+      "d_Ic_d_theta": 1.2984592218467168,
+      "pass": true,
+      "theta": 0.35
+    }
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "z3",
+    "cvc5",
+    "sympy",
+    "json",
+    "math",
+    "pathlib"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/s8_local_information_table_v0/results/s8_local_information_table_v0_pytorch_results.json",
+  "role_id": "pytorch",
+  "schema": "s8_local_information_table_v0_engine_receipt_v1",
+  "sim_id": "s8_local_information_table_v0",
+  "source_path": "system_v6/sims/s8_local_information_table_v0/s8_local_information_table_v0_pytorch.py",
+  "source_sha256": "0619a2e7528e6194984494fdd5417e656db92b28e83ce6b50877d955fe9b9746",
+  "tool_calls": [
+    {
+      "output_object": "theta-carrier I_c derivative",
+      "qualified_api": "torch.func.jacrev",
+      "tool": "torch.func"
+    },
+    {
+      "output_object": "unsat",
+      "qualified_api": "z3.Solver / solver.add / solver.check",
+      "tool": "z3"
+    },
+    {
+      "output_object": "unsat",
+      "qualified_api": "cvc5.Solver / mkTerm / assertFormula / checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "output_object": "0",
+      "qualified_api": "sp.symbols / sp.Rational / sp.log / sp.simplify",
+      "tool": "sympy"
+    }
+  ]
+}

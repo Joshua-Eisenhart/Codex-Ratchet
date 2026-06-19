@@ -1,0 +1,434 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer backend": "load_bearing",
+    "Julia Float64 backend": "load_bearing",
+    "Julia LinearAlgebra": "load_bearing",
+    "Julia stdlib": "supportive",
+    "numpy": null,
+    "owner double-cover carrier": "load_bearing",
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer backend": {
+      "reason": "load-bearing peer result for dual-backend parity on shared witness scalars and verdicts",
+      "tried": true,
+      "used": true
+    },
+    "Julia Float64 backend": {
+      "reason": "load-bearing independent Float64 backend for finite SU(2), SO(3), Sp(1), and C3 carrier witnesses",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing matrix, vector, density, quaternion, residual, and parity computations",
+      "tried": true,
+      "used": true
+    },
+    "Julia stdlib": {
+      "reason": "supportive JSON serialization, timestamps, hashing, and peer-result loading",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not available in Julia path and explicitly excluded from this scratch diagnostic",
+      "tried": false,
+      "used": false
+    },
+    "owner double-cover carrier": {
+      "reason": "load-bearing layer structure; erasing SU(2)/Sp(1) double-cover signs to SO(3)/density changes the layer verdict",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "explicitly excluded by the requested JAX plus Julia lane",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "julia",
+    "linearalgebra",
+    "julia stdlib",
+    "jax peer result when present"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "finite double-cover discriminator verdict for this row",
+    "SO3 vector and density controls lose the -1 holonomy",
+    "H1/Sp1 ties the C2 spinor realization, so C2 uniqueness is not claimed",
+    "C3+ is unnecessary under these finite witnesses",
+    "JAX/Julia parity agreed or disagreements were reported"
+  ],
+  "backend": "julia_float64",
+  "blocked_consumers": [
+    "formal_admission",
+    "promotion",
+    "PEPS3D_admission",
+    "Axis0_admission",
+    "bridge_admission",
+    "physics_admission",
+    "C2_unique_realization_claim",
+    "manifold_closure"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream": {
+      "blocked_consumers": [
+        "formal_admission",
+        "promotion",
+        "PEPS3D_admission",
+        "Axis0_admission",
+        "bridge_admission",
+        "physics_admission",
+        "C2_unique_realization_claim",
+        "manifold_closure"
+      ],
+      "claim_ceiling": "scratch_diagnostic discriminator only: finite spinor-carrier minimality row for the 2pi=-1 double-cover witness. Supports only the bounded verdict reported here; no promotion, formal admission, PEPS3D admission, Axis0, bridge, physics, uniqueness of C2 over H1, or manifold closure claim.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "honest_discriminator_verdict": {
+      "layer_verdict": "REAL_LAYER",
+      "note": "REAL_LAYER means the double-cover layer is required against SO3/density controls; C2 versus H1 remains a realization convention.",
+      "pass": true
+    }
+  },
+  "branch_status_before_run": "discriminator row requested; survival not assumed",
+  "bridge_layer": "none",
+  "carrier_layer": "SU2/Sp1 double-cover carrier with SO3/density erasure controls",
+  "claim_ceiling": "scratch_diagnostic discriminator only: finite spinor-carrier minimality row for the 2pi=-1 double-cover witness. Supports only the bounded verdict reported here; no promotion, formal admission, PEPS3D admission, Axis0, bridge, physics, uniqueness of C2 over H1, or manifold closure claim.",
+  "classification": "scratch_diagnostic",
+  "codomain_or_output": "single layer verdict plus parity-checked finite witness scalars and booleans",
+  "cut_layer": "SO3/density quotient and higher-qudit spectator erasure controls",
+  "domain": "one spinor-carrier minimality discriminator row over C2, SO3 vector, H1/Sp1 quaternion, and C3+ controls",
+  "eligible_consumers": [],
+  "erased_layer_verdict": "GENERIC",
+  "finite_map": "carrier choice -> finite 2pi/4pi holonomy and quotient residuals -> erasure controls -> layer verdict",
+  "finite_witness": {
+    "axis": [
+      0.2672612419124244,
+      0.5345224838248488,
+      0.8017837257372732
+    ],
+    "quotient_theta": 2.0943951023931953,
+    "values": {
+      "c3_embed_spinor_gap_2pi": 0.0,
+      "c3_embedded_c2_holonomy_2pi": -1.0,
+      "c3_embedded_c2_holonomy_4pi": 1.0,
+      "c3_spectator_global_minus_residual": 0.39223227027636803,
+      "c3_spectator_return_residual": 1.9611613513818402,
+      "c3_spin1_holonomy_2pi": 1.0,
+      "density_holonomy_2pi": 0.9999999999999999,
+      "density_holonomy_4pi": 0.9999999999999999,
+      "density_return_residual_2pi": 1.0385185452638061e-16,
+      "density_return_residual_4pi": 9.614813431917819e-17,
+      "erased_layer_minus_channels": 0.0,
+      "full_layer_minus_channels": 2.0,
+      "quaternion_commutator_norm": 0.3826834323650897,
+      "quaternion_holonomy_2pi": -1.0,
+      "quaternion_holonomy_4pi": 1.0,
+      "quaternion_return_residual_2pi": 1.2246467991473532e-16,
+      "quaternion_return_residual_4pi": 2.4492935982947064e-16,
+      "quaternion_spinor_gap_2pi": 0.0,
+      "quaternion_to_so3_2pi_residual": 1.7431527984210495e-32,
+      "quaternion_to_so3_quotient_residual": 3.3422138886441676e-16,
+      "so3_commutator_norm": 1.0623933623853064,
+      "so3_series_rodrigues_residual": 3.433175098891678e-16,
+      "spinor_return_residual_2pi": 1.2692840934826702e-16,
+      "spinor_return_residual_4pi": 2.3494429268587525e-16,
+      "spinor_su2_holonomy_2pi": -1.0,
+      "spinor_su2_holonomy_2pi_imag": -1.249000902703301e-16,
+      "spinor_su2_holonomy_4pi": 1.0,
+      "su2_commutator_norm": 0.5411961001461969,
+      "su2_to_so3_quotient_residual": 2.0014830212433605e-16,
+      "vector_return_residual_2pi": 2.482534153247273e-16,
+      "vector_return_residual_4pi": 5.4672143489065705e-16,
+      "vector_so3_holonomy_2pi": 1.0,
+      "vector_so3_holonomy_4pi": 1.0
+    },
+    "verdict": {
+      "c3_embedded_c2_ties_spinor": true,
+      "c3_spectator_extra_not_load_bearing": true,
+      "c3_spin1_loses_minus1": true,
+      "controls_pass": true,
+      "density_loses_minus1": true,
+      "double_cover_needed": true,
+      "erased_layer_changes_verdict": true,
+      "erased_layer_loses_result": true,
+      "erased_layer_verdict": "GENERIC",
+      "higher_qudit_unnecessary": true,
+      "layer_verdict": "REAL_LAYER",
+      "noncommuting_controls": true,
+      "owner_erasure_changes_result": true,
+      "quaternion_ties_spinor": true,
+      "realization_convention": true,
+      "realization_verdict": "CONVENTION",
+      "spinor_su2_has_minus1": true,
+      "spinor_su2_quotients_to_so3": true,
+      "vector_so3_loses_minus1": true
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T05:38:40Z",
+  "geometry_layer": "finite double-cover holonomy, Hopf/Bloch quotient readout, and quaternion conjugation quotient",
+  "graveyard_companions": {
+    "c3_spectator_not_global_minus_control": {
+      "global_minus_residual": 0.39223227027636803,
+      "note": "the extra dimension is not load-bearing for the spinor -1 unless the state is restricted back to the C2 block",
+      "pass": true
+    },
+    "c3_spin1_loses_minus1_control": {
+      "holonomy_2pi": 1.0,
+      "pass": true
+    },
+    "density_projection_loses_minus1_control": {
+      "holonomy_2pi": 0.9999999999999999,
+      "pass": true
+    },
+    "so3_vector_loses_minus1_control": {
+      "holonomy_2pi": 1.0,
+      "pass": true
+    }
+  },
+  "higher_qudit_unnecessary": true,
+  "jax_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_spinor_carrier_minimality_results.json",
+  "law_or_candidate_tested": "A spinorial double-cover layer is needed to retain the 2pi=-1 holonomy; C2 and H1 are isomorphic realizations, and C3+ is not required.",
+  "layer_verdict": "REAL_LAYER",
+  "name": "disc_spinor_carrier_minimality",
+  "nearby_variants": {
+    "passed": 1,
+    "total": 1,
+    "variants": [
+      "spinor_carrier_minimality"
+    ]
+  },
+  "negative": {
+    "c3_spectator_not_global_minus_control": {
+      "global_minus_residual": 0.39223227027636803,
+      "note": "the extra dimension is not load-bearing for the spinor -1 unless the state is restricted back to the C2 block",
+      "pass": true
+    },
+    "c3_spin1_loses_minus1_control": {
+      "holonomy_2pi": 1.0,
+      "pass": true
+    },
+    "density_projection_loses_minus1_control": {
+      "holonomy_2pi": 0.9999999999999999,
+      "pass": true
+    },
+    "so3_vector_loses_minus1_control": {
+      "holonomy_2pi": 1.0,
+      "pass": true
+    }
+  },
+  "numpy_compute_used": false,
+  "object_id": "disc_spinor_carrier_minimality",
+  "owner_erasure_changes_result": true,
+  "parity": {
+    "boolean_mismatches": [],
+    "max_abs_diff": 1.9631255561066153e-16,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/disc_spinor_carrier_minimality_results.json",
+    "scalar_diffs": [],
+    "string_mismatches": [],
+    "within_1e_9": true
+  },
+  "positive": {
+    "double_cover_needed_against_vector_and_density": {
+      "density_holonomy_2pi": 0.9999999999999999,
+      "pass": true,
+      "so3_holonomy_2pi": 1.0
+    },
+    "higher_qudit_unnecessary": {
+      "pass": true,
+      "reason": "C2 already carries the -1; C3 spin-1 loses it, while C3 block embedding only reuses the C2 subspace"
+    },
+    "owner_carrier_load_bearing": {
+      "erased_layer_minus_channels": 0.0,
+      "erased_layer_verdict": "GENERIC",
+      "full_layer_minus_channels": 2.0,
+      "full_layer_verdict": "REAL_LAYER",
+      "pass": true,
+      "rule": "erase double-cover layer to SO3/density quotient and the -1 channel count changes from 2 to 0"
+    },
+    "quaternion_ties_spinor_realization": {
+      "pass": true,
+      "quaternion_holonomy_2pi": -1.0,
+      "spinor_holonomy_2pi": -1.0
+    },
+    "spinor_su2_has_minus1": {
+      "holonomy_2pi": -1.0,
+      "pass": true,
+      "return_residual_2pi": 1.2692840934826702e-16
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "formal_admission",
+    "promotion",
+    "PEPS3D_admission",
+    "Axis0_admission",
+    "bridge_admission",
+    "physics_admission",
+    "C2_unique_realization_claim",
+    "manifold_closure"
+  ],
+  "promotion_status": "diagnostic_only",
+  "quaternion_ties_spinor": true,
+  "realization_note": "C2 spinor and H1/Sp1 unit quaternion both carry the -1; choosing one is a realization convention in this row.",
+  "realization_verdict": "CONVENTION",
+  "required_tools": [
+    "julia",
+    "linearalgebra",
+    "jax peer",
+    "owner double-cover carrier"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_spinor_carrier_minimality_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "claim_ceiling": "scratch_diagnostic discriminator only: finite spinor-carrier minimality row for the 2pi=-1 double-cover witness. Supports only the bounded verdict reported here; no promotion, formal admission, PEPS3D admission, Axis0, bridge, physics, uniqueness of C2 over H1, or manifold closure claim.",
+    "higher_qudit_unnecessary": true,
+    "layer_verdict": "REAL_LAYER",
+    "parity_within_1e_9": true,
+    "quaternion_ties_spinor": true,
+    "realization_verdict": "CONVENTION",
+    "spinor_su2_has_minus1": true,
+    "vector_so3_loses_minus1": true
+  },
+  "root_constraints_in_force": {
+    "F01": "finite C2, R3, H1, and C3 witnesses at theta in {2pi,4pi,2pi/3}",
+    "N01": "noncommuting SU2, SO3, and quaternion rotation controls have nonzero commutator norms"
+  },
+  "row_id": "spinor_carrier_minimality",
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "shared_booleans": {
+    "c3_embedded_c2_ties_spinor": true,
+    "c3_spectator_extra_not_load_bearing": true,
+    "c3_spin1_loses_minus1": true,
+    "classification_fence": true,
+    "controls_pass": true,
+    "density_loses_minus1": true,
+    "double_cover_needed": true,
+    "erased_layer_changes_verdict": true,
+    "higher_qudit_unnecessary": true,
+    "noncommuting_controls": true,
+    "owner_erasure_changes_result": true,
+    "quaternion_ties_spinor": true,
+    "realization_convention": true,
+    "spinor_su2_has_minus1": true,
+    "spinor_su2_quotients_to_so3": true,
+    "vector_so3_loses_minus1": true
+  },
+  "shared_scalars": {
+    "c3_embed_spinor_gap_2pi": 0.0,
+    "c3_embedded_c2_holonomy_2pi": -1.0,
+    "c3_embedded_c2_holonomy_4pi": 1.0,
+    "c3_spectator_global_minus_residual": 0.39223227027636803,
+    "c3_spectator_return_residual": 1.9611613513818402,
+    "c3_spin1_holonomy_2pi": 1.0,
+    "density_holonomy_2pi": 0.9999999999999999,
+    "density_holonomy_4pi": 0.9999999999999999,
+    "density_return_residual_2pi": 1.0385185452638061e-16,
+    "density_return_residual_4pi": 9.614813431917819e-17,
+    "erased_layer_minus_channels": 0.0,
+    "erased_layer_verdict_code": 3.0,
+    "full_layer_minus_channels": 2.0,
+    "layer_verdict_code": 1.0,
+    "quaternion_commutator_norm": 0.3826834323650897,
+    "quaternion_holonomy_2pi": -1.0,
+    "quaternion_holonomy_4pi": 1.0,
+    "quaternion_return_residual_2pi": 1.2246467991473532e-16,
+    "quaternion_return_residual_4pi": 2.4492935982947064e-16,
+    "quaternion_spinor_gap_2pi": 0.0,
+    "quaternion_to_so3_2pi_residual": 1.7431527984210495e-32,
+    "quaternion_to_so3_quotient_residual": 3.3422138886441676e-16,
+    "realization_verdict_code": 2.0,
+    "so3_commutator_norm": 1.0623933623853064,
+    "so3_series_rodrigues_residual": 3.433175098891678e-16,
+    "spinor_return_residual_2pi": 1.2692840934826702e-16,
+    "spinor_return_residual_4pi": 2.3494429268587525e-16,
+    "spinor_su2_holonomy_2pi": -1.0,
+    "spinor_su2_holonomy_2pi_imag": -1.249000902703301e-16,
+    "spinor_su2_holonomy_4pi": 1.0,
+    "su2_commutator_norm": 0.5411961001461969,
+    "su2_to_so3_quotient_residual": 2.0014830212433605e-16,
+    "vector_return_residual_2pi": 2.482534153247273e-16,
+    "vector_return_residual_4pi": 5.4672143489065705e-16,
+    "vector_so3_holonomy_2pi": 1.0,
+    "vector_so3_holonomy_4pi": 1.0
+  },
+  "sim_class": "carrier_minimality_discriminator_probe",
+  "sim_execution_kind": "nonclassical",
+  "source_alignment_category": "spinor_carrier_minimality_double_cover_discriminator",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_spinor_carrier_minimality.jl",
+  "source_refs": {
+    "jax_source": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/sim_disc_spinor_carrier_minimality_probe.py",
+      "sha256": "147c8c6f8703dabe846f894062db7a5ac2e1eb697929542f1d1ec073965a1478"
+    },
+    "julia_source": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/disc_spinor_carrier_minimality.jl",
+      "sha256": "2203f135653bcb7d93c0f7466c27e2469fa972b83b3b3770e1d011c5f6c1115d"
+    }
+  },
+  "spinor_su2_has_minus1": true,
+  "stop_condition_fired": false,
+  "tool_integration_depth": {
+    "JAX peer backend": "load_bearing",
+    "Julia Float64 backend": "load_bearing",
+    "Julia LinearAlgebra": "load_bearing",
+    "Julia stdlib": "supportive",
+    "numpy": null,
+    "owner double-cover carrier": "load_bearing",
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JAX peer backend": {
+      "reason": "load-bearing peer result for dual-backend parity on shared witness scalars and verdicts",
+      "tried": true,
+      "used": true
+    },
+    "Julia Float64 backend": {
+      "reason": "load-bearing independent Float64 backend for finite SU(2), SO(3), Sp(1), and C3 carrier witnesses",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing matrix, vector, density, quaternion, residual, and parity computations",
+      "tried": true,
+      "used": true
+    },
+    "Julia stdlib": {
+      "reason": "supportive JSON serialization, timestamps, hashing, and peer-result loading",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not available in Julia path and explicitly excluded from this scratch diagnostic",
+      "tried": false,
+      "used": false
+    },
+    "owner double-cover carrier": {
+      "reason": "load-bearing layer structure; erasing SU(2)/Sp(1) double-cover signs to SO(3)/density changes the layer verdict",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "explicitly excluded by the requested JAX plus Julia lane",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_compute_used": false,
+  "vector_so3_loses_minus1": true,
+  "why_not_v4_probes": {
+    "reason": "v5 scratch dual-backend discriminator row; not a v4 promotion or formal-admission probe"
+  }
+}

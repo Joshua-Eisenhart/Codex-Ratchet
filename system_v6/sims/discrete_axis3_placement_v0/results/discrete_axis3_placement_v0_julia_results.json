@@ -1,0 +1,101 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia finite loop graph",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia computed-value SMT gate",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "receipt_id": "julia_Graphs_axis3_placement_candidate",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "receipt_id": "julia_Z3_axis3_placement_candidate",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "axis0_not_from_placement": true,
+    "base_count": 24,
+    "changed_edge_count": 192,
+    "fiber_count": 24,
+    "neutral_control_count": 8,
+    "placement_loop_count": 48,
+    "placement_not_from_axis0": true,
+    "readout_signature_sha256": "c9479f89b68450b63db2a657c65d0c3c93f39fe0b106b124d27cf7412ce1850e",
+    "stable_edge_count": 192
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_mode": "all_three_full_sims",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:08:31Z",
+  "object_id": "discrete_axis3_placement_v0_julia",
+  "package_observables": {
+    "Graphs": "Graphs.SimpleDiGraph loop-time dynamics carrier and edge counts",
+    "Z3": "Z3.Solver computed placement/stability identity and erased flip"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis3_placement_v0/results/discrete_axis3_placement_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis3_placement_v0",
+  "source_backing_probe": {
+    "Graphs_edge_count": 384,
+    "Graphs_vertex_count": 385,
+    "Z3_erased_flip_verdict": "sat",
+    "Z3_identity_verdict": "unsat",
+    "pass": true
+  },
+  "source_path": "system_v6/sims/discrete_axis3_placement_v0/discrete_axis3_placement_v0_julia.jl",
+  "source_sha256": "4a7bb27d149abbda1f047c3f83c43136de6bd8ccf9aa4a94b162bf7a76e05cd0",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph, Graphs.add_edge!, Graphs.nv, Graphs.ne",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver, Z3.IntVar, Z3.add, Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

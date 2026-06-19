@@ -1,0 +1,843 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Z3.jl existence search over free carrier variables for each type and fixture",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT existence search over the same carrier/readout constraints",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive readback of independent engine receipts and envelope write",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive path binding for result files inside this sim directory",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing QF_NRA/linear SMT existence search over free carrier variables for each type and fixture",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_status": "PASS",
+  "by_construction_controls": {
+    "y_phase_exclusion": {
+      "by_construction": true,
+      "carrier_type": "real_rebit",
+      "fenced_from_load_bearing": true,
+      "load_bearing": false,
+      "reason": "A real-symmetric rebit has Tr(rho*Y)=0, represented here as Y=1/2, so Y=3/4 is outside the class by construction."
+    }
+  },
+  "canon_runtime": {
+    "artifact_path": "not_scoped",
+    "consumer_policy": "Z3.jl SMT carrier-type existence search only; no algebra artifact consumed",
+    "semantic_owner": "julia"
+  },
+  "carrier_type_non_isomorphism": {
+    "basis": "structural category difference, not a hardcoded witness carrier",
+    "classical_noncontextual": "simplex over deterministic Z/X/Y value assignments with non-disturbing sequential readout",
+    "complex_rho": "complex Hermitian 2x2 PSD trace-1 density matrix rho=[[a,b-i*c],[b+i*c,1-a]]",
+    "quotient": "finite probe-outcome fingerprint row with one free bounded readout variable per measured probe",
+    "real_rebit": "real-symmetric 2x2 PSD trace-1 density matrix rho_R=[[a,b],[b,1-a]]"
+  },
+  "claim": "For these finite fixtures, solver existence over free per-type carrier variables yields an allowed/excluded matrix. Multiplicity means installed. The load-bearing carrier-type negative is order_gap_clean for classical_noncontextual; y_phase_exclusion for real_rebit is by construction and kept as a boundary/control only.",
+  "claim_ceiling": "For these finite fixtures only: multiplicity across non-isomorphic carrier categories means the carrier type is installed, while UNSAT rows give fixture-local exclusions. The quotient carrier is a near-trivial null baseline with one bounded free variable per measured probe. The load-bearing carrier-type negative is the order_gap_clean classical_noncontextual exclusion: ZX=1/4 versus XZ=3/8 violates the non-disturbing classical joint. The y_phase real_rebit exclusion is by_construction because a real-symmetric rebit has Y=1/2 identically; it is a boundary/control, not load-bearing. The Luders readout maps encode one chosen measurement geometry, so the clean order-gap exclusion is fixture-local contextuality-flavored evidence under that geometry, not a general contextuality theorem. This does not exclude rho, does not promote beyond scratch_diagnostic, and leaves the Rung-0.5 Boolean/counting fork held.",
+  "claim_path_tools": [
+    "Z3",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "crossover_proofs": {
+    "cvc5": {
+      "carrier_type": "classical_noncontextual",
+      "claim": "Python cvc5 agrees with z3 on the clean classical_noncontextual order-gap exclusion.",
+      "headline_fixture": "order_gap_clean",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "carrier_type": "classical_noncontextual",
+      "claim": "Z3.jl agrees on the same clean order-gap exclusion and allowed set.",
+      "headline_fixture": "order_gap_clean",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "carrier_type": "classical_noncontextual",
+      "claim": "Python z3 excludes classical_noncontextual on order_gap_clean while admitting real_rebit and complex_rho.",
+      "headline_fixture": "order_gap_clean",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "decision_rule": "For each carrier type T and fixture F, run an SMT existence search with free type-T variables and readout_T(C, probe) == measured_probe. SAT means T is admitted/allowed. UNSAT means T is excluded/negative. UNKNOWN on a headline verdict fails the build.",
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "marginal_multiplicity": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "order_gap_clean": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "order_gap_exclusion": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "scrambled_order_gap": [
+          "quotient"
+        ],
+        "y_phase_exclusion": [
+          "quotient",
+          "classical_noncontextual",
+          "complex_rho"
+        ]
+      },
+      "julia": {
+        "marginal_multiplicity": [
+          "quotient",
+          "classical_noncontextual",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "order_gap_clean": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "order_gap_exclusion": [
+          "quotient",
+          "real_rebit",
+          "complex_rho"
+        ],
+        "scrambled_order_gap": [
+          "quotient"
+        ],
+        "y_phase_exclusion": [
+          "quotient",
+          "classical_noncontextual",
+          "complex_rho"
+        ]
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "notes": [
+      "Agreement is envelope plumbing after independent local lane runs.",
+      "The claim path is per-type SMT existence with readout binding, not cross-engine parity by itself."
+    ]
+  },
+  "engine": "envelope_controller",
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "pytorch": "not_scoped; no graph/network/autograd claim path"
+  },
+  "engine_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_julia_results.json"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "independent SAT/UNSAT allowed-set matrix and reproduce controls over free carrier variables",
+        "jax": "supportive x64 measured-table readback only",
+        "jax.numpy": "supportive x64 measured-table readback only",
+        "z3": "SAT/UNSAT allowed-set matrix and reproduce controls over free carrier variables"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_jax_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/carrier_type_admissibility_matrix_v0_jax.py",
+      "source_sha256": "f068bc858a772f9442bba6f6ceda6f406fd577071f602a5c344a1e47ae7f4641"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "package_observables": {
+        "JSON": "spec/result JSON handling only",
+        "Z3": "SAT/UNSAT allowed-set matrix and reproduce controls over free carrier variables"
+      },
+      "packages_used": [
+        "JSON",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/results/carrier_type_admissibility_matrix_v0_julia_results.json",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/carrier_type_admissibility_matrix_v0/carrier_type_admissibility_matrix_v0_julia.jl",
+      "source_sha256": "88a09bcd7265ca0360df3236d1da2462475810348f422e2a8fb2d90425cce34b"
+    }
+  },
+  "failures": [],
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5"
+      ],
+      "role": "python proof sidecar with z3/cvc5"
+    },
+    "julia": {
+      "packages": [
+        "JSON",
+        "SHA",
+        "Dates",
+        "Z3"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "semantic_owner"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "not_scoped"
+    },
+    "tensor_exchange": "not_scoped"
+  },
+  "formal_admission_allowed": false,
+  "full_allowed_excluded_matrix": {
+    "marginal_multiplicity": {
+      "allowed_set": [
+        "quotient",
+        "classical_noncontextual",
+        "real_rebit",
+        "complex_rho"
+      ],
+      "excluded_set": [],
+      "fixture_verdict": "installed",
+      "solver_rows": {
+        "cvc5": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [],
+          "unknown_set": []
+        },
+        "julia_z3": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [],
+          "unknown_set": []
+        },
+        "z3": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [],
+          "unknown_set": []
+        }
+      }
+    },
+    "order_gap_clean": {
+      "allowed_set": [
+        "quotient",
+        "real_rebit",
+        "complex_rho"
+      ],
+      "excluded_set": [
+        "classical_noncontextual"
+      ],
+      "fixture_verdict": "installed",
+      "solver_rows": {
+        "cvc5": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        },
+        "julia_z3": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        },
+        "z3": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        }
+      }
+    },
+    "order_gap_exclusion": {
+      "allowed_set": [
+        "quotient",
+        "real_rebit",
+        "complex_rho"
+      ],
+      "excluded_set": [
+        "classical_noncontextual"
+      ],
+      "fixture_verdict": "installed",
+      "solver_rows": {
+        "cvc5": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        },
+        "julia_z3": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        },
+        "z3": {
+          "allowed_set": [
+            "quotient",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "classical_noncontextual"
+          ],
+          "unknown_set": []
+        }
+      }
+    },
+    "scrambled_order_gap": {
+      "allowed_set": [
+        "quotient"
+      ],
+      "excluded_set": [
+        "classical_noncontextual",
+        "real_rebit",
+        "complex_rho"
+      ],
+      "fixture_verdict": "single_allowed_by_panel",
+      "solver_rows": {
+        "cvc5": {
+          "allowed_set": [
+            "quotient"
+          ],
+          "excluded_set": [
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "unknown_set": []
+        },
+        "julia_z3": {
+          "allowed_set": [
+            "quotient"
+          ],
+          "excluded_set": [
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "unknown_set": []
+        },
+        "z3": {
+          "allowed_set": [
+            "quotient"
+          ],
+          "excluded_set": [
+            "classical_noncontextual",
+            "real_rebit",
+            "complex_rho"
+          ],
+          "unknown_set": []
+        }
+      }
+    },
+    "y_phase_exclusion": {
+      "allowed_set": [
+        "quotient",
+        "classical_noncontextual",
+        "complex_rho"
+      ],
+      "by_construction_exclusions": {
+        "real_rebit": {
+          "by_construction": true,
+          "load_bearing": false,
+          "reason": "real_rebit has no Y degree of freedom: real_rebit.Y is fixed at 1/2, so measured Y=3/4 is outside the class by design."
+        }
+      },
+      "excluded_set": [
+        "real_rebit"
+      ],
+      "fixture_verdict": "installed",
+      "solver_rows": {
+        "cvc5": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "real_rebit"
+          ],
+          "unknown_set": []
+        },
+        "julia_z3": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "real_rebit"
+          ],
+          "unknown_set": []
+        },
+        "z3": {
+          "allowed_set": [
+            "quotient",
+            "classical_noncontextual",
+            "complex_rho"
+          ],
+          "excluded_set": [
+            "real_rebit"
+          ],
+          "unknown_set": []
+        }
+      }
+    }
+  },
+  "multiplicity_fixture_witness": {
+    "fixture": "marginal_multiplicity",
+    "julia_z3": {
+      "classical_noncontextual": "julia_marginal_multiplicity_classical_noncontextual_w_100 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_000 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_110 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_001 -> (/ 1.0 4.0)\njulia_marginal_multiplicity_classical_noncontextual_w_101 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_011 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_010 -> 0.0\njulia_marginal_multiplicity_classical_noncontextual_w_111 -> (/ 1.0 2.0)\n",
+      "complex_rho": "julia_marginal_multiplicity_complex_rho_c -> 0.0\njulia_marginal_multiplicity_complex_rho_a -> (/ 3.0 4.0)\njulia_marginal_multiplicity_complex_rho_b -> 0.0\n",
+      "fixture": "marginal_multiplicity"
+    },
+    "non_isomorphism_basis": "classical simplex weights and complex density-matrix coordinates are different carrier categories; no hardcoded carrier anchor is used",
+    "python_z3": {
+      "classical_noncontextual": {
+        "w_z0x0y0": "0",
+        "w_z0x0y1": "0",
+        "w_z0x1y0": "1/4",
+        "w_z0x1y1": "0",
+        "w_z1x0y0": "0",
+        "w_z1x0y1": "1/2",
+        "w_z1x1y0": "1/4",
+        "w_z1x1y1": "0"
+      },
+      "complex_rho": {
+        "a": "3/4",
+        "b": "0",
+        "c": "0"
+      },
+      "fixture": "marginal_multiplicity"
+    }
+  },
+  "negative_tests": {
+    "invalid_probability": "reproduce ON/OFF flips quotient and complex_rho, proving readout binding is load-bearing",
+    "order_gap_clean": {
+      "by_construction": false,
+      "excluded_carrier": "classical_noncontextual",
+      "load_bearing": true,
+      "reason": "ZX=1/4 versus XZ=3/8 contradicts the non-disturbing classical joint while single branches remain SAT."
+    },
+    "order_gap_exclusion": "Z=1 fixture is retained as over-determined marginal plus order-gap pressure, not the isolated contextuality negative",
+    "scrambled_order_gap": "allowed set changes to quotient-only",
+    "y_phase_exclusion": {
+      "by_construction": true,
+      "excluded_carrier": "real_rebit",
+      "load_bearing": false,
+      "reason": "real_rebit is real-symmetric and has Y=1/2 identically, so measured Y=3/4 is outside the class by design.",
+      "role": "boundary_control_only"
+    }
+  },
+  "object_id": "carrier_type_admissibility_matrix_v0",
+  "order_gap_clean_isolation_proof": {
+    "cvc5": {
+      "classical_noncontextual": {
+        "branch_Z_X_XZ": "sat",
+        "branch_Z_X_ZX": "sat",
+        "exclusion_mechanism": "one non-disturbing classical joint J cannot equal both ZX=1/4 and XZ=3/8",
+        "joint_Z_X_ZX_XZ": "unsat",
+        "marginals_Z_X": "sat"
+      },
+      "complex_rho": {
+        "joint_Z_X_ZX_XZ": "sat",
+        "witness": {
+          "a": "(/ 1 2)",
+          "b": "(/ 1 4)",
+          "c": "0.0"
+        }
+      },
+      "expected_clean_values": {
+        "X": "3/4",
+        "XZ": "3/8",
+        "Z": "1/2",
+        "ZX": "1/4",
+        "complex_rho_witness": {
+          "a": "1/2",
+          "b": "1/4"
+        }
+      },
+      "fixture": "order_gap_clean",
+      "passed": true,
+      "solver": "cvc5"
+    },
+    "julia_z3": {
+      "classical_noncontextual": {
+        "branch_Z_X_XZ": "sat",
+        "branch_Z_X_ZX": "sat",
+        "exclusion_mechanism": "one non-disturbing classical joint J cannot equal both ZX=1/4 and XZ=3/8",
+        "joint_Z_X_ZX_XZ": "unsat",
+        "marginals_Z_X": "sat"
+      },
+      "complex_rho": {
+        "joint_Z_X_ZX_XZ": "sat",
+        "witness_model_string": "julia_order_gap_clean_complex_rho_c -> 0.0\njulia_order_gap_clean_complex_rho_b -> (/ 1.0 4.0)\njulia_order_gap_clean_complex_rho_a -> (/ 1.0 2.0)\n"
+      },
+      "expected_clean_values": {
+        "X": "3/4",
+        "XZ": "3/8",
+        "Z": "1/2",
+        "ZX": "1/4",
+        "complex_rho_witness": {
+          "a": "1/2",
+          "b": "1/4"
+        }
+      },
+      "fixture": "order_gap_clean",
+      "passed": true,
+      "solver": "julia_z3"
+    },
+    "z3": {
+      "classical_noncontextual": {
+        "branch_Z_X_XZ": "sat",
+        "branch_Z_X_ZX": "sat",
+        "exclusion_mechanism": "one non-disturbing classical joint J cannot equal both ZX=1/4 and XZ=3/8",
+        "joint_Z_X_ZX_XZ": "unsat",
+        "marginals_Z_X": "sat"
+      },
+      "complex_rho": {
+        "joint_Z_X_ZX_XZ": "sat",
+        "witness": {
+          "a": "1/2",
+          "b": "1/4",
+          "c": "0"
+        }
+      },
+      "expected_clean_values": {
+        "X": "3/4",
+        "XZ": "3/8",
+        "Z": "1/2",
+        "ZX": "1/4",
+        "complex_rho_witness": {
+          "a": "1/2",
+          "b": "1/4"
+        }
+      },
+      "fixture": "order_gap_clean",
+      "passed": true,
+      "solver": "z3"
+    }
+  },
+  "positive_tests": {
+    "exclusion_fixture": "order_gap_clean excludes classical_noncontextual while admitting quotient, real_rebit, and complex_rho",
+    "multiplicity_fixture": "marginal_multiplicity admits >=2 non-isomorphic carrier types under all solver legs"
+  },
+  "promotion_allowed": false,
+  "readout_definitions": {
+    "classical_noncontextual": {
+      "X": "sum_{x=+} w_zxy",
+      "XZ": "sum_{x=+,z=+} w_zxy, equal to ZX because the model is non-disturbing",
+      "Y": "sum_{y=+} w_zxy",
+      "Z": "sum_{z=+} w_zxy",
+      "ZX": "sum_{z=+,x=+} w_zxy",
+      "validity": "weights w_zxy >= 0 over deterministic z,x,y in {+,-}; sum weights = 1"
+    },
+    "complex_rho": {
+      "X": "1/2 + b",
+      "XZ": "1/4 + b/2",
+      "Y": "1/2 + c",
+      "Z": "a",
+      "ZX": "a/2",
+      "validity": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0"
+    },
+    "quotient": {
+      "X": "q_X",
+      "XZ": "q_XZ",
+      "Y": "q_Y",
+      "Z": "q_Z",
+      "ZX": "q_ZX",
+      "validity": "0 <= q_probe <= 1 for every measured probe"
+    },
+    "real_rebit": {
+      "X": "1/2 + b",
+      "XZ": "1/4 + b/2",
+      "Y": "1/2",
+      "Z": "a",
+      "ZX": "a/2",
+      "validity": "0 <= a <= 1 and a*(1-a)-b^2 >= 0"
+    }
+  },
+  "reproduce_on_off_evidence": {
+    "cvc5": {
+      "classical_noncontextual": {
+        "differs": true,
+        "fixture": "order_gap_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "complex_rho": {
+        "differs": true,
+        "fixture": "scrambled_order_gap",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "quotient": {
+        "differs": true,
+        "fixture": "invalid_probability",
+        "fixture_group": "load_bearing_controls",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "real_rebit": {
+        "differs": true,
+        "fixture": "y_phase_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      }
+    },
+    "julia_z3": {
+      "classical_noncontextual": {
+        "differs": true,
+        "fixture": "order_gap_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "complex_rho": {
+        "differs": true,
+        "fixture": "scrambled_order_gap",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "quotient": {
+        "differs": true,
+        "fixture": "invalid_probability",
+        "fixture_group": "load_bearing_controls",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "real_rebit": {
+        "differs": true,
+        "fixture": "y_phase_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      }
+    },
+    "z3": {
+      "classical_noncontextual": {
+        "differs": true,
+        "fixture": "order_gap_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "complex_rho": {
+        "differs": true,
+        "fixture": "scrambled_order_gap",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "quotient": {
+        "differs": true,
+        "fixture": "invalid_probability",
+        "fixture_group": "load_bearing_controls",
+        "off": "sat",
+        "on": "unsat"
+      },
+      "real_rebit": {
+        "differs": true,
+        "fixture": "y_phase_exclusion",
+        "fixture_group": "headline_fixtures",
+        "off": "sat",
+        "on": "unsat"
+      }
+    }
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "scramble_evidence": {
+    "cvc5_original_allowed": [
+      "quotient",
+      "real_rebit",
+      "complex_rho"
+    ],
+    "cvc5_scrambled_allowed": [
+      "quotient"
+    ],
+    "julia_z3_original_allowed": [
+      "quotient",
+      "real_rebit",
+      "complex_rho"
+    ],
+    "julia_z3_scrambled_allowed": [
+      "quotient"
+    ],
+    "original": "order_gap_exclusion",
+    "scrambled": "scrambled_order_gap",
+    "z3_original_allowed": [
+      "quotient",
+      "real_rebit",
+      "complex_rho"
+    ],
+    "z3_scrambled_allowed": [
+      "quotient"
+    ]
+  },
+  "sim_id": "carrier_type_admissibility_matrix_v0",
+  "surviving_alternatives": [
+    "Rung-0.5 Boolean/counting fork remains held.",
+    "rho/complex carrier is admitted on some fixtures but not forced by finite probe data.",
+    "Classical noncontextual carriers remain admitted on marginal-only and Y-phase fixtures but are excluded by the clean order-gap fixture under the chosen measurement geometry."
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "scrambled_order_gap changes the allowed set",
+      "demotion_condition": "demote if any headline verdict is unknown or reproduce ON/OFF does not differ for every carrier type",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "per-type free variables and readout equalities for each finite probe-table fixture",
+      "negative/erased_control": "order_gap_clean excludes classical_noncontextual through the non-disturbing joint; invalid_probability flips reproduce ON/OFF",
+      "output_object": "allowed/excluded carrier-type matrix",
+      "positive_case": "marginal_multiplicity admits multiple non-isomorphic carrier categories",
+      "qualified_api/function": "z3.SolverFor('QF_NRA')/z3.Real/solver.check/model.eval",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "scrambled_order_gap changes the allowed set",
+      "demotion_condition": "demote if cvc5 returns unknown or disagrees with z3 on headline sets",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "same per-type free variables and readout equalities",
+      "negative/erased_control": "order_gap_clean excludes classical_noncontextual through the non-disturbing joint; invalid_probability flips reproduce ON/OFF",
+      "output_object": "independent allowed/excluded carrier-type matrix",
+      "positive_case": "marginal_multiplicity admits multiple non-isomorphic carrier categories",
+      "qualified_api/function": "cvc5.Solver/checkSat/getValue with QF_NRA",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "scrambled_order_gap changes the allowed set",
+      "demotion_condition": "demote if Z3.jl returns unknown or reproduce ON/OFF does not differ for every carrier type",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "per-type free variables and readout equalities for each finite probe-table fixture",
+      "negative/erased_control": "order_gap_clean excludes classical_noncontextual through the non-disturbing joint; invalid_probability flips reproduce ON/OFF",
+      "output_object": "allowed/excluded carrier-type matrix",
+      "positive_case": "marginal_multiplicity admits multiple non-isomorphic carrier categories",
+      "qualified_api/function": "Z3.Solver/Z3.Const/Z3.add/Z3.check/Z3.model",
+      "tool": "Z3"
+    }
+  ],
+  "written_at": "2026-06-19T03:55:44Z"
+}

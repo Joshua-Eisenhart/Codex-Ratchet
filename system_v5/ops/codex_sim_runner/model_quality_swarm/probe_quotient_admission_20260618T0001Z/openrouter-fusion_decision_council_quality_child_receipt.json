@@ -1,0 +1,95 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "openrouter-fusion_decision_council",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "I'll analyze this audit-lane problem by consulting the panel for additional perspectives on the admission-validator mismatch.```json\n{\n  \"diagnosis\": \"This is a mis-scoped gate in scripts/wizard_sim_admission.py, not a missing tool registration, not a JAX defect, and not a bad sim result. The runner reruns deterministically and three-engine validation passes, so the evidence object is fine; only the admission lane fails. The validator is firing the nonclassical load-bearing-tool gate (which requires a load-bearing tool registered in two_root_constraints.py) without first checking the object's own gate flags. The object self-declares classification=scratch_diagnostic, promotion_allowed=false, formal_admission_allowed=false (rung-0), so it is explicitly outside the formal-admission / nonclassical-evidence regime. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are false positives produced by the gate firing on the wrong scope. UNCONFIRMED: whether the trigger is tool_target=jax or a name-based heuristic matching the 'three_engine' substring in the basename/claim \u2014 read the validator's gate-entry condition before patching to confirm which.\",\n\n  \"smallest_executable_fix\": \"In scripts/wizard_sim_admission.py, guard the nonclassical load-bearing-tool gate with a precondition that reads the result/admission metadata: only evaluate the gate when the object enters the formal/promotion/nonclassical regime (formal_admission_allowed==true OR promotion_allowed==true OR classification is a nonclassical/manifold/engine claim). For classification=='scratch_diagnostic' AND promotion_allowed==false AND formal_admission_allowed==false, skip the gate and emit an explicit 'nonclassical_gate_not_applicable_rung0_scratch_diagnostic' note in the admission report. FAIL CLOSED: if any of the three flags is missing or unparseable, KEEP applying the gate. Require ALL THREE conditions for the skip (do not skip on classification alone). Do not derive nonclassical load-bearing status from tool_target=='jax'. Distinguish 'gate skipped / not applicable' from 'gate passed' in the report schema, and do not write to any promotion/formal-admission log. Only narrow WHEN the gate fires; do not weaken WHAT it checks.\",\n\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\"\n  ],\n\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"scripts/codex_sim_runner.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"AGENTS.md\"\n  ],\n\n  \"files_to_touch_conditionally\": \"scripts/codex_sim_runner.py ONLY if a deterministic check shows the runner/packet is dropping classification/promotion_allowed/formal_admission_allowed before they reach the validator \u2014 and then ONLY to pass them through, never to add fields. Confirm first with the decider check below before touching it.\",\n\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet\",\n    \"python -m py_compile scripts/wizard_sim_admission.py scripts/two_root_constraints.py scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"python -c \\\"import json; d=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); print(d.get('classification'), d.get('promotion_allowed'), d.get('formal_admission_allowed'))\\\"   # decider: must print 'scratch_diagnostic False False'\",\n    \"python scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py   # must stay green/deterministic, three-engine pass, unchanged\",\n    \"python scripts/wizard_sim_admission.py --result system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json --claim probe_quotient_fingerprint_floor_v1_three_engine --tool-target jax   # expect: gate reported not-applicable, no nonclassical_* findings, no promotion/formal-admission log write\",\n    \"python scripts/wizard_sim_admission.py --self-test   # regression: a formal/promotion object (formal_admission_allowed=true OR promotion_allowed=true) with tool_target=jax and no two-root registration MUST still fail with both nonclassical_* findings\"\n  ],\n\n  \"decider_if_unsure\": \"Two local deterministic checks settle the fix. (1) Read the gate-entry condition in wizard_sim_admission.py: if it keys off tool_target or a 'three_engine' name substring rather than the metadata flags, that confirms the mis-scope. (2) Run the json -c command above: if it prints 'scratch_",
+  "content_sha256": "67bb16865988db108a1580eb17ddb7d4de2b47afd9bf7f59f39f8bcaeb13537a",
+  "created_at": "2026-06-18T07:11:16.284276+00:00",
+  "duration_ms": 84838,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": "OPENROUTER_API_KEY",
+  "evidence_role": "proposal",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "content",
+    "extraction_status": "usable_content",
+    "finish_reason": "stop",
+    "native_finish_reason": null,
+    "output_text": "I'll analyze this audit-lane problem by consulting the panel for additional perspectives on the admission-validator mismatch.```json\n{\n  \"diagnosis\": \"This is a mis-scoped gate in scripts/wizard_sim_admission.py, not a missing tool registration, not a JAX defect, and not a bad sim result. The runner reruns deterministically and three-engine validation passes, so the evidence object is fine; only the admission lane fails. The validator is firing the nonclassical load-bearing-tool gate (which requires a load-bearing tool registered in two_root_constraints.py) without first checking the object's own gate flags. The object self-declares classification=scratch_diagnostic, promotion_allowed=false, formal_admission_allowed=false (rung-0), so it is explicitly outside the formal-admission / nonclassical-evidence regime. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are false positives produced by the gate firing on the wrong scope. UNCONFIRMED: whether the trigger is tool_target=jax or a name-based heuristic matching the 'three_engine' substring in the basename/claim \u2014 read the validator's gate-entry condition before patching to confirm which.\",\n\n  \"smallest_executable_fix\": \"In scripts/wizard_sim_admission.py, guard the nonclassical load-bearing-tool gate with a precondition that reads the result/admission metadata: only evaluate the gate when the object enters the formal/promotion/nonclassical regime (formal_admission_allowed==true OR promotion_allowed==true OR classification is a nonclassical/manifold/engine claim). For classification=='scratch_diagnostic' AND promotion_allowed==false AND formal_admission_allowed==false, skip the gate and emit an explicit 'nonclassical_gate_not_applicable_rung0_scratch_diagnostic' note in the admission report. FAIL CLOSED: if any of the three flags is missing or unparseable, KEEP applying the gate. Require ALL THREE conditions for the skip (do not skip on classification alone). Do not derive nonclassical load-bearing status from tool_target=='jax'. Distinguish 'gate skipped / not applicable' from 'gate passed' in the report schema, and do not write to any promotion/formal-admission log. Only narrow WHEN the gate fires; do not weaken WHAT it checks.\",\n\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\"\n  ],\n\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"scripts/codex_sim_runner.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"AGENTS.md\"\n  ],\n\n  \"files_to_touch_conditionally\": \"scripts/codex_sim_runner.py ONLY if a deterministic check shows the runner/packet is dropping classification/promotion_allowed/formal_admission_allowed before they reach the validator \u2014 and then ONLY to pass them through, never to add fields. Confirm first with the decider check below before touching it.\",\n\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet\",\n    \"python -m py_compile scripts/wizard_sim_admission.py scripts/two_root_constraints.py scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"python -c \\\"import json; d=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); print(d.get('classification'), d.get('promotion_allowed'), d.get('formal_admission_allowed'))\\\"   # decider: must print 'scratch_diagnostic False False'\",\n    \"python scripts/codex_sim_runner.py system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py   # must stay green/deterministic, three-engine pass, unchanged\",\n    \"python scripts/wizard_sim_admission.py --result system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json --claim probe_quotient_fingerprint_floor_v1_three_engine --tool-target jax   # expect: gate reported not-applicable, no nonclassical_* findings, no promotion/formal-admission log write\",\n    \"python scripts/wizard_sim_admission.py --self-test   # regression: a formal/promotion object (formal_admission_allowed=true OR promotion_allowed=true) with tool_target=jax and no two-root registration MUST still fail with both nonclassical_* findings\"\n  ],\n\n  \"decider_if_unsure\": \"Two local deterministic checks settle the fix. (1) Read the gate-entry condition in wizard_sim_admission.py: if it keys off tool_target or a 'three_engine' name substring rather than the metadata flags, that confirms the mis-scope. (2) Run the json -c command above: if it prints 'scratch_",
+    "reasoning_present": false
+  },
+  "formal_admission_allowed": false,
+  "http_status": 200,
+  "launch_surface": "direct_openrouter_api",
+  "model": "openrouter/fusion",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "openrouter",
+  "raw_response_excerpt": "{\"choices\": [{\"error\": {\"code\": 500, \"message\": \"Internal Server Error\", \"metadata\": {\"error_type\": \"server\"}}, \"finish_reason\": \"stop\", \"index\": 0, \"logprobs\": null, \"message\": {\"content\": \"I'll analyze this audit-lane problem by consulting the panel for additional perspectives on the admission-validator mismatch.```json\\n{\\n  \\\"diagnosis\\\": \\\"This is a mis-scoped gate in scripts/wizard_sim_admission.py, not a missing tool registration, not a JAX defect, and not a bad sim result. The runner reruns deterministically and three-engine validation passes, so the evidence object is fine; only the admission lane fails. The validator is firing the nonclassical load-bearing-tool gate (which requires a load-bearing tool registered in two_root_constraints.py) without first checking the object's own gate flags. The object self-declares classification=scratch_diagnostic, promotion_allowed=false, formal_admission_allowed=false (rung-0), so it is explicitly outside the formal-admission / nonclassical-evidence regime. The two findings (nonclassical_load_bearing_tool_missing_two_root_registry, nonclassical_suitable_load_bearing_tool_missing) are false positives produced by the gate firing on the wrong scope. UNCONFIRMED: whether the trigger is tool_target=jax or a name-based heuristic matching the 'three_engine' substring in the basename/claim \\u2014 read the validator's gate-entry condition before patching to confirm which.\\\",\\n\\n  \\\"smallest_executable_fix\\\": \\\"In scripts/wizard_sim_admission.py, guard the nonclassical load-bearing-tool gate with a precondition that reads the result/admission metadata: only evaluate the gate when the object enters the formal/promotion/nonclassical regime (formal_admission_allowed==true OR promotion_allowed==true OR classification is a nonclassical/manifold/engine claim). For classification=='scratch_diagnostic' AND promotion_allowed==false AND formal_admission_allowed==false, skip the gate and emit an explicit 'nonclassical_gate_not_applicable_ru",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "decision_council",
+  "runtime": "openrouter-fusion",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 20,
+      "evidence_specificity": 20,
+      "extraction_health": 15,
+      "gate_alignment": 12,
+      "novel_failure_detection": 6,
+      "overclaim_resistance": 4
+    },
+    "penalties": [],
+    "total": 77,
+    "word_count": 556
+  },
+  "status": "completed",
+  "usage": {
+    "completion_tokens": 2938,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "cost": 0.40189125,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.07345,
+      "upstream_inference_cost": 0.134175,
+      "upstream_inference_prompt_cost": 0.060725
+    },
+    "prompt_tokens": 12145,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "server_tool_use": {},
+    "total_tokens": 15083
+  }
+}

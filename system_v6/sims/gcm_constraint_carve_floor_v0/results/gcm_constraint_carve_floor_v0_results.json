@@ -1,0 +1,864 @@
+{
+  "all_pass": true,
+  "authority": {
+    "gcm_reanchor": "system_v6/receipts/gcm_reanchor_requirement_20260612.md",
+    "root_axioms": "system_v6/foundations/root_axioms_v0_1_DRAFT.md",
+    "stop_order": "system_v6/receipts/owner_stop_order_manifold_first_20260612.md",
+    "wiki_contract": "/Users/joshuaeisenhart/wiki/concepts/constraint-manifold-architecture.md"
+  },
+  "axis_claims_allowed": false,
+  "candidate_space": {
+    "state_count": 24,
+    "state_schema": [
+      "shell",
+      "phase_parity",
+      "orientation",
+      "memory"
+    ],
+    "states": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        0,
+        1
+      ],
+      [
+        2,
+        1,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        1,
+        1
+      ]
+    ]
+  },
+  "carved_structure": {
+    "adjacency_maps": [
+      "R",
+      "D"
+    ],
+    "component_count": 1,
+    "components": [
+      [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          1
+        ]
+      ]
+    ],
+    "largest_component_size": 6,
+    "terrain_readout_attempt": {
+      "meaning": "This floor carves one connected six-state finite object, not eight terrain regions. Terrain geometry remains unbuilt on this packet.",
+      "method": "read off survivor graph components and local order-map signatures; no terrain regions installed by label",
+      "region_count": 1,
+      "verdict": "no_8_terrain_regions_in_this_floor"
+    }
+  },
+  "claim_ceiling": "first finite constraints-first M(C) floor only; not the full geometric constraint manifold",
+  "classification": "scratch_diagnostic",
+  "constraint_carve": {
+    "kill_ledger": [
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency",
+          "C_N01_order_visible"
+        ],
+        "state": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_N01_order_visible"
+        ],
+        "state": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_N01_order_visible"
+        ],
+        "state": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency",
+          "C_N01_order_visible"
+        ],
+        "state": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_closure_under_order_maps"
+        ],
+        "state": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_closure_under_order_maps"
+        ],
+        "state": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          2,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          2,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_closure_under_order_maps"
+        ],
+        "state": [
+          2,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          2,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_closure_under_order_maps"
+        ],
+        "state": [
+          2,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "failed_constraints": [
+          "C_history_consistency"
+        ],
+        "state": [
+          2,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "killed_count": 18,
+    "survivor_count": 6,
+    "survivors": [
+      {
+        "D": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "D_after_R": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "R": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "R_after_D": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "state": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "D": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "D_after_R": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "R": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "R_after_D": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "state": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "D": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "D_after_R": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "R": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "R_after_D": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "state": [
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "D": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "D_after_R": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "R": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "R_after_D": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "state": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "D": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "D_after_R": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "R": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "R_after_D": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "state": [
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "D": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "D_after_R": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "R": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "R_after_D": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "order_gap_visible": true,
+        "probe_signature": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "state": [
+          2,
+          1,
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "constraints": [
+    {
+      "id": "C_history_consistency",
+      "observable": "Boolean memory-consistency predicate per candidate state.",
+      "operation": "Require memory == (shell + phase_parity + orientation) mod 2 on each finite state.",
+      "pass_fail_condition": "Pass iff the finite memory bit matches the local coordinate parity relation.",
+      "source_anchor": "root_axioms_v0_1_DRAFT.md:73-85 finite history/provenance bookkeeping; constraint-manifold-architecture.md:100-129 requires S,C,Adm_C,controls"
+    },
+    {
+      "id": "C_N01_order_visible",
+      "observable": "order_gap_visible = probe_signature(R\u2218D(x)) != probe_signature(D\u2218R(x)).",
+      "operation": "Compute R\u2218D and D\u2218R from the same state and compare their finite probe signatures.",
+      "pass_fail_condition": "Pass iff order is distinguishable under the finite probe family.",
+      "source_anchor": "root_axioms_v0_1_DRAFT.md:49-53 noncommuting composition; constraint-manifold-architecture.md:27-35 includes N01 and composition rules"
+    },
+    {
+      "id": "C_closure_under_order_maps",
+      "observable": "Every survivor maps to another survivor under each order map.",
+      "operation": "Take the greatest subset of base-admissible states closed under R, D, R\u2218D, and D\u2218R.",
+      "pass_fail_condition": "Pass iff all four mapped states remain in M(C).",
+      "source_anchor": "gcm_reanchor_requirement_20260612.md:33-41 requires compute M(C), certify quotient, and audit what constraints carved; constraint-manifold-architecture.md:122-128 requires neighborhood/path rules and controls"
+    }
+  ],
+  "controls": {
+    "drop_C_N01_order_visible": {
+      "meaning": "Dropping N01 admits commuting/no-gap rows.",
+      "survivor_count": 12
+    },
+    "drop_C_closure_under_order_maps": {
+      "meaning": "Without closure, transient rows survive as filtered-but-not-stable.",
+      "survivor_count": 10
+    },
+    "drop_C_history_consistency": {
+      "meaning": "History erasure doubles the closed survivor floor.",
+      "survivor_count": 12
+    },
+    "empty_C": {
+      "class_count": 24,
+      "meaning": "No carve: every candidate survives.",
+      "survivor_count": 24
+    },
+    "overconstrained_orientation_one_only": {
+      "meaning": "The orientation-one-only overconstraint leaves no closed M(C) floor under this C.",
+      "survivor_count": 0
+    }
+  },
+  "engine_claims_allowed": false,
+  "formal_admission_allowed": false,
+  "maps": {
+    "D": "orientation/phase-dependent shell move with finite memory recomputed; baseline order map only",
+    "D_after_R": "D(R(x))",
+    "R": "phase parity flip with finite memory recomputed; baseline order map only",
+    "R_after_D": "R(D(x))"
+  },
+  "not_admitted": [
+    "full geometric constraint manifold",
+    "terrain geometry",
+    "stage regions",
+    "engines",
+    "axes",
+    "physics bridge",
+    "QIT engine"
+  ],
+  "object_id": "gcm_constraint_carve_floor_v0",
+  "probe_erasure_controls": {
+    "erase_memory": {
+      "class_count": 6
+    },
+    "erase_orientation": {
+      "class_count": 6
+    },
+    "erase_phase_parity": {
+      "class_count": 6
+    },
+    "erase_shell": {
+      "class_count": 4
+    },
+    "full_probe": {
+      "class_count": 6
+    }
+  },
+  "promotion_allowed": false,
+  "quotient": {
+    "class_count": 6,
+    "class_size_histogram": {
+      "1": 6
+    },
+    "classes": [
+      {
+        "class_id": "q00",
+        "members": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "signature": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "class_id": "q01",
+        "members": [
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "signature": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      {
+        "class_id": "q02",
+        "members": [
+          [
+            1,
+            0,
+            0,
+            1
+          ]
+        ],
+        "signature": [
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "class_id": "q03",
+        "members": [
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "signature": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "class_id": "q04",
+        "members": [
+          [
+            2,
+            0,
+            0,
+            0
+          ]
+        ],
+        "signature": [
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "class_id": "q05",
+        "members": [
+          [
+            2,
+            1,
+            0,
+            1
+          ]
+        ],
+        "signature": [
+          2,
+          1,
+          0,
+          1
+        ]
+      }
+    ],
+    "equivalence_rule": "x ~_P y iff all four finite probe coordinates match",
+    "probe_family": [
+      "shell",
+      "phase_parity",
+      "orientation",
+      "memory"
+    ]
+  },
+  "receipt_kind": "finite_constraint_carve_floor",
+  "source_sha256": "6a8c00ca025e5b2c1b6318843f620090dea7d4def5a924b21b8f391d1ab2634a"
+}

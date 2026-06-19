@@ -1,0 +1,1482 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_INTENT_MATRIX": {
+    "build_three_engine_envelope": "load-bearing standard envelope construction; this packet does not hand-roll three_engine_sim_result_v1",
+    "jax": {
+      "cvc5": "independent solver mirror of computed weld relation identities",
+      "networkx": "finite weld relation graph/source-backing probe",
+      "sympy": "typed entropy/counting convention reconciliation rows",
+      "z3": "computed A/B/weld relation identities with erased flips"
+    },
+    "julia": {
+      "Graphs": "finite A/B anchor graph count checks for the weld relation",
+      "Z3": "Julia-side integer weld relation identity with erased flip"
+    },
+    "pytorch": {
+      "cvc5": "independent solver mirror of computed weld relation identities",
+      "sympy": "typed entropy/counting convention reconciliation rows",
+      "torch.func": "batched finite relation transform for source-backed tensor lane",
+      "torch_geometric": "finite graph carrier for A/B relation source-backing probe",
+      "z3": "computed A/B/weld relation identities with erased flips"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia lane finite anchor graph count check for A/B relation scope",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia lane finite integer relation proof with erased flip",
+      "tried": true,
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard envelope construction; this packet does not hand-roll three_engine_sim_result_v1",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent load-bearing mirror for weld relation SMT rows",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "Python/JAX lane finite directed graph source-backing and relation check",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "typed log/counting convention rows and exact symbolic zero checks",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch lane batched finite relation transform",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "PyTorch lane finite graph carrier source-backing probe",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing weld relation SMT rows binding A values, B values, and relation values",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "scratch diagnostic chart-to-chart A+B weld map",
+    "cross-family perturbation controls for the declared A/B independence rows",
+    "finite SMT relation rows binding recomputed A and B anchors"
+  ],
+  "backend_contract_decision": {
+    "full_independent_object_lanes_claimed": false,
+    "jax_scope": "shared v2 common builder plus package-backed finite relation checks",
+    "julia_scope": "finite anchor/relation check, not full A+B object construction",
+    "mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+    "pytorch_scope": "shared v2 common builder plus package-backed finite relation checks"
+  },
+  "build_helper_path": "scripts/build_three_engine_envelope.py",
+  "builder_gates": {
+    "build_card_copied": true,
+    "file_disjoint_packet": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true
+  },
+  "capability_receipts": {
+    "jax": {
+      "cvc5_relation_identity": "unsat",
+      "jax_relation_inputs": [
+        3,
+        8
+      ],
+      "jax_relation_sum": 11,
+      "networkx_edge_count": 3,
+      "networkx_node_count": 4,
+      "networkx_topological_order": [
+        "A_G1_terminal_classes",
+        "B_Z4xZ2_orbit_order",
+        "weld_relation_sum",
+        "declared_weld_map"
+      ],
+      "pass": true,
+      "sympy_log4_minus_2log2": "0",
+      "z3_relation_identity": "unsat"
+    },
+    "julia": [
+      {
+        "computed_what": "A terminal class count and B Z4xZ2 orbit graph count",
+        "receipt_id": "julia_Graphs_A_B_weld_anchor_counts",
+        "status": "used",
+        "tool": "Graphs"
+      },
+      {
+        "computed_what": "A+B relation sum identity with erased flip",
+        "receipt_id": "julia_Z3_A_B_weld_relation",
+        "status": "used",
+        "tool": "Z3"
+      }
+    ],
+    "pytorch": {
+      "cvc5_relation_identity": "unsat",
+      "pass": true,
+      "sympy_log4_minus_2log2": "0",
+      "torch_func_batched_relation": [
+        11.0,
+        11.0
+      ],
+      "torch_geometric_edge_count": 3,
+      "torch_geometric_num_nodes": 4,
+      "z3_relation_identity": "unsat"
+    }
+  },
+  "ceiling": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "promotion_allowed": false
+  },
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "Z3",
+    "networkx",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "claim_sections": {
+    "boundary": [
+      "chart-to-chart weld hypothesis rows only; not charts-on-network v3 scope",
+      "scratch diagnostic only; no formal admission, axis, bridge, physics, or invariant basin claim",
+      "honest shared-common-builder backend scope; no independent full-object all-engine claim"
+    ],
+    "negative": [
+      "A-only perturbation leaves B anchors unchanged",
+      "B-only perturbation leaves A anchors unchanged",
+      "weld-only perturbation moves only the admitted weld relation row",
+      "no-op decorative weld detector finds no row movement when neither family input changes"
+    ],
+    "positive": [
+      "separate Family A and Family B state objects are held in one v2 weld run",
+      "the declared weld map is materialized as machine-checkable related/independent rows",
+      "weld relation SMT binds A values, B values, and the relation with erased flips"
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "cross_family_controls": {
+    "A_only_perturbation_control": {
+      "family_a_anchor_moved": true,
+      "family_b_anchor_signature_after": "6013d5f3d8a73c83131dfab8ed30848f1528d7abe2a90b27a538c0b0d8bbfed5",
+      "family_b_anchor_signature_before": "6013d5f3d8a73c83131dfab8ed30848f1528d7abe2a90b27a538c0b0d8bbfed5",
+      "family_b_anchors_unchanged": true,
+      "mutation": "Family A D_z pinned M[0][0] += 0.05",
+      "pass": true
+    },
+    "B_only_perturbation_control": {
+      "family_a_anchor_signature_after": "da5b2bfdbd031f078f9429a171b16b75eda7451a5df7c841c9c2d75be927c415",
+      "family_a_anchor_signature_before": "da5b2bfdbd031f078f9429a171b16b75eda7451a5df7c841c9c2d75be927c415",
+      "family_a_anchors_unchanged": true,
+      "family_b_anchor_moved": true,
+      "mutation": "Family B B1 pinned ratchet factor 4 -> 5",
+      "pass": true
+    },
+    "all_pass": true,
+    "decorative_weld_detector": {
+      "changed_rows_when_no_input_changed": [],
+      "check": "rebuild weld rows without changing either family input",
+      "decorative_change_detected": false,
+      "pass": true
+    },
+    "stale_import_per_family": {
+      "family_a_stale_import_control_fires": true,
+      "family_b_stale_import_control_fires": true,
+      "pass": true
+    },
+    "weld_only_perturbation_control": {
+      "allowed_moved_weld_rows": [
+        "W3_partition_relation"
+      ],
+      "baseline_weld_signature": "c90988aace4d1a1555b03fbb108e971091403f2483f8b5c2f01da7a933f6d592",
+      "family_a_anchors_unchanged": true,
+      "family_b_anchors_unchanged": true,
+      "moved_weld_rows": [
+        "W3_partition_relation"
+      ],
+      "mutation": "W3 weld relation expected sum +1 with A/B inputs unchanged",
+      "pass": true,
+      "perturbed_weld_signature": "f97949de6bc9319e59b1954dacef9fa61aeb153478f2c9d275c577d6e31b6406"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_family_a_value": 3,
+      "bound_family_b_value": 8,
+      "bound_weld_relation_value": 11,
+      "erased_expected_relation_value": 10,
+      "erased_flip_verdict": "sat",
+      "expected_relation_value": 11,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5:weld_relation",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "family_a_terminal_class_count": 3,
+        "family_b_orbit_order": 8,
+        "weld_relation_sum": 11
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_family_a_value": 3,
+      "bound_family_b_value": 8,
+      "bound_weld_relation_value": 11,
+      "erased_expected_relation_value": 10,
+      "erased_flip_verdict": "sat",
+      "expected_relation_value": 11,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3:weld_relation",
+      "verdict": "unsat"
+    }
+  },
+  "declared_weld_map": [
+    {
+      "computed": {
+        "family_a_state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+        "family_b_state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+        "separate_state_ids": true
+      },
+      "decisive_check": "separate state ids and perturbation isolation",
+      "declared_relation": "independent pinned state objects",
+      "family_a_status": "33-cell Bloch-grid object with pinned S4/S5 generator rows",
+      "family_b_status": "Hopf-torus chart carrier with deep-chain and compression rows",
+      "pass": true,
+      "relation_class": "independent",
+      "row_id": "state_object"
+    },
+    {
+      "computed": {
+        "family_a_chart_relative": true,
+        "family_b_chart_carrier": "T_eta at eta=pi/6 with Z4 lens and second Z2 independent residue"
+      },
+      "decisive_check": "chart/quotient convention named on every cross-family row",
+      "declared_relation": "related by quotient discipline, not same coordinates",
+      "family_a_status": "G1 chart-relative original-33-cell finite structure",
+      "family_b_status": "Hopf-torus Z4 x Z2 orbit and Z4 record rows",
+      "pass": true,
+      "relation_class": "related_not_shared",
+      "row_id": "chart_quotient_language"
+    },
+    {
+      "computed": {
+        "family_a_terminal_class_count": 3,
+        "family_b_composite_order": 8,
+        "weld_relation_sum": 11
+      },
+      "decisive_check": "SMT binds A values, B values, and relation separately",
+      "declared_relation": "independent partitions; explicit relation row only",
+      "family_a_status": "G1 terminal classes [1,14,18]",
+      "family_b_status": "B compression classes over 384-row carrier",
+      "pass": true,
+      "relation_class": "independent_with_weld_relation_row",
+      "row_id": "basin_partition"
+    },
+    {
+      "computed": {
+        "b3_rows_have_row_local_cocitation": true,
+        "family_a_z4_erased_record_retained_nats": 0.0,
+        "family_b_conservation_defect_nats": 0.0
+      },
+      "decisive_check": "row-local B3 co-citation and explicit state-plus-record convention",
+      "declared_relation": "related accounting convention, not one shared record object",
+      "family_a_status": "G1/Z4 finite record accounting convention",
+      "family_b_status": "B3 row-local Z4 state-plus-record rows",
+      "pass": true,
+      "relation_class": "related_not_shared",
+      "row_id": "record_conservation"
+    },
+    {
+      "computed": {
+        "family_a_forbidden_cross_type_sum_found": false,
+        "family_b_forbidden_cross_type_sum_found": false,
+        "product_convention_admitted": false
+      },
+      "decisive_check": "no cross-type sum unless product convention is declared and tested",
+      "declared_relation": "related typed-bookkeeping surface only",
+      "family_a_status": "typed Holevo/fusion ledger rows",
+      "family_b_status": "deep-chain deltas and typed ledger caveats",
+      "pass": true,
+      "relation_class": "related_typed_bookkeeping_only",
+      "row_id": "entropy_ledger"
+    },
+    {
+      "computed": {
+        "independent_full_object_claim": false,
+        "v2_engine_mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope"
+      },
+      "decisive_check": "v2 declares honest shared-common mode, not independent full-object engines",
+      "declared_relation": "shared-common-builder acceptable only if declared",
+      "family_a_status": "partial backend independence",
+      "family_b_status": "honest limited shared-common-builder mode",
+      "pass": true,
+      "relation_class": "shared_builder_scope_declared",
+      "row_id": "backend_contract"
+    },
+    {
+      "computed": {
+        "lineage_written_by_v2": true
+      },
+      "decisive_check": "file SHA, content SHA, trajectory_step_id, row_step_lineage_id, row_step_class_why",
+      "declared_relation": "shared lineage standard, separate trajectories",
+      "family_a_status": "v2 supplies unified-style lineage over A rows",
+      "family_b_status": "B posthardening lineage already unified-style",
+      "pass": true,
+      "relation_class": "shared_standard_separate_trajectories",
+      "row_id": "trajectory_lineage"
+    },
+    {
+      "computed": {
+        "corrected_language": "one-sided 32 is frozen-factor echo",
+        "two_engine_rows_imported": false
+      },
+      "decisive_check": "corrected v3 one-sided 32 frozen-factor echo language only",
+      "declared_relation": "external context until flux/chirality coupling exists",
+      "family_a_status": "not Family A weld evidence",
+      "family_b_status": "not Family B weld evidence",
+      "pass": true,
+      "relation_class": "independent_external_context",
+      "row_id": "two_engine_64_rows"
+    }
+  ],
+  "disallowed_claims": [
+    "formal admission",
+    "canonical manifold proof",
+    "axis/bridge/physics evidence",
+    "charts-on-network v3 surface claim",
+    "independent full-object Julia/JAX/PyTorch implementation"
+  ],
+  "divergence": {
+    "basis": "boolean lane all_pass agreement plus v2 packet validator anchor equality; full-object backend mode is honest shared-common scope",
+    "engine_values": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "pytorch": 1.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "tolerance": 0.0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "weld_smt_rows.cvc5_weld_relation computed A/B/relation identity",
+        "networkx": "source_backing_probe.networkx_topological_order finite A/B relation graph",
+        "sympy": "source_backing_probe.sympy_log4_minus_2log2 typed-counting convention identity",
+        "z3": "weld_smt_rows.z3_weld_relation computed A/B/relation identity"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_jax_results.json",
+      "result_sha256": "c40eef3d7ee91e1c0001279868349c27b0149076d8bb2d17908c775f30384651",
+      "source_path": "system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_jax.py",
+      "source_sha256": "46c07228062f3ed76ada14a2a75f883fce66030fdcd02841cdf74d3b2ef4dbec",
+      "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+      "tool_calls": []
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "A terminal class count and B Z4xZ2 orbit graph count",
+          "receipt_id": "julia_Graphs_A_B_weld_anchor_counts",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "A+B relation sum identity with erased flip",
+          "receipt_id": "julia_Z3_A_B_weld_relation",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "family_a_terminal_graph.terminal_class_count and family_b_orbit_graph.orbit_order",
+        "Z3": "crossover_proofs.julia_z3 A/B weld relation identity"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_julia_results.json",
+      "result_sha256": "0fcca67d33e213c7b89704c9b1ba838851d35af6af62286dc368fe2bb4cb7d3b",
+      "source_path": "system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_julia.jl",
+      "source_sha256": "8f62d03aa5f8b7efab12c59d01d12469a27591f38b7899d99f2d5a2c2ac5888c",
+      "state_object_id": null,
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+          "receipt_id": "julia_Graphs_A_B_weld_anchor_counts",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+          "receipt_id": "julia_Z3_A_B_weld_relation",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "weld_smt_rows.cvc5_weld_relation computed A/B/relation identity",
+        "sympy": "source_backing_probe.sympy_log4_minus_2log2 typed-counting convention identity",
+        "torch.func": "source_backing_probe.torch_func_batched_relation finite A/B relation transform",
+        "torch_geometric": "source_backing_probe.torch_geometric_num_nodes finite relation graph carrier",
+        "z3": "weld_smt_rows.z3_weld_relation computed A/B/relation identity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_pytorch_results.json",
+      "result_sha256": "c2ea59ed8a62d2fbfa7e49520fa5cd82944fa0ff6cd286cc589a3a9f4ed606c0",
+      "source_path": "system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_pytorch.py",
+      "source_sha256": "49f3f4272d3b70848d246612f8ce36133961be1e847f1b4ec343134f347325af",
+      "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+      "tool_calls": []
+    }
+  },
+  "envelope_built_with_helper": true,
+  "family_state_objects": {
+    "A": {
+      "all_pass": true,
+      "anchor_values": {
+        "D_z_holevo_nats": 0.411341122022618,
+        "D_z_killed_nats": 0.28180605853732726,
+        "G0_transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0",
+        "G1_may_equals_must": true,
+        "G1_terminal_class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "co_cites_z4_state_plus_record_convention": true,
+        "fusion_full_record_nats": 1.0986122886681098,
+        "stage_word_endpoint_nats": 0.0932927444282512,
+        "z4_erased_record_retained_nats": 0.0,
+        "z4_partial_record_retained_nats": 0.6931471805599453
+      },
+      "caveats_carried": [
+        "manifold_super_sim_v0:G3_UNIFIED_TRAJECTORY_CLASSIFICATION_MISSING",
+        "manifold_super_sim_v0:G4_BACKEND_INDEPENDENCE_SCOPE",
+        "manifold_super_sim_v0:G5_DECORATIVE_LAYER_DETECTOR_WEAK_ROWS",
+        "manifold_super_sim_v0:G6_PARENT_CAVEATS_CARRIED",
+        "manifold_super_sim_v0:G7_TRACKING_STATUS_CURRENT_TURN_ONLY"
+      ],
+      "classification": "scratch_diagnostic",
+      "family": "Family_A_Bloch_ball_33_cell_constraint_manifold",
+      "family_key": "A",
+      "formal_admission_allowed": false,
+      "kill_control_flags": {
+        "order_shuffled_N01": true,
+        "quotient_erased": true,
+        "root_off_similarity_only_guard": true,
+        "stale_import_control": true
+      },
+      "layer_signatures": {
+        "L1_BASIN": "126003b744f9bb758796318574026600d743efddf140e3c29d1684b496d28f75",
+        "L2_CHART": "5f803c35dfb37e294cc49edf622bc37c6b78a176fa988f0fb501a259d6fd0c8a",
+        "L3_INFORMATION": "c72c9676fe943f10e570ed833bf10f4634db89239a36f3a7658a44679483a395",
+        "L4_FUSION": "b1d9a69fb7fe111618d59da5e182339bc64ed9287339fc03453189e6c25ee199",
+        "L5_LEDGER": "c86fe569395915135e6d9aa73141e09d143ca08819fb4fa3336dddfb15d9fd59"
+      },
+      "object_payload_sha256": "6376168b98c948f8a114fdd1b7212ad269be92b588565f8413747a32b4d19453",
+      "promotion_allowed": false,
+      "source_packet": "manifold_super_sim_v0",
+      "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+      "substrate": {
+        "Adm_C": "x^2 + y^2 + z^2 <= 1 on the five-point axis grid",
+        "family": "Family_A_Bloch_ball",
+        "generator_rebuild_rule": "S5 exp(hA) at h=1/2; S4 pinned affine M,c rows",
+        "grid_values": [
+          -1.0,
+          -0.5,
+          0.0,
+          0.5,
+          1.0
+        ],
+        "raw_transition_graphs_persisted": false,
+        "state_count": 33
+      },
+      "typed_consistency_matrix": {
+        "all_rows_typed": true,
+        "cross_type_accounts_have_conventions": true,
+        "explicit_conventions": [
+          "finite counting record rows may compare within the same constructed record table",
+          "state-plus-record finite quotient rows co-cite z4_syndrome_record_v0",
+          "Holevo information rows and counting entropy rows are never summed in v0",
+          "product bookkeeping is allowed only when explicitly named as a convention"
+        ],
+        "forbidden_cross_type_sum_found": false,
+        "parent_entropy_type_table": [
+          {
+            "entropy": "differential",
+            "layer": "measure",
+            "log_base": "e",
+            "reference": "Riemannian or induced area measure"
+          },
+          {
+            "entropy": "mixed differential plus discrete Shannon",
+            "layer": "conditioning bands/unions",
+            "log_base": "e",
+            "reference": "explicit mixture convention"
+          },
+          {
+            "entropy": "von_Neumann",
+            "layer": "carrier",
+            "log_base": "parent-stated; nats recorded where parent records nats",
+            "reference": "density matrix eigenvalues in cited ladder parents"
+          },
+          {
+            "entropy": "lattice/counting",
+            "layer": "terrain row restrictions",
+            "log_base": "e",
+            "reference": "uniform over committed row set"
+          }
+        ],
+        "typed_rows": [
+          {
+            "nats": 0.411341122022618,
+            "row_id": "L3_D_z_holevo",
+            "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+          },
+          {
+            "nats": 0.28180605853732726,
+            "row_id": "L3_D_z_killed",
+            "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+          },
+          {
+            "nats": 1.0986122886681098,
+            "row_id": "L4_G1_full_record",
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          },
+          {
+            "co_citation": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+            "nats": 1.3862943611198906,
+            "row_id": "Z4_full_record_co_citation",
+            "type": "finite_counting_entropy_nats"
+          }
+        ]
+      }
+    },
+    "B": {
+      "all_pass": true,
+      "anchor_values": {
+        "compression_hash_chain_heads": [
+          "41d0113914c03390eac69b7e6ba7763d439dd275e981458bb90b5b4eef14e3ff",
+          "f78beccf9623dd94a9316e03132616bb250e85ee5b0186e02b356db207138b47",
+          "20d5517a287c8f351a396e4001927cf8a9b789029788c6c4a6ff1a5ce15c8961"
+        ],
+        "compression_initial_size": 384,
+        "compression_survivor_count": 96,
+        "compression_total_emitted_rows": 288,
+        "conservation_defect_nats": 0.0,
+        "conservation_record_retained_nats": 1.3862943611198906,
+        "conservation_state_loss_nats": 1.3862943611198906,
+        "deep_chain_composite_order": 8,
+        "deep_chain_entropy_deltas_exact": [
+          "-log(4)",
+          "-log(2)",
+          "-log(2)"
+        ],
+        "deep_chain_final_denominator": 16,
+        "deep_chain_final_volume_exact": "pi**2/4"
+      },
+      "b_scoped_projection": {
+        "axis0_leak_detected": false,
+        "b1_pin_block_sha256": "2d2fa9abfe01065d7442865b1e460cdc478a68450086f7b191fec8c57a2720e5",
+        "b1_pin_source_json_pointer": "/ratchet_sequence/per_step_ledger/rows",
+        "b3_record_rows": [
+          {
+            "claim_ceiling": "scratch_diagnostic",
+            "co_citation": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+            "row_id": "B3_full_record",
+            "row_step_class": "STEP_DEPENDENT",
+            "state_plus_record_convention_label": "finite_counting_state_plus_record"
+          },
+          {
+            "claim_ceiling": "scratch_diagnostic",
+            "co_citation": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+            "row_id": "B3_erased_record",
+            "row_step_class": "STEP_DEPENDENT",
+            "state_plus_record_convention_label": "finite_counting_state_plus_record"
+          }
+        ]
+      },
+      "caveats_carried": [
+        "manifold_family_b_integrated_v0:G4_BACKEND_SCOPE_HONEST_BUT_JULIA_NOT_FULL_OBJECT",
+        "manifold_family_b_integrated_v0:G6_RAW_PARENT_ROW_EMBEDDING_OVERWIDE_FOR_FENCE_LESSON"
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "julia_orbit_counts_plus_shared_python_common_builder",
+      "family": "Family_B_Hopf_torus_chart_carrier",
+      "family_a_rows_used": false,
+      "family_key": "B",
+      "formal_admission_allowed": false,
+      "kill_control_flags": {
+        "erased_record": true,
+        "order_shuffled_N01": true,
+        "quotient_erased": true,
+        "similarity_only_root_off_guard": true,
+        "stale_import_control": true
+      },
+      "layer_signatures": {
+        "B1_RATCHET_CHAIN": "cecf27b1da972d304c35aa27782f1f1dfa15907eac912eb5fde3962ab673ee69",
+        "B2_COMPRESSION_RECORD": "e43028a7b002c0f3ff1344b36fc951338827ba5ea41a54ab559d0d55b8797b3a",
+        "B3_CONSERVATION_ACCOUNTS": "0c53fffe66b30363854a1531b1728c816f80a44dea024987a31be4dd81eb6bbf",
+        "B4_TYPED_LEDGER": "43536db1eb87acb459c8a1cc1483681e44335523ff8b2186bf49cfb2a97ec64d"
+      },
+      "object_payload_sha256": "f5469cb5a863bb89167a08d8a0c8809868211ae2b513826997b708d69a30dee9",
+      "promotion_allowed": false,
+      "source_packet": "manifold_family_b_integrated_v0",
+      "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+      "substrate": {
+        "chart_carrier": "T_eta at eta=pi/6 with Z4 lens and second Z2 independent residue",
+        "family": "Family_B_Hopf_torus",
+        "final_denominator": 16,
+        "mct_carrier_row_count": 384,
+        "mct_carrier_shape": "2 sheets x 3 eta x 8 phi x 8 chi"
+      },
+      "two_engine_rows_used": false,
+      "typed_consistency_matrix": {
+        "all_rows_typed": true,
+        "cross_type_accounts_have_conventions": true,
+        "explicit_conventions": [
+          "chart-uniform differential entropy rows compare only within chart-volume convention",
+          "finite counting record rows compare within constructed state-plus-record tables",
+          "cardinality conservation rows are count identities, not entropy scalars",
+          "loss_magnitude=+log4 and signed_entropy_change=-log4 are both named"
+        ],
+        "forbidden_cross_type_sum_found": false,
+        "signed_lens_delta_label_caveat_carried": true
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:56:42Z",
+  "mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "manifold_super_sim_v2_weld",
+  "parent_anchor_checks": {
+    "all_pass": true,
+    "checks": {
+      "family_a_D_z_holevo": true,
+      "family_a_G0_sha": true,
+      "family_a_G1_partition": true,
+      "family_a_stage_endpoint": true,
+      "family_a_state_id": true,
+      "family_b_compression": true,
+      "family_b_conservation_defect_zero": true,
+      "family_b_denominator": true,
+      "family_b_hash_heads": true,
+      "family_b_state_id": true,
+      "family_b_volume_exact": true
+    },
+    "family_a_recomputed_anchor_signature": "da5b2bfdbd031f078f9429a171b16b75eda7451a5df7c841c9c2d75be927c415",
+    "family_b_recomputed_anchor_signature": "6013d5f3d8a73c83131dfab8ed30848f1528d7abe2a90b27a538c0b0d8bbfed5"
+  },
+  "parent_lineage": {
+    "manifold_family_b_integrated_v0_envelope": "system_v6/sims/manifold_family_b_integrated_v0/results/manifold_family_b_integrated_v0_envelope_results.json",
+    "manifold_super_sim_v0_envelope": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_envelope_results.json"
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+  "schema": "manifold_super_sim_v2_weld.envelope.v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "manifold_super_sim_v2_weld",
+  "source_import_audit": {
+    "audit_verdict_citation_context_hashes": {
+      "manifold_family_b_integrated_v0_audit": {
+        "path": "system_v6/sims/manifold_family_b_integrated_v0/audit_verdict.md",
+        "sha256": "3195cc27bd50b3006cdfe9a3573ace6f4458838dbf6ee76c796ee6c538f3a705"
+      },
+      "manifold_family_b_integrated_v0_posthardening": {
+        "path": "system_v6/sims/manifold_family_b_integrated_v0/audit_posthardening.md",
+        "sha256": "a969e29f59658ea82444cdcbfee6924088d9660eb41f092fb8a602557f55d20f"
+      },
+      "manifold_super_sim_v0_audit": {
+        "path": "system_v6/sims/manifold_super_sim_v0/audit_verdict.md",
+        "sha256": "f57f3c997890ade25673fcf0a564d180be92f19eb9af349daeb3fce934faba93"
+      }
+    },
+    "axis0_leak_detected": false,
+    "family_b_folded_into_family_a": false,
+    "parent_hash_pins": {
+      "manifold_family_b_integrated_v0_envelope": {
+        "path": "system_v6/sims/manifold_family_b_integrated_v0/results/manifold_family_b_integrated_v0_envelope_results.json",
+        "sha256": "d5cba11a662cef379ca20f8da9ea18466ad1083f5618ff462a6ebf93a9e58f6d"
+      },
+      "manifold_super_sim_v0_envelope": {
+        "path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_envelope_results.json",
+        "sha256": "e993259cd01d74dd5a4a59c360c16d4e91b9d08c52debfa1fe6245a634b73dca"
+      }
+    },
+    "raw_parent_computation_imported": false,
+    "receipt_context_hashes": {
+      "weld_feedstock_inventory_20260611": {
+        "path": "system_v6/receipts/weld_feedstock_inventory_20260611.md",
+        "sha256": "217bd80a3e29ddde8d4b2ecb584759d09e52a72afd2c550cdd4702bde7da3ade"
+      }
+    }
+  },
+  "source_path": "system_v6/sims/manifold_super_sim_v2_weld/write_envelope_spec.py",
+  "source_sha256": "af210d4354cee224e8ea6ceea6ffc40ce70a9e6681db22dca850f5ee44bfc8a0",
+  "stability_pairs": [
+    {
+      "hash": "da5b2bfdbd031f078f9429a171b16b75eda7451a5df7c841c9c2d75be927c415",
+      "subtree": "family_state_objects.A.anchor_values"
+    },
+    {
+      "hash": "6013d5f3d8a73c83131dfab8ed30848f1528d7abe2a90b27a538c0b0d8bbfed5",
+      "subtree": "family_state_objects.B.anchor_values"
+    },
+    {
+      "hash": "d4f1dda43849a417b209d1e0dc945df02c21c1b33487d2dad74fca50ee275995",
+      "subtree": "declared_weld_map"
+    },
+    {
+      "hash": "c90988aace4d1a1555b03fbb108e971091403f2483f8b5c2f01da7a933f6d592",
+      "subtree": "weld_row_table"
+    }
+  ],
+  "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+  "tool_intent": {
+    "backend_contract_decision": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+    "claim_classes": [
+      "chart_to_chart_weld_map",
+      "cross_family_perturbation_controls",
+      "finite_smt_weld_relation"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent solver mirror of computed weld relation identities",
+        "networkx": "finite weld relation graph/source-backing probe",
+        "sympy": "typed entropy/counting convention reconciliation rows",
+        "z3": "computed A/B/weld relation identities with erased flips"
+      },
+      "julia": {
+        "Graphs": "finite A/B anchor graph count checks for the weld relation",
+        "Z3": "Julia-side integer weld relation identity with erased flip"
+      },
+      "pytorch": {
+        "cvc5": "independent solver mirror of computed weld relation identities",
+        "sympy": "typed entropy/counting convention reconciliation rows",
+        "torch.func": "batched finite relation transform for source-backed tensor lane",
+        "torch_geometric": "finite graph carrier for A/B relation source-backing probe",
+        "z3": "computed A/B/weld relation identities with erased flips"
+      }
+    }
+  },
+  "trajectory_artifact": {
+    "artifact_file_sha256": "d88caee3fea6eb077a4107f724cf3f27324257aea4f3e4d0c53125013615e74d",
+    "content_sha256": "6a12865b175f710c8c8e866814224a89e3b79d53230f458e43ab23cb6e33e560",
+    "path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_trajectory_artifact.json",
+    "payload": {
+      "all_pass": true,
+      "content_sha256": "6a12865b175f710c8c8e866814224a89e3b79d53230f458e43ab23cb6e33e560",
+      "family_scopes": [
+        "A",
+        "B",
+        "WELD"
+      ],
+      "family_state_object_ids": {
+        "A": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+        "B": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5"
+      },
+      "lineage_standard": {
+        "has_file_byte_sha": true,
+        "has_row_step_class_why": true,
+        "has_row_step_lineage_id": true,
+        "has_stable_content_sha": true,
+        "has_trajectory_step_id": true
+      },
+      "schema_version": "manifold_super_sim_v2_weld_trajectory_artifact_v1",
+      "sim_id": "manifold_super_sim_v2_weld",
+      "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+      "step_rows": [
+        {
+          "family_scope": "A",
+          "row_family": "L1_BASIN",
+          "row_id": "L1_BASIN",
+          "row_payload_sha256": "5357aad7e7e34eed05e1c3553cef4d70f8baf9bfe47341a28532acfff0877d86",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family A layer anchor from the current parent common builder",
+          "row_step_lineage_id": "5ff3f245a76a15d90f6bcccfd85a63884a604cc1cec9798073ec85cc0d73cfbf",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "5357aad7e7e34eed05e1c3553cef4d70f8baf9bfe47341a28532acfff0877d86",
+          "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+          "step_index": 0,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0000"
+        },
+        {
+          "family_scope": "A",
+          "row_family": "L2_CHART",
+          "row_id": "L2_CHART",
+          "row_payload_sha256": "80cd58c15d0e1914ccb9a511e04fb943b1dacf06f385c4a5c8b72baff3f5082e",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family A layer anchor from the current parent common builder",
+          "row_step_lineage_id": "d21f00fe7a00ef3905089ee5821c212ce7d1af0fc56ac0ce64b8e0790a3281a8",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "80cd58c15d0e1914ccb9a511e04fb943b1dacf06f385c4a5c8b72baff3f5082e",
+          "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+          "step_index": 1,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0001"
+        },
+        {
+          "family_scope": "A",
+          "row_family": "L3_INFORMATION",
+          "row_id": "L3_INFORMATION",
+          "row_payload_sha256": "cc6e658c13bc8b99cc03236b3f32fa048a8f30cc8f5d5f2fe70615434016a94a",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family A layer anchor from the current parent common builder",
+          "row_step_lineage_id": "7602882a1f89ba9fe10f06891f51fbeebc6fc4bb9ccf907e5607630f6313de87",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "cc6e658c13bc8b99cc03236b3f32fa048a8f30cc8f5d5f2fe70615434016a94a",
+          "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+          "step_index": 2,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0002"
+        },
+        {
+          "family_scope": "A",
+          "row_family": "L4_FUSION",
+          "row_id": "L4_FUSION",
+          "row_payload_sha256": "013a6c1fef589db46d574f112ac4a8668347be652bd733fd99673678bd6f4b2e",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family A layer anchor from the current parent common builder",
+          "row_step_lineage_id": "63bb11bbc33dd55d29c29fda202b2e2e0b27a8fa4ed0abd4940882b0f9e849f9",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "013a6c1fef589db46d574f112ac4a8668347be652bd733fd99673678bd6f4b2e",
+          "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+          "step_index": 3,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0003"
+        },
+        {
+          "family_scope": "A",
+          "row_family": "L5_LEDGER",
+          "row_id": "L5_LEDGER",
+          "row_payload_sha256": "6fd4d28ef3a1a2f0f4189c178a6e8abca4f6b7e13fdcb7e058594f559fbd4391",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family A layer anchor from the current parent common builder",
+          "row_step_lineage_id": "0ece5de414ec26e79e9ca67c3cc1a8af4a0b788dc635c02166f2ef5b6351c70f",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "6fd4d28ef3a1a2f0f4189c178a6e8abca4f6b7e13fdcb7e058594f559fbd4391",
+          "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+          "step_index": 4,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0004"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_1",
+          "row_payload_sha256": "82a1e8e2fcc9eaa4507fe1255ae409fc0a55668eeaf694571c5ce471da138c21",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "2ce9f8199a302da3662b3f78e849396162589548201e0f5b2cecf54a7bd23de8",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "82a1e8e2fcc9eaa4507fe1255ae409fc0a55668eeaf694571c5ce471da138c21",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 5,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0005"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_2",
+          "row_payload_sha256": "9758b1bbc2279ba3e4faefb6e6644933630d2649825157a3076c92be0cd0100c",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "9caffb3af66e08f2ad641c018c874b09ca285593ee75aa9440fa018f48055b85",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "9758b1bbc2279ba3e4faefb6e6644933630d2649825157a3076c92be0cd0100c",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 6,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0006"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_3",
+          "row_payload_sha256": "5d98e7dc718be01806b04b4e32928c4026394120dc619f40e7e551541fffc4ab",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "2cdcf8799dc6c73541b57a3c07bfc93204dbd9e536859bbf2a6f3e12b6c21727",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "5d98e7dc718be01806b04b4e32928c4026394120dc619f40e7e551541fffc4ab",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 7,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0007"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_4",
+          "row_payload_sha256": "8d45aedd41b033af10cde7b52566c20ca9ef43fbaa7bedca764dababcc2e60ef",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "89437e9a1d01eee941d5cca8172300909aba74d39ba37205a60534c2e4cb8068",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "8d45aedd41b033af10cde7b52566c20ca9ef43fbaa7bedca764dababcc2e60ef",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 8,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0008"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_5",
+          "row_payload_sha256": "c8a8cdc099e8d1d5be3983fbf4191085b4e63f9f9d512e5ebdfb5c1c86e4dbda",
+          "row_step_class": "CARRIED",
+          "row_step_class_why": "v2 carries the current hardened Family B row class from the B common builder",
+          "row_step_lineage_id": "402ad45e152047175b2171ee468462aaa282e0923eb2b0bac7179c72ce943374",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "c8a8cdc099e8d1d5be3983fbf4191085b4e63f9f9d512e5ebdfb5c1c86e4dbda",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 9,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0009"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_6",
+          "row_payload_sha256": "f83a6fa7d64ad1aae00978426033d2228b9ec9a20e42d1ef8ac2498aa8fa557c",
+          "row_step_class": "CARRIED",
+          "row_step_class_why": "v2 carries the current hardened Family B row class from the B common builder",
+          "row_step_lineage_id": "39642b7caaf44afc1806a1f4cb356cbe58af1c23e96b651ff7cea54430797a84",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "f83a6fa7d64ad1aae00978426033d2228b9ec9a20e42d1ef8ac2498aa8fa557c",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 10,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0010"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B1_RATCHET_CHAIN",
+          "row_id": "B1_step_7",
+          "row_payload_sha256": "014cc96a91520f70f908428deac552d7a3d84c8b449d87732477f340a0bf7fff",
+          "row_step_class": "CARRIED",
+          "row_step_class_why": "v2 carries the current hardened Family B row class from the B common builder",
+          "row_step_lineage_id": "3c98e017a21d1efc546a36272202dd89ba9f734ca85df488c2dd5e8575176ec3",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "014cc96a91520f70f908428deac552d7a3d84c8b449d87732477f340a0bf7fff",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 11,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0011"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B2_COMPRESSION_RECORD",
+          "row_id": "B2_step_0",
+          "row_payload_sha256": "f40b1b68d6ad6ebec325fb6009bbab56d5d4fffe899beb70dcd73872a365fbc5",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "c5b5b3632d8bc9251a306457df9c0e2d5fdbd91633c0311f4d8dbdb5928489be",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "f40b1b68d6ad6ebec325fb6009bbab56d5d4fffe899beb70dcd73872a365fbc5",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 12,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0012"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B2_COMPRESSION_RECORD",
+          "row_id": "B2_step_1",
+          "row_payload_sha256": "286da139d8c30b59d66c1e04d789bb9088d73e5286a6950412745a2e61cc94a7",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "b6a4a55002cb64ba22534aa5d7cfe50875777a1d2d6c73442b9c7708d2256188",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "286da139d8c30b59d66c1e04d789bb9088d73e5286a6950412745a2e61cc94a7",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 13,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0013"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B2_COMPRESSION_RECORD",
+          "row_id": "B2_step_2",
+          "row_payload_sha256": "38ee7cdf8bf196a1a64bbc8c4345ffa21285cf732debd8e5965d82afb950323d",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "31dc367267b029dfa64ee29823172825f2a0e140ec1294911ecd0b98e0647822",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "38ee7cdf8bf196a1a64bbc8c4345ffa21285cf732debd8e5965d82afb950323d",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 14,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0014"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B3_CONSERVATION_ACCOUNTS",
+          "row_id": "B3_full_record",
+          "row_payload_sha256": "8c420913afe41188b0b20b3c4c95fc1c4fd77a4545ddec913d1cba642f13eeff",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "0727fe2432f30cde6738002a6d03e5e8d7e9cb99efccaa14db20fc856b4376cc",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "8c420913afe41188b0b20b3c4c95fc1c4fd77a4545ddec913d1cba642f13eeff",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 15,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0015"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B3_CONSERVATION_ACCOUNTS",
+          "row_id": "B3_erased_record",
+          "row_payload_sha256": "c51c1bf372c58efd38b9fd36ad4ec041bef39401441a292a34aa9d0d98d399a3",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "f5bc73d615ef1cee0ddbdf3a822e2fd4f3441159e0091d1ff7e6bcac42640eff",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "c51c1bf372c58efd38b9fd36ad4ec041bef39401441a292a34aa9d0d98d399a3",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 16,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0016"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B4_TYPED_LEDGER",
+          "row_id": "B4_chart_uniform_final_volume",
+          "row_payload_sha256": "5bf30e88400cad28faf83deb38c38b0aa53a1cc0cc40c58dbff99ec7fb0d04e9",
+          "row_step_class": "CARRIED",
+          "row_step_class_why": "v2 carries the current hardened Family B row class from the B common builder",
+          "row_step_lineage_id": "eb98b29b620a40498b3248d21f07ca0b2dc0e406c9b7bcd3e5832dd409a18c83",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "5bf30e88400cad28faf83deb38c38b0aa53a1cc0cc40c58dbff99ec7fb0d04e9",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 17,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0017"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B4_TYPED_LEDGER",
+          "row_id": "B4_signed_lens_delta",
+          "row_payload_sha256": "a545ac824d38e4880d844e0ed8789f4993f456689867848b1b3b9b80fd1da2c1",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "c793306abc6b69fa676ce4ba61f1e545c118374218c1fd3ef60a2ce3eac7593d",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "a545ac824d38e4880d844e0ed8789f4993f456689867848b1b3b9b80fd1da2c1",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 18,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0018"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B4_TYPED_LEDGER",
+          "row_id": "B4_counting_record_full",
+          "row_payload_sha256": "4b0e8e8a65a9266ad408abdd6f4e99496af9ddd01cdcf90590f7e704418d49c7",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "5fdc0b55cc4ffa465715360eae2fb5f6261bd96e900e1815494d88ff688bfa36",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "4b0e8e8a65a9266ad408abdd6f4e99496af9ddd01cdcf90590f7e704418d49c7",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 19,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0019"
+        },
+        {
+          "family_scope": "B",
+          "row_family": "B4_TYPED_LEDGER",
+          "row_id": "B4_cardinality_flow",
+          "row_payload_sha256": "862f0e89434e7695bbfdac3927716415dff7ff704285f9fe1a363c199e1fc819",
+          "row_step_class": "STEP_DEPENDENT",
+          "row_step_class_why": "v2 recomputes the Family B row from the current B trajectory input",
+          "row_step_lineage_id": "2aa2f45000313706466b5c0c12717f79090272f9f8771dcf18e3e561e53a224f",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "862f0e89434e7695bbfdac3927716415dff7ff704285f9fe1a363c199e1fc819",
+          "state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+          "step_index": 20,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0020"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W1_state_object_independence",
+          "row_payload_sha256": "6bd57c2d9df823b8ef87b115589496bf7c7f4718d73877e9894e29905ae4d6cf",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "a334a29c3c3a08cea1c65c9d3df78523200ba9951a0147dbf6b8c94daed9ae82",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "6bd57c2d9df823b8ef87b115589496bf7c7f4718d73877e9894e29905ae4d6cf",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 21,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0021"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W2_chart_quotient_relation",
+          "row_payload_sha256": "093a4546a9f45deaa851368e6921c185983823990045603ed41246ff2fe5db1f",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "e2ed788fcfb8e8c3c97c29df63a7deccb9be5517b3680be06fae8a246f65b70d",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "093a4546a9f45deaa851368e6921c185983823990045603ed41246ff2fe5db1f",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 22,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0022"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W3_partition_relation",
+          "row_payload_sha256": "63052a8439f68f404e53919b6f9577af0b0b6bd16826e25cb8ec3584ee2b8167",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "a75adf7696f92bd8e4484ea7efb0f55c50c4155bd950e2428f0ebf81c6709f78",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "63052a8439f68f404e53919b6f9577af0b0b6bd16826e25cb8ec3584ee2b8167",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 23,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0023"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W4_record_conservation_relation",
+          "row_payload_sha256": "62c222f8c47ba5c21d3ca0dbf5b759edbc441bf5e645da755bc4fe4b13523a91",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "989b2f441d6eee7c9f77d88cc42688e503c6c9c10ce9006913b4108c5ff2c694",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "62c222f8c47ba5c21d3ca0dbf5b759edbc441bf5e645da755bc4fe4b13523a91",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 24,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0024"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W5_entropy_typing_relation",
+          "row_payload_sha256": "12efb32ac3ae8c7ed4c66adb36284cfe10defb0062ff27b69fccc1ece69700d3",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "e5d17cc8e686b858bd871f7183a9b095e11523a8cff1f392d7795f7e5d5f630b",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "12efb32ac3ae8c7ed4c66adb36284cfe10defb0062ff27b69fccc1ece69700d3",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 25,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0025"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W6_backend_contract_decision",
+          "row_payload_sha256": "9c4c699a286b320220bbc72bbdb800fff59262cf7fed968e8ee28a4ec1f07513",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "b19767ef8de1f181800abade4dbe2f941a2bebccc590ee837582a00f77c9886b",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "9c4c699a286b320220bbc72bbdb800fff59262cf7fed968e8ee28a4ec1f07513",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 26,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0026"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W7_trajectory_lineage_standard",
+          "row_payload_sha256": "f6ea35cad85bd1bafaab105c6832fd3fd9ad2e52889d6bc1ac434c7232b124cc",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "007937e98b55e2a3cca9760627098a0ae5aa295634abce0b357a27136087c300",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "f6ea35cad85bd1bafaab105c6832fd3fd9ad2e52889d6bc1ac434c7232b124cc",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 27,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0027"
+        },
+        {
+          "family_scope": "WELD",
+          "row_family": "A+B_weld_rows",
+          "row_id": "W8_two_engine_boundary",
+          "row_payload_sha256": "b32cc3c327b5607ef4821c35df6a11bd652f4786b031520d5262083aaa3b93f1",
+          "row_step_class": "WELD_DERIVED",
+          "row_step_class_why": "v2 weld-only row derived from current separate A and B state summaries plus the declared weld map",
+          "row_step_lineage_id": "f242cfa605d684801c6d06336c99ab4742639d8053630ef45a960334dc2e617f",
+          "sha_verified": true,
+          "sidecar_payload_sha256": "b32cc3c327b5607ef4821c35df6a11bd652f4786b031520d5262083aaa3b93f1",
+          "state_object_id": "manifold_super_sim_v2_weld:c2ab14953c1e4e07964bf41d52f53bfa8209f91835e57c81ea91b6fc684c0f76",
+          "step_index": 28,
+          "trajectory_step_id": "manifold_super_sim_v2_weld:step:0028"
+        }
+      ]
+    },
+    "payload_sha256": "6a12865b175f710c8c8e866814224a89e3b79d53230f458e43ab23cb6e33e560",
+    "sha_path": "system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_trajectory_artifact.sha256",
+    "sha_verified": true,
+    "sidecar_file_sha256": "d88caee3fea6eb077a4107f724cf3f27324257aea4f3e4d0c53125013615e74d",
+    "sidecar_sha256": "d88caee3fea6eb077a4107f724cf3f27324257aea4f3e4d0c53125013615e74d"
+  },
+  "validator_expected_commands": [
+    "/opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_jax.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_pytorch.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_super_sim_v2_weld/write_envelope_spec.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/build_three_engine_envelope.py system_v6/sims/manifold_super_sim_v2_weld/manifold_super_sim_v2_weld_envelope_spec.json > system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_super_sim_v2_weld/validate_manifold_super_sim_v2_weld.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/manifold_super_sim_v2_weld/results/manifold_super_sim_v2_weld_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/manifold_super_sim_v2_weld/tests"
+  ],
+  "weld_row_table": [
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "computed_value": true,
+      "expected_value": true,
+      "family_a_state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+      "family_b_state_object_id": "manifold_family_b_integrated_v0:ce89ce555d94cb523613db78bbfe382dc4746cbc039c8773e9aa769e3eb090f5",
+      "pass": true,
+      "relation_class": "independent",
+      "row_id": "W1_state_object_independence",
+      "row_signature_sha256": "7da669fd4c26f38aba0bd7cf2218e4113320ba88e9652ca3681ff61c4757b54b"
+    },
+    {
+      "chart_quotient_convention": "A original-33-cell chart and B Hopf-torus chart are quotient-disciplined but coordinate-independent",
+      "claim_ceiling": "scratch_diagnostic",
+      "pass": true,
+      "rejects_invariant_subbasin_language": true,
+      "relation_class": "related_not_shared",
+      "row_id": "W2_chart_quotient_relation",
+      "row_signature_sha256": "7418bc99b882ac7a8f051539a354145e7a868439de1828bb15e998919804a652"
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "computed_relation_value": 11,
+      "expected_relation_value": 11,
+      "family_a_value": 3,
+      "family_b_value": 8,
+      "pass": true,
+      "relation_class": "weld_relation",
+      "row_id": "W3_partition_relation",
+      "row_signature_sha256": "b128a02b0494dbc02fb1e48823da825527b3b5bbc3964545fe4d6eec6d272cb2",
+      "weld_relation": "A_G1_terminal_class_count + B_Z4xZ2_orbit_order"
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "computed_shared_zero_defect": true,
+      "family_a_z4_erased_record_retained_nats": 0.0,
+      "family_b_conservation_defect_nats": 0.0,
+      "pass": true,
+      "relation_class": "related_not_shared",
+      "row_id": "W4_record_conservation_relation",
+      "row_signature_sha256": "9406bf6b2d43947edc168886ebae74b2b0b0fda55a57d35b175d27e20d6b0e81",
+      "shared_observable": "finite state-plus-record zero-defect row"
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "family_a_holevo_nats": 0.411341122022618,
+      "family_b_entropy_deltas_exact": [
+        "-log(4)",
+        "-log(2)",
+        "-log(2)"
+      ],
+      "forbidden_cross_type_sum_found": false,
+      "pass": true,
+      "product_convention_declared": false,
+      "relation_class": "related_typed_bookkeeping_only",
+      "row_id": "W5_entropy_typing_relation",
+      "row_signature_sha256": "cb54dd871237906c30102d944cfa7f15fde852585009c7056d35c5311ca3bf71"
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "engine_mode": "a_b_weld_shared_common_builder_with_julia_anchor_scope",
+      "independent_full_object_claim": false,
+      "pass": true,
+      "relation_class": "backend_scope",
+      "row_id": "W6_backend_contract_decision",
+      "row_signature_sha256": "18740925a6fb1a596fdb8a23995027a053fa0c99763e2aa0bfc02a1a33f1fc44"
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "pass": true,
+      "relation_class": "shared_lineage_standard",
+      "row_id": "W7_trajectory_lineage_standard",
+      "row_signature_sha256": "aa27899c122bd952f4bb437697dfa913baa04e5a7715365b008331223e71c82b",
+      "separate_family_trajectories": true,
+      "weld_rows_have_own_lineage": true
+    },
+    {
+      "claim_ceiling": "scratch_diagnostic",
+      "corrected_context_language": "one-sided 32 is frozen-factor echo; not A/B weld evidence",
+      "pass": true,
+      "relation_class": "independent_external_context",
+      "row_id": "W8_two_engine_boundary",
+      "row_signature_sha256": "79bd7ad26dc41e90b3e8107f62e26eb39d20e021b706f19fd0b9425ca0102ba9",
+      "two_engine_rows_imported": false
+    }
+  ],
+  "weld_smt_rows": {
+    "cvc5_family_a_anchor": {
+      "asserted_precomputed_boolean": false,
+      "bound_actual": 3,
+      "bound_expected": 3,
+      "erased_expected": 2,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5:family_a_G1_terminal_count",
+      "verdict": "unsat"
+    },
+    "cvc5_family_b_anchor": {
+      "asserted_precomputed_boolean": false,
+      "bound_actual": 16,
+      "bound_expected": 16,
+      "erased_expected": 15,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5:family_b_final_denominator",
+      "verdict": "unsat"
+    },
+    "cvc5_weld_relation": {
+      "asserted_precomputed_boolean": false,
+      "bound_family_a_value": 3,
+      "bound_family_b_value": 8,
+      "bound_weld_relation_value": 11,
+      "erased_expected_relation_value": 10,
+      "erased_flip_verdict": "sat",
+      "expected_relation_value": 11,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5:weld_relation",
+      "verdict": "unsat"
+    },
+    "z3_family_a_anchor": {
+      "asserted_precomputed_boolean": false,
+      "bound_actual": 3,
+      "bound_expected": 3,
+      "erased_expected": 2,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3:family_a_G1_terminal_count",
+      "verdict": "unsat"
+    },
+    "z3_family_b_anchor": {
+      "asserted_precomputed_boolean": false,
+      "bound_actual": 16,
+      "bound_expected": 16,
+      "erased_expected": 15,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3:family_b_final_denominator",
+      "verdict": "unsat"
+    },
+    "z3_weld_relation": {
+      "asserted_precomputed_boolean": false,
+      "bound_family_a_value": 3,
+      "bound_family_b_value": 8,
+      "bound_weld_relation_value": 11,
+      "erased_expected_relation_value": 10,
+      "erased_flip_verdict": "sat",
+      "expected_relation_value": 11,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3:weld_relation",
+      "verdict": "unsat"
+    }
+  }
+}

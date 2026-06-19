@@ -1,0 +1,69 @@
+{
+  "schema_version": "foundation_envelope_audit_receipt_v1",
+  "receipt_kind": "foundation_envelope_hash_pin",
+  "rung": "foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh.py",
+  "file_realpath": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh.py",
+  "source_sha256": "72019c2eff20fbd54cf5b7f6364e156ea27db4cf086ce7f8dbe1f4bef6c05d87",
+  "source_size_bytes": 16326,
+  "source_mtime": 1780884763.784231,
+  "source_mtime_iso": "2026-06-08T02:12:43Z",
+  "envelope_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh_results.json",
+  "envelope_result_source_sha256": "72019c2eff20fbd54cf5b7f6364e156ea27db4cf086ce7f8dbe1f4bef6c05d87",
+  "audited_at": "2026-06-08T05:19:17Z",
+  "validator": {
+    "command": [
+      "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "/Users/joshuaeisenhart/Codex-Ratchet/scripts/validate_three_engine_sim_result.py",
+      "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh_results.json",
+      "--require-pytorch"
+    ],
+    "returncode": 0,
+    "ok": true,
+    "stdout": "{\n  \"ok\": true,\n  \"result_json\": \"/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh_results.json\"\n}",
+    "stdout_json": {
+      "ok": true,
+      "result_json": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_envelope_xhigh_results.json"
+    },
+    "stderr": ""
+  },
+  "max_divergence": 0.0,
+  "constituent_legs": {
+    "julia": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_julia_xhigh.jl",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_julia_xhigh_results.json",
+      "source_sha256": "ff37500d68411ae071a7eea1a14d18db6bb88fa63d08f770dd5b052b22b196cc",
+      "durable_audit_receipt": {
+        "exists": false,
+        "path": null
+      }
+    },
+    "jax": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_jax_xhigh.py",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_jax_xhigh_results.json",
+      "source_sha256": "e8dafcfb42960e6fc71e7fc1bcbddca17ba6228c0c7c5ef58cc219943c836156",
+      "durable_audit_receipt": {
+        "exists": false,
+        "path": null
+      }
+    },
+    "pytorch": {
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_pytorch_xhigh.py",
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_foundation_r4_nonassoc_root_vs_carrier_discriminator_xhigh_pytorch_xhigh_results.json",
+      "source_sha256": "99eb8f5163a9d54771f1230c963c56f785c89ee23d4d9189e2d354a4b08a394a",
+      "durable_audit_receipt": {
+        "exists": false,
+        "path": null
+      }
+    }
+  },
+  "authority": {
+    "model": "local scripts/validate_three_engine_sim_result.py --require-pytorch",
+    "returncode": 0,
+    "verdict": "GENUINE",
+    "raw": "{\"recorded_source_sha256_matches_current\": true, \"validator_ok\": true}"
+  },
+  "alt_views": {},
+  "classification": "infrastructure_scratch",
+  "promotion_allowed": false
+}

@@ -22,9 +22,19 @@ PROPOSED → BOUND | ALIASED | FRONTIER | AMBIGUOUS | CONFLICTED | PARKED | REJE
 """
 import json
 import time
+import re as _re
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Dict, List, Optional, Any
+
+
+def _vacuous_probe(p) -> bool:
+    """A probe suggestion that names no actual probe (degrades a BOUND binding back to '=')."""
+    s = str(p).strip().lower()
+    if s in ("", "tbd", "todo", "unpinned", "unknown", "generic", "general", "any", "none", "n/a", "x", "?"):
+        return True
+    inner = _re.findall(r"\{([^}]*)\}", s)  # M={...}
+    return bool(inner) and all(x.strip() in ("", "unpinned", "todo", "tbd", "anything", "x", "placeholder") for x in inner)
 
 
 # ── Constants ────────────────────────────────────────────────────────────────
@@ -128,10 +138,15 @@ def _can_promote_ambiguous_label(pkt: RosettaPacket, store: "RosettaStore") -> t
 
 
 def _can_promote_sense_candidate(pkt: RosettaPacket, store: "RosettaStore") -> tuple:
-    """SENSE_CANDIDATE promotes only if it binds to explicit structural math."""
+    """SENSE_CANDIDATE promotes to BOUND only if it binds to explicit structural math AND names the
+    probe family that earned the binding. A presence check on kernel_targets alone is a de-facto
+    '=' (binding asserted, never probe-tested); this system has no equals sign, so a BOUND record
+    must carry the probe family M under which sense ~_M kernel."""
     if not pkt.kernel_targets:
         return False, "No kernel_targets — cannot bind to structure"
-    return True, "Has explicit kernel targets"
+    if not any(not _vacuous_probe(p) for p in pkt.probe_suggestions):
+        return False, "probe_suggestions are absent/vacuous/placeholder — a binding with no real named probe is a de-facto '='; name the probe family M"
+    return True, "Has explicit kernel targets AND a substantive probe family"
 
 
 def _can_promote_axis_candidate(pkt: RosettaPacket, store: "RosettaStore") -> tuple:
@@ -427,7 +442,9 @@ class RosettaStore:
                 if p.source_concept_id == source_concept_id]
 
     def get_kernel_translation(self, overlay_term: str) -> Optional[str]:
-        """Check if an overlay term has a BOUND or ALIASED translation."""
+        """DEPRECATED (no-equals discipline): returns a single kernel_target -- a de-facto '='
+        (one 'true name'). Prefer a plural ~_M perspective fan
+        (rosetta_reattach.RosettaCarrier.perspectives()). Kept for back-compat only."""
         pkts = self.get_by_source_term(overlay_term)
         for p in pkts:
             if p.status in ("BOUND", "ALIASED") and p.kernel_targets:

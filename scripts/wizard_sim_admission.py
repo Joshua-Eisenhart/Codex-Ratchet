@@ -47,6 +47,47 @@ def _canonical_results_dir(root: Path) -> Path:
     return root / "system_v4" / "probes" / "a2_state" / "sim_results"
 
 
+def _actual_lego_registry_path(root: Path) -> Path:
+    return _canonical_results_dir(root) / "actual_lego_registry.json"
+
+
+def _canonical_registry_basenames(root: Path) -> set[str] | None:
+    path = _actual_lego_registry_path(root)
+    if not path.exists():
+        return None
+    payload = _load_json(path)
+    rows = payload.get("rows") if isinstance(payload, dict) else payload
+    if not isinstance(rows, list):
+        return None
+    keys = {
+        "best_existing_result",
+        "canonical_result_path",
+        "canonical_sim_path",
+        "lego_id",
+        "machine_best_probe",
+        "machine_best_result",
+        "machine_suggested_first_probe",
+        "sim_path",
+        "suggested_first_probe",
+    }
+    names: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        for key in keys:
+            value = str(row.get(key) or "").strip()
+            if not value or value.lower() == "none":
+                continue
+            stem = Path(value).stem
+            candidates = {value, stem}
+            if stem.endswith("_results"):
+                candidates.add(stem[: -len("_results")])
+            if stem.startswith("sim_"):
+                candidates.add(stem[4:])
+            names.update(candidate for candidate in candidates if candidate)
+    return names
+
+
 def _allowed_payload_named_result(root: Path, basename: str, profile_expected_path: str) -> Path | None:
     if not profile_expected_path:
         return None
@@ -66,9 +107,8 @@ def _allowed_payload_named_result(root: Path, basename: str, profile_expected_pa
 
 
 def resolve_expected_result(root: Path, basename: str, profile_expected_path: str, override: str | Path | None = None) -> Path:
-    if override:
-        return rel_or_abs(root, override)
-    alternate = _allowed_payload_named_result(root, basename, profile_expected_path)
+    requested = str(override) if override else profile_expected_path
+    alternate = _allowed_payload_named_result(root, basename, requested)
     if alternate:
         return alternate
     return expected_result(root, basename)
@@ -185,6 +225,10 @@ def validate_admission(
         findings.append("missing_packet_contract")
         contract = {}
 
+    registry_basenames = _canonical_registry_basenames(root)
+    if registry_basenames is not None and basename not in registry_basenames:
+        findings.append("basename_not_in_canonical_registry")
+
     stage = str(profile.get("stage") or "micro")
     normalized_stage = stage_claim(stage)
     gate_finding = check_stage_gate(root, normalized_stage)
@@ -219,7 +263,10 @@ def validate_admission(
         findings.append("controller_read_artifacts_missing_expected_result")
 
     result_payload = _load_json(canonical) if canonical.exists() else {}
-    load_bearing = _load_bearing_tool_families(result_payload)
+    load_bearing_tools = two_root_constraints.load_bearing_tools(result_payload)
+    if result_payload.get("classification") != "classical_baseline" and not load_bearing_tools:
+        findings.append("no_load_bearing_tool")
+    load_bearing = set(load_bearing_tools)
     local_load_bearing = _local_load_bearing_tool_families(result_payload)
     contract_tool = _tool_family(str(contract.get("tool_target") or ""))
     if contract_tool and load_bearing and contract_tool not in load_bearing:

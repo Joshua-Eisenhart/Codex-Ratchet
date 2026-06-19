@@ -1,0 +1,79 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "sympy": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "supportive vectorized compatibility mask computation",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive integer coordinate/signature arrays",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact tower count identities",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "jax",
+  "exact_orphan_2q_count": 288,
+  "exact_tower_cardinality": 256,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-13T01:23:54Z",
+  "jax_mask_receipt": {
+    "entangled_probe_compatible_2q_count": 16,
+    "exact_orphan_2q_count": 288,
+    "exact_tower_cardinality": 256,
+    "max_probe_triples_per_row": 4,
+    "probe_compatible_2q_count": 464,
+    "probe_orphan_2q_count": 80,
+    "probe_tower_cardinality": 1856,
+    "product_exact_subtower_count": 256,
+    "two_q_survivor_count": 544,
+    "x64_enabled": true
+  },
+  "package_observables": {
+    "sympy": "sp.Rational exact guard for exact/probe compatible counts and orphan partitions"
+  },
+  "package_versions": {
+    "jax": "0.10.1",
+    "sympy": "1.14.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "sympy"
+  ],
+  "probe_orphan_2q_count": 80,
+  "probe_tower_cardinality": 1856,
+  "product_exact_subtower_count": 256,
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_nesting_tower_le2q_v0/results/gcm_nesting_tower_le2q_v0_jax_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_nesting_tower_le2q_v0",
+  "source_path": "system_v6/sims/gcm_nesting_tower_le2q_v0/gcm_nesting_tower_le2q_v0_jax.py",
+  "source_sha256": "7ffdd6b72fc88f2494276a8c0200183193f8a95baf49610b0ee98056da2cccb3",
+  "sympy_guard": {
+    "counts": {
+      "exact": "256",
+      "exact_orphans": "288",
+      "probe": "464",
+      "probe_orphans": "80",
+      "product_exact": "256",
+      "two_q": "544"
+    },
+    "pass": true
+  }
+}

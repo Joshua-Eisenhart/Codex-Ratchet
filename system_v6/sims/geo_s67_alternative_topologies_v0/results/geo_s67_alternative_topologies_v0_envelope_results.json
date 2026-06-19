@@ -1,0 +1,2008 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "jax": "load_bearing",
+    "json": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent closed-cycle obstruction with erased edge flip",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source, parent, and row hash binding",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing vectorized adjacency, degree, and topology row reductions",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive parent/result envelope serialization",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing in-solver closed-cycle obstruction with erased edge flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite topology-variant survival matrix",
+    "structural discriminator answer under committed parents"
+  ],
+  "build_gates": {
+    "classification_ceiling": true,
+    "committed_ring_grid_anchor_loaded": true,
+    "complete_graph_cost_control_fires": true,
+    "erased_flip_controls_fire": true,
+    "file_disjoint_packet": true,
+    "julia_leg_loaded": true,
+    "julia_python_graph_hash_match": true,
+    "mobius_twist_computed": true,
+    "one_to_one_tool_calls": true,
+    "parent_lineage_hash_bound": true,
+    "path_closed_holonomy_killed": true,
+    "smt_agreement": true
+  },
+  "claim": "Scratch discriminator for S6/S7 topology variants under the same convergence, lens-commensurability, locality/cost, and leakage-class battery.",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "jax",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "Open path cannot satisfy the closed-cycle minimum-degree row when adjacency entries are bound in solver",
+      "derived_expression": "degree_i=sum_j e_ij over bound adjacency variables; require all degree_i==2 for the cycle row",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "negative_control_verdict": "sat",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "derived_expression": "degree_i=sum_j e_ij over bound adjacency variables; require all degree_i==2 for the cycle row",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "negative_control_verdict": "sat",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "Open path cannot satisfy the closed-cycle minimum-degree row when adjacency entries are bound in solver",
+      "derived_expression": "degree_i=sum_j e_ij over bound adjacency variables; require all degree_i==2 for the cycle row",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "negative_control_verdict": "sat",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "promotion",
+    "canonical uniqueness",
+    "formal admission",
+    "asymptotic proof beyond computed rows"
+  ],
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "complete_cost_n16": 64.0,
+        "complete_survives": 0.0,
+        "mobius_lens_well_defined_n8": 0.0,
+        "mobius_survives": 0.0,
+        "path_degree_min_n8": 1.0,
+        "path_survives": 0.0,
+        "ring_survives": 1.0,
+        "star_survives": 0.0
+      },
+      "julia": {
+        "complete_cost_n16": 64.0,
+        "complete_survives": 0.0,
+        "mobius_lens_well_defined_n8": 0.0,
+        "mobius_survives": 0.0,
+        "path_degree_min_n8": 1.0,
+        "path_survives": 0.0,
+        "ring_survives": 1.0,
+        "star_survives": 0.0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_graphs_z3",
+      "jax_topology_smt",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph/network/autograd torch claim path; topology battery uses Julia Graphs plus JAX/z3/cvc5 diagnostic rows"
+    }
+  },
+  "engines": {
+    "jax": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "hashlib": "supportive",
+        "jax": "load_bearing",
+        "json": "supportive",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load-bearing independent closed-cycle obstruction with erased edge flip",
+          "tried": true,
+          "used": true
+        },
+        "hashlib": {
+          "reason": "supportive source, parent, and row hash binding",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "load-bearing vectorized adjacency, degree, and topology row reductions",
+          "tried": true,
+          "used": true
+        },
+        "json": {
+          "reason": "supportive parent/result envelope serialization",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing in-solver closed-cycle obstruction with erased edge flip",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s67_alternative_topologies_v0/results/geo_s67_alternative_topologies_v0_envelope_results.json",
+      "source_path": "system_v6/sims/geo_s67_alternative_topologies_v0/geo_s67_alternative_topologies_v0.py",
+      "source_sha256": "9d03df169611dc07fe3f83339bb37f4f2dcbad50fb21941993d69899f50a5d01",
+      "tool_calls": [
+        {
+          "boundary_case": "complete graph edge-count n(n-1)/2",
+          "demotion_condition": "topology rows absent or graph hashes do not match Julia",
+          "gates": [
+            "jax_topology_rows_computed"
+          ],
+          "input_object": "Python adjacency matrices for topology alternatives",
+          "load_bearing": true,
+          "negative_or_erased_control": "path graph degree-min 1",
+          "output_object": "degree, edge-count, and cycle-rank rows",
+          "positive_case": "ring anchor has cycle-rank 1 and degree-min 2",
+          "qualified_api": "jax.numpy.asarray/jax.numpy.sum",
+          "tool": "jax"
+        },
+        {
+          "boundary_case": "n=8 primary path row",
+          "demotion_condition": "verdict not unsat or erased control not sat",
+          "gates": [
+            "smt_agreement",
+            "erased_flip_controls_fire"
+          ],
+          "input_object": "bound path adjacency variables",
+          "load_bearing": true,
+          "negative_or_erased_control": "closing edge restores ring cycle satisfiability",
+          "output_object": "UNSAT all-degree>=2 query plus SAT closing-edge control",
+          "positive_case": "open path kills closed-holonomy prerequisite",
+          "qualified_api": "z3.Solver/z3.Sum/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "n=8 primary path row",
+          "demotion_condition": "verdict not unsat or erased control not sat",
+          "gates": [
+            "smt_agreement",
+            "erased_flip_controls_fire"
+          ],
+          "input_object": "bound path adjacency variables",
+          "load_bearing": true,
+          "negative_or_erased_control": "closing edge restores ring cycle satisfiability",
+          "output_object": "UNSAT all-degree>=2 query plus SAT closing-edge control",
+          "positive_case": "open path kills closed-holonomy prerequisite",
+          "qualified_api": "cvc5.Solver/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "Graphs": "load_bearing",
+        "JSON/Dates/SHA": "supportive",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "Graphs": {
+          "reason": "load-bearing topology construction, degree, edge count, and cycle-rank rows",
+          "tried": true,
+          "used": true
+        },
+        "JSON/Dates/SHA": {
+          "reason": "supportive result serialization, timestamp, and hash binding",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing closed-cycle obstruction with erased closing-edge control",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s67_alternative_topologies_v0/results/geo_s67_alternative_topologies_v0_julia_results.json",
+      "result_sha256": "1da240d376e7b6f0ab53fec7d2a43bc8467b2322a7ae6b592388ba17e8e2ffcd",
+      "source_path": "system_v6/sims/geo_s67_alternative_topologies_v0/geo_s67_alternative_topologies_v0_julia.jl",
+      "source_sha256": "e60e020d2a46a99f37d63768dfeb88055e043650a759e134ae3af61fd3d22feb",
+      "tool_calls": [
+        {
+          "input_object": "topology variants",
+          "load_bearing": true,
+          "output_object": "graph rows",
+          "qualified_api": "Graphs.SimpleGraph/Graphs.add_edge!/Graphs.degree",
+          "tool": "Graphs"
+        },
+        {
+          "input_object": "bound path adjacency variables",
+          "load_bearing": true,
+          "output_object": "closed-cycle obstruction",
+          "qualified_api": "Z3.Solver/Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T09:42:10Z",
+  "object_id": "geo_s67_alternative_topologies_v0",
+  "parent_lineage": {
+    "engine_stage_word_cost_discriminator_v0": {
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "commit": "123b8e7d8f1b7aca5162facc5a7801f06372b02a",
+      "path": "system_v6/sims/engine_stage_word_cost_discriminator_v0/results/engine_stage_word_cost_discriminator_v0_envelope_results.json",
+      "promotion_allowed": false,
+      "result_sha256": "e7dd0a2e19f51e4f5071626c6218944ab1b0fccd83c4bcf95552df61501e2734",
+      "source_path": "system_v6/sims/engine_stage_word_cost_discriminator_v0/engine_stage_word_cost_discriminator_v0_envelope.py",
+      "source_sha256": "830853bcec2d707c9d5a26eff44eec5fea7904231a78f02f81ad5f7ec19d2c8f"
+    },
+    "geo_s6_s7_mode_sweep_v0": {
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_envelope_results.json",
+      "promotion_allowed": false,
+      "result_sha256": "665ed52239659a40884f59e03c451a73a8e887bffcc2291cae535fb16a714211",
+      "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0.py",
+      "source_sha256": "407160fdc8104eab8f0f0e7c7dff2f20c21275ba2d5d3a238df2f7e7dd3f9f43"
+    },
+    "geo_s7_discrete_refinement_v0": {
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "path": "system_v6/sims/geo_s7_discrete_refinement_v0/results/geo_s7_discrete_refinement_v0_envelope_results.json",
+      "promotion_allowed": false,
+      "result_sha256": "1f0d55d6a36292cb669921ea13f104898ca8ef342b686ebbf769c44c550c1803",
+      "source_path": "system_v6/sims/geo_s7_discrete_refinement_v0/geo_s7_discrete_refinement_v0_envelope.py",
+      "source_sha256": "374141367362e6e685f8d7f4b50e84d90affa309563fb9ca81b24f10a4314cc5"
+    },
+    "ring_checkerboard_support_graph_probe": {
+      "all_pass": true,
+      "classification": "scratch_diagnostic",
+      "path": "system_v6/sims/ring_checkerboard_support_graph_probe/results/ring_checkerboard_support_graph_probe_envelope_results.json",
+      "promotion_allowed": false,
+      "result_sha256": "f0c42e979885150b758c16562476cb261783cd8c4d73f718ac413e62e2a583c4",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/ring_checkerboard_support_graph_probe/ring_checkerboard_support_graph_probe_envelope.py",
+      "source_sha256": "8214cdbf6101ac7e0d3faefade7335c208d07331be314e2bee57fb9c3d7c4016"
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/geo_s67_alternative_topologies_v0/results/geo_s67_alternative_topologies_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seeds": {
+    "python": 20260611
+  },
+  "sim_id": "geo_s67_alternative_topologies_v0",
+  "source_path": "system_v6/sims/geo_s67_alternative_topologies_v0/geo_s67_alternative_topologies_v0.py",
+  "source_sha256": "9d03df169611dc07fe3f83339bb37f4f2dcbad50fb21941993d69899f50a5d01",
+  "structural_answer": {
+    "answer": "No tested alternative survives the full committed battery.",
+    "full_battery_survivors": [],
+    "mobius_result": "computed partial: size-2 cover orbits and ring-like cost survive, but the Z4 lens action is not well-defined on the twisted cover classes, so it fails the full battery.",
+    "what_ring_torus_uniquely_provides": [
+      "closed cyclic local successor/predecessor rows for lifted holonomy",
+      "a 2:1 torus cover whose cover classes are preserved by the Z4 lens shift",
+      "bounded loop-local cost under the committed [4,8,4] word rather than the all-to-all 64 control",
+      "local S6 preserve/move/cross/leave leakage classes with orientation not erased by graph topology"
+    ]
+  },
+  "survival_matrix": {
+    "A_path": {
+      "first_failure_row": "closed_holonomy",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 11,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "564830a04ddb8f2fe3eadab0b396d78de1ca95c4156287fc530b165fef0339ba"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 15,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "7b5f4e1120a94ccf7723ea9dd18e7c9906eea3f177ee0065dd9d3fbed1413524"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 7,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "244df59c5582abb1b9dcb38213869f27d477d1fb012be2051ed79063bbb140ce"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": false,
+        "closed_holonomy": false,
+        "first_failure": "closed_holonomy",
+        "flux_stokes": false,
+        "reason": "one cut edge leaves endpoints of degree 1; the lifted loop is not closed",
+        "status": "fails"
+      },
+      "label": "A path graph/open chain",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "without the closed cycle, preserve/move/cross/leave labels are not the committed S6 class predicates"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          2,
+          4,
+          2
+        ],
+        "passes_bounded_cost_row": true,
+        "reason": "bounded local word remains cheap, but prior holonomy row already failed"
+      },
+      "overall_survives_full_battery": false
+    },
+    "B_star": {
+      "first_failure_row": "closed_holonomy",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 0,
+          "degree_max": 11,
+          "degree_min": 1,
+          "degree_sequence": [
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 11,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "d9407ed9f53eca05c7994b2441412a4d3dab8e28f2a15b88adfa782ec06d45fd"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 0,
+          "degree_max": 15,
+          "degree_min": 1,
+          "degree_sequence": [
+            15,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 15,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "bafb7b3aa3b4d88c88184508182f14fa5a135b0a324e7473c6c7db92751a1927"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 0,
+          "degree_max": 7,
+          "degree_min": 1,
+          "degree_sequence": [
+            7,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 7,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "dff14a8ca480a1b482fa82831917ac5497ad7a9906bac06b487dd70c570b143f"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": false,
+        "closed_holonomy": false,
+        "first_failure": "closed_holonomy",
+        "flux_stokes": false,
+        "reason": "hub-and-spoke has no cyclic local successor relation for a torus chart",
+        "status": "fails"
+      },
+      "label": "B star graph/hub-and-spoke",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "without the closed cycle, preserve/move/cross/leave labels are not the committed S6 class predicates"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          8,
+          16,
+          16
+        ],
+        "passes_bounded_cost_row": false,
+        "reason": "hub degree creates non-ring-local fanout under the same stage word"
+      },
+      "overall_survives_full_battery": false
+    },
+    "C_complete": {
+      "first_failure_row": "locality_cost",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 55,
+          "degree_max": 11,
+          "degree_min": 11,
+          "degree_sequence": [
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "edge_count": 66,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "0e5dc5098576a9cf474adebbff220827310eb07115dc0ea4787e3fbbb5066f2e"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 105,
+          "degree_max": 15,
+          "degree_min": 15,
+          "degree_sequence": [
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15
+          ],
+          "edge_count": 120,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "a2a917eead3b7f7a2dbac6e403398206c167c74a2fb6de82441093a2941575ee"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 21,
+          "degree_max": 7,
+          "degree_min": 7,
+          "degree_sequence": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "edge_count": 28,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "6f7692b35e731dce2e4f03eadfc765f1a58d5c1bc29d8b5d31c940f9b50ad2c4"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": true,
+        "closed_holonomy": true,
+        "flux_stokes": true,
+        "reason": "a Hamiltonian cycle can replay the committed cycle, but the topology carries nonlocal edges into the cost row",
+        "status": "survives_with_extra_nonlocal_edges"
+      },
+      "label": "C complete graph/all-to-all",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "nonlocal edges collapse ring-neighbor leakage labels into all-to-all reachability"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": true,
+          "orbit_count": 1,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": true,
+          "orbit_count": 2,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": true,
+          "orbit_count": 3,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": true,
+          "orbit_count": 4,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": true,
+          "orbit_count": 8,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": true,
+          "orbit_count": 16,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          16,
+          64,
+          64
+        ],
+        "passes_bounded_cost_row": false,
+        "reason": "all-to-all control reaches the committed cost-control value 64"
+      },
+      "overall_survives_full_battery": false
+    },
+    "mobius_grid": {
+      "first_failure_row": "lens_quotient_commensurability",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 12,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "7e7d498286d34fb189ce3c40e071c6814a6af7a59adae33f0b1843cfdbe0f600"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 16,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "45491ae24fc0c737abadca35d10415597d49c3b34bd9d89b08fe533009c223c2"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "41d2cd7fbe478c47d89552759b47d68cdfd9a08e39318fcbb41060fb24571b4b"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": true,
+        "closed_holonomy": "twisted",
+        "first_failure": "lens_quotient_commensurability",
+        "flux_stokes": "orientation_twisted",
+        "reason": "the twisted 2:1 cover has free size-2 orbits, but the Z4 lens shift is not well-defined on those cover classes",
+        "status": "partial"
+      },
+      "label": "D Mobius-identified grid/twisted cover",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [
+          "preserve",
+          "cross_or_leave_twisted_open"
+        ],
+        "reason": "twist preserves local rows but identifies orientation-reversed boundary data"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 16,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 8,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 4,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "N": 8,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 64,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 32,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 16,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            2,
+            2
+          ]
+        },
+        {
+          "N": 12,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 144,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 72,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 36,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            3,
+            3
+          ]
+        },
+        {
+          "N": 16,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 256,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 128,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 64,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            4,
+            4
+          ]
+        },
+        {
+          "N": 32,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 1024,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 512,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 256,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            8,
+            8
+          ]
+        },
+        {
+          "N": 64,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 4096,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 2048,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 1024,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            16,
+            16
+          ]
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          4,
+          8,
+          4
+        ],
+        "passes_bounded_cost_row": true,
+        "reason": "local degree profile is ring-like; failure comes from twisted lens/holonomy rows, not cost"
+      },
+      "overall_survives_full_battery": false
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "complete graph has high edge count and survives shift automorphisms",
+      "demotion_condition": "Julia leg missing or graph row hash differs",
+      "gates": [
+        "julia_leg_loaded",
+        "julia_python_graph_hash_match"
+      ],
+      "input_object": "Julia natural graph rows for ring/path/star/complete topology variants",
+      "load_bearing": true,
+      "negative_or_erased_control": "path cut has endpoint degree 1",
+      "output_object": "degree, edge-count, and cycle-rank rows",
+      "positive_case": "ring anchor has degree-min 2 and cycle rank 1",
+      "qualified_api": "Graphs.SimpleGraph/Graphs.add_edge!/Graphs.degree",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "n=8 primary topology row",
+      "demotion_condition": "Julia Z3 verdict not unsat or erased control not sat",
+      "gates": [
+        "julia_z3_closed_cycle_obstruction"
+      ],
+      "input_object": "Julia Z3 closed-cycle obstruction and erased closing-edge control",
+      "load_bearing": true,
+      "negative_or_erased_control": "adding the cut edge makes the ring degree row satisfiable",
+      "output_object": "UNSAT path closed-cycle query plus SAT closing-edge control",
+      "positive_case": "open path cannot have all degree_i>=2",
+      "qualified_api": "Z3.Solver/Z3.check",
+      "tool": "Z3"
+    },
+    {
+      "boundary_case": "complete graph edge-count n(n-1)/2",
+      "demotion_condition": "topology rows absent or graph hashes do not match Julia",
+      "gates": [
+        "jax_topology_rows_computed"
+      ],
+      "input_object": "Python adjacency matrices for topology alternatives",
+      "load_bearing": true,
+      "negative_or_erased_control": "path graph degree-min 1",
+      "output_object": "degree, edge-count, and cycle-rank rows",
+      "positive_case": "ring anchor has cycle-rank 1 and degree-min 2",
+      "qualified_api": "jax.numpy.asarray/jax.numpy.sum",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "n=8 primary path row",
+      "demotion_condition": "verdict not unsat or erased control not sat",
+      "gates": [
+        "smt_agreement",
+        "erased_flip_controls_fire"
+      ],
+      "input_object": "bound path adjacency variables",
+      "load_bearing": true,
+      "negative_or_erased_control": "closing edge restores ring cycle satisfiability",
+      "output_object": "UNSAT all-degree>=2 query plus SAT closing-edge control",
+      "positive_case": "open path kills closed-holonomy prerequisite",
+      "qualified_api": "z3.Solver/z3.Sum/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "n=8 primary path row",
+      "demotion_condition": "verdict not unsat or erased control not sat",
+      "gates": [
+        "smt_agreement",
+        "erased_flip_controls_fire"
+      ],
+      "input_object": "bound path adjacency variables",
+      "load_bearing": true,
+      "negative_or_erased_control": "closing edge restores ring cycle satisfiability",
+      "output_object": "UNSAT all-degree>=2 query plus SAT closing-edge control",
+      "positive_case": "open path kills closed-holonomy prerequisite",
+      "qualified_api": "cvc5.Solver/checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "topology_rows": {
+    "A_path": {
+      "first_failure_row": "closed_holonomy",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 11,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "564830a04ddb8f2fe3eadab0b396d78de1ca95c4156287fc530b165fef0339ba"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 15,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "7b5f4e1120a94ccf7723ea9dd18e7c9906eea3f177ee0065dd9d3fbed1413524"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 0,
+          "degree_max": 2,
+          "degree_min": 1,
+          "degree_sequence": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edge_count": 7,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "244df59c5582abb1b9dcb38213869f27d477d1fb012be2051ed79063bbb140ce"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": false,
+        "closed_holonomy": false,
+        "first_failure": "closed_holonomy",
+        "flux_stokes": false,
+        "reason": "one cut edge leaves endpoints of degree 1; the lifted loop is not closed",
+        "status": "fails"
+      },
+      "label": "A path graph/open chain",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "without the closed cycle, preserve/move/cross/leave labels are not the committed S6 class predicates"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": false,
+          "reason": "quarter shift is not an automorphism of the open path",
+          "topology": "A_path"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          2,
+          4,
+          2
+        ],
+        "passes_bounded_cost_row": true,
+        "reason": "bounded local word remains cheap, but prior holonomy row already failed"
+      },
+      "overall_survives_full_battery": false
+    },
+    "B_star": {
+      "first_failure_row": "closed_holonomy",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 0,
+          "degree_max": 11,
+          "degree_min": 1,
+          "degree_sequence": [
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 11,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "d9407ed9f53eca05c7994b2441412a4d3dab8e28f2a15b88adfa782ec06d45fd"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 0,
+          "degree_max": 15,
+          "degree_min": 1,
+          "degree_sequence": [
+            15,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 15,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "bafb7b3aa3b4d88c88184508182f14fa5a135b0a324e7473c6c7db92751a1927"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 0,
+          "degree_max": 7,
+          "degree_min": 1,
+          "degree_sequence": [
+            7,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "edge_count": 7,
+          "has_closed_cycle_candidate": false,
+          "jax_adjacency_sha256": "dff14a8ca480a1b482fa82831917ac5497ad7a9906bac06b487dd70c570b143f"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": false,
+        "closed_holonomy": false,
+        "first_failure": "closed_holonomy",
+        "flux_stokes": false,
+        "reason": "hub-and-spoke has no cyclic local successor relation for a torus chart",
+        "status": "fails"
+      },
+      "label": "B star graph/hub-and-spoke",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "without the closed cycle, preserve/move/cross/leave labels are not the committed S6 class predicates"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": false,
+          "reason": "quarter shift moves the unique hub, so hub-and-spoke incidence is not preserved",
+          "topology": "B_star"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          8,
+          16,
+          16
+        ],
+        "passes_bounded_cost_row": false,
+        "reason": "hub degree creates non-ring-local fanout under the same stage word"
+      },
+      "overall_survives_full_battery": false
+    },
+    "C_complete": {
+      "first_failure_row": "locality_cost",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 55,
+          "degree_max": 11,
+          "degree_min": 11,
+          "degree_sequence": [
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "edge_count": 66,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "0e5dc5098576a9cf474adebbff220827310eb07115dc0ea4787e3fbbb5066f2e"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 105,
+          "degree_max": 15,
+          "degree_min": 15,
+          "degree_sequence": [
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15
+          ],
+          "edge_count": 120,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "a2a917eead3b7f7a2dbac6e403398206c167c74a2fb6de82441093a2941575ee"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 21,
+          "degree_max": 7,
+          "degree_min": 7,
+          "degree_sequence": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "edge_count": 28,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "6f7692b35e731dce2e4f03eadfc765f1a58d5c1bc29d8b5d31c940f9b50ad2c4"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": true,
+        "closed_holonomy": true,
+        "flux_stokes": true,
+        "reason": "a Hamiltonian cycle can replay the committed cycle, but the topology carries nonlocal edges into the cost row",
+        "status": "survives_with_extra_nonlocal_edges"
+      },
+      "label": "C complete graph/all-to-all",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [],
+        "reason": "nonlocal edges collapse ring-neighbor leakage labels into all-to-all reachability"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_lens_law": true,
+          "orbit_count": 1,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 8,
+          "admits_lens_law": true,
+          "orbit_count": 2,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 12,
+          "admits_lens_law": true,
+          "orbit_count": 3,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 16,
+          "admits_lens_law": true,
+          "orbit_count": 4,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 32,
+          "admits_lens_law": true,
+          "orbit_count": 8,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        },
+        {
+          "N": 64,
+          "admits_lens_law": true,
+          "orbit_count": 16,
+          "orbit_size_max": 4,
+          "orbit_size_min": 4,
+          "reason": "complete graph admits every vertex permutation, including the Z4 shift",
+          "topology": "C_complete"
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          16,
+          64,
+          64
+        ],
+        "passes_bounded_cost_row": false,
+        "reason": "all-to-all control reaches the committed cost-control value 64"
+      },
+      "overall_survives_full_battery": false
+    },
+    "mobius_grid": {
+      "first_failure_row": "lens_quotient_commensurability",
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 12,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "7e7d498286d34fb189ce3c40e071c6814a6af7a59adae33f0b1843cfdbe0f600"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 16,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "45491ae24fc0c737abadca35d10415597d49c3b34bd9d89b08fe533009c223c2"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "41d2cd7fbe478c47d89552759b47d68cdfd9a08e39318fcbb41060fb24571b4b"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": true,
+        "closed_holonomy": "twisted",
+        "first_failure": "lens_quotient_commensurability",
+        "flux_stokes": "orientation_twisted",
+        "reason": "the twisted 2:1 cover has free size-2 orbits, but the Z4 lens shift is not well-defined on those cover classes",
+        "status": "partial"
+      },
+      "label": "D Mobius-identified grid/twisted cover",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": false,
+        "classes": [
+          "preserve",
+          "cross_or_leave_twisted_open"
+        ],
+        "reason": "twist preserves local rows but identifies orientation-reversed boundary data"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 16,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 8,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 4,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "N": 8,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 64,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 32,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 16,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            2,
+            2
+          ]
+        },
+        {
+          "N": 12,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 144,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 72,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 36,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            3,
+            3
+          ]
+        },
+        {
+          "N": 16,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 256,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 128,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 64,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            4,
+            4
+          ]
+        },
+        {
+          "N": 32,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 1024,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 512,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 256,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            8,
+            8
+          ]
+        },
+        {
+          "N": 64,
+          "admits_committed_lens_law": false,
+          "chart_point_count": 4096,
+          "commensurate": true,
+          "cover": "mobius",
+          "cover_orbit_count": 2048,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": false,
+          "lens_orbit_count": 1024,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            16,
+            16
+          ]
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          4,
+          8,
+          4
+        ],
+        "passes_bounded_cost_row": true,
+        "reason": "local degree profile is ring-like; failure comes from twisted lens/holonomy rows, not cost"
+      },
+      "overall_survives_full_battery": false
+    },
+    "ring_anchor": {
+      "first_failure_row": null,
+      "graph_rows": {
+        "12": {
+          "N": 12,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 12,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "7e7d498286d34fb189ce3c40e071c6814a6af7a59adae33f0b1843cfdbe0f600"
+        },
+        "16": {
+          "N": 16,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 16,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "45491ae24fc0c737abadca35d10415597d49c3b34bd9d89b08fe533009c223c2"
+        },
+        "8": {
+          "N": 8,
+          "cycle_rank": 1,
+          "degree_max": 2,
+          "degree_min": 2,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "has_closed_cycle_candidate": true,
+          "jax_adjacency_sha256": "41d2cd7fbe478c47d89552759b47d68cdfd9a08e39318fcbb41060fb24571b4b"
+        }
+      },
+      "grid_refinement_convergence": {
+        "area": true,
+        "closed_holonomy": true,
+        "flux_stokes": true,
+        "reason": "committed S7 ring/torus grid rows retained as parent anchor",
+        "status": "survives"
+      },
+      "label": "committed ring/torus anchor",
+      "leakage_class_taxonomy": {
+        "class_set_well_defined": true,
+        "classes": [
+          "preserve",
+          "move",
+          "cross",
+          "leave"
+        ],
+        "reason": "closed oriented ring fibers keep S6 shell/leakage labels local"
+      },
+      "lens_quotient_commensurability": [
+        {
+          "N": 4,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 16,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 8,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 4,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "N": 8,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 64,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 32,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 16,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            2,
+            2
+          ]
+        },
+        {
+          "N": 12,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 144,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 72,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 36,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            3,
+            3
+          ]
+        },
+        {
+          "N": 16,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 256,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 128,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 64,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            4,
+            4
+          ]
+        },
+        {
+          "N": 32,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 1024,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 512,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 256,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            8,
+            8
+          ]
+        },
+        {
+          "N": 64,
+          "admits_committed_lens_law": true,
+          "chart_point_count": 4096,
+          "commensurate": true,
+          "cover": "torus",
+          "cover_orbit_count": 2048,
+          "cover_orbit_size_max": 2,
+          "cover_orbit_size_min": 2,
+          "lens_action_well_defined_on_cover": true,
+          "lens_orbit_count": 1024,
+          "lens_orbit_size_max": 4,
+          "lens_orbit_size_min": 4,
+          "lens_order": 4,
+          "shift": [
+            16,
+            16
+          ]
+        }
+      ],
+      "locality_cost": {
+        "committed_all_to_all_control_n16": 64,
+        "committed_ring_anchor": [
+          4,
+          8,
+          4
+        ],
+        "observed_cost_profile": [
+          4,
+          8,
+          4
+        ],
+        "passes_bounded_cost_row": true,
+        "reason": "committed loop-local parent row"
+      },
+      "overall_survives_full_battery": true
+    }
+  },
+  "versions": {
+    "Graphs": "1.14.0",
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "julia": "1.12.6",
+    "python": "3.13.6",
+    "z3": "4.16.0.0"
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "IntervalArithmetic": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "IntervalArithmetic": {
+      "reason": "load-bearing interval enclosure for X4(c) Gauss integral tail bound",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive result serialization, timestamping, and source hashing",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing Julia CAS expansion for X1 and X2",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side exact integer solver flip for P2 crossing count",
+      "tried": true,
+      "used": true
+    }
+  },
+  "X_receipts": {
+    "X1_keystone_identity_symbolic_symbolicsjl": {
+      "all_zero": true,
+      "bloch_from_trace_expanded": [
+        "2a*c + 2b*d",
+        "-2a*d + 2b*c",
+        "a^2 + b^2 - (c^2) - (d^2)"
+      ],
+      "bloch_minus_hopf_expanded": [
+        "0",
+        "0",
+        "0"
+      ],
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "density_matrix": "rho = psi * psi^dagger",
+        "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+        "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+        "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+        "pin_name": "X1_option_A_pinned_minus_sigma_y",
+        "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+        "sigma_y_standard": "[[0,-i],[i,0]]",
+        "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+      },
+      "corrupted_identity_control_differences": [
+        "0",
+        "-a*d + b*c",
+        "0"
+      ],
+      "corrupted_identity_control_pass": true,
+      "hopf_components_expanded": [
+        "2a*c + 2b*d",
+        "-2a*d + 2b*c",
+        "a^2 + b^2 - (c^2) - (d^2)"
+      ],
+      "phase_invariance_symbolic": true,
+      "phase_raw_differences": [
+        "-2a*c - 2b*d + 2a*c*(u^2) + 2a*c*(v^2) + 2b*d*(u^2) + 2b*d*(v^2)",
+        "2a*d - 2b*c - 2a*d*(u^2) - 2a*d*(v^2) + 2b*c*(u^2) + 2b*c*(v^2)",
+        "c^2 + d^2 + (a^2 + b^2)*(-1 + u^2 + v^2) - (c^2 + d^2)*(u^2 + v^2)"
+      ],
+      "phase_reduced_differences": [
+        "0",
+        "0",
+        "0"
+      ],
+      "phase_side_relation": "u^2 + v^2 = 1",
+      "pinned_pauli_basis": {
+        "minus_sigma_y_standard": [
+          [
+            "0",
+            "im"
+          ],
+          [
+            "-im",
+            "0"
+          ]
+        ],
+        "sigma_x": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ],
+        "sigma_z": [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "-1"
+          ]
+        ]
+      },
+      "rho_from_psi_psidagger": [
+        [
+          "a^2 + b^2",
+          "a*c + b*d + (-a*d + b*c)*im"
+        ],
+        [
+          "a*c + b*d + (a*d - b*c)*im",
+          "c^2 + d^2"
+        ]
+      ],
+      "standard_sigma_y_trace_expanded": "2a*d - 2b*c",
+      "standard_sigma_y_trace_plus_hopf_y_expanded": "0",
+      "unit_image_difference": "0",
+      "unit_image_symbolic": true,
+      "variables": [
+        "a=Re(z1)",
+        "b=Im(z1)",
+        "c=Re(z2)",
+        "d=Im(z2)"
+      ]
+    },
+    "X2_phase_invariance_unit_image_symbolic_symbolicsjl": {
+      "phase_invariance_symbolic": true,
+      "phase_raw_differences": [
+        "-2a*c - 2b*d + 2a*c*(u^2) + 2a*c*(v^2) + 2b*d*(u^2) + 2b*d*(v^2)",
+        "2a*d - 2b*c - 2a*d*(u^2) - 2a*d*(v^2) + 2b*c*(u^2) + 2b*c*(v^2)",
+        "c^2 + d^2 + (a^2 + b^2)*(-1 + u^2 + v^2) - (c^2 + d^2)*(u^2 + v^2)"
+      ],
+      "phase_reduced_differences": [
+        "0",
+        "0",
+        "0"
+      ],
+      "phase_side_relation": "u^2 + v^2 = 1",
+      "unit_image_difference": "0",
+      "unit_image_symbolic": true
+    },
+    "X4_interval_arithmetic_gauss_enclosure": {
+      "interval_blowup_control": {
+        "absolute_error_bound_from_enclosure": 0.37645739058809113,
+        "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+        "contains_exact_one": true,
+        "cutoff_A": 1,
+        "enclosure": "[0.623542, 1.28516]_com_NG",
+        "finite_integral_interval": "[0.623542, 0.785155]_com_NG",
+        "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+        "label": "coarse_quadrature_wide_control",
+        "lower": 0.6235426094119089,
+        "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+        "proves_abs_error_below_emitted_bound": true,
+        "subinterval_count": 4,
+        "tail_interval": "[0//1, 1//2]_com",
+        "upper": 1.285154261763591,
+        "wide_interval_width": 0.6616116523516821
+      },
+      "tight_interval": {
+        "absolute_error_bound_from_enclosure": 0.0025499937518576044,
+        "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+        "contains_exact_one": true,
+        "cutoff_A": 100,
+        "enclosure": "[0.99745, 1.00251]_com_NG",
+        "finite_integral_interval": "[0.99745, 1.00246]_com_NG",
+        "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+        "label": "claim_path_interval_quadrature",
+        "lower": 0.9974500062481424,
+        "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+        "proves_abs_error_below_emitted_bound": true,
+        "subinterval_count": 20000,
+        "tail_interval": "[0//1, 1//20000]_com",
+        "upper": 1.0025000012520549,
+        "wide_interval_width": 0.005049995003912455
+      }
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Symbolics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Symbolics",
+    "IntervalArithmetic",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "corrupted_identity_control": [
+      "0",
+      "-a*d + b*c",
+      "0"
+    ],
+    "interval_blowup_control": {
+      "absolute_error_bound_from_enclosure": 0.37645739058809113,
+      "contains_check": "issubset_interval(interval(1,1), final_enclosure)",
+      "contains_exact_one": true,
+      "cutoff_A": 1,
+      "enclosure": "[0.623542, 1.28516]_com_NG",
+      "finite_integral_interval": "[0.623542, 0.785155]_com_NG",
+      "integrand": "f(u) = (1 + u^2)^(-3/2), Gauss value = integral_0^infinity f(u) du",
+      "label": "coarse_quadrature_wide_control",
+      "lower": 0.6235426094119089,
+      "method": "interval Riemann sum from interval-valued subdomains through f(u), plus interval tail [0, 1/(2A^2)]",
+      "proves_abs_error_below_emitted_bound": true,
+      "subinterval_count": 4,
+      "tail_interval": "[0//1, 1//2]_com",
+      "upper": 1.285154261763591,
+      "wide_interval_width": 0.6616116523516821
+    }
+  },
+  "convention_pin": {
+    "bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "density_matrix": "rho = psi * psi^dagger",
+    "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+    "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+    "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+    "pin_name": "X1_option_A_pinned_minus_sigma_y",
+    "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+    "sigma_y_standard": "[[0,-i],[i,0]]",
+    "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T21:27:01.926",
+  "julia_project": "/Users/joshuaeisenhart/.julia/environments/codex-ratchet-tensorkit-v1.12/Project.toml",
+  "lineage": {
+    "commit": "013fb0fa1",
+    "modified_lineage_packet": false,
+    "packet": "system_v6/sims/geo_s1_spinor_hopf_free_v0"
+  },
+  "packages_used": [
+    "Symbolics",
+    "IntervalArithmetic",
+    "Z3",
+    "JSON",
+    "Dates",
+    "LinearAlgebra",
+    "SHA"
+  ],
+  "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+  "pin_spec": "geo_s1_exact_closure_v0|lineage=geo_s1_spinor_hopf_free_v0@013fb0fa1|convention_pin=X1_option_A_pinned_minus_sigma_y|sigma_y_standard=[[0,-i],[i,0]]|bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|r_i=Tr(rho*basis_i)|rho=psi*psi_dagger|Hopf_y=+2Im(z1*conj(z2))|derived_standard_y=-Hopf_y|derived_pinned_identity=Bloch_pinned(rho)=(x,y,z)|exact_strength=symbolic_closed_form_interval|seed_ledger=jax.random.PRNGKey[60610:haar_joint_n20000,60611:nonhaar_eta_n20000,60612:nonhaar_phi_n20000,60613:nonhaar_chi_n20000]|rerun=SIM_PY geo_s1_exact_closure_v0_{jax,julia,pytorch,envelope}|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "P2_crossing_count_integer_julia_z3": {
+      "scrambled_control_not_two": "sat",
+      "scrambled_sum": 0,
+      "signed_sum": 2,
+      "signed_sum_not_two": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "schema_version": "geo_s1_exact_closure_v0_leg_v1",
+  "shared_scalars": {
+    "classification_bare_float_rows": null,
+    "gauss_interval_lower": 0.9974500062481424,
+    "gauss_interval_upper": 1.0025000012520549,
+    "linking_number_exact": 1
+  },
+  "sim_id": "geo_s1_exact_closure_v0",
+  "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_julia.jl",
+  "source_sha256": "f7e6e58e4317cc7b617d108ecaef9dd4d92bbdd438975f9b0f4dc201dc525181"
+}

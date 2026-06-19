@@ -1,0 +1,541 @@
+{
+  "object_id": "axorth_axis045_independence_v1_jax",
+  "claim_ceiling": "Finite-map axis-independence probe over F01+N01. NOT layer-complete. NOT bridge. promotion_allowed=false.",
+  "promotion_allowed": false,
+  "classification": "tool_lego_fit_probe",
+  "jax_version": "0.10.1",
+  "jax_x64_enabled": true,
+  "root_constraints_in_force": {
+    "F01": "finite carrier: 2x2x2 factorial = 8 cells; 8/16/32/64 random ensembles; 2x2 complex128 density matrices",
+    "N01": "Ti (z-dephase) and Fi (x-rotation) noncommuting; Fe and Ti commuting control"
+  },
+  "finite_map": {
+    "domain": "(axis0 in {low_q=0.1, high_q=0.9}) x (axis4 in {deductive, inductive}) x (axis5 in {spectral, gradient})",
+    "codomain": "(final_rho, von_Neumann_entropy, purity, Tr_rho_sz, trajectory_purity_complement, order_gap, commuting_control_gap)"
+  },
+  "factorial_cells": [
+    {
+      "axis0": "low_q",
+      "axis4": "deductive",
+      "axis5": "spectral",
+      "q": 0.1,
+      "von_Neumann_entropy": 0.21857919766208006,
+      "purity": 0.8925312499999998,
+      "Tr_rho_sz": 0.6123724356957944,
+      "trajectory_purity_complement": [
+        0.0,
+        0.059374999999999956,
+        0.05937500000000018,
+        0.10746875000000022
+      ],
+      "order_gap_axis4": 0.053735463150511496,
+      "commuting_control_gap": 3.444376352465766e-16,
+      "rho_valid": true
+    },
+    {
+      "axis0": "low_q",
+      "axis4": "deductive",
+      "axis5": "gradient",
+      "q": 0.1,
+      "von_Neumann_entropy": 0.2638629004715787,
+      "purity": 0.8629533624453862,
+      "Tr_rho_sz": 0.5511351921262152,
+      "trajectory_purity_complement": [
+        -2.220446049250313e-16,
+        0.08753442907977049,
+        0.08753442907977038,
+        0.13704663755461377
+      ],
+      "order_gap_axis4": 0.050898182678755975,
+      "commuting_control_gap": 3.444376352465766e-16,
+      "rho_valid": true
+    },
+    {
+      "axis0": "low_q",
+      "axis4": "inductive",
+      "axis5": "spectral",
+      "q": 0.1,
+      "von_Neumann_entropy": 0.24403390559696375,
+      "purity": 0.8761437500000003,
+      "Tr_rho_sz": 0.5511351921262153,
+      "trajectory_purity_complement": [
+        0.0712499999999997,
+        0.07124999999999981,
+        0.12385624999999956,
+        0.12385624999999967
+      ],
+      "order_gap_axis4": 0.053735463150511496,
+      "commuting_control_gap": 3.444376352465766e-16,
+      "rho_valid": true
+    },
+    {
+      "axis0": "low_q",
+      "axis4": "inductive",
+      "axis5": "gradient",
+      "q": 0.1,
+      "von_Neumann_entropy": 0.2796475673857271,
+      "purity": 0.8521955763282066,
+      "Tr_rho_sz": 0.4960216729135936,
+      "trajectory_purity_complement": [
+        0.0712499999999997,
+        0.07124999999999959,
+        0.14780442367179325,
+        0.14780442367179336
+      ],
+      "order_gap_axis4": 0.050898182678755975,
+      "commuting_control_gap": 3.444376352465766e-16,
+      "rho_valid": true
+    },
+    {
+      "axis0": "high_q",
+      "axis4": "deductive",
+      "axis5": "spectral",
+      "q": 0.9,
+      "von_Neumann_entropy": 0.49166960170789464,
+      "purity": 0.6875312499999997,
+      "Tr_rho_sz": 0.6123724356957944,
+      "trajectory_purity_complement": [
+        0.0,
+        0.30937499999999996,
+        0.3093750000000002,
+        0.3124687500000003
+      ],
+      "order_gap_axis4": 0.3910083119321122,
+      "commuting_control_gap": 6.133173666733497e-19,
+      "rho_valid": true
+    },
+    {
+      "axis0": "high_q",
+      "axis4": "deductive",
+      "axis5": "gradient",
+      "q": 0.9,
+      "von_Neumann_entropy": 0.6908501757394242,
+      "purity": 0.5022952455374224,
+      "Tr_rho_sz": 0.06123724356957938,
+      "trajectory_purity_complement": [
+        -2.220446049250313e-16,
+        0.4561004462577529,
+        0.45610044625775303,
+        0.49770475446257756
+      ],
+      "order_gap_axis4": 0.16610425942762583,
+      "commuting_control_gap": 6.133173666733497e-19,
+      "rho_valid": true
+    },
+    {
+      "axis0": "high_q",
+      "axis4": "inductive",
+      "axis5": "spectral",
+      "q": 0.9,
+      "von_Neumann_entropy": 0.6900001278585213,
+      "purity": 0.50314375,
+      "Tr_rho_sz": 0.06123724356957938,
+      "trajectory_purity_complement": [
+        0.37124999999999975,
+        0.3712500000000001,
+        0.4968562500000001,
+        0.49685625
+      ],
+      "order_gap_axis4": 0.3910083119321122,
+      "commuting_control_gap": 6.133173666733497e-19,
+      "rho_valid": true
+    },
+    {
+      "axis0": "high_q",
+      "axis4": "inductive",
+      "axis5": "gradient",
+      "q": 0.9,
+      "von_Neumann_entropy": 0.6725133490364512,
+      "purity": 0.5204915178742249,
+      "Tr_rho_sz": 0.00612372435695796,
+      "trajectory_purity_complement": [
+        0.37124999999999975,
+        0.37124999999999975,
+        0.4795084821257751,
+        0.4795084821257751
+      ],
+      "order_gap_axis4": 0.16610425942762583,
+      "commuting_control_gap": 6.133173666733497e-19,
+      "rho_valid": true
+    }
+  ],
+  "factorial_n_distinct": 8,
+  "factorial_n_distinct_base_fingerprint": 8,
+  "marginal_effects": {
+    "axis0_effect_vector": [
+      0.2730904040458146,
+      -0.20500000000000007,
+      0.0,
+      0.0,
+      0.25,
+      0.25,
+      0.20500000000000007,
+      0.4269872752678455,
+      -0.3606581169079638,
+      -0.4898979485566358,
+      0.0,
+      0.36856601717798243,
+      0.36856601717798265,
+      0.3606581169079638,
+      0.4459662222615575,
+      -0.37300000000000033,
+      -0.48989794855663593,
+      0.30000000000000004,
+      0.30000000000000027,
+      0.37300000000000055,
+      0.37300000000000033,
+      0.3928657816507241,
+      -0.33170405845398176,
+      -0.48989794855663565,
+      0.30000000000000004,
+      0.30000000000000016,
+      0.3317040584539819,
+      0.33170405845398176
+    ],
+    "axis4_effect_vector": [
+      -0.02545470793488369,
+      0.016387499999999444,
+      0.06123724356957905,
+      -0.0712499999999997,
+      -0.011874999999999858,
+      -0.06448124999999938,
+      -0.016387499999999444,
+      -0.015784666914148426,
+      0.01075778611717959,
+      0.05511351921262159,
+      -0.07124999999999992,
+      0.0162844290797709,
+      -0.06026999459202287,
+      -0.01075778611717959,
+      -0.19833052615062663,
+      0.1843874999999997,
+      0.551135192126215,
+      -0.37124999999999975,
+      -0.061875000000000124,
+      -0.18748124999999993,
+      -0.1843874999999997,
+      0.018336826702972986,
+      -0.018196272336802433,
+      0.05511351921262142,
+      -0.37124999999999997,
+      0.08485044625775318,
+      -0.023408035868022092,
+      0.018196272336802433
+    ],
+    "axis5_effect_vector": [
+      -0.045283702809498616,
+      0.029577887554613547,
+      0.06123724356957916,
+      2.220446049250313e-16,
+      -0.028159429079770537,
+      -0.028159429079770204,
+      -0.029577887554613547,
+      -0.03561366178876335,
+      0.023948173671793693,
+      0.0551135192126217,
+      0.0,
+      2.220446049250313e-16,
+      -0.023948173671793693,
+      -0.023948173671793693,
+      -0.19918057403152956,
+      0.18523600446257726,
+      0.551135192126215,
+      2.220446049250313e-16,
+      -0.14672544625775297,
+      -0.14672544625775286,
+      -0.18523600446257726,
+      0.01748677882207006,
+      -0.017347767874224873,
+      0.05511351921262142,
+      0.0,
+      3.3306690738754696e-16,
+      0.017347767874224984,
+      0.017347767874224873
+    ]
+  },
+  "pairwise_cos_similarities": {
+    "axis0_vs_axis4": -0.569572552177625,
+    "axis0_vs_axis5": -0.5744710421079804,
+    "axis4_vs_axis5": 0.7726645021034377
+  },
+  "axis0_marginal_independent": true,
+  "axis4_marginal_independent": true,
+  "axis5_marginal_independent": true,
+  "any_pair_collapses": false,
+  "six_axis_collapse_matrix": [
+    {
+      "axis_pair": "axis0 vs axis4",
+      "cos_sim": -0.569572552177625,
+      "collapsed": false
+    },
+    {
+      "axis_pair": "axis0 vs axis5",
+      "cos_sim": -0.5744710421079804,
+      "collapsed": false
+    },
+    {
+      "axis_pair": "axis4 vs axis5",
+      "cos_sim": 0.7726645021034377,
+      "collapsed": false
+    },
+    {
+      "axis_pair": "axis0 vs ctrl",
+      "cos_sim": 0.0,
+      "collapsed": false
+    },
+    {
+      "axis_pair": "axis4 vs ctrl",
+      "cos_sim": 0.0,
+      "collapsed": false
+    },
+    {
+      "axis_pair": "axis5 vs ctrl",
+      "cos_sim": 0.0,
+      "collapsed": false
+    }
+  ],
+  "parity": {
+    "status": "checked",
+    "max_diff": 2.220446049250313e-16,
+    "parity_eps": 1e-08,
+    "passed": true,
+    "cell_diffs": [
+      {
+        "key": "high_q_deductive_gradient",
+        "jax_S": 0.6908501757394242,
+        "julia_S": 0.6908501757394242,
+        "diff_S": 0.0,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 0.0,
+        "passed": true
+      },
+      {
+        "key": "high_q_deductive_spectral",
+        "jax_S": 0.49166960170789464,
+        "julia_S": 0.49166960170789464,
+        "diff_S": 0.0,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 0.0,
+        "passed": true
+      },
+      {
+        "key": "high_q_inductive_gradient",
+        "jax_S": 0.6725133490364512,
+        "julia_S": 0.6725133490364512,
+        "diff_S": 0.0,
+        "diff_purity": 2.220446049250313e-16,
+        "diff_Tz": 1.1102230246251565e-16,
+        "max_diff": 2.220446049250313e-16,
+        "passed": true
+      },
+      {
+        "key": "high_q_inductive_spectral",
+        "jax_S": 0.6900001278585213,
+        "julia_S": 0.6900001278585213,
+        "diff_S": 0.0,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 0.0,
+        "passed": true
+      },
+      {
+        "key": "low_q_deductive_gradient",
+        "jax_S": 0.2638629004715787,
+        "julia_S": 0.2638629004715788,
+        "diff_S": 1.1102230246251565e-16,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 1.1102230246251565e-16,
+        "passed": true
+      },
+      {
+        "key": "low_q_deductive_spectral",
+        "jax_S": 0.21857919766208006,
+        "julia_S": 0.21857919766208006,
+        "diff_S": 0.0,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 0.0,
+        "passed": true
+      },
+      {
+        "key": "low_q_inductive_gradient",
+        "jax_S": 0.2796475673857271,
+        "julia_S": 0.27964756738572705,
+        "diff_S": 5.551115123125783e-17,
+        "diff_purity": 1.1102230246251565e-16,
+        "diff_Tz": 0.0,
+        "max_diff": 1.1102230246251565e-16,
+        "passed": true
+      },
+      {
+        "key": "low_q_inductive_spectral",
+        "jax_S": 0.24403390559696375,
+        "julia_S": 0.24403390559696375,
+        "diff_S": 0.0,
+        "diff_purity": 0.0,
+        "diff_Tz": 0.0,
+        "max_diff": 0.0,
+        "passed": true
+      }
+    ]
+  },
+  "parity_max_diff": 2.220446049250313e-16,
+  "parity_targets": [
+    {
+      "cell_key": "high_q_deductive_gradient",
+      "von_Neumann_entropy": 0.6908501757394242,
+      "purity": 0.5022952455374224,
+      "Tr_rho_sz": 0.06123724356957938
+    },
+    {
+      "cell_key": "high_q_deductive_spectral",
+      "von_Neumann_entropy": 0.49166960170789464,
+      "purity": 0.6875312499999997,
+      "Tr_rho_sz": 0.6123724356957944
+    },
+    {
+      "cell_key": "high_q_inductive_gradient",
+      "von_Neumann_entropy": 0.6725133490364512,
+      "purity": 0.5204915178742249,
+      "Tr_rho_sz": 0.00612372435695796
+    },
+    {
+      "cell_key": "high_q_inductive_spectral",
+      "von_Neumann_entropy": 0.6900001278585213,
+      "purity": 0.50314375,
+      "Tr_rho_sz": 0.06123724356957938
+    },
+    {
+      "cell_key": "low_q_deductive_gradient",
+      "von_Neumann_entropy": 0.2638629004715787,
+      "purity": 0.8629533624453862,
+      "Tr_rho_sz": 0.5511351921262152
+    },
+    {
+      "cell_key": "low_q_deductive_spectral",
+      "von_Neumann_entropy": 0.21857919766208006,
+      "purity": 0.8925312499999998,
+      "Tr_rho_sz": 0.6123724356957944
+    },
+    {
+      "cell_key": "low_q_inductive_gradient",
+      "von_Neumann_entropy": 0.2796475673857271,
+      "purity": 0.8521955763282066,
+      "Tr_rho_sz": 0.4960216729135936
+    },
+    {
+      "cell_key": "low_q_inductive_spectral",
+      "von_Neumann_entropy": 0.24403390559696375,
+      "purity": 0.8761437500000003,
+      "Tr_rho_sz": 0.5511351921262153
+    }
+  ],
+  "size_ladder_results": [
+    {
+      "N": 8,
+      "max_commuting_control_gap": 1.6653571243298153e-16,
+      "mean_commuting_control_gap": 2.140902109831412e-17,
+      "commuting_control_near_zero": true,
+      "min_order_gap_spectral": 0.06489226347327427,
+      "min_order_gap_gradient": 0.019441039961129187,
+      "axis4_split_spectral": true,
+      "axis4_split_gradient": true
+    },
+    {
+      "N": 16,
+      "max_commuting_control_gap": 2.2204467109947045e-16,
+      "mean_commuting_control_gap": 3.3691307532131516e-17,
+      "commuting_control_near_zero": true,
+      "min_order_gap_spectral": 0.04981002073913504,
+      "min_order_gap_gradient": 0.07257311958057447,
+      "axis4_split_spectral": true,
+      "axis4_split_gradient": true
+    },
+    {
+      "N": 32,
+      "max_commuting_control_gap": 2.220446578645842e-16,
+      "mean_commuting_control_gap": 7.745367221777849e-18,
+      "commuting_control_near_zero": true,
+      "min_order_gap_spectral": 0.04746631058947086,
+      "min_order_gap_gradient": 0.043326909048406054,
+      "axis4_split_spectral": true,
+      "axis4_split_gradient": true
+    },
+    {
+      "N": 64,
+      "max_commuting_control_gap": 1.6654051215208221e-16,
+      "mean_commuting_control_gap": 6.1864697572053445e-18,
+      "commuting_control_near_zero": true,
+      "min_order_gap_spectral": 0.03457267482761218,
+      "min_order_gap_gradient": 0.05017827304728532,
+      "axis4_split_spectral": true,
+      "axis4_split_gradient": true
+    }
+  ],
+  "wrong_structure_controls": [
+    {
+      "label": "commuting_Fe_Ti_q=0.1",
+      "q": 0.1,
+      "order_gap": 3.444376352465766e-16,
+      "expect_near_zero": true,
+      "passed": true
+    },
+    {
+      "label": "commuting_Fe_Ti_q=0.9",
+      "q": 0.9,
+      "order_gap": 6.133173666733497e-19,
+      "expect_near_zero": true,
+      "passed": true
+    },
+    {
+      "label": "owner_example_spec_low_vs_grad_high",
+      "S_spectral_low_q": 0.21857919766208006,
+      "S_gradient_high_q": 0.6908501757394242,
+      "fingerprints_distinct": true,
+      "passed": true
+    },
+    {
+      "label": "owner_example_inductive_positive_feedback",
+      "S_inductive_high_q": 0.6900001278585213,
+      "S_deductive_high_q": 0.49166960170789464,
+      "fingerprints_distinct": true,
+      "passed": true
+    }
+  ],
+  "all_pass": true,
+  "honest_caveat": "factorial_n_distinct=8 and !any_pair_collapses and all marginals independent required. Parity max diff must be < 1e-8 vs Julia reference. If any fails, axes collapse at that point \u2014 say so plainly.",
+  "blocked_consumers": [
+    "layer_completion",
+    "manifold_admission",
+    "coupling",
+    "bridge",
+    "Axis0_bridge",
+    "flux",
+    "physics"
+  ],
+  "TOOL_MANIFEST": {
+    "jax.numpy": {
+      "used": true,
+      "role": "load_bearing",
+      "reason": "all matrix operations and entropy computed via jnp; removal changes every verdict"
+    },
+    "jax_enable_x64": {
+      "used": true,
+      "role": "load_bearing",
+      "reason": "float64 required for parity < 1e-8 vs Julia; float32 would fail parity check"
+    },
+    "numpy": {
+      "used": true,
+      "role": "supportive",
+      "reason": "cosine similarity and JSON serialization only; not used for density matrix compute"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax.numpy": "load_bearing",
+    "jax_enable_x64": "load_bearing",
+    "numpy": "supportive"
+  }
+}

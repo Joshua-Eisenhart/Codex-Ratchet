@@ -1,0 +1,497 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "jax.numpy": "supportive",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent raw-value proof polarity matching z3",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing vectorized phase-orbit, grid, and positive-control geometry receipts",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "supportive x64 array substrate for complex spinor arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive result serialization, hashing, timestamps, and deterministic paths",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing raw-value proof polarity for nonzero spread and exact grid ratio",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "audit_surface_note": "JAX leg is the primary selectivity surface; Julia and PyTorch legs are envelope-level independent magnitude mirrors.",
+  "claim_path_tools": [
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T07:34:33.126689+00:00",
+  "negative_models": [
+    {
+      "fiber_receipt": {
+        "fail_magnitude": 2.0,
+        "pass": false,
+        "phase_orbit_preimage_discrepancy": 2.0,
+        "true_hopf_control_discrepancy": 3.2142359947939036e-16
+      },
+      "looks_right_norm_receipt": {
+        "max_unit_sphere_deviation": 1.1102230246251565e-15,
+        "pass": true,
+        "true_hopf_control_max_unit_sphere_deviation": 1.1102230246251565e-15
+      },
+      "model_id": "negative_1_no_conjugate_map",
+      "negative_model": true,
+      "phase_invariance_receipt": {
+        "fail_magnitude": 2.0000000000000004,
+        "orbit_spread_max_image_distance": 2.0000000000000004,
+        "pass": false,
+        "predicted_order": 1.0,
+        "true_hopf_control_spread": 5.772734324011309e-16
+      }
+    },
+    {
+      "N": 64,
+      "area_receipt": {
+        "naive_chart_area": 37.54620631564544,
+        "pass": false,
+        "ratio": 2.0,
+        "true_identified_area": 18.77310315782272
+      },
+      "distinct_point_count_receipt": {
+        "actual_distinct_spinor_count": 2048,
+        "fail_magnitude": 2048,
+        "naive_claimed_count": 4096,
+        "overcount_factor": 2.0,
+        "pass": false,
+        "true_identified_count": 2048
+      },
+      "eta": 0.6283185307179586,
+      "identification_receipt": {
+        "identification": "(a,b)~(a+N/2,b+N/2)",
+        "max_pair_spinor_deviation": 4.62985963945236e-16,
+        "pair_rows": [
+          {
+            "a": 0,
+            "b": 0,
+            "paired_a": 32,
+            "paired_b": 32,
+            "spinor_deviation": 1.9815201452341832e-16
+          },
+          {
+            "a": 1,
+            "b": 2,
+            "paired_a": 33,
+            "paired_b": 34,
+            "spinor_deviation": 4.62985963945236e-16
+          },
+          {
+            "a": 7,
+            "b": 9,
+            "paired_a": 39,
+            "paired_b": 41,
+            "spinor_deviation": 2.3423119649018916e-16
+          },
+          {
+            "a": 18,
+            "b": 25,
+            "paired_a": 50,
+            "paired_b": 57,
+            "spinor_deviation": 4.611102534756203e-16
+          },
+          {
+            "a": 31,
+            "b": 5,
+            "paired_a": 63,
+            "paired_b": 37,
+            "spinor_deviation": 2.884444029575346e-16
+          }
+        ],
+        "parity_preservation_fact": true,
+        "pass": true
+      },
+      "model_id": "negative_2_naive_grid_double_cover_ignored",
+      "negative_model": true,
+      "volume_receipt": {
+        "naive_volume": 39.47841760435743,
+        "pass": false,
+        "ratio": 2.0,
+        "true_identified_volume": 19.739208802178716
+      }
+    },
+    {
+      "all_probes_commute_receipt": {
+        "max_commutator_norm": 0.0,
+        "pass": true
+      },
+      "common_suite_adapter": {
+        "adapter_id": "s1_common_negative_positive_receipt_interface_v1",
+        "receipt_keys": [
+          "phase_quotient_receipt",
+          "dimension_receipt",
+          "double_cover_receipt",
+          "fibration_receipt"
+        ],
+        "same_interface_as_positive_control": true
+      },
+      "dimension_receipt": {
+        "dimension_deficit": 2,
+        "pass": false,
+        "reconstructed_state_space_dimension": 1,
+        "s1_spinor_state_space_dimension": 3
+      },
+      "double_cover_receipt": {
+        "absence_magnitude": 2.0,
+        "pass": false,
+        "required_spinor_sign_flip_magnitude": 2.0,
+        "rotation_path_question_empty": true,
+        "two_pi_path_return_deviation": 0.0
+      },
+      "fibration_receipt": {
+        "absence_magnitude": 1,
+        "base_dimension": 1,
+        "fiber_dimension": 0,
+        "linking_number_available": 0,
+        "pass": false,
+        "required_hopf_linking_number": 1
+      },
+      "model_id": "negative_3_classical_bit_n01_negative_carrier",
+      "negative_model": true,
+      "phase_quotient_receipt": {
+        "absence_magnitude": 1,
+        "pass": false,
+        "phase_parameter_count": 0,
+        "required_phase_parameter_count": 1
+      },
+      "probe_expectation_range": [
+        0.0,
+        1.0
+      ],
+      "probe_family": "single_diagonal_observable_family",
+      "raw_grid_count": 257,
+      "state_space": "probability_simplex_interval_[0,1]"
+    }
+  ],
+  "negative_suite_scope": "shows three named bad models fail as predicted; supports NO positive S1 claim",
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "z3",
+    "cvc5"
+  ],
+  "pin_sha256": "e198b3e8756235c5b304451fa06cad9f6bb9ff6486b847e2d91c8a99186d7b06",
+  "pin_spec": "geo_s1_negative_models_v0|stage:S1|negative_models:no_conjugate_hopf,naive_phi_chi_grid,classical_bit|positive_control:true_hopf_corrected_grid_spinor|classification:scratch_diagnostic|promotion_allowed:false|formal_admission_allowed:false",
+  "positive_control": {
+    "common_suite_adapter": {
+      "adapter_id": "s1_common_negative_positive_receipt_interface_v1",
+      "receipt_keys": [
+        "phase_quotient_receipt",
+        "dimension_receipt",
+        "double_cover_receipt",
+        "fibration_receipt"
+      ],
+      "same_interface_as_positive_control": true
+    },
+    "corrected_grid_distinct_count": 2048,
+    "corrected_grid_ratio": 1.0,
+    "dimension_receipt": {
+      "dimension_deficit": 0,
+      "pass": true,
+      "reconstructed_state_space_dimension": 3,
+      "s1_spinor_state_space_dimension": 3
+    },
+    "double_cover": {
+      "four_pi_spinor_return_deviation": 0.0,
+      "two_pi_density_return_deviation": 0.0,
+      "two_pi_spinor_is_negative_control_deviation": 0.0
+    },
+    "double_cover_receipt": {
+      "absence_magnitude": 0.0,
+      "pass": true,
+      "required_spinor_sign_flip_magnitude": 2.0,
+      "rotation_path_question_empty": false,
+      "two_pi_path_return_deviation": 0.0
+    },
+    "fiber_phase_orbit_discrepancy": 3.2142359947939036e-16,
+    "fibration_linking_number": 1,
+    "fibration_receipt": {
+      "absence_magnitude": 0,
+      "base_dimension": 2,
+      "fiber_dimension": 1,
+      "linking_number_available": 1,
+      "pass": true,
+      "required_hopf_linking_number": 1
+    },
+    "model_id": "positive_s1_true_hopf_corrected_grid_spinor",
+    "negative_model": false,
+    "pass": true,
+    "phase_invariance_max_spread": 5.772734324011309e-16,
+    "phase_quotient_receipt": {
+      "absence_magnitude": 0,
+      "pass": true,
+      "phase_parameter_count": 1,
+      "required_phase_parameter_count": 1
+    },
+    "state_space_dimension": 3
+  },
+  "promotion_allowed": false,
+  "proofs": {
+    "negative_1_orbit_spread_nonzero": {
+      "cvc5_assert_spread_zero": "unsat",
+      "cvc5_true_hopf_control_assert_spread_zero": "sat",
+      "pass": true,
+      "scaled_integer_factor": 1000000,
+      "spread_scaled": 2000000,
+      "true_hopf_control_spread_scaled": 0,
+      "z3_assert_spread_zero": "unsat",
+      "z3_true_hopf_control_assert_spread_zero": "sat"
+    },
+    "negative_2_ratio_exactly_two": {
+      "actual_distinct_count": 2048,
+      "corrected_grid_count": 2048,
+      "corrected_ratio_num_den": [
+        2048,
+        2048
+      ],
+      "cvc5_assert_ratio_not_2": "unsat",
+      "cvc5_corrected_assert_ratio_not_1": "unsat",
+      "naive_count": 4096,
+      "pass": true,
+      "ratio_num_den": [
+        4096,
+        2048
+      ],
+      "z3_assert_ratio_not_2": "unsat",
+      "z3_corrected_assert_ratio_not_1": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_negative_models_v0/results/geo_s1_negative_models_v0_jax_results.json",
+  "role_id": "jax_rich_mirror_sim_builder",
+  "schema_version": "geo_s1_negative_models_leg_v1",
+  "selectivity_matrix": {
+    "columns": [
+      "s2_norm_identity",
+      "phase_invariance",
+      "fiber_phase_orbit",
+      "grid_distinct_count",
+      "grid_area_ratio",
+      "grid_volume_ratio",
+      "phase_quotient_nonempty",
+      "reconstructed_dimension_3",
+      "double_cover_rotation_nontrivial",
+      "fibration_link_exists"
+    ],
+    "complete": true,
+    "matrix": {
+      "negative_1_no_conjugate_map": {
+        "double_cover_rotation_nontrivial": {
+          "measured": 2,
+          "scope": "spinor_domain",
+          "status": "pass"
+        },
+        "fiber_phase_orbit": {
+          "measured": 2.0,
+          "status": "fail"
+        },
+        "fibration_link_exists": {
+          "measured": 1,
+          "scope": "not_linking_model",
+          "status": "pass"
+        },
+        "grid_area_ratio": {
+          "measured": 1,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "grid_distinct_count": {
+          "measured": 0,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "grid_volume_ratio": {
+          "measured": 1,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "phase_invariance": {
+          "measured": 2.0000000000000004,
+          "status": "fail"
+        },
+        "phase_quotient_nonempty": {
+          "measured": 1,
+          "scope": "spinor_domain_has_phase",
+          "status": "pass"
+        },
+        "reconstructed_dimension_3": {
+          "measured": 3,
+          "scope": "spinor_domain",
+          "status": "pass"
+        },
+        "s2_norm_identity": {
+          "measured": 1.1102230246251565e-15,
+          "status": "pass"
+        }
+      },
+      "negative_2_naive_grid_double_cover_ignored": {
+        "double_cover_rotation_nontrivial": {
+          "measured": 4.62985963945236e-16,
+          "status": "pass"
+        },
+        "fiber_phase_orbit": {
+          "measured": 0,
+          "scope": "true_hopf_map_control",
+          "status": "pass"
+        },
+        "fibration_link_exists": {
+          "measured": 1,
+          "scope": "true_hopf_map_control",
+          "status": "pass"
+        },
+        "grid_area_ratio": {
+          "measured": 2.0,
+          "status": "fail"
+        },
+        "grid_distinct_count": {
+          "measured": 2048,
+          "status": "fail"
+        },
+        "grid_volume_ratio": {
+          "measured": 2.0,
+          "status": "fail"
+        },
+        "phase_invariance": {
+          "measured": 0,
+          "scope": "true_hopf_map_control",
+          "status": "pass"
+        },
+        "phase_quotient_nonempty": {
+          "measured": 1,
+          "scope": "spinor_chart",
+          "status": "pass"
+        },
+        "reconstructed_dimension_3": {
+          "measured": 3,
+          "scope": "spinor_chart",
+          "status": "pass"
+        },
+        "s2_norm_identity": {
+          "measured": 0,
+          "scope": "true_hopf_map_control",
+          "status": "pass"
+        }
+      },
+      "negative_3_classical_bit_n01_negative_carrier": {
+        "double_cover_rotation_nontrivial": {
+          "measured": 2.0,
+          "status": "fail"
+        },
+        "fiber_phase_orbit": {
+          "measured": 0,
+          "scope": "no_phase_orbit",
+          "status": "pass"
+        },
+        "fibration_link_exists": {
+          "measured": 1,
+          "status": "fail"
+        },
+        "grid_area_ratio": {
+          "measured": 1,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "grid_distinct_count": {
+          "measured": 0,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "grid_volume_ratio": {
+          "measured": 1,
+          "scope": "not_grid_model",
+          "status": "pass"
+        },
+        "phase_invariance": {
+          "measured": 0,
+          "scope": "no_phase_action_to_violate",
+          "status": "pass"
+        },
+        "phase_quotient_nonempty": {
+          "measured": 1,
+          "status": "fail"
+        },
+        "reconstructed_dimension_3": {
+          "measured": 2,
+          "status": "fail"
+        },
+        "s2_norm_identity": {
+          "measured": 0,
+          "scope": "not_hopf_map",
+          "status": "pass"
+        }
+      }
+    },
+    "observed_failures": {
+      "negative_1_no_conjugate_map": [
+        "phase_invariance",
+        "fiber_phase_orbit"
+      ],
+      "negative_2_naive_grid_double_cover_ignored": [
+        "grid_distinct_count",
+        "grid_area_ratio",
+        "grid_volume_ratio"
+      ],
+      "negative_3_classical_bit_n01_negative_carrier": [
+        "phase_quotient_nonempty",
+        "reconstructed_dimension_3",
+        "double_cover_rotation_nontrivial",
+        "fibration_link_exists"
+      ]
+    },
+    "predicted_failures": {
+      "negative_1_no_conjugate_map": [
+        "phase_invariance",
+        "fiber_phase_orbit"
+      ],
+      "negative_2_naive_grid_double_cover_ignored": [
+        "grid_distinct_count",
+        "grid_area_ratio",
+        "grid_volume_ratio"
+      ],
+      "negative_3_classical_bit_n01_negative_carrier": [
+        "phase_quotient_nonempty",
+        "reconstructed_dimension_3",
+        "double_cover_rotation_nontrivial",
+        "fibration_link_exists"
+      ]
+    },
+    "selectivity_pass": true
+  },
+  "shared_scalars": {
+    "negative_1_orbit_spread": 2.0000000000000004,
+    "negative_2_count_ratio": 2.0,
+    "negative_3_dimension_deficit": 2
+  },
+  "sim_id": "geo_s1_negative_models_v0",
+  "source_path": "system_v6/sims/geo_s1_negative_models_v0/geo_s1_negative_models_v0_jax.py",
+  "source_sha256": "d21e965d329c0942cc909322ba208bb9b4d0a21d14817b0f08447f2f98a058d4"
+}

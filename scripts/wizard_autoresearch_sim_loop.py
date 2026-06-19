@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -441,7 +442,10 @@ def canonical_micro_rerun_command(target: dict[str, Any] | None) -> list[str] | 
         "SIM_RESULTS_DIR=system_v4/probes/a2_state/sim_results",
         "NUMBA_CACHE_DIR=/tmp/codex-numba",
         "MPLCONFIGDIR=/tmp/codex-mpl",
-        "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+        os.environ.get(
+            "CODEX_RATCHET_PYTHON",
+            os.environ.get("SIM_PY", "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3"),
+        ),
         str(source_path),
     ]
 

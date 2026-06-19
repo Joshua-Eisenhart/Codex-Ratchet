@@ -1,0 +1,565 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive matrix algebra, eigenspectra, trace norms",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Z3.jl forced channel equality UNSAT/SAT proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "commutator_table": {
+    "known_nonzero_pass": true,
+    "known_nonzeros": {
+      "Fi-Fe": 1.7000943200728584,
+      "Te-Fe": 0.21213203435596423,
+      "Ti-Fi": 0.22764906992932943
+    },
+    "known_zero_pass": true,
+    "known_zeros": {
+      "Te-Fi": 1.6883057536160649e-16,
+      "Ti-Fe": 1.5944364291470363e-16,
+      "Ti-Te": 2.288783399261118e-16
+    },
+    "norm": "trace_norm",
+    "state": "rho_0",
+    "table": {
+      "Fe": {
+        "Fe": 0.0,
+        "Fi": 1.7000943200728584,
+        "Te": 0.21213203435596423,
+        "Ti": 1.5944364291470363e-16
+      },
+      "Fi": {
+        "Fe": 1.7000943200728584,
+        "Fi": 0.0,
+        "Te": 1.6883057536160649e-16,
+        "Ti": 0.22764906992932943
+      },
+      "Te": {
+        "Fe": 0.21213203435596423,
+        "Fi": 1.6883057536160649e-16,
+        "Te": 0.0,
+        "Ti": 2.288783399261118e-16
+      },
+      "Ti": {
+        "Fe": 1.5944364291470363e-16,
+        "Fi": 0.22764906992932943,
+        "Te": 2.288783399261118e-16,
+        "Ti": 0.0
+      }
+    }
+  },
+  "control_only_tools": [],
+  "controls": {
+    "commutator_known_nonzeros": true,
+    "commutator_known_zeros": true,
+    "cptp_all": true,
+    "property_certificates": true,
+    "reads_peer_result_false": true,
+    "representation_consistency": true,
+    "smt_julia_z3_commuting_control_sat": true,
+    "smt_julia_z3_noncomm_unsat": true,
+    "swapped_parameter_control_honest": true,
+    "wrong_basis_negative_control": true
+  },
+  "cptp_certificates": {
+    "Fe": {
+      "choi_min_eig": 0.0,
+      "choi_psd": true,
+      "choi_trace": 2.0,
+      "tp_residual_max_abs": 0.0,
+      "trace_preserving": true
+    },
+    "Fi": {
+      "choi_min_eig": -1.6810639821184562e-16,
+      "choi_psd": true,
+      "choi_trace": 2.0,
+      "tp_residual_max_abs": 0.0,
+      "trace_preserving": true
+    },
+    "Te": {
+      "choi_min_eig": 7.994295739650032e-18,
+      "choi_psd": true,
+      "choi_trace": 2.0,
+      "tp_residual_max_abs": 0.0,
+      "trace_preserving": true
+    },
+    "Ti": {
+      "choi_min_eig": 0.0,
+      "choi_psd": true,
+      "choi_trace": 2.0,
+      "tp_residual_max_abs": 0.0,
+      "trace_preserving": true
+    }
+  },
+  "engine": "julia",
+  "engine_contract": {
+    "mode": "all_three_full_sims",
+    "reads_peer_result": false
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-09T15:40:44.576Z",
+  "negative_controls": {
+    "swapped_parameter_control": {
+      "declared_pin_degenerate": true,
+      "honest_status": "the requested pinned swap is degenerate because q1=q2 and theta=phi; off-pin sanity proves the code path is falsifiable",
+      "off_pin_sanity_params": {
+        "phi": "pi/5",
+        "q1": 0.2,
+        "q2": 0.4,
+        "theta": "pi/3"
+      },
+      "off_pin_swap_falsifies": true,
+      "off_pin_swap_max_trace_norm_diff": 0.31553935361398133,
+      "pinned_swap_is_not_falsifying": true,
+      "pinned_swap_max_trace_norm_diff": 0.0
+    },
+    "wrong_basis_Ti_y": {
+      "different_values": true,
+      "purpose": "source-lock falsifier: replacing P0/P1 z-dephasing with y-basis dephasing changes values",
+      "rows": {
+        "rho_0": {
+          "trace_norm_Dz_minus_Dy": 0.2276490699293295
+        },
+        "rho_1": {
+          "trace_norm_Dz_minus_Dy": 0.15935434895053074
+        }
+      }
+    }
+  },
+  "object_id": "source_locked_operator_base_packet_julia",
+  "operator_backlog": [
+    {
+      "operator": "R_y",
+      "reason": "not one of the four intrinsic source-locked operators in this packet",
+      "source_citations": [
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    },
+    {
+      "operator": "D_y",
+      "reason": "used only as falsifying wrong-basis Ti control, not admitted as a base operator",
+      "source_citations": [
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:50-56",
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented_except_wrong_basis_negative_control"
+    },
+    {
+      "operator": "D_+/-",
+      "reason": "ladder operators are support material, not base operators in this packet",
+      "source_citations": [
+        "/Users/joshuaeisenhart/wiki/concepts/operator-math-explicit.md:50-55",
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    },
+    {
+      "operator": "Pi_P",
+      "reason": "projector/quotient packet is backlog, not this four-token compression",
+      "source_citations": [
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    },
+    {
+      "operator": "F_Q",
+      "reason": "future field/operator packet, not one of Ti/Te/Fi/Fe",
+      "source_citations": [
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    },
+    {
+      "operator": "D[L] generic",
+      "reason": "generic Lindblad terrain law is outside the four base operator packet",
+      "source_citations": [
+        "system_v6/foundations/working_math_scaffold_20260609.md:86-90",
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    },
+    {
+      "operator": "depolarizing",
+      "reason": "not present in the intrinsic four-operator source lock",
+      "source_citations": [
+        "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810"
+      ],
+      "status": "not_implemented"
+    }
+  ],
+  "operator_forms": {
+    "Fe": {
+      "bloch_map": "(rx,ry,rz)->(rx cos(phi)-ry sin(phi), rx sin(phi)+ry cos(phi), rz)",
+      "generator": "flow at t=1 of L4(rho)=-i[(phi/2)sigma_z,rho]",
+      "source": "Fe(rho)=U_z(phi) rho U_z(phi)^dagger, U_z=exp(-i phi sigma_z/2)"
+    },
+    "Fi": {
+      "bloch_map": "(rx,ry,rz)->(rx, ry cos(theta)-rz sin(theta), rz cos(theta)+ry sin(theta))",
+      "generator": "flow at t=1 of L3(rho)=-i[(theta/2)sigma_x,rho]",
+      "source": "Fi(rho)=U_x(theta) rho U_x(theta)^dagger, U_x=exp(-i theta sigma_x/2)"
+    },
+    "Te": {
+      "bloch_map": "(rx,ry,rz)->(rx,(1-q2)ry,(1-q2)rz)",
+      "generator": "flow at t=1 of L2(rho)=kappa2/2*(sigma_x rho sigma_x-rho), kappa2=-log(1-q2)",
+      "source": "Te(rho)=(1-q2)rho+q2(Q+ rho Q+ + Q- rho Q-); Kraus sqrt(1-q2)I,sqrt(q2)Q+,sqrt(q2)Q-"
+    },
+    "Ti": {
+      "bloch_map": "(rx,ry,rz)->((1-q1)rx,(1-q1)ry,rz)",
+      "generator": "flow at t=1 of L1(rho)=kappa1/2*(sigma_z rho sigma_z-rho), kappa1=-log(1-q1)",
+      "source": "Ti(rho)=(1-q1)rho+q1(P0 rho P0+P1 rho P1); Kraus sqrt(1-q1)I,sqrt(q1)P0,sqrt(q1)P1"
+    }
+  },
+  "packages_used": [
+    "JSON",
+    "LinearAlgebra",
+    "Z3"
+  ],
+  "pin_identity": {
+    "phi": "pi/2",
+    "q1": 0.3,
+    "q2": 0.3,
+    "rho_0": "psi(0.3,0.2,pi/8) per scaffold 1.1",
+    "rho_1": "0.7*rho_0+0.3*I/2",
+    "theta": "pi/2"
+  },
+  "pin_spec": "q1=q2=0.3, theta=phi=pi/2, rho_0=|psi(0.3,0.2,pi/8)><...|, rho_1=0.7*rho_0+0.3*I/2",
+  "promotion_allowed": false,
+  "property_certificates": {
+    "Fe": {
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "pass": true,
+          "purity_after": 1.0,
+          "purity_before": 1.0000000000000002,
+          "purity_delta_abs": 2.220446049250313e-16,
+          "purity_preserved": true
+        },
+        "rho_1": {
+          "pass": true,
+          "purity_after": 0.7450000000000001,
+          "purity_before": 0.7450000000000001,
+          "purity_delta_abs": 0.0,
+          "purity_preserved": true
+        }
+      }
+    },
+    "Fi": {
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "pass": true,
+          "purity_after": 1.0,
+          "purity_before": 1.0000000000000002,
+          "purity_delta_abs": 2.220446049250313e-16,
+          "purity_preserved": true
+        },
+        "rho_1": {
+          "pass": true,
+          "purity_after": 0.7450000000000001,
+          "purity_before": 0.7450000000000001,
+          "purity_delta_abs": 0.0,
+          "purity_preserved": true
+        }
+      }
+    },
+    "Te": {
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "basis": "x",
+          "coherence_shrink_pass": true,
+          "coherence_shrink_residual": 6.206335383118183e-17,
+          "entropy_after": 0.2782384825055281,
+          "entropy_before": -0.0,
+          "entropy_delta": 0.2782384825055281,
+          "entropy_non_decreasing": true,
+          "expected_shrink_factor": 0.7,
+          "offdiag_after": {
+            "im": -0.09637612269770483,
+            "re": 0.24748737341529164
+          },
+          "offdiag_before": {
+            "im": -0.13768017528243545,
+            "re": 0.35355339059327373
+          },
+          "pass": true
+        },
+        "rho_1": {
+          "basis": "x",
+          "coherence_shrink_pass": true,
+          "coherence_shrink_residual": 5.551115123125783e-17,
+          "entropy_after": 0.5084032807595638,
+          "entropy_before": 0.422709087805991,
+          "entropy_delta": 0.08569419295357278,
+          "entropy_non_decreasing": true,
+          "expected_shrink_factor": 0.7,
+          "offdiag_after": {
+            "im": -0.06746328588839337,
+            "re": 0.17324116139070417
+          },
+          "offdiag_before": {
+            "im": -0.09637612269770482,
+            "re": 0.24748737341529162
+          },
+          "pass": true
+        }
+      }
+    },
+    "Ti": {
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "basis": "z",
+          "coherence_shrink_pass": true,
+          "coherence_shrink_residual": 1.3877787807814457e-17,
+          "entropy_after": 0.24956684209410746,
+          "entropy_before": -0.0,
+          "entropy_delta": 0.24956684209410746,
+          "entropy_non_decreasing": true,
+          "expected_shrink_factor": 0.7,
+          "offdiag_after": {
+            "im": 0.09637612269770485,
+            "re": 0.2279509661610517
+          },
+          "offdiag_before": {
+            "im": 0.13768017528243548,
+            "re": 0.325644237372931
+          },
+          "pass": true
+        },
+        "rho_1": {
+          "basis": "z",
+          "coherence_shrink_pass": true,
+          "coherence_shrink_residual": 0.0,
+          "entropy_after": 0.4974818117546528,
+          "entropy_before": 0.422709087805991,
+          "entropy_delta": 0.0747727239486618,
+          "entropy_non_decreasing": true,
+          "expected_shrink_factor": 0.7,
+          "offdiag_after": {
+            "im": 0.06746328588839338,
+            "re": 0.1595656763127362
+          },
+          "offdiag_before": {
+            "im": 0.09637612269770483,
+            "re": 0.2279509661610517
+          },
+          "pass": true
+        }
+      }
+    }
+  },
+  "reads_peer_result": false,
+  "representation_consistency": {
+    "Fe": {
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "bloch_vs_generator_max_abs": 5.551115123125783e-17,
+          "pass": true,
+          "source_vs_bloch_max_abs": 5.551115123125783e-17,
+          "source_vs_generator_max_abs": 0.0
+        },
+        "rho_1": {
+          "bloch_vs_generator_max_abs": 1.1102230246251565e-16,
+          "pass": true,
+          "source_vs_bloch_max_abs": 1.1102230246251565e-16,
+          "source_vs_generator_max_abs": 0.0
+        }
+      },
+      "tol": 1.0e-12
+    },
+    "Fi": {
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "bloch_vs_generator_max_abs": 1.1102230246251565e-16,
+          "pass": true,
+          "source_vs_bloch_max_abs": 1.1102230246251565e-16,
+          "source_vs_generator_max_abs": 0.0
+        },
+        "rho_1": {
+          "bloch_vs_generator_max_abs": 5.551115123125783e-17,
+          "pass": true,
+          "source_vs_bloch_max_abs": 5.551115123125783e-17,
+          "source_vs_generator_max_abs": 0.0
+        }
+      },
+      "tol": 1.0e-12
+    },
+    "Te": {
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "bloch_vs_generator_max_abs": 0.0,
+          "pass": true,
+          "source_vs_bloch_max_abs": 1.1102230246251565e-16,
+          "source_vs_generator_max_abs": 1.1102230246251565e-16
+        },
+        "rho_1": {
+          "bloch_vs_generator_max_abs": 0.0,
+          "pass": true,
+          "source_vs_bloch_max_abs": 1.1102230246251565e-16,
+          "source_vs_generator_max_abs": 1.1102230246251565e-16
+        }
+      },
+      "tol": 1.0e-12
+    },
+    "Ti": {
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "states": {
+        "rho_0": {
+          "bloch_vs_generator_max_abs": 0.0,
+          "pass": true,
+          "source_vs_bloch_max_abs": 5.551115123125783e-17,
+          "source_vs_generator_max_abs": 5.551115123125783e-17
+        },
+        "rho_1": {
+          "bloch_vs_generator_max_abs": 0.0,
+          "pass": true,
+          "source_vs_bloch_max_abs": 1.1102230246251565e-16,
+          "source_vs_generator_max_abs": 1.1102230246251565e-16
+        }
+      },
+      "tol": 1.0e-12
+    }
+  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/source_locked_operator_base_packet/results/source_locked_operator_base_packet_julia_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_scalars": {
+    "Fe_representation_max_diff": 1.1102230246251565e-16,
+    "Fe_rho_0_purity_delta_abs": 2.220446049250313e-16,
+    "Fe_rho_1_purity_delta_abs": 0.0,
+    "Fi_representation_max_diff": 1.1102230246251565e-16,
+    "Fi_rho_0_purity_delta_abs": 2.220446049250313e-16,
+    "Fi_rho_1_purity_delta_abs": 0.0,
+    "Te_representation_max_diff": 1.1102230246251565e-16,
+    "Te_rho_0_coherence_shrink_residual": 6.206335383118183e-17,
+    "Te_rho_0_entropy_delta": 0.2782384825055281,
+    "Te_rho_1_coherence_shrink_residual": 5.551115123125783e-17,
+    "Te_rho_1_entropy_delta": 0.08569419295357278,
+    "Ti_representation_max_diff": 1.1102230246251565e-16,
+    "Ti_rho_0_coherence_shrink_residual": 1.3877787807814457e-17,
+    "Ti_rho_0_entropy_delta": 0.24956684209410746,
+    "Ti_rho_1_coherence_shrink_residual": 0.0,
+    "Ti_rho_1_entropy_delta": 0.0747727239486618,
+    "commutator_Fi_Fe_rho0_trace_norm": 1.7000943200728584,
+    "commutator_Te_Fe_rho0_trace_norm": 0.21213203435596423,
+    "commutator_Te_Fi_zero_trace_norm": 1.6883057536160649e-16,
+    "commutator_Ti_Fe_zero_trace_norm": 1.5944364291470363e-16,
+    "commutator_Ti_Fi_rho0_trace_norm": 0.22764906992932943,
+    "commutator_Ti_Te_zero_trace_norm": 2.288783399261118e-16,
+    "smt_julia_z3_noncomm_unsat": 1.0,
+    "swapped_parameter_offpin_diff": 0.31553935361398133,
+    "swapped_parameter_pinned_diff": 0.0,
+    "wrong_basis_Ti_y_rho0_trace_norm_diff": 0.2276490699293295
+  },
+  "smt": {
+    "julia_z3": {
+      "asserted_precomputed_scalar": false,
+      "bound_entries": 32,
+      "channel_vector_order": [
+        "a",
+        "u",
+        "v",
+        "d"
+      ],
+      "claim": "forcing Ti o Fi == Fi o Ti as source-channel matrices is UNSAT",
+      "commuting_control_pair": "Ti_Fe",
+      "commuting_control_record": {
+        "asserted_precomputed_scalar": false,
+        "bound_entries": 32,
+        "channel_vector_order": [
+          "a",
+          "u",
+          "v",
+          "d"
+        ],
+        "derived_products": "A*B and B*A entries are computed in solver from bound source-channel matrices",
+        "load_bearing": true,
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "sat"
+      },
+      "commuting_control_verdict": "sat",
+      "derived_products": "A*B and B*A entries are computed in solver from bound source-channel matrices",
+      "forced_equality_pair": "Ti_Fi",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "source_entry_binding": {
+        "Fe": "integer source U_z(phi=pi/2) matrix form on [a,u,v,d]",
+        "Fi": "scaled by 2 from theta=pi/2 source U_x matrix form on [a,u,v,d]",
+        "Ti": "scaled by 10 from q1=3/10 source z-dephasing on [a,u,v,d]"
+      },
+      "verdict": "unsat"
+    }
+  },
+  "source_citations": {
+    "scaffold_base_operators": "system_v6/foundations/working_math_scaffold_20260609.md:66-75",
+    "scaffold_hopf_spinor": "system_v6/foundations/working_math_scaffold_20260609.md:31-38",
+    "source_Fe": "system_v5/READ ONLY Reference Docs/operator math explicit.md:646-735",
+    "source_Fi": "system_v5/READ ONLY Reference Docs/operator math explicit.md:488-587",
+    "source_Te": "system_v5/READ ONLY Reference Docs/operator math explicit.md:279-438",
+    "source_Ti": "system_v5/READ ONLY Reference Docs/operator math explicit.md:102-230",
+    "source_exact_lock": "system_v5/READ ONLY Reference Docs/operator math explicit.md:794-810",
+    "source_state_and_projectors": "system_v5/READ ONLY Reference Docs/operator math explicit.md:8-100",
+    "wiki_operator_summary": "/Users/joshuaeisenhart/wiki/concepts/operator-math-explicit.md:68-123"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/source_locked_operator_base_packet/source_locked_operator_base_packet_julia.jl",
+  "source_sha256": "0014c32109c8880c2faf96d5e7cd578666cb4a2b6f62e9282717be23e41c8863",
+  "tool_exercise_map": {
+    "JSON": {
+      "capability_receipt_path": null,
+      "computed_what": "supportive result serialization",
+      "depth": "supportive",
+      "gates": [],
+      "tool": "JSON"
+    },
+    "LinearAlgebra": {
+      "capability_receipt_path": null,
+      "computed_what": "supportive matrix algebra, eigenspectra, trace norms",
+      "depth": "supportive",
+      "gates": [],
+      "tool": "LinearAlgebra"
+    },
+    "Z3": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/z3_capability_results.json",
+      "computed_what": "load-bearing Z3.jl forced channel equality UNSAT/SAT proof",
+      "depth": "load_bearing",
+      "gates": [
+        "all_pass"
+      ],
+      "tool": "Z3"
+    }
+  }
+}

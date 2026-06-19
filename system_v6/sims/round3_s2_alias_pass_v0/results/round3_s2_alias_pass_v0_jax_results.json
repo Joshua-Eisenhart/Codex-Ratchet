@@ -1,0 +1,716 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent finite rational separation proof with flip control",
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive tuple/source hashes",
+      "used": true
+    },
+    "json": {
+      "reason": "supportive result serialization",
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact canonical tuples and verdict witnesses",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing finite rational separation proof with flip control",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "heavy_local_not_authorized": [
+      "S2.R3.5_boundary_conditioning_variant"
+    ],
+    "phase": "light-symbolic phase 1 only",
+    "surds_carried_by_cas_not_smt": true
+  },
+  "build_gates": {
+    "all_light_candidates_classified": true,
+    "anchor_classifies_as_itself": true,
+    "cvc5_flip_control_sat": true,
+    "cvc5_positive_unsat": true,
+    "deliberate_alias_classifies_alias": true,
+    "no_light_candidate_left_open": true,
+    "no_numeric_closeness_on_claim_path": true,
+    "phase2_queue_only_heavy_cost_R3_5": true,
+    "registry_read_full": true,
+    "wrong_sign_control_excluded_first_row": true,
+    "z3_flip_control_sat": true,
+    "z3_positive_unsat": true
+  },
+  "candidate_verdicts": [
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "sqrt(3)/2",
+          "pi/12": "-sqrt(3)/2",
+          "pi/3": "1/2",
+          "pi/4": "0",
+          "pi/6": "-1/2"
+        }
+      },
+      "canonical_tuple_hash": "6fe430d69dec043435ca71dcfb7ec1adb637a318bd97c69ac0e863d1f5dfccc0",
+      "closeness": "control",
+      "expected_teeth_row": "none; anchor",
+      "family_id": "S2.R3.0_committed",
+      "finite_representative": "f=cos(2eta), g_phi=0, g_chi=0",
+      "id": "S2.R3.0_committed",
+      "row": "anchor",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(-1 + sqrt(3))/2",
+          "pi/12": "-(1 + sqrt(3))/2",
+          "pi/3": "0",
+          "pi/4": "-1/2",
+          "pi/6": "-1"
+        }
+      },
+      "canonical_tuple_hash": "77009d5fc9b4e381c2115e69d1c26aa8de44b93b13bcce5964fc40e9701b687f",
+      "closeness": "near-alias / convention-neighbor",
+      "expected_teeth_row": "lifted holonomy convention pin; Stokes boundary gap",
+      "family_id": "S2.R3.1_large_gauge_chi_shift",
+      "finite_representative": "f=cos(2eta), g_chi=1/2",
+      "id": "S2.R3.1_large_gauge_chi_shift__plus_1_2",
+      "row": "lifted_holonomy_convention_pin",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-lifted-holonomy-convention-pin",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-(1 + sqrt(3))/2",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(1 + sqrt(3))/2",
+          "pi/12": "-(-1 + sqrt(3))/2",
+          "pi/3": "1",
+          "pi/4": "1/2",
+          "pi/6": "0"
+        }
+      },
+      "canonical_tuple_hash": "9222257e256959b6489bf9fdc387b439d864717b96cf22e7e1f84e21ab531ed8",
+      "closeness": "near-alias / convention-neighbor",
+      "expected_teeth_row": "lifted holonomy convention pin; Stokes boundary gap",
+      "family_id": "S2.R3.1_large_gauge_chi_shift",
+      "finite_representative": "f=cos(2eta), g_chi=-1/2",
+      "id": "S2.R3.1_large_gauge_chi_shift__minus_1_2",
+      "row": "lifted_holonomy_convention_pin",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-lifted-holonomy-convention-pin",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-(-1 + sqrt(3))/2",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(-1 + 2*sqrt(3))/4",
+          "pi/12": "-(1 + 2*sqrt(3))/4",
+          "pi/3": "1/4",
+          "pi/4": "-1/4",
+          "pi/6": "-3/4"
+        }
+      },
+      "canonical_tuple_hash": "0d441c6446d853fb2386bb0469ede1d80d5d8e595895f28af892308032ae8f2a",
+      "closeness": "closer than wrong-sign; same F, shifted lifted leaves",
+      "expected_teeth_row": "leaf holonomy spectrum before Chern",
+      "family_id": "S2.R3.2_same_curvature_shifted_holonomy",
+      "finite_representative": "f=cos(2eta)+1/4",
+      "id": "S2.R3.2_same_curvature_shifted_holonomy__plus_1_4",
+      "row": "leaf_holonomy_spectrum_before_chern",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-leaf-holonomy-spectrum",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-(1 + 2*sqrt(3))/4",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(1 + 2*sqrt(3))/4",
+          "pi/12": "-(-1 + 2*sqrt(3))/4",
+          "pi/3": "3/4",
+          "pi/4": "1/4",
+          "pi/6": "-1/4"
+        }
+      },
+      "canonical_tuple_hash": "bc70e0b74816a7699584c524a6fcb47e2fd25705b2ee4eccea5bcf96b64341b2",
+      "closeness": "closer than wrong-sign; same F, shifted lifted leaves",
+      "expected_teeth_row": "leaf holonomy spectrum before Chern",
+      "family_id": "S2.R3.2_same_curvature_shifted_holonomy",
+      "finite_representative": "f=cos(2eta)-1/4",
+      "id": "S2.R3.2_same_curvature_shifted_holonomy__minus_1_4",
+      "row": "leaf_holonomy_spectrum_before_chern",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-leaf-holonomy-spectrum",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-(-1 + 2*sqrt(3))/4",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "-(x - 5)/5",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-11 + 10*sqrt(3))/20",
+          "pi/3->5*pi/12": "-(-9 + 10*sqrt(3))/20",
+          "pi/4->pi/3": "-21/40",
+          "pi/6->pi/4": "-19/40"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(-1 + 20*sqrt(3))/40",
+          "pi/12": "-(1 + 20*sqrt(3))/40",
+          "pi/3": "17/40",
+          "pi/4": "-1/10",
+          "pi/6": "-23/40"
+        }
+      },
+      "canonical_tuple_hash": "adaa713b17993cb485f7d278adbc7da27e97a7a25ae49b99d2a3d5644a51ea8a",
+      "closeness": "same endpoint c1, different density",
+      "expected_teeth_row": "curvature density and annular Stokes",
+      "family_id": "S2.R3.3_endpoint_chern_preserving_bump",
+      "finite_representative": "f=cos(2eta)+(1/10)*sin(2eta)^2",
+      "id": "S2.R3.3_endpoint_chern_preserving_bump__plus_1_10",
+      "row": "curvature_density_and_annular_stokes",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-curvature-density-and-annular-Stokes",
+      "witness": {
+        "anchor": "1",
+        "candidate": "-(x - 5)/5",
+        "field": "F_density_without_common_minus_2_sin2eta"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "(x + 5)/5",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-9 + 10*sqrt(3))/20",
+          "pi/3->5*pi/12": "-(-11 + 10*sqrt(3))/20",
+          "pi/4->pi/3": "-19/40",
+          "pi/6->pi/4": "-21/40"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(1 + 20*sqrt(3))/40",
+          "pi/12": "-(-1 + 20*sqrt(3))/40",
+          "pi/3": "23/40",
+          "pi/4": "1/10",
+          "pi/6": "-17/40"
+        }
+      },
+      "canonical_tuple_hash": "c252df0ece4c0901208bf9d78bbda87c19a58e6573c5b3705f26d67e7eb4e57b",
+      "closeness": "same endpoint c1, different density",
+      "expected_teeth_row": "curvature density and annular Stokes",
+      "family_id": "S2.R3.3_endpoint_chern_preserving_bump",
+      "finite_representative": "f=cos(2eta)-(1/10)*sin(2eta)^2",
+      "id": "S2.R3.3_endpoint_chern_preserving_bump__minus_1_10",
+      "row": "curvature_density_and_annular_stokes",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "excluded-by-curvature-density-and-annular-Stokes",
+      "witness": {
+        "anchor": "1",
+        "candidate": "(x + 5)/5",
+        "field": "F_density_without_common_minus_2_sin2eta"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "(4*x + 9)/10",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-7 + 9*sqrt(3))/20",
+          "pi/3->5*pi/12": "-(-11 + 9*sqrt(3))/20",
+          "pi/4->pi/3": "-2/5",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "9/10",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "3*(-1 + 3*sqrt(3))/20",
+          "pi/12": "-3*(1 + 3*sqrt(3))/20",
+          "pi/3": "2/5",
+          "pi/4": "0",
+          "pi/6": "-1/2"
+        }
+      },
+      "canonical_tuple_hash": "99bb6af24c7768da0280a09797911eff05c7b16a85ba69f7a51adf6fc4ff2fc8",
+      "closeness": "matches eta=pi/6 and eta=pi/4, differs elsewhere",
+      "expected_teeth_row": "expanded leaf holonomy vector",
+      "family_id": "S2.R3.4_two_leaf_holonomy_match",
+      "finite_representative": "f=cos(2eta)+(1/5)*cos(2eta)*(cos(2eta)-1/2)",
+      "id": "S2.R3.4_two_leaf_holonomy_match__plus_1_5",
+      "row": "expanded_leaf_holonomy_vector",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": false,
+      "verdict": "excluded-by-expanded-leaf-holonomy-vector",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-3*(1 + 3*sqrt(3))/20",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "-(4*x - 11)/10",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-13 + 11*sqrt(3))/20",
+          "pi/3->5*pi/12": "-(-9 + 11*sqrt(3))/20",
+          "pi/4->pi/3": "-3/5",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "11/10",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "(3 + 11*sqrt(3))/20",
+          "pi/12": "-(-3 + 11*sqrt(3))/20",
+          "pi/3": "3/5",
+          "pi/4": "0",
+          "pi/6": "-1/2"
+        }
+      },
+      "canonical_tuple_hash": "8bac17a568d74d5c17aeb40c1021cb40956b05162fc9530fb724e624b1004b23",
+      "closeness": "matches eta=pi/6 and eta=pi/4, differs elsewhere",
+      "expected_teeth_row": "expanded leaf holonomy vector",
+      "family_id": "S2.R3.4_two_leaf_holonomy_match",
+      "finite_representative": "f=cos(2eta)-(1/5)*cos(2eta)*(cos(2eta)-1/2)",
+      "id": "S2.R3.4_two_leaf_holonomy_match__minus_1_5",
+      "row": "expanded_leaf_holonomy_vector",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": false,
+      "verdict": "excluded-by-expanded-leaf-holonomy-vector",
+      "witness": {
+        "anchor": "-sqrt(3)/2",
+        "candidate": "-(-3 + 11*sqrt(3))/20",
+        "field": "lifted_holonomy_vector_scaled_by_2pi.pi/12"
+      }
+    }
+  ],
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "sqrt(3)/2",
+          "pi/12": "-sqrt(3)/2",
+          "pi/3": "1/2",
+          "pi/4": "0",
+          "pi/6": "-1/2"
+        }
+      },
+      "canonical_tuple_hash": "6fe430d69dec043435ca71dcfb7ec1adb637a318bd97c69ac0e863d1f5dfccc0",
+      "closeness": "control",
+      "expected_teeth_row": "anchor must classify as itself",
+      "family_id": "control.anchor_self",
+      "finite_representative": "anchor copy",
+      "id": "control.anchor_self",
+      "row": "anchor",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "sqrt(3)/2",
+          "pi/12": "-sqrt(3)/2",
+          "pi/3": "1/2",
+          "pi/4": "0",
+          "pi/6": "-1/2"
+        }
+      },
+      "canonical_tuple_hash": "6fe430d69dec043435ca71dcfb7ec1adb637a318bd97c69ac0e863d1f5dfccc0",
+      "closeness": "deliberate alias",
+      "expected_teeth_row": "alias gate before battery",
+      "family_id": "control.alias_reparameterized_committed",
+      "finite_representative": "f=2*cos(eta)^2-1, rewritten as x",
+      "id": "control.alias_reparameterized_committed",
+      "row": "canonical_tuple_equal",
+      "same_curvature_density_as_anchor": true,
+      "topology_only_c1_matches_anchor": true,
+      "verdict": "alias",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "-1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "1/2",
+          "pi/6->pi/4": "1/2"
+        },
+        "c1": "-1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "-sqrt(3)/2",
+          "pi/12": "sqrt(3)/2",
+          "pi/3": "-1/2",
+          "pi/4": "0",
+          "pi/6": "1/2"
+        }
+      },
+      "canonical_tuple_hash": "cd21c38b894f882639f79f4dda15220bb074d1961ffd9d17e334f25999d90e7e",
+      "closeness": "deliberate non-alias",
+      "expected_teeth_row": "first teeth row: curvature density",
+      "family_id": "control.wrong_sign_non_alias",
+      "finite_representative": "f=-cos(2eta)",
+      "id": "control.wrong_sign_non_alias",
+      "row": "curvature_density",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": false,
+      "verdict": "excluded-by-first-teeth-row-curvature-density",
+      "witness": {
+        "anchor": "1",
+        "candidate": "-1",
+        "field": "F_density_without_common_minus_2_sin2eta"
+      }
+    }
+  ],
+  "counts": {
+    "alias_class_count_including_controls": 10,
+    "co_survivor_open_count": 0,
+    "control_representatives": 3,
+    "non_alias_light_representatives_remaining": 0,
+    "raw_light_representatives": 9,
+    "registry_light_families": 5
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "claim": "computed rational witness rows are all nonzero",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one required nonzero witness is zero",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "witness_values": {
+        "R3_1_minus_holonomy_pi4_scaled_by_2": 1,
+        "R3_1_plus_holonomy_pi4_scaled_by_2": -1,
+        "R3_2_minus_holonomy_pi4_scaled_by_4": 1,
+        "R3_2_plus_holonomy_pi4_scaled_by_4": -1,
+        "R3_3_minus_curvature_delta_x0_scaled_by_5": 1,
+        "R3_3_plus_curvature_delta_x0_scaled_by_5": -1,
+        "R3_4_minus_holonomy_pi3_scaled_by_10": 1,
+        "R3_4_plus_holonomy_pi3_scaled_by_10": -1,
+        "wrong_sign_curvature_delta_scaled_by_2": -2
+      }
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "claim": "computed rational witness rows are all nonzero",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one required nonzero witness is zero",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "witness_values": {
+        "R3_1_minus_holonomy_pi4_scaled_by_2": 1,
+        "R3_1_plus_holonomy_pi4_scaled_by_2": -1,
+        "R3_2_minus_holonomy_pi4_scaled_by_4": 1,
+        "R3_2_plus_holonomy_pi4_scaled_by_4": -1,
+        "R3_3_minus_curvature_delta_x0_scaled_by_5": 1,
+        "R3_3_plus_curvature_delta_x0_scaled_by_5": -1,
+        "R3_4_minus_holonomy_pi3_scaled_by_10": 1,
+        "R3_4_plus_holonomy_pi3_scaled_by_10": -1,
+        "wrong_sign_curvature_delta_scaled_by_2": -2
+      }
+    }
+  },
+  "engine_role_note": "Python/JAX lane uses exact SymPy plus z3/cvc5; JAX arrays are intentionally omitted because the claim is light-symbolic.",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T00:18:35Z",
+  "negative": {
+    "excluded_candidate_count": 8,
+    "wrong_sign_control": {
+      "canonical_tuple": {
+        "F_density_without_common_minus_2_sin2eta": "-1",
+        "annular_flux_vector_scaled_by_2pi": {
+          "pi/12->pi/6": "(-1 + sqrt(3))/2",
+          "pi/3->5*pi/12": "(-1 + sqrt(3))/2",
+          "pi/4->pi/3": "1/2",
+          "pi/6->pi/4": "1/2"
+        },
+        "c1": "-1",
+        "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+        "lifted_holonomy_vector_scaled_by_2pi": {
+          "5*pi/12": "-sqrt(3)/2",
+          "pi/12": "sqrt(3)/2",
+          "pi/3": "-1/2",
+          "pi/4": "0",
+          "pi/6": "1/2"
+        }
+      },
+      "canonical_tuple_hash": "cd21c38b894f882639f79f4dda15220bb074d1961ffd9d17e334f25999d90e7e",
+      "closeness": "deliberate non-alias",
+      "expected_teeth_row": "first teeth row: curvature density",
+      "family_id": "control.wrong_sign_non_alias",
+      "finite_representative": "f=-cos(2eta)",
+      "id": "control.wrong_sign_non_alias",
+      "row": "curvature_density",
+      "same_curvature_density_as_anchor": false,
+      "topology_only_c1_matches_anchor": false,
+      "verdict": "excluded-by-first-teeth-row-curvature-density",
+      "witness": {
+        "anchor": "1",
+        "candidate": "-1",
+        "field": "F_density_without_common_minus_2_sin2eta"
+      }
+    }
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver/checkSat proves the same finite rational nonzero witness rows with matching polarity",
+    "z3": "z3.Solver/check proves finite rational nonzero witness rows UNSAT under negation and SAT under erased flip"
+  },
+  "packages_used": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "hashlib"
+  ],
+  "phase2_queue": {
+    "heavy_local_queued_by_registry_cost_class": [
+      "S2.R3.5_boundary_conditioning_variant"
+    ],
+    "light_symbolic_non_alias_representatives_remaining": [],
+    "stop_rule_application": "R3.1-R3.4 are excluded by light-symbolic rows; no heavy battery is authorized for them. R3.5 remains queued by cost class only."
+  },
+  "positive": {
+    "alias_classes": {
+      "0d441c6446d853fb2386bb0469ede1d80d5d8e595895f28af892308032ae8f2a": [
+        "S2.R3.2_same_curvature_shifted_holonomy__plus_1_4"
+      ],
+      "6fe430d69dec043435ca71dcfb7ec1adb637a318bd97c69ac0e863d1f5dfccc0": [
+        "S2.R3.0_committed",
+        "control.anchor_self",
+        "control.alias_reparameterized_committed"
+      ],
+      "77009d5fc9b4e381c2115e69d1c26aa8de44b93b13bcce5964fc40e9701b687f": [
+        "S2.R3.1_large_gauge_chi_shift__plus_1_2"
+      ],
+      "8bac17a568d74d5c17aeb40c1021cb40956b05162fc9530fb724e624b1004b23": [
+        "S2.R3.4_two_leaf_holonomy_match__minus_1_5"
+      ],
+      "9222257e256959b6489bf9fdc387b439d864717b96cf22e7e1f84e21ab531ed8": [
+        "S2.R3.1_large_gauge_chi_shift__minus_1_2"
+      ],
+      "99bb6af24c7768da0280a09797911eff05c7b16a85ba69f7a51adf6fc4ff2fc8": [
+        "S2.R3.4_two_leaf_holonomy_match__plus_1_5"
+      ],
+      "adaa713b17993cb485f7d278adbc7da27e97a7a25ae49b99d2a3d5644a51ea8a": [
+        "S2.R3.3_endpoint_chern_preserving_bump__plus_1_10"
+      ],
+      "bc70e0b74816a7699584c524a6fcb47e2fd25705b2ee4eccea5bcf96b64341b2": [
+        "S2.R3.2_same_curvature_shifted_holonomy__minus_1_4"
+      ],
+      "c252df0ece4c0901208bf9d78bbda87c19a58e6573c5b3705f26d67e7eb4e57b": [
+        "S2.R3.3_endpoint_chern_preserving_bump__minus_1_10"
+      ],
+      "cd21c38b894f882639f79f4dda15220bb074d1961ffd9d17e334f25999d90e7e": [
+        "control.wrong_sign_non_alias"
+      ]
+    },
+    "anchor_alias_class": [
+      "S2.R3.0_committed",
+      "control.anchor_self",
+      "control.alias_reparameterized_committed"
+    ],
+    "anchor_tuple": {
+      "F_density_without_common_minus_2_sin2eta": "1",
+      "annular_flux_vector_scaled_by_2pi": {
+        "pi/12->pi/6": "-(-1 + sqrt(3))/2",
+        "pi/3->5*pi/12": "-(-1 + sqrt(3))/2",
+        "pi/4->pi/3": "-1/2",
+        "pi/6->pi/4": "-1/2"
+      },
+      "c1": "1",
+      "cover_period_pin": "lifted chi:0->2pi; base loop counted twice; lifted holonomy not reduced mod 2pi",
+      "lifted_holonomy_vector_scaled_by_2pi": {
+        "5*pi/12": "sqrt(3)/2",
+        "pi/12": "-sqrt(3)/2",
+        "pi/3": "1/2",
+        "pi/4": "0",
+        "pi/6": "-1/2"
+      }
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/round3_s2_alias_pass_v0/results/round3_s2_alias_pass_v0_jax_results.json",
+  "role_id": "jax_rich_mirror_sim_builder",
+  "schema": "round3_s2_alias_pass_v0_jax_lane_v1",
+  "sim_id": "round3_s2_alias_pass_v0",
+  "source_path": "system_v6/sims/round3_s2_alias_pass_v0/round3_s2_alias_pass_v0_jax.py",
+  "source_sha256": "5567cbc4377bfcc68d6c58d7043ac3b1d4b845352a7b11d4fc7c77856db1bd45",
+  "tool_calls": [
+    {
+      "boundary_case": "heavy-local S2.R3.5 recorded as queued, not run",
+      "demotion_condition": "any verdict requires numeric closeness",
+      "gates": [
+        "all_pass",
+        "alias",
+        "exclusion"
+      ],
+      "input_object": "S2 registry candidate forms over x=cos(2eta)",
+      "negative/erased_control": "wrong-sign f differs in curvature density",
+      "output_object": "canonical alias tuple and exact witness expressions",
+      "positive_case": "anchor and pure reparameterization have equal canonical tuple",
+      "qualified_api": "sympy.simplify/sympy.factor/sympy.diff",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "demotion_condition": "wrong polarity or precomputed boolean assertion",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "finite rational witness rows derived from canonical tuples",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "output_object": "UNSAT positive nonzero proof and SAT flip control",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "qualified_api": "z3.Solver/check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "demotion_condition": "disagrees with z3",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "same finite rational witness rows as z3",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "output_object": "matching UNSAT/SAT polarity",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "qualified_api": "cvc5.Solver/checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

@@ -1,0 +1,1507 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null,
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JAX peer": {
+      "reason": "load-bearing within-run parity reference passed by the JAX driver",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization and current JAX receipt ingestion",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent x64-equivalent finite density, quotient, von-Neumann entropy, Shannon entropy, and control mirror",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, eigenvalues, norms, and finite projective probe statistics",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror and not used for compute",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: this diagnostic is fenced to JAX plus Julia and no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON",
+    "JAX peer"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "R3 entropy is a downstream readout of the verified finite R2 probe-relative distinguishability quotient."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_entropy_as_derived_readout_julia_results.json"
+  ],
+  "backend": "julia",
+  "blocked_claims": [
+    "formal_admission",
+    "promotion",
+    "physics_claim",
+    "top_floor_claim"
+  ],
+  "blocked_consumers": [
+    "formal_admission",
+    "promotion",
+    "physics_claim",
+    "top_floor_claim"
+  ],
+  "boundary": {
+    "blind_probe_is_distinct_from_empty_probe": {
+      "pass": true
+    },
+    "claim_ceiling_present": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_allowed_false": {
+      "pass": true
+    },
+    "promotion_allowed_false": {
+      "pass": true
+    }
+  },
+  "claim_ceiling": "Allowed only: finite quotient/signature entropy readout at scratch level. The primitive remains distinguishability under M; entropy is not primitive. Blocked: top_floor_claim; physics_claim; formal_admission; promotion.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "no_distinguishability_negative_fails_positive_control": {
+      "entropy_signature_l1_gap": 0.0,
+      "families_are_distinct": true,
+      "left_entropy_signature": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "left_probe_family": "M_empty",
+      "pass": true,
+      "positive_predicate_passes": false,
+      "right_entropy_signature": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "right_probe_family": "M_blind"
+    },
+    "no_self_diff_tautologies": {
+      "control_expression_pairs": [
+        {
+          "left_expression_id": "entropy_signature(M_Z)",
+          "left_quantity_id": "M_Z_entropy_signature",
+          "name": "positive_resolution_covariance",
+          "right_expression_id": "entropy_signature(M_ZXY)",
+          "right_quantity_id": "M_ZXY_entropy_signature"
+        },
+        {
+          "left_expression_id": "entropy_signature(M_empty)",
+          "left_quantity_id": "M_empty_entropy_signature",
+          "name": "negative_no_distinguishability_fails_covariance",
+          "right_expression_id": "entropy_signature(M_blind)",
+          "right_quantity_id": "M_blind_entropy_signature"
+        },
+        {
+          "left_expression_id": "entropy_signature(M_ZXY)",
+          "left_quantity_id": "M_ZXY_entropy_signature",
+          "name": "positive_vs_negative_signature",
+          "right_expression_id": "entropy_signature(M_blind)",
+          "right_quantity_id": "M_blind_entropy_signature"
+        }
+      ],
+      "pass": true
+    },
+    "positive_negative_entropy_signature_distinct": {
+      "entropy_signature_l1_gap": 8.830350987286444,
+      "pass": true
+    },
+    "resolution_covariance_positive": {
+      "entropy_signature_l1_gap": 6.094729047527648,
+      "left_entropy_signature": [
+        3.0,
+        0.735621939758795,
+        0.2310490601866483,
+        0.693147180559945
+      ],
+      "left_probe_family": "M_Z",
+      "pass": true,
+      "quotient_entropy_delta": 1.170532806781055,
+      "right_entropy_signature": [
+        7.0,
+        1.90615474653985,
+        0.693147180559945,
+        0.23104906018664834
+      ],
+      "right_probe_family": "M_ZXY"
+    },
+    "trivial_quotient_entropy_degenerate": {
+      "M_blind_class_count": 1,
+      "M_empty_class_count": 1,
+      "pass": true
+    }
+  },
+  "eligible_consumers": [],
+  "entropy_definitions": {
+    "placement": "all entropy fields consume quotient/signature/density data; no entropy value defines identity or admissibility",
+    "shannon_probe_outcome": "H(p_M) = -sum p_i log p_i over finite probe-outcome rows",
+    "shannon_quotient_class": "H(S/~_M) over uniform candidate prior pushed through the quotient classes",
+    "von_neumann": "S(rho) = -tr(rho log rho), computed from density eigenvalues after quotient state data exists"
+  },
+  "entropy_readouts": {
+    "M_Z": {
+      "class_mean_von_neumann_entropy_range": 0.2310490601866483,
+      "class_probability_distribution": [
+        0.125,
+        0.75,
+        0.125
+      ],
+      "class_probe_outcome_entropy_range": 0.693147180559945,
+      "class_rows": [
+        {
+          "class_id": "M_Z_q0",
+          "mean_probe_outcome_shannon_entropy": 0.0,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_z1": 0.0
+          },
+          "members": [
+            "pure_z1"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.0
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_Z_q1",
+          "mean_probe_outcome_shannon_entropy": 0.693147180559945,
+          "mean_von_neumann_entropy": 0.2310490601866483,
+          "member_von_neumann_entropies": {
+            "ensemble_x_mixed": 0.693147180559945,
+            "ensemble_z_mixed": 0.693147180559945,
+            "pure_x_minus": 0.0,
+            "pure_x_plus": 0.0,
+            "pure_y_minus": 0.0,
+            "pure_y_plus": 0.0
+          },
+          "members": [
+            "ensemble_x_mixed",
+            "ensemble_z_mixed",
+            "pure_x_minus",
+            "pure_x_plus",
+            "pure_y_minus",
+            "pure_y_plus"
+          ],
+          "prior_probability": 0.75,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945
+          ],
+          "size": 6
+        },
+        {
+          "class_id": "M_Z_q2",
+          "mean_probe_outcome_shannon_entropy": 0.0,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_z0": 0.0
+          },
+          "members": [
+            "pure_z0"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.0
+          ],
+          "size": 1
+        }
+      ],
+      "entropy_signature": [
+        3.0,
+        0.735621939758795,
+        0.2310490601866483,
+        0.693147180559945
+      ],
+      "name": "M_Z",
+      "probe_names": [
+        "Z"
+      ],
+      "quotient": {
+        "class_count": 3,
+        "classes": [
+          {
+            "class_id": "M_Z_q0",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                0.0,
+                1.0
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_Z_q1",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_x_minus",
+              "pure_x_plus",
+              "pure_y_minus",
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 6
+          },
+          {
+            "class_id": "M_Z_q2",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            "size": 1
+          }
+        ],
+        "name": "M_Z",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z"
+        ]
+      },
+      "quotient_class_shannon_entropy": 0.735621939758795,
+      "unweighted_mean_class_probe_outcome_shannon_entropy": 0.2310490601866483,
+      "unweighted_mean_class_von_neumann_entropy": 0.07701635339554944
+    },
+    "M_ZXY": {
+      "class_mean_von_neumann_entropy_range": 0.693147180559945,
+      "class_probability_distribution": [
+        0.125,
+        0.125,
+        0.125,
+        0.25,
+        0.125,
+        0.125,
+        0.125
+      ],
+      "class_probe_outcome_entropy_range": 0.23104906018664834,
+      "class_rows": [
+        {
+          "class_id": "M_ZXY_q0",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_z1": 0.0
+          },
+          "members": [
+            "pure_z1"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.0,
+            0.693147180559945,
+            0.693147180559945
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_ZXY_q1",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_x_minus": 0.0
+          },
+          "members": [
+            "pure_x_minus"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945,
+            0.0,
+            0.693147180559945
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_ZXY_q2",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_y_minus": 0.0
+          },
+          "members": [
+            "pure_y_minus"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945,
+            0.693147180559945,
+            0.0
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_ZXY_q3",
+          "mean_probe_outcome_shannon_entropy": 0.693147180559945,
+          "mean_von_neumann_entropy": 0.693147180559945,
+          "member_von_neumann_entropies": {
+            "ensemble_x_mixed": 0.693147180559945,
+            "ensemble_z_mixed": 0.693147180559945
+          },
+          "members": [
+            "ensemble_x_mixed",
+            "ensemble_z_mixed"
+          ],
+          "prior_probability": 0.25,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945,
+            0.693147180559945,
+            0.693147180559945
+          ],
+          "size": 2
+        },
+        {
+          "class_id": "M_ZXY_q4",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_y_plus": 0.0
+          },
+          "members": [
+            "pure_y_plus"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945,
+            0.693147180559945,
+            0.0
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_ZXY_q5",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_x_plus": 0.0
+          },
+          "members": [
+            "pure_x_plus"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              0.5,
+              0.5
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.693147180559945,
+            0.0,
+            0.693147180559945
+          ],
+          "size": 1
+        },
+        {
+          "class_id": "M_ZXY_q6",
+          "mean_probe_outcome_shannon_entropy": 0.4620981203732966,
+          "mean_von_neumann_entropy": 0.0,
+          "member_von_neumann_entropies": {
+            "pure_z0": 0.0
+          },
+          "members": [
+            "pure_z0"
+          ],
+          "prior_probability": 0.125,
+          "signature": [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.5
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.0,
+            0.693147180559945,
+            0.693147180559945
+          ],
+          "size": 1
+        }
+      ],
+      "entropy_signature": [
+        7.0,
+        1.90615474653985,
+        0.693147180559945,
+        0.23104906018664834
+      ],
+      "name": "M_ZXY",
+      "probe_names": [
+        "Z",
+        "X",
+        "Y"
+      ],
+      "quotient": {
+        "class_count": 7,
+        "classes": [
+          {
+            "class_id": "M_ZXY_q0",
+            "members": [
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_ZXY_q1",
+            "members": [
+              "pure_x_minus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_ZXY_q2",
+            "members": [
+              "pure_y_minus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.0,
+                1.0
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_ZXY_q3",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 2
+          },
+          {
+            "class_id": "M_ZXY_q4",
+            "members": [
+              "pure_y_plus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ],
+              [
+                1.0,
+                0.0
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_ZXY_q5",
+            "members": [
+              "pure_x_plus"
+            ],
+            "signature": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 1
+          },
+          {
+            "class_id": "M_ZXY_q6",
+            "members": [
+              "pure_z0"
+            ],
+            "signature": [
+              [
+                1.0,
+                0.0
+              ],
+              [
+                0.5,
+                0.5
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "size": 1
+          }
+        ],
+        "name": "M_ZXY",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "Z",
+          "X",
+          "Y"
+        ]
+      },
+      "quotient_class_shannon_entropy": 1.90615474653985,
+      "unweighted_mean_class_probe_outcome_shannon_entropy": 0.4951051289713893,
+      "unweighted_mean_class_von_neumann_entropy": 0.09902102579427785
+    },
+    "M_blind": {
+      "class_mean_von_neumann_entropy_range": 0.0,
+      "class_probability_distribution": [
+        1.0
+      ],
+      "class_probe_outcome_entropy_range": 0.0,
+      "class_rows": [
+        {
+          "class_id": "M_blind_q0",
+          "mean_probe_outcome_shannon_entropy": 0.0,
+          "mean_von_neumann_entropy": 0.17328679513998624,
+          "member_von_neumann_entropies": {
+            "ensemble_x_mixed": 0.693147180559945,
+            "ensemble_z_mixed": 0.693147180559945,
+            "pure_x_minus": 0.0,
+            "pure_x_plus": 0.0,
+            "pure_y_minus": 0.0,
+            "pure_y_plus": 0.0,
+            "pure_z0": 0.0,
+            "pure_z1": 0.0
+          },
+          "members": [
+            "ensemble_x_mixed",
+            "ensemble_z_mixed",
+            "pure_x_minus",
+            "pure_x_plus",
+            "pure_y_minus",
+            "pure_y_plus",
+            "pure_z0",
+            "pure_z1"
+          ],
+          "prior_probability": 1.0,
+          "signature": [
+            [
+              1.0
+            ]
+          ],
+          "signature_shannon_entropies": [
+            0.0
+          ],
+          "size": 8
+        }
+      ],
+      "entropy_signature": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "M_blind",
+      "probe_names": [
+        "BLIND_I"
+      ],
+      "quotient": {
+        "class_count": 1,
+        "classes": [
+          {
+            "class_id": "M_blind_q0",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_x_minus",
+              "pure_x_plus",
+              "pure_y_minus",
+              "pure_y_plus",
+              "pure_z0",
+              "pure_z1"
+            ],
+            "signature": [
+              [
+                1.0
+              ]
+            ],
+            "size": 8
+          }
+        ],
+        "name": "M_blind",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": [
+          "BLIND_I"
+        ]
+      },
+      "quotient_class_shannon_entropy": 0.0,
+      "unweighted_mean_class_probe_outcome_shannon_entropy": 0.0,
+      "unweighted_mean_class_von_neumann_entropy": 0.17328679513998624
+    },
+    "M_empty": {
+      "class_mean_von_neumann_entropy_range": 0.0,
+      "class_probability_distribution": [
+        1.0
+      ],
+      "class_probe_outcome_entropy_range": 0.0,
+      "class_rows": [
+        {
+          "class_id": "M_empty_q0",
+          "mean_probe_outcome_shannon_entropy": 0.0,
+          "mean_von_neumann_entropy": 0.17328679513998624,
+          "member_von_neumann_entropies": {
+            "ensemble_x_mixed": 0.693147180559945,
+            "ensemble_z_mixed": 0.693147180559945,
+            "pure_x_minus": 0.0,
+            "pure_x_plus": 0.0,
+            "pure_y_minus": 0.0,
+            "pure_y_plus": 0.0,
+            "pure_z0": 0.0,
+            "pure_z1": 0.0
+          },
+          "members": [
+            "ensemble_x_mixed",
+            "ensemble_z_mixed",
+            "pure_x_minus",
+            "pure_x_plus",
+            "pure_y_minus",
+            "pure_y_plus",
+            "pure_z0",
+            "pure_z1"
+          ],
+          "prior_probability": 1.0,
+          "signature": [],
+          "signature_shannon_entropies": [],
+          "size": 8
+        }
+      ],
+      "entropy_signature": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "M_empty",
+      "probe_names": [],
+      "quotient": {
+        "class_count": 1,
+        "classes": [
+          {
+            "class_id": "M_empty_q0",
+            "members": [
+              "ensemble_x_mixed",
+              "ensemble_z_mixed",
+              "pure_x_minus",
+              "pure_x_plus",
+              "pure_y_minus",
+              "pure_y_plus",
+              "pure_z0",
+              "pure_z1"
+            ],
+            "signature": [],
+            "size": 8
+          }
+        ],
+        "name": "M_empty",
+        "partition_member_ids": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "probe_names": []
+      },
+      "quotient_class_shannon_entropy": 0.0,
+      "unweighted_mean_class_probe_outcome_shannon_entropy": 0.0,
+      "unweighted_mean_class_von_neumann_entropy": 0.17328679513998624
+    }
+  },
+  "finite_support_set_S": {
+    "candidate_ids": [
+      "pure_z0",
+      "pure_z1",
+      "pure_x_plus",
+      "pure_x_minus",
+      "pure_y_plus",
+      "pure_y_minus",
+      "ensemble_z_mixed",
+      "ensemble_x_mixed"
+    ],
+    "rho_matrices": {
+      "ensemble_x_mixed": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ]
+      },
+      "ensemble_z_mixed": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ]
+      },
+      "pure_x_minus": {
+        "imag": [
+          [
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            -0.5
+          ],
+          [
+            -0.5,
+            0.5
+          ]
+        ]
+      },
+      "pure_x_plus": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      "pure_y_minus": {
+        "imag": [
+          [
+            0.0,
+            0.5
+          ],
+          [
+            -0.5,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ]
+      },
+      "pure_y_plus": {
+        "imag": [
+          [
+            0.0,
+            -0.5
+          ],
+          [
+            0.5,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.5
+          ]
+        ]
+      },
+      "pure_z0": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "pure_z1": {
+        "imag": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    "size": 8
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T09:04:59Z",
+  "jax_reference_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_entropy_as_derived_readout_results.json",
+  "jax_reference_within_run_id": "edfa5cc4-b752-41bf-a3d7-d44a5592dbe8",
+  "name": "r3_entropy_as_derived_readout",
+  "negative": {
+    "no_distinguishability_positive_control_fails": {
+      "entropy_signature_l1_gap": 0.0,
+      "left_quantity": "entropy_signature(M_empty)",
+      "pass": true,
+      "positive_predicate_passes": false,
+      "right_quantity": "entropy_signature(M_blind)"
+    },
+    "trivial_quotient_entropy_degenerate": {
+      "pass": true,
+      "reason": "one quotient class and no nonzero quotient/probe-outcome entropy in the no-distinguishability controls"
+    }
+  },
+  "negatives_run": [
+    "no_distinguishability_positive_control_fails",
+    "trivial_quotient_entropy_degenerate"
+  ],
+  "numpy_compute_used": false,
+  "numpy_imported": false,
+  "object_id": "r3_entropy_as_derived_readout",
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 7.0,
+        "julia": 7.0,
+        "key": "M_ZXY_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.90615474653985,
+        "julia": 1.90615474653985,
+        "key": "M_ZXY_quotient_shannon_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.0,
+        "julia": 0.0,
+        "key": "M_blind_quotient_shannon_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.170532806781055,
+        "julia": 1.170532806781055,
+        "key": "quotient_entropy_resolution_delta"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "negative_resolution_signature_l1_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.693147180559945,
+        "julia": 0.693147180559945,
+        "key": "M_ZXY_class_mean_vn_entropy_range"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.23104906018664834,
+        "julia": 0.23104906018664834,
+        "key": "M_ZXY_class_probe_outcome_entropy_range"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.735621939758795,
+        "julia": 0.735621939758795,
+        "key": "M_Z_quotient_shannon_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M_blind_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "S_size"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.0,
+        "julia": 0.0,
+        "key": "M_empty_quotient_shannon_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.830350987286444,
+        "julia": 8.830350987286444,
+        "key": "positive_negative_entropy_signature_l1_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M_empty_class_count"
+      },
+      {
+        "abs_diff": 8.881784197001252e-16,
+        "jax": 6.0947290475276485,
+        "julia": 6.094729047527648,
+        "key": "positive_resolution_signature_l1_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M_blind_mean_class_probe_outcome_shannon_entropy"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "M_Z_class_count"
+      }
+    ],
+    "parity_max_diff": 8.881784197001252e-16,
+    "parity_within_run": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_entropy_as_derived_readout_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_1e_12": true
+  },
+  "positive": {
+    "all_quotients_built": {
+      "pass": true
+    },
+    "dual_backend_parity": {
+      "pass": true
+    },
+    "entropy_covaries_with_resolution": {
+      "pass": true
+    },
+    "entropy_is_readout_not_primitive": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "parent_receipts_verified": {
+      "pass": true
+    },
+    "parity_within_run": {
+      "pass": true
+    },
+    "positive_negative_entropy_signature_distinct": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "downstream_readout": "entropy computed only from quotient class distribution, class density rows, and probe-outcome signatures",
+    "negative_family_pair": [
+      "M_empty",
+      "M_blind"
+    ],
+    "positive_family_pair": [
+      "M_Z",
+      "M_ZXY"
+    ],
+    "primitive": "probe-relative distinguishability quotient S/~_M",
+    "readout_order": [
+      "finite S",
+      "finite M",
+      "quotient S/~_M",
+      "entropy readout"
+    ]
+  },
+  "probe_families_M": {
+    "M_Z": [
+      "Z"
+    ],
+    "M_ZXY": [
+      "Z",
+      "X",
+      "Y"
+    ],
+    "M_blind": [
+      "BLIND_I"
+    ],
+    "M_empty": []
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "purpose": "Julia recomputation of entropy only after the finite R2 distinguishability quotient exists.",
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_entropy_as_derived_readout_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_entropy_as_derived_readout_julia_results.json"
+  ],
+  "required_negatives": [
+    "no_distinguishability_positive_control_fails",
+    "trivial_quotient_entropy_degenerate"
+  ],
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JAX peer"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_entropy_as_derived_readout_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "entropy_covaries_with_resolution": true,
+    "entropy_is_readout_not_primitive": true,
+    "no_self_diff_tautologies": true,
+    "parity_with_jax": true,
+    "parity_within_run": true,
+    "trivial_quotient_entropy_degenerate": true,
+    "vn_entropy_range": "0.69314718056"
+  },
+  "root_constraints_in_force": [
+    "F01",
+    "N01",
+    "R2_probe_relative_distinguishability_quotient"
+  ],
+  "schema": "codex_ratchet.julia_carrier.scratch_diagnostic.v1",
+  "shared_booleans": {
+    "all_quotients_built": true,
+    "classification_is_scratch_diagnostic": true,
+    "entropy_covaries_with_resolution": true,
+    "entropy_is_readout_not_primitive": true,
+    "formal_admission_false": true,
+    "jax_enable_x64": true,
+    "negative_case_positive_control_fails": true,
+    "no_self_diff_tautologies": true,
+    "numpy_compute_used": false,
+    "parent_receipts_verified": true,
+    "positive_negative_entropy_signature_distinct": true,
+    "promotion_false": true,
+    "torch_compute_used": false,
+    "trivial_quotient_entropy_degenerate": true
+  },
+  "shared_scalars": {
+    "M_ZXY_class_count": 7.0,
+    "M_ZXY_class_mean_vn_entropy_range": 0.693147180559945,
+    "M_ZXY_class_probe_outcome_entropy_range": 0.23104906018664834,
+    "M_ZXY_quotient_shannon_entropy": 1.90615474653985,
+    "M_Z_class_count": 3.0,
+    "M_Z_quotient_shannon_entropy": 0.735621939758795,
+    "M_blind_class_count": 1.0,
+    "M_blind_mean_class_probe_outcome_shannon_entropy": 0.0,
+    "M_blind_quotient_shannon_entropy": 0.0,
+    "M_empty_class_count": 1.0,
+    "M_empty_quotient_shannon_entropy": 0.0,
+    "S_size": 8.0,
+    "negative_resolution_signature_l1_gap": 0.0,
+    "positive_negative_entropy_signature_l1_gap": 8.830350987286444,
+    "positive_resolution_signature_l1_gap": 6.094729047527648,
+    "quotient_entropy_resolution_delta": 1.170532806781055
+  },
+  "shared_strings": {
+    "allowed_claim": "R3 entropy is a downstream readout of the verified finite R2 probe-relative distinguishability quotient.",
+    "claim_ceiling": "Allowed only: finite quotient/signature entropy readout at scratch level. The primitive remains distinguishability under M; entropy is not primitive. Blocked: top_floor_claim; physics_claim; formal_admission; promotion.",
+    "entropy_placement": "downstream_of_probe_relative_distinguishability_quotient",
+    "object_id": "r3_entropy_as_derived_readout"
+  },
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "r3_entropy_as_derived_readout",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_entropy_as_derived_readout.jl",
+  "stop_condition_fired": false,
+  "tier": "R3_entropy_as_derived_readout",
+  "tool_integration_depth": {
+    "JAX peer": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null,
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JAX peer": {
+      "reason": "load-bearing within-run parity reference passed by the JAX driver",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization and current JAX receipt ingestion",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent x64-equivalent finite density, quotient, von-Neumann entropy, Shannon entropy, and control mirror",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, eigenvalues, norms, and finite projective probe statistics",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror and not used for compute",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: this diagnostic is fenced to JAX plus Julia and no torch",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_compute_used": false,
+  "torch_imported": false,
+  "verified_parent_receipts": {
+    "pass": true,
+    "rows": [
+      {
+        "all_pass": true,
+        "classification": "scratch_diagnostic",
+        "exists": true,
+        "formal_admission_allowed": false,
+        "parity": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_rung0to3_distinguishability_results.json",
+        "promotion_allowed": false
+      },
+      {
+        "all_pass": true,
+        "classification": "scratch_diagnostic",
+        "exists": true,
+        "formal_admission_allowed": false,
+        "parity": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r0_r1_r2_probe_quotient_micro_packet_results.json",
+        "promotion_allowed": false
+      },
+      {
+        "all_pass": true,
+        "classification": "scratch_diagnostic",
+        "exists": true,
+        "formal_admission_allowed": false,
+        "parity": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_admissible_operations_commutation_order_results.json",
+        "promotion_allowed": false
+      },
+      {
+        "all_pass": true,
+        "classification": "scratch_diagnostic",
+        "exists": true,
+        "formal_admission_allowed": false,
+        "parity": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_admissible_composition_rules_results.json",
+        "promotion_allowed": false
+      }
+    ]
+  },
+  "version": "1.0",
+  "why_not_v4_probes": "This is a v5 scratch diagnostic bottom-up formal-scout receipt with no promotion or formal admission.",
+  "within_run_id": "3990712b-1765-4748-9661-152aa32830f6"
+}

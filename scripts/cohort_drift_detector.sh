@@ -20,13 +20,14 @@ STALE_REGEX="${COHORT_STALE:-v3-3|v3_3|v3\.3}"
 
 # Consumer boot surfaces only — this detector is scoped to the cohort cutover
 # decision surface, not the whole research tree. To widen, set PATHS_OVERRIDE.
+REPO_ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
 DEFAULT_PATHS=(
   "$HOME/wiki/wizard"
   "$HOME/wiki/harness/README.md"
-  "$HOME/Desktop/Codex Ratchet/AGENTS.md"
-  "$HOME/Desktop/Codex Ratchet/CLAUDE.md"
-  "$HOME/Desktop/Codex Ratchet/system_v5/ops"
-  "$HOME/Desktop/Codex Ratchet/system_v5/docs/plans"
+  "$REPO_ROOT/AGENTS.md"
+  "$REPO_ROOT/CLAUDE.md"
+  "$REPO_ROOT/system_v5/ops"
+  "$REPO_ROOT/system_v5/docs/plans"
   "$HOME/.codex"
   "$HOME/.hermes"
 )

@@ -1,0 +1,95 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "glm-5.2_followup_scout",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "```json\n{\n  \"diagnosis\": \"The admission packet basename/claim is probe_quotient_fingerprint_floor_v1_three_engine but the result's object_id is probe_quotient_fingerprint_floor_v1. The _three_engine suffix in the claim name triggers the nonclassical load-bearing tool validation path in wizard_sim_admission.py, which then demands a two_root_registry entry and a suitable load-bearing tool. But the result is classified scratch_diagnostic with formal_admission_allowed=false and promotion_allowed=false. The validator should never reach the nonclassical tool gate for this object. The mismatch between claim basename and object_id, combined with the _three_engine suffix, is causing the validator to apply a nonclassical admission path to a scratch diagnostic that explicitly disallows formal admission.\",\n  \"smallest_executable_fix\": \"Two-part fix: (1) In the admission packet generation path (likely in codex_sim_runner.py or wherever the packet basename is derived), ensure the basename matches the result's object_id exactly\u2014strip the _three_engine suffix so the claim is probe_quotient_fingerprint_floor_v1. (2) In wizard_sim_admission.py, add an early-exit guard: if the loaded result JSON has formal_admission_allowed==false, emit a clear 'admission not permitted for this classification' rejection and return before reaching any nonclassical tool registry or load-bearing tool checks. This prevents the validator from ever applying nonclassical gates to scratch diagnostics.\",\n  \"files_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/codex_sim_runner.py --sim probe_quotient_fingerprint_floor_v1 --rerun-only 2>&1 | tail -20\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/wizard_sim_admission.py --claim probe_quotient_fingerprint_floor_v1 --tool-target jax 2>&1 | tail -30\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python -c \\\"import json; r=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); print('object_id:', r.get('object_id'), 'classification:', r.get('classification'), 'formal_admission_allowed:', r.get('formal_admission_allowed'), 'promotion_allowed:', r.get('promotion_allowed'))\\\"\"\n  ],\n  \"stop_condition\": \"Stop immediately after the admission validator returns a clean 'admission not permitted: scratch_diagnostic with formal_admission_allowed=false' rejection for the corrected claim basename. Do not attempt to make the validator pass. Do not add the object to two_root_constraints.py. Do not change classification or flip formal_admission_allowed. This object is a scratch diagnostic and must not be promoted or formally admitted.\",\n  \"one_risk\": \"The most likely overclaim is treating the early-exit guard as evidence that the scratch diagnostic passed admission or that the three-engine agreement constitutes nonclassical evidence. It does not\u2014the guard only prevents misapplication of nonclassical gates. The result remains scratch_diagnostic with formal_admission_allowed=false and must not be cited as sim evidence, admission evidence, or promotion evidence.\"\n}\n```\n\nThe user wants a compact JSON audit response about a specific failure in the Codex Ratchet repo. Let me analyze the situation.\n\nThe failure: `wizard_sim_admission.py` fails when the admission packet basename/claim is `probe_quotient_fingerprint_floor_v1_three_engine` and `tool_target` is `jax`.\n\nFindings:\n- `nonclassical_load_bearing_tool_missing_two_root_registry`\n- `nonclassical_suitable_load_bearing_tool_missing`\n\nThe result file has:\n- `sim_id`/`object_id`: `probe_quotient_fingerprint_floor_v1`\n- `classification`: `scratch_diagnostic`\n- `promotion_allowed`: `false`\n- `formal_admission_allowed`: `false`\n\nThe key issue: The admission packet is claiming `probe_quotient_fingerprint_floor_v1_three_engine` (with `_three_engine` suffix) but the actual object_id in the result is `probe_quotient_fingerprint_floor_v1`. The admission validator is looking for nonclassical load-bearing tools (two_root_registry) because the claim name contains \"three_engine\" which triggers the nonclassical engine/manifold admission path. But this is a scratch diagnostic, not a nonclassical claim.\n\nSo the diagnosis is: the admission packet basename/claim is mismatched with the actual object_id. The `_three_engine` suffix in the claim name is triggering the nonclassical load-bearing tool validation path in `wizard_sim_admission.py`, but the result is classified as `scratch_diagnostic` with `formal_admission_allowed=false`. You shouldn't be trying to formally admit a scratch diagnostic at all.\n\nThe fix: Don't attempt formal admission for this scratch diagnostic. The claim basename should match the object_id (`probe_quotient_fingerprint_floor_v1`, not `probe_quotient_fingerprint_floor_v1_three_engine`), and more importantly, since `formal_admission_allowed=false`, the admission validator should reject it early or the runner shouldn't attempt admission at all.\n\nLet me think about what's actually wrong more carefully. The runner reruns deterministically and three-engine validation passes. The admission fails because:\n1. The claim name has `_three_engine` suffix which doesn't match the object_id\n2. The `_three_engine` in the name triggers nonclassical tool validation\n3. The result is a scratch diagnostic with formal_admission_allowed=false\n\nThe smallest fix: Either (a) don't run admission on scratch diagnostics, or (b) fix the admission packet basename to match the object_id exactly, or (c) make the admission validator short-circuit when `formal_admission_allowed=false`.\n\nActually, let me reconsider. The result file is named `probe_quotient_fingerprint_floor_v1_three_engine_results.json` but the object_id inside is `probe_quotient_fingerprint_floor_v1`. The admission packet basename is `probe_quotient_fingerprint_floor_v1_three_engine`. The admission validator is probably using the basename to look up the object, and the `_three_engine` suffix is causing it to look for nonclassical load-bearing tools.\n\nThe fix should be: the admission packet basename must match the object_id exactly (`probe_quotient_fingerprint_floor_v1`), and the admission validator should early-reject when `formal_admission_allowed=false` without attempting nonclassical tool validation.\n\nLet me produce the JSON.",
+  "content_sha256": "c307a8edb512bcc63f991df4d3ebe1589728032d61779328401abdf92cab60ff",
+  "created_at": "2026-06-18T07:14:04.452834+00:00",
+  "duration_ms": 19930,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": "OPENROUTER_API_KEY",
+  "evidence_role": "scout",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "content+reasoning+reasoning_details",
+    "extraction_status": "usable_content",
+    "finish_reason": "stop",
+    "native_finish_reason": "stop",
+    "output_text": "```json\n{\n  \"diagnosis\": \"The admission packet basename/claim is probe_quotient_fingerprint_floor_v1_three_engine but the result's object_id is probe_quotient_fingerprint_floor_v1. The _three_engine suffix in the claim name triggers the nonclassical load-bearing tool validation path in wizard_sim_admission.py, which then demands a two_root_registry entry and a suitable load-bearing tool. But the result is classified scratch_diagnostic with formal_admission_allowed=false and promotion_allowed=false. The validator should never reach the nonclassical tool gate for this object. The mismatch between claim basename and object_id, combined with the _three_engine suffix, is causing the validator to apply a nonclassical admission path to a scratch diagnostic that explicitly disallows formal admission.\",\n  \"smallest_executable_fix\": \"Two-part fix: (1) In the admission packet generation path (likely in codex_sim_runner.py or wherever the packet basename is derived), ensure the basename matches the result's object_id exactly\u2014strip the _three_engine suffix so the claim is probe_quotient_fingerprint_floor_v1. (2) In wizard_sim_admission.py, add an early-exit guard: if the loaded result JSON has formal_admission_allowed==false, emit a clear 'admission not permitted for this classification' rejection and return before reaching any nonclassical tool registry or load-bearing tool checks. This prevents the validator from ever applying nonclassical gates to scratch diagnostics.\",\n  \"files_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"/Users/joshuaeisenhart/Codex-Ratchet/AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/codex_sim_runner.py --sim probe_quotient_fingerprint_floor_v1 --rerun-only 2>&1 | tail -20\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python scripts/wizard_sim_admission.py --claim probe_quotient_fingerprint_floor_v1 --tool-target jax 2>&1 | tail -30\",\n    \"cd /Users/joshuaeisenhart/Codex-Ratchet && python -c \\\"import json; r=json.load(open('system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json')); print('object_id:', r.get('object_id'), 'classification:', r.get('classification'), 'formal_admission_allowed:', r.get('formal_admission_allowed'), 'promotion_allowed:', r.get('promotion_allowed'))\\\"\"\n  ],\n  \"stop_condition\": \"Stop immediately after the admission validator returns a clean 'admission not permitted: scratch_diagnostic with formal_admission_allowed=false' rejection for the corrected claim basename. Do not attempt to make the validator pass. Do not add the object to two_root_constraints.py. Do not change classification or flip formal_admission_allowed. This object is a scratch diagnostic and must not be promoted or formally admitted.\",\n  \"one_risk\": \"The most likely overclaim is treating the early-exit guard as evidence that the scratch diagnostic passed admission or that the three-engine agreement constitutes nonclassical evidence. It does not\u2014the guard only prevents misapplication of nonclassical gates. The result remains scratch_diagnostic with formal_admission_allowed=false and must not be cited as sim evidence, admission evidence, or promotion evidence.\"\n}\n```\n\nThe user wants a compact JSON audit response about a specific failure in the Codex Ratchet repo. Let me analyze the situation.\n\nThe failure: `wizard_sim_admission.py` fails when the admission packet basename/claim is `probe_quotient_fingerprint_floor_v1_three_engine` and `tool_target` is `jax`.\n\nFindings:\n- `nonclassical_load_bearing_tool_missing_two_root_registry`\n- `nonclassical_suitable_load_bearing_tool_missing`\n\nThe result file has:\n- `sim_id`/`object_id`: `probe_quotient_fingerprint_floor_v1`\n- `classification`: `scratch_diagnostic`\n- `promotion_allowed`: `false`\n- `formal_admission_allowed`: `false`\n\nThe key issue: The admission packet is claiming `probe_quotient_fingerprint_floor_v1_three_engine` (with `_three_engine` suffix) but the actual object_id in the result is `probe_quotient_fingerprint_floor_v1`. The admission validator is looking for nonclassical load-bearing tools (two_root_registry) because the claim name contains \"three_engine\" which triggers the nonclassical engine/manifold admission path. But this is a scratch diagnostic, not a nonclassical claim.\n\nSo the diagnosis is: the admission packet basename/claim is mismatched with the actual object_id. The `_three_engine` suffix in the claim name is triggering the nonclassical load-bearing tool validation path in `wizard_sim_admission.py`, but the result is classified as `scratch_diagnostic` with `formal_admission_allowed=false`. You shouldn't be trying to formally admit a scratch diagnostic at all.\n\nThe fix: Don't attempt formal admission for this scratch diagnostic. The claim basename should match the object_id (`probe_quotient_fingerprint_floor_v1`, not `probe_quotient_fingerprint_floor_v1_three_engine`), and more importantly, since `formal_admission_allowed=false`, the admission validator should reject it early or the runner shouldn't attempt admission at all.\n\nLet me think about what's actually wrong more carefully. The runner reruns deterministically and three-engine validation passes. The admission fails because:\n1. The claim name has `_three_engine` suffix which doesn't match the object_id\n2. The `_three_engine` in the name triggers nonclassical tool validation\n3. The result is a scratch diagnostic with formal_admission_allowed=false\n\nThe smallest fix: Either (a) don't run admission on scratch diagnostics, or (b) fix the admission packet basename to match the object_id exactly, or (c) make the admission validator short-circuit when `formal_admission_allowed=false`.\n\nActually, let me reconsider. The result file is named `probe_quotient_fingerprint_floor_v1_three_engine_results.json` but the object_id inside is `probe_quotient_fingerprint_floor_v1`. The admission packet basename is `probe_quotient_fingerprint_floor_v1_three_engine`. The admission validator is probably using the basename to look up the object, and the `_three_engine` suffix is causing it to look for nonclassical load-bearing tools.\n\nThe fix should be: the admission packet basename must match the object_id exactly (`probe_quotient_fingerprint_floor_v1`), and the admission validator should early-reject when `formal_admission_allowed=false` without attempting nonclassical tool validation.\n\nLet me produce the JSON.",
+    "reasoning_present": true
+  },
+  "formal_admission_allowed": false,
+  "http_status": 200,
+  "launch_surface": "direct_openrouter_api",
+  "model": "z-ai/glm-5.2",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "openrouter",
+  "raw_response_excerpt": "{\"choices\": [{\"finish_reason\": \"stop\", \"index\": 0, \"logprobs\": null, \"message\": {\"content\": \"```json\\n{\\n  \\\"diagnosis\\\": \\\"The admission packet basename/claim is probe_quotient_fingerprint_floor_v1_three_engine but the result's object_id is probe_quotient_fingerprint_floor_v1. The _three_engine suffix in the claim name triggers the nonclassical load-bearing tool validation path in wizard_sim_admission.py, which then demands a two_root_registry entry and a suitable load-bearing tool. But the result is classified scratch_diagnostic with formal_admission_allowed=false and promotion_allowed=false. The validator should never reach the nonclassical tool gate for this object. The mismatch between claim basename and object_id, combined with the _three_engine suffix, is causing the validator to apply a nonclassical admission path to a scratch diagnostic that explicitly disallows formal admission.\\\",\\n  \\\"smallest_executable_fix\\\": \\\"Two-part fix: (1) In the admission packet generation path (likely in codex_sim_runner.py or wherever the packet basename is derived), ensure the basename matches the result's object_id exactly\\u2014strip the _three_engine suffix so the claim is probe_quotient_fingerprint_floor_v1. (2) In wizard_sim_admission.py, add an early-exit guard: if the loaded result JSON has formal_admission_allowed==false, emit a clear 'admission not permitted for this classification' rejection and return before reaching any nonclassical tool registry or load-bearing tool checks. This prevents the validator from ever applying nonclassical gates to scratch diagnostics.\\\",\\n  \\\"files_to_touch\\\": [\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/wizard_sim_admission.py\\\",\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py\\\"\\n  ],\\n  \\\"files_not_to_touch\\\": [\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/scripts/two_root_constraints.py\\\",\\n    \\\"/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\\",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "followup_scout",
+  "runtime": "top-chinese-models",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 20,
+      "evidence_specificity": 20,
+      "extraction_health": 15,
+      "gate_alignment": 9,
+      "novel_failure_detection": 6,
+      "overclaim_resistance": 4
+    },
+    "penalties": [],
+    "total": 74,
+    "word_count": 818
+  },
+  "status": "completed",
+  "usage": {
+    "completion_tokens": 1558,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 825
+    },
+    "cost": 0.007502,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0068552,
+      "upstream_inference_cost": 0.007502,
+      "upstream_inference_prompt_cost": 0.0006468
+    },
+    "is_byok": false,
+    "prompt_tokens": 462,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 2020
+  }
+}

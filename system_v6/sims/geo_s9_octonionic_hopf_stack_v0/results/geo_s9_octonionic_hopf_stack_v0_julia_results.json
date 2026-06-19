@@ -1,0 +1,536 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/Dates/SHA/Pkg": "supportive",
+    "LinearAlgebra": "supportive",
+    "Octonions": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/Dates/SHA/Pkg": {
+      "reason": "supportive receipt serialization, timestamping, source hashing, and package version recording",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive vector norms and density residuals",
+      "tried": true,
+      "used": true
+    },
+    "Octonions": {
+      "reason": "load-bearing Octonions.jl multiplication, conjugation, norm, associator, and Hopf-map carrier operations",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite Moufang identity polarity check with flipped table control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": {
+    "Base.active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "Octonions.Octonion": "OctonionF64(1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)",
+    "package_versions": {
+      "JSON": "1.6.1",
+      "Julia": "1.12.6",
+      "LinearAlgebra": "1.12.0",
+      "Octonions": "0.2.3",
+      "Z3": "1.0.4"
+    }
+  },
+  "claim_path_tools": [
+    "Octonions",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "bracketing_shuffle_control": {
+      "fired": true
+    },
+    "degenerate_foliation_control": {
+      "eta_0_leaf_volume": 0,
+      "eta_pi_over_2_leaf_volume": 0,
+      "fired": true
+    },
+    "erased_flip_smt_control": {
+      "fired": true
+    },
+    "requested_sedenion_display_control": {
+      "fired": true
+    },
+    "wrong_convention_sign_flip": {
+      "fired": true
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T04:03:54.920",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "packages_used": [
+    "Octonions",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA",
+    "Pkg"
+  ],
+  "pin_sha256": "1bd862a32ba22f77a30456453ab849cb239fe61f1d0ee2ea747fc201c4984469",
+  "pin_spec": "geo_s9_octonionic_hopf_stack_v0|stage:S9|mode:FREE_stack_deepening|psi=(z0..z7) in C8 normalized=S15 3Q state|basis=000,001,010,011,100,101,110,111|C8~=O2 by right-C_e1 convention: O basis over C_e1 is (e0,e2,e4,e5), complex i acts by right multiplication by e1|o1=C4(z0..z3),o2=C4(z4..z7)|Hopf_O=(2*o1*conj(o2),abs2(o1)-abs2(o2)) in OxR=S8|fiber=S7 unit octonions as Moufang loop not Lie group|N01=nonassociative reassociation visible|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "program_receipt": "system_v6/receipts/geometry_sim_program_canonical_20260610.md",
+  "promotion_allowed": false,
+  "proofs": {
+    "P1_moufang_identity": {
+      "z3_flipped_table_control": "sat",
+      "z3_positive": "unsat"
+    }
+  },
+  "reads_peer_result": false,
+  "receipts": {
+    "O1_map": {
+      "generic_right_action_gap": 1.4916646018625397,
+      "north_fiber_max_deviation": 0.0,
+      "north_pole_fiber": "H(u,0)=(0,1) for sampled unit octonion basis points; fiber ~= S7.",
+      "not_principal_action": "Right multiplication by a unit octonion is not a global principal fiber action; nonassociativity prevents the Sp(1)-style argument.",
+      "octonions_jl_positive_products": [
+        "e1*e2=+e3",
+        "e1*e6=+e5",
+        "e1*e7=+e4",
+        "e2*e3=+e1",
+        "e2*e4=+e6",
+        "e2*e7=+e5",
+        "e3*e1=+e2",
+        "e3*e5=+e4",
+        "e3*e7=+e6",
+        "e4*e1=+e7",
+        "e4*e3=+e5",
+        "e4*e6=+e2",
+        "e5*e1=+e6",
+        "e5*e2=+e7",
+        "e5*e4=+e3",
+        "e6*e2=+e4",
+        "e6*e3=+e7",
+        "e6*e5=+e1",
+        "e7*e4=+e1",
+        "e7*e5=+e2",
+        "e7*e6=+e3"
+      ],
+      "pass": true
+    },
+    "O2_moufang_nonassoc": {
+      "N01": "nonassociative reassociation row",
+      "alternativity_repeated_input_control": {
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "gap_norm_squared": 0,
+        "left": [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        "triple": [
+          1,
+          1,
+          4
+        ]
+      },
+      "associator_witness": {
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -2,
+          0,
+          0
+        ],
+        "gap_norm_squared": 4,
+        "left": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "triple": [
+          1,
+          2,
+          4
+        ]
+      },
+      "basis_triples_checked": 512,
+      "fiber_statement": "Unit octonions are a Moufang loop, not a group.",
+      "moufang_identity": "(x*y)*(z*x) == x*((y*z)*x) over all basis units e0..e7",
+      "pass": true,
+      "quaternion_subalgebra_control": {
+        "delta": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "gap_norm_squared": 0,
+        "left": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "right": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "triple": [
+          1,
+          2,
+          3
+        ]
+      },
+      "z3_flipped_table_control": "sat",
+      "z3_positive": "unsat"
+    },
+    "O3_qit_base_geometry": {
+      "finding": "Julia mirrors base-point geometry only; exact tau and reduced-density values are carried by the Python/SymPy/Qutip leg.",
+      "pass": true,
+      "rows": {
+        "GHZ_3": {
+          "base_norm_squared": 0.9999999999999996,
+          "base_point_OxR": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.9999999999999998,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rho_trace": 0.9999999999999998,
+          "wrong_pairing_diff_norm_squared": 1.9999999999999991
+        },
+        "W_3": {
+          "base_norm_squared": 1.0000000000000007,
+          "base_point_OxR": [
+            0.0,
+            0.0,
+            0.6666666666666669,
+            0.0,
+            0.6666666666666669,
+            0.0,
+            0.0,
+            0.0,
+            0.3333333333333334
+          ],
+          "rho_trace": 1.0000000000000002,
+          "wrong_pairing_diff_norm_squared": 0.0
+        },
+        "biseparable_0A_tensor_Bell_BC": {
+          "base_norm_squared": 0.9999999999999996,
+          "base_point_OxR": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.9999999999999998
+          ],
+          "rho_trace": 0.9999999999999998,
+          "wrong_pairing_diff_norm_squared": 0.0
+        },
+        "biseparable_Bell_AB_tensor_0C": {
+          "base_norm_squared": 0.9999999999999996,
+          "base_point_OxR": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.9999999999999998,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rho_trace": 0.9999999999999998,
+          "wrong_pairing_diff_norm_squared": 0.0
+        },
+        "complex_wrong_convention_control": {
+          "base_norm_squared": 0.9999999999999997,
+          "base_point_OxR": [
+            -0.11589670374051808,
+            -0.28931696228935055,
+            -0.06571786499730728,
+            -0.3214115832526284,
+            0.18179755824143232,
+            0.37639849274818715,
+            -0.6758217110898651,
+            -0.23102600781824484,
+            0.3322728197888841
+          ],
+          "rho_trace": 0.9999999999999998,
+          "wrong_pairing_diff_norm_squared": 1.4690476617739865
+        },
+        "product_000": {
+          "base_norm_squared": 1.0,
+          "base_point_OxR": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rho_trace": 1.0,
+          "wrong_pairing_diff_norm_squared": 0.0
+        },
+        "product_plus_plus_plus": {
+          "base_norm_squared": 0.9999999999999996,
+          "base_point_OxR": [
+            0.9999999999999998,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rho_trace": 0.9999999999999999,
+          "wrong_pairing_diff_norm_squared": 0.0
+        }
+      }
+    },
+    "O4_no_connection_spin9": {
+      "computed_dimensions": {
+        "Spin7": 21,
+        "Spin8": 28,
+        "Spin9": 36,
+        "Spin9_minus_Spin7": 15,
+        "Spin9_minus_Spin8": 8
+      },
+      "no_connection_boundary": "No principal U(1)/Sp(1)-style connection row applies because S7 is not a Lie group.",
+      "pass": true
+    },
+    "O5_foliation": {
+      "degenerate_foliation_control": {
+        "eta_0_leaf_volume": 0,
+        "eta_pi_over_2_leaf_volume": 0,
+        "fired": true
+      },
+      "eta_density": "280*cos(eta)^7*sin(eta)^7",
+      "eta_integral": "1/280",
+      "foliation": "|o1|=cos(eta), |o2|=sin(eta)",
+      "generic_leaf": "S7_{cos eta} x S7_{sin eta}",
+      "leaf_volume": "(pi^8/9)*cos(eta)^7*sin(eta)^7",
+      "pass": true,
+      "r_abs_o1_squared_density": "140*r^3*(1-r)^3",
+      "total_volume": "pi^8/2520 = Vol(S15)"
+    },
+    "O6_adams_sedenion_boundary": {
+      "adams_boundary": {
+        "allowed_base_dimensions": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "termination": "S15 is the last division-algebra Hopf total sphere; no S31 rung.",
+        "theorem": "Adams Hopf invariant one theorem"
+      },
+      "committed_same_class_zero_witness": {
+        "claim": "(e1 + e10) * (e5 + e14)",
+        "left_normsq": 2,
+        "left_terms": [
+          {
+            "basis_index": 1,
+            "coefficient": 1,
+            "label": "e1"
+          },
+          {
+            "basis_index": 10,
+            "coefficient": 1,
+            "label": "e10"
+          }
+        ],
+        "norm_multiplicativity_defect": -4,
+        "product_normsq": 0,
+        "product_terms": [],
+        "right_normsq": 2,
+        "right_terms": [
+          {
+            "basis_index": 5,
+            "coefficient": 1,
+            "label": "e5"
+          },
+          {
+            "basis_index": 14,
+            "coefficient": 1,
+            "label": "e14"
+          }
+        ],
+        "zero_product": true
+      },
+      "honesty_note": "Under the committed Cayley-Dickson convention, the displayed e4/e13 pair is nonzero; the zero-divisor boundary is the committed same-class e5/e14 pair.",
+      "pass": true,
+      "requested_class_check": {
+        "claim": "(e1 + e10) * (e4 + e13)",
+        "left_normsq": 2,
+        "left_terms": [
+          {
+            "basis_index": 1,
+            "coefficient": 1,
+            "label": "e1"
+          },
+          {
+            "basis_index": 10,
+            "coefficient": 1,
+            "label": "e10"
+          }
+        ],
+        "norm_multiplicativity_defect": 0,
+        "product_normsq": 4,
+        "product_terms": [
+          {
+            "basis_index": 5,
+            "coefficient": 1,
+            "label": "e5"
+          },
+          {
+            "basis_index": 7,
+            "coefficient": -1,
+            "label": "e7"
+          },
+          {
+            "basis_index": 12,
+            "coefficient": 1,
+            "label": "e12"
+          },
+          {
+            "basis_index": 14,
+            "coefficient": -1,
+            "label": "e14"
+          }
+        ],
+        "right_normsq": 2,
+        "right_terms": [
+          {
+            "basis_index": 4,
+            "coefficient": 1,
+            "label": "e4"
+          },
+          {
+            "basis_index": 13,
+            "coefficient": 1,
+            "label": "e13"
+          }
+        ],
+        "zero_product": false
+      }
+    }
+  },
+  "result_path": "system_v6/sims/geo_s9_octonionic_hopf_stack_v0/results/geo_s9_octonionic_hopf_stack_v0_julia_results.json",
+  "role_id": "julia_octonions_hopf_builder",
+  "schema_version": "geo_s9_octonionic_hopf_stack_v0_leg_v1",
+  "shared_scalars": {
+    "moufang_basis_violations": 0,
+    "s15_volume_pi8_over_2520": 1,
+    "s8_norm_max_deviation": 0,
+    "spin9_dim": 36
+  },
+  "sim_id": "geo_s9_octonionic_hopf_stack_v0",
+  "source_path": "system_v6/sims/geo_s9_octonionic_hopf_stack_v0/geo_s9_octonionic_hopf_stack_v0_julia.jl",
+  "source_sha256": "a70baded89c0ae69fa9fc48b5c9bd2750318f5db99c28f7c85cbd8e9cec24b08",
+  "tool_calls": [
+    {
+      "boundary_case": "e1,e2,e4 associator witness",
+      "demotion_condition": "basis table or Hopf residual fails",
+      "gates": [
+        "all_pass",
+        "map",
+        "N01"
+      ],
+      "input_object": "normalized C8 states as O2 pairs and basis-unit multiplication table",
+      "negative_case": "generic right unit action moves the base",
+      "output_object": "S8 coordinates, pole-fiber residuals, associator witness, and generic right-action boundary",
+      "positive_case": "Hopf image lands on S8 and north-pole fiber is S7",
+      "qualified_api": "Octonions.Octonion/*/conj/abs2",
+      "tool": "Octonions"
+    },
+    {
+      "boundary_case": "basis unit e0 included",
+      "demotion_condition": "wrong SMT polarity",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "finite Moufang residual table derived from Octonions.jl structure constants",
+      "negative_case": "e1*e2 sign flip",
+      "output_object": "unsat positive identity and sat flipped-table control",
+      "positive_case": "Moufang identity over basis units",
+      "qualified_api": "Z3.Solver/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

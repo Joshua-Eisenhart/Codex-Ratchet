@@ -1,0 +1,583 @@
+{
+  "result_path": "system_v6/sims/geo_s1_coord_state_families_v0/results/geo_s1_coord_state_families_v0_julia_results.json",
+  "packages_used": [
+    "Symbolics",
+    "Z3"
+  ],
+  "source_sha256": "5cce0fd770b19352d1ff2f93b9f482b034cd1224948db86258773b3056bdc5ca",
+  "pin_sha256": "c9ea44ba3b06d5cc071b98fb3a024d312519d7a53bfa40daae7fbe6a7d54c386",
+  "classification": "scratch_diagnostic",
+  "sim_id": "geo_s1_coord_state_families_v0",
+  "reads_peer_result": false,
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "generated_at": "2026-06-10T22:39:00Z",
+  "TOOL_MANIFEST": {
+    "Symbolics": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing symbolic rho_A determinant and offdiag phase-survival rows"
+    },
+    "JSON/Dates/SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive serialization and hashing"
+    },
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing Julia-side boundary unsat polarity for n=3 determinant"
+    }
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "Symbolics": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "numeric_entropy_curves": {
+    "4": [
+      {
+        "det": 0.25,
+        "t": 0.0,
+        "lambda_min": 0.5,
+        "eta": 0.0,
+        "entropy": 0.6931471805599453,
+        "n": 4
+      },
+      {
+        "det": 0.24880484886034537,
+        "t": 0.009607359798384776,
+        "lambda_min": 0.4654290419621523,
+        "eta": 0.09817477042468103,
+        "entropy": 0.6907549701143925,
+        "n": 4
+      },
+      {
+        "det": 0.24533300711899758,
+        "t": 0.03806023374435662,
+        "lambda_min": 0.4316846072908717,
+        "eta": 0.19634954084936207,
+        "entropy": 0.6837839346516377,
+        "n": 4
+      },
+      {
+        "det": 0.23991063969980683,
+        "t": 0.08426519384872735,
+        "lambda_min": 0.3995541922219092,
+        "eta": 0.2945243112740431,
+        "entropy": 0.6728304934077786,
+        "n": 4
+      },
+      {
+        "det": 0.2330345869120796,
+        "t": 0.14644660940672624,
+        "lambda_min": 0.36974865418000313,
+        "eta": 0.39269908169872414,
+        "entropy": 0.6588217746890114,
+        "n": 4
+      },
+      {
+        "det": 0.22530935546651032,
+        "t": 0.22221488349019888,
+        "lambda_min": 0.3428674300678256,
+        "eta": 0.4908738521234052,
+        "entropy": 0.6429191321623116,
+        "n": 4
+      },
+      {
+        "det": 0.21737208553338913,
+        "t": 0.3086582838174551,
+        "lambda_min": 0.31936801372234525,
+        "eta": 0.5890486225480862,
+        "entropy": 0.6263921660622729,
+        "n": 4
+      },
+      {
+        "det": 0.20981626371525958,
+        "t": 0.40245483899193585,
+        "lambda_min": 0.29954118556486364,
+        "eta": 0.6872233929727672,
+        "entropy": 0.6104750482036116,
+        "n": 4
+      },
+      {
+        "det": 0.203125,
+        "t": 0.4999999999999999,
+        "lambda_min": 0.28349364905389035,
+        "eta": 0.7853981633974483,
+        "entropy": 0.5962227394150066,
+        "n": 4
+      },
+      {
+        "det": 0.19762311858925158,
+        "t": 0.597545161008064,
+        "lambda_min": 0.27114003973882106,
+        "eta": 0.8835729338221293,
+        "entropy": 0.5843894552725002,
+        "n": 4
+      },
+      {
+        "det": 0.19345437101057103,
+        "t": 0.6913417161825449,
+        "lambda_min": 0.2622067515898969,
+        "eta": 0.9817477042468103,
+        "entropy": 0.5753524777287963,
+        "n": 4
+      },
+      {
+        "det": 0.19058621590278513,
+        "t": 0.777785116509801,
+        "lambda_min": 0.2562505710833052,
+        "eta": 1.0799224746714913,
+        "entropy": 0.5690984836569228,
+        "n": 4
+      },
+      {
+        "det": 0.18884041308792038,
+        "t": 0.8535533905932737,
+        "lambda_min": 0.2526953560644693,
+        "eta": 1.1780972450961724,
+        "entropy": 0.5652769688542743,
+        "n": 4
+      },
+      {
+        "det": 0.1879437889308977,
+        "t": 0.9157348061512728,
+        "lambda_min": 0.25088915906949716,
+        "eta": 1.2762720155208536,
+        "entropy": 0.5633098790850583,
+        "n": 4
+      },
+      {
+        "det": 0.18759053633704215,
+        "t": 0.9619397662556434,
+        "lambda_min": 0.250181138296249,
+        "eta": 1.3744467859455345,
+        "entropy": 0.5625340578948783,
+        "n": 4
+      },
+      {
+        "det": 0.18750576883514347,
+        "t": 0.9903926402016151,
+        "lambda_min": 0.2500115379365349,
+        "eta": 1.4726215563702154,
+        "entropy": 0.5623478199826778,
+        "n": 4
+      },
+      {
+        "det": 0.1875,
+        "t": 1.0,
+        "lambda_min": 0.25,
+        "eta": 1.5707963267948966,
+        "entropy": 0.5623351446188083,
+        "n": 4
+      }
+    ],
+    "3": [
+      {
+        "det": 0.25,
+        "t": 0.0,
+        "lambda_min": 0.5,
+        "eta": 0.0,
+        "entropy": 0.6931471805599453,
+        "n": 3
+      },
+      {
+        "det": 0.24841159300058807,
+        "t": 0.009607359798384776,
+        "lambda_min": 0.46014517595808596,
+        "eta": 0.09817477042468103,
+        "entropy": 0.689966993933278,
+        "n": 3
+      },
+      {
+        "det": 0.24385781956936767,
+        "t": 0.03806023374435662,
+        "lambda_min": 0.42162793590422454,
+        "eta": 0.19634954084936207,
+        "entropy": 0.680812016909738,
+        "n": 3
+      },
+      {
+        "det": 0.2369419986494293,
+        "t": 0.08426519384872735,
+        "lambda_min": 0.3857283878184494,
+        "eta": 0.2945243112740431,
+        "entropy": 0.666798941988717,
+        "n": 3
+      },
+      {
+        "det": 0.22857092751647978,
+        "t": 0.14644660940672624,
+        "lambda_min": 0.35361327763926054,
+        "eta": 0.39269908169872414,
+        "entropy": 0.6496547507447665,
+        "n": 3
+      },
+      {
+        "det": 0.2198224436467116,
+        "t": 0.22221488349019888,
+        "lambda_min": 0.32628311436913104,
+        "eta": 0.4908738521234052,
+        "entropy": 0.6315150907650157,
+        "n": 3
+      },
+      {
+        "det": 0.21178888827613757,
+        "t": 0.3086582838174551,
+        "lambda_min": 0.304523372947397,
+        "eta": 0.5890486225480862,
+        "entropy": 0.6146483683697728,
+        "n": 3
+      },
+      {
+        "det": 0.20542001258856976,
+        "t": 0.40245483899193585,
+        "lambda_min": 0.28886026567358236,
+        "eta": 0.6872233929727672,
+        "entropy": 0.6011280257780707,
+        "n": 3
+      },
+      {
+        "det": 0.20138888888888887,
+        "t": 0.4999999999999999,
+        "lambda_min": 0.2795207240779507,
+        "eta": 0.7853981633974483,
+        "entropy": 0.5925000898343233,
+        "n": 3
+      },
+      {
+        "det": 0.2000008369770106,
+        "t": 0.597545161008064,
+        "lambda_min": 0.27639507379534456,
+        "eta": 0.8835729338221293,
+        "entropy": 0.5895162869457732,
+        "n": 3
+      },
+      {
+        "det": 0.20115879293266287,
+        "t": 0.6913417161825449,
+        "lambda_min": 0.27899953152235824,
+        "eta": 0.9817477042468103,
+        "entropy": 0.5920059290854938,
+        "n": 3
+      },
+      {
+        "det": 0.20438993717394494,
+        "t": 0.777785116509801,
+        "lambda_min": 0.28643487450883964,
+        "eta": 1.0799224746714913,
+        "entropy": 0.5989285859017512,
+        "n": 3
+      },
+      {
+        "det": 0.20892907248352016,
+        "t": 0.8535533905932737,
+        "lambda_min": 0.2973403653499794,
+        "eta": 1.1780972450961724,
+        "entropy": 0.6085939286594858,
+        "n": 3
+      },
+      {
+        "det": 0.21384562052991415,
+        "t": 0.9157348061512728,
+        "lambda_min": 0.3098569499821625,
+        "eta": 1.2762720155208536,
+        "entropy": 0.618986159507562,
+        "n": 3
+      },
+      {
+        "det": 0.2181944992218319,
+        "t": 0.9619397662556434,
+        "lambda_min": 0.32165903224954706,
+        "eta": 1.3744467859455345,
+        "entropy": 0.6281136706454438,
+        "n": 3
+      },
+      {
+        "det": 0.2211675574338316,
+        "t": 0.9903926402016151,
+        "lambda_min": 0.3301988145913922,
+        "eta": 1.4726215563702154,
+        "entropy": 0.6343193438565307,
+        "n": 3
+      },
+      {
+        "det": 0.2222222222222222,
+        "t": 1.0,
+        "lambda_min": 0.33333333333333326,
+        "eta": 1.5707963267948966,
+        "entropy": 0.6365141682948128,
+        "n": 3
+      }
+    ]
+  },
+  "role_id": "julia_authoritative_sim_builder",
+  "pin_spec": "geo_s1_coord_state_families_v0|stage=S1|mode=QUOTIENTED|families=GHZ-W_eta_and_W_site_eta|anchors=GHZ_ln2,Wn_H((n-1)/n)|density_quotient_phase_erasure|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "engine": "julia",
+  "tool_calls": [
+    {
+      "demotion_condition": "if symbolic determinant missing, Julia lane is not load-bearing",
+      "input_object": "eta-dependent rho_A entries for GHZ-W n=3,n=4",
+      "output_object": "symbolic determinant and offdiag rows",
+      "positive_case": "nonconstant eta-dependent determinant row emitted",
+      "gates": [
+        "boundary_rows",
+        "density_quotient_rows"
+      ],
+      "negative/erased_control": "global phase absent from determinant",
+      "qualified_api/function": "@variables / Symbolics.expand",
+      "tool": "Symbolics",
+      "boundary_case": "determinant zero row"
+    }
+  ],
+  "w_site_constructor_controls": {
+    "4": {
+      "base_entropies": [
+        0.5623351446188083,
+        0.5623351446188083,
+        0.5623351446188083,
+        0.5623351446188083
+      ],
+      "equal_eta_anchor_full_rerun": {
+        "entropies": [
+          0.5623351446188083,
+          0.5623351446188083,
+          0.5623351446188083,
+          0.5623351446188083
+        ],
+        "expected_entropy_each_site": 0.5623351446188083,
+        "equal_eta_vec": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reduces_to_symmetric_W_anchor": true,
+        "probabilities": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      },
+      "base_probabilities": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "permute_eta_full_rerun": {
+        "base_entropies": [
+          0.1461447460085638,
+          0.39267446722755217,
+          0.6108643020548934,
+          0.6909233093138181
+        ],
+        "permuted_eta_vec": [
+          4.0,
+          3.0,
+          2.0,
+          1.0
+        ],
+        "base_probabilities": [
+          0.033333333333333326,
+          0.1333333333333333,
+          0.29999999999999993,
+          0.5333333333333332
+        ],
+        "permuted_entropies": [
+          0.6909233093138181,
+          0.6108643020548934,
+          0.39267446722755217,
+          0.1461447460085638
+        ],
+        "permuted_probabilities": [
+          0.5333333333333332,
+          0.29999999999999993,
+          0.1333333333333333,
+          0.033333333333333326
+        ],
+        "entropies_permute_with_eta": true,
+        "base_eta_vec": [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ]
+      },
+      "constructor": "w_site_weighted_amplitudes_from_eta",
+      "base_eta_vec": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mutate_one_eta_full_rerun": {
+        "changed_eta_sites": [
+          3
+        ],
+        "mutated_entropies": [
+          0.5334422454609227,
+          0.5334422454609227,
+          0.5334422454609227,
+          0.6300861445587915
+        ],
+        "entropy_response_argmax_site": 3,
+        "entropy_responds_at_mutated_site": true,
+        "mutated_site": 3,
+        "mutated_site_is_unique_largest_entropy_response": true,
+        "mutated_probabilities": [
+          0.22522522522522526,
+          0.22522522522522526,
+          0.22522522522522526,
+          0.3243243243243244
+        ],
+        "normalization_coupling_note": "Changing one eta_i changes the shared W normalization denominator; the control checks constructor-input locality and site-identity response, not invariant non-target probabilities.",
+        "mutated_eta_vec": [
+          1.0,
+          1.0,
+          1.0,
+          1.2
+        ],
+        "changed_exactly_one_constructor_input": true,
+        "entropy_abs_delta": [
+          0.02889289915788562,
+          0.02889289915788562,
+          0.02889289915788562,
+          0.06775099993998324
+        ]
+      }
+    },
+    "3": {
+      "base_entropies": [
+        0.6365141682948128,
+        0.6365141682948128,
+        0.6365141682948128
+      ],
+      "equal_eta_anchor_full_rerun": {
+        "entropies": [
+          0.6365141682948128,
+          0.6365141682948128,
+          0.6365141682948128
+        ],
+        "expected_entropy_each_site": 0.6365141682948128,
+        "equal_eta_vec": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reduces_to_symmetric_W_anchor": true,
+        "probabilities": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ]
+      },
+      "base_probabilities": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "permute_eta_full_rerun": {
+        "base_entropies": [
+          0.25731864054383163,
+          0.5982695885852574,
+          0.6517565611726532
+        ],
+        "permuted_eta_vec": [
+          3.0,
+          2.0,
+          1.0
+        ],
+        "base_probabilities": [
+          0.07142857142857144,
+          0.28571428571428575,
+          0.6428571428571429
+        ],
+        "permuted_entropies": [
+          0.6517565611726532,
+          0.5982695885852574,
+          0.25731864054383163
+        ],
+        "permuted_probabilities": [
+          0.6428571428571429,
+          0.28571428571428575,
+          0.07142857142857144
+        ],
+        "entropies_permute_with_eta": true,
+        "base_eta_vec": [
+          1.0,
+          2.0,
+          3.0
+        ]
+      },
+      "constructor": "w_site_weighted_amplitudes_from_eta",
+      "base_eta_vec": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mutate_one_eta_full_rerun": {
+        "changed_eta_sites": [
+          2
+        ],
+        "mutated_entropies": [
+          0.6027751876921473,
+          0.6027751876921473,
+          0.6798376211857489
+        ],
+        "entropy_response_argmax_site": 2,
+        "entropy_responds_at_mutated_site": true,
+        "mutated_site": 2,
+        "mutated_site_is_unique_largest_entropy_response": true,
+        "mutated_probabilities": [
+          0.2906976744186047,
+          0.2906976744186047,
+          0.4186046511627906
+        ],
+        "normalization_coupling_note": "Changing one eta_i changes the shared W normalization denominator; the control checks constructor-input locality and site-identity response, not invariant non-target probabilities.",
+        "mutated_eta_vec": [
+          1.0,
+          1.0,
+          1.2
+        ],
+        "changed_exactly_one_constructor_input": true,
+        "entropy_abs_delta": [
+          0.03373898060266545,
+          0.03373898060266545,
+          0.04332345289093609
+        ]
+      }
+    }
+  },
+  "symbolics_rows": {
+    "4": {
+      "offdiag_abs_squared": "(1//8)*(1 - (sin(eta)^2))*(sin(eta)^2)",
+      "rho_A_diag1": "(1//2)*(1 - (sin(eta)^2)) + (1//4)*(sin(eta)^2)",
+      "rho_A_diag0": "(1//2)*(1 - (sin(eta)^2)) + (3//4)*(sin(eta)^2)",
+      "determinant_symbolic": "(1//4) - (1//8)*(sin(eta)^2) + (1//16)*(sin(eta)^4)"
+    },
+    "3": {
+      "offdiag_abs_squared": "(1//6)*(1 - (sin(eta)^2))*(sin(eta)^2)",
+      "rho_A_diag1": "(1//2)*(1 - (sin(eta)^2)) + (1//3)*(sin(eta)^2)",
+      "rho_A_diag0": "(1//2)*(1 - (sin(eta)^2)) + (2//3)*(sin(eta)^2)",
+      "determinant_symbolic": "(1//4) - (1//6)*(sin(eta)^2) + (5//36)*(sin(eta)^4)"
+    }
+  },
+  "z3_boundary_receipt": {
+    "det_zero_in_closed_interval": "unsat"
+  },
+  "source_path": "system_v6/sims/geo_s1_coord_state_families_v0/geo_s1_coord_state_families_v0_julia.jl",
+  "seed": "coord_state_families_seed_v0_exact_eta_grid_0_pi_over_2_17",
+  "schema_version": "three_engine_lane_result_v1",
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3"
+  ]
+}
+

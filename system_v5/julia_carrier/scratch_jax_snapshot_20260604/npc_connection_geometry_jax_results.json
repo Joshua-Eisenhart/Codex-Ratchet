@@ -1,0 +1,122 @@
+{
+  "F01_witness": "finite N in {8,16,32}, M=3 Hopf-pattern fields",
+  "N01_witness": "noncommuting quaternion plaquette holonomy products",
+  "all_pass": true,
+  "bonds_are_geometry": true,
+  "checks": [
+    "N=8 pos(hol>0.1)=True neg(flat<0.05)=True bnd(erased_AB_BA<1e-8)=True inp_dep(>1e-4)=True n01(noncomm>1e-3)=True parity(<1e-4)=True diff=4.885e-15",
+    "N=16 pos(hol>0.1)=True neg(flat<0.05)=True bnd(erased_AB_BA<1e-8)=True inp_dep(>1e-4)=True n01(noncomm>1e-3)=True parity(<1e-4)=True diff=4.441e-15",
+    "N=32 pos(hol>0.1)=True neg(flat<0.05)=True bnd(erased_AB_BA<1e-8)=True inp_dep(>1e-4)=True n01(noncomm>1e-3)=True parity(<1e-4)=True diff=5.995e-15"
+  ],
+  "claim_ceiling": "JAX parity check for Julia npc_connection_geometry_julia. Does NOT assert layer completion, PEPS3D admission, manifold admission, flux, Axis0, FEP, bridge, or physics.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erased_symmetric": "B=A -> AB and BA geometry readout is symmetric",
+    "flat_trivial_holonomy": "uniform W -> mean holonomy angle < 0.05 rad",
+    "input_dependent": true
+  },
+  "julia_ref_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/npc_connection_geometry_julia_results.json",
+  "object_id": "npc_connection_geometry_jax_parity",
+  "promotion_allowed": false,
+  "sizes": {
+    "16": {
+      "erased_ab_ba_commutator_gap": 0.0,
+      "erased_angle_diff_max": 0.0,
+      "flat_heat_trace": 1.6614854376134234,
+      "flat_holonomy_mean_rad": 0.0,
+      "flat_laplacian_gap": 1.999999999999996,
+      "heat_trace_t1": 1.0037238501328596,
+      "input_dep_holonomy_delta": 0.2600330860542234,
+      "laplacian_gap": 6.98068591492368,
+      "laplacian_spectral_gap": 6.98068591492368,
+      "parity_max_diff_vs_julia": 4.440892098500626e-15,
+      "plaquette_holonomy_mean_rad": 0.672706428806318,
+      "plaquette_holonomy_std_rad": 0.039990610030512824,
+      "plaquette_noncommutator_max_gap": 1.9997657032431018,
+      "plaquette_noncommutator_mean_gap": 1.520549122642092,
+      "structured_ab_ba_commutator_gap": 1.2620407430205614,
+      "terrain_axis_mean": [
+        -1.0408340855860843e-17,
+        -2.519838314786818e-17,
+        -1.5612511283791264e-17
+      ],
+      "terrain_mean_alignment": 0.4638460458750777,
+      "tests": {
+        "boundary_erased_symmetric": true,
+        "input_dependent": true,
+        "negative_flat_holonomy": true,
+        "noncommuting_quaternion_witness": true,
+        "parity_vs_julia": true,
+        "positive_structured_holonomy": true
+      },
+      "weyl_lr_axis_gap_max": 0.31217908098239544,
+      "weyl_lr_axis_gap_mean": 0.21940477885864845
+    },
+    "32": {
+      "erased_ab_ba_commutator_gap": 0.0,
+      "erased_angle_diff_max": 0.0,
+      "flat_heat_trace": 3.181381088491503,
+      "flat_holonomy_mean_rad": 0.0,
+      "flat_laplacian_gap": 0.585786437626906,
+      "heat_trace_t1": 1.7165931148012008,
+      "input_dep_holonomy_delta": 0.07577733121553701,
+      "laplacian_gap": 1.1035294488607073,
+      "laplacian_spectral_gap": 1.1035294488607073,
+      "parity_max_diff_vs_julia": 5.995204332975845e-15,
+      "plaquette_holonomy_mean_rad": 0.405626734508479,
+      "plaquette_holonomy_std_rad": 0.0900895915036013,
+      "plaquette_noncommutator_max_gap": 1.014046422906523,
+      "plaquette_noncommutator_mean_gap": 0.7177319046617412,
+      "structured_ab_ba_commutator_gap": 0.5957621701062205,
+      "terrain_axis_mean": [
+        -1.0148132334464322e-16,
+        -5.875020522155827e-18,
+        2.9788819047387415e-05
+      ],
+      "terrain_mean_alignment": 0.5849778007037432,
+      "tests": {
+        "boundary_erased_symmetric": true,
+        "input_dependent": true,
+        "negative_flat_holonomy": true,
+        "noncommuting_quaternion_witness": true,
+        "parity_vs_julia": true,
+        "positive_structured_holonomy": true
+      },
+      "weyl_lr_axis_gap_max": 1.9899266085900182,
+      "weyl_lr_axis_gap_mean": 1.0770075523560407
+    },
+    "8": {
+      "erased_ab_ba_commutator_gap": 0.0,
+      "erased_angle_diff_max": 0.0,
+      "flat_heat_trace": 1.4634315185527065,
+      "flat_holonomy_mean_rad": 0.0,
+      "flat_laplacian_gap": 1.9999999999999987,
+      "heat_trace_t1": 1.0814636126707113,
+      "input_dep_holonomy_delta": 0.5382448556803618,
+      "laplacian_gap": 2.532557054697771,
+      "laplacian_spectral_gap": 2.532557054697771,
+      "parity_max_diff_vs_julia": 4.884981308350689e-15,
+      "plaquette_holonomy_mean_rad": 0.4231280687677942,
+      "plaquette_holonomy_std_rad": 0.2430626347579583,
+      "plaquette_noncommutator_max_gap": 1.7042792321072533,
+      "plaquette_noncommutator_mean_gap": 0.4029233988849132,
+      "structured_ab_ba_commutator_gap": 1.0639993469715945,
+      "terrain_axis_mean": [
+        -0.009250056620567979,
+        -2.856872724499304e-17,
+        4.163336342344337e-17
+      ],
+      "terrain_mean_alignment": 0.7499602646886316,
+      "tests": {
+        "boundary_erased_symmetric": true,
+        "input_dependent": true,
+        "negative_flat_holonomy": true,
+        "noncommuting_quaternion_witness": true,
+        "parity_vs_julia": true,
+        "positive_structured_holonomy": true
+      },
+      "weyl_lr_axis_gap_max": 0.3597230654632083,
+      "weyl_lr_axis_gap_mean": 0.21708894332149525
+    }
+  }
+}

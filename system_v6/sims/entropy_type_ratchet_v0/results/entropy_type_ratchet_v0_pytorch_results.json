@@ -1,0 +1,134 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact zero derivative boundary",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor status matrix",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing normalized entropy boundary derivative",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing availability graph edge witness",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch_geometric",
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "autograd_receipt": {
+    "api": "torch.func.jacrev",
+    "pass": true,
+    "scale_derivative": 0.0,
+    "symbolic_constant_entropy_derivative": "0"
+  },
+  "claim_path_tools": [
+    "torch_geometric",
+    "torch.func",
+    "sympy"
+  ],
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "engine_values": {
+    "final_available_type_count": 6,
+    "rho_entropy_nats": 0.6931471805599453
+  },
+  "formal_admission_allowed": false,
+  "graph_receipt": {
+    "api": "torch_geometric.data.Data",
+    "availability_counts_by_tensor": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      6,
+      6,
+      6
+    ],
+    "availability_degree_by_step": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      6,
+      6,
+      6
+    ],
+    "degree_matches_counts": true,
+    "edge_count": 39,
+    "node_count": 9,
+    "pass": true
+  },
+  "package_observables": {
+    "sympy": "sp.simplify exact derivative boundary check",
+    "torch.func": "jacrev confirms entropy value invariant under normalized scale boundary",
+    "torch_geometric": "Data edge_index witnesses operator/type co-ratchet availability edges"
+  },
+  "packages_used": [
+    "torch",
+    "torch_geometric",
+    "torch.func",
+    "sympy",
+    "json",
+    "pathlib"
+  ],
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/entropy_type_ratchet_v0/results/entropy_type_ratchet_v0_pytorch_results.json",
+  "role_id": "pytorch_engine_builder",
+  "schema_version": "entropy_type_ratchet_v0_pytorch_result_v1",
+  "sim_id": "entropy_type_ratchet_v0",
+  "source_path": "system_v6/sims/entropy_type_ratchet_v0/entropy_type_ratchet_v0_pytorch.py",
+  "source_sha256": "2752d5b3a62049a3dd887c70dae2b17e685209e1c946da1d9427a6b2e8e82155",
+  "tool_calls": [
+    {
+      "boundary_case": "degenerate status still creates an edge but is not substantive computable",
+      "demotion_condition": "demote if graph degree does not match table availability count",
+      "gates": [
+        "operator_co_ratchet",
+        "all_pass"
+      ],
+      "input_object": "availability table status edges",
+      "negative/erased_control": "undefined rows create no graph edge",
+      "output_object": "graph degree equals per-step available type count",
+      "positive_case": "all non-undefined rows create graph edges",
+      "qualified_api/function": "torch_geometric.data.Data",
+      "tool": "torch_geometric"
+    },
+    {
+      "boundary_case": "scale=1",
+      "demotion_condition": "demote if derivative is nonzero",
+      "gates": [
+        "boundary",
+        "all_pass"
+      ],
+      "input_object": "normalized density entropy scale boundary",
+      "negative/erased_control": "without normalization the boundary check is not this typed entropy",
+      "output_object": "zero derivative boundary",
+      "positive_case": "normalized rho entropy remains log(2)",
+      "qualified_api/function": "torch.func.jacrev",
+      "tool": "torch.func"
+    }
+  ],
+  "type_admissibility_table_hash": "386f132d75bf3f6afba404e09953e0237cef3062798e901c4f64ce6ffeaaebae"
+}

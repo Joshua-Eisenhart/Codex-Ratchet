@@ -1,0 +1,3123 @@
+{
+  "claim_path_tools": [
+    "Graphs",
+    "builder_audit_boundary",
+    "cvc5",
+    "networkx",
+    "sympy",
+    "torch.func",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "boundary_case": "empty_C has all 125 candidates",
+      "claim": "computed survivor_count and quotient_class_count equal pinned finite carve counts and are nonempty",
+      "gates": [
+        "all_pass",
+        "crossover_proofs",
+        "divergence"
+      ],
+      "input_object": {
+        "quotient_class_count": 8,
+        "survivor_count": 16
+      },
+      "load_bearing": true,
+      "negative_control": "overconstrained_C has zero survivors",
+      "positive_case": "v1 C1-C3 blind carve gives 16 survivors and 8 quotient classes",
+      "ran": true,
+      "verdict": "sat"
+    },
+    "z3": {
+      "boundary_case": "empty_C has all 125 candidates",
+      "claim": "computed survivor_count and quotient_class_count equal pinned finite carve counts and are nonempty",
+      "gates": [
+        "all_pass",
+        "crossover_proofs",
+        "divergence"
+      ],
+      "input_object": {
+        "quotient_class_count": 8,
+        "survivor_count": 16
+      },
+      "load_bearing": true,
+      "negative_control": "overconstrained_C has zero survivors",
+      "positive_case": "v1 C1-C3 blind carve gives 16 survivors and 8 quotient classes",
+      "ran": true,
+      "verdict": "sat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 16.0,
+      "julia": 16.0,
+      "pytorch": 16.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "expected_lanes": [
+    "julia",
+    "jax",
+    "pytorch"
+  ],
+  "extra_fields": {
+    "M_C_t_hook": {
+      "classes": [
+        {
+          "class_id": "Q0",
+          "member_candidate_ids": [
+            58,
+            68
+          ],
+          "member_survivor_ids": [
+            0,
+            1
+          ],
+          "probe_signature": [
+            0,
+            1
+          ]
+        },
+        {
+          "class_id": "Q1",
+          "member_candidate_ids": [
+            81,
+            91
+          ],
+          "member_survivor_ids": [
+            2,
+            5
+          ],
+          "probe_signature": [
+            1,
+            -1
+          ]
+        },
+        {
+          "class_id": "Q2",
+          "member_candidate_ids": [
+            82,
+            92
+          ],
+          "member_survivor_ids": [
+            3,
+            6
+          ],
+          "probe_signature": [
+            1,
+            0
+          ]
+        },
+        {
+          "class_id": "Q3",
+          "member_candidate_ids": [
+            83,
+            93
+          ],
+          "member_survivor_ids": [
+            4,
+            7
+          ],
+          "probe_signature": [
+            1,
+            1
+          ]
+        }
+      ],
+      "new_constraint": {
+        "id": "C5_t1_positive_active_coordinate_pin",
+        "literal_executable_predicate": "first nonzero active coordinate in (x,z) is positive",
+        "quoted_source_line": {
+          "quote": "C5 predicate source line: `C5_t1_positive_active_coordinate_pin` is a downstream `M(C,t)` hook that keeps candidates whose first nonzero active coordinate in `(x, z)` is positive.",
+          "source_path": "system_v6/sims/gcm_constraint_carve_v1/build_card.md",
+          "status": "local_adapter_pin_downstream_M_C_t_hook"
+        }
+      },
+      "quotient_class_count": 4,
+      "survivor_candidate_ids": [
+        58,
+        68,
+        81,
+        82,
+        83,
+        91,
+        92,
+        93
+      ],
+      "survivor_count": 8,
+      "update": "C -> C_prime = C plus C5_t1_positive_active_coordinate_pin"
+    },
+    "TOOL_INTEGRATION_DEPTH": {
+      "Graphs": "load_bearing",
+      "builder_audit_boundary": "load_bearing",
+      "cvc5": "load_bearing",
+      "networkx": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_MANIFEST": {
+      "Graphs": {
+        "reason": "Julia finite survivor adjacency graph and component computation.",
+        "tried": true,
+        "used": true
+      },
+      "builder_audit_boundary": {
+        "reason": "G.2a post-audit-idempotent builder/audit boundary from birth.",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "Independent SMT binding of the same computed carve count.",
+        "tried": true,
+        "used": true
+      },
+      "networkx": {
+        "reason": "JAX/Python finite graph and quotient component cross-check.",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "Exact integer count guards for candidate, survivor, quotient, and v0 regression rows.",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "PyTorch batched predicate and active-probe checks over the candidate grid.",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "SMT binding of computed nonempty carve and exact survivor count.",
+        "tried": true,
+        "used": true
+      }
+    },
+    "adjacency_connectivity": {
+      "quotient_components": [
+        [
+          "Q0"
+        ],
+        [
+          "Q1",
+          "Q6"
+        ],
+        [
+          "Q2"
+        ],
+        [
+          "Q3",
+          "Q4"
+        ],
+        [
+          "Q5"
+        ],
+        [
+          "Q7"
+        ]
+      ],
+      "quotient_edges": [
+        {
+          "dst_class": "Q0",
+          "src_class": "Q0",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q1",
+          "src_class": "Q1",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q6",
+          "src_class": "Q1",
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst_class": "Q2",
+          "src_class": "Q2",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q3",
+          "src_class": "Q3",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q4",
+          "src_class": "Q3",
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst_class": "Q3",
+          "src_class": "Q4",
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst_class": "Q4",
+          "src_class": "Q4",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q5",
+          "src_class": "Q5",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q1",
+          "src_class": "Q6",
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst_class": "Q6",
+          "src_class": "Q6",
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst_class": "Q7",
+          "src_class": "Q7",
+          "update": "hidden_probe_flip"
+        }
+      ],
+      "survivor_components": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4,
+          11,
+          14
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          10,
+          13
+        ],
+        [
+          12,
+          15
+        ]
+      ],
+      "survivor_edges": [
+        {
+          "dst": 3,
+          "src": 0,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 4,
+          "src": 1,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 14,
+          "src": 1,
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst": 5,
+          "src": 2,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 0,
+          "src": 3,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 1,
+          "src": 4,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 11,
+          "src": 4,
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst": 2,
+          "src": 5,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 8,
+          "src": 6,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 9,
+          "src": 6,
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst": 8,
+          "src": 7,
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst": 9,
+          "src": 7,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 6,
+          "src": 8,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 7,
+          "src": 8,
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst": 6,
+          "src": 9,
+          "update": "z_reflection_at_x_zero"
+        },
+        {
+          "dst": 7,
+          "src": 9,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 13,
+          "src": 10,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 4,
+          "src": 11,
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst": 14,
+          "src": 11,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 15,
+          "src": 12,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 10,
+          "src": 13,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 1,
+          "src": 14,
+          "update": "x_reflection_at_z_zero"
+        },
+        {
+          "dst": 11,
+          "src": 14,
+          "update": "hidden_probe_flip"
+        },
+        {
+          "dst": 12,
+          "src": 15,
+          "update": "hidden_probe_flip"
+        }
+      ]
+    },
+    "all_pass": true,
+    "build_helper_path": "scripts/build_three_engine_envelope.py",
+    "builder_gates": {
+      "G_2a_idempotency_from_birth": true,
+      "boundary_helper_fully_used": true,
+      "file_disjoint_packet": true,
+      "no_builder_audit_verdict": true,
+      "no_builder_audit_verdict_envelope_gate": true
+    },
+    "candidate_space": {
+      "candidate_count": 125,
+      "carrier_parent": "finite local adapter carrier; carrier-and-pins-relative",
+      "density_subcarrier_count": 33,
+      "kind": "125 finite Bloch-grid configurations over {-1,-1/2,0,1/2,1}^3"
+    },
+    "carrier_and_pins_relative": true,
+    "claim": "M(C) is computed here as the C1-C3 terrain-blind survivor set under local adapter pins, not THE manifold.",
+    "claim_ceiling": "first_carve_candidate_v1_only_carrier_and_pins_relative",
+    "classification": "scratch_diagnostic",
+    "constraint_family_C": [
+      {
+        "id": "C1_finite_density_carrier",
+        "literal_executable_predicate": "x*x + y*y + z*z <= 1 over GRID_VALUES",
+        "quoted_source_line": {
+          "quote": "C1 predicate source line: `C1_finite_density_carrier` accepts exactly candidates on `GRID_VALUES={-1,-1/2,0,1/2,1}` with `x*x + y*y + z*z <= 1`.",
+          "source_path": "system_v6/sims/gcm_constraint_carve_v1/build_card.md",
+          "status": "local_adapter_pin"
+        }
+      },
+      {
+        "citation_repair": "Exact x/z probe and zero-active-class exclusion are explicitly demoted to a local adapter pin.",
+        "id": "C2_probe_distinguishability_xz_local_adapter_pin",
+        "literal_executable_predicate": "(2*x, 2*z) != (0, 0)",
+        "quoted_source_line": {
+          "quote": "C2 predicate source line: `C2_probe_distinguishability_xz_local_adapter_pin` accepts exactly candidates whose active probe pair `(2*x, 2*z)` is not `(0, 0)`.",
+          "source_path": "system_v6/sims/gcm_constraint_carve_v1/build_card.md",
+          "status": "local_adapter_pin_demoted_exact_xz_probe_and_zero_active_class"
+        }
+      },
+      {
+        "id": "C3_persistence_n01_order_gap",
+        "literal_executable_predicate": "probe_signature(D_z_after_R_x(coord)) != probe_signature(R_x_after_D_z(coord))",
+        "quoted_source_line": {
+          "quote": "C3 predicate source line: `C3_persistence_n01_order_gap` accepts exactly candidates whose `D_z after R_x` and `R_x after D_z` active x/z probe signatures differ.",
+          "source_path": "system_v6/sims/gcm_constraint_carve_v1/build_card.md",
+          "status": "local_adapter_pin"
+        }
+      }
+    ],
+    "controls": {
+      "blindness_control": {
+        "demotion_condition": "If this injected variant is not caught, the v1 packet fails terrain-blindness.",
+        "injected_errors": [
+          "C_bad_terrain_framed_constraint_variant: forbidden predicate token 'terrain'",
+          "C_bad_terrain_framed_constraint_variant: forbidden predicate token 'atlas'"
+        ],
+        "injected_variant_caught": true,
+        "variant_id": "C_bad_terrain_framed_constraint_variant"
+      },
+      "constraint_erasure": [
+        {
+          "added_candidate_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            34,
+            40,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            53,
+            54,
+            55,
+            59,
+            65,
+            69,
+            70,
+            71,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            84,
+            90,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124
+          ],
+          "bite": true,
+          "delta_count": 80,
+          "dropped_constraint": "C1_finite_density_carrier",
+          "removed_candidate_ids": [],
+          "survivor_count": 96
+        },
+        {
+          "added_candidate_ids": [
+            52,
+            57,
+            67,
+            72
+          ],
+          "bite": true,
+          "delta_count": 4,
+          "dropped_constraint": "C2_probe_distinguishability_xz_local_adapter_pin",
+          "removed_candidate_ids": [],
+          "survivor_count": 20
+        },
+        {
+          "added_candidate_ids": [
+            12,
+            36,
+            37,
+            38,
+            60,
+            61,
+            63,
+            64,
+            86,
+            87,
+            88,
+            112
+          ],
+          "bite": true,
+          "delta_count": 12,
+          "dropped_constraint": "C3_persistence_n01_order_gap",
+          "removed_candidate_ids": [],
+          "survivor_count": 28
+        }
+      ],
+      "empty_C": {
+        "degenerate_no_manifold": true,
+        "survivor_count": 125
+      },
+      "overconstrained_C": {
+        "all_killed": true,
+        "cliff_constraint": "C_overconstrained_impossible_empty",
+        "survivor_count": 0
+      },
+      "probe_family_scramble": {
+        "baseline_class_signatures": [
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "baseline_probe_family": [
+          "sigma_x",
+          "sigma_z"
+        ],
+        "quotient_moved": true,
+        "scrambled_class_signatures": [
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "scrambled_probe_family": [
+          "sigma_y",
+          "sigma_z"
+        ]
+      }
+    },
+    "disallowed_claims": [
+      "THE manifold",
+      "terrain atlas admission",
+      "axis admission",
+      "engine admission",
+      "physics admission",
+      "canonical by process"
+    ],
+    "engine_consensus": {
+      "all_engine_lanes_pass": true,
+      "component_count_agreement": true,
+      "component_count_scoped_lanes": [
+        "jax",
+        "julia",
+        "pytorch"
+      ],
+      "component_counts": {
+        "jax": 6,
+        "julia": 6,
+        "pytorch": 6
+      },
+      "quotient_class_count_agreement": true,
+      "quotient_class_counts": {
+        "jax": 8,
+        "julia": 8,
+        "pytorch": 8
+      },
+      "survivor_count_agreement": true,
+      "survivor_counts": {
+        "jax": 16,
+        "julia": 16,
+        "pytorch": 16
+      },
+      "v0_regression_survivor_count_agreement": true,
+      "v0_regression_survivor_counts": {
+        "jax": 8,
+        "julia": 8,
+        "pytorch": 8
+      }
+    },
+    "engine_lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "envelope_built_with_helper": true,
+    "excluded_from_admissibility_C": [
+      {
+        "comparison_only": true,
+        "id": "v0_rejected_C4_terrain_framed_residency_variant",
+        "status": "split_out_of_v1_admissibility_carve"
+      }
+    ],
+    "existence_tests": {
+      "chart_recoverable": true,
+      "chart_recovery_rows": [
+        {
+          "class_id": "Q0",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            -1,
+            -1
+          ],
+          "recovered_chart_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q1",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            -1,
+            0
+          ],
+          "recovered_chart_label": "x_axis_active_region"
+        },
+        {
+          "class_id": "Q2",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            -1,
+            1
+          ],
+          "recovered_chart_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q3",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            0,
+            -1
+          ],
+          "recovered_chart_label": "z_axis_active_region"
+        },
+        {
+          "class_id": "Q4",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            0,
+            1
+          ],
+          "recovered_chart_label": "z_axis_active_region"
+        },
+        {
+          "class_id": "Q5",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            1,
+            -1
+          ],
+          "recovered_chart_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q6",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            1,
+            0
+          ],
+          "recovered_chart_label": "x_axis_active_region"
+        },
+        {
+          "class_id": "Q7",
+          "matches_nonzero_active_probe": true,
+          "probe_signature": [
+            1,
+            1
+          ],
+          "recovered_chart_label": "mixed_active_probe_region"
+        }
+      ],
+      "doctrine": "M(C) exists here only as the stable probe-carved quotient for this carrier and pinned C.",
+      "identity_leak_detected": true,
+      "identity_leak_excluded_best_accuracy": 0.968,
+      "identity_leak_exclusion_rule": "Excluded candidate_id, coordinate tuple, direct constraint bitmask, output fingerprints, and equivalent row identifiers before scoring independence.",
+      "identity_leak_probe": {
+        "identity_inclusive_accuracies": {
+          "candidate_id": 1.0,
+          "coord_tuple": 1.0,
+          "direct_constraint_fingerprint": 1.0
+        },
+        "identity_leak_detected": true,
+        "identity_leak_excluded_best_accuracy": 0.968,
+        "identity_leak_excluded_best_predictor": "radius_squared",
+        "identity_leak_exclusion_rule": "Excluded candidate_id, coordinate tuple, direct constraint bitmask, output fingerprints, and equivalent row identifiers before scoring independence.",
+        "passes_no_identity_leak_independence": true
+      },
+      "independent": true,
+      "negative_controlled": true,
+      "stable": true
+    },
+    "formal_admission_allowed": false,
+    "identity_leak_detected": true,
+    "identity_leak_excluded_best_accuracy": 0.968,
+    "identity_leak_exclusion_rule": "Excluded candidate_id, coordinate tuple, direct constraint bitmask, output fingerprints, and equivalent row identifiers before scoring independence.",
+    "kill_counts_by_constraint": {
+      "C1_finite_density_carrier": 92,
+      "C2_probe_distinguishability_xz_local_adapter_pin": 5,
+      "C3_persistence_n01_order_gap": 12
+    },
+    "kill_ledger": [
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 0,
+        "coord": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 1,
+        "coord": [
+          -1.0,
+          -1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 2,
+        "coord": [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 3,
+        "coord": [
+          -1.0,
+          -1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 4,
+        "coord": [
+          -1.0,
+          -1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 5,
+        "coord": [
+          -1.0,
+          -0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 6,
+        "coord": [
+          -1.0,
+          -0.5,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 7,
+        "coord": [
+          -1.0,
+          -0.5,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 8,
+        "coord": [
+          -1.0,
+          -0.5,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 9,
+        "coord": [
+          -1.0,
+          -0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 10,
+        "coord": [
+          -1.0,
+          0.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 11,
+        "coord": [
+          -1.0,
+          0.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 12,
+        "coord": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 13,
+        "coord": [
+          -1.0,
+          0.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 14,
+        "coord": [
+          -1.0,
+          0.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 15,
+        "coord": [
+          -1.0,
+          0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 16,
+        "coord": [
+          -1.0,
+          0.5,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 17,
+        "coord": [
+          -1.0,
+          0.5,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 18,
+        "coord": [
+          -1.0,
+          0.5,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 19,
+        "coord": [
+          -1.0,
+          0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 20,
+        "coord": [
+          -1.0,
+          1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 21,
+        "coord": [
+          -1.0,
+          1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 22,
+        "coord": [
+          -1.0,
+          1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 23,
+        "coord": [
+          -1.0,
+          1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 24,
+        "coord": [
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 25,
+        "coord": [
+          -0.5,
+          -1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 26,
+        "coord": [
+          -0.5,
+          -1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 27,
+        "coord": [
+          -0.5,
+          -1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 28,
+        "coord": [
+          -0.5,
+          -1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 29,
+        "coord": [
+          -0.5,
+          -1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 30,
+        "coord": [
+          -0.5,
+          -0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 34,
+        "coord": [
+          -0.5,
+          -0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 35,
+        "coord": [
+          -0.5,
+          0.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 36,
+        "coord": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 37,
+        "coord": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 38,
+        "coord": [
+          -0.5,
+          0.0,
+          0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 39,
+        "coord": [
+          -0.5,
+          0.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 40,
+        "coord": [
+          -0.5,
+          0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 44,
+        "coord": [
+          -0.5,
+          0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 45,
+        "coord": [
+          -0.5,
+          1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 46,
+        "coord": [
+          -0.5,
+          1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 47,
+        "coord": [
+          -0.5,
+          1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 48,
+        "coord": [
+          -0.5,
+          1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 49,
+        "coord": [
+          -0.5,
+          1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 50,
+        "coord": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 51,
+        "coord": [
+          0.0,
+          -1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C2_probe_distinguishability_xz_local_adapter_pin"
+        ],
+        "candidate_id": 52,
+        "coord": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "killed_by": "C2_probe_distinguishability_xz_local_adapter_pin"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 53,
+        "coord": [
+          0.0,
+          -1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 54,
+        "coord": [
+          0.0,
+          -1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 55,
+        "coord": [
+          0.0,
+          -0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C2_probe_distinguishability_xz_local_adapter_pin"
+        ],
+        "candidate_id": 57,
+        "coord": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "killed_by": "C2_probe_distinguishability_xz_local_adapter_pin"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 59,
+        "coord": [
+          0.0,
+          -0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 60,
+        "coord": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 61,
+        "coord": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C2_probe_distinguishability_xz_local_adapter_pin",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 62,
+        "coord": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "killed_by": "C2_probe_distinguishability_xz_local_adapter_pin"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 63,
+        "coord": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 64,
+        "coord": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 65,
+        "coord": [
+          0.0,
+          0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C2_probe_distinguishability_xz_local_adapter_pin"
+        ],
+        "candidate_id": 67,
+        "coord": [
+          0.0,
+          0.5,
+          0.0
+        ],
+        "killed_by": "C2_probe_distinguishability_xz_local_adapter_pin"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 69,
+        "coord": [
+          0.0,
+          0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 70,
+        "coord": [
+          0.0,
+          1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 71,
+        "coord": [
+          0.0,
+          1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C2_probe_distinguishability_xz_local_adapter_pin"
+        ],
+        "candidate_id": 72,
+        "coord": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "killed_by": "C2_probe_distinguishability_xz_local_adapter_pin"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 73,
+        "coord": [
+          0.0,
+          1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 74,
+        "coord": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 75,
+        "coord": [
+          0.5,
+          -1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 76,
+        "coord": [
+          0.5,
+          -1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 77,
+        "coord": [
+          0.5,
+          -1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 78,
+        "coord": [
+          0.5,
+          -1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 79,
+        "coord": [
+          0.5,
+          -1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 80,
+        "coord": [
+          0.5,
+          -0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 84,
+        "coord": [
+          0.5,
+          -0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 85,
+        "coord": [
+          0.5,
+          0.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 86,
+        "coord": [
+          0.5,
+          0.0,
+          -0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 87,
+        "coord": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 88,
+        "coord": [
+          0.5,
+          0.0,
+          0.5
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 89,
+        "coord": [
+          0.5,
+          0.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 90,
+        "coord": [
+          0.5,
+          0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 94,
+        "coord": [
+          0.5,
+          0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 95,
+        "coord": [
+          0.5,
+          1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 96,
+        "coord": [
+          0.5,
+          1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 97,
+        "coord": [
+          0.5,
+          1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 98,
+        "coord": [
+          0.5,
+          1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 99,
+        "coord": [
+          0.5,
+          1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 100,
+        "coord": [
+          1.0,
+          -1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 101,
+        "coord": [
+          1.0,
+          -1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 102,
+        "coord": [
+          1.0,
+          -1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 103,
+        "coord": [
+          1.0,
+          -1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 104,
+        "coord": [
+          1.0,
+          -1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 105,
+        "coord": [
+          1.0,
+          -0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 106,
+        "coord": [
+          1.0,
+          -0.5,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 107,
+        "coord": [
+          1.0,
+          -0.5,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 108,
+        "coord": [
+          1.0,
+          -0.5,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 109,
+        "coord": [
+          1.0,
+          -0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 110,
+        "coord": [
+          1.0,
+          0.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 111,
+        "coord": [
+          1.0,
+          0.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 112,
+        "coord": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "killed_by": "C3_persistence_n01_order_gap"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 113,
+        "coord": [
+          1.0,
+          0.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier",
+          "C3_persistence_n01_order_gap"
+        ],
+        "candidate_id": 114,
+        "coord": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 115,
+        "coord": [
+          1.0,
+          0.5,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 116,
+        "coord": [
+          1.0,
+          0.5,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 117,
+        "coord": [
+          1.0,
+          0.5,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 118,
+        "coord": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 119,
+        "coord": [
+          1.0,
+          0.5,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 120,
+        "coord": [
+          1.0,
+          1.0,
+          -1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 121,
+        "coord": [
+          1.0,
+          1.0,
+          -0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 122,
+        "coord": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 123,
+        "coord": [
+          1.0,
+          1.0,
+          0.5
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      },
+      {
+        "all_failed_constraints": [
+          "C1_finite_density_carrier"
+        ],
+        "candidate_id": 124,
+        "coord": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "killed_by": "C1_finite_density_carrier"
+      }
+    ],
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "not_THE_manifold": true,
+    "post_carve_terrain_readout": {
+      "answer": "post_carve_partial_macro_readout_not_full_atlas",
+      "can_affect_survival": false,
+      "class_count": 8,
+      "class_counts_by_readout_label": {
+        "mixed_active_probe_region": 4,
+        "x_axis_active_region": 2,
+        "z_axis_active_region": 2
+      },
+      "question": "post-carve terrain readout only; this field is not an admissibility input",
+      "quotient_components": [
+        [
+          "Q0"
+        ],
+        [
+          "Q1",
+          "Q6"
+        ],
+        [
+          "Q2"
+        ],
+        [
+          "Q3",
+          "Q4"
+        ],
+        [
+          "Q5"
+        ],
+        [
+          "Q7"
+        ]
+      ],
+      "readout_rows": [
+        {
+          "class_id": "Q0",
+          "probe_signature": [
+            -1,
+            -1
+          ],
+          "readout_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q1",
+          "probe_signature": [
+            -1,
+            0
+          ],
+          "readout_label": "x_axis_active_region"
+        },
+        {
+          "class_id": "Q2",
+          "probe_signature": [
+            -1,
+            1
+          ],
+          "readout_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q3",
+          "probe_signature": [
+            0,
+            -1
+          ],
+          "readout_label": "z_axis_active_region"
+        },
+        {
+          "class_id": "Q4",
+          "probe_signature": [
+            0,
+            1
+          ],
+          "readout_label": "z_axis_active_region"
+        },
+        {
+          "class_id": "Q5",
+          "probe_signature": [
+            1,
+            -1
+          ],
+          "readout_label": "mixed_active_probe_region"
+        },
+        {
+          "class_id": "Q6",
+          "probe_signature": [
+            1,
+            0
+          ],
+          "readout_label": "x_axis_active_region"
+        },
+        {
+          "class_id": "Q7",
+          "probe_signature": [
+            1,
+            1
+          ],
+          "readout_label": "mixed_active_probe_region"
+        }
+      ],
+      "reason": "The blind survivor quotient has 8 probe classes, including mixed active-probe classes. This downstream row can name candidate regions, but it does not define or filter M(C).",
+      "survival_inputs": [],
+      "terrain_atlas_not_claimed": true
+    },
+    "prior_art_boundary": {
+      "cite_as_authority": false,
+      "path": "system_v6/sims/gcm_constraint_carve_floor_v0",
+      "role": "prior_art_only_not_cited_as_constraint_authority"
+    },
+    "probe_family_M": [
+      "sigma_x",
+      "sigma_z"
+    ],
+    "promotion_allowed": false,
+    "quotient": {
+      "class_count": 8,
+      "classes": [
+        {
+          "class_id": "Q0",
+          "member_candidate_ids": [
+            31,
+            41
+          ],
+          "member_survivor_ids": [
+            0,
+            3
+          ],
+          "probe_signature": [
+            -1,
+            -1
+          ]
+        },
+        {
+          "class_id": "Q1",
+          "member_candidate_ids": [
+            32,
+            42
+          ],
+          "member_survivor_ids": [
+            1,
+            4
+          ],
+          "probe_signature": [
+            -1,
+            0
+          ]
+        },
+        {
+          "class_id": "Q2",
+          "member_candidate_ids": [
+            33,
+            43
+          ],
+          "member_survivor_ids": [
+            2,
+            5
+          ],
+          "probe_signature": [
+            -1,
+            1
+          ]
+        },
+        {
+          "class_id": "Q3",
+          "member_candidate_ids": [
+            56,
+            66
+          ],
+          "member_survivor_ids": [
+            6,
+            8
+          ],
+          "probe_signature": [
+            0,
+            -1
+          ]
+        },
+        {
+          "class_id": "Q4",
+          "member_candidate_ids": [
+            58,
+            68
+          ],
+          "member_survivor_ids": [
+            7,
+            9
+          ],
+          "probe_signature": [
+            0,
+            1
+          ]
+        },
+        {
+          "class_id": "Q5",
+          "member_candidate_ids": [
+            81,
+            91
+          ],
+          "member_survivor_ids": [
+            10,
+            13
+          ],
+          "probe_signature": [
+            1,
+            -1
+          ]
+        },
+        {
+          "class_id": "Q6",
+          "member_candidate_ids": [
+            82,
+            92
+          ],
+          "member_survivor_ids": [
+            11,
+            14
+          ],
+          "probe_signature": [
+            1,
+            0
+          ]
+        },
+        {
+          "class_id": "Q7",
+          "member_candidate_ids": [
+            83,
+            93
+          ],
+          "member_survivor_ids": [
+            12,
+            15
+          ],
+          "probe_signature": [
+            1,
+            1
+          ]
+        }
+      ],
+      "probe_family": [
+        "sigma_x",
+        "sigma_z"
+      ]
+    },
+    "result_path": "system_v6/sims/gcm_constraint_carve_v1/results/gcm_constraint_carve_v1_envelope_results.json",
+    "schema": "gcm_constraint_carve_v1_envelope_v1",
+    "source_locks": {
+      "audit_standards_codex": {
+        "commit_hint": "current",
+        "exists": true,
+        "git_last_commit": "443e474b2",
+        "path": "system_v6/receipts/audit_standards_codex_v1.md",
+        "role": "audit_standards_codex",
+        "sha256": "6ed5b840a94eb43a08204b408c3efd1d86124f9af7fc4105bbc190924e8a3f27"
+      },
+      "build_card": {
+        "exists": true,
+        "git_last_commit": null,
+        "path": "system_v6/sims/gcm_constraint_carve_v1/build_card.md",
+        "role": "build_card",
+        "sha256": "cf748f2a6f82c1ab805537694cf74f24fadb710042f9e5a6823afa3c1958da81"
+      },
+      "builder_audit_boundary": {
+        "exists": true,
+        "git_last_commit": "aed311e85",
+        "path": "scripts/builder_audit_boundary.py",
+        "role": "builder_audit_boundary",
+        "sha256": "ed25d7cef8fda4a1f0e84d71d280b39c32682e14dafd833ccce8766c60d5f67b"
+      },
+      "gcm_reanchor": {
+        "commit_hint": "393c5147a",
+        "exists": true,
+        "git_last_commit": "393c5147a",
+        "path": "system_v6/receipts/gcm_reanchor_requirement_20260612.md",
+        "role": "gcm_reanchor",
+        "sha256": "7ae4100ec3382ae66c11abbc1ecd61813591943274a449c626a3121e8a6a7ada"
+      },
+      "root_axioms_v0_1": {
+        "exists": true,
+        "git_last_commit": "8b1381875",
+        "path": "system_v6/foundations/root_axioms_v0_1_DRAFT.md",
+        "role": "root_axioms_v0_1",
+        "sha256": "3ef3fefffb3ae116fdee42cb38134b6d12cfa6876a15cf3d16ce1df44f440768"
+      },
+      "two_engine_readout_automaton": {
+        "exists": true,
+        "git_last_commit": "dd9ec4999",
+        "path": "system_v6/foundations/two_engine_readout_automaton_20260609.md",
+        "role": "two_engine_readout_automaton",
+        "sha256": "ca99877dfd1cae2d098225ae06bfbec8384de5f4079b3bd4de075e100f08abed"
+      },
+      "v0_audit_verdict": {
+        "commit_hint": "local_v0_audit_contract",
+        "exists": true,
+        "git_last_commit": "e5d0065a6",
+        "path": "system_v6/sims/gcm_constraint_carve_v0/audit_verdict.md",
+        "role": "v0_audit_verdict",
+        "sha256": "423b14672c6ab19ab299df4aebbb393470ad665cfc9d3719f4fd5ef600cb134c"
+      },
+      "working_math_scaffold": {
+        "exists": true,
+        "git_last_commit": "510c71eca",
+        "path": "system_v6/foundations/working_math_scaffold_20260609.md",
+        "role": "working_math_scaffold",
+        "sha256": "6fa647bc15fc2c7123a47fc3531aff742d43ca02c7ae820613cbea21bffd8e2f"
+      }
+    },
+    "source_path": "system_v6/sims/gcm_constraint_carve_v1/write_envelope_spec.py",
+    "stability_certificate": {
+      "committed_update": "coarse_D_z_half_step_Q_grid",
+      "rows": [
+        {
+          "class_id": "Q0",
+          "image_classes": [
+            "Q0"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q1",
+          "image_classes": [
+            "Q1"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q2",
+          "image_classes": [
+            "Q2"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q3",
+          "image_classes": [
+            "Q3"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q4",
+          "image_classes": [
+            "Q4"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q5",
+          "image_classes": [
+            "Q5"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q6",
+          "image_classes": [
+            "Q6"
+          ],
+          "stable": true
+        },
+        {
+          "class_id": "Q7",
+          "image_classes": [
+            "Q7"
+          ],
+          "stable": true
+        }
+      ],
+      "stable": true
+    },
+    "survivor_count": 16,
+    "survivors": [
+      {
+        "candidate_id": 31,
+        "coord": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          -1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          -1,
+          -1
+        ],
+        "survivor_id": 0
+      },
+      {
+        "candidate_id": 32,
+        "coord": [
+          -0.5,
+          -0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          0
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          0
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          -1,
+          0
+        ],
+        "survivor_id": 1
+      },
+      {
+        "candidate_id": 33,
+        "coord": [
+          -0.5,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          -1,
+          -1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          -1,
+          1
+        ],
+        "survivor_id": 2
+      },
+      {
+        "candidate_id": 41,
+        "coord": [
+          -0.5,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          -1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          1,
+          -1
+        ],
+        "survivor_id": 3
+      },
+      {
+        "candidate_id": 42,
+        "coord": [
+          -0.5,
+          0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          0
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          0
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          1,
+          0
+        ],
+        "survivor_id": 4
+      },
+      {
+        "candidate_id": 43,
+        "coord": [
+          -0.5,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          -1,
+          1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          -1,
+          1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          1,
+          1
+        ],
+        "survivor_id": 5
+      },
+      {
+        "candidate_id": 56,
+        "coord": [
+          0.0,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          0,
+          -1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          0,
+          -1
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          -1,
+          -1
+        ],
+        "survivor_id": 6
+      },
+      {
+        "candidate_id": 58,
+        "coord": [
+          0.0,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          0,
+          -1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          0,
+          1
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          -1,
+          1
+        ],
+        "survivor_id": 7
+      },
+      {
+        "candidate_id": 66,
+        "coord": [
+          0.0,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          0,
+          1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          0,
+          -1
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          1,
+          -1
+        ],
+        "survivor_id": 8
+      },
+      {
+        "candidate_id": 68,
+        "coord": [
+          0.0,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          0,
+          1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          0,
+          1
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          1,
+          1
+        ],
+        "survivor_id": 9
+      },
+      {
+        "candidate_id": 81,
+        "coord": [
+          0.5,
+          -0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          -1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          -1,
+          -1
+        ],
+        "survivor_id": 10
+      },
+      {
+        "candidate_id": 82,
+        "coord": [
+          0.5,
+          -0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          0
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          0
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          -1,
+          0
+        ],
+        "survivor_id": 11
+      },
+      {
+        "candidate_id": 83,
+        "coord": [
+          0.5,
+          -0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          1,
+          -1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          -1,
+          1
+        ],
+        "survivor_id": 12
+      },
+      {
+        "candidate_id": 91,
+        "coord": [
+          0.5,
+          0.5,
+          -0.5
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          -1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          -1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          1,
+          -1
+        ],
+        "survivor_id": 13
+      },
+      {
+        "candidate_id": 92,
+        "coord": [
+          0.5,
+          0.5,
+          0.0
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          0
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          0
+        ],
+        "radius_squared": 0.5,
+        "scrambled_probe_signature": [
+          1,
+          0
+        ],
+        "survivor_id": 14
+      },
+      {
+        "candidate_id": 93,
+        "coord": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "coord_scaled": [
+          1,
+          1,
+          1
+        ],
+        "order_gap": 1.0,
+        "probe_signature": [
+          1,
+          1
+        ],
+        "radius_squared": 0.75,
+        "scrambled_probe_signature": [
+          1,
+          1
+        ],
+        "survivor_id": 15
+      }
+    ],
+    "terrain_blindness_guard": {
+      "checked_constraint_ids": [
+        "C1_finite_density_carrier",
+        "C2_probe_distinguishability_xz_local_adapter_pin",
+        "C3_persistence_n01_order_gap"
+      ],
+      "clean": true,
+      "errors": [],
+      "forbidden_tokens": [
+        "terrain",
+        "atlas",
+        "Se",
+        "Ne",
+        "Ni",
+        "Si",
+        "dissipative",
+        "circulation",
+        "dissipative-vs-circulation"
+      ],
+      "guard": "admissibility_predicate_token_guard",
+      "predicate_text_sha256": "9be02933ef7e99fc92e519008528a89a5a6a291120772ae58dc90d76cf5b0747"
+    },
+    "tool_intent": {
+      "claim_classes": [
+        "finite_constraint_carve",
+        "M_C_survivor_set",
+        "probe_relative_quotient",
+        "no_identity_leak_independence",
+        "terrain_blind_predicate_guard",
+        "post_carve_readout_only",
+        "v0_regression_contamination_diff",
+        "M_C_t_one_step_update"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "networkx": "nx.Graph and connected_components recompute survivor and quotient graph structure.",
+          "sympy": "sp.Rational guards exact candidate/survivor/class/regression counts."
+        },
+        "julia": {
+          "Graphs": "SimpleGraph/add_edge!/connected_components compute survivor and quotient adjacency components."
+        },
+        "pytorch": {
+          "sympy": "sp.Rational guards exact candidate/survivor/class/regression counts.",
+          "torch.func": "vmap over candidate coordinates checks finite density, active probes, and order-gap predicate."
+        }
+      }
+    },
+    "v0_regression_row": {
+      "class_signatures_removed_by_v0_C4": [
+        [
+          -1,
+          -1
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          1,
+          -1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "diff_demonstrates_contamination": true,
+      "rejected_predicate": "not (x != 0 and z != 0)",
+      "removed_by_v0_C4_candidate_ids": [
+        31,
+        33,
+        41,
+        43,
+        81,
+        83,
+        91,
+        93
+      ],
+      "retained_by_v0_C4_candidate_ids": [
+        32,
+        42,
+        56,
+        58,
+        66,
+        68,
+        82,
+        92
+      ],
+      "row_id": "v0_under_own_failed_C4_regression",
+      "status": "comparison_only_rejected_as_admissibility_source",
+      "v0_regression_quotient_class_count": 4,
+      "v0_regression_survivor_count": 8,
+      "v1_blind_quotient_class_count": 8,
+      "v1_blind_survivor_count": 16,
+      "why_rejected": "The v0 audit found this C4 was terrain-framed and not admissible as a terrain-blind survival predicate."
+    }
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy"
+      ],
+      "component_count": 6,
+      "package_observables": {
+        "networkx": "nx.Graph connected_components over survivor and quotient adjacency",
+        "sympy": "sp.Rational exact candidate/survivor/quotient/regression count guard"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy"
+      ],
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_constraint_carve_v1/results/gcm_constraint_carve_v1_jax_results.json",
+      "source_path": "system_v6/sims/gcm_constraint_carve_v1/gcm_constraint_carve_v1_jax.py",
+      "survivor_count": 16,
+      "v0_regression_survivor_count": 8
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs"
+      ],
+      "component_count": 6,
+      "package_observables": {
+        "Graphs": "SimpleGraph/add_edge!/connected_components over survivor and quotient adjacency"
+      },
+      "packages_used": [
+        "Graphs",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_constraint_carve_v1/results/gcm_constraint_carve_v1_julia_results.json",
+      "source_path": "system_v6/sims/gcm_constraint_carve_v1/gcm_constraint_carve_v1_julia.jl",
+      "survivor_count": 16,
+      "v0_regression_survivor_count": 8
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy"
+      ],
+      "component_count": 6,
+      "package_observables": {
+        "sympy": "sp.Rational exact candidate/density/survivor/quotient/regression count guard",
+        "torch.func": "vmap(observables)(coords) checks density radius, active probes, order-gap proxy, and M(C,t) positive-active count"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "quotient_class_count": 8,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/gcm_constraint_carve_v1/results/gcm_constraint_carve_v1_pytorch_results.json",
+      "source_path": "system_v6/sims/gcm_constraint_carve_v1/gcm_constraint_carve_v1_pytorch.py",
+      "survivor_count": 16,
+      "v0_regression_survivor_count": 8
+    }
+  },
+  "mode": "all_three_full_sims",
+  "parent_lineage": {
+    "audit_standards_codex": "current",
+    "gcm_reanchor": "393c5147a",
+    "mct_foundations": "dd9ec4999",
+    "v0_audit_verdict": "local_v0_audit_contract"
+  },
+  "promotion_allowed": false,
+  "sim_id": "gcm_constraint_carve_v1",
+  "stability_pairs": [
+    {
+      "hash": "ca6ae0277e4a5c77044b1075626262e6bfdab4c99f818e85abc123322f74b756",
+      "subtree": "system_v6/sims/gcm_constraint_carve_v1/results/gcm_constraint_carve_v1_results.json"
+    },
+    {
+      "hash": "337ba05128a8632025a1992e8c971dba2e6e23ddd498fef6b576bb362d99ec3c",
+      "subtree": "M_C_survivor_and_quotient_payload"
+    }
+  ]
+}

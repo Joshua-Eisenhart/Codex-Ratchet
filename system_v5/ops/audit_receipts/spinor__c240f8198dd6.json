@@ -1,0 +1,34 @@
+{
+  "rung": "spinor",
+  "file": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/foundation_foundation_r4_spinor_holonomy_path_integral_variant_jax.py",
+  "source_sha256": "c240f8198dd6c876ef9b6cf092b13c89023ece018c0741e8e382cb0d3aec6e7f",
+  "source_mtime": 1780884338.6359603,
+  "source_mtime_iso": "2026-06-08T02:05:38.635960Z",
+  "prompt_sha256": "a84f5cf9a6028d339eb8b01fd1a2b4cafe62e887686d6c83c0ca52045df14dcb",
+  "audited_at": "2026-06-08T02:51:52.028652Z",
+  "authority": {
+    "model": "codex1 gpt-5.5 xhigh (fresh read-only; separate instance from codex2 builder)",
+    "verdict": "GENUINE",
+    "raw": "r_SU2_class\": \"2pi_holonomy_minus_identity\",\n            \"vector_SO3_class\": \"2pi_holonomy_plus_identity\",\n            \"with_M_classes\": 2,\n            \"drop_M_classes\": 1,\n        },\n        \"summary\": {\n            \"spinor_holonomy_scalar\": final_spinor[\"spinor_trace_half_real\"],\n            \"spinor_minus_identity_residual\": final_spinor[\"minus_identity_residual\"],\n            \"vector_holonomy_trace_half\": final_vector[\"vector_trace_half\"],\n            \"vector_plus_identity_residual\": final_vector[\"plus_identity_residual\"],\n            \"discretization_convergence\": spinor_rows,\n            \"vector_control_convergence\": vector_rows,\n            \"smt_exact_core_N\": 2,\n        },\n        \"smt\": {\"z3\": z3_row, \"cvc5\": cvc5_row},\n        \"crossover_proofs\": {\n            \"z3\": {\"ran\": True, \"load_bearing\": True, \"verdict\": z3_row[\"verdict\"], \"negative_control_verdict\": z3_row[\"wrong_half_angle_not_minus_status\"], \"erase_flip_verdict\": z3_row[\"drop_spinor_step_binding_status\"]},\n            \"cvc5\": {\"ran\": True, \"load_bearing\": True, \"verdict\": cvc5_row[\"verdict\"], \"negative_control_verdict\": cvc5_row[\"wrong_half_angle_not_minus_status\"], \"erase_flip_verdict\": cvc5_row[\"drop_spinor_step_binding_status\"]},\n        },\n        \"negative_control_flip\": negative,\n        \"all_pass\": all_pass,\n    }\n\n\ndef main() -> int:\n    result = build_result()\n    RESULT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    RESULT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    print(f\"wrote: {RESULT_PATH}\")\n    print(\n        \"FOUNDATION_R4_SPINOR_HOLONOMY_JAX_DONE \"\n        f\"all_pass={str(result['all_pass']).lower()} \"\n        f\"spinor={result['summary']['spinor_holonomy_scalar']} \"\n        f\"vector={result['summary']['vector_holonomy_trace_half']} \"\n        f\"z3={result['smt']['z3']['verdict']} \"\n        f\"cvc5={result['smt']['cvc5']['verdict']}\"\n    )\n    return 0 if result[\"all_pass\"] else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n\ndeprecated: `[features].codex_hooks` is deprecated. Use `[features].hooks` instead.\nEnable it with `--enable hooks` or `[features].hooks` in config.toml. See https://developers.openai.com/codex/config-basic#feature-flags for details.\ncodex\nVERDICT=GENUINE; LINE=118; REASON=The contradiction is forced from the symbolic matrix product `sum_k step[i,k]*step[k,j]` over solver-bound step entries, while dropping that binding leaves the negated product constraint satisfiable.\ntokens used\n27,936\n"
+  },
+  "alt_views": {
+    "grok420": {
+      "model_id": "grok-4.20-0309-reasoning",
+      "response_id": "9fe0dd79-7137-9b59-b6b4-1c0d99c4649b",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=4; REASON=product expr is built via in-solver z3/cvc5 Sum/Mult over bound step constants before negated-equality check (negative-control drop flips UNSAT<->SAT)."
+    },
+    "grok43": {
+      "model_id": "grok-4.3",
+      "response_id": "675d5b5c-7ea2-937a-8448-a4fe70014ae6",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=155; REASON=Solver builds product via z3_product/cvc5_product over bound step entries then negates target equality, so UNSAT derives from in-solver arithmetic rather than a pre-asserted scalar.\n\n(The negative-control drop of only the bind step flips to SAT exactly because the product term is no longer forced.)"
+    },
+    "gemini": {
+      "model_id": "gemini-3.1-pro-preview",
+      "response_id": "EC4marqNAabU_uMP37LRqA4",
+      "verdict": "GENUINE",
+      "raw": "VERDICT=GENUINE; LINE=119; REASON=The solver natively derives the ordered product by computing the matrix multiplication entirely inside Z3 using symbolic algebraic operations over bound integer step entries."
+    }
+  }
+}

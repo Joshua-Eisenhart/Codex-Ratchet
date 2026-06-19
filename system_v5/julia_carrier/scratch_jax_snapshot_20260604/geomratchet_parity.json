@@ -1,0 +1,380 @@
+{
+  "object_id": "geomratchet_parity_v1",
+  "julia_results_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/geomratchet_julia_results.json",
+  "jax_results_path": "/tmp/geomratchet_jax_results.json",
+  "parity_ok": true,
+  "parity_status": "HOLDS",
+  "parity_per_rung": {
+    "G1": {
+      "checks": [
+        {
+          "name": "G1.all_pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G1.f01_finite",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.L_rounded",
+          "kind": "equal",
+          "julia": -1.0,
+          "jax": -1,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.R_rounded",
+          "kind": "equal",
+          "julia": 1.0,
+          "jax": 1,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.L_raw",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": -0.9986320330543416,
+          "jax": -0.998632033054343,
+          "delta": 1.4432899320127035e-15,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.R_raw",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": 0.9986320330543401,
+          "jax": 0.9986320330543391,
+          "delta": 9.992007221626409e-16,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.opposite_sign",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G1.chern_number.magnitude_ok",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G1.gamma5_split.pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        }
+      ],
+      "agree": true
+    },
+    "G2": {
+      "checks": [
+        {
+          "name": "G2.all_pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.f01_finite",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.weyl_sector_dims.dim_L",
+          "kind": "equal",
+          "julia": 2,
+          "jax": 2,
+          "ok": true
+        },
+        {
+          "name": "G2.weyl_sector_dims.dim_R",
+          "kind": "equal",
+          "julia": 2,
+          "jax": 2,
+          "ok": true
+        },
+        {
+          "name": "G2.projector_check.pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.decomposability.decomposable_Spin4_isoSU2xSU2",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.decomposability.su2L_structure",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.decomposability.su2R_structure",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G2.wrong_structure_control.random_gens_not_product_form",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        }
+      ],
+      "agree": true
+    },
+    "G3": {
+      "checks": [
+        {
+          "name": "G3.all_pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G3.f01_finite",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G3.clifford_ok",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G3.gamma7_ok",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G3.weyl_sector_dims.dim_L",
+          "kind": "equal",
+          "julia": 4,
+          "jax": 4,
+          "ok": true
+        },
+        {
+          "name": "G3.weyl_sector_dims.dim_R",
+          "kind": "equal",
+          "julia": 4,
+          "jax": 4,
+          "ok": true
+        },
+        {
+          "name": "G3.irreducibility.commutant_dim_L",
+          "kind": "equal",
+          "julia": 1,
+          "jax": 1,
+          "ok": true
+        },
+        {
+          "name": "G3.irreducibility.commutant_dim_R",
+          "kind": "equal",
+          "julia": 1,
+          "jax": 1,
+          "ok": true
+        },
+        {
+          "name": "G3.wrong_structure_control.G2_L_reducible",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        }
+      ],
+      "agree": true
+    },
+    "G4": {
+      "checks": [
+        {
+          "name": "G4.all_pass",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.f01_finite",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.inter_shell_distinguishability.shells_distinguishable_f01",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.inter_shell_distinguishability.mean_trace_distance",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": 0.2563561681124318,
+          "jax": 0.2563561681124319,
+          "delta": 1.1102230246251565e-16,
+          "ok": true
+        },
+        {
+          "name": "G4.inter_shell_distinguishability.max_trace_distance",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": 0.4999999999999999,
+          "jax": 0.49999999999999994,
+          "delta": 5.551115123125783e-17,
+          "ok": true
+        },
+        {
+          "name": "G4.inter_shell_distinguishability.min_trace_distance",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": 8.203578021122302e-18,
+          "jax": 8.203578021122308e-18,
+          "delta": 6.162975822039155e-33,
+          "ok": true
+        },
+        {
+          "name": "G4.gauss_linking_number.rounded",
+          "kind": "equal",
+          "julia": -1.0,
+          "jax": -1.0,
+          "ok": true
+        },
+        {
+          "name": "G4.gauss_linking_number.computed",
+          "kind": "close",
+          "tol": 1e-09,
+          "julia": -1.0000000000000107,
+          "jax": -1.000000000000011,
+          "delta": 4.440892098500626e-16,
+          "ok": true
+        },
+        {
+          "name": "G4.gauss_linking_number.nontrivial",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.gauss_linking_number.ctrl_unlinked",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.nesting_constraint.shells_distinct",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        },
+        {
+          "name": "G4.boundary_control.same_shell_zero_dist",
+          "kind": "equal",
+          "julia": true,
+          "jax": true,
+          "ok": true
+        }
+      ],
+      "agree": true
+    }
+  },
+  "summary_checks": [
+    {
+      "name": "summary.G1_all_pass",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.G2_all_pass",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.G3_all_pass",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.G4_all_pass",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.all_rungs_pass",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.chirality_first_at_dim8",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.g2_decomposable",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    },
+    {
+      "name": "summary.g4_nesting_survives",
+      "kind": "equal",
+      "julia": true,
+      "jax": true,
+      "ok": true
+    }
+  ],
+  "named_invariant_check_count": 47,
+  "named_invariant_failures": [],
+  "max_delta_summary": {
+    "chern_raw_max": 1.4432899320127035e-15,
+    "linking": 4.440892098500626e-16
+  },
+  "rng_control_values_not_scalar_compared": true,
+  "rng_control_note": "JAX explicit PRNG keys replace plain NumPy RNG; random-control magnitudes are not expected to match Julia MersenneTwister, only their named pass/invariant booleans are compared."
+}

@@ -1,0 +1,501 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "prediction_policy_search": "load_bearing",
+    "render_layer_readout_v1_common": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "load-bearing: G.2a post-audit-idempotent builder/audit boundary",
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing: independent finite winner relation check",
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive: source locks and stable row hashes",
+      "used": true
+    },
+    "json": {
+      "reason": "supportive: result emission",
+      "used": true
+    },
+    "prediction_policy_search": {
+      "reason": "load-bearing: searches QIT render gains and fair classical predictor policies",
+      "used": true
+    },
+    "render_layer_readout_v1_common": {
+      "reason": "load-bearing: rebuilds the committed v1 render/error/update carrier and edge family",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing: proves the finite winner relation and positive baseline-win predicate shape",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "prediction-first lower-error discriminator outcome on this committed v1 edge family",
+    "two-sided searched comparison under the pinned metric"
+  ],
+  "authority": {
+    "ecd05_reopen_lessons_applied": [
+      "both sides searched",
+      "trivially injective readouts penalized by diversity-normalized adjusted error",
+      "diversity/error normalized comparisons reported"
+    ],
+    "registry_row": "ECD.06 prediction-first inference engine",
+    "render_v1_consumed_only_as": "two-sided own-readout-family diagnostic; no stable 3-cell invariant consumed",
+    "two_sided_fair_baseline_contract": true,
+    "upstream_hash_hints": {
+      "ecd_registry": "7c3f4b48d",
+      "ecd_supplement_1": "cba57dbab",
+      "render_layer_readout_v1_audit": "ce1a91b28",
+      "render_layer_readout_v1_common": "ce1a91b28"
+    }
+  },
+  "baseline_side_summary": {
+    "best_fair_adjusted_error": 1.573328909229,
+    "best_fair_policy_id": "global_empirical_one_step_mean",
+    "best_raw_policy_id": "mandatory_persistence_identity_inclusive_diagnostic"
+  },
+  "build_gates": {
+    "base_pass": true,
+    "baseline_positive_predicate": true,
+    "boundary_helper_ok": true,
+    "jax_lane_pass": true,
+    "jax_pytorch_discriminator_match": true,
+    "julia_lane_pass": true,
+    "no_identity_leak_pass": true,
+    "pytorch_lane_pass": true,
+    "scratch_no_promotion": true
+  },
+  "claim": "ECD.06 prediction-first typed-error discriminator over committed render v1 edge trajectories",
+  "claim_ceiling": "scratch_diagnostic",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch.func",
+    "torch_geometric"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "dropped_half_sensitivity_both_sides": {
+      "first_generator_half": {
+        "baseline_best_fair_policy_id": "searched_policy_class_generator_family_mean",
+        "discriminator": {
+          "baseline_best_fair_adjusted_error": 1.585588163819,
+          "either_outcome_valid": true,
+          "lower_error_winner": "qit",
+          "qit_best_adjusted_error": 0.404955999025,
+          "qit_minus_baseline_adjusted_error_margin": -1.180632164794,
+          "verdict": "SURVIVES_v0"
+        },
+        "qit_best_policy_id": "qit_prediction_first_render_gain_1.00",
+        "row_count": 99
+      },
+      "second_generator_half": {
+        "baseline_best_fair_policy_id": "searched_policy_class_generator_family_mean",
+        "discriminator": {
+          "baseline_best_fair_adjusted_error": 1.762122360448,
+          "either_outcome_valid": true,
+          "lower_error_winner": "qit",
+          "qit_best_adjusted_error": 0.31084353596,
+          "qit_minus_baseline_adjusted_error_margin": -1.451278824488,
+          "verdict": "SURVIVES_v0"
+        },
+        "qit_best_policy_id": "qit_prediction_first_render_gain_1.00",
+        "row_count": 99
+      }
+    },
+    "no_identity_leak": {
+      "best_identity_excluded_predictor": "generator_majority_or_global_majority_error_label",
+      "excluded_fields": [
+        "src",
+        "dst",
+        "source_coord",
+        "realized_coord",
+        "row_id",
+        "direct_prediction_code"
+      ],
+      "identity_inclusive_best_accuracy": 0.212121212121,
+      "identity_leak_detected": false,
+      "identity_leak_excluded_best_accuracy": 0.782828282828,
+      "identity_leak_exclusion_rule": "fair predictors exclude cell id, coordinate tuple, direct output fingerprint, source/destination row id, and equivalent row identifiers; generator alphabet and aggregate training frequencies remain allowed",
+      "status": "pass"
+    },
+    "order_blind_collapse": {
+      "adjusted_error": 1.573328909229,
+      "collapses_order_and_generator_to_global_mean": true,
+      "control": "order_blind_collapse",
+      "policy_table_sha256": "a209baa024f9136ab84854cb48d065961ab8d5cc55f4cfe7596123330b85394e",
+      "unique_prediction_codes": 1
+    },
+    "scrambled_error_regression": {
+      "base_margin": -1.222246489449,
+      "control": "scrambled_error_regression",
+      "margin_moved": true,
+      "scrambled_discriminator": {
+        "baseline_best_fair_adjusted_error": 0.322635993741,
+        "either_outcome_valid": true,
+        "lower_error_winner": "baseline",
+        "qit_best_adjusted_error": 0.434440678208,
+        "qit_minus_baseline_adjusted_error_margin": 0.111804684467,
+        "verdict": "DIES_v0"
+      },
+      "scrambled_margin": 0.111804684467,
+      "seed": 20260612
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "baseline_scaled_error": 1573328909,
+      "claim": "finite scaled adjusted-error winner relation agrees with discriminator",
+      "load_bearing": true,
+      "qit_scaled_error": 351082420,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "baseline_scaled_error": 1573328909,
+      "claim": "finite scaled adjusted-error winner relation agrees with discriminator",
+      "load_bearing": true,
+      "qit_scaled_error": 351082420,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "holodeck admission",
+    "FEP admission",
+    "physics admission",
+    "QIT-engine admission",
+    "formal admission",
+    "canonical by process",
+    "stable 3-cell invariant",
+    "Axis-0 admission",
+    "manifold or bridge claim"
+  ],
+  "discriminator": {
+    "baseline_best_fair_adjusted_error": 1.573328909229,
+    "either_outcome_valid": true,
+    "lower_error_winner": "qit",
+    "qit_best_adjusted_error": 0.35108241978,
+    "qit_minus_baseline_adjusted_error_margin": -1.222246489449,
+    "verdict": "SURVIVES_v0"
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 1.222246489449,
+      "julia": 0.0,
+      "pytorch": 1.222246489449
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver independent finite adjusted-error winner relation",
+        "networkx": "nx.DiGraph finite edge-family smoke for committed trajectory topology",
+        "sympy": "sp.Rational exact scalar smoke for typed-error aggregation binding",
+        "z3": "z3.Solver finite adjusted-error winner relation"
+      },
+      "package_smoke": {
+        "cvc5_ready": true,
+        "jax_enable_x64": true,
+        "jax_norm": 3.7416573867739413,
+        "networkx_edges": 2,
+        "sympy_rational": "1",
+        "z3_check": "sat"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ecd06_prediction_first_inference_v0/results/ecd06_prediction_first_inference_v0_jax_results.json",
+      "result_sha256": "09cc640334f7000299da959a882a37e61814f2d42378a6f6dd1df95073fc5dac",
+      "role_id": "ecd06_prediction_first_inference_v0_jax_builder",
+      "source_path": "system_v6/sims/ecd06_prediction_first_inference_v0/ecd06_prediction_first_inference_v0_jax.py",
+      "source_sha256": "ecf36468801f78fa62376f6a38be4ee9f7e5eb66be7a557c2fdc2862887ff3fd"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "Graphs",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph finite structural smoke for trajectory topology",
+        "Z3": "Z3.Solver finite adjusted-error inequality smoke"
+      },
+      "package_smoke": {
+        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "graphs_edges": 2,
+        "graphs_vertices": 3,
+        "z3_check": "sat"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ecd06_prediction_first_inference_v0/results/ecd06_prediction_first_inference_v0_julia_results.json",
+      "result_sha256": "5c75af7402e70804d6476102a21ff07d17b23c424624d9f5b22bf949c2323789",
+      "role_id": "ecd06_prediction_first_inference_v0_julia_graphs_z3_builder",
+      "source_path": "system_v6/sims/ecd06_prediction_first_inference_v0/ecd06_prediction_first_inference_v0_julia.jl",
+      "source_sha256": "6a44f76303bec7836c5ad5e322974a0c7935cf6a102a30bb27ff5db1571df234"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver independent finite adjusted-error winner relation",
+        "sympy": "sp.Rational exact scalar smoke for typed-error aggregation binding",
+        "torch.func": "torch.func.vmap finite tensor transform smoke for prediction-vector lane",
+        "torch_geometric": "torch_geometric.data.Data finite graph carrier smoke for edge-index style",
+        "z3": "z3.Solver finite adjusted-error winner relation"
+      },
+      "package_smoke": {
+        "cvc5_ready": true,
+        "sympy_rational": "1",
+        "torch_dtype": "torch.float64",
+        "torch_func_vmap_sum": 14.0,
+        "torch_geometric_num_nodes": 3,
+        "z3_check": "sat"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ecd06_prediction_first_inference_v0/results/ecd06_prediction_first_inference_v0_pytorch_results.json",
+      "result_sha256": "83d9b9dbe0d8cebd73c91658876061d83196296c30345d7bbc4056ef394bbcbd",
+      "role_id": "ecd06_prediction_first_inference_v0_pytorch_builder",
+      "source_path": "system_v6/sims/ecd06_prediction_first_inference_v0/ecd06_prediction_first_inference_v0_pytorch.py",
+      "source_sha256": "789ee6cbdb32e22046da6f72e271bfa1d4ba628733e631dedc7c94f96ed93972"
+    }
+  },
+  "file_disjoint_packet": true,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T10:21:49Z",
+  "metric_pin": {
+    "aggregation": "mean normalized typed components plus diversity penalty",
+    "diversity_penalty": 0.05,
+    "normalization_scales": {
+      "direction_abs": 0.361052168061,
+      "orthogonal_residual": 0.289317356131,
+      "trace_norm": 0.361052168061
+    },
+    "penalizes_trivially_injective_readouts_both_sides": true,
+    "typed_components": [
+      "trace_norm",
+      "direction_abs",
+      "orthogonal_residual"
+    ]
+  },
+  "mode": "all_three_full_sims",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "ecd06_prediction_first_inference_v0",
+  "parent_lineage": {
+    "ecd_registry": "system_v6/receipts/engine_capability_differentiators_20260612.md",
+    "ecd_supplement_1": "system_v6/receipts/ecd_registry_supplement_1_20260612.md",
+    "render_layer_readout_v1": "system_v6/sims/render_layer_readout_v1/results/render_layer_readout_v1_envelope_results.json"
+  },
+  "promotion_allowed": false,
+  "qit_side_summary": {
+    "best_adjusted_error": 0.35108241978,
+    "best_policy_id": "qit_prediction_first_render_gain_1.00"
+  },
+  "result_path": "system_v6/sims/ecd06_prediction_first_inference_v0/results/ecd06_prediction_first_inference_v0_envelope_results.json",
+  "schema": "ecd06_prediction_first_inference_v0_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "ecd06_prediction_first_inference_v0",
+  "source_locks": {
+    "audit_standards_codex": {
+      "exists": true,
+      "git_last_commit": "443e474b2",
+      "path": "system_v6/receipts/audit_standards_codex_v1.md",
+      "role": "audit_standards_codex",
+      "sha256": "6ed5b840a94eb43a08204b408c3efd1d86124f9af7fc4105bbc190924e8a3f27"
+    },
+    "ecd_registry": {
+      "exists": true,
+      "git_last_commit": "7c3f4b48d",
+      "path": "system_v6/receipts/engine_capability_differentiators_20260612.md",
+      "role": "ecd_registry",
+      "sha256": "7df654811f859bf9c26208940ac4cfc0f4770b7937d105a9c7f4d6ccc15464fe",
+      "user_supplied_hash_hint": "7c3f4b48d"
+    },
+    "ecd_supplement_1": {
+      "exists": true,
+      "git_last_commit": "9d250d266",
+      "path": "system_v6/receipts/ecd_registry_supplement_1_20260612.md",
+      "role": "ecd_supplement_1",
+      "sha256": "b288a39a7983edd51a223b9f4380ee3d17ca883487969f19929d58ee31be72f6",
+      "user_supplied_hash_hint": "cba57dbab"
+    },
+    "holodeck_render_doctrine": {
+      "exists": true,
+      "git_last_commit": "ce1a91b28",
+      "path": "system_v6/receipts/owner_doctrine_holodeck_render_layer_20260612.md",
+      "role": "holodeck_render_doctrine",
+      "sha256": "ceff238b175c9767156fe79a6e3e4e3b059501ec28b13aa7feab4975868ee42d"
+    },
+    "render_layer_readout_v1_audit": {
+      "exists": true,
+      "git_last_commit": "ce1a91b28",
+      "path": "system_v6/sims/render_layer_readout_v1/audit_verdict.md",
+      "role": "render_layer_readout_v1_audit",
+      "sha256": "b7358d9b9479c8e9c38882746279996ac892f8568c2d8328f202a1717c24857b",
+      "user_supplied_hash_hint": "ce1a91b28"
+    },
+    "render_layer_readout_v1_common": {
+      "exists": true,
+      "git_last_commit": "ce1a91b28",
+      "path": "system_v6/sims/render_layer_readout_v1/render_layer_readout_v1_common.py",
+      "role": "render_layer_readout_v1_common",
+      "sha256": "63b94447c1e22854fa8a1d23952c40f222e625608bae1d6ca91f4bdae36269a1",
+      "user_supplied_hash_hint": "ce1a91b28"
+    }
+  },
+  "source_path": "system_v6/sims/ecd06_prediction_first_inference_v0/ecd06_prediction_first_inference_v0_envelope.py",
+  "source_sha256": "5c8b4f77760162d3400ffa8ddf751ff901d42e66f9ffc6ce4334c39f1be32282",
+  "stability_pairs": [
+    {
+      "hash": "44fa5cb5071fdb3d4d8234835fd9c051fc1ee8b2b090e462737070cc7008fb30",
+      "subtree": "base_result"
+    },
+    {
+      "hash": "09cc640334f7000299da959a882a37e61814f2d42378a6f6dd1df95073fc5dac",
+      "subtree": "jax_result"
+    },
+    {
+      "hash": "83d9b9dbe0d8cebd73c91658876061d83196296c30345d7bbc4056ef394bbcbd",
+      "subtree": "pytorch_result"
+    },
+    {
+      "hash": "5c75af7402e70804d6476102a21ff07d17b23c424624d9f5b22bf949c2323789",
+      "subtree": "julia_result"
+    }
+  ],
+  "stability_rows": {
+    "dropped_half_sensitivity_both_sides": {
+      "first_generator_half": {
+        "baseline_best_fair_policy_id": "searched_policy_class_generator_family_mean",
+        "discriminator": {
+          "baseline_best_fair_adjusted_error": 1.585588163819,
+          "either_outcome_valid": true,
+          "lower_error_winner": "qit",
+          "qit_best_adjusted_error": 0.404955999025,
+          "qit_minus_baseline_adjusted_error_margin": -1.180632164794,
+          "verdict": "SURVIVES_v0"
+        },
+        "qit_best_policy_id": "qit_prediction_first_render_gain_1.00",
+        "row_count": 99
+      },
+      "second_generator_half": {
+        "baseline_best_fair_policy_id": "searched_policy_class_generator_family_mean",
+        "discriminator": {
+          "baseline_best_fair_adjusted_error": 1.762122360448,
+          "either_outcome_valid": true,
+          "lower_error_winner": "qit",
+          "qit_best_adjusted_error": 0.31084353596,
+          "qit_minus_baseline_adjusted_error_margin": -1.451278824488,
+          "verdict": "SURVIVES_v0"
+        },
+        "qit_best_policy_id": "qit_prediction_first_render_gain_1.00",
+        "row_count": 99
+      }
+    },
+    "full": {
+      "baseline_best_fair_adjusted_error": 1.573328909229,
+      "either_outcome_valid": true,
+      "lower_error_winner": "qit",
+      "qit_best_adjusted_error": 0.35108241978,
+      "qit_minus_baseline_adjusted_error_margin": -1.222246489449,
+      "verdict": "SURVIVES_v0"
+    }
+  },
+  "trajectory_pin": {
+    "row_count": 198,
+    "row_table_sha256": "0d2e8db9419bf37dbdee5c2bd548812e8f441658510a0cd65b7072720dd673b3",
+    "trajectory_family": "all committed render_layer_readout_v1 carrier edges",
+    "uses_exact_3_cell_set_invariant": false
+  }
+}

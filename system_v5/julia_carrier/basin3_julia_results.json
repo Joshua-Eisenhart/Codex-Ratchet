@@ -1,0 +1,226 @@
+{
+  "blocked_consumers": [
+    "layer-completion / manifold admission",
+    "coupling / coexistence / nesting promotion",
+    "bridge / rho_AB / Xi / Phi0 / Axis0",
+    "flux / FEP / physics"
+  ],
+  "candidate_distinct_matched": true,
+  "claim_ceiling": "exploration_probe — promotion_allowed: false",
+  "classification": "exploration_probe",
+  "corrupt_frac": 0.3,
+  "dimension_match_statement": "Models 1 and 2 have identical per-neuron carrier R^4 (unit quaternion in S^3); model 3 has R^2 active DOF; model 4 has R^1. Comparison of candidate vs. neg_nonchiral is at IDENTICAL per-neuron dimension — the fair test v2 lacked.",
+  "finite_map": {
+    "codomain": "recalled attractor state, basin label, recall_accuracy, L/R Hilbert-Schmidt divergence at matched dim",
+    "domain": "M stored patterns (each: N=12 unit quaternions or chiral L/R pairs); N_SEEDS initial states per M value",
+    "f01": "finite stored-pattern set M in {2,3,4,8}, finite initial-state set (N_SEEDS=80), finite recall budget (MAX_ITER=200)",
+    "n01": "Hamilton quaternion product is noncommutative; chiral weight sign distinguishes model 1 from model 2 at identical DOF"
+  },
+  "genuine_multistability": true,
+  "lr_div_at_matched_dim": {
+    "mean_W_L_vs_R_HS_chiral": 28.040891642962265,
+    "mean_W_L_vs_R_HS_nonchiral": 28.040891642962265,
+    "note": "W_L and W_R assembled from same patterns; chiral sign flip creates structural asymmetry in the chiral model but NOT in the nonchiral model",
+    "survives": true
+  },
+  "m_values": [
+    2,
+    3,
+    4,
+    8
+  ],
+  "models": [
+    "candidate_chiral_LR_weyl_quaternion_N12",
+    "neg_nonchiral_quaternion_same_dim_N12",
+    "neg_realvec_real_quaternion_same_dim_N12",
+    "neg_classical_scalar_commuting_N12"
+  ],
+  "n01_check": {
+    "commutator_norm": 2.0,
+    "passed": true,
+    "statement": "Hamilton product i*j != j*i (noncommutative)"
+  },
+  "n_neurons": 12,
+  "n_seeds": 80,
+  "object_id": "basin3_hopfield_chiral_quaternion_network",
+  "open_issues": [
+    "Size ladder over N (8/12/16/32 neurons at fixed M=3) not run in this probe — needed for capacity scaling claims",
+    "L/R HS divergence measures W-structural asymmetry, not recall-path divergence; a proper L/R recall trace comparison is pending",
+    "Chiral recall dynamics use L-sector as primary visible state; the interplay of L and R sectors in the update rule may need refinement",
+    "Classical model (model 4) uses scalar projection — DOF reduction is intentional (N01 kill); lower DOF is the consequence, not the cause"
+  ],
+  "per_M_results": [
+    {
+      "M": 2,
+      "candidate_distinct_at_matched_dim": false,
+      "chance": 0.5,
+      "chiral": {
+        "mean_recall_overlap": 0.5854727470212986,
+        "n_basins_found": 2.0,
+        "recall_accuracy": 0.875
+      },
+      "classical": {
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0,
+        "recall_accuracy": 0.5
+      },
+      "genuine_multistable_at_M": false,
+      "lr_hs_divergence_chiral": 22.67103010101014,
+      "nonchiral": {
+        "mean_recall_overlap": 0.5950030203943687,
+        "n_basins_found": 2.0,
+        "recall_accuracy": 0.95
+      },
+      "realvec": {
+        "mean_recall_overlap": 0.8511684092174991,
+        "n_basins_found": 2.0,
+        "recall_accuracy": 0.925
+      }
+    },
+    {
+      "M": 3,
+      "candidate_distinct_at_matched_dim": true,
+      "chance": 0.3333333333333333,
+      "chiral": {
+        "mean_recall_overlap": 0.5457319987744013,
+        "n_basins_found": 3.0,
+        "recall_accuracy": 0.8333333333333334
+      },
+      "classical": {
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0,
+        "recall_accuracy": 0.3333333333333333
+      },
+      "genuine_multistable_at_M": true,
+      "lr_hs_divergence_chiral": 28.390081105875385,
+      "nonchiral": {
+        "mean_recall_overlap": 0.5883941318363984,
+        "n_basins_found": 3.0,
+        "recall_accuracy": 0.7638888888888888
+      },
+      "realvec": {
+        "mean_recall_overlap": 0.8074583742820792,
+        "n_basins_found": 3.0,
+        "recall_accuracy": 0.611111111111111
+      }
+    },
+    {
+      "M": 4,
+      "candidate_distinct_at_matched_dim": false,
+      "chance": 0.25,
+      "chiral": {
+        "mean_recall_overlap": 0.5795624534817748,
+        "n_basins_found": 4.0,
+        "recall_accuracy": 0.828125
+      },
+      "classical": {
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0,
+        "recall_accuracy": 0.25
+      },
+      "genuine_multistable_at_M": true,
+      "lr_hs_divergence_chiral": 31.530913923395193,
+      "nonchiral": {
+        "mean_recall_overlap": 0.5466191599979133,
+        "n_basins_found": 4.0,
+        "recall_accuracy": 0.828125
+      },
+      "realvec": {
+        "mean_recall_overlap": 0.8055344537260676,
+        "n_basins_found": 4.0,
+        "recall_accuracy": 0.5
+      }
+    },
+    {
+      "M": 8,
+      "candidate_distinct_at_matched_dim": false,
+      "chance": 0.125,
+      "chiral": {
+        "mean_recall_overlap": 0.5131536929484509,
+        "n_basins_found": 8.0,
+        "recall_accuracy": 0.453125
+      },
+      "classical": {
+        "mean_recall_overlap": 1.0,
+        "n_basins_found": 1.0,
+        "recall_accuracy": 0.125
+      },
+      "genuine_multistable_at_M": true,
+      "lr_hs_divergence_chiral": 46.8625864031177,
+      "nonchiral": {
+        "mean_recall_overlap": 0.5186861051406219,
+        "n_basins_found": 8.0,
+        "recall_accuracy": 0.546875
+      },
+      "realvec": {
+        "mean_recall_overlap": 0.7742899447707248,
+        "n_basins_found": 8.0,
+        "recall_accuracy": 0.296875
+      }
+    }
+  ],
+  "per_model_summary": {
+    "chiral": 0.875,
+    "classical": 0.5,
+    "nonchiral": 0.95,
+    "realvec": 0.925
+  },
+  "promotion_allowed": false,
+  "recall_accuracy": 0.875,
+  "seed": 20260603,
+  "timestamp": "2026-06-03T23:54:23.617",
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "Dates": {
+      "reason": "timestamps result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes result artifact for JAX audit lane",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "executes finite map, Hamilton product, basin recall, result emission; removing flips all verdicts",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "quaternion matrix realization, HS norm, weight assembly; removing flips recall verdict",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Random": {
+      "reason": "seeded random patterns and warm-start corruptions; removing changes measured signatures",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Statistics": {
+      "reason": "mean/std for recall accuracy and overlap aggregates",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "version": "3.0",
+  "warm_trials": 8,
+  "wrong_structure_control": {
+    "basin_label": 1,
+    "control_fires": true,
+    "interpretation": "zero-start does not cleanly converge to stored pattern (PASS)",
+    "zero_start_overlap": 0.4338148016159122
+  }
+}

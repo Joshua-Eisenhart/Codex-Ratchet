@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 
-REPO = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+REPO = Path(__file__).resolve().parents[1]
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 VERIFY_SCRIPT = REPO / "scripts" / "verify_load_bearing_has_capability_probe.py"

@@ -1,0 +1,81 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact tower count identities",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor storage and boolean reductions",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing batched exact/probe compatibility masks",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "pytorch",
+  "exact_orphan_2q_count": 288,
+  "exact_tower_cardinality": 256,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-13T01:23:53Z",
+  "package_observables": {
+    "sympy": "sp.Rational exact guard for exact/probe compatible counts and orphan partitions",
+    "torch.func": "vmap(row_counts)(A_coords, B_coords, A_probe_sigs, B_probe_sigs) computes exact/probe compatibility masks"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "probe_orphan_2q_count": 80,
+  "probe_tower_cardinality": 1856,
+  "product_exact_subtower_count": 256,
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_nesting_tower_le2q_v0/results/gcm_nesting_tower_le2q_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "gcm_nesting_tower_le2q_v0",
+  "source_path": "system_v6/sims/gcm_nesting_tower_le2q_v0/gcm_nesting_tower_le2q_v0_pytorch.py",
+  "source_sha256": "e247175473442470c00a772b2d103cc9ca28155d3a2d4220f2dc57fbd40e4bdc",
+  "sympy_guard": {
+    "counts": {
+      "exact": "256",
+      "exact_orphans": "288",
+      "probe": "464",
+      "probe_orphans": "80",
+      "product_exact": "256",
+      "two_q": "544"
+    },
+    "pass": true
+  },
+  "torch_vmap_receipt": {
+    "entangled_probe_compatible_2q_count": 16,
+    "exact_orphan_2q_count": 288,
+    "exact_tower_cardinality": 256,
+    "finite": true,
+    "max_probe_triples_per_row": 4,
+    "probe_compatible_2q_count": 464,
+    "probe_orphan_2q_count": 80,
+    "probe_tower_cardinality": 1856,
+    "product_exact_subtower_count": 256,
+    "two_q_survivor_count": 544
+  }
+}

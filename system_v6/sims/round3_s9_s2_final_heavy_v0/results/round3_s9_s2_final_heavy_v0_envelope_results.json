@@ -1,0 +1,1272 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "DifferentialEquations": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "diffrax": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_INTENT_MATRIX_decision": {
+    "engine_mode": "all_three_final_heavy_symbolic_transport",
+    "jax": "SymPy exact path-ordered quaternion signatures/S2 weights, diffrax anchor-loop control, z3/cvc5 polarity",
+    "julia": "DifferentialEquations anchor-loop ODE control plus Z3 finite witness polarity",
+    "pytorch": "torch.func tensorized leaf sweep and jacrev sensitivity plus SymPy exact S2 mirror"
+  },
+  "TOOL_MANIFEST": {
+    "DifferentialEquations": {
+      "reason": "load-bearing ODE anchor-loop transport control",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite witness polarity proof",
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard controller envelope construction",
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT polarity for computed transport witness",
+      "used": true
+    },
+    "diffrax": {
+      "reason": "load-bearing ODE transport control for the anchor loop",
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact symbolic transport signatures and S2 union rows",
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing tensorized leaf sweep and sensitivity of S9 transport signature",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT polarity for computed transport/validity witnesses",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "S9.R3.5 separates under the pinned path-ordered transport convention by exact leaf-by-leaf loop signatures",
+    "the S9 deliberate gauge-reparameterization alias remains an alias under transport",
+    "the three registered S2 finite leaf unions are valid conditioning objects before flux and match committed annular-Stokes anchor rows",
+    "the invalid overlapping/duplicate S2 cover control fails before flux",
+    "SMT rows bind computed S9 loop-gap and S2 validity witnesses with erased flips"
+  ],
+  "boundary": {
+    "builder_file_boundary": "builder did not create audit_verdict.md; self-assessment belongs in builder_self_assessment.md",
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "promotion_allowed": false,
+    "s2_scope": "finite distinct nonboundary fixed-eta leaf unions only",
+    "s9_convention": "excluded-under-pinned-path-ordered-transport-convention; reopenable under convention/calibration change"
+  },
+  "build_gates": {
+    "build_card_copied": true,
+    "classification_ceiling": true,
+    "jax_lane_pass": true,
+    "julia_lane_pass": true,
+    "julia_z3_agrees": true,
+    "no_builder_audit_verdict": true,
+    "pytorch_lane_pass": true,
+    "s2_invalid_control_fails": true,
+    "s2_three_valid_unions": true,
+    "s9_alias_control_pass_all_lanes": true,
+    "s9_row_final_verdict": true,
+    "smt_flips_sat": true,
+    "smt_positive_unsat": true
+  },
+  "claim": "Round-3 final heavy packet over exactly S9.R3.5 path-ordered transport loops and S2.R3.5 boundary-conditioning validity-first unions.",
+  "claim_path_tools": [
+    "DifferentialEquations",
+    "Z3",
+    "sympy",
+    "diffrax",
+    "z3",
+    "cvc5",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "independent finite integer binding of S9 theta-gap witness",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "witness_values": {
+        "s9_plus_epsilon_pi4_theta_gap": "pi/120",
+        "scaled_by_120": 1
+      }
+    },
+    "julia_z3": {
+      "claim": "Julia Z3 binds the finite S9 transport theta-gap witness and erased flip",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "witness_values": {
+        "s9_plus_epsilon_pi4_theta_gap": "pi/120",
+        "scaled_by_120": 1
+      }
+    },
+    "z3": {
+      "claim": "computed S9 transport theta gap and S2 invalid-cover verdict cannot both be erased",
+      "flip_control": "erased transport gap makes the disjunction SAT",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "positive_case": "forcing alias gap zero or invalid duplicate validity is UNSAT under computed values",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "witness_values": {
+        "invalid_duplicate_union_validity": false,
+        "s9_plus_epsilon_pi4_theta_gap": "pi/120",
+        "s9_scaled_gap": 1
+      }
+    }
+  },
+  "disallowed_claims": [
+    "global S9 uniqueness",
+    "convention-independent S9 exclusion",
+    "arbitrary S2 finite/countable union theorem",
+    "non-leaf, transverse, boundary-leaf, or general-measure conditioning",
+    "formal admission, canonical promotion, bridge/axis/physics claim"
+  ],
+  "divergence": {
+    "engine_values": {
+      "jax": "b00326b772a75469c853e9efcdf3827bcab998f66c3c272ff93c2cec464b633f",
+      "julia": "b00326b772a75469c853e9efcdf3827bcab998f66c3c272ff93c2cec464b633f",
+      "pytorch": "b00326b772a75469c853e9efcdf3827bcab998f66c3c272ff93c2cec464b633f"
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "observable": "row_verdict_table",
+    "verdicts_match": true
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_final_heavy_symbolic_transport",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "diffrax",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "classification": "scratch_diagnostic",
+        "formal_admission_allowed": false,
+        "promotion_allowed": false,
+        "s2_scope": "finite distinct nonboundary fixed-eta leaf unions only; invalid covers do not proceed to flux",
+        "s9_pin_relative": "excluded-under-pinned-path-ordered-transport-convention; reopenable if the transport pin changes"
+      },
+      "claim_path_tools": [
+        "sympy",
+        "diffrax",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "negative": {
+        "s2_invalid_cover_control": {
+          "annular_flux_physical_period": null,
+          "boundary_holonomy_gap": null,
+          "canonical_order": true,
+          "distinct_fixed_eta_leaves": false,
+          "flux_compared": false,
+          "labels": [
+            "pi/6",
+            "pi/6"
+          ],
+          "nonboundary": true,
+          "stokes_defect": null,
+          "union_id": "invalid.overlapping_duplicate_pi6",
+          "valid": false,
+          "verdict": "invalid-cover-fails-before-flux",
+          "weights": [],
+          "weights_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)"
+        },
+        "s9_candidate_variants": [
+          {
+            "c1_same_as_anchor": true,
+            "f_expr": "(sin(2*eta)**2 + 20*cos(2*eta))/20",
+            "first_path_ordered_transport_witness": {
+              "anchor_commutator_gap_squared": "1",
+              "anchor_theta": "pi/4",
+              "candidate_commutator_gap_squared": "4*sin(41*pi/160)**4",
+              "candidate_theta": "41*pi/160",
+              "leaf": "pi/6",
+              "theta_gap": "pi/160"
+            },
+            "reopenable_if": "the pinned leaf-by-leaf S9 transport convention or loop calibration changes",
+            "transport_signature": {
+              "0": {
+                "commutator_gap_squared": "9/4",
+                "loop_i_x0x1_holonomy": [
+                  "1/2",
+                  "sqrt(3)/2",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "1/2",
+                  "0",
+                  "sqrt(3)/2",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "1/4",
+                  "sqrt(3)/4",
+                  "sqrt(3)/4",
+                  "3/4"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "1/4",
+                  "sqrt(3)/4",
+                  "sqrt(3)/4",
+                  "-3/4"
+                ],
+                "theta": "pi/3"
+              },
+              "pi/2": {
+                "commutator_gap_squared": "0",
+                "loop_i_x0x1_holonomy": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "theta": "0"
+              },
+              "pi/3": {
+                "commutator_gap_squared": "4*sin(43*pi/480)**4",
+                "loop_i_x0x1_holonomy": [
+                  "cos(43*pi/480)",
+                  "sin(43*pi/480)",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "cos(43*pi/480)",
+                  "0",
+                  "sin(43*pi/480)",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "cos(43*pi/480)**2",
+                  "sin(43*pi/240)/2",
+                  "sin(43*pi/240)/2",
+                  "sin(43*pi/480)**2"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "cos(43*pi/480)**2",
+                  "sin(43*pi/240)/2",
+                  "sin(43*pi/240)/2",
+                  "-sin(43*pi/480)**2"
+                ],
+                "theta": "43*pi/480"
+              },
+              "pi/4": {
+                "commutator_gap_squared": "(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**4/1024",
+                "loop_i_x0x1_holonomy": [
+                  "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))/8",
+                  "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))/8",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))/8",
+                  "0",
+                  "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))/8",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))**2/64",
+                  "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+                  "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+                  "(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**2/64"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))**2/64",
+                  "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+                  "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+                  "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**2/64"
+                ],
+                "theta": "7*pi/40"
+              },
+              "pi/6": {
+                "commutator_gap_squared": "4*sin(41*pi/160)**4",
+                "loop_i_x0x1_holonomy": [
+                  "cos(41*pi/160)",
+                  "sin(41*pi/160)",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "cos(41*pi/160)",
+                  "0",
+                  "sin(41*pi/160)",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "cos(41*pi/160)**2",
+                  "cos(pi/80)/2",
+                  "cos(pi/80)/2",
+                  "sin(41*pi/160)**2"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "cos(41*pi/160)**2",
+                  "cos(pi/80)/2",
+                  "cos(pi/80)/2",
+                  "-sin(41*pi/160)**2"
+                ],
+                "theta": "41*pi/160"
+              }
+            },
+            "variant": "epsilon=1/20",
+            "verdict": "excluded-under-pinned-path-ordered-transport-convention"
+          },
+          {
+            "c1_same_as_anchor": true,
+            "f_expr": "(-sin(2*eta)**2 + 20*cos(2*eta))/20",
+            "first_path_ordered_transport_witness": {
+              "anchor_commutator_gap_squared": "1",
+              "anchor_theta": "pi/4",
+              "candidate_commutator_gap_squared": "4*sin(39*pi/160)**4",
+              "candidate_theta": "39*pi/160",
+              "leaf": "pi/6",
+              "theta_gap": "-pi/160"
+            },
+            "reopenable_if": "the pinned leaf-by-leaf S9 transport convention or loop calibration changes",
+            "transport_signature": {
+              "0": {
+                "commutator_gap_squared": "9/4",
+                "loop_i_x0x1_holonomy": [
+                  "1/2",
+                  "sqrt(3)/2",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "1/2",
+                  "0",
+                  "sqrt(3)/2",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "1/4",
+                  "sqrt(3)/4",
+                  "sqrt(3)/4",
+                  "3/4"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "1/4",
+                  "sqrt(3)/4",
+                  "sqrt(3)/4",
+                  "-3/4"
+                ],
+                "theta": "pi/3"
+              },
+              "pi/2": {
+                "commutator_gap_squared": "0",
+                "loop_i_x0x1_holonomy": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "1",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "theta": "0"
+              },
+              "pi/3": {
+                "commutator_gap_squared": "4*sin(37*pi/480)**4",
+                "loop_i_x0x1_holonomy": [
+                  "cos(37*pi/480)",
+                  "sin(37*pi/480)",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "cos(37*pi/480)",
+                  "0",
+                  "sin(37*pi/480)",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "cos(37*pi/480)**2",
+                  "sin(37*pi/240)/2",
+                  "sin(37*pi/240)/2",
+                  "sin(37*pi/480)**2"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "cos(37*pi/480)**2",
+                  "sin(37*pi/240)/2",
+                  "sin(37*pi/240)/2",
+                  "-sin(37*pi/480)**2"
+                ],
+                "theta": "37*pi/480"
+              },
+              "pi/4": {
+                "commutator_gap_squared": "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**4/67108864",
+                "loop_i_x0x1_holonomy": [
+                  "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))/128",
+                  "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))/128",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))/128",
+                  "0",
+                  "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))/128",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))**2/16384",
+                  "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+                  "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+                  "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**2/16384"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))**2/16384",
+                  "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+                  "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+                  "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**2/16384"
+                ],
+                "theta": "19*pi/120"
+              },
+              "pi/6": {
+                "commutator_gap_squared": "4*sin(39*pi/160)**4",
+                "loop_i_x0x1_holonomy": [
+                  "cos(39*pi/160)",
+                  "sin(39*pi/160)",
+                  "0",
+                  "0"
+                ],
+                "loop_j_x0x2_holonomy": [
+                  "cos(39*pi/160)",
+                  "0",
+                  "sin(39*pi/160)",
+                  "0"
+                ],
+                "path_ordered_product_i_then_j": [
+                  "cos(39*pi/160)**2",
+                  "cos(pi/80)/2",
+                  "cos(pi/80)/2",
+                  "sin(39*pi/160)**2"
+                ],
+                "path_ordered_product_j_then_i": [
+                  "cos(39*pi/160)**2",
+                  "cos(pi/80)/2",
+                  "cos(pi/80)/2",
+                  "-sin(39*pi/160)**2"
+                ],
+                "theta": "39*pi/160"
+              }
+            },
+            "variant": "epsilon=-1/20",
+            "verdict": "excluded-under-pinned-path-ordered-transport-convention"
+          }
+        ]
+      },
+      "package_observables": {
+        "cvc5": "independent finite S9 loop-gap polarity proof with erased flip",
+        "diffrax": "independent ODE anchor-loop transport control with explicit numeric error bound",
+        "sympy": "exact S9 quaternion-exponential loop signatures and S2 disintegration/flux rows",
+        "z3": "finite S9 loop-gap and S2 invalid-cover polarity proof with erased flip"
+      },
+      "packages_used": [
+        "sympy",
+        "diffrax",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib"
+      ],
+      "positive": {
+        "s2_valid_union_count": 3,
+        "s9_anchor_and_alias": {
+          "alias_pass": true,
+          "expr": "1 - 2*sin(eta)^2",
+          "simplifies_to": "cos(2*eta)"
+        }
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_jax_results.json",
+      "result_sha256": "8e3cf084ba64ad0286b44bbd3b65a54df38dc54c10ed31449a6c777b0a6d4704",
+      "role_id": "jax_exact_symbolic_diffrax_smt_lane",
+      "source_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_jax.py",
+      "source_sha256": "3ef9c0c208d6b79b10cb100bbe23a4b9f073ea66600acf99016fe1111a8d09fe",
+      "tool_calls": [
+        {
+          "observable": "exact S9 and S2 row values",
+          "qualified_api": "sp.Rational/sp.simplify/sp.cos/sp.sin",
+          "tool": "sympy"
+        },
+        {
+          "observable": "anchor loop ODE control",
+          "qualified_api": "diffrax.ODETerm/diffrax.diffeqsolve",
+          "tool": "diffrax"
+        },
+        {
+          "observable": "UNSAT/SAT finite witness polarity",
+          "qualified_api": "z3.Solver/check",
+          "tool": "z3"
+        },
+        {
+          "observable": "UNSAT/SAT finite witness polarity",
+          "qualified_api": "cvc5.Solver/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "DifferentialEquations",
+        "Z3"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "strength_label": "Julia reference numeric ODE control plus exact table/SMT rows; no promotion"
+      },
+      "claim_path_tools": [
+        "DifferentialEquations",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "negative": {
+        "s2_invalid_cover_control": {
+          "labels": [
+            "pi/6",
+            "pi/6"
+          ],
+          "reason": "duplicate fixed leaf is an overlapping/non-canonical cover",
+          "union_id": "invalid.overlapping_duplicate_pi6",
+          "valid": false
+        },
+        "s9_rows": [
+          {
+            "anchor_commutator_gap_squared": 2.2499999999999996,
+            "anchor_theta": 1.0471975511965976,
+            "leaf": "0",
+            "minus_commutator_gap_squared": 2.2499999999999996,
+            "minus_theta": 1.0471975511965976,
+            "minus_theta_gap": 0.0,
+            "plus_commutator_gap_squared": 2.2499999999999996,
+            "plus_theta": 1.0471975511965976,
+            "plus_theta_gap": 0.0
+          },
+          {
+            "anchor_commutator_gap_squared": 0.9999999999999996,
+            "anchor_theta": 0.7853981633974483,
+            "leaf": "pi/6",
+            "minus_commutator_gap_squared": 0.9230217016152981,
+            "minus_theta": 0.765763209312512,
+            "minus_theta_gap": -0.019634954084936318,
+            "plus_commutator_gap_squared": 1.0800609646515738,
+            "plus_theta": 0.8050331174823846,
+            "plus_theta_gap": 0.019634954084936318
+          },
+          {
+            "anchor_commutator_gap_squared": 0.2499999999999999,
+            "anchor_theta": 0.5235987755982988,
+            "leaf": "pi/4",
+            "minus_commutator_gap_squared": 0.20735360843204573,
+            "minus_theta": 0.4974188368183839,
+            "minus_theta_gap": -0.026179938779914924,
+            "plus_commutator_gap_squared": 0.29812637437466966,
+            "plus_theta": 0.5497787143782138,
+            "plus_theta_gap": 0.02617993877991498
+          },
+          {
+            "anchor_commutator_gap_squared": 0.0179491924311227,
+            "anchor_theta": 0.2617993877991494,
+            "leaf": "pi/3",
+            "minus_commutator_gap_squared": 0.013227843536332695,
+            "minus_theta": 0.24216443371421323,
+            "minus_theta_gap": -0.01963495408493618,
+            "plus_commutator_gap_squared": 0.023799904996201056,
+            "plus_theta": 0.2814343418840856,
+            "plus_theta_gap": 0.019634954084936207
+          },
+          {
+            "anchor_commutator_gap_squared": 0.0,
+            "anchor_theta": 0.0,
+            "leaf": "pi/2",
+            "minus_commutator_gap_squared": 0.0,
+            "minus_theta": 0.0,
+            "minus_theta_gap": 0.0,
+            "plus_commutator_gap_squared": 0.0,
+            "plus_theta": 0.0,
+            "plus_theta_gap": 0.0
+          }
+        ]
+      },
+      "package_observables": {
+        "DifferentialEquations": "Vern9 anchor-loop ODE transport control with explicit error bound",
+        "Z3": "finite S9 transport gap polarity proof with erased flip"
+      },
+      "packages_used": [
+        "DifferentialEquations",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "positive": {
+        "s2_valid_count": 3,
+        "s9_alias_gap_max": 0.0
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_julia_results.json",
+      "result_sha256": "ab8e89c7fbda7459ab570c12c826015e2a8ffc9110c937fd8610f8765da419f4",
+      "role_id": "julia_differentialequations_z3_reference_lane",
+      "source_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_julia.jl",
+      "source_sha256": "2eeffa53ad24498a928a13d6bdce33c715325bb500da1592bc705af5f4d77e1a",
+      "tool_calls": [
+        {
+          "observable": "anchor loop transport control",
+          "qualified_api": "ODEProblem/solve/Vern9",
+          "tool": "DifferentialEquations"
+        },
+        {
+          "observable": "UNSAT/SAT finite witness polarity",
+          "qualified_api": "Z3.Solver/Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "sympy"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "strength_label": "numeric_mirror_for_s9; exact_s2_sympy_rows; no promotion"
+      },
+      "claim_path_tools": [
+        "torch.func",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "negative": {
+        "s2_invalid_cover_control": {
+          "labels": [
+            "pi/6",
+            "pi/6"
+          ],
+          "reason": "duplicate fixed leaf is an overlapping/non-canonical cover",
+          "union_id": "invalid.overlapping_duplicate_pi6",
+          "valid": false
+        },
+        "s9_plus_first_nonzero_leaf": {
+          "anchor_commutator_gap_squared": 0.9999999999999997,
+          "anchor_theta": 0.7853981633974483,
+          "leaf": "pi/6",
+          "minus_commutator_gap_squared": 0.9230217016152982,
+          "minus_theta": 0.765763209312512,
+          "minus_theta_gap": -0.019634954084936318,
+          "plus_commutator_gap_squared": 1.0800609646515733,
+          "plus_theta": 0.8050331174823846,
+          "plus_theta_gap": 0.019634954084936318,
+          "torch_func_jacrev_sensitivity": 0.4974188368183839
+        }
+      },
+      "package_observables": {
+        "sympy": "exact S2 union weights and annular-flux mirror rows",
+        "torch.func": "vmap leaf sweep and jacrev sensitivity for the S9 path-ordered loop signature"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy",
+        "json",
+        "hashlib"
+      ],
+      "positive": {
+        "s2_valid_count": 3,
+        "s9_alias_gap_max": 0.0
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_pytorch_results.json",
+      "result_sha256": "b1ad60999255578b0c5ab9c6210efb5b7c15139c7da2f7c769c8176caa374d84",
+      "role_id": "pytorch_torchfunc_numeric_mirror_lane",
+      "source_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_pytorch.py",
+      "source_sha256": "65937fdab095d7fddf1e64dda1fc689815530910c9c17e9407abcc3639dabfd0",
+      "tool_calls": [
+        {
+          "observable": "S9 transport-signature gap and sensitivity",
+          "qualified_api": "vmap/jacrev",
+          "tool": "torch.func"
+        },
+        {
+          "observable": "S2 disintegration weights and flux rows",
+          "qualified_api": "sp.sin/sp.cos/sp.simplify",
+          "tool": "sympy"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T02:38:07Z",
+  "mode": "all_three_final_heavy_symbolic_transport",
+  "negative": {
+    "s2_invalid_cover_control": {
+      "annular_flux_physical_period": null,
+      "boundary_holonomy_gap": null,
+      "canonical_order": true,
+      "distinct_fixed_eta_leaves": false,
+      "flux_compared": false,
+      "labels": [
+        "pi/6",
+        "pi/6"
+      ],
+      "nonboundary": true,
+      "stokes_defect": null,
+      "union_id": "invalid.overlapping_duplicate_pi6",
+      "valid": false,
+      "verdict": "invalid-cover-fails-before-flux",
+      "weights": [],
+      "weights_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)"
+    },
+    "s9_candidate_variants": [
+      {
+        "c1_same_as_anchor": true,
+        "f_expr": "(sin(2*eta)**2 + 20*cos(2*eta))/20",
+        "first_path_ordered_transport_witness": {
+          "anchor_commutator_gap_squared": "1",
+          "anchor_theta": "pi/4",
+          "candidate_commutator_gap_squared": "4*sin(41*pi/160)**4",
+          "candidate_theta": "41*pi/160",
+          "leaf": "pi/6",
+          "theta_gap": "pi/160"
+        },
+        "reopenable_if": "the pinned leaf-by-leaf S9 transport convention or loop calibration changes",
+        "transport_signature": {
+          "0": {
+            "commutator_gap_squared": "9/4",
+            "loop_i_x0x1_holonomy": [
+              "1/2",
+              "sqrt(3)/2",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "1/2",
+              "0",
+              "sqrt(3)/2",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "1/4",
+              "sqrt(3)/4",
+              "sqrt(3)/4",
+              "3/4"
+            ],
+            "path_ordered_product_j_then_i": [
+              "1/4",
+              "sqrt(3)/4",
+              "sqrt(3)/4",
+              "-3/4"
+            ],
+            "theta": "pi/3"
+          },
+          "pi/2": {
+            "commutator_gap_squared": "0",
+            "loop_i_x0x1_holonomy": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "path_ordered_product_j_then_i": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "theta": "0"
+          },
+          "pi/3": {
+            "commutator_gap_squared": "4*sin(43*pi/480)**4",
+            "loop_i_x0x1_holonomy": [
+              "cos(43*pi/480)",
+              "sin(43*pi/480)",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "cos(43*pi/480)",
+              "0",
+              "sin(43*pi/480)",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "cos(43*pi/480)**2",
+              "sin(43*pi/240)/2",
+              "sin(43*pi/240)/2",
+              "sin(43*pi/480)**2"
+            ],
+            "path_ordered_product_j_then_i": [
+              "cos(43*pi/480)**2",
+              "sin(43*pi/240)/2",
+              "sin(43*pi/240)/2",
+              "-sin(43*pi/480)**2"
+            ],
+            "theta": "43*pi/480"
+          },
+          "pi/4": {
+            "commutator_gap_squared": "(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**4/1024",
+            "loop_i_x0x1_holonomy": [
+              "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))/8",
+              "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))/8",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))/8",
+              "0",
+              "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))/8",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))**2/64",
+              "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+              "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+              "(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**2/64"
+            ],
+            "path_ordered_product_j_then_i": [
+              "(sqrt(2 - sqrt(2)) + sqrt(5)*sqrt(2 - sqrt(2)) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2))**2/64",
+              "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+              "(-sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(10) + sqrt(5)*sqrt(5 - sqrt(5)))/16",
+              "-(-sqrt(5)*sqrt(sqrt(2) + 2) - sqrt(sqrt(2) + 2) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)))**2/64"
+            ],
+            "theta": "7*pi/40"
+          },
+          "pi/6": {
+            "commutator_gap_squared": "4*sin(41*pi/160)**4",
+            "loop_i_x0x1_holonomy": [
+              "cos(41*pi/160)",
+              "sin(41*pi/160)",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "cos(41*pi/160)",
+              "0",
+              "sin(41*pi/160)",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "cos(41*pi/160)**2",
+              "cos(pi/80)/2",
+              "cos(pi/80)/2",
+              "sin(41*pi/160)**2"
+            ],
+            "path_ordered_product_j_then_i": [
+              "cos(41*pi/160)**2",
+              "cos(pi/80)/2",
+              "cos(pi/80)/2",
+              "-sin(41*pi/160)**2"
+            ],
+            "theta": "41*pi/160"
+          }
+        },
+        "variant": "epsilon=1/20",
+        "verdict": "excluded-under-pinned-path-ordered-transport-convention"
+      },
+      {
+        "c1_same_as_anchor": true,
+        "f_expr": "(-sin(2*eta)**2 + 20*cos(2*eta))/20",
+        "first_path_ordered_transport_witness": {
+          "anchor_commutator_gap_squared": "1",
+          "anchor_theta": "pi/4",
+          "candidate_commutator_gap_squared": "4*sin(39*pi/160)**4",
+          "candidate_theta": "39*pi/160",
+          "leaf": "pi/6",
+          "theta_gap": "-pi/160"
+        },
+        "reopenable_if": "the pinned leaf-by-leaf S9 transport convention or loop calibration changes",
+        "transport_signature": {
+          "0": {
+            "commutator_gap_squared": "9/4",
+            "loop_i_x0x1_holonomy": [
+              "1/2",
+              "sqrt(3)/2",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "1/2",
+              "0",
+              "sqrt(3)/2",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "1/4",
+              "sqrt(3)/4",
+              "sqrt(3)/4",
+              "3/4"
+            ],
+            "path_ordered_product_j_then_i": [
+              "1/4",
+              "sqrt(3)/4",
+              "sqrt(3)/4",
+              "-3/4"
+            ],
+            "theta": "pi/3"
+          },
+          "pi/2": {
+            "commutator_gap_squared": "0",
+            "loop_i_x0x1_holonomy": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "path_ordered_product_j_then_i": [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            "theta": "0"
+          },
+          "pi/3": {
+            "commutator_gap_squared": "4*sin(37*pi/480)**4",
+            "loop_i_x0x1_holonomy": [
+              "cos(37*pi/480)",
+              "sin(37*pi/480)",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "cos(37*pi/480)",
+              "0",
+              "sin(37*pi/480)",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "cos(37*pi/480)**2",
+              "sin(37*pi/240)/2",
+              "sin(37*pi/240)/2",
+              "sin(37*pi/480)**2"
+            ],
+            "path_ordered_product_j_then_i": [
+              "cos(37*pi/480)**2",
+              "sin(37*pi/240)/2",
+              "sin(37*pi/240)/2",
+              "-sin(37*pi/480)**2"
+            ],
+            "theta": "37*pi/480"
+          },
+          "pi/4": {
+            "commutator_gap_squared": "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**4/67108864",
+            "loop_i_x0x1_holonomy": [
+              "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))/128",
+              "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))/128",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))/128",
+              "0",
+              "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))/128",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))**2/16384",
+              "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+              "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+              "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**2/16384"
+            ],
+            "path_ordered_product_j_then_i": [
+              "(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(10)*sqrt(sqrt(2) + 2) - sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 2*sqrt(30)*sqrt(2 - sqrt(2)) - sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(2 - sqrt(2)) + 6*sqrt(2)*sqrt(sqrt(2) + 2) + 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) + 6*sqrt(6)*sqrt(sqrt(2) + 2) + 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5))**2/16384",
+              "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+              "(-2*sqrt(30) - 2*sqrt(2) + sqrt(5 - sqrt(5)) + sqrt(3)*sqrt(5 - sqrt(5)) + sqrt(5)*sqrt(5 - sqrt(5)) + 2*sqrt(6) + 2*sqrt(sqrt(5) + 5) + 2*sqrt(10) + sqrt(15)*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(sqrt(5) + 5))/64",
+              "-(-sqrt(30)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(5)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 4*sqrt(3)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 2*sqrt(30)*sqrt(sqrt(2) + 2) - sqrt(6)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) - 2*sqrt(15)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) - 6*sqrt(2)*sqrt(sqrt(2) + 2) - 4*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2) - 6*sqrt(6)*sqrt(2 - sqrt(2)) - 4*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) - 6*sqrt(2)*sqrt(2 - sqrt(2)) - 2*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(2 - sqrt(2)) + 4*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5)) + 2*sqrt(3)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + sqrt(6)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + 2*sqrt(30)*sqrt(2 - sqrt(2)) + 2*sqrt(5)*sqrt(2 - sqrt(2))*sqrt(sqrt(5) + 5) + 2*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(2)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 2*sqrt(10)*sqrt(sqrt(2) + 2) + 2*sqrt(3)*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + sqrt(30)*sqrt(2 - sqrt(2))*sqrt(5 - sqrt(5))*sqrt(sqrt(5) + 5) + sqrt(10)*sqrt(5 - sqrt(5))*sqrt(sqrt(2) + 2)*sqrt(sqrt(5) + 5) + 6*sqrt(6)*sqrt(sqrt(2) + 2))**2/16384"
+            ],
+            "theta": "19*pi/120"
+          },
+          "pi/6": {
+            "commutator_gap_squared": "4*sin(39*pi/160)**4",
+            "loop_i_x0x1_holonomy": [
+              "cos(39*pi/160)",
+              "sin(39*pi/160)",
+              "0",
+              "0"
+            ],
+            "loop_j_x0x2_holonomy": [
+              "cos(39*pi/160)",
+              "0",
+              "sin(39*pi/160)",
+              "0"
+            ],
+            "path_ordered_product_i_then_j": [
+              "cos(39*pi/160)**2",
+              "cos(pi/80)/2",
+              "cos(pi/80)/2",
+              "sin(39*pi/160)**2"
+            ],
+            "path_ordered_product_j_then_i": [
+              "cos(39*pi/160)**2",
+              "cos(pi/80)/2",
+              "cos(pi/80)/2",
+              "-sin(39*pi/160)**2"
+            ],
+            "theta": "39*pi/160"
+          }
+        },
+        "variant": "epsilon=-1/20",
+        "verdict": "excluded-under-pinned-path-ordered-transport-convention"
+      }
+    ]
+  },
+  "object_id": "round3_s9_s2_final_heavy_v0",
+  "parent_lineage": {
+    "round3_discriminator_registry_20260611": {
+      "allowed_use": "registered S9/S2 heavy rows and teeth",
+      "path": "system_v6/receipts/round3_discriminator_registry_20260611.md"
+    },
+    "round3_s2_alias_pass_v0": {
+      "allowed_use": "S2.R3.5 queued-heavy-local survivor",
+      "path": "system_v6/sims/round3_s2_alias_pass_v0/audit_verdict.md"
+    },
+    "round3_s9_alias_pass_v0": {
+      "allowed_use": "S9.R3.5 queued-heavy-local survivor",
+      "path": "system_v6/sims/round3_s9_alias_pass_v0/audit_verdict.md"
+    }
+  },
+  "positive": {
+    "s2_valid_unions": [
+      {
+        "annular_flux_physical_period": "pi*(-1 + sqrt(3))/2",
+        "boundary_holonomy_gap": "pi*(-1 + sqrt(3))/2",
+        "canonical_order": true,
+        "distinct_fixed_eta_leaves": true,
+        "flux_compared": true,
+        "labels": [
+          "pi/12",
+          "pi/6"
+        ],
+        "nonboundary": true,
+        "stokes_defect": "0",
+        "union_id": "U_pi12_pi6",
+        "valid": true,
+        "verdict": "valid-cover-then-flux-matches-committed-anchor",
+        "weights": [
+          "(-1 + sqrt(3))/2",
+          "-(-3 + sqrt(3))/2"
+        ],
+        "weights_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)"
+      },
+      {
+        "annular_flux_physical_period": "pi/2",
+        "boundary_holonomy_gap": "pi/2",
+        "canonical_order": true,
+        "distinct_fixed_eta_leaves": true,
+        "flux_compared": true,
+        "labels": [
+          "pi/6",
+          "pi/4"
+        ],
+        "nonboundary": true,
+        "stokes_defect": "0",
+        "union_id": "U_pi6_pi4",
+        "valid": true,
+        "verdict": "valid-cover-then-flux-matches-committed-anchor",
+        "weights": [
+          "-3 + 2*sqrt(3)",
+          "-2*(-2 + sqrt(3))"
+        ],
+        "weights_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)"
+      },
+      {
+        "annular_flux_physical_period": "pi/2",
+        "boundary_holonomy_gap": "pi/2",
+        "canonical_order": true,
+        "distinct_fixed_eta_leaves": true,
+        "flux_compared": true,
+        "labels": [
+          "pi/4",
+          "pi/3"
+        ],
+        "nonboundary": true,
+        "stokes_defect": "0",
+        "union_id": "U_pi4_pi3",
+        "valid": true,
+        "verdict": "valid-cover-then-flux-matches-committed-anchor",
+        "weights": [
+          "-2*(-2 + sqrt(3))",
+          "-3 + 2*sqrt(3)"
+        ],
+        "weights_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)"
+      }
+    ],
+    "s9_alias_control": {
+      "alias_pass": true,
+      "expr": "1 - 2*sin(eta)^2",
+      "simplifies_to": "cos(2*eta)"
+    },
+    "s9_anchor_self": true
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_envelope_results.json",
+  "row_verdict_table": [
+    {
+      "cosurvivors_minted_here": [],
+      "pin_relative": true,
+      "row": "S9.R3.5_path_ordered_loop_neighbor",
+      "verdict": "excluded-under-pinned-path-ordered-transport-convention",
+      "witness": {
+        "anchor_commutator_gap_squared": "1",
+        "anchor_theta": "pi/4",
+        "candidate_commutator_gap_squared": "4*sin(41*pi/160)**4",
+        "candidate_theta": "41*pi/160",
+        "leaf": "pi/6",
+        "theta_gap": "pi/160"
+      }
+    },
+    {
+      "invalid_control": "invalid.overlapping_duplicate_pi6",
+      "row": "S2.R3.5_boundary_conditioning_variant",
+      "valid_unions": [
+        "U_pi12_pi6",
+        "U_pi6_pi4",
+        "U_pi4_pi3"
+      ],
+      "verdict": "valid-cover-family; all three registry unions proceed and match committed annular-Stokes anchor; invalid duplicate control fails before flux"
+    }
+  ],
+  "schema": "round3_s9_s2_final_heavy_v0_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "round3_s9_s2_final_heavy_v0",
+  "source_inputs_read": {
+    "registry": "system_v6/receipts/round3_discriminator_registry_20260611.md",
+    "s2_light_audit": "system_v6/sims/round3_s2_alias_pass_v0/audit_verdict.md",
+    "s9_light_audit": "system_v6/sims/round3_s9_alias_pass_v0/audit_verdict.md"
+  },
+  "source_path": "system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_envelope.py",
+  "source_sha256": "91218f2e27a27931f6cb74b1555097beac38e90057a3383965eb6ed4e0002388",
+  "stability_pairs": [],
+  "tool_intent": {
+    "claim_classes": [
+      "s9_path_ordered_transport_signature",
+      "s2_boundary_conditioning_validity",
+      "finite_smt_witness_binding"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent finite S9 loop-gap polarity proof with erased flip",
+        "diffrax": "independent ODE anchor-loop transport control with explicit numeric error bound",
+        "sympy": "exact S9 quaternion-exponential loop signatures and S2 disintegration/flux rows",
+        "z3": "finite S9 loop-gap and S2 invalid-cover polarity proof with erased flip"
+      },
+      "julia": {
+        "DifferentialEquations": "Vern9 anchor-loop ODE transport control with explicit error bound",
+        "Z3": "finite S9 transport gap polarity proof with erased flip"
+      },
+      "pytorch": {
+        "sympy": "exact S2 union weights and annular-flux mirror rows",
+        "torch.func": "vmap leaf sweep and jacrev sensitivity for the S9 path-ordered loop signature"
+      }
+    }
+  },
+  "validator_expected_commands": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_jax.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_pytorch.py",
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_s2_final_heavy_v0/round3_s9_s2_final_heavy_v0_envelope.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --require-tool-intent system_v6/sims/round3_s9_s2_final_heavy_v0/results/round3_s9_s2_final_heavy_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_s2_final_heavy_v0/validate_round3_s9_s2_final_heavy_v0.py"
+  ]
+}

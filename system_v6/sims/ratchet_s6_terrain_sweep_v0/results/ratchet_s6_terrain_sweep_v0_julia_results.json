@@ -1,0 +1,303 @@
+{
+    "result_path": "system_v6/sims/ratchet_s6_terrain_sweep_v0/results/ratchet_s6_terrain_sweep_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "SHA",
+        "Dates",
+        "Z3"
+    ],
+    "source_sha256": "be9078f5b4b0b940833baa145cd5c67e5e6334c6e57d602f5004f0126f5d3db8",
+    "load_path": [
+        "@",
+        "@stdlib"
+    ],
+    "classification": "scratch_diagnostic",
+    "sim_id": "ratchet_s6_terrain_sweep_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T05:41:21Z",
+    "all_pass": true,
+    "promotion_allowed": false,
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "tool_calls": [
+        {
+            "boundary_case": "Si_Citadel_R/R_x is the zero-gap sweep row",
+            "demotion_condition": "demote if Z3.jl does not refute the nonzero anchor zero assertion or erased row does not flip",
+            "output_object": {
+                "ran": true,
+                "load_bearing": true,
+                "gates": [
+                    "anchor",
+                    "proof",
+                    "all_pass"
+                ],
+                "negative/erased_control": "erased skew/off-diagonal gap row has scaled value 0; zero assertion becomes SAT",
+                "erased_flip_verdict": "sat",
+                "boundary_case": "Si_Citadel_R/R_x is the zero-gap sweep row",
+                "demotion_condition": "demote if Z3.jl does not refute the nonzero anchor zero assertion or erased row does not flip",
+                "positive_case": "asserting the scaled gap is zero is UNSAT",
+                "verdict": "unsat",
+                "solver": "Z3.jl",
+                "derived_expression": "40*Delta_z(theta=0) = -16",
+                "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+                "claim": "Se_Funnel_L generator and R_x(pi/2) have nonzero N01 order gap on T_pi/6 at theta=0",
+                "erased_flip_detected": true
+            },
+            "positive_case": "asserting the scaled gap is zero is UNSAT",
+            "load_bearing": true,
+            "gates": [
+                "anchor",
+                "proof",
+                "all_pass"
+            ],
+            "negative/erased_control": "erased skew/off-diagonal gap row has scaled value 0; zero assertion becomes SAT",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3",
+            "input_object": "scaled Se_Funnel_L/R_x anchor row, committed D_z/R_z zero row, and eight scaled sweep rows"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "load_bearing": true,
+            "gates": [
+                "anchor",
+                "proof",
+                "all_pass"
+            ],
+            "negative/erased_control": "erased skew/off-diagonal gap row has scaled value 0; zero assertion becomes SAT",
+            "erased_flip_verdict": "sat",
+            "boundary_case": "Si_Citadel_R/R_x is the zero-gap sweep row",
+            "demotion_condition": "demote if Z3.jl does not refute the nonzero anchor zero assertion or erased row does not flip",
+            "positive_case": "asserting the scaled gap is zero is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "derived_expression": "40*Delta_z(theta=0) = -16",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "claim": "Se_Funnel_L generator and R_x(pi/2) have nonzero N01 order gap on T_pi/6 at theta=0",
+            "erased_flip_detected": true
+        },
+        "julia_z3_sweep_rows": [
+            {
+                "scaled_value": 80,
+                "terrain_id": "Ne_Spiral_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -80,
+                "terrain_id": "Ne_Vortex_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -25,
+                "terrain_id": "Ni_Pit_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "y_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 15,
+                "terrain_id": "Ni_Source_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "y_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 16,
+                "terrain_id": "Se_Cannon_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -16,
+                "terrain_id": "Se_Funnel_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 0,
+                "terrain_id": "Si_Citadel_R",
+                "expected_status": "zero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "all_gap_entries_scaled_by_40"
+            },
+            {
+                "scaled_value": 8,
+                "terrain_id": "Si_Hill_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "x_theta0_scaled_by_40"
+            }
+        ],
+        "julia_z3_committed_dz_rz_control": {
+            "ran": true,
+            "load_bearing": true,
+            "gates": [
+                "commuting_control",
+                "all_pass"
+            ],
+            "negative/erased_control": "replace R_z by R_x in the Python exact lane to recover a cross-axis nonzero row",
+            "demotion_condition": "demote if the commuting-control zero row is not solver-checked",
+            "boundary_case": "q_z=0 identity dephasing also gives zero gap",
+            "positive_case": "asserting a nonzero commuting-control gap is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "derived_expression": "Delta_control_scaled = 0",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "claim": "D_z and R_z committed commuting control has zero order gap"
+        }
+    },
+    "engine_values": {
+        "rx_gap_zero_terrain_ids": [
+            "Si_Citadel_R"
+        ],
+        "commuting_control_count": 5,
+        "fixed_survivor_count": 0,
+        "committed_dz_rz_control_norm_squared": "0",
+        "density_z_leaf_compatible_count": 1,
+        "se_funnel_gap_witness_theta0": [
+            "0",
+            "0",
+            "-2/5"
+        ],
+        "se_funnel_gap_norm_squared": "4/25",
+        "se_funnel_gap_delta": [
+            "2*sin(theta)/5",
+            "0",
+            "-2*cos(theta)/5"
+        ],
+        "pure_shell_compatible_count": 0,
+        "terrain_count": 8
+    },
+    "source_path": "system_v6/sims/ratchet_s6_terrain_sweep_v0/ratchet_s6_terrain_sweep_v0_julia.jl",
+    "exact_rows": {
+        "terrain_order": [
+            "Ne_Spiral_R",
+            "Ne_Vortex_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Se_Cannon_R",
+            "Se_Funnel_L",
+            "Si_Citadel_R",
+            "Si_Hill_L"
+        ],
+        "se_funnel_gap_norm_squared": "4/25",
+        "terrain_hashes": {
+            "Ne_Spiral_R": "890ac6990ff4158d0f2f7bf9c786aac832837bd9b84530219b763576e18214b4",
+            "Ne_Vortex_L": "f7a01b371cb290c49e911ac477a244e29d9ae489ef0aec3c17c935c2f0c66218",
+            "Si_Citadel_R": "059b6cbfe868456e2478a802252ed543c3bd046d4e2cd4f4d3d79a4cbf50c4be",
+            "Si_Hill_L": "63c4862cc0414923ac5f4918f32a9c704f0050cb8d7e48830560b7b06b841676",
+            "Ni_Source_R": "53103e38a21a630ef160a17355a2b55bedbc1faff74918bf1d8c8b47a08cc086",
+            "Ni_Pit_L": "6eff3605086c785fa80db6f2c56f258685a500249bb41d34cc8bdc048ebfa13e",
+            "Se_Funnel_L": "25f78fc755e37729771e46eef26f6d80358dbcee06891917e2ebe82dcee5128a",
+            "Se_Cannon_R": "82eaa9e60bea7754402e70442c041a467b3546199fae3af0ddd013a2a5763433"
+        },
+        "julia_z3_committed_control_verdict": "unsat",
+        "fixed_survivor_count": 0,
+        "julia_z3_anchor_verdict": "unsat",
+        "julia_z3_erased_flip_verdict": "sat",
+        "julia_z3_sweep_rows": [
+            {
+                "scaled_value": 80,
+                "terrain_id": "Ne_Spiral_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -80,
+                "terrain_id": "Ne_Vortex_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -25,
+                "terrain_id": "Ni_Pit_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "y_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 15,
+                "terrain_id": "Ni_Source_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "y_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 16,
+                "terrain_id": "Se_Cannon_R",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": -16,
+                "terrain_id": "Se_Funnel_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "z_theta0_scaled_by_40"
+            },
+            {
+                "scaled_value": 0,
+                "terrain_id": "Si_Citadel_R",
+                "expected_status": "zero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "all_gap_entries_scaled_by_40"
+            },
+            {
+                "scaled_value": 8,
+                "terrain_id": "Si_Hill_L",
+                "expected_status": "nonzero",
+                "verdict": "unsat",
+                "pass": true,
+                "checked_field": "x_theta0_scaled_by_40"
+            }
+        ],
+        "se_funnel_gap_delta": [
+            "2*sin(theta)/5",
+            "0",
+            "-2*cos(theta)/5"
+        ],
+        "pure_shell_compatible_count": 0,
+        "rx_gap_zero_terrain_ids": [
+            "Si_Citadel_R"
+        ],
+        "commuting_control_count": 5,
+        "eta0": "pi/6",
+        "committed_dz_rz_control_norm_squared": "0",
+        "density_z_leaf_compatible_count": 1,
+        "se_funnel_gap_witness_theta0": [
+            "0",
+            "0",
+            "-2/5"
+        ],
+        "terrain_count": 8
+    },
+    "schema_version": "ratchet_s6_terrain_sweep_v0_julia_result_v1"
+}

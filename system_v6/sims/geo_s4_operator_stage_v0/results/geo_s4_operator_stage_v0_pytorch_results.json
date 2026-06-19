@@ -1,0 +1,3349 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "qutip": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SMT pinned-entry contradiction check for the same raw value",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "load-bearing Python quantum-object route for channel superoperators, density operators, affine rows, and pinned commutators",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive pinned tensor substrate for exact rational/integer mirror rows",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive vmap mirror over qutip-derived and hand-control pinned ordered commutator pairs",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing SMT pinned-entry contradiction check; not a full symbolic table proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "qutip",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "build_gates": {
+    "claim_ceiling_preserved": true,
+    "no_peer_result_reads": true,
+    "pinned_tensor_commutator_rows_pass": true,
+    "pytorch_not_symbolic_cas": true,
+    "qutip_affine_rows_pass": true,
+    "smt_can_fail_controls": true,
+    "smt_scope_honest": true
+  },
+  "claim_path_tools": [
+    "qutip",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+    "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+    "operator_channel_stage": "S4 density/Bloch quotient only",
+    "primary_table_basis": "source_locked_standard_bloch",
+    "rho_rule": "rho(r) = (I + r.basis) / 2",
+    "s1_pinned_bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "sigma_y_standard": [
+      [
+        "0",
+        "-i"
+      ],
+      [
+        "i",
+        "0"
+      ]
+    ],
+    "source_locked_bloch_basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ],
+    "standard_to_s1_pinned_J": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ]
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "independent cvc5 pinned-entry contradiction check of torch commutator row",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "cvc5",
+      "source_route": "qutip-derived D_z/R_x affine commutator entry",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "10*entry": 3
+      },
+      "claim": "torch pinned-entry contradiction only: source-locked D_z/R_x commutator row has scaled entry +3",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+      "ran": true,
+      "solver": "z3",
+      "source_route": "qutip-derived D_z/R_x affine commutator entry",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:09:28Z",
+  "hand_tensor_commutator_mirror": {
+    "method": "torch.func.vmap over all 16 ordered pinned channel-matrix pairs",
+    "ordered_pair_count": 16,
+    "pass": true,
+    "rows": [
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "3/10"
+          ],
+          [
+            "0",
+            "3/10",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "-3/10",
+            "0"
+          ],
+          [
+            "-3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-3/10"
+          ],
+          [
+            "0",
+            "-3/10",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "-1",
+            "-1"
+          ],
+          [
+            "-1",
+            "0",
+            "-1"
+          ],
+          [
+            "1",
+            "-1",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "3/10",
+            "0"
+          ],
+          [
+            "3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "0",
+            "1"
+          ],
+          [
+            "-1",
+            "1",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": true
+      }
+    ]
+  },
+  "hand_tensor_ellipsoid_mirror": {
+    "D_x": {
+      "determinant_fractional": "49/100",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "7/10",
+        "7/10"
+      ]
+    },
+    "D_z": {
+      "determinant_fractional": "49/100",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "7/10",
+        "7/10"
+      ]
+    },
+    "R_x": {
+      "determinant_fractional": "1",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    "R_z": {
+      "determinant_fractional": "1",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "1",
+        "1"
+      ]
+    }
+  },
+  "limits": "qutip is the Python quantum-object channel route; PyTorch is a pinned exact tensor mirror and SMT-backed can-fail lane, not a symbolic CAS; exact symbolic parameter classification belongs to the Julia/Symbolics and JAX/SymPy legs.",
+  "object_id": "geo_s4_operator_stage_v0_pytorch",
+  "packages_used": [
+    "qutip",
+    "torch",
+    "torch.func",
+    "z3",
+    "cvc5",
+    "json",
+    "hashlib",
+    "pathlib"
+  ],
+  "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+  "pin_spec": "geo_s4_operator_stage_v0|sigma_y_standard=[[0,-i],[i,0]]|primary_bloch_basis=(sigma_x,sigma_y_standard,sigma_z)|s1_pinned_bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|standard_to_s1_pinned_J=diag(1,-1,1)|component_rule=r_i=Tr(rho*basis_i)|channels=(D_z,D_x,R_x,R_z)|source_forms=(Ti=z_dephase,Te=x_dephase,Fi=x_rotation,Fe=z_rotation)|symbolic_parameters=(q_z,q_x,theta_x,phi_z)|pin_row=(q_z=3/10,q_x=3/10,theta_x=pi/2,phi_z=pi/2)|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "pinned_commutator_table": {
+    "dz_rx_entry_times_10": 3,
+    "method": "torch.func.vmap over qutip-derived affine channel matrices",
+    "ordered_pair_count": 16,
+    "pass": true,
+    "rows": [
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "3/10"
+          ],
+          [
+            "0",
+            "3/10",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "D_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "D_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "-3/10",
+            "0"
+          ],
+          [
+            "-3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-3/10"
+          ],
+          [
+            "0",
+            "-3/10",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_x",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "-1",
+            "-1"
+          ],
+          [
+            "-1",
+            "0",
+            "-1"
+          ],
+          [
+            "1",
+            "-1",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_z",
+        "zero_pinned": true
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "3/10",
+            "0"
+          ],
+          [
+            "3/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "D_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "0",
+            "1"
+          ],
+          [
+            "-1",
+            "1",
+            "0"
+          ]
+        ],
+        "right": "R_x",
+        "zero_pinned": false
+      },
+      {
+        "left": "R_z",
+        "pinned_linear_commutator_fractional": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "right": "R_z",
+        "zero_pinned": true
+      }
+    ]
+  },
+  "pinned_ellipsoid_rows": {
+    "D_x": {
+      "determinant_fractional": "49/100",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "7/10",
+        "7/10"
+      ]
+    },
+    "D_z": {
+      "determinant_fractional": "49/100",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "7/10",
+        "7/10"
+      ]
+    },
+    "R_x": {
+      "determinant_fractional": "1",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    "R_z": {
+      "determinant_fractional": "1",
+      "rank": 3,
+      "singular_values_fractional": [
+        "1",
+        "1",
+        "1"
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "qutip_affine_channel_rows": {
+    "all_pass": true,
+    "method": "qutip.sprepost superoperators applied to Qobj density matrices, then qutip.expect component readout",
+    "rows": {
+      "D_x": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pass": true,
+        "qutip_dims": [
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "D_z": {
+        "M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pass": true,
+        "qutip_dims": [
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "R_x": {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pass": true,
+        "qutip_dims": [
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "R_z": {
+        "M": [
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "pass": true,
+        "qutip_dims": [
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "reads_peer_result": false,
+  "receipts": {
+    "P2_affine_channel_table_pinned_tensor_mirror": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "all_pass": true,
+        "method": "qutip.sprepost superoperators applied to Qobj density matrices, then qutip.expect component readout",
+        "rows": {
+          "D_x": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "7/10",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "7/10"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pass": true,
+            "qutip_dims": [
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ],
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ]
+            ]
+          },
+          "D_z": {
+            "M": [
+              [
+                "7/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "7/10",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pass": true,
+            "qutip_dims": [
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ],
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ]
+            ]
+          },
+          "R_x": {
+            "M": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-1"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pass": true,
+            "qutip_dims": [
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ],
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ]
+            ]
+          },
+          "R_z": {
+            "M": [
+              [
+                "0",
+                "-1",
+                "0"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "c": [
+              "0",
+              "0",
+              "0"
+            ],
+            "pass": true,
+            "qutip_dims": [
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ],
+              [
+                [
+                  2
+                ],
+                [
+                  2
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "exact_strength": "exact_integer_rational_pin",
+      "hand_tensor_matrix_mirror": {
+        "D_x": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "D_z": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "R_x": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "R_z": [
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "id": "P2_affine_channel_table_pinned_tensor_mirror",
+      "pass": true
+    },
+    "P3_ellipsoid_image_pinned_tensor_mirror": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "D_x": {
+          "determinant_fractional": "49/100",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "7/10",
+            "7/10"
+          ]
+        },
+        "D_z": {
+          "determinant_fractional": "49/100",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "7/10",
+            "7/10"
+          ]
+        },
+        "R_x": {
+          "determinant_fractional": "1",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "R_z": {
+          "determinant_fractional": "1",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "1",
+            "1"
+          ]
+        }
+      },
+      "exact_strength": "exact_integer_rational_pin",
+      "hand_tensor_ellipsoid_mirror": {
+        "D_x": {
+          "determinant_fractional": "49/100",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "7/10",
+            "7/10"
+          ]
+        },
+        "D_z": {
+          "determinant_fractional": "49/100",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "7/10",
+            "7/10"
+          ]
+        },
+        "R_x": {
+          "determinant_fractional": "1",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "R_z": {
+          "determinant_fractional": "1",
+          "rank": 3,
+          "singular_values_fractional": [
+            "1",
+            "1",
+            "1"
+          ]
+        }
+      },
+      "id": "P3_ellipsoid_image_pinned_tensor_mirror",
+      "pass": true
+    },
+    "P6_commutator_table_pinned_tensor_mirror": {
+      "convention_pin": {
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "conversion_rule": "M_s1_pinned = J * M_source_locked_standard * J",
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "operator_channel_stage": "S4 density/Bloch quotient only",
+        "primary_table_basis": "source_locked_standard_bloch",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "s1_pinned_bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "source_locked_bloch_basis": [
+          "sigma_x",
+          "sigma_y_standard",
+          "sigma_z"
+        ],
+        "standard_to_s1_pinned_J": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ]
+      },
+      "data": {
+        "dz_rx_entry_times_10": 3,
+        "method": "torch.func.vmap over qutip-derived affine channel matrices",
+        "ordered_pair_count": 16,
+        "pass": true,
+        "rows": [
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          }
+        ]
+      },
+      "exact_strength": "exact_integer_rational_pin",
+      "hand_tensor_commutator_mirror": {
+        "method": "torch.func.vmap over all 16 ordered pinned channel-matrix pairs",
+        "ordered_pair_count": 16,
+        "pass": true,
+        "rows": [
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          }
+        ]
+      },
+      "id": "P6_commutator_table_pinned_tensor_mirror",
+      "pass": true
+    }
+  },
+  "result_path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_pytorch_results.json",
+  "role_id": "python_qutip_operator_channel_with_pytorch_tensor_mirror",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "geo_s4_operator_stage_v0",
+  "source_path": "system_v6/sims/geo_s4_operator_stage_v0/geo_s4_operator_stage_v0_pytorch.py",
+  "source_sha256": "769f2121c5a0e3173e6309a00e13ee59d76eec38f6b1f19a90f145ee22e82df4",
+  "tool_calls": [
+    {
+      "boundary_case": "pin row q_z=q_x=3/10, theta_x=phi_z=pi/2",
+      "demotion_condition": "if qutip channel objects are removed, Python channel evidence is only a tensor mirror",
+      "gates": [
+        "P2_affine_channel_table_pinned_tensor_mirror",
+        "P3_ellipsoid_image_pinned_tensor_mirror",
+        "P6_commutator_table_pinned_tensor_mirror",
+        "all_pass"
+      ],
+      "input_object": "pinned D_z, D_x, R_x, R_z qutip superoperators and Qobj density matrices",
+      "negative/erased_control": "zero-commutator echo fails through qutip-derived raw entry",
+      "output_object": {
+        "affine_rows": {
+          "all_pass": true,
+          "method": "qutip.sprepost superoperators applied to Qobj density matrices, then qutip.expect component readout",
+          "rows": {
+            "D_x": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "7/10",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "7/10"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ],
+              "pass": true,
+              "qutip_dims": [
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              ]
+            },
+            "D_z": {
+              "M": [
+                [
+                  "7/10",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "7/10",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ],
+              "pass": true,
+              "qutip_dims": [
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              ]
+            },
+            "R_x": {
+              "M": [
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "-1"
+                ],
+                [
+                  "0",
+                  "1",
+                  "0"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ],
+              "pass": true,
+              "qutip_dims": [
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              ]
+            },
+            "R_z": {
+              "M": [
+                [
+                  "0",
+                  "-1",
+                  "0"
+                ],
+                [
+                  "1",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "1"
+                ]
+              ],
+              "c": [
+                "0",
+                "0",
+                "0"
+              ],
+              "pass": true,
+              "qutip_dims": [
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    2
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "commutators": {
+          "dz_rx_entry_times_10": 3,
+          "method": "torch.func.vmap over qutip-derived affine channel matrices",
+          "ordered_pair_count": 16,
+          "pass": true,
+          "rows": [
+            {
+              "left": "D_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_z",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_x",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "3/10"
+                ],
+                [
+                  "0",
+                  "3/10",
+                  "0"
+                ]
+              ],
+              "right": "R_x",
+              "zero_pinned": false
+            },
+            {
+              "left": "D_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "R_z",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_z",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_x",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "R_x",
+              "zero_pinned": true
+            },
+            {
+              "left": "D_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "-3/10",
+                  "0"
+                ],
+                [
+                  "-3/10",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "R_z",
+              "zero_pinned": false
+            },
+            {
+              "left": "R_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "-3/10"
+                ],
+                [
+                  "0",
+                  "-3/10",
+                  "0"
+                ]
+              ],
+              "right": "D_z",
+              "zero_pinned": false
+            },
+            {
+              "left": "R_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_x",
+              "zero_pinned": true
+            },
+            {
+              "left": "R_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "R_x",
+              "zero_pinned": true
+            },
+            {
+              "left": "R_x",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "-1",
+                  "-1"
+                ],
+                [
+                  "-1",
+                  "0",
+                  "-1"
+                ],
+                [
+                  "1",
+                  "-1",
+                  "0"
+                ]
+              ],
+              "right": "R_z",
+              "zero_pinned": false
+            },
+            {
+              "left": "R_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_z",
+              "zero_pinned": true
+            },
+            {
+              "left": "R_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "3/10",
+                  "0"
+                ],
+                [
+                  "3/10",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "D_x",
+              "zero_pinned": false
+            },
+            {
+              "left": "R_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "1",
+                  "1"
+                ],
+                [
+                  "1",
+                  "0",
+                  "1"
+                ],
+                [
+                  "-1",
+                  "1",
+                  "0"
+                ]
+              ],
+              "right": "R_x",
+              "zero_pinned": false
+            },
+            {
+              "left": "R_z",
+              "pinned_linear_commutator_fractional": [
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              ],
+              "right": "R_z",
+              "zero_pinned": true
+            }
+          ]
+        },
+        "ellipsoids": {
+          "D_x": {
+            "determinant_fractional": "49/100",
+            "rank": 3,
+            "singular_values_fractional": [
+              "1",
+              "7/10",
+              "7/10"
+            ]
+          },
+          "D_z": {
+            "determinant_fractional": "49/100",
+            "rank": 3,
+            "singular_values_fractional": [
+              "1",
+              "7/10",
+              "7/10"
+            ]
+          },
+          "R_x": {
+            "determinant_fractional": "1",
+            "rank": 3,
+            "singular_values_fractional": [
+              "1",
+              "1",
+              "1"
+            ]
+          },
+          "R_z": {
+            "determinant_fractional": "1",
+            "rank": 3,
+            "singular_values_fractional": [
+              "1",
+              "1",
+              "1"
+            ]
+          }
+        }
+      },
+      "positive_case": "qutip superoperators derive pinned affine rows, ellipsoid rows, and nonzero D_z/R_x commutator",
+      "qualified_api/function": "qutip.Qobj/qutip.sprepost/qutip.operator_to_vector/qutip.vector_to_operator/qutip.expect",
+      "tool": "qutip"
+    },
+    {
+      "boundary_case": "pin row q_z=q_x=3/10, theta_x=phi_z=pi/2",
+      "demotion_condition": "passing torch.func capability probe required before this can gate claim metadata",
+      "gates": [],
+      "input_object": "16 ordered qutip-derived channel-matrix pairs plus hand tensor mirror pairs",
+      "negative/erased_control": "D_z/R_x zero-commutator echo fails",
+      "output_object": {
+        "dz_rx_entry_times_10": 3,
+        "method": "torch.func.vmap over qutip-derived affine channel matrices",
+        "ordered_pair_count": 16,
+        "pass": true,
+        "rows": [
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "D_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "D_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_x",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_z",
+            "zero_pinned": true
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "D_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "right": "R_x",
+            "zero_pinned": false
+          },
+          {
+            "left": "R_z",
+            "pinned_linear_commutator_fractional": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "right": "R_z",
+            "zero_pinned": true
+          }
+        ]
+      },
+      "positive_case": "batched commutator table distinguishes commuting and noncommuting qutip-derived pinned pairs",
+      "qualified_api/function": "torch.func.vmap",
+      "role": "supportive",
+      "tool": "torch.func"
+    },
+    {
+      "boundary_case": "pin row",
+      "demotion_condition": "if raw entry is replaced by a boolean, proof is decorative",
+      "gates": [
+        "smt_can_fail_controls",
+        "all_pass"
+      ],
+      "input_object": "torch pinned D_z/R_x commutator entry scaled by 10",
+      "negative/erased_control": "wrong zero entry is SAT",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "10*entry": 3
+        },
+        "claim": "torch pinned-entry contradiction only: source-locked D_z/R_x commutator row has scaled entry +3",
+        "load_bearing": true,
+        "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+        "ran": true,
+        "solver": "z3",
+        "source_route": "qutip-derived D_z/R_x affine commutator entry",
+        "verdict": "unsat",
+        "wrong_control_can_fail": true,
+        "wrong_control_verdict": "sat"
+      },
+      "positive_case": "entry=+3 and entry=0 is UNSAT",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "pin row",
+      "demotion_condition": "if cvc5 does not bind the raw entry, proof is decorative",
+      "gates": [
+        "smt_can_fail_controls",
+        "all_pass"
+      ],
+      "input_object": "same torch pinned D_z/R_x commutator entry scaled by 10",
+      "negative/erased_control": "wrong zero entry is SAT",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "10*entry": 3
+        },
+        "claim": "independent cvc5 pinned-entry contradiction check of torch commutator row",
+        "load_bearing": true,
+        "proof_scope": "pinned_entry_contradiction_not_full_symbolic_table",
+        "ran": true,
+        "solver": "cvc5",
+        "source_route": "qutip-derived D_z/R_x affine commutator entry",
+        "verdict": "unsat",
+        "wrong_control_can_fail": true,
+        "wrong_control_verdict": "sat"
+      },
+      "positive_case": "entry=+3 and entry=0 is UNSAT",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

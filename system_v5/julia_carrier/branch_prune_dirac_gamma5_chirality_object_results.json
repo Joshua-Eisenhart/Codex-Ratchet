@@ -1,0 +1,70 @@
+{
+  "all_pass": true,
+  "branch_prune": {
+    "A": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "B_gamma5": [
+      1,
+      2
+    ],
+    "B_pruned": 130,
+    "C_control": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "inverted_survivors": [
+      3,
+      4
+    ],
+    "random_prune_survivors": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "checks": {
+    "A_reaches_forbidden": true,
+    "B_kills_all_forbidden": true,
+    "B_preserves_allowed": true,
+    "B_pruned_some_A_none": true,
+    "control_C_equals_A": true,
+    "gamma5_genuine": true,
+    "inverted_sign_flips_to_forbidden": true,
+    "norm_drift_small": true,
+    "rate_matched_random_KEEPS_forbidden": true
+  },
+  "claim_ceiling": "PoC: branch/prune possibility field on genuine Dirac 4-spinors; the prune is the real gamma5 chiral charge. GENUINE-SELECTOR proof: a rate-matched random prune does NOT empty the forbidden basins while the gamma5 prune does, and an inverted-sign prune flips survivors to the forbidden basins -> chirality (not rate/geometry) selects which basins die. LIMITS: gamma5 charge is invariant under unitary spatial rotations only, NOT Lorentz boosts; CliffordAlgebras is supportive, not load-bearing. promotion_allowed=false; not canonical/bridge.",
+  "classification": "julia_branch_prune_dirac_poc",
+  "gamma5_verification": {
+    "Cl13_pseudoscalar_sq": -1,
+    "anticommutes": true,
+    "boost_nonunitary": true,
+    "clifford_relations": true,
+    "g5_sq_eq_I": true,
+    "rot_unitary": true,
+    "rotation_commute": true
+  },
+  "max_norm_drift": 0.0,
+  "name": "branch_prune_dirac_gamma5_chirality_object",
+  "promotion_allowed": false,
+  "reported_limits": {
+    "boost_B_pruned": 203,
+    "gamma5_prune_boost_CHANGES": true,
+    "gamma5_prune_rotation_covariant": true,
+    "lab_B_pruned": 130,
+    "quad_form_ALSO_rotation_invariant": true,
+    "rot_B_pruned": 130
+  },
+  "tool_integration": {
+    "CliffordAlgebras": "supportive_crosscheck_only",
+    "dirac_matrices": "load_bearing",
+    "note": "removing CliffordAlgebras leaves all_pass=true; gg.clifford re-derives the relations"
+  }
+}

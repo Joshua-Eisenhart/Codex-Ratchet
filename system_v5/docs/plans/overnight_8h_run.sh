@@ -2,7 +2,7 @@
 set -uo pipefail
 
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
-PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+PY="${CODEX_RATCHET_PYTHON:-${SIM_PY:-/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3}}"
 HERMES_ENV="/Users/joshuaeisenhart/.hermes/.env"
 LOG_DIR="$ROOT/system_v4/probes/a2_state/sim_results/overnight_logs"
 mkdir -p "$LOG_DIR"

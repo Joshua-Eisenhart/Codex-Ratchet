@@ -2,8 +2,8 @@
 # Perpetual wrapper: respawns reseeder + runners whenever they exit.
 # Local compute only, zero tokens. Stop with: kill "$(cat /tmp/codex_ratchet_perpetual_runner.pid)"
 set -u
-ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
-PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
+PY="${CODEX_RATCHET_PYTHON:-${SIM_PY:-/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3}}"
 PERPETUAL_PIDFILE="/tmp/codex_ratchet_perpetual_runner.pid"
 CONTROLLER_PIDFILE="/tmp/codex_ratchet_adaptive_controller.pid"
 RESEED_PIDFILE="/tmp/codex_ratchet_autonomous_reseed.pid"

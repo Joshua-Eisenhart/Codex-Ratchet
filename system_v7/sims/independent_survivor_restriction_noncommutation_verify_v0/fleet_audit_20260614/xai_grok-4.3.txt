@@ -1,0 +1,14 @@
+(a) Noncommutation is hand-engineered: make_history_dependent_constraint (ll. 80-100) and rule_hist/rule_hist2 (ll. 140-150) are written to read H.ever_killed so order of appends differs; seed_kill={3} (run_all:300) is an explicit injection to force the first H-read asymmetry; delta_static_control_x_reactive=3 (core_res + JAX JSON) shows the same non-zero delta arises from a purely X-reactive static rule with no history, collapsing the "memory-is-the-engine" claim.
+
+(b) Amnesic ablation is rigged: make_amnesic_constraint (ll. 170-185) hard-codes nb_in_graveyard=False on every call, making the original rule_hist a no-op by construction; even the mixed-rule isolator (rule_hist_mixed_* + make_amnesic on them) still forces the identical False constant, so delta_mixed_amnesic=0 is tautological once the only order-sensitive term is deleted.
+
+(c) Phi square is decorative: update_lex_factory (ll. 220-225) does `return geo_constraint(token_set, H)` (identical object, not independent reimplementation), so fidelity=1.0 is true by identity; the negative controls (0.78/0.28) only prove the test can be failed, they do not rescue the positive case from being a construction artifact.
+
+(d) GNVW is an echo: gnvw_index_of_translation (ll. 195-205) recovers exactly the signed d that shift_permutation(direction) injected; the JAX leg (recompute_deltas + core_res["gnvw_index"]) simply reads the same dict value rather than recomputing from any topological invariant.
+
+EMERGENCE earned only as definition witnessed; map<->constraint gap described but not closed; the circularity is the entire survivor noncommutation + Phi + GNVW machinery being re-instantiated from the R3/R4 spec rather than derived from QCA neighbourhood dynamics.
+
+HARSHEST: Phi fidelity=1.0 is achieved solely because update_lex_factory delegates to the identical geo_constraint object rather than an independent lexical rule.
+EMERGENCE_EARNED: no
+GAP_CLOSED: no
+CIRCULARITY: stipulated

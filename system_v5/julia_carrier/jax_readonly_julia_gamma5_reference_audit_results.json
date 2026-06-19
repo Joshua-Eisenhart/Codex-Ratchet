@@ -1,0 +1,577 @@
+{
+  "audit_checks": {
+    "gamma5_rederived_in_jax": true,
+    "julia_reference_read_only_pass": true,
+    "no_julia_execution": true,
+    "primary_matches_julia_basin_sets": true,
+    "robust_grid_all_pass": true
+  },
+  "audit_pass": true,
+  "blocked_consumers": [
+    "layer_completion",
+    "bridge",
+    "Axis0",
+    "flux",
+    "physics_gravity",
+    "canonical_manifold"
+  ],
+  "claim_ceiling": "JAX stress/audit of existing Julia gamma5 branch/prune result. Diagnostic only; no layer, bridge, Axis0, flux, or physics admission.",
+  "classification": "jax_readonly_reference_audit_poc",
+  "executed_track": "jax",
+  "gamma5_checks": {
+    "anticommutes_all": true,
+    "expected_diag": true,
+    "square_identity": true
+  },
+  "julia_reference": {
+    "branch_prune": {
+      "A": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "B_gamma5": [
+        1,
+        2
+      ],
+      "B_pruned": 130,
+      "C_control": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "inverted_survivors": [
+        3,
+        4
+      ],
+      "random_prune_survivors": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "checks": {
+      "reference_A_all_basins": true,
+      "reference_B_allowed_only": true,
+      "reference_C_equals_A": true,
+      "reference_all_pass": true,
+      "reference_no_promotion": true
+    },
+    "classification": "julia_branch_prune_dirac_poc",
+    "pass": true,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/branch_prune_dirac_gamma5_chirality_object_results.json",
+    "promotion_allowed": false
+  },
+  "julia_reference_mode": "read_only",
+  "name": "jax_readonly_julia_gamma5_reference_audit",
+  "primary_run": {
+    "checks": {
+      "A_reaches_all_basins": true,
+      "B_kills_forbidden": true,
+      "B_preserves_allowed": true,
+      "B_pruned_some_A_none": true,
+      "bookkeeping": true,
+      "control_C_equals_A": true,
+      "inverted_sign_flips_to_forbidden": true,
+      "norm_drift_small": true,
+      "rate_matched_random_keeps_forbidden": true
+    },
+    "dt": 0.002,
+    "max_norm_drift": 3.3306690738754696e-16,
+    "pass": true,
+    "runs": {
+      "A": {
+        "populated_basins": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "pruned": 0,
+        "survivors": 600
+      },
+      "B_gamma5": {
+        "populated_basins": [
+          1,
+          2
+        ],
+        "pruned": 118,
+        "survivors": 482
+      },
+      "C_control": {
+        "populated_basins": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "pruned": 0,
+        "survivors": 600
+      }
+    },
+    "seed": 42,
+    "selector_controls": {
+      "inverted_sign": {
+        "populated_basins": [
+          3,
+          4
+        ],
+        "pruned": 489,
+        "survivors": 111,
+        "survivors_within_forbidden": true
+      },
+      "rate_matched_random": {
+        "keeps_forbidden": true,
+        "populated_basins": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "pruned": 118,
+        "survivors": 482
+      }
+    },
+    "steps": 6000
+  },
+  "promotion_allowed": false,
+  "ran_julia": false,
+  "robustness_grid": [
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.002,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 118,
+          "survivors": 482
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 42,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 489,
+          "survivors": 111,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 118,
+          "survivors": 482
+        }
+      },
+      "steps": 6000
+    },
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.001,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 118,
+          "survivors": 482
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 42,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 489,
+          "survivors": 111,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 118,
+          "survivors": 482
+        }
+      },
+      "steps": 12000
+    },
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.002,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 134,
+          "survivors": 466
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 2026,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 477,
+          "survivors": 123,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 134,
+          "survivors": 466
+        }
+      },
+      "steps": 6000
+    },
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.001,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 134,
+          "survivors": 466
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 2026,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 477,
+          "survivors": 123,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 134,
+          "survivors": 466
+        }
+      },
+      "steps": 12000
+    },
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.002,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 138,
+          "survivors": 462
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 9001,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 476,
+          "survivors": 124,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 138,
+          "survivors": 462
+        }
+      },
+      "steps": 6000
+    },
+    {
+      "checks": {
+        "A_reaches_all_basins": true,
+        "B_kills_forbidden": true,
+        "B_preserves_allowed": true,
+        "B_pruned_some_A_none": true,
+        "bookkeeping": true,
+        "control_C_equals_A": true,
+        "inverted_sign_flips_to_forbidden": true,
+        "norm_drift_small": true,
+        "rate_matched_random_keeps_forbidden": true
+      },
+      "dt": 0.001,
+      "max_norm_drift": 3.3306690738754696e-16,
+      "pass": true,
+      "runs": {
+        "A": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        },
+        "B_gamma5": {
+          "populated_basins": [
+            1,
+            2
+          ],
+          "pruned": 138,
+          "survivors": 462
+        },
+        "C_control": {
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 0,
+          "survivors": 600
+        }
+      },
+      "seed": 9001,
+      "selector_controls": {
+        "inverted_sign": {
+          "populated_basins": [
+            3,
+            4
+          ],
+          "pruned": 476,
+          "survivors": 124,
+          "survivors_within_forbidden": true
+        },
+        "rate_matched_random": {
+          "keeps_forbidden": true,
+          "populated_basins": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pruned": 138,
+          "survivors": 462
+        }
+      },
+      "steps": 12000
+    }
+  ],
+  "tool_integration_depth": {
+    "JAX": "load_bearing",
+    "JSON": "supportive",
+    "jax.lax.scan": "load_bearing",
+    "jax.random": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX": "load-bearing batched audit lane",
+    "JSON": "read-only Julia reference and JAX receipt serialization",
+    "jax.lax.scan": "load-bearing projected evolution and monotone prune latch",
+    "jax.numpy": "load-bearing Dirac/gamma5 complex linear algebra",
+    "jax.random": "load-bearing branch ensemble generation"
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "independent Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX-slot finite directed graph carrier and stability metadata",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact symbolic commutator/source-row probes",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+      "receipt_id": "jax_networkx_axis6_precedence_candidate",
+      "status": "used",
+      "tool": "networkx"
+    },
+    {
+      "computed_what": "sp.Matrix/sp.Rational exact D_z x Ne commutator-template source row",
+      "receipt_id": "jax_sympy_axis6_precedence_candidate",
+      "status": "used",
+      "tool": "sympy"
+    },
+    {
+      "computed_what": "z3.Solver/z3.Int computed positive/negative precedence identity",
+      "receipt_id": "jax_z3_axis6_precedence_candidate",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative precedence identity",
+      "receipt_id": "jax_cvc5_axis6_precedence_candidate",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "axis0_response_not_recoverable_from_axis6": true,
+    "axis6_not_recoverable_from_axis0_response": true,
+    "changed_edge_count": 24,
+    "edge_count": 198,
+    "negative": 14,
+    "neutral": 5,
+    "nonneutral": 28,
+    "positive": 14,
+    "readout_signature_sha256": "876bab7e77d43fdbcd674a0f3f7b9f6a6e3959ee0f459d24ff4984687c916d6c",
+    "stable_edge_count": 174,
+    "state_count": 33,
+    "two_step_changed_paths": 243,
+    "two_step_stable_paths": 945
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis0_not_from_axis6": 1,
+        "axis6_not_from_axis0_response": 1,
+        "changed_edges": 24,
+        "commuting_neutral_count": 33,
+        "edge_count": 198,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "stable_edges": 174,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis0_not_from_axis6": 0,
+        "axis6_not_from_axis0_response": 0,
+        "changed_edges": 198,
+        "commuting_neutral_count": 0,
+        "negative": 0,
+        "positive": 0,
+        "stable_edges": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and stable>0 and changed>0 and two-way A0/A6 non-recovery and commuting control all-neutral",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis0_not_from_axis6": 1,
+        "axis6_not_from_axis0_response": 1,
+        "changed_edges": 24,
+        "commuting_neutral_count": 33,
+        "edge_count": 198,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "stable_edges": 174,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis0_not_from_axis6": 0,
+        "axis6_not_from_axis0_response": 0,
+        "changed_edges": 198,
+        "commuting_neutral_count": 0,
+        "negative": 0,
+        "positive": 0,
+        "stable_edges": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and stable>0 and changed>0 and two-way A0/A6 non-recovery and commuting control all-neutral",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_mode": "three_engine_axis6_precedence_candidate_on_family_a_33_cell_carrier",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:43:37Z",
+  "object_id": "discrete_axis6_precedence_v0_jax",
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative precedence identity",
+    "networkx": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+    "sympy": "sp.Matrix/sp.Rational exact D_z x Ne commutator-template source row",
+    "z3": "z3.Solver/z3.Int computed positive/negative precedence identity"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis6_precedence_v0/results/discrete_axis6_precedence_v0_jax_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis6_precedence_v0",
+  "source_backing_probe": {
+    "cvc5_positive_negative_not_zero": "unsat",
+    "jax_vmap_matches_common_table": true,
+    "jax_vmap_negative": 14,
+    "jax_vmap_neutral": 5,
+    "jax_vmap_positive": 14,
+    "networkx_collapsed_edge_count": 116,
+    "networkx_node_count": 33,
+    "pass": true,
+    "sympy_commutator_template": "Matrix([[0, 0, -sqrt(3)/5], [0, 0, sqrt(3)/5], [-sqrt(3)/5, sqrt(3)/5, 0]])",
+    "sympy_commutator_template_nonzero_entries": 4,
+    "z3_positive_negative_not_zero": "unsat"
+  },
+  "source_path": "system_v6/sims/discrete_axis6_precedence_v0/discrete_axis6_precedence_v0_jax.py",
+  "source_sha256": "32244cd04eb74763d203408c37d6245f35e72e249e5b2a353e4a63ba3d8f766f",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+      "receipt_id": "jax_networkx_axis6_precedence_candidate",
+      "tool": "networkx"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "sp.Matrix/sp.Rational exact D_z x Ne commutator-template source row",
+      "receipt_id": "jax_sympy_axis6_precedence_candidate",
+      "tool": "sympy"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "z3.Solver/z3.Int computed positive/negative precedence identity",
+      "receipt_id": "jax_z3_axis6_precedence_candidate",
+      "tool": "z3"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative precedence identity",
+      "receipt_id": "jax_cvc5_axis6_precedence_candidate",
+      "tool": "cvc5"
+    }
+  ]
+}

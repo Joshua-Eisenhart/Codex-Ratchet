@@ -18,7 +18,7 @@ from pathlib import Path
 
 
 DEFAULT_DIR = Path("/tmp/codex_claude_bridge")
-DEFAULT_MODEL = "claude-opus-4-7"
+DEFAULT_MODEL = "claude-sonnet-4-6"
 DEFAULT_CLAUDE_BIN = Path("/Users/joshuaeisenhart/.claude/local/claude")
 
 

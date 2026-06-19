@@ -1,0 +1,276 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent L/R opposite-index proof",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational index-ratio check",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor carrier for signed index rows",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing differentiable zero-gradient calibration check",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing local ring incidence carrier",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing L/R opposite-index proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch_geometric",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "torch_geometric",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "same-sign R mutation reaches a SAT/UNSAT flip",
+      "positive_case": "actual computed index table satisfies the contract",
+      "proof_row": "cvc5 mirror of computed index calibration and L/R sign contract",
+      "ran": true,
+      "tautological_flip_guard": "cvc5 binds integer variables to computed table entries first",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "mutating R to the same left-flow sign makes the opposite-sign equality satisfiable only by contradiction, so the failure branch is reachable",
+      "positive_case": "actual right/left/zero calibration and L/R opposite signs satisfy the contract",
+      "proof_row": "bind computed signed indices and assert that calibration/opposite-sign contract can fail",
+      "ran": true,
+      "tautological_flip_guard": "solver variables are bound to computed index table entries before the contract query",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "engine_specific_checks": {
+    "cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "torch_func_flux_gradient": {
+      "gradient": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "load_bearing_pass": true,
+      "max_abs_gradient": 0.0,
+      "target": [
+        1.0,
+        -1.0,
+        0.0,
+        -1.0,
+        1.0
+      ],
+      "values": [
+        1.0,
+        -1.0,
+        0.0,
+        -1.0,
+        1.0
+      ]
+    },
+    "torch_geometric_ring_check": {
+      "edge_count": 8,
+      "in_degree": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "load_bearing_pass": true,
+      "num_nodes": 4,
+      "out_degree": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "role": "torch_geometric.data.Data carrier for local ring-neighbor and opposite-neighbor edge incidence"
+    },
+    "torch_index_tensor_checks": {
+      "calibration_vector": [
+        1,
+        -1,
+        0,
+        -1,
+        1
+      ],
+      "index_lookup": {
+        "calibration_left_shift": -1,
+        "calibration_nonshifting_onsite": 0,
+        "calibration_right_shift": 1,
+        "engine_L_flux_in_left": -1,
+        "engine_L_index0_control": 0,
+        "engine_R_flux_out_right": 1,
+        "engine_R_index0_control": 0,
+        "gauge_reparameterized_right_shift": 1,
+        "paired_block_index0": 0
+      },
+      "load_bearing_pass": true,
+      "sympy_exact_ratio_inverse_check": true
+    },
+    "z3": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine_values": {
+    "L_engine_index": -1,
+    "R_engine_index": 1,
+    "global_terminal_count": 160,
+    "left_shift_index": -1,
+    "local_terminal_count": 1600,
+    "right_shift_index": 1,
+    "zero_index": 0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:19:43Z",
+  "one_to_one_tool_calls": {
+    "calls": [
+      {
+        "output_object": {
+          "edge_count": 8,
+          "in_degree": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "load_bearing_pass": true,
+          "num_nodes": 4,
+          "out_degree": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "role": "torch_geometric.data.Data carrier for local ring-neighbor and opposite-neighbor edge incidence"
+        },
+        "qualified_api/function": "torch_geometric.data.Data",
+        "tool": "torch_geometric"
+      },
+      {
+        "output_object": {
+          "gradient": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "load_bearing_pass": true,
+          "max_abs_gradient": 0.0,
+          "target": [
+            1.0,
+            -1.0,
+            0.0,
+            -1.0,
+            1.0
+          ],
+          "values": [
+            1.0,
+            -1.0,
+            0.0,
+            -1.0,
+            1.0
+          ]
+        },
+        "qualified_api/function": "torch.func.jacrev",
+        "tool": "torch.func"
+      },
+      {
+        "output_object": true,
+        "qualified_api/function": "sp.Rational/sp.simplify",
+        "tool": "sympy"
+      },
+      {
+        "output_object": {
+          "load_bearing": true,
+          "ran": true,
+          "solver": "z3",
+          "verdict": "unsat"
+        },
+        "qualified_api/function": "z3.Solver/z3.Int/check",
+        "tool": "z3"
+      },
+      {
+        "output_object": {
+          "load_bearing": true,
+          "ran": true,
+          "solver": "cvc5",
+          "verdict": "unsat"
+        },
+        "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+        "tool": "cvc5"
+      }
+    ],
+    "pass": true
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed L/R index proof",
+    "sympy": "sp.Rational exact index-ratio inverse check",
+    "torch.func": "torch.func.jacrev verifies zero gradient of the signed-index calibration penalty",
+    "torch_geometric": "torch_geometric.data.Data carries local ring incidence and gates degree equality",
+    "z3": "z3.Solver binds computed L/R indices and proves non-opposite relation UNSAT"
+  },
+  "packages_used": [
+    "torch",
+    "torch_geometric",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "pathlib"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_pytorch_results.json",
+  "schema": "ring_checkerboard_qca_v1_pytorch_result_v1",
+  "sim_id": "ring_checkerboard_qca_v1",
+  "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_pytorch.py",
+  "source_sha256": "4f2e4675adf13aee41b4509472f785cea0ea5f98e41f3944dccacae3403e7ecf"
+}

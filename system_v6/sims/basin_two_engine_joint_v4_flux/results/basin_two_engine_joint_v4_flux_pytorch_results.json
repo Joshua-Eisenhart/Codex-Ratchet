@@ -1,0 +1,410 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent computed-count identity proof with flipped control",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact integer checksum over computed counts",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor materialization of flux-carrying joint coordinates",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing batched finite transition image materialization",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing edge_index carrier for source-faithful coupling graph",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing computed-count identity proof with flipped control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "finite SCC / terminal class / absent-exit partition for flux-carrying basin rows",
+      "receipt_id": "pytorch_torch_geometric_flux_partition",
+      "status": "used",
+      "tool": "torch_geometric"
+    },
+    {
+      "computed_what": "computed count identity with flipped expected-count control",
+      "receipt_id": "pytorch_z3_computed_count_identity",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "computed count identity with flipped expected-count control",
+      "receipt_id": "pytorch_cvc5_computed_count_identity",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_verdict": "sat",
+      "flipped_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "flipped_control": "expected count for stage1__A_readout_transition_dwell__L__flux_terminal_classes incremented by one; mismatch assertion must flip to SAT",
+        "measured_counts": {
+          "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+          "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+          "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+          "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+          "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+          "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+          "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+          "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+          "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+        },
+        "polarity": "computed count identity; negated mismatch UNSAT binds measured stage-1 and source-faithful stage-2 counts"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "proof_row": {
+      "asserted_precomputed_boolean": false,
+      "flipped_control": "expected count for stage1__A_readout_transition_dwell__L__flux_terminal_classes incremented by one; mismatch assertion must flip to SAT",
+      "measured_counts": {
+        "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+        "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+        "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+        "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+        "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+        "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+        "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+        "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+        "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+        "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+        "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+        "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+        "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+        "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+        "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+        "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+        "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+        "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+      },
+      "polarity": "computed count identity; negated mismatch UNSAT binds measured stage-1 and source-faithful stage-2 counts"
+    },
+    "z3": {
+      "erased_flip_verdict": "sat",
+      "flipped_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "flipped_control": "expected count for stage1__A_readout_transition_dwell__L__flux_terminal_classes incremented by one; mismatch assertion must flip to SAT",
+        "measured_counts": {
+          "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+          "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+          "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+          "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+          "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+          "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+          "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+          "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+          "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+          "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+          "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+          "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+          "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+        },
+        "polarity": "computed count identity; negated mismatch UNSAT binds measured stage-1 and source-faithful stage-2 counts"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:22:29Z",
+  "joint_signature_sha256": "d4553a60bf95c4484401fb615f5841aefa3fda2d8a0de260e0edd30da6fd4a3e",
+  "object_id": "basin_two_engine_joint_v4_flux_pytorch",
+  "one_to_one_tool_calls": {
+    "capability_receipt_ids": [
+      "pytorch_torch_geometric_flux_partition",
+      "pytorch_z3_computed_count_identity",
+      "pytorch_cvc5_computed_count_identity"
+    ],
+    "pass": true,
+    "tool_call_ids": [
+      "pytorch_torch_geometric_flux_partition",
+      "pytorch_z3_computed_count_identity",
+      "pytorch_cvc5_computed_count_identity"
+    ]
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver computed count identity UNSAT and flipped control SAT",
+    "sympy": "sympy exact integer checksum over measured stage-1/stage-2 counts",
+    "torch.func": "torch.func.vmap batched finite transition image materialization",
+    "torch_geometric": "torch_geometric.data.Data edge_index carrier for flux-carrying coupling graph",
+    "z3": "z3.Solver computed count identity UNSAT and flipped control SAT"
+  },
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "sympy": "1.14.0",
+    "torch": "2.11.0",
+    "torch_geometric": "2.7.0",
+    "z3": "4.16.0.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "parent_lineage": {
+    "builder_output_only": true,
+    "consumed_inputs": [
+      {
+        "exists": true,
+        "git_last_commit": null,
+        "id": "build_card",
+        "path": "system_v6/sims/basin_two_engine_joint_v4_flux/build_card.md",
+        "sha256": "6cfdb70cde35eb4a5555020ff957d2db15832d4beeb97af09bd9dea1a038741a"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "7ba33df917ba5e850cf435e4aff9b52f340c534f",
+        "id": "owner_prediction_64_subsubbasins",
+        "path": "system_v6/receipts/owner_prediction_64_subsubbasins_20260611.md",
+        "sha256": "187ada7e38c2d488c7018afb60a0ee49992cbd7850da1b9211b492dcb8504bf8"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "b6a6d2ae97ff1290ee4ec8da65373cff140c28a0",
+        "id": "coupling_law_family_table",
+        "path": "system_v6/receipts/coupling_law_family_table_20260611.md",
+        "sha256": "96f0174be92f2192d8c7adaaff46d74aab6b6e2250b85d12614e882e6d8822ee"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "dd9ec4999b2ccb982226344f232dda86307429fc",
+        "id": "two_engine_readout_automaton",
+        "path": "system_v6/foundations/two_engine_readout_automaton_20260609.md",
+        "sha256": "ca99877dfd1cae2d098225ae06bfbec8384de5f4079b3bd4de075e100f08abed"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "bc910f24b0a9329478e97ceda19830790dacb743",
+        "id": "symbolic_layer_iching_taijitu",
+        "path": "system_v6/foundations/symbolic_layer_iching_taijitu_20260609.md",
+        "sha256": "c858fbad8ce7b3cc030c8414e300b1b7e0ca4876ed5a341e14a7edf34d17dada"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "157aa4b4d0ef1b0937a76fb39a10e99e53ce7f70",
+        "id": "flux_emergence_discriminator",
+        "path": "system_v6/sims/flux_emergence_discriminator/results/flux_emergence_discriminator_envelope_results.json",
+        "sha256": "e15be92b10565c1bc365feeaa869d69d0cbd4efaa2b40101530145bf00428d29"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "9de3f36338b890b27b795be390804d4ff1144823",
+        "id": "geo_s9_holonomy_spectrum_identity",
+        "path": "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_envelope_results.json",
+        "sha256": "34c6b22838ac169a2073fb46656a71957a0f3b690faf32e5e8b7b78fbe10d2ed"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "15b1d1899f8264bbbd60e2b827e05ef6cc8446fa",
+        "id": "ratchet_s2_two_shell_flux",
+        "path": "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json",
+        "sha256": "1c37955b266d7245efb3dd23e50fd650c131823b300a6ed3a80dd6fa2e6eb9dd"
+      },
+      {
+        "exists": true,
+        "git_last_commit": "de0c8f637a6202ceb6ea4a44cb218324bc8d20b3",
+        "id": "basin_two_engine_joint_v3",
+        "path": "system_v6/sims/basin_two_engine_joint_v3_convention_sweep/results/basin_two_engine_joint_v3_convention_sweep_envelope_results.json",
+        "sha256": "8b984fa9d865cffdeb6a93ec210e72c1304e0d3722a41d0d3a300f96c69a56d3"
+      }
+    ],
+    "flux_realization": {
+      "claim_ceiling": "finite realization-relative flux carrier; scratch_diagnostic only",
+      "committed_flux_objects_realized": [
+        "system_v6/sims/flux_emergence_discriminator/results/flux_emergence_discriminator_envelope_results.json: Chern=1 flux with bare-spinor and single-shell ablations",
+        "system_v6/sims/geo_s9_alternative_connections_v0/results/geo_s9_alternative_connections_v0_envelope_results.json: leaf holonomy spectrum plus annular flux distinguishes geometric data at fixed c1",
+        "system_v6/sims/ratchet_s2_two_shell_flux_v0/results/ratchet_s2_two_shell_flux_v0_envelope_results.json: two-shell annular flux / boundary holonomy gap anchor"
+      ],
+      "finite_variable": "signed holonomy-sector bit in {-1,+1}",
+      "update_policy": "On a stage/loop boundary, the signed sector flips exactly when the next active readout opposes the engine's O1 flux direction and the current loop is the direction sheet: L/IN uses base, R/OUT uses fiber."
+    },
+    "joint_packet_write_scope": "system_v6/sims/basin_two_engine_joint_v4_flux",
+    "no_builder_audit_verdict_gate": true,
+    "source_bound_claim_ceiling": "scratch_diagnostic",
+    "source_citations": {
+      "corrected_target": "system_v6/receipts/owner_prediction_64_subsubbasins_20260611.md final corrected citation: A=28, D_b_order=24",
+      "coupling_rows": "system_v6/receipts/coupling_law_family_table_20260611.md owner-source rows O1-O6 and candidate rows C1/C2/C5",
+      "flux_object": "flux_emergence_discriminator: Chern=1 plus ablations; geo_s9_alternative_connections_v0: holonomy-spectrum/annular-flux geometric data class",
+      "owner_flux_refinement": "system_v6/receipts/owner_prediction_64_subsubbasins_20260611.md owner refinement section",
+      "stage_word_orders": "system_v6/foundations/two_engine_readout_automaton_20260609.md alternating=period-2 and paired=period-4 rows"
+    }
+  },
+  "payload_digest": "83f7b9c5d8be9276ef96dca1ed5452f4e6ed90b0d2cde3c1a0cfc41ed06c774f",
+  "primary_terminal_counts": {
+    "stage1__A_readout_transition_dwell__L__flux_terminal_classes": 1,
+    "stage1__A_readout_transition_dwell__L__flux_terminal_core_total": 56,
+    "stage1__A_readout_transition_dwell__R__flux_terminal_classes": 1,
+    "stage1__A_readout_transition_dwell__R__flux_terminal_core_total": 56,
+    "stage1__D_matrix64_b_order_overlay__L__flux_terminal_classes": 1,
+    "stage1__D_matrix64_b_order_overlay__L__flux_terminal_core_total": 48,
+    "stage1__D_matrix64_b_order_overlay__R__flux_terminal_classes": 2,
+    "stage1__D_matrix64_b_order_overlay__R__flux_terminal_core_total": 48,
+    "stage2__A_readout_transition_dwell__C1_constrained_fibered_placement": 16,
+    "stage2__A_readout_transition_dwell__C2_fibered_system": 1,
+    "stage2__A_readout_transition_dwell__C5_strategy_alternating_period2": 28,
+    "stage2__A_readout_transition_dwell__C5_strategy_paired_period4": 12,
+    "stage2__A_readout_transition_dwell__O6_720_double_cover": 3,
+    "stage2__D_matrix64_b_order_overlay__C1_constrained_fibered_placement": 12,
+    "stage2__D_matrix64_b_order_overlay__C2_fibered_system": 2,
+    "stage2__D_matrix64_b_order_overlay__C5_strategy_alternating_period2": 24,
+    "stage2__D_matrix64_b_order_overlay__C5_strategy_paired_period4": 12,
+    "stage2__D_matrix64_b_order_overlay__O6_720_double_cover": 2
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_two_engine_joint_v4_flux/results/basin_two_engine_joint_v4_flux_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "deterministic_order": "lexicographic finite states",
+    "rng": "none"
+  },
+  "sim_id": "basin_two_engine_joint_v4_flux",
+  "solver_source_backing_probe": {
+    "bound_count_name": "stage1__A_readout_transition_dwell__L__flux_terminal_classes",
+    "bound_count_value": 1,
+    "cvc5_unsat_probe": "unsat",
+    "pass": true,
+    "z3_unsat_probe": "unsat"
+  },
+  "source_path": "system_v6/sims/basin_two_engine_joint_v4_flux/basin_two_engine_joint_v4_flux_pytorch.py",
+  "source_sha256": "8206eed25beec769e0f18b05a1512095f43f5143c79b071cdaf4c544862c4e5a",
+  "source_valid_primary_64_level_count": 0,
+  "sympy_count_checksum": {
+    "pass": true,
+    "sum_terminal_counts": 325,
+    "weighted_terminal_count_checksum": 2498
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "product coupling and one-sided frozen-factor rows excluded from primary evidence",
+      "demotion_condition": "demote if row count is produced from product factors rather than transition graph SCCs",
+      "gates": [
+        "partition",
+        "controls",
+        "all_pass"
+      ],
+      "input_object": "flux-carrying finite transition graph rows",
+      "negative/erased_control": "flux-erased continuity and fenced contrast rows",
+      "output_object": "terminal classes, SCC counts, absent-exit proofs",
+      "positive_case": "source-faithful rows compute finite terminal partitions",
+      "qualified_api/function": "torch_geometric",
+      "receipt_id": "pytorch_torch_geometric_flux_partition",
+      "tool": "torch_geometric"
+    },
+    {
+      "boundary_case": "64/near64 claims stay realization-relative",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "proof",
+        "flipped_control",
+        "all_pass"
+      ],
+      "input_object": "measured stage-1 and source-faithful stage-2 counts",
+      "negative/erased_control": "one expected count incremented by one flips to SAT",
+      "output_object": "UNSAT count-identity mismatch and SAT flipped control",
+      "positive_case": "all measured counts match the identity row",
+      "qualified_api/function": "z3.Solver/check",
+      "receipt_id": "pytorch_z3_computed_count_identity",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "64/near64 claims stay realization-relative",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "proof",
+        "flipped_control",
+        "all_pass"
+      ],
+      "input_object": "measured stage-1 and source-faithful stage-2 counts",
+      "negative/erased_control": "one expected count incremented by one flips to SAT",
+      "output_object": "UNSAT count-identity mismatch and SAT flipped control",
+      "positive_case": "all measured counts match the identity row",
+      "qualified_api/function": "cvc5.Solver/check",
+      "receipt_id": "pytorch_cvc5_computed_count_identity",
+      "tool": "cvc5"
+    }
+  ],
+  "torch_graph_receipt": {
+    "coupling_id": "C1_constrained_fibered_placement",
+    "pass": true,
+    "torch_func_vmap": {
+      "batched_image_shape": [
+        2,
+        4096,
+        4
+      ],
+      "finite": true
+    },
+    "torch_geometric_data": {
+      "edge_index_shape": [
+        2,
+        6032
+      ],
+      "num_edges": 6032,
+      "num_nodes": 4096,
+      "x_shape": [
+        4096,
+        4
+      ]
+    },
+    "variant_id": "A_readout_transition_dwell"
+  }
+}

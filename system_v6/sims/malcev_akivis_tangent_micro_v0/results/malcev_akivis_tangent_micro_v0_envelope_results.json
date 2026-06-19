@@ -1,0 +1,384 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax:artifact_json": "load_bearing",
+    "jax:cvc5": "load_bearing",
+    "jax:exact_integer_arithmetic": "load_bearing",
+    "jax:jax": "supportive",
+    "jax:jax.numpy": "supportive",
+    "jax:z3": "load_bearing",
+    "julia:Z3": "load_bearing",
+    "julia:artifact_json": "load_bearing",
+    "julia:exact_integer_arithmetic": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "jax:artifact_json": {
+      "reason": "load-bearing committed octonion structure constants consumed by SHA-256",
+      "tried": true,
+      "used": true
+    },
+    "jax:cvc5": {
+      "reason": "load-bearing independent finite flag proof over computed rows",
+      "tried": true,
+      "used": true
+    },
+    "jax:exact_integer_arithmetic": {
+      "reason": "load-bearing basis triple products and identity residuals over integers",
+      "tried": true,
+      "used": true
+    },
+    "jax:jax": {
+      "reason": "supportive x64/int64 runtime guard for the Python mirror; exact proof remains integer residual computation",
+      "tried": true,
+      "used": true
+    },
+    "jax:jax.numpy": {
+      "reason": "supportive int64 basis probe; not a numeric tolerance proof",
+      "tried": true,
+      "used": true
+    },
+    "jax:z3": {
+      "reason": "load-bearing finite flag proof over computed rows",
+      "tried": true,
+      "used": true
+    },
+    "julia:Z3": {
+      "reason": "load-bearing finite flag proof over computed rows",
+      "tried": true,
+      "used": true
+    },
+    "julia:artifact_json": {
+      "reason": "load-bearing committed octonion structure constants consumed by SHA-256",
+      "tried": true,
+      "used": true
+    },
+    "julia:exact_integer_arithmetic": {
+      "reason": "load-bearing basis triple products and identity residuals over integers",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "boundary_section": {
+    "quaternion_subalgebra_control": {
+      "basis_labels": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "failure": null,
+      "indices_1_based": [
+        1,
+        2,
+        3
+      ],
+      "jacobi_identity_holds": true,
+      "triples_checked": 27
+    }
+  },
+  "builder_gates": {
+    "artifact_sha256_pinned": true,
+    "build_card_copied": true,
+    "classification_ceiling": true,
+    "engine_rows_match": true,
+    "no_builder_audit_verdict": true,
+    "nonassociativity_diagnostic_only": true,
+    "pytorch_honestly_omitted": true
+  },
+  "canon_runtime": {
+    "artifact_path": "system_v5/julia_carrier/artifacts/algebra_structure_constants_v1.json",
+    "artifact_sha256": "824a0a2c794a949a83e4bd650c9620464b96eb0d1dcb3d0fe4901a4e86d05f2c",
+    "bracket_convention": "left",
+    "consumer_policy": "compute_from_exported_C_tensor_with_fixed_parenthesization",
+    "proof_pass": true,
+    "proof_tag": "sha256:a9470fc299d39917a791bba0144d3e526866ad217b90fac1a6622b25d2c4652a",
+    "receipt_path": "system_v5/ops/formal_scouts/results/canon_algebra_artifact_v1_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "029907bc4729cac16a69579a5a1291674adb25f18582e65ad48d5bae48b10a09",
+    "table_version": "algebra_structure_constants_v1"
+  },
+  "claim": "The imaginary-octonion commutator algebra from the committed Julia Canon structure constants is non-Lie but Malcev; the quaternion subalgebra is Lie; a one-entry perturbation breaks Malcev.",
+  "claim_ceiling": "tool_function_micro_only",
+  "claim_path_tools": [
+    "Z3",
+    "cvc5",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_kind": "independent finite-flag encoding matching z3",
+      "ran": true,
+      "raw_value_binding": {
+        "jacobi_fails": 1,
+        "malcev_compact_holds": 1,
+        "malcev_expanded_holds": 1,
+        "perturbed_non_malcev_fails": 1,
+        "quaternion_jacobi_holds": 1
+      },
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "proof_kind": "finite exact identity/control flags bound after computing all basis triples",
+      "ran": true,
+      "raw_value_binding": {
+        "jacobi_fails": 1,
+        "malcev_compact_holds": 1,
+        "malcev_expanded_holds": 1,
+        "perturbed_non_malcev_fails": 1,
+        "quaternion_jacobi_holds": 1
+      },
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "comparison": {
+      "exact_rows_match": true,
+      "meaning": "exact witnesses, identity booleans, and controls match"
+    },
+    "engine_values": {
+      "jax": 0,
+      "julia": 0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0
+  },
+  "engine_contract": {
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_jax_exact_integer_micro",
+    "omitted_lanes": {
+      "pytorch": "No autograd, graph, tensor-network, or neural surface is scoped for this finite exact structure-constant identity micro."
+    },
+    "reads_peer_result": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "independent computed exact identity/control flag proof",
+        "z3": "computed exact identity/control flags form an UNSAT positive proof and SAT erase control"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/results/malcev_akivis_tangent_micro_v0_jax_results.json",
+      "source_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_jax.py",
+      "source_sha256": "65ff762e18e3d5b93f46517afa0b5c0629235406c37c4d8e5d55de69f7911313"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Z3": "computed exact identity/control flags form an UNSAT positive proof and SAT erase control"
+      },
+      "packages_used": [
+        "JSON",
+        "SHA",
+        "Z3"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/results/malcev_akivis_tangent_micro_v0_julia_results.json",
+      "source_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_julia.jl",
+      "source_sha256": "8368898db5f5344cfb72f5cf9db96971ec1107c5c9f5d35c8bc2d169d80e2636"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib",
+        "z3",
+        "cvc5"
+      ],
+      "role": "independent exact integer mirror plus z3/cvc5 flag proof"
+    },
+    "julia": {
+      "packages": [
+        "JSON",
+        "SHA",
+        "Z3"
+      ],
+      "project": "system_v5/julia_carrier",
+      "role": "semantic owner/consumer of committed structure constants"
+    },
+    "pytorch": {
+      "role": "omitted_not_scoped"
+    },
+    "tensor_exchange": "none; engines independently consume the same committed JSON table by hash"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T08:16:32Z",
+  "malcev_verdict": "PASS_EXACT_IMAGINARY_OCTONION_COMMUTATOR_MALCEV_MICRO",
+  "negative_section": {
+    "non_malcev_control": {
+      "failure_witness": {
+        "basis_indices": [
+          1,
+          2,
+          2
+        ],
+        "basis_labels": [
+          "e1",
+          "e2",
+          "e2"
+        ],
+        "sparse": {
+          "e2": -4
+        },
+        "vector": [
+          0,
+          -4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "malcev_identity_holds_after_perturbation": false,
+      "perturbation": "C_bracket[e1][e1,e2] += 1 and antisymmetric mirror -= 1"
+    }
+  },
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "malcev_akivis_tangent_micro_v0",
+  "positive_section": {
+    "basis_triples_checked": 343,
+    "jacobi_failure_witness": {
+      "basis_indices": [
+        1,
+        2,
+        4
+      ],
+      "basis_labels": [
+        "e1",
+        "e2",
+        "e4"
+      ],
+      "sparse": {
+        "e5": -12
+      },
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        -12,
+        0,
+        0
+      ]
+    },
+    "malcev_compact_identity_holds": true,
+    "malcev_expanded_identity_holds": true
+  },
+  "promotion_allowed": false,
+  "relevance_fence": {
+    "akivis_tangent_claim": "finite_commutator_identity_micro_only",
+    "engine_coupling_claims": "not_claimed",
+    "nonassociativity": "diagnostic_readout_only",
+    "physics_promotion": "not_claimed",
+    "tool_function_micro_only": true
+  },
+  "result_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/results/malcev_akivis_tangent_micro_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "malcev_akivis_tangent_micro_v0",
+  "source_authority": {
+    "evening_mining_packet": "system_v6/receipts/evening_mining_estate_s11_20260611.json proposed packet item 13",
+    "old_estate_item": "system_v6/receipts/old_estate_mine_20260611.md item 13",
+    "panel": "panel 6 q4 pre-registered identity forms",
+    "spin3_precedent": "system_v6/sims/clifford_spin3_double_cover_micro_v0"
+  },
+  "source_path": "system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_envelope.py",
+  "source_sha256": "19b430f4f3659e4ddd2f420b098d1ee603180939952130bb34c86fe8ee7b5bbe",
+  "tool_calls": [
+    {
+      "boundary_case": "quaternion subalgebra Jacobi identity holds",
+      "demotion_condition": "demote if table hash drifts or floats enter claim path",
+      "gates": [
+        "artifact_sha256",
+        "all_basis_triples",
+        "all_pass"
+      ],
+      "input_object": "exported octonion C[k][i][j] tensor",
+      "negative/erased_control": "perturbed bracket violates Malcev identity",
+      "output_object": "all 343 exact basis-triple residuals",
+      "positive_case": "Malcev identity residuals vanish",
+      "qualified_api/function": "product/jacobiator/malcev_compact_residual/malcev_expanded_residual",
+      "tool": "exact_integer_arithmetic"
+    },
+    {
+      "boundary_case": "quaternion subalgebra Jacobi identity holds",
+      "demotion_condition": "demote if table hash drifts or floats enter claim path",
+      "gates": [
+        "artifact_sha256",
+        "all_basis_triples",
+        "all_pass"
+      ],
+      "input_object": "exported octonion C[k][i][j] tensor",
+      "negative/erased_control": "perturbed bracket violates Malcev identity",
+      "output_object": "all 343 exact basis-triple residuals",
+      "positive_case": "Malcev identity residuals vanish",
+      "qualified_api/function": "product/jacobiator/malcev_compact_residual/malcev_expanded_residual",
+      "tool": "exact_integer_arithmetic"
+    }
+  ],
+  "tool_intent": {
+    "claim_classes": [
+      "finite_structure_constant_identity_micro",
+      "malcev_non_lie_commutator_control"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent computed exact identity/control flag proof",
+        "z3": "computed exact identity/control flags UNSAT plus erase SAT"
+      },
+      "julia": {
+        "Z3": "computed exact identity/control flags from committed structure constants"
+      }
+    }
+  },
+  "validator_expected_commands": [
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_jax.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/malcev_akivis_tangent_micro_v0/malcev_akivis_tangent_micro_v0_envelope.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/malcev_akivis_tangent_micro_v0/validate_malcev_akivis_tangent_micro_v0.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py system_v6/sims/malcev_akivis_tangent_micro_v0/results/malcev_akivis_tangent_micro_v0_envelope_results.json"
+  ]
+}

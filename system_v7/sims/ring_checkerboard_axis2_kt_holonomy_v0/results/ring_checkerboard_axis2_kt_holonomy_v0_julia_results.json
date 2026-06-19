@@ -1,0 +1,149 @@
+{
+  "invariants": {
+    "dynamic_holonomy_phase": 1.5707960957800984,
+    "curvature_knob_linear_slope": 1.5707955497268486,
+    "curvature_knob_curve": [
+      {
+        "g": 1.0,
+        "abs_U_minus_I": 1.41421339902081,
+        "expected_phase_g_Omega_over_2": 1.5707963267948961,
+        "phase": 1.5707960957800984
+      },
+      {
+        "g": 0.5,
+        "abs_U_minus_I": 0.765366677979109,
+        "expected_phase_g_Omega_over_2": 0.7853981633974481,
+        "phase": 0.7853979612595231
+      },
+      {
+        "g": 0.1,
+        "abs_U_minus_I": 0.15691813457093298,
+        "expected_phase_g_Omega_over_2": 0.15707963267948963,
+        "phase": 0.15707957561884867
+      },
+      {
+        "g": 0.0,
+        "abs_U_minus_I": 0.0,
+        "expected_phase_g_Omega_over_2": 0.0,
+        "phase": 0.0
+      }
+    ],
+    "shrink_family": [
+      {
+        "theta_cap": 1.0471975511965976,
+        "abs_U_minus_I": 1.41421339902081,
+        "expected_phase": 1.5707963267948961,
+        "phase": 1.5707960957800984
+      },
+      {
+        "theta_cap": 0.7853981633974483,
+        "abs_U_minus_I": 0.8880314854969278,
+        "expected_phase": 0.92015118451061,
+        "phase": 0.9201509667077896
+      },
+      {
+        "theta_cap": 0.5235987755982988,
+        "abs_U_minus_I": 0.4177936031185814,
+        "expected_phase": 0.42089360723846625,
+        "phase": 0.4208934738620339
+      },
+      {
+        "theta_cap": 0.2617993877991494,
+        "abs_U_minus_I": 0.10699603032466282,
+        "expected_phase": 0.10704717380740544,
+        "phase": 0.107047133946729
+      },
+      {
+        "theta_cap": 0.06544984694978735,
+        "abs_U_minus_I": 0.006726375714426318,
+        "expected_phase": 0.006726391024375136,
+        "phase": 0.0067263883948665325
+      },
+      {
+        "theta_cap": 0.015707963267948967,
+        "abs_U_minus_I": 0.00038757033491062463,
+        "expected_phase": 0.0003875704893067017,
+        "phase": 0.00038757033733631454
+      }
+    ],
+    "ode_vs_link_match_err": 0.0003698194575307845,
+    "expected_holonomy_phase": 1.5707963267948961,
+    "shrink_flux_max_err": 2.310147975137511e-7,
+    "closed_loop_phase_under_gauge": 1.5707960957800986,
+    "trivial_loop_solid_angle": 0.0,
+    "berry_phase_gamma": -1.5707963267948961,
+    "ode_geometric_phase": -1.5704262763225676,
+    "ode_B": 20000.0,
+    "dynamic_holonomy_abs_minus_I": 1.41421339902081,
+    "ode_geometric_phase_flat_loop": -5.584421813944707e-14,
+    "ode_M": 1000000,
+    "direct_holonomy_abs_minus_I": 0.0,
+    "curvature_knob_flux_max_err": 2.310147975137511e-7,
+    "curvature_knob_g0_abs_U_minus_I": 0.0,
+    "theta_cap": 1.0471975511965976,
+    "trivial_loop_holonomy_abs_minus_I": 0.0,
+    "flux_match_err": 2.310147975137511e-7,
+    "open_arc_phase": 1.1780970718350738,
+    "enclosed_solid_angle": 3.1415926535897922,
+    "flat_connection_holonomy_abs_minus_I": 1.322521365371957e-13,
+    "open_arc_phase_under_gauge": 0.47809707183507477,
+    "n_steps": 4096
+  },
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "curvature_knob_monotone_in_g": true,
+    "shrink_loop_holonomy_to_identity": true,
+    "closed_holonomy_gauge_invariant": true,
+    "curvature_knob_linear_slope_matches_half_flux": true,
+    "trivial_loop_holonomy_trivial": true,
+    "coordinate_baking_resolved_by_flat_and_ode": true,
+    "real_loop_holonomy_matches_flux": true,
+    "curvature_load_bearing_curved_nontrivial_flat_trivial": true,
+    "curvature_knob_g0_degenerate_endpoint_consistent": true,
+    "curvature_knob_numerics_consistent": true,
+    "shrink_phase_tracks_flux": true,
+    "flat_connection_same_loop_trivial": true,
+    "open_path_holonomy_gauge_dependent": true,
+    "ode_geometric_phase_nontrivial": true,
+    "curvature_knob_phase_reproduces_g_flux_numerics": true,
+    "ode_flips_curved_vs_flat": true,
+    "ode_holonomy_matches_link_product": true,
+    "ode_flat_loop_trivial": true
+  },
+  "sim_id": "ring_checkerboard_axis2_kt_holonomy_v0",
+  "all_controls_pass": true,
+  "formal_admission_allowed": false,
+  "TOOL_MANIFEST": {
+    "julia_linearalgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "exact complex spin-1/2 frames, connection 1-form i<n|dn>, PATH-ORDERED product of exp(-i K ds) for the holonomy, solid-angle/Stokes flux; canon arbiter, distinct numerical route from the overlap-product leg"
+    }
+  },
+  "root_lineage": {
+    "N01_order_sensitivity": "holonomy = PATH-ORDERED product of exp(-i K ds); path ordering around enclosed curvature is what makes U_loop != I. Comoving (Lagrangian) order telescopes to I.",
+    "F01_finite_support": true
+  },
+  "all_tests_pass": true,
+  "honest_scope": {
+    "does_not_earn": "M(C), Axis0 closure, QIT engine, smooth manifold, physics. POST-AUDIT (2026-06-15): the deepseek colatitude-knob is a NUMERICS-CONSISTENCY check (phase=g*Omega/2 is an analytic identity of alpha_g; g=0 is a structural zero), NOT a coordinate-baking resolver. The cross-engine numeric agreement on the holonomy/knob legs reflects the same overlap-product math in distinct float paths; only the ODE legs are formula-independent across engines. Needs cross-engine agreement + fleet audit",
+    "earns": "independent Julia (canon) path-ordered recomputation of the Axis-2 K_t loop-holonomy; curvature-coupled discriminator (curved loop -> U!=I = flux, comoving/trivial/flat -> I, open path not gauge-invariant). Coordinate-baking is resolved by the phi-DEPENDENT flat-connection control + the ODE control (exact Rodrigues 2x2 path-ordered evolution, no solid-angle reference, matches link product AND flips flat->0); scratch ceiling, arbiter leg"
+  },
+  "promotion_allowed": false,
+  "TOOL_INTEGRATION_DEPTH": "load_bearing",
+  "source_target": "ring-checkerboard runbook + axes12_deep_vein Axis2 (K_t=i V^dag V_dot) -- the loop-holonomy discriminator the euler sim audit named as the real test",
+  "schema": "codex_ratchet.sim_result.v1",
+  "claim": "Axis-2 K_t holonomy nontrivial IFF the closed frame loop encloses curvature; comoving/trivial/flat loops -> I; nontrivial holonomy phase magnitude = enclosed Berry flux Omega/2. Independent path-ordered exp(-iK ds) route.",
+  "engine": "julia_linearalgebra_canon",
+  "ablation_outcome_delta": {
+    "dynamic_curved_abs_minus_I": 1.41421339902081,
+    "delta": 1.41421339902081,
+    "direct_comoving_abs_minus_I": 0.0
+  },
+  "tests": {
+    "direct_lagrangian_holonomy_trivial": true,
+    "dynamic_eulerian_holonomy_nontrivial": true,
+    "holonomy_equals_enclosed_flux": true
+  }
+}
+

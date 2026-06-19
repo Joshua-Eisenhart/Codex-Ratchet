@@ -1,0 +1,87 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates stdlib path support": "supportive",
+    "Julia LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates stdlib path support": {
+      "reason": "supportive result serialization and timestamping",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "supportive Hermitian eigenvalue residual checks only; not the entropy or state-construction substrate",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing construction of SpinBasis tensor Hilbert space, kets, density operators, projectors, identity operator, and entropy_vn",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "backend": "julia",
+  "carrier": {
+    "basis_construction": "tensor(SpinBasis(1//2), SpinBasis(1//2), SpinBasis(1//2))",
+    "basis_type": "CompositeBasis{Vector{Int64}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}}",
+    "hilbert_dimension": 8,
+    "n_qubits": 3,
+    "name": "validated Clifford carrier deepening: 3-qubit / Cl(6) density-entropy rung"
+  },
+  "checks": {
+    "channel_cptp_by_construction": "convex mixture of identity channel and computational-basis pinching with projectors from QuantumOptics kets",
+    "channel_trace_preserving_observed": true,
+    "quantumoptics_load_bearing": true,
+    "ran_standalone": true,
+    "rho_checks": {
+      "hermitian_residual_fro": 0.0,
+      "max_eigenvalue": 0.7374999999999998,
+      "min_eigenvalue": 0.03749999999999996,
+      "psd_with_tol": true,
+      "trace_imag_abs": 0.0,
+      "trace_real": 0.9999999999999998
+    },
+    "rho_dephased_checks": {
+      "hermitian_residual_fro": 0.0,
+      "max_eigenvalue": 0.5974999999999997,
+      "min_eigenvalue": 0.03749999999999998,
+      "psd_with_tol": true,
+      "trace_imag_abs": 0.0,
+      "trace_real": 0.9999999999999998
+    },
+    "uses_quantumoptics": true
+  },
+  "claim_ceiling": "Authoritative Julia-only QIT density/entropy rung on the already validated 3-qubit/Cl(6) carrier. No cross-engine parity, no peer reads, no carrier relitigation, no promotion.",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-07T22:16:01Z",
+  "formal_admission_allowed": false,
+  "object_id": "qit_density_entropy_3qubit_cl6_julia",
+  "parameters": {
+    "dephasing_channel": "E_gamma(rho) = (1-gamma)rho + gamma*sum_z P_z*rho*P_z",
+    "dephasing_parameter_name": "gamma",
+    "gamma": 0.4,
+    "mixing_parameter_name": "p",
+    "p": 0.3,
+    "rho_family": "rho(p) = (1-p)|GHZ><GHZ| + p*I/8"
+  },
+  "peer_result_path": null,
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/qit_density_entropy_3qubit_cl6_julia_results.json",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/qit_density_entropy_3qubit_cl6_julia.jl",
+  "tools": [
+    "QuantumOptics",
+    "Julia LinearAlgebra",
+    "Julia stdlib JSON/Dates"
+  ],
+  "values": {
+    "dephasing_entropy_nonnegative_delta_with_tol": true,
+    "entropy_change": 0.2668835573880388,
+    "entropy_in_bounds_0_to_log8": true,
+    "entropy_upper_log8": 2.0794415416798357,
+    "vn_entropy": 1.0864570440180348,
+    "vn_entropy_after_dephasing": 1.3533406014060736
+  }
+}

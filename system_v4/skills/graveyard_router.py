@@ -111,6 +111,8 @@ class GraveyardRouter:
                     found_id = nid
                     candidate_name = data.name
                     break
+        if found_id is None:
+            raise ValueError(f"candidate_id not found in graph: {candidate_id}")
 
         # Build graveyard ID
         hash_input = f"{candidate_id}:{reason_tag}:{failure_class}".encode('utf-8')
@@ -179,6 +181,8 @@ class GraveyardRouter:
         """Explicitly tracks and deposits B_PARKED nodes into structural memory."""
         from system_v4.skills.v4_graph_builder import GraphNode, GraphEdge
         builder = self.refinery.builder
+        if candidate_id not in builder.pydantic_model.nodes:
+            raise ValueError(f"candidate_id not found in graph: {candidate_id}")
         node_id = f"PARKED::{candidate_id}"
         
         builder.add_node(GraphNode(

@@ -1,0 +1,2533 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source, copied-input, and PIN hash checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from fresh engine receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "alternative_models": {
+    "D1_fidelity_convention_alternative": {
+      "conversion_rule": "root_fidelity^2 = squared_fidelity",
+      "no_root_vs_squared_comparison": true,
+      "pass": true,
+      "root_auxiliary": "sqrt(F)",
+      "squared_claim_path": "F"
+    },
+    "D2_probe_family_alternatives": {
+      "all_pass": true,
+      "commuting_probe_simplex_lesson": "Z_only rank=1; attempting rank=3 full-ball reconstruction is the C3 negative control.",
+      "rows": [
+        {
+          "Q_N": [
+            "(0, 0, 1).r"
+          ],
+          "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+          "family": "Z_only",
+          "full_ball_reconstruction": false,
+          "kernel_basis": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "pass": true,
+          "probability_vector": [
+            "(1 + (0, 0, 1).r)/2"
+          ],
+          "quotient_dimension": 1,
+          "rank": 1
+        },
+        {
+          "Q_N": [
+            "(1, 0, 0).r",
+            "(0, 0, 1).r"
+          ],
+          "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+          "family": "X_Z",
+          "full_ball_reconstruction": false,
+          "kernel_basis": [
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "pass": true,
+          "probability_vector": [
+            "(1 + (1, 0, 0).r)/2",
+            "(1 + (0, 0, 1).r)/2"
+          ],
+          "quotient_dimension": 2,
+          "rank": 2
+        },
+        {
+          "Q_N": [
+            "(1, 0, 0).r",
+            "(0, 1, 0).r",
+            "(0, 0, 1).r"
+          ],
+          "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+          "family": "X_Y_Z",
+          "full_ball_reconstruction": true,
+          "kernel_basis": [],
+          "pass": true,
+          "probability_vector": [
+            "(1 + (1, 0, 0).r)/2",
+            "(1 + (0, 1, 0).r)/2",
+            "(1 + (0, 0, 1).r)/2"
+          ],
+          "quotient_dimension": 3,
+          "rank": 3
+        },
+        {
+          "Q_N": [
+            "(0, 0, 1).r",
+            "(0, 0, 1).r"
+          ],
+          "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+          "family": "duplicate_Z",
+          "full_ball_reconstruction": false,
+          "kernel_basis": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "pass": true,
+          "probability_vector": [
+            "(1 + (0, 0, 1).r)/2",
+            "(1 + (0, 0, 1).r)/2"
+          ],
+          "quotient_dimension": 1,
+          "rank": 1
+        },
+        {
+          "Q_N": [
+            "(1, 1, 1).r",
+            "(1, -1, -1).r",
+            "(-1, 1, -1).r",
+            "(-1, -1, 1).r"
+          ],
+          "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+          "family": "tetrahedral_refinement_control",
+          "full_ball_reconstruction": true,
+          "kernel_basis": [],
+          "pass": true,
+          "probability_vector": [
+            "(1 + (1, 1, 1).r)/2",
+            "(1 + (1, -1, -1).r)/2",
+            "(1 + (-1, 1, -1).r)/2",
+            "(1 + (-1, -1, 1).r)/2"
+          ],
+          "quotient_dimension": 3,
+          "rank": 3
+        }
+      ]
+    },
+    "all_pass": true
+  },
+  "build_gates": {
+    "alternatives_bounded": true,
+    "audit_gap_hardening_fields_present": true,
+    "ceilings_preserved": true,
+    "control_only_tools_absent_from_claim_path": true,
+    "copied_spec_and_directive_present": true,
+    "engine_legs_pass": true,
+    "f01_n01_t01_scoped": true,
+    "identical_pin_sha256": true,
+    "identical_structured_convention_pin": true,
+    "julia_quantumoptics_route_load_bearing": true,
+    "literal_strength_tokens": true,
+    "negative_models_selective": true,
+    "no_out_of_scope_s4_s5_claim": true,
+    "no_peer_result_reads": true,
+    "python_qutip_route_load_bearing": true,
+    "pytorch_real_lane": true,
+    "required_positive_receipts_present": true,
+    "smt_agreement_and_can_fail_controls": true,
+    "source_sha256_current": true
+  },
+  "canon_runtime": {
+    "artifact_path": "system_v6/sims/geo_s3_density_observable_v0",
+    "artifact_sha256": null,
+    "bracket_convention": "ordinary associative M2(C) multiplication; measurement order effects kept separate",
+    "consumer_policy": "independent engine recomputation; no peer-result reads",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "S3_density_observable_julia_z3_born_normalization",
+    "receipt_path": "system_v6/sims/geo_s3_density_observable_v0/results/geo_s3_density_observable_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "542d09c5ee4e2ac5e73ebbd9574afe697dda03c9a648be06941e9de70b4657c5",
+    "table_version": "geo_s3_density_observable_v0_pinned_pauli_trace_table"
+  },
+  "claim": "Bounded one-qubit S3 density/observable geometry packet over the pinned S1 Bloch convention, including Bloch fields, observables, Born fields, projective updates, probe quotients, trace distance/fidelity, and named CPTP contraction receipts.",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3",
+    "cvc5",
+    "qutip",
+    "sympy",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "bad_measurement_update": {
+      "bad_update": "r -> n/2 or r -> wrong_axis",
+      "fails": [
+        "selective target r -> +/-n",
+        "idempotence",
+        "probability conservation if update is unnormalized"
+      ],
+      "preserves": [
+        "Born probability formula when probabilities are separately computed"
+      ],
+      "wrong_update_distinguished_from_wrong_probability": true
+    },
+    "commuting_probe_simplex": {
+      "born_z_preserved": true,
+      "family": "Z_only",
+      "full_ball_rank_claim": 3,
+      "interval_simplex_dimension": 1,
+      "links_to": "bloch_root_admissibility_discriminator_v0 T2",
+      "rank": 1,
+      "rank3_claim_fails": true
+    },
+    "non_cptp_expansive": {
+      "D_after": "3/10",
+      "D_before": "1/4",
+      "fails_cptp_certification": true,
+      "map": "r -> (6/5)r",
+      "no_ellipsoid_or_basin_claim": true,
+      "pair": {
+        "r": "(0,0,0)",
+        "s": "(1/2,0,0)"
+      },
+      "preserves_trace_distance_formula": true
+    },
+    "nonlinear_expectation": {
+      "actual_trace_field": "a0 + a_x*r_x + a_y*r_y + a_z*r_z",
+      "fake_field": "a0 + a_x*r_x + a_y*r_y + a_z*r_z + epsilon*(r_x**2 + r_y**2 + r_z**2)",
+      "linearity_fails_when_epsilon_nonzero": true,
+      "origin_accidental_control": "epsilon*||r||^2 vanishes at r=0 only",
+      "sample_only_plane_fit_not_accepted": true
+    },
+    "outside_ball": {
+      "eigenvalues": [
+        "-1/10",
+        "11/10"
+      ],
+      "expected_failures": [
+        "positivity",
+        "eigenvalue",
+        "Born range",
+        "entropy domain if forced"
+      ],
+      "norm": "6/5",
+      "p_plus_x": "11/10",
+      "preserved": [
+        "affine expectation syntax",
+        "pinned Pauli basis construction"
+      ],
+      "r_bad": "(6/5,0,0)",
+      "selectivity_pass": true
+    },
+    "wrong_mixed_fidelity": {
+      "convention_conflict_explicit": true,
+      "mixed_interior_control": {
+        "correct_F": "7/8",
+        "r": "(1/2,0,0)",
+        "s": "(0,1/2,0)",
+        "wrong_F": "1/2"
+      },
+      "pure_boundary_can_pass": true,
+      "wrong_formula": "r_x*s_x/2 + r_y*s_y/2 + r_z*s_z/2 + 1/2"
+    },
+    "wrong_sigma_y_pin": {
+      "expected_failures": [
+        "S1 lineage y-component compatibility",
+        "observable y expectation rows"
+      ],
+      "must_not_silently_repin": true,
+      "preserved": [
+        "x rows",
+        "z rows"
+      ],
+      "selectivity_pass": true,
+      "wrong_basis": "(sigma_x, sigma_y_standard, sigma_z)"
+    }
+  },
+  "convention_pin": {
+    "bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "fidelity_convention": {
+      "root_fidelity": "sqrt(F) if emitted",
+      "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+    },
+    "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+    "rho_rule": "rho(r) = (I + r.basis) / 2",
+    "sigma_y_standard": [
+      [
+        "0",
+        "-i"
+      ],
+      [
+        "i",
+        "0"
+      ]
+    ],
+    "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+  },
+  "copied_inputs": {
+    "directive_addendum": {
+      "copy_path": "system_v6/sims/geo_s3_density_observable_v0/directive_addendum.md",
+      "copy_sha256": "80c5676561bc1f9539b5d2f9756dd2d4a758903b631886392768ce4bd2937e4b",
+      "exists": true,
+      "matches_source": true,
+      "source_path": "/tmp/claude_s1_qubit_ladder_corrected_message_20260610.md",
+      "source_sha256": "80c5676561bc1f9539b5d2f9756dd2d4a758903b631886392768ce4bd2937e4b"
+    },
+    "s3_build_spec": {
+      "copy_path": "system_v6/sims/geo_s3_density_observable_v0/s3_build_spec_20260610.md",
+      "copy_sha256": "d417dc22765d7ba6ad45bd9803a14bf17c9b3df9b28b5ab9f3b7f9a44b7f5238",
+      "exists": true,
+      "matches_source": true,
+      "source_path": "system_v6/receipts/s3_build_spec_20260610.md",
+      "source_sha256": "d417dc22765d7ba6ad45bd9803a14bf17c9b3df9b28b5ab9f3b7f9a44b7f5238"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "denominator": 4,
+        "p_minus_num": 1,
+        "p_plus_num": 3
+      },
+      "claim": "Independent CVC5 check of the same scaled Born normalization claim",
+      "derived_expression": "p_plus_num + p_minus_num == denominator",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "denominator": 4,
+        "p_minus_num": 1,
+        "p_plus_num": 3
+      },
+      "claim": "Born p_plus+p_minus=1 for n=z, r_z=1/2, scaled by denominator 4",
+      "derived_expression": "p_plus_num + p_minus_num == denominator",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "source_route": "QuantumOptics projectors applied to QuantumOptics density operator",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "unsat"
+    },
+    "pytorch_cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "torch_rank_XYZ": 3
+      },
+      "claim": "Independent CVC5 rank check over the same torch-derived rank",
+      "derived_expression": "rank == 3",
+      "duplicate_Z_control_can_fail": true,
+      "duplicate_Z_control_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "pytorch_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "torch_rank_XYZ": 3
+      },
+      "claim": "torch-derived X_Y_Z probe matrix has full rank 3",
+      "derived_expression": "rank == 3",
+      "duplicate_Z_control_can_fail": true,
+      "duplicate_Z_control_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "denominator": 4,
+        "p_minus_num": 1,
+        "p_plus_num": 3
+      },
+      "claim": "Born p_plus+p_minus=1 for n=z, r_z=1/2, scaled by denominator 4",
+      "derived_expression": "p_plus_num + p_minus_num == denominator",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "claim values unchanged; Julia/Python state-channel route now runs through QuantumOptics/qutip objects, while hand Pauli/Bloch tensors remain mirrors and controls",
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib",
+        "math"
+      ],
+      "pin_sha256": "68995cf5cbacc740863cfa1213bb20f44768d5e56cb840d425fb85d7a4b2681b",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s3_density_observable_v0/results/geo_s3_density_observable_v0_jax_results.json",
+      "result_sha256": "033c0e05cd8ded5335c1897ebb8d6307a4e9e04a9f554e4cbbd0d47b36af5f2d",
+      "role_id": "jax_sympy_smt_density_observable_builder",
+      "source_path": "system_v6/sims/geo_s3_density_observable_v0/geo_s3_density_observable_v0_jax.py",
+      "source_sha256": "6677d72a92c22dd6519881fc103cd3fba1ba81a6c35b4ba583855b31a7db6b51",
+      "tool_calls": [
+        {
+          "boundary_case": "center r=0 and pure boundary ||r||=1 controls",
+          "demotion_condition": "if formulas are predeclared without matrix derivation, demote to diagnostic",
+          "gates": [
+            "all_pass",
+            "S3.A",
+            "S3.B",
+            "S3.C",
+            "S3.D",
+            "S3.E",
+            "S3.F"
+          ],
+          "input_object": "pinned Pauli matrices, rho(r), O, projectors, and probe matrices",
+          "negative/erased_control": "wrong sigma_y, nonlinear expectation, wrong fidelity, and Z_only rank controls fail selectively",
+          "output_object": "S3.A-S3.F symbolic identities and S3.E probe ranks",
+          "positive_case": "all derived formulas match pinned convention",
+          "qualified_api/function": "sympy.Matrix/sympy.trace/sympy.simplify/sympy.Matrix.rank",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "n=z, r_z=1/2",
+          "demotion_condition": "if raw integers are replaced by a precomputed boolean, SMT is decorative",
+          "gates": [
+            "all_pass",
+            "S3.C",
+            "crossover_proofs"
+          ],
+          "input_object": "scaled Born integers p_plus_num=3 p_minus_num=1 denominator=4",
+          "negative/erased_control": "wrong scaled p_minus=2 cannot satisfy normalization",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "denominator": 4,
+              "p_minus_num": 1,
+              "p_plus_num": 3
+            },
+            "claim": "Born p_plus+p_minus=1 for n=z, r_z=1/2, scaled by denominator 4",
+            "derived_expression": "p_plus_num + p_minus_num == denominator",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "unsat"
+          },
+          "positive_case": "refutes p_plus+p_minus != 1",
+          "qualified_api/function": "z3.Solver/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "n=z, r_z=1/2",
+          "demotion_condition": "if CVC5 does not bind raw integers, demote proof",
+          "gates": [
+            "all_pass",
+            "S3.C",
+            "crossover_proofs"
+          ],
+          "input_object": "same scaled Born integers",
+          "negative/erased_control": "wrong scaled p_minus=2 fails",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "denominator": 4,
+              "p_minus_num": 1,
+              "p_plus_num": 3
+            },
+            "claim": "Independent CVC5 check of the same scaled Born normalization claim",
+            "derived_expression": "p_plus_num + p_minus_num == denominator",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "unsat"
+          },
+          "positive_case": "agrees with z3 on the scaled normalization claim",
+          "qualified_api/function": "cvc5.Solver/checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent exact SMT check of the same Born normalization claim",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 batched diagnostic rows for contraction and Born-field bounds; not used as proof by tolerance",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive array substrate for vectorized diagnostics",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing derivation of pinned rho, observable, Born, measurement, quotient, trace-distance, and fidelity identities from matrices",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing exact SMT check over raw Born-field integers with a can-fail control",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "QuantumOptics",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "pin_sha256": "68995cf5cbacc740863cfa1213bb20f44768d5e56cb840d425fb85d7a4b2681b",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s3_density_observable_v0/results/geo_s3_density_observable_v0_julia_results.json",
+      "result_sha256": "3edcf4ea96d3b333362b7383417b9db40ad2ce93d5b84ea3d99a1b10173bfb93",
+      "role_id": "julia_quantumoptics_z3_density_observable_channel_builder",
+      "source_path": "system_v6/sims/geo_s3_density_observable_v0/geo_s3_density_observable_v0_julia.jl",
+      "source_sha256": "542d09c5ee4e2ac5e73ebbd9574afe697dda03c9a648be06941e9de70b4657c5",
+      "tool_calls": [
+        {
+          "boundary_case": "pure-state boundary and center density rows",
+          "demotion_condition": "if QuantumOptics objects are replaced by hand matrices, demote to supportive mirror",
+          "gates": [
+            "all_pass",
+            "S3.A",
+            "S3.B",
+            "S3.C",
+            "S3.G_quantumoptics_channel_contraction"
+          ],
+          "input_object": "one-qubit kets, density operators, projectors, observables, and channel superoperators under the pinned Bloch convention",
+          "negative/erased_control": "non-CPTP expansive Bloch scaling fails trace-distance contraction",
+          "output_object": {
+            "born_projector": {
+              "all_pass": true,
+              "normalization_error": 0.0,
+              "p_minus": 0.25,
+              "p_plus": 0.75,
+              "route": "QuantumOptics projectors applied to QuantumOptics density operator",
+              "scaled_values": {
+                "denominator": 4,
+                "p_minus_num": 1,
+                "p_plus_num": 3
+              }
+            },
+            "channel_contractions": {
+              "all_contracted": true,
+              "non_cptp_expansive_control": {
+                "after": 0.3,
+                "before": 0.25,
+                "fails_contraction": true
+              },
+              "route": "QuantumOptics.sprepost superoperators applied to density operators; trace distance from QuantumOptics.tracedistance",
+              "rows": [
+                {
+                  "after": [
+                    0.125,
+                    0.21650635094610965,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "depolarizing_lambda_1_2"
+                },
+                {
+                  "after": [
+                    0.125,
+                    0.30618621784789724,
+                    1.0
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "dephasing_p_1_2"
+                },
+                {
+                  "after": [
+                    0.1767766952966369,
+                    0.2795084971874737,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "amplitude_damping_gamma_1_2"
+                }
+              ]
+            },
+            "density_samples": {
+              "all_pass": true,
+              "route": "QuantumOptics.DenseOperator density objects and QuantumOptics.expect component readout",
+              "rows": [
+                {
+                  "component_trace_roundtrip": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "determinant": 0.25,
+                  "label": "center",
+                  "object_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, Matrix{ComplexF64}}",
+                  "purity": 0.5,
+                  "r": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "roundtrip_max_abs_error": 0.0,
+                  "trace": 1.0
+                },
+                {
+                  "component_trace_roundtrip": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "determinant": 0.0,
+                  "label": "x_pure",
+                  "object_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, Matrix{ComplexF64}}",
+                  "purity": 1.0,
+                  "r": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "roundtrip_max_abs_error": 0.0,
+                  "trace": 1.0
+                },
+                {
+                  "component_trace_roundtrip": [
+                    0.0,
+                    -0.5,
+                    0.0
+                  ],
+                  "determinant": 0.1875,
+                  "label": "pinned_y_mixed",
+                  "object_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, Matrix{ComplexF64}}",
+                  "purity": 0.625,
+                  "r": [
+                    0.0,
+                    -0.5,
+                    0.0
+                  ],
+                  "roundtrip_max_abs_error": 0.0,
+                  "trace": 1.0
+                },
+                {
+                  "component_trace_roundtrip": [
+                    0.25,
+                    -0.25,
+                    0.25
+                  ],
+                  "determinant": 0.20312499999999997,
+                  "label": "interior",
+                  "object_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, Matrix{ComplexF64}}",
+                  "purity": 0.59375,
+                  "r": [
+                    0.25,
+                    -0.25,
+                    0.25
+                  ],
+                  "roundtrip_max_abs_error": 0.0,
+                  "trace": 1.0
+                }
+              ]
+            }
+          },
+          "positive_case": "density component roundtrips, Born normalization, and CPTP contraction rows pass through QuantumOptics objects",
+          "qualified_api/function": "QuantumOptics.SpinBasis/QuantumOptics.DenseOperator/QuantumOptics.expect/QuantumOptics.sprepost/QuantumOptics.tracedistance",
+          "tool": "QuantumOptics"
+        },
+        {
+          "boundary_case": "n=z, r_z=1/2",
+          "demotion_condition": "if raw values are replaced by booleans, proof is decorative",
+          "gates": [
+            "all_pass",
+            "S3.C",
+            "crossover_proofs"
+          ],
+          "input_object": "scaled Born raw integer values",
+          "negative/erased_control": "wrong p_minus numerator fails normalization",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "denominator": 4,
+              "p_minus_num": 1,
+              "p_plus_num": 3
+            },
+            "claim": "Born p_plus+p_minus=1 for n=z, r_z=1/2, scaled by denominator 4",
+            "derived_expression": "p_plus_num + p_minus_num == denominator",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "Z3.jl",
+            "source_route": "QuantumOptics projectors applied to QuantumOptics density operator",
+            "verdict": "unsat",
+            "wrong_control_can_fail": true,
+            "wrong_control_verdict": "unsat"
+          },
+          "positive_case": "pinned scaled normalization refutes disequality",
+          "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+          "tool": "Z3"
+        }
+      ],
+      "tool_integration_depth": {
+        "JSON": "supportive",
+        "LinearAlgebra": "supportive",
+        "QuantumOptics": "load_bearing",
+        "SHA": "supportive",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "JSON": {
+          "reason": "supportive receipt serialization",
+          "tried": true,
+          "used": true
+        },
+        "LinearAlgebra": {
+          "reason": "supportive finite Pauli/Bloch mirror for QuantumOptics-derived state and channel rows",
+          "tried": true,
+          "used": true
+        },
+        "QuantumOptics": {
+          "reason": "load-bearing Julia carrier route for one-qubit states, density operators, projectors, observables, and superoperator channel contractions",
+          "tried": true,
+          "used": true
+        },
+        "SHA": {
+          "reason": "supportive source and PIN hashing",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side exact SMT check over scaled Born normalization values",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "qutip",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "qutip",
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib",
+        "math"
+      ],
+      "pin_sha256": "68995cf5cbacc740863cfa1213bb20f44768d5e56cb840d425fb85d7a4b2681b",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s3_density_observable_v0/results/geo_s3_density_observable_v0_pytorch_results.json",
+      "result_sha256": "3c7407e85af6f3c2b07644939929df754b14a3c7457474609e5537f9c242acae",
+      "role_id": "python_qutip_state_channel_with_pytorch_tensor_mirror",
+      "source_path": "system_v6/sims/geo_s3_density_observable_v0/geo_s3_density_observable_v0_pytorch.py",
+      "source_sha256": "f9b8335c48268d8741ed7b0406f579522a7821d4e7304fa856c452844b91a6b8",
+      "tool_calls": [
+        {
+          "boundary_case": "pure projectors and center density rows",
+          "demotion_condition": "if qutip Qobj/channel route is removed, Python state/channel evidence is only a tensor mirror",
+          "gates": [
+            "all_pass",
+            "S3.D",
+            "S3.G"
+          ],
+          "input_object": "one-qubit density Qobjs, projectors, measurement directions, and CPTP channel superoperators",
+          "negative/erased_control": "non-CPTP expansive Bloch scaling fails contraction",
+          "output_object": {
+            "contraction": {
+              "all_contracted": true,
+              "method": "qutip.sprepost superoperators plus qutip.tracedist over Qobj density matrices",
+              "non_cptp_expansive_control": {
+                "after": 0.3,
+                "before": 0.25,
+                "fails_contraction": true
+              },
+              "rows": [
+                {
+                  "after": [
+                    0.125,
+                    0.30618621784789724,
+                    1.0
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "dephasing_p_1_2",
+                  "claim_path": "qutip superoperator channel row"
+                },
+                {
+                  "after": [
+                    0.125,
+                    0.21650635094610965,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "depolarizing_lambda_1_2",
+                  "claim_path": "qutip superoperator channel row"
+                },
+                {
+                  "after": [
+                    0.1767766952966369,
+                    0.2795084971874737,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "amplitude_damping_gamma_1_2",
+                  "claim_path": "qutip superoperator channel row"
+                }
+              ]
+            },
+            "measurement": {
+              "all_nonselective_targets_match": true,
+              "all_selective_targets_match": true,
+              "method": "qutip Qobj density matrices, projectors, qutip.expect, and Qobj product updates",
+              "rows": [
+                {
+                  "n": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "nonselective_components": [
+                    0.25,
+                    0.0,
+                    0.0
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    0.25,
+                    0.0,
+                    0.0
+                  ],
+                  "p_plus": 0.625,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "selective_target": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "nonselective_components": [
+                    0.0,
+                    -0.5,
+                    0.0
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    -0.0,
+                    -0.5,
+                    -0.0
+                  ],
+                  "p_plus": 0.25,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "selective_target": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "nonselective_components": [
+                    0.0,
+                    0.0,
+                    0.75
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    0.0,
+                    0.0,
+                    0.75
+                  ],
+                  "p_plus": 0.875,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "selective_target": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.7071067811865475,
+                    0.0,
+                    0.7071067811865475
+                  ],
+                  "nonselective_components": [
+                    0.49999999999999994,
+                    -4.991836543856848e-17,
+                    0.49999999999999994
+                  ],
+                  "nonselective_max_abs_error": 5.551115123125783e-17,
+                  "nonselective_target": [
+                    0.4999999999999999,
+                    0.0,
+                    0.4999999999999999
+                  ],
+                  "p_plus": 0.8535533905932737,
+                  "selective_max_abs_error": 2.9241501462417047e-17,
+                  "selective_plus_components": [
+                    0.7071067811865475,
+                    -2.9241501462417047e-17,
+                    0.7071067811865475
+                  ],
+                  "selective_target": [
+                    0.7071067811865475,
+                    0.0,
+                    0.7071067811865475
+                  ]
+                }
+              ]
+            }
+          },
+          "positive_case": "qutip projective updates hit +/-n and named CPTP superoperators contract finite pairs",
+          "qualified_api/function": "qutip.Qobj/qutip.expect/qutip.sprepost/qutip.operator_to_vector/qutip.vector_to_operator/qutip.tracedist",
+          "tool": "qutip"
+        },
+        {
+          "boundary_case": "Z_only and duplicate_Z probe families remain rank deficient",
+          "demotion_condition": "passing torch.func capability probe required before this can gate claim metadata",
+          "gates": [],
+          "input_object": "Bloch vectors, projective measurement directions, CPTP map pairs",
+          "negative/erased_control": "non-CPTP expansive map fails contraction",
+          "output_object": {
+            "contraction": {
+              "all_contracted": true,
+              "method": "torch.func.vmap over named one-qubit affine maps and finite pairs",
+              "non_cptp_expansive_control": {
+                "after": 0.3,
+                "before": 0.25,
+                "fails_contraction": true
+              },
+              "rows": [
+                {
+                  "after": [
+                    0.125,
+                    0.30618621784789724,
+                    1.0
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "dephasing_p_1_2",
+                  "claim_path": "diagnostic tensor row; symbolic contraction proof is in the envelope/SymPy lane"
+                },
+                {
+                  "after": [
+                    0.125,
+                    0.21650635094610965,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "depolarizing_lambda_1_2",
+                  "claim_path": "diagnostic tensor row; symbolic contraction proof is in the envelope/SymPy lane"
+                },
+                {
+                  "after": [
+                    0.1767766952966369,
+                    0.2795084971874737,
+                    0.5
+                  ],
+                  "all_contracted": true,
+                  "before": [
+                    0.25,
+                    0.4330127018922193,
+                    1.0
+                  ],
+                  "channel": "amplitude_damping_gamma_1_2",
+                  "claim_path": "diagnostic tensor row; symbolic contraction proof is in the envelope/SymPy lane"
+                }
+              ]
+            },
+            "measurement": {
+              "all_nonselective_targets_match": true,
+              "all_selective_targets_match": true,
+              "method": "torch.func.vmap over pinned projectors P+/- built from tensor Pauli matrices",
+              "rows": [
+                {
+                  "n": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "nonselective_components": [
+                    0.25,
+                    0.0,
+                    0.0
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    0.25,
+                    0.0,
+                    0.0
+                  ],
+                  "p_plus": 0.625,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "selective_target": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "nonselective_components": [
+                    0.0,
+                    -0.5,
+                    0.0
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    -0.0,
+                    -0.5,
+                    -0.0
+                  ],
+                  "p_plus": 0.25,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "selective_target": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "nonselective_components": [
+                    0.0,
+                    0.0,
+                    0.75
+                  ],
+                  "nonselective_max_abs_error": 0.0,
+                  "nonselective_target": [
+                    0.0,
+                    0.0,
+                    0.75
+                  ],
+                  "p_plus": 0.875,
+                  "selective_max_abs_error": 0.0,
+                  "selective_plus_components": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "selective_target": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "n": [
+                    0.7071067811865475,
+                    0.0,
+                    0.7071067811865475
+                  ],
+                  "nonselective_components": [
+                    0.49999999999999994,
+                    -5.551115123125783e-17,
+                    0.49999999999999994
+                  ],
+                  "nonselective_max_abs_error": 5.551115123125783e-17,
+                  "nonselective_target": [
+                    0.4999999999999999,
+                    0.0,
+                    0.4999999999999999
+                  ],
+                  "p_plus": 0.8535533905932737,
+                  "selective_max_abs_error": 3.25176795283269e-17,
+                  "selective_plus_components": [
+                    0.7071067811865475,
+                    -3.25176795283269e-17,
+                    0.7071067811865475
+                  ],
+                  "selective_target": [
+                    0.7071067811865475,
+                    0.0,
+                    0.7071067811865475
+                  ]
+                }
+              ]
+            }
+          },
+          "positive_case": "projective updates hit +/-n and named CPTP rows contract finite pairs",
+          "qualified_api/function": "torch.func.vmap",
+          "role": "supportive",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "rank deficient commuting probe family",
+          "demotion_condition": "if bound rank is replaced by boolean, SMT is decorative",
+          "gates": [
+            "all_pass",
+            "S3.E",
+            "crossover_proofs"
+          ],
+          "input_object": "torch-derived X_Y_Z rank",
+          "negative/erased_control": "duplicate_Z rank 1 cannot satisfy rank 3",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "torch_rank_XYZ": 3
+            },
+            "claim": "torch-derived X_Y_Z probe matrix has full rank 3",
+            "derived_expression": "rank == 3",
+            "duplicate_Z_control_can_fail": true,
+            "duplicate_Z_control_verdict": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat"
+          },
+          "positive_case": "full Pauli probe family has rank 3",
+          "qualified_api/function": "z3.Solver/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "rank deficient commuting probe family",
+          "demotion_condition": "if CVC5 does not bind raw rank, demote proof",
+          "gates": [
+            "all_pass",
+            "S3.E",
+            "crossover_proofs"
+          ],
+          "input_object": "same torch-derived X_Y_Z rank",
+          "negative/erased_control": "duplicate_Z rank 1 fails full-rank claim",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "torch_rank_XYZ": 3
+            },
+            "claim": "Independent CVC5 rank check over the same torch-derived rank",
+            "derived_expression": "rank == 3",
+            "duplicate_Z_control_can_fail": true,
+            "duplicate_Z_control_verdict": "unsat",
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat"
+          },
+          "positive_case": "independent solver agrees with z3",
+          "qualified_api/function": "cvc5.Solver/checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "qutip": "load_bearing",
+        "torch": "supportive",
+        "torch.func": "supportive",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent exact SMT over the same torch-derived probe-rank value",
+          "tried": true,
+          "used": true
+        },
+        "qutip": {
+          "reason": "load-bearing Python quantum-object route for Qobj density matrices, projectors, expectation values, and superoperator channel contractions",
+          "tried": true,
+          "used": true
+        },
+        "torch": {
+          "reason": "supportive tensor substrate for pinned density matrices, projectors, probe maps, and channel rows",
+          "tried": true,
+          "used": true
+        },
+        "torch.func": {
+          "reason": "supportive PyTorch mirror for batched Born/projective update and contraction rows; qutip is the Python quantum-object claim route",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing exact SMT over torch-derived full Pauli probe rank",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "jax",
+        "jax.numpy",
+        "json",
+        "hashlib",
+        "pathlib",
+        "math"
+      ],
+      "role": "SymPy symbolic derivation, z3/cvc5 exact Born proof, vectorized diagnostics"
+    },
+    "julia": {
+      "packages": [
+        "QuantumOptics",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "QuantumOptics state/density/projector/channel carrier plus Julia Z3 proof; hand Pauli rows retained as mirrors"
+    },
+    "pytorch": {
+      "packages": [
+        "qutip",
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib",
+        "math"
+      ],
+      "role": "qutip Python state/channel route with PyTorch tensor mirrors and solver controls"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:14:54Z",
+  "negative_models": {
+    "C1_outside_ball_negative": {
+      "eigenvalues": [
+        "-1/10",
+        "11/10"
+      ],
+      "expected_failures": [
+        "positivity",
+        "eigenvalue",
+        "Born range",
+        "entropy domain if forced"
+      ],
+      "norm": "6/5",
+      "p_plus_x": "11/10",
+      "preserved": [
+        "affine expectation syntax",
+        "pinned Pauli basis construction"
+      ],
+      "r_bad": "(6/5,0,0)",
+      "selectivity_pass": true
+    },
+    "C2_wrong_sigma_y_pin_negative": {
+      "expected_failures": [
+        "S1 lineage y-component compatibility",
+        "observable y expectation rows"
+      ],
+      "must_not_silently_repin": true,
+      "preserved": [
+        "x rows",
+        "z rows"
+      ],
+      "selectivity_pass": true,
+      "wrong_basis": "(sigma_x, sigma_y_standard, sigma_z)"
+    },
+    "C3_commuting_probe_simplex_misclassified_as_ball": {
+      "born_z_preserved": true,
+      "family": "Z_only",
+      "full_ball_rank_claim": 3,
+      "interval_simplex_dimension": 1,
+      "links_to": "bloch_root_admissibility_discriminator_v0 T2",
+      "rank": 1,
+      "rank3_claim_fails": true
+    },
+    "C4_nonlinear_expectation_echo_negative": {
+      "actual_trace_field": "a0 + a_x*r_x + a_y*r_y + a_z*r_z",
+      "fake_field": "a0 + a_x*r_x + a_y*r_y + a_z*r_z + epsilon*(r_x**2 + r_y**2 + r_z**2)",
+      "linearity_fails_when_epsilon_nonzero": true,
+      "origin_accidental_control": "epsilon*||r||^2 vanishes at r=0 only",
+      "sample_only_plane_fit_not_accepted": true
+    },
+    "C5_bad_measurement_update_negative": {
+      "bad_update": "r -> n/2 or r -> wrong_axis",
+      "fails": [
+        "selective target r -> +/-n",
+        "idempotence",
+        "probability conservation if update is unnormalized"
+      ],
+      "preserves": [
+        "Born probability formula when probabilities are separately computed"
+      ],
+      "wrong_update_distinguished_from_wrong_probability": true
+    },
+    "C6_non_CPTP_expansive_map_negative": {
+      "D_after": "3/10",
+      "D_before": "1/4",
+      "fails_cptp_certification": true,
+      "map": "r -> (6/5)r",
+      "no_ellipsoid_or_basin_claim": true,
+      "pair": {
+        "r": "(0,0,0)",
+        "s": "(1/2,0,0)"
+      },
+      "preserves_trace_distance_formula": true
+    },
+    "C7_wrong_mixed_state_fidelity_formula_negative": {
+      "convention_conflict_explicit": true,
+      "mixed_interior_control": {
+        "correct_F": "7/8",
+        "r": "(1/2,0,0)",
+        "s": "(0,1/2,0)",
+        "wrong_F": "1/2"
+      },
+      "pure_boundary_can_pass": true,
+      "wrong_formula": "r_x*s_x/2 + r_y*s_y/2 + r_z*s_z/2 + 1/2"
+    },
+    "all_selectivity_pass": true
+  },
+  "object_id": "geo_s3_density_observable_v0",
+  "pin_sha256": "68995cf5cbacc740863cfa1213bb20f44768d5e56cb840d425fb85d7a4b2681b",
+  "pin_spec": "geo_s3_density_observable_v0|sigma_y_standard=[[0,-i],[i,0]]|bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|component_rule=r_i=Tr(rho*basis_i)|rho_rule=rho(r)=(I+r.basis)/2|hopf_lineage=geo_s1_exact_closure_v0 pinned identity|trace_distance_convention=D(rho,sigma)=1/2||rho-sigma||_1|fidelity_convention=squared_Uhlmann_qubit_F=1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)));root_fidelity=sqrt(F)_if_emitted",
+  "promotion_allowed": false,
+  "receipts": {
+    "F01_finitude_receipt": {
+      "active_probe_family_count": "finite named families: Z_only, X_Z, X_Y_Z, duplicate_Z, tetrahedral_refinement_control",
+      "computational_basis_count": 2,
+      "exact_strength": "exact_integer_combinatorial",
+      "finite_enumeration_bounds": {
+        "finite_control_grid_points": 27,
+        "probe_family_count": 5
+      },
+      "hilbert_dim": 2,
+      "id": "F01_finitude_receipt",
+      "mixed_density_real_dim": 3,
+      "operator_basis_count": 4,
+      "pass": true,
+      "phase_quotient": "CP^1 = S^2",
+      "proof_objects": [
+        "finite Pauli basis",
+        "finite variables r_x,r_y,r_z,a0,a_x,a_y,a_z,n_x,n_y,n_z",
+        "finite polynomial identities for trace, Born, quotient rank, and matrix associator controls"
+      ],
+      "pure_sphere": "S^3 subset C^2",
+      "quotient_or_relation_table": "finite where claimed in S3.E probe family rows"
+    },
+    "N01_noncommutation_receipt": {
+      "O1_commuting_control": {
+        "A": "Z",
+        "AB_minus_BA_zero": true,
+        "B": "Z + 2I",
+        "order_gap": "0"
+      },
+      "O2_general_noncommuting_witness": {
+        "A": "X",
+        "AB_minus_BA_nonzero": true,
+        "B": "Z",
+        "commutator": [
+          [
+            "0",
+            "-2"
+          ],
+          [
+            "2",
+            "0"
+          ]
+        ]
+      },
+      "O3_noncommuting_but_not_anticommuting_witness": {
+        "A": "X",
+        "AB_minus_BA_nonzero": true,
+        "AB_plus_BA_nonzero": true,
+        "B": "X + Z",
+        "anticommutation_not_definition": true
+      },
+      "O4_Clifford_anticommuting_witness": {
+        "A": "X",
+        "AB_nonzero": true,
+        "AB_plus_BA_zero": true,
+        "B": "Z"
+      },
+      "O5_measurement_order_gap": {
+        "P(X+ then Z+)": "1/4",
+        "P(Z+ then X+)": "1/2",
+        "commuting_same_axis_control_gap": "0",
+        "gap": "1/4",
+        "state": "rho(Z+)"
+      },
+      "O6_capacity_row": {
+        "pairwise_anticommuting_capacity": "Clifford capacity row only",
+        "root_order_pressure": "noncommutation AB != BA, not anticommutation"
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "N01_noncommutation_receipt",
+      "pass": true
+    },
+    "S3.A": {
+      "claim": "Bloch ball field",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "component_traces": [
+          "r_x",
+          "r_y",
+          "r_z"
+        ],
+        "determinant": "-r_x**2/4 - r_y**2/4 - r_z**2/4 + 1/4",
+        "eigenvalues": [
+          "(1 - sqrt(r_x^2 + r_y^2 + r_z^2))/2",
+          "(1 + sqrt(r_x^2 + r_y^2 + r_z^2))/2"
+        ],
+        "entropy": "H2((1+sqrt(r_x^2+r_y^2+r_z^2))/2)",
+        "entropy_base_receipt": {
+          "auxiliary_H2_log2_row": {
+            "base": "log2",
+            "formula": "H2((1+||r||)/2)",
+            "label": "auxiliary_bits_not_primary_program_convention",
+            "units": "bits"
+          },
+          "boundary_handling": {
+            "norm_r_equals_0": {
+              "coded_center_entropy_bits": 1.0,
+              "coded_center_entropy_nats": 0.6931471805599453,
+              "eigenvalues": [
+                "1/2",
+                "1/2"
+              ]
+            },
+            "norm_r_equals_1": {
+              "coded_boundary_entropy_bits": 0.0,
+              "coded_boundary_entropy_nats": 0.0,
+              "eigenvalues": [
+                "1",
+                "0"
+              ],
+              "zero_times_log_zero_limit": "lim_{x->0+} x*ln(x)=0"
+            }
+          },
+          "pass": true,
+          "primary_entropy": {
+            "base": "natural_log_e",
+            "formula": "-lambda_plus*ln(lambda_plus)-lambda_minus*ln(lambda_minus)",
+            "lambda_minus": "(1-||r||)/2",
+            "lambda_plus": "(1+||r||)/2",
+            "units": "nats"
+          }
+        },
+        "positivity_iff": "r_x^2 + r_y^2 + r_z^2 <= 1",
+        "purity": "r_x**2/2 + r_y**2/2 + r_z**2/2 + 1/2",
+        "rho_matrix": [
+          [
+            "r_z/2 + 1/2",
+            "r_x/2 + I*r_y/2"
+          ],
+          [
+            "r_x/2 - I*r_y/2",
+            "1/2 - r_z/2"
+          ]
+        ],
+        "trace": "1"
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.A",
+      "pass": true,
+      "route": "derive rho matrix, determinant, trace, purity, and eigenvalue formula from pinned Pauli basis"
+    },
+    "S3.B": {
+      "claim": "observable plane fields",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "expectation": "a0 + a_x*r_x + a_y*r_y + a_z*r_z",
+        "observable_matrix": [
+          [
+            "a0 + a_z",
+            "a_x + I*a_y"
+          ],
+          [
+            "a_x - I*a_y",
+            "a0 - a_z"
+          ]
+        ],
+        "pinned_y_sign_compatibility": "pinned-y sign: a_y multiplies -sigma_y_standard and pairs with r_y under Tr(O*rho)=a0+a.r",
+        "plane_level_set": {
+          "equation": "a_x*r_x + a_y*r_y + a_z*r_z = c - a0",
+          "intersection_types": [
+            {
+              "condition": "a_x=a_y=a_z=0 and c=a0",
+              "type": "whole_ball"
+            },
+            {
+              "condition": "a_x=a_y=a_z=0 and c!=a0",
+              "type": "empty"
+            },
+            {
+              "condition": "|c-a0| > sqrt(a_x^2+a_y^2+a_z^2)",
+              "type": "empty"
+            },
+            {
+              "condition": "|c-a0| = sqrt(a_x^2+a_y^2+a_z^2) and ||a||>0",
+              "type": "tangent_point"
+            },
+            {
+              "condition": "|c-a0| < sqrt(a_x^2+a_y^2+a_z^2) and ||a||>0",
+              "type": "disk"
+            }
+          ],
+          "normal": [
+            "a_x",
+            "a_y",
+            "a_z"
+          ],
+          "normal_norm": "sqrt(a_x^2 + a_y^2 + a_z^2)",
+          "offset": "-a0 + c",
+          "signed_distance": "(c - a0)/sqrt(a_x^2 + a_y^2 + a_z^2)"
+        }
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.B",
+      "pass": true,
+      "route": "derive Tr(O*rho(r)) from O=a0I+a.basis and pinned rho"
+    },
+    "S3.C": {
+      "claim": "Born fields",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "boundary_certainty": {
+          "r=+n": {
+            "p_minus": "0",
+            "p_plus": "1"
+          },
+          "r=-n": {
+            "p_minus": "1",
+            "p_plus": "0"
+          }
+        },
+        "from_trace_Pplus_rho": "n_x*r_x/2 + n_y*r_y/2 + n_z*r_z/2 + 1/2",
+        "normalization": "1",
+        "p_minus": "-n_x*r_x/2 - n_y*r_y/2 - n_z*r_z/2 + 1/2",
+        "p_plus": "n_x*r_x/2 + n_y*r_y/2 + n_z*r_z/2 + 1/2",
+        "range_on_B3": "0 <= (1 +/- n.r)/2 <= 1 for ||n||=1 and ||r||<=1 by Cauchy-Schwarz"
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.C",
+      "pass": true,
+      "route": "derive projector P+ trace from pinned n.basis projector"
+    },
+    "S3.D": {
+      "claim": "measurement updates",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "idempotence": "applying nonselective update again leaves (n.r)n unchanged for ||n||=1",
+        "nonselective_update": {
+          "diff_after_unit_constraint": [
+            "0",
+            "0",
+            "0"
+          ],
+          "raw_components": [
+            "n_x**2*r_x/2 + n_x*n_y*r_y + n_x*n_z*r_z - n_y**2*r_x/2 - n_z**2*r_x/2 + r_x/2",
+            "-n_x**2*r_y/2 + n_x*n_y*r_x + n_y**2*r_y/2 + n_y*n_z*r_z - n_z**2*r_y/2 + r_y/2",
+            "-n_x**2*r_z/2 + n_x*n_z*r_x - n_y**2*r_z/2 + n_y*n_z*r_y + n_z**2*r_z/2 + r_z/2"
+          ],
+          "rule": "r -> (n.r)n",
+          "target": [
+            "n_x*(n.r)",
+            "n_y*(n.r)",
+            "n_z*(n.r)"
+          ]
+        },
+        "positivity_preservation_receipts": {
+          "nonselective": {
+            "condition": "||n||=1 and ||r||<=1",
+            "output_bloch_norm": "|n.r|",
+            "positive_semidefinite": true,
+            "reason": "|n.r| <= 1 by Cauchy-Schwarz"
+          },
+          "pass": true,
+          "selective_minus": {
+            "eigenvalues": [
+              "1",
+              "0"
+            ],
+            "output": "P-",
+            "positive_semidefinite": true
+          },
+          "selective_plus": {
+            "eigenvalues": [
+              "1",
+              "0"
+            ],
+            "output": "P+",
+            "positive_semidefinite": true
+          }
+        },
+        "purity_entropy_effects": "selective output pure; nonselective output purity=(1+(n.r)^2)/2 and entropy=H2((1+|n.r|)/2)",
+        "selective_update": {
+          "probabilities": {
+            "minus": "-n_x*r_x/2 - n_y*r_y/2 - n_z*r_z/2 + 1/2",
+            "plus": "n_x*r_x/2 + n_y*r_y/2 + n_z*r_z/2 + 1/2"
+          },
+          "r_to_minus_n": [
+            "-n_x",
+            "-n_y",
+            "-n_z"
+          ],
+          "r_to_plus_n": [
+            "n_x",
+            "n_y",
+            "n_z"
+          ]
+        },
+        "trace_preservation_receipts": {
+          "nonselective": {
+            "condition": "P+ + P- = I",
+            "pass": true,
+            "trace_after_update": "1"
+          },
+          "pass": true,
+          "selective_minus": {
+            "condition": "p_minus>0",
+            "pass": true,
+            "trace_after_update": "1"
+          },
+          "selective_plus": {
+            "condition": "p_plus>0",
+            "pass": true,
+            "trace_after_update": "1"
+          },
+          "zero_probability_boundary": "branch with p=0 is not normalized; certainty is routed to the nonzero branch"
+        }
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.D",
+      "pass": true,
+      "route": "derive P+ target components and nonselective projector components from matrices"
+    },
+    "S3.E": {
+      "claim": "probe-equivalence quotient map",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "all_pass": true,
+        "commuting_probe_simplex_lesson": "Z_only rank=1; attempting rank=3 full-ball reconstruction is the C3 negative control.",
+        "rows": [
+          {
+            "Q_N": [
+              "(0, 0, 1).r"
+            ],
+            "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+            "family": "Z_only",
+            "full_ball_reconstruction": false,
+            "kernel_basis": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "pass": true,
+            "probability_vector": [
+              "(1 + (0, 0, 1).r)/2"
+            ],
+            "quotient_dimension": 1,
+            "rank": 1
+          },
+          {
+            "Q_N": [
+              "(1, 0, 0).r",
+              "(0, 0, 1).r"
+            ],
+            "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+            "family": "X_Z",
+            "full_ball_reconstruction": false,
+            "kernel_basis": [
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "pass": true,
+            "probability_vector": [
+              "(1 + (1, 0, 0).r)/2",
+              "(1 + (0, 0, 1).r)/2"
+            ],
+            "quotient_dimension": 2,
+            "rank": 2
+          },
+          {
+            "Q_N": [
+              "(1, 0, 0).r",
+              "(0, 1, 0).r",
+              "(0, 0, 1).r"
+            ],
+            "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+            "family": "X_Y_Z",
+            "full_ball_reconstruction": true,
+            "kernel_basis": [],
+            "pass": true,
+            "probability_vector": [
+              "(1 + (1, 0, 0).r)/2",
+              "(1 + (0, 1, 0).r)/2",
+              "(1 + (0, 0, 1).r)/2"
+            ],
+            "quotient_dimension": 3,
+            "rank": 3
+          },
+          {
+            "Q_N": [
+              "(0, 0, 1).r",
+              "(0, 0, 1).r"
+            ],
+            "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+            "family": "duplicate_Z",
+            "full_ball_reconstruction": false,
+            "kernel_basis": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "pass": true,
+            "probability_vector": [
+              "(1 + (0, 0, 1).r)/2",
+              "(1 + (0, 0, 1).r)/2"
+            ],
+            "quotient_dimension": 1,
+            "rank": 1
+          },
+          {
+            "Q_N": [
+              "(1, 1, 1).r",
+              "(1, -1, -1).r",
+              "(-1, 1, -1).r",
+              "(-1, -1, 1).r"
+            ],
+            "equivalence_class_parameterization": "r ~ s iff N*(r-s)=0",
+            "family": "tetrahedral_refinement_control",
+            "full_ball_reconstruction": true,
+            "kernel_basis": [],
+            "pass": true,
+            "probability_vector": [
+              "(1 + (1, 1, 1).r)/2",
+              "(1 + (1, -1, -1).r)/2",
+              "(1 + (-1, 1, -1).r)/2",
+              "(1 + (-1, -1, 1).r)/2"
+            ],
+            "quotient_dimension": 3,
+            "rank": 3
+          }
+        ]
+      },
+      "exact_strength": "finite_exhaustive_enumeration",
+      "id": "S3.E",
+      "pass": true,
+      "route": "compute Q_N(r)=(n_i.r)_i, rank, kernel basis, and quotient dimension for named finite probe families"
+    },
+    "S3.F": {
+      "claim": "trace distance and fidelity fields",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "controls": {
+          "antipodal_pure": {
+            "s=-r, ||r||=1": {
+              "D": "1",
+              "F": "0"
+            }
+          },
+          "center_vs_center": {
+            "r=s=0": {
+              "D": "0",
+              "F": "1"
+            }
+          },
+          "mixed_interior": {
+            "r=(1/2,0,0), s=(0,1/2,0)": {
+              "F": "7/8",
+              "wrong_no_root_term": "1/2"
+            }
+          },
+          "pure_same": {
+            "r=s, ||r||=1": {
+              "D": "0",
+              "F": "1"
+            }
+          }
+        },
+        "fidelity_squared": "r_x*s_x/2 + r_y*s_y/2 + r_z*s_z/2 + sqrt((r_x**2 + r_y**2 + r_z**2 - 1)*(s_x**2 + s_y**2 + s_z**2 - 1))/2 + 1/2",
+        "root_fidelity_auxiliary": "sqrt(F) only; never compared against squared-F targets",
+        "trace_distance": "sqrt((r_x - s_x)**2 + (r_y - s_y)**2 + (r_z - s_z)**2)/2"
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.F",
+      "pass": true,
+      "route": "derive trace-distance and squared Uhlmann formulas under the convention pin"
+    },
+    "S3.F01": {
+      "claim": "one-qubit finite presentation",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "active_probe_family_count": "finite named families: Z_only, X_Z, X_Y_Z, duplicate_Z, tetrahedral_refinement_control",
+        "computational_basis_count": 2,
+        "exact_strength": "exact_integer_combinatorial",
+        "finite_enumeration_bounds": {
+          "finite_control_grid_points": 27,
+          "probe_family_count": 5
+        },
+        "hilbert_dim": 2,
+        "id": "F01_finitude_receipt",
+        "mixed_density_real_dim": 3,
+        "operator_basis_count": 4,
+        "pass": true,
+        "phase_quotient": "CP^1 = S^2",
+        "proof_objects": [
+          "finite Pauli basis",
+          "finite variables r_x,r_y,r_z,a0,a_x,a_y,a_z,n_x,n_y,n_z",
+          "finite polynomial identities for trace, Born, quotient rank, and matrix associator controls"
+        ],
+        "pure_sphere": "S^3 subset C^2",
+        "quotient_or_relation_table": "finite where claimed in S3.E probe family rows"
+      },
+      "exact_strength": "exact_integer_combinatorial",
+      "id": "S3.F01",
+      "pass": true
+    },
+    "S3.G": {
+      "claim": "CPTP contraction",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "all_pass": true,
+        "boundary": "no S4 channel ellipsoid image classification and no S5 fixed-point/basin claim",
+        "channels": [
+          {
+            "affine_map": "((1-p)r_x, (1-p)r_y, r_z)",
+            "cptp_certification": "K0=sqrt(1-p)I, K1=sqrt(p)P0, K2=sqrt(p)P1; sum K^dagger K=I",
+            "name": "dephasing",
+            "parameters": "p in [0,1]",
+            "trace_distance_contraction_proof": "(1-p)^2*dx^2+(1-p)^2*dy^2+dz^2 <= dx^2+dy^2+dz^2"
+          },
+          {
+            "affine_map": "lambda*r",
+            "cptp_certification": "Bloch shrink in admitted one-qubit depolarizing interval",
+            "name": "depolarizing",
+            "parameters": "lambda in [0,1]",
+            "trace_distance_contraction_proof": "lambda*||r-s||/2 <= ||r-s||/2"
+          },
+          {
+            "affine_map": "(sqrt(1-gamma)r_x, sqrt(1-gamma)r_y, (1-gamma)r_z+gamma)",
+            "cptp_certification": "K0=diag(1,sqrt(1-gamma)), K1=[[0,sqrt(gamma)],[0,0]], sum K^dagger K=I",
+            "name": "amplitude_damping",
+            "parameters": "gamma in [0,1]",
+            "trace_distance_contraction_proof": "(1-gamma)*dx^2+(1-gamma)*dy^2+(1-gamma)^2*dz^2 <= dx^2+dy^2+dz^2"
+          }
+        ],
+        "fidelity_monotonicity": {
+          "selected_exact_controls": [
+            {
+              "F_after": "3/4",
+              "F_before": "0",
+              "channel": "depolarizing",
+              "lambda": "1/2",
+              "r": "(1,0,0)",
+              "s": "(-1,0,0)"
+            },
+            {
+              "F_after": "1/2",
+              "F_before": "0",
+              "channel": "amplitude_damping",
+              "gamma": "1/2",
+              "r": "(0,0,1)",
+              "s": "(0,0,-1)"
+            }
+          ],
+          "statement": "squared Uhlmann fidelity is monotone under CPTP maps; root fidelity is only auxiliary conversion",
+          "strength": "measure_theorem"
+        },
+        "scope_routes": {
+          "basin_classification": {
+            "computed_here": false,
+            "route_to": "S5"
+          },
+          "channel_ellipsoid_image_classification": {
+            "computed_here": false,
+            "route_to": "S4"
+          },
+          "fixed_point_classification": {
+            "computed_here": false,
+            "route_to": "S5"
+          }
+        }
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.G",
+      "pass": true,
+      "route": "prove named one-qubit affine maps contract trace distance; fidelity monotonicity is carried by CPTP theorem plus selected exact controls"
+    },
+    "S3.N01": {
+      "claim": "root noncommutation in S3",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "O1_commuting_control": {
+          "A": "Z",
+          "AB_minus_BA_zero": true,
+          "B": "Z + 2I",
+          "order_gap": "0"
+        },
+        "O2_general_noncommuting_witness": {
+          "A": "X",
+          "AB_minus_BA_nonzero": true,
+          "B": "Z",
+          "commutator": [
+            [
+              "0",
+              "-2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ]
+        },
+        "O3_noncommuting_but_not_anticommuting_witness": {
+          "A": "X",
+          "AB_minus_BA_nonzero": true,
+          "AB_plus_BA_nonzero": true,
+          "B": "X + Z",
+          "anticommutation_not_definition": true
+        },
+        "O4_Clifford_anticommuting_witness": {
+          "A": "X",
+          "AB_nonzero": true,
+          "AB_plus_BA_zero": true,
+          "B": "Z"
+        },
+        "O5_measurement_order_gap": {
+          "P(X+ then Z+)": "1/4",
+          "P(Z+ then X+)": "1/2",
+          "commuting_same_axis_control_gap": "0",
+          "gap": "1/4",
+          "state": "rho(Z+)"
+        },
+        "O6_capacity_row": {
+          "pairwise_anticommuting_capacity": "Clifford capacity row only",
+          "root_order_pressure": "noncommutation AB != BA, not anticommutation"
+        },
+        "exact_strength": "symbolic_identity",
+        "id": "N01_noncommutation_receipt",
+        "pass": true
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.N01",
+      "pass": true
+    },
+    "S3.T01": {
+      "claim": "bracketing boundary",
+      "convention_pin": {
+        "bloch_basis": [
+          "sigma_x",
+          "-sigma_y_standard",
+          "sigma_z"
+        ],
+        "component_rule": "r_i = Tr(rho * basis_i)",
+        "fidelity_convention": {
+          "root_fidelity": "sqrt(F) if emitted",
+          "squared_uhlmann_qubit": "F = 1/2(1+r.s+sqrt((1-||r||^2)(1-||s||^2)))"
+        },
+        "hopf_lineage": "geo_s1_exact_closure_v0 pinned identity",
+        "rho_rule": "rho(r) = (I + r.basis) / 2",
+        "sigma_y_standard": [
+          [
+            "0",
+            "-i"
+          ],
+          [
+            "i",
+            "0"
+          ]
+        ],
+        "trace_distance_convention": "D(rho,sigma) = 1/2 ||rho-sigma||_1"
+      },
+      "data": {
+        "boundary": "true algebra-level nonassociativity belongs to later octonion/nonassociative extension lanes",
+        "exact_strength": "symbolic_identity",
+        "explicit_statement": "algebra-level nonassociativity is not present in one-qubit matrix multiplication",
+        "id": "T01_bracketing_receipt",
+        "matrix_associator_control": {
+          "(AB)C_minus_A(BC)": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "zero_in_M2C": true
+        },
+        "pass": true,
+        "schedule_or_channel_associator_test": {
+          "reason": "No named nonlinear/adaptive measurement schedule is scoped by this S3 packet; sequence effects are kept separate from algebra-level associators.",
+          "status": "open_with_reason"
+        }
+      },
+      "exact_strength": "symbolic_identity",
+      "id": "S3.T01",
+      "pass": true
+    },
+    "T01_bracketing_receipt": {
+      "boundary": "true algebra-level nonassociativity belongs to later octonion/nonassociative extension lanes",
+      "exact_strength": "symbolic_identity",
+      "explicit_statement": "algebra-level nonassociativity is not present in one-qubit matrix multiplication",
+      "id": "T01_bracketing_receipt",
+      "matrix_associator_control": {
+        "(AB)C_minus_A(BC)": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        "zero_in_M2C": true
+      },
+      "pass": true,
+      "schedule_or_channel_associator_test": {
+        "reason": "No named nonlinear/adaptive measurement schedule is scoped by this S3 packet; sequence effects are kept separate from algebra-level associators.",
+        "status": "open_with_reason"
+      }
+    }
+  },
+  "result_path": "system_v6/sims/geo_s3_density_observable_v0/results/geo_s3_density_observable_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "geo_s3_density_observable_v0",
+  "source_path": "system_v6/sims/geo_s3_density_observable_v0/geo_s3_density_observable_v0_envelope.py",
+  "source_sha256": "1e4b9eecad729cf19cfe7efc30cf7a8abe78cf643688b7e06e9dd9adc9a5dde1",
+  "strength_tokens": [
+    "exact_integer_combinatorial",
+    "finite_exhaustive_enumeration",
+    "symbolic_identity"
+  ],
+  "summary": {
+    "all_pass": true,
+    "audit_gap_hardening_fields_present": true,
+    "ceiling": "scratch_diagnostic",
+    "pin_sha256": "68995cf5cbacc740863cfa1213bb20f44768d5e56cb840d425fb85d7a4b2681b",
+    "required_receipts": [
+      "S3.A",
+      "S3.B",
+      "S3.C",
+      "S3.D",
+      "S3.E",
+      "S3.F",
+      "S3.F01",
+      "S3.G",
+      "S3.N01",
+      "S3.T01"
+    ],
+    "source_sha256_current": true,
+    "strict_controls": true
+  }
+}

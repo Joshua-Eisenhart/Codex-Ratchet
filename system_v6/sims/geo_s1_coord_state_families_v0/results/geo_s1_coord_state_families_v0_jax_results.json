@@ -1,0 +1,897 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SMT polarity mirror for the same determinant inequalities",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact entropy eigenvalue curves and endpoint simplification",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing endpoint and boundary polarity over rationalized determinant rows",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:38:48Z",
+  "math_payload": {
+    "boundary_rows_present": true,
+    "classification": "scratch_diagnostic",
+    "controls": {
+      "coordinate_independent_family": {
+        "curve": [
+          0.6931471805599453,
+          0.6931471805599453,
+          0.6931471805599453,
+          0.6931471805599453,
+          0.6931471805599453
+        ],
+        "failure_semantics": "flat entropy curve means this control did not couple the state to shell coordinate eta",
+        "flatness_detected": true,
+        "max_minus_min": 0.0
+      },
+      "erased_phase_family": {
+        "entropy_curve_flat": true,
+        "erased_by_rho": [
+          "global phase alpha(eta)"
+        ],
+        "family": "exp(i alpha(eta))|psi0>",
+        "rho_quotient_collapses": true,
+        "survives_rho": [
+          "relative GHZ/W phase in offdiagonal rho entries"
+        ]
+      },
+      "permuted_coordinates": {
+        "base_entropies": [
+          0.25731864054383163,
+          0.5982695885852574,
+          0.6517565611726532
+        ],
+        "base_probabilities": [
+          0.07142857142857142,
+          0.2857142857142857,
+          0.6428571428571429
+        ],
+        "permuted_entropies": [
+          0.6517565611726532,
+          0.5982695885852574,
+          0.25731864054383163
+        ],
+        "permuted_probabilities": [
+          0.6428571428571429,
+          0.2857142857142857,
+          0.07142857142857142
+        ],
+        "site_dependent_weights_change_curve": true,
+        "site_independent_equal_weight_curve_unchanged": true
+      },
+      "w_site_constructor_mutation_controls": {
+        "3": {
+          "base_entropies": [
+            0.6365141682948128,
+            0.6365141682948128,
+            0.6365141682948128
+          ],
+          "base_eta_vec": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "base_probabilities": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ],
+          "constructor": "w_site_weighted_amplitudes_from_eta",
+          "equal_eta_anchor_full_rerun": {
+            "entropies": [
+              0.6365141682948128,
+              0.6365141682948128,
+              0.6365141682948128
+            ],
+            "equal_eta_vec": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expected_entropy_each_site": 0.6365141682948128,
+            "probabilities": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "reduces_to_symmetric_W_anchor": true
+          },
+          "mutate_one_eta_full_rerun": {
+            "changed_eta_sites": [
+              2
+            ],
+            "changed_exactly_one_constructor_input": true,
+            "entropy_abs_delta": [
+              0.03373898060266545,
+              0.03373898060266545,
+              0.04332345289093609
+            ],
+            "entropy_responds_at_mutated_site": true,
+            "entropy_response_argmax_site": 2,
+            "mutated_entropies": [
+              0.6027751876921473,
+              0.6027751876921473,
+              0.6798376211857489
+            ],
+            "mutated_eta_vec": [
+              1.0,
+              1.0,
+              1.2
+            ],
+            "mutated_probabilities": [
+              0.2906976744186047,
+              0.2906976744186047,
+              0.4186046511627906
+            ],
+            "mutated_site": 2,
+            "mutated_site_is_unique_largest_entropy_response": true,
+            "normalization_coupling_note": "Changing one eta_i changes the shared W normalization denominator; the control checks constructor-input locality and site-identity response, not invariant non-target probabilities."
+          },
+          "permute_eta_full_rerun": {
+            "base_entropies": [
+              0.25731864054383163,
+              0.5982695885852574,
+              0.6517565611726532
+            ],
+            "base_eta_vec": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "base_probabilities": [
+              0.07142857142857144,
+              0.28571428571428575,
+              0.6428571428571429
+            ],
+            "entropies_permute_with_eta": true,
+            "permuted_entropies": [
+              0.6517565611726532,
+              0.5982695885852574,
+              0.25731864054383163
+            ],
+            "permuted_eta_vec": [
+              3.0,
+              2.0,
+              1.0
+            ],
+            "permuted_probabilities": [
+              0.6428571428571429,
+              0.28571428571428575,
+              0.07142857142857144
+            ]
+          }
+        },
+        "4": {
+          "base_entropies": [
+            0.5623351446188083,
+            0.5623351446188083,
+            0.5623351446188083,
+            0.5623351446188083
+          ],
+          "base_eta_vec": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "base_probabilities": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "constructor": "w_site_weighted_amplitudes_from_eta",
+          "equal_eta_anchor_full_rerun": {
+            "entropies": [
+              0.5623351446188083,
+              0.5623351446188083,
+              0.5623351446188083,
+              0.5623351446188083
+            ],
+            "equal_eta_vec": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expected_entropy_each_site": 0.5623351446188083,
+            "probabilities": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "reduces_to_symmetric_W_anchor": true
+          },
+          "mutate_one_eta_full_rerun": {
+            "changed_eta_sites": [
+              3
+            ],
+            "changed_exactly_one_constructor_input": true,
+            "entropy_abs_delta": [
+              0.02889289915788562,
+              0.02889289915788562,
+              0.02889289915788562,
+              0.06775099993998324
+            ],
+            "entropy_responds_at_mutated_site": true,
+            "entropy_response_argmax_site": 3,
+            "mutated_entropies": [
+              0.5334422454609227,
+              0.5334422454609227,
+              0.5334422454609227,
+              0.6300861445587915
+            ],
+            "mutated_eta_vec": [
+              1.0,
+              1.0,
+              1.0,
+              1.2
+            ],
+            "mutated_probabilities": [
+              0.22522522522522526,
+              0.22522522522522526,
+              0.22522522522522526,
+              0.3243243243243244
+            ],
+            "mutated_site": 3,
+            "mutated_site_is_unique_largest_entropy_response": true,
+            "normalization_coupling_note": "Changing one eta_i changes the shared W normalization denominator; the control checks constructor-input locality and site-identity response, not invariant non-target probabilities."
+          },
+          "permute_eta_full_rerun": {
+            "base_entropies": [
+              0.1461447460085638,
+              0.39267446722755217,
+              0.6108643020548934,
+              0.6909233093138181
+            ],
+            "base_eta_vec": [
+              1.0,
+              2.0,
+              3.0,
+              4.0
+            ],
+            "base_probabilities": [
+              0.033333333333333326,
+              0.1333333333333333,
+              0.29999999999999993,
+              0.5333333333333332
+            ],
+            "entropies_permute_with_eta": true,
+            "permuted_entropies": [
+              0.6909233093138181,
+              0.6108643020548934,
+              0.39267446722755217,
+              0.1461447460085638
+            ],
+            "permuted_eta_vec": [
+              4.0,
+              3.0,
+              2.0,
+              1.0
+            ],
+            "permuted_probabilities": [
+              0.5333333333333332,
+              0.29999999999999993,
+              0.1333333333333333,
+              0.033333333333333326
+            ]
+          }
+        }
+      }
+    },
+    "density_quotient_rows_present": true,
+    "endpoint_anchors_recovered": true,
+    "families": {
+      "ghz_w_interpolating": {
+        "3": {
+          "anchors": {
+            "eta_0_GHZ_entropy": "log(2)",
+            "eta_pi_over_2_W_entropy": "-2*log(2)/3 + log(3)",
+            "ghz_anchor_pass": true,
+            "w_anchor_pass": true
+          },
+          "coordinate": "eta in [0, pi/2], t=sin(eta)^2",
+          "determinant": "5*sin(eta_3)**4/36 - sin(eta_3)**2/6 + 1/4",
+          "determinant_in_u": "5*u**2/36 - u/6 + 1/4",
+          "eigenvalues": [
+            "-sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3))/6 + 1/2",
+            "sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3))/6 + 1/2"
+          ],
+          "entropy_exact": "(sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3)) - 3)*log(-sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3))/6 + 1/2)/6 - (sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3)) + 3)*log(sqrt(6 - 5*sin(eta_3)**2)*Abs(sin(eta_3))/6 + 1/2)/6",
+          "family": "sqrt(1-sin(eta)^2)|GHZ_n> + exp(i*phase(eta))*sin(eta)|W_n>",
+          "n": 3,
+          "rho_single_site": {
+            "diag_0": "sin(eta_3)**2/6 + 1/2",
+            "diag_1": "1/2 - sin(eta_3)**2/6",
+            "entropy_phase_independent": true,
+            "offdiag_abs_squared": "1/48 - cos(4*eta_3)/48",
+            "phase_survives_rho_offdiag": true
+          },
+          "separability_boundary": {
+            "reason": "det(rho_A)>0 for 0<=t<=1; endpoints are GHZ and W anchors, both entangled across a one-site cut",
+            "single_site_entropy_zero_inside_closed_interval": false
+          }
+        },
+        "4": {
+          "anchors": {
+            "eta_0_GHZ_entropy": "log(2)",
+            "eta_pi_over_2_W_entropy": "log(4*3**(1/4)/3)",
+            "ghz_anchor_pass": true,
+            "w_anchor_pass": true
+          },
+          "coordinate": "eta in [0, pi/2], t=sin(eta)^2",
+          "determinant": "sin(eta_4)**4/16 - sin(eta_4)**2/8 + 1/4",
+          "determinant_in_u": "u**2/16 - u/8 + 1/4",
+          "eigenvalues": [
+            "-sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4))/4 + 1/2",
+            "sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4))/4 + 1/2"
+          ],
+          "entropy_exact": "(sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4)) - 2)*log(-sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4))/4 + 1/2)/4 - log((sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4)) + 2)**(sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4))/4 + 1/2)/(2*2**(sqrt(cos(eta_4)**2 + 1)*Abs(sin(eta_4))/2)))",
+          "family": "sqrt(1-sin(eta)^2)|GHZ_n> + exp(i*phase(eta))*sin(eta)|W_n>",
+          "n": 4,
+          "rho_single_site": {
+            "diag_0": "sin(eta_4)**2/4 + 1/2",
+            "diag_1": "1/2 - sin(eta_4)**2/4",
+            "entropy_phase_independent": true,
+            "offdiag_abs_squared": "1/64 - cos(4*eta_4)/64",
+            "phase_survives_rho_offdiag": true
+          },
+          "separability_boundary": {
+            "reason": "det(rho_A)>0 for 0<=t<=1; endpoints are GHZ and W anchors, both entangled across a one-site cut",
+            "single_site_entropy_zero_inside_closed_interval": false
+          }
+        }
+      },
+      "w_site_weighted": {
+        "3": {
+          "boundary_row": {
+            "all_single_site_entropies_zero": true,
+            "constructor_confirms_product_boundary": true,
+            "constructor_entropies": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "constructor_eta_vec": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "constructor_probabilities": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "product_basis_points": "one nonzero coordinate weight, all other eta_i=0"
+          },
+          "equal_weight_anchor": {
+            "constructor_entropies": [
+              0.6365141682948128,
+              0.6365141682948128,
+              0.6365141682948128
+            ],
+            "constructor_eta_vec": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "constructor_matches_symbolic_anchor": true,
+            "constructor_probabilities": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "entropy_each_site": "-2*log(2)/3 + log(3)",
+            "matches_W_n_single_site_anchor": true,
+            "p_excited_each_site": "1/3"
+          },
+          "executable_constructor": {
+            "function": "w_site_weighted_amplitudes_from_eta",
+            "input": "eta_vec = [eta_1, ..., eta_n]",
+            "output": "basis-ordered W-state amplitudes",
+            "weight_rule": "w_i = eta_i^2; p_i = w_i / sum_j w_j"
+          },
+          "family": "|W(eta_i)> = executable_constructor(eta_vec): amplitudes_i=sqrt(eta_i^2/sum_j eta_j^2)|0..1_i..0>",
+          "n": 3,
+          "site_rows": [
+            {
+              "amplitude": "Abs(eta3_0)/sqrt(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "entropy_exact": "(-eta3_0**2*log(eta3_0**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)) - (eta3_1**2 + eta3_2**2)*log((eta3_1**2 + eta3_2**2)/(eta3_0**2 + eta3_1**2 + eta3_2**2)))/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "eta_i": "eta3_0",
+              "p_excited": "eta3_0**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 0
+            },
+            {
+              "amplitude": "Abs(eta3_1)/sqrt(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "entropy_exact": "(-eta3_1**2*log(eta3_1**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)) - (eta3_0**2 + eta3_2**2)*log((eta3_0**2 + eta3_2**2)/(eta3_0**2 + eta3_1**2 + eta3_2**2)))/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "eta_i": "eta3_1",
+              "p_excited": "eta3_1**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 1
+            },
+            {
+              "amplitude": "Abs(eta3_2)/sqrt(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "entropy_exact": "(-eta3_2**2*log(eta3_2**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)) - (eta3_0**2 + eta3_1**2)*log((eta3_0**2 + eta3_1**2)/(eta3_0**2 + eta3_1**2 + eta3_2**2)))/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "eta_i": "eta3_2",
+              "p_excited": "eta3_2**2/(eta3_0**2 + eta3_1**2 + eta3_2**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 2
+            }
+          ]
+        },
+        "4": {
+          "boundary_row": {
+            "all_single_site_entropies_zero": true,
+            "constructor_confirms_product_boundary": true,
+            "constructor_entropies": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "constructor_eta_vec": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "constructor_probabilities": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "product_basis_points": "one nonzero coordinate weight, all other eta_i=0"
+          },
+          "equal_weight_anchor": {
+            "constructor_entropies": [
+              0.5623351446188083,
+              0.5623351446188083,
+              0.5623351446188083,
+              0.5623351446188083
+            ],
+            "constructor_eta_vec": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "constructor_matches_symbolic_anchor": true,
+            "constructor_probabilities": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "entropy_each_site": "log(4*3**(1/4)/3)",
+            "matches_W_n_single_site_anchor": true,
+            "p_excited_each_site": "1/4"
+          },
+          "executable_constructor": {
+            "function": "w_site_weighted_amplitudes_from_eta",
+            "input": "eta_vec = [eta_1, ..., eta_n]",
+            "output": "basis-ordered W-state amplitudes",
+            "weight_rule": "w_i = eta_i^2; p_i = w_i / sum_j w_j"
+          },
+          "family": "|W(eta_i)> = executable_constructor(eta_vec): amplitudes_i=sqrt(eta_i^2/sum_j eta_j^2)|0..1_i..0>",
+          "n": 4,
+          "site_rows": [
+            {
+              "amplitude": "Abs(eta4_0)/sqrt(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "entropy_exact": "(-eta4_0**2*log(eta4_0**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)) - (eta4_1**2 + eta4_2**2 + eta4_3**2)*log((eta4_1**2 + eta4_2**2 + eta4_3**2)/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)))/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "eta_i": "eta4_0",
+              "p_excited": "eta4_0**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 0
+            },
+            {
+              "amplitude": "Abs(eta4_1)/sqrt(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "entropy_exact": "(-eta4_1**2*log(eta4_1**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)) - (eta4_0**2 + eta4_2**2 + eta4_3**2)*log((eta4_0**2 + eta4_2**2 + eta4_3**2)/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)))/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "eta_i": "eta4_1",
+              "p_excited": "eta4_1**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 1
+            },
+            {
+              "amplitude": "Abs(eta4_2)/sqrt(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "entropy_exact": "(-eta4_2**2*log(eta4_2**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)) - (eta4_0**2 + eta4_1**2 + eta4_3**2)*log((eta4_0**2 + eta4_1**2 + eta4_3**2)/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)))/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "eta_i": "eta4_2",
+              "p_excited": "eta4_2**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 2
+            },
+            {
+              "amplitude": "Abs(eta4_3)/sqrt(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "entropy_exact": "(-eta4_3**2*log(eta4_3**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)) - (eta4_0**2 + eta4_1**2 + eta4_2**2)*log((eta4_0**2 + eta4_1**2 + eta4_2**2)/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)))/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "eta_i": "eta4_3",
+              "p_excited": "eta4_3**2/(eta4_0**2 + eta4_1**2 + eta4_2**2 + eta4_3**2)",
+              "separability_boundary": "p_excited in {0,1}; global W-weighted state is product only when exactly one site weight is nonzero",
+              "site": 3
+            }
+          ]
+        }
+      }
+    },
+    "formal_admission_allowed": false,
+    "mode": "QUOTIENTED",
+    "numeric_entropy_curves": {
+      "3": [
+        {
+          "det": 0.25,
+          "entropy": 0.6931471805599453,
+          "eta": 0.0,
+          "lambda_min": 0.5,
+          "n": 3,
+          "t": 0.0
+        },
+        {
+          "det": 0.24841159300058807,
+          "entropy": 0.689966993933278,
+          "eta": 0.09817477042468103,
+          "lambda_min": 0.46014517595808596,
+          "n": 3,
+          "t": 0.009607359798384776
+        },
+        {
+          "det": 0.24385781956936767,
+          "entropy": 0.680812016909738,
+          "eta": 0.19634954084936207,
+          "lambda_min": 0.42162793590422454,
+          "n": 3,
+          "t": 0.03806023374435662
+        },
+        {
+          "det": 0.2369419986494293,
+          "entropy": 0.666798941988717,
+          "eta": 0.2945243112740431,
+          "lambda_min": 0.3857283878184494,
+          "n": 3,
+          "t": 0.08426519384872735
+        },
+        {
+          "det": 0.22857092751647978,
+          "entropy": 0.6496547507447665,
+          "eta": 0.39269908169872414,
+          "lambda_min": 0.35361327763926054,
+          "n": 3,
+          "t": 0.14644660940672624
+        },
+        {
+          "det": 0.2198224436467116,
+          "entropy": 0.6315150907650157,
+          "eta": 0.4908738521234052,
+          "lambda_min": 0.32628311436913104,
+          "n": 3,
+          "t": 0.22221488349019888
+        },
+        {
+          "det": 0.21178888827613757,
+          "entropy": 0.6146483683697728,
+          "eta": 0.5890486225480862,
+          "lambda_min": 0.304523372947397,
+          "n": 3,
+          "t": 0.3086582838174551
+        },
+        {
+          "det": 0.20542001258856976,
+          "entropy": 0.6011280257780707,
+          "eta": 0.6872233929727672,
+          "lambda_min": 0.28886026567358236,
+          "n": 3,
+          "t": 0.40245483899193585
+        },
+        {
+          "det": 0.20138888888888887,
+          "entropy": 0.5925000898343233,
+          "eta": 0.7853981633974483,
+          "lambda_min": 0.2795207240779507,
+          "n": 3,
+          "t": 0.4999999999999999
+        },
+        {
+          "det": 0.2000008369770106,
+          "entropy": 0.5895162869457732,
+          "eta": 0.8835729338221293,
+          "lambda_min": 0.27639507379534456,
+          "n": 3,
+          "t": 0.5975451610080642
+        },
+        {
+          "det": 0.20115879293266287,
+          "entropy": 0.5920059290854938,
+          "eta": 0.9817477042468103,
+          "lambda_min": 0.27899953152235824,
+          "n": 3,
+          "t": 0.6913417161825449
+        },
+        {
+          "det": 0.20438993717394494,
+          "entropy": 0.5989285859017512,
+          "eta": 1.0799224746714913,
+          "lambda_min": 0.28643487450883964,
+          "n": 3,
+          "t": 0.777785116509801
+        },
+        {
+          "det": 0.20892907248352016,
+          "entropy": 0.6085939286594858,
+          "eta": 1.1780972450961724,
+          "lambda_min": 0.2973403653499794,
+          "n": 3,
+          "t": 0.8535533905932737
+        },
+        {
+          "det": 0.21384562052991413,
+          "entropy": 0.6189861595075619,
+          "eta": 1.2762720155208536,
+          "lambda_min": 0.30985694998216246,
+          "n": 3,
+          "t": 0.9157348061512726
+        },
+        {
+          "det": 0.2181944992218319,
+          "entropy": 0.6281136706454438,
+          "eta": 1.3744467859455345,
+          "lambda_min": 0.32165903224954706,
+          "n": 3,
+          "t": 0.9619397662556434
+        },
+        {
+          "det": 0.2211675574338316,
+          "entropy": 0.6343193438565307,
+          "eta": 1.4726215563702154,
+          "lambda_min": 0.3301988145913922,
+          "n": 3,
+          "t": 0.9903926402016151
+        },
+        {
+          "det": 0.2222222222222222,
+          "entropy": 0.6365141682948128,
+          "eta": 1.5707963267948966,
+          "lambda_min": 0.33333333333333326,
+          "n": 3,
+          "t": 1.0
+        }
+      ],
+      "4": [
+        {
+          "det": 0.25,
+          "entropy": 0.6931471805599453,
+          "eta": 0.0,
+          "lambda_min": 0.5,
+          "n": 4,
+          "t": 0.0
+        },
+        {
+          "det": 0.24880484886034537,
+          "entropy": 0.6907549701143925,
+          "eta": 0.09817477042468103,
+          "lambda_min": 0.4654290419621523,
+          "n": 4,
+          "t": 0.009607359798384776
+        },
+        {
+          "det": 0.24533300711899758,
+          "entropy": 0.6837839346516377,
+          "eta": 0.19634954084936207,
+          "lambda_min": 0.4316846072908717,
+          "n": 4,
+          "t": 0.03806023374435662
+        },
+        {
+          "det": 0.23991063969980683,
+          "entropy": 0.6728304934077786,
+          "eta": 0.2945243112740431,
+          "lambda_min": 0.3995541922219092,
+          "n": 4,
+          "t": 0.08426519384872735
+        },
+        {
+          "det": 0.2330345869120796,
+          "entropy": 0.6588217746890114,
+          "eta": 0.39269908169872414,
+          "lambda_min": 0.36974865418000313,
+          "n": 4,
+          "t": 0.14644660940672624
+        },
+        {
+          "det": 0.22530935546651032,
+          "entropy": 0.6429191321623116,
+          "eta": 0.4908738521234052,
+          "lambda_min": 0.3428674300678256,
+          "n": 4,
+          "t": 0.22221488349019888
+        },
+        {
+          "det": 0.21737208553338913,
+          "entropy": 0.6263921660622729,
+          "eta": 0.5890486225480862,
+          "lambda_min": 0.31936801372234525,
+          "n": 4,
+          "t": 0.3086582838174551
+        },
+        {
+          "det": 0.20981626371525958,
+          "entropy": 0.6104750482036116,
+          "eta": 0.6872233929727672,
+          "lambda_min": 0.29954118556486364,
+          "n": 4,
+          "t": 0.40245483899193585
+        },
+        {
+          "det": 0.203125,
+          "entropy": 0.5962227394150066,
+          "eta": 0.7853981633974483,
+          "lambda_min": 0.28349364905389035,
+          "n": 4,
+          "t": 0.4999999999999999
+        },
+        {
+          "det": 0.19762311858925155,
+          "entropy": 0.5843894552725002,
+          "eta": 0.8835729338221293,
+          "lambda_min": 0.27114003973882095,
+          "n": 4,
+          "t": 0.5975451610080642
+        },
+        {
+          "det": 0.19345437101057103,
+          "entropy": 0.5753524777287963,
+          "eta": 0.9817477042468103,
+          "lambda_min": 0.2622067515898969,
+          "n": 4,
+          "t": 0.6913417161825449
+        },
+        {
+          "det": 0.19058621590278513,
+          "entropy": 0.5690984836569228,
+          "eta": 1.0799224746714913,
+          "lambda_min": 0.2562505710833052,
+          "n": 4,
+          "t": 0.777785116509801
+        },
+        {
+          "det": 0.18884041308792038,
+          "entropy": 0.5652769688542743,
+          "eta": 1.1780972450961724,
+          "lambda_min": 0.2526953560644693,
+          "n": 4,
+          "t": 0.8535533905932737
+        },
+        {
+          "det": 0.18794378893089775,
+          "entropy": 0.5633098790850584,
+          "eta": 1.2762720155208536,
+          "lambda_min": 0.25088915906949727,
+          "n": 4,
+          "t": 0.9157348061512726
+        },
+        {
+          "det": 0.18759053633704215,
+          "entropy": 0.5625340578948783,
+          "eta": 1.3744467859455345,
+          "lambda_min": 0.250181138296249,
+          "n": 4,
+          "t": 0.9619397662556434
+        },
+        {
+          "det": 0.18750576883514347,
+          "entropy": 0.5623478199826778,
+          "eta": 1.4726215563702154,
+          "lambda_min": 0.2500115379365349,
+          "n": 4,
+          "t": 0.9903926402016151
+        },
+        {
+          "det": 0.1875,
+          "entropy": 0.5623351446188083,
+          "eta": 1.5707963267948966,
+          "lambda_min": 0.25,
+          "n": 4,
+          "t": 1.0
+        }
+      ]
+    },
+    "pin_sha256": "c9ea44ba3b06d5cc071b98fb3a024d312519d7a53bfa40daae7fbe6a7d54c386",
+    "pin_spec": "geo_s1_coord_state_families_v0|stage=S1|mode=QUOTIENTED|families=GHZ-W_eta_and_W_site_eta|anchors=GHZ_ln2,Wn_H((n-1)/n)|density_quotient_phase_erasure|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+    "promotion_allowed": false,
+    "seed": "coord_state_families_seed_v0_exact_eta_grid_0_pi_over_2_17",
+    "stage": "S1"
+  },
+  "packages_used": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "pin_sha256": "c9ea44ba3b06d5cc071b98fb3a024d312519d7a53bfa40daae7fbe6a7d54c386",
+  "pin_spec": "geo_s1_coord_state_families_v0|stage=S1|mode=QUOTIENTED|families=GHZ-W_eta_and_W_site_eta|anchors=GHZ_ln2,Wn_H((n-1)/n)|density_quotient_phase_erasure|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_coord_state_families_v0/results/geo_s1_coord_state_families_v0_jax_results.json",
+  "role_id": "jax_rich_mirror_sim_builder",
+  "schema_version": "three_engine_lane_result_v1",
+  "seed": "coord_state_families_seed_v0_exact_eta_grid_0_pi_over_2_17",
+  "sim_id": "geo_s1_coord_state_families_v0",
+  "solver_rows": {
+    "cvc5": {
+      "3": {
+        "det_zero_in_closed_interval": "unsat"
+      },
+      "4": {
+        "det_zero_in_closed_interval": "unsat"
+      }
+    },
+    "z3": {
+      "3": {
+        "det_zero_in_closed_interval": "unsat",
+        "positive_control": "sat"
+      },
+      "4": {
+        "det_zero_in_closed_interval": "unsat",
+        "positive_control": "sat"
+      }
+    }
+  },
+  "source_path": "system_v6/sims/geo_s1_coord_state_families_v0/geo_s1_coord_state_families_v0_jax.py",
+  "source_sha256": "25da9a1e897c07161fa2d65dd50b0bc29b15ffe445fd4a36b4def134dec83e4e",
+  "tool_calls": [
+    {
+      "boundary_case": "det(rho_A)=0 search",
+      "demotion_condition": "if endpoint simplification fails, symbolic lane is not load-bearing",
+      "gates": [
+        "all_pass",
+        "endpoint_anchors",
+        "boundary_rows"
+      ],
+      "input_object": "rho_A(eta) for GHZ-W n=3,n=4 and W-weighted eta_i constructor rows",
+      "negative/erased_control": "coordinate-independent family detected flat",
+      "output_object": "exact entropy expressions, executable W-site constructor anchors, and endpoint anchors",
+      "positive_case": "eta=0 gives log(2); eta=pi/2 gives W_n H(1/n)",
+      "qualified_api/function": "Matrix eigenvalue closed form / simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "u in [0,1]",
+      "demotion_condition": "if solver verdicts disagree, boundary row is open",
+      "gates": [
+        "crossover_proofs",
+        "boundary_rows"
+      ],
+      "input_object": "0<=u<=1 and determinant numerator == 0",
+      "negative/erased_control": "zero-determinant boundary absent for GHZ-W interpolation",
+      "output_object": "unsat for n=3,n=4 GHZ-W single-site separability crossing",
+      "positive_case": "determinant positive-control is satisfiable",
+      "qualified_api/function": "Solver.check / Solver.checkSat",
+      "tool": "z3/cvc5"
+    }
+  ]
+}

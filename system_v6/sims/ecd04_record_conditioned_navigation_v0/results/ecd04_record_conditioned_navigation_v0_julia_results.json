@@ -1,0 +1,82 @@
+{
+    "computed_values": {
+        "graph_edges": 24,
+        "margin_scaled": 1386294,
+        "graph_vertices": 15,
+        "engine_cost_scaled": 1098612,
+        "baseline_cost_scaled": 2484907,
+        "branch_count": 12
+    },
+    "package_observables": {
+        "Graphs": "SimpleDiGraph/add_edge! carries branch/action success incidence",
+        "Z3": "Solver/IntVar/add/check binds scaled cost inequality and erased success flip"
+    },
+    "result_path": "system_v6/sims/ecd04_record_conditioned_navigation_v0/results/ecd04_record_conditioned_navigation_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "Graphs",
+        "Z3"
+    ],
+    "classification": "scratch_diagnostic",
+    "one_to_one_tool_calls": {
+        "count": 2,
+        "pass": true
+    },
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+    ],
+    "generated_at": "2026-06-12T11:38:04.741",
+    "engine_mode": "all_three_full_sims_ecd04_record_conditioned_navigation_v0",
+    "all_pass": true,
+    "promotion_allowed": false,
+    "schema": "ecd04_record_conditioned_navigation_v0.julia_lane.v1",
+    "tool_calls": [
+        {
+            "demotion_condition": "graph edge count loses action-success rows",
+            "negative_or_erased_control": "record-erased fixed action misses branches",
+            "output_object": "finite action success graph",
+            "input_object": "branch/action incidence rows",
+            "positive_case": "record-conditioned action edges present",
+            "load_bearing": true,
+            "qualified_api/function": "Graphs.SimpleDiGraph, Graphs.add_edge!",
+            "tool": "Graphs",
+            "boundary_case": "order-blind collapse"
+        },
+        {
+            "demotion_condition": "Z3 verdict not unsat",
+            "negative_or_erased_control": "erased success below gate",
+            "output_object": "UNSAT negated margin and SAT erased flip",
+            "input_object": "scaled record-cost rows",
+            "positive_case": "engine cost lower than full branch identity baseline",
+            "load_bearing": true,
+            "qualified_api/function": "Z3.Solver, Z3.IntVar, Z3.add, Z3.check",
+            "tool": "Z3",
+            "boundary_case": "equal-cost tie would remove survival"
+        }
+    ],
+    "engine": "julia",
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "asserted_precomputed_boolean": false,
+            "bound_values": {
+                "engine_cost_scaled": 1098612,
+                "baseline_cost_scaled": 2484907,
+                "erased_success_per_1000": 750
+            },
+            "load_bearing": true,
+            "verdict": "unsat",
+            "proof_kind": "scaled_success_gated_record_cost_margin",
+            "erased_flip_verdict": "sat"
+        }
+    },
+    "capability_receipts": [
+        "julia_graph_policy_incidence",
+        "julia_z3_scaled_margin"
+    ],
+    "source_path": "system_v6/sims/ecd04_record_conditioned_navigation_v0/ecd04_record_conditioned_navigation_v0_julia.jl",
+    "source_backing_note": "Julia lane recomputes the finite action-success graph and scaled SMT row locally."
+}

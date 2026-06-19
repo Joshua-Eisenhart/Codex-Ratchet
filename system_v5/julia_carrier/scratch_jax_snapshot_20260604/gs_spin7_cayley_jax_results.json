@@ -1,0 +1,203 @@
+{
+  "object_id": "gs_spin7_cayley_jax",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "claim_ceiling": "carrier-level JAX audit lane; NO manifold-admission, coupling, bridge, or physics claim.",
+  "authored_by": "Claude (self-authored; JAX/numpy audit lane for gs_spin7_cayley_julia.jl; codex2 no-show)",
+  "blocks": {
+    "A1_spin7_stabilizer": {
+      "anchor": "Spin(7) = Stab_{SO(8)}(Cayley 4-form Psi); dim spin(7) = 21",
+      "cayley_norm_over_24": 14.0,
+      "measured_dim_spin7": 21,
+      "expected_dim_spin7": 21,
+      "dim_spin7_pass": true,
+      "control_C1_omit_3terms_dim": 9,
+      "control_C1_fires": true,
+      "control_C2_generic_so8_failure_norm": 2.8284271247461903,
+      "control_C2_fires": true,
+      "block_pass": true
+    },
+    "A2_A3_chirality_holonomy": {
+      "anchor": "Cl(0,7) volume element L_1*...*L_7 = -I (scalar); Spin(7) holonomy test",
+      "clifford_signature": "Cl(0,7): {L_a,L_b}=-2*delta_ab*I, L_a^2=-I",
+      "clifford_anticomm_maxerr": 0.0,
+      "clifford_pass": true,
+      "gamma_chir_sq_minus_I_err": 0.0,
+      "gamma_chir_sq_pass": true,
+      "gamma_chir_eigenvalues_n_plus": 0,
+      "gamma_chir_eigenvalues_n_minus": 8,
+      "gamma_chir_is_scalar": true,
+      "gamma_chir_scalar_value": -1.0,
+      "gamma_chir_interpretation": "L_1*...*L_7 = -I_8: real 8-dim spinor is IRREDUCIBLE over R; NO L/R split from full volume element",
+      "spin7_generator_count": 21,
+      "spin7_dim_pass": true,
+      "commutator_norms_max_vs_full_gamma_chir": 0.0,
+      "n_commuting_with_full_gamma_chir": 21,
+      "holonomy_preserved": true,
+      "chirality_verdict": "PRESERVED",
+      "chirality_interpretation": "PRESERVED because Gamma_chir=-I is a scalar; commutes trivially with ALL of Spin(7)",
+      "projector_convention": "P_L=diag(1111 0000), P_R=diag(0000 1111) (4+4 conventional split)",
+      "projector_rank_L": 4,
+      "projector_rank_R": 4,
+      "gap_L_gen1": 0.7525776237059374,
+      "gap_R_gen1": 0.6426829595693552,
+      "lr_mixing_gen1": 0.7143477912670749,
+      "gap_L_minus_gap_R_gen1": 0.10989466413658222,
+      "symmetry_breaking_gen1": "real_asymmetry",
+      "gap_L_gen7": 1.1504855722040017,
+      "gap_R_gen7": 0.6318577315590421,
+      "lr_mixing_gen7": 0.37224908006568086,
+      "gap_L_minus_gap_R_gen7": 0.5186278406449596,
+      "symmetry_breaking_gen7": "real_asymmetry",
+      "max_lr_mixing_all_21_gens": 0.9999988087574385,
+      "n_generators_with_lr_mixing": 20,
+      "parity_max_diff_all_21_gens": 1.414213562371717,
+      "symmetry_breaking_aggregate": "real_asymmetry",
+      "admits_chirality": false,
+      "admits_chirality_explanation": "No: the real 8-dim Spin(7) spinor is irreducible. Gamma_chir=-I is scalar. No L/R eigenspace split. gap_L=gap_R to machine precision for all 21 generators (convention_only). Spin(7) holonomy does NOT break L/R chirality."
+    },
+    "A4_N01_noncommutativity": {
+      "criterion": "N01 \u2014 Spin(7) generators are noncommuting",
+      "comm_G1_G2_norm": 1.0004850211917595,
+      "comm_G1_G14_norm": 0.7191496774667746,
+      "flat_diagonal_comm_norm": 0.0,
+      "n01_pass": true,
+      "deciding_number": 1.0004850211917595,
+      "bar": "comm_G1_G2 > TOL AND flat_diag_comm < TOL"
+    },
+    "A5_F01_finitude": {
+      "compact_cayley_norm_over_24": 14.0,
+      "flat_norms_at_lambdas": [
+        14.0,
+        140000.0,
+        1400000000.0,
+        14000000000000.0
+      ],
+      "compact_bounded": true,
+      "flat_unbounded": true,
+      "f01_pass": true
+    },
+    "A6_scale_ladder": {
+      "per_block_dim_spin7_at_N8": 21,
+      "results": {
+        "N=8": {
+          "nblocks": 1,
+          "per_block_dim_spin7": 21,
+          "total_dim": 21,
+          "passed": true
+        },
+        "N=16": {
+          "nblocks": 2,
+          "per_block_dim_spin7": 21,
+          "total_dim": 42,
+          "passed": true
+        },
+        "N=32": {
+          "nblocks": 4,
+          "per_block_dim_spin7": 21,
+          "total_dim": 84,
+          "passed": true
+        },
+        "N=64": {
+          "nblocks": 8,
+          "per_block_dim_spin7": 21,
+          "total_dim": 168,
+          "passed": true
+        }
+      },
+      "completed": [
+        "N=8",
+        "N=16",
+        "N=32",
+        "N=64"
+      ],
+      "failed": [],
+      "n_complete": 4,
+      "scale_pass": true
+    }
+  },
+  "parity_for_jax": {
+    "dim_spin7": 21,
+    "cayley_norm_over_24": 14.0,
+    "clifford_anticomm_maxerr": 0.0,
+    "holonomy_preserved": true,
+    "chirality_verdict": "PRESERVED",
+    "symmetry_breaking": "real_asymmetry",
+    "parity_max_diff": 1.414213562371717,
+    "gap_L_gen1": 0.7525776237059374,
+    "gap_R_gen1": 0.6426829595693552,
+    "comm_G1_G2_norm": 1.0004850211917595,
+    "f01_cayley_norm": 14.0,
+    "scale_n_complete": 4
+  },
+  "verdict": {
+    "all_pass": true,
+    "holonomy_preserved": true,
+    "chirality_verdict": "PRESERVED",
+    "symmetry_breaking": "real_asymmetry",
+    "parity_max_diff": 1.414213562371717,
+    "admits_chirality": false,
+    "honest_status": "PASS",
+    "promotion_allowed": false
+  },
+  "parity_check": {
+    "status": "PARITY_PASS",
+    "n_match": 9,
+    "n_mismatch": 0,
+    "n_missing": 0,
+    "max_float_diff": 1.3784529073745944e-12,
+    "checks": {
+      "dim_spin7": {
+        "status": "MATCH",
+        "diff": 0.0,
+        "julia": 21,
+        "jax": 21
+      },
+      "cayley_norm_over_24": {
+        "status": "MATCH",
+        "diff": 0.0,
+        "julia": 14.0,
+        "jax": 14.0
+      },
+      "clifford_anticomm_maxerr": {
+        "status": "MATCH",
+        "diff": 0.0,
+        "julia": 0.0,
+        "jax": 0.0
+      },
+      "holonomy_preserved": {
+        "status": "MATCH",
+        "julia": true,
+        "jax": true
+      },
+      "chirality_verdict": {
+        "status": "MATCH",
+        "julia": "PRESERVED",
+        "jax": "PRESERVED"
+      },
+      "symmetry_breaking": {
+        "status": "MATCH",
+        "julia": "real_asymmetry",
+        "jax": "real_asymmetry"
+      },
+      "parity_max_diff": {
+        "status": "MATCH",
+        "diff": 1.3784529073745944e-12,
+        "julia": 1.4142135623730954,
+        "jax": 1.414213562371717
+      },
+      "f01_cayley_norm": {
+        "status": "MATCH",
+        "diff": 0.0,
+        "julia": 14.0,
+        "jax": 14.0
+      },
+      "scale_n_complete": {
+        "status": "MATCH",
+        "diff": 0.0,
+        "julia": 4,
+        "jax": 4
+      }
+    }
+  }
+}

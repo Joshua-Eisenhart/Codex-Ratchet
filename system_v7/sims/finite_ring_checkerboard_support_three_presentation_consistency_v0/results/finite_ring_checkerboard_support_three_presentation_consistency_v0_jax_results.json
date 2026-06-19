@@ -1,0 +1,57 @@
+{
+  "TOOL_MANIFEST": {
+    "jax": {
+      "reason": "independent vectorized table, density rows, quotient counts, adjacency counts",
+      "used": true
+    }
+  },
+  "all_controls_pass": true,
+  "all_tests_pass": true,
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "density_probe_phi_blind_but_phase_probe_splits": true,
+    "fiber_coordinate_erasure_merges_classes": true,
+    "label_shuffle_preserves_counts_not_adjacency_without_map": true,
+    "relation_ablation_breaks_adjacency_components": true,
+    "shell_nesting_erasure_merges_classes": true
+  },
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "package_versions": {
+    "jax": "0.10.1"
+  },
+  "promotion_allowed": false,
+  "representation": "jax_int_array_rows_vectorized_density_and_quotient",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "finite_ring_checkerboard_support_three_presentation_consistency_v0",
+  "support_parameters": {
+    "K_eta": 3,
+    "N_chi": 4,
+    "N_phi": 4,
+    "sheets": [
+      "L",
+      "R"
+    ],
+    "support_count": 96
+  },
+  "tests": {
+    "density_rows_where_applicable": true,
+    "finite_cell_support_count_agrees": true,
+    "folding_reindexing_invariants_valid": {
+      "flat_edges": 256,
+      "full_components": 2,
+      "passes": true,
+      "ring_edges": 256
+    },
+    "phi_blindness_under_density_probes": true,
+    "probe_bins_density_and_phase_computed": true,
+    "quotient_classes_density_vs_phase": {
+      "density_class_count": 24,
+      "phase_sensitive_class_count": 96,
+      "phase_splits_density": true
+    },
+    "relation_adjacency_readouts_agree": true,
+    "ring_fiber_coordinate_table_agrees": true,
+    "shell_eta_index_agrees": true
+  }
+}

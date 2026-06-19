@@ -1,0 +1,53 @@
+{
+  "sim_id": "distinguishability_quotient_floor_v0",
+  "computation_styles": {
+    "julia": "exact_hermitian_eigendecomposition",
+    "jax": "vmap_batched_expectation_matrix",
+    "pytorch": "autograd_jacobian_over_bloch_parameters"
+  },
+  "quotient_classes_full": [
+    [
+      "s0"
+    ],
+    [
+      "s1"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "quotient_classes_erased": [
+    [
+      "s0"
+    ],
+    [
+      "s1",
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "quotient_count_full": 4,
+  "quotient_count_erased": 3,
+  "smt_flip": {
+    "z3": [
+      "sat",
+      "unsat"
+    ],
+    "cvc5": [
+      "sat",
+      "unsat"
+    ],
+    "confirmed": true
+  },
+  "autograd_identity_ok": true,
+  "all_three_agree": true,
+  "failures": [],
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}

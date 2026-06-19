@@ -1,0 +1,4934 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "supportive",
+    "torch_geometric": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia reference finite graph rebuild and SCC partition",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent SMT cross-check of computed identity controls",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX-slot workhorse graph carrier and trajectory signatures",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact typed entropy/counting expressions",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive PyTorch vmap sanity in source_backing_probe only",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "supportive PyTorch Data sanity in source_backing_probe only",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "computed identity UNSAT plus erased/perturbed SAT controls",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "scratch diagnostic: one shared finite 33-cell object across L1-L5",
+    "chart-relative finite basin partitions and controls",
+    "typed entropy/information rows with explicit conventions"
+  ],
+  "capability_receipts": {
+    "jax": {
+      "cvc5_component_identity": "unsat",
+      "networkx_component_count": 3,
+      "pass": true,
+      "sympy_exact_log": "log(3)",
+      "z3_component_identity": "unsat"
+    },
+    "julia": [
+      {
+        "computed_what": "G0/G1 finite graph partitions from pinned generators",
+        "receipt_id": "julia_Graphs_super_finite_partition",
+        "status": "used",
+        "tool": "Graphs"
+      },
+      {
+        "computed_what": "computed partition identity with erased flip",
+        "receipt_id": "julia_Z3_super_partition_identity",
+        "status": "used",
+        "tool": "Z3"
+      }
+    ],
+    "pytorch": {
+      "cvc5_node_identity": "unsat",
+      "pass": true,
+      "sympy_exact_log": "log(3)",
+      "torch_func_batched_shape": [
+        2,
+        3
+      ],
+      "torch_geometric_edge_count": 3,
+      "torch_geometric_num_nodes": 3,
+      "z3_node_identity": "unsat"
+    }
+  },
+  "ceiling": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "promotion_allowed": false
+  },
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "claim_sections": {
+    "boundary": [
+      "all basin classes are chart-relative finite structures",
+      "typed entropy/information rows are not collapsed into one scalar",
+      "scratch diagnostic only; no axis, bridge, physics, admission, or joint-engine claim"
+    ],
+    "negative": [
+      "stale-import perturbation changes dependent anchors",
+      "order-shuffled N01 trajectory changes",
+      "similarity-only clustering and quotient-erased controls fail basin language"
+    ],
+    "positive": [
+      "one shared 33-cell state object is used across L1-L5",
+      "G0/G1 basin rows are recomputed from pinned S4/S5 generator sources",
+      "chart, information, fusion, and ledger rows all have can-fail controls"
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+        "erased_flip": "G5 expected terminal count decremented by one",
+        "partition_identity_inputs": [
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 3,
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G2",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3L",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3R",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 3,
+            "set_id": "G4",
+            "state_count": 4,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 5,
+            "scc_count": 31,
+            "set_id": "G5",
+            "state_count": 33,
+            "terminal_class_count": 5
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "bound_rows": [
+          {
+            "may_basin_sizes": [
+              33
+            ],
+            "must_basin_sizes": [
+              1
+            ],
+            "partition_signature": {
+              "class_sizes": [
+                1,
+                32
+              ],
+              "scc_count": 2,
+              "state_count": 33,
+              "terminal_sizes": [
+                1
+              ]
+            },
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1,
+            "terminal_class_sizes": [
+              1
+            ]
+          },
+          {
+            "may_basin_sizes": [
+              1,
+              14,
+              18
+            ],
+            "must_basin_sizes": [
+              1,
+              14,
+              18
+            ],
+            "partition_signature": {
+              "class_sizes": [
+                1,
+                14,
+                18
+              ],
+              "scc_count": 3,
+              "state_count": 33,
+              "terminal_sizes": [
+                1,
+                14,
+                18
+              ]
+            },
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3,
+            "terminal_class_sizes": [
+              1,
+              14,
+              18
+            ]
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+        "erased_flip": "G5 expected terminal count decremented by one",
+        "partition_identity_inputs": [
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 3,
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G2",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3L",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3R",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 3,
+            "set_id": "G4",
+            "state_count": 4,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 5,
+            "scc_count": 31,
+            "set_id": "G5",
+            "state_count": 33,
+            "terminal_class_count": 5
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "formal admission",
+    "invariant/frame-independent sub-basins",
+    "axis/bridge/physics claims",
+    "joint-engine/two-engine convention sweep claims"
+  ],
+  "divergence": {
+    "basis": "boolean all_pass agreement plus packet validator anchor equality",
+    "engine_values": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "pytorch": 1.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "tolerance": 0.0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "crossover_proofs.cvc5 computed partition identity",
+        "networkx": "source_backing_probe.networkx_component_count plus inherited finite graph recomputation",
+        "sympy": "source_backing_probe.sympy_exact_log and typed entropy expressions",
+        "z3": "crossover_proofs.z3 computed partition identity"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "jax.scipy.linalg",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_jax_results.json",
+      "result_sha256": "17e39355fd1ef768f8fbb2be5fabe0e441ff21895faee144fc206a3f7684a51c",
+      "source_path": "system_v6/sims/manifold_super_sim_v0/manifold_super_sim_v0_jax.py",
+      "source_sha256": "9a1eb5d7d492226068a8ad310fd1de64337acb1cae1dfa5b461206361b549778",
+      "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "partition_rows.G0/G1 terminal_class_sizes from Graphs SCCs",
+        "Z3": "crossover_proofs.julia_z3 partition identity"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_julia_results.json",
+      "result_sha256": "1f34d5656c1a634c7ea4aa04bce2af9e32a69f67161b36291ab85569b94d12d8",
+      "source_path": "system_v6/sims/manifold_super_sim_v0/manifold_super_sim_v0_julia.jl",
+      "source_sha256": "a0a64e0054a2aac8b005bae67e3d7dd2290f0d9cf8ecf4cb089ed0bda5210aba",
+      "state_object_id": null
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "crossover_proofs.cvc5 computed partition identity",
+        "sympy": "source_backing_probe.sympy_exact_log and typed entropy expressions",
+        "z3": "crossover_proofs.z3 computed partition identity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_pytorch_results.json",
+      "result_sha256": "8c44f129b40cdbda0c6cca4faac29fdadb9fa215abc51193856f40965eea0929",
+      "source_path": "system_v6/sims/manifold_super_sim_v0/manifold_super_sim_v0_pytorch.py",
+      "source_sha256": "9e7e69f2e966ccd2194db324bc6d08e9d6f44a87773faf0743125b821c857739",
+      "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4"
+    }
+  },
+  "family": "Family_A_Bloch_ball_33_cell_constraint_manifold",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T02:42:16Z",
+  "kill_controls": {
+    "decorative_layer_detector": {
+      "L1_BASIN": {
+        "fires": true,
+        "input_perturbation": "D_z generator perturbation changes G0 transition graph hash"
+      },
+      "L2_CHART": {
+        "fires": true,
+        "input_perturbation": "rotated non-axis chart recomputes 3 terminal classes into 2"
+      },
+      "L3_INFORMATION": {
+        "fires": true,
+        "input_perturbation": "D_z pinned matrix perturbation changes six-state Holevo row"
+      },
+      "L4_FUSION": {
+        "fires": true,
+        "input_perturbation": "order-shuffled generator word changes actual R_C trajectory"
+      },
+      "L5_LEDGER": {
+        "fires": true,
+        "input_perturbation": "deliberate cross-type sum is flagged instead of accepted"
+      }
+    },
+    "order_shuffled_N01": {
+      "fires": true,
+      "original_schedule": [
+        "Ni_Pit_L",
+        "R_x"
+      ],
+      "shuffled_schedule": [
+        "R_x",
+        "Ni_Pit_L"
+      ],
+      "trajectory_hashes": {
+        "original": "8ff9bbd378a78a39cc274b469ee3552fe500e06496bb5106e6978f4844f0375a",
+        "shuffled": "e8c87cbf91f8344c8cd5ca452ccacb40c67d9f2a97399750fdbc7e192ba277fe"
+      }
+    },
+    "quotient_erased": {
+      "after_signature": {
+        "quotient_node_count": 5,
+        "quotient_scc_count": 2,
+        "quotient_terminal_sizes": [
+          1
+        ]
+      },
+      "base_signature": {
+        "boundary_count": 3,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "degradation_detected": true,
+      "fires": true
+    },
+    "root_off_similarity_only_guard": {
+      "fires": true,
+      "root_off": {
+        "base_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 11,
+          "class_sizes": [
+            1,
+            4,
+            4,
+            116
+          ],
+          "scc_count": 4,
+          "state_count": 125,
+          "terminal_sizes": [
+            1
+          ]
+        }
+      },
+      "similarity_only": {
+        "basin_conditioned_rows_fail": true,
+        "cluster_result": {
+          "basin_language_allowed": false,
+          "clusters": {
+            "inner": {
+              "closed_under_R_C": false,
+              "escaping_edge_count": 16,
+              "size": 7
+            },
+            "mid": {
+              "closed_under_R_C": false,
+              "escaping_edge_count": 32,
+              "size": 20
+            },
+            "outer": {
+              "closed_under_R_C": false,
+              "escaping_edge_count": 34,
+              "size": 6
+            }
+          },
+          "computed": true,
+          "fired": true
+        },
+        "computed": true,
+        "source_set_id": "G2",
+        "the_guard": "Clustering/model agreement is never a basin without S, Adm_C, R_C, trapping, partition, and escape evidence.",
+        "without_dynamics": "radius-only cell clusters"
+      }
+    },
+    "stale_import_control": {
+      "dependent_anchor_mismatches": {
+        "D_z_holevo_changed": true,
+        "G0_transition_graph_sha256_changed": true
+      },
+      "fires": true,
+      "mutation": "D_z pinned M[0][0] += 0.05 before recomputation"
+    }
+  },
+  "layers": {
+    "L1_BASIN": {
+      "absent_exit_proofs": {
+        "G0": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 6,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 1,
+            "size": 1
+          }
+        ],
+        "G1": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 56,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 0,
+            "size": 14
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 72,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 1,
+            "size": 18
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 4,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 2,
+            "size": 1
+          }
+        ],
+        "G2": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 12,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 1,
+            "size": 1
+          }
+        ],
+        "G3L": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 4,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 1,
+            "size": 1
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 24,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 2,
+            "size": 6
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 4,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 5,
+            "size": 1
+          }
+        ],
+        "G3R": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 4,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 5,
+            "size": 1
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 24,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 6,
+            "size": 6
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 4,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 7,
+            "size": 1
+          }
+        ],
+        "G4": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 12,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 0,
+            "size": 2
+          }
+        ],
+        "G5": [
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 1,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 0,
+            "size": 1
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 1,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 5,
+            "size": 1
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 1,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 16,
+            "size": 1
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 3,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 27,
+            "size": 3
+          },
+          {
+            "absent_exit_proof": {
+              "checked_edge_count": 1,
+              "no_exit": true,
+              "outgoing_edge_count": 0
+            },
+            "class_id": 30,
+            "size": 1
+          }
+        ]
+      },
+      "chart_relative_language_only": true,
+      "computed_from_source": true,
+      "may_must_split_named": true,
+      "name": "L1 BASIN",
+      "raw_transition_graphs_persisted": false,
+      "row_signature_sha256": "126003b744f9bb758796318574026600d743efddf140e3c29d1684b496d28f75",
+      "rows": {
+        "G0": {
+          "baseline_anchor_byte_exact": true,
+          "earns_sub_basin_term": false,
+          "fate": "anchor",
+          "generator_names": [
+            "Se_Funnel_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Ne_Spiral_R",
+            "D_z",
+            "R_x"
+          ],
+          "label": "committed baseline anchor",
+          "may_basin_sizes": [
+            33
+          ],
+          "metastable_classes": [
+            {
+              "class_id": 0,
+              "escape_transition_fraction": 0.010416666667,
+              "internal_transition_fraction": 0.989583333333,
+              "size": 32
+            }
+          ],
+          "must_basin_sizes": [
+            1
+          ],
+          "partition_signature": {
+            "boundary_count": 3,
+            "class_sizes": [
+              1,
+              32
+            ],
+            "scc_count": 2,
+            "state_count": 33,
+            "terminal_sizes": [
+              1
+            ]
+          },
+          "scc_count": 2,
+          "set_id": "G0",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              16
+            ]
+          ],
+          "terminal_class_count": 1,
+          "terminal_class_sizes": [
+            1
+          ],
+          "transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0"
+        },
+        "G1": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": true,
+          "fate": "SPLITS",
+          "generator_names": [
+            "R_x",
+            "R_z",
+            "Ne_Spiral_R",
+            "Ne_Vortex_L"
+          ],
+          "label": "rotations only",
+          "may_basin_sizes": [
+            1,
+            14,
+            18
+          ],
+          "metastable_classes": [],
+          "must_basin_sizes": [
+            1,
+            14,
+            18
+          ],
+          "partition_signature": {
+            "boundary_count": 33,
+            "class_sizes": [
+              1,
+              14,
+              18
+            ],
+            "scc_count": 3,
+            "state_count": 33,
+            "terminal_sizes": [
+              1,
+              14,
+              18
+            ]
+          },
+          "scc_count": 3,
+          "set_id": "G1",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            [
+              16
+            ]
+          ],
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d"
+        },
+        "G2": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": false,
+          "fate": "survives",
+          "generator_names": [
+            "Ne_Spiral_R",
+            "Ne_Vortex_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Se_Cannon_R",
+            "Se_Funnel_L",
+            "Si_Citadel_R",
+            "Si_Hill_L",
+            "D_x",
+            "D_z",
+            "R_x",
+            "R_z"
+          ],
+          "label": "full S5 plus S4 set",
+          "may_basin_sizes": [
+            33
+          ],
+          "metastable_classes": [
+            {
+              "class_id": 0,
+              "escape_transition_fraction": 0.005208333333,
+              "internal_transition_fraction": 0.994791666667,
+              "size": 32
+            }
+          ],
+          "must_basin_sizes": [
+            1
+          ],
+          "partition_signature": {
+            "boundary_count": 3,
+            "class_sizes": [
+              1,
+              32
+            ],
+            "scc_count": 2,
+            "state_count": 33,
+            "terminal_sizes": [
+              1
+            ]
+          },
+          "scc_count": 2,
+          "set_id": "G2",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              16
+            ]
+          ],
+          "terminal_class_count": 1,
+          "terminal_class_sizes": [
+            1
+          ],
+          "transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+        },
+        "G3L": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": true,
+          "fate": "SPLITS",
+          "generator_names": [
+            "Ne_Vortex_L",
+            "Ni_Pit_L",
+            "Se_Funnel_L",
+            "Si_Hill_L"
+          ],
+          "label": "L chirality terrain subset",
+          "may_basin_sizes": [
+            1,
+            14,
+            31
+          ],
+          "metastable_classes": [],
+          "must_basin_sizes": [
+            1,
+            1,
+            6
+          ],
+          "partition_signature": {
+            "boundary_count": 22,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "scc_count": 8,
+            "state_count": 33,
+            "terminal_sizes": [
+              1,
+              1,
+              6
+            ]
+          },
+          "scc_count": 8,
+          "set_id": "G3L",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              1
+            ],
+            [
+              2,
+              4,
+              5,
+              11,
+              12,
+              15
+            ],
+            [
+              16
+            ]
+          ],
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            1,
+            6
+          ],
+          "transition_graph_sha256": "0cf6136626e0523df5140c53e55f9f33463f92bb5d5f40e0aed69e9f144ec715"
+        },
+        "G3R": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": true,
+          "fate": "SPLITS",
+          "generator_names": [
+            "Ne_Spiral_R",
+            "Ni_Source_R",
+            "Se_Cannon_R",
+            "Si_Citadel_R"
+          ],
+          "label": "R chirality terrain subset",
+          "may_basin_sizes": [
+            1,
+            14,
+            31
+          ],
+          "metastable_classes": [],
+          "must_basin_sizes": [
+            1,
+            1,
+            6
+          ],
+          "partition_signature": {
+            "boundary_count": 22,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "scc_count": 8,
+            "state_count": 33,
+            "terminal_sizes": [
+              1,
+              1,
+              6
+            ]
+          },
+          "scc_count": 8,
+          "set_id": "G3R",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              16
+            ],
+            [
+              17,
+              20,
+              21,
+              27,
+              28,
+              30
+            ],
+            [
+              31
+            ]
+          ],
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            1,
+            6
+          ],
+          "transition_graph_sha256": "da60912ea0997361c42d7224391b3b6cd8f2066e49900ae86b993c5bb5b349c6"
+        },
+        "G4": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": false,
+          "fate": "shrinks",
+          "generator_names": [
+            "Se_Funnel_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Ne_Spiral_R",
+            "D_z",
+            "R_x"
+          ],
+          "label": "conditioned shell baseline",
+          "may_basin_sizes": [
+            4
+          ],
+          "metastable_classes": [],
+          "must_basin_sizes": [
+            2
+          ],
+          "partition_signature": {
+            "boundary_count": 4,
+            "class_sizes": [
+              1,
+              1,
+              2
+            ],
+            "scc_count": 3,
+            "state_count": 4,
+            "terminal_sizes": [
+              2
+            ]
+          },
+          "scc_count": 3,
+          "set_id": "G4",
+          "state_count": 4,
+          "terminal_cells": [
+            [
+              3,
+              9
+            ]
+          ],
+          "terminal_class_count": 1,
+          "terminal_class_sizes": [
+            2
+          ],
+          "transition_graph_sha256": "66d67d361dc32da8a19974be27cb5983577208f557c4b7bed7833e7848a48cf3"
+        },
+        "G5": {
+          "baseline_anchor_byte_exact": null,
+          "earns_sub_basin_term": true,
+          "fate": "SPLITS",
+          "generator_names": [
+            "Ni_Pit_L_then_R_x"
+          ],
+          "label": "single composite generator",
+          "may_basin_sizes": [
+            1,
+            1,
+            9,
+            9,
+            13
+          ],
+          "metastable_classes": [],
+          "must_basin_sizes": [
+            1,
+            1,
+            9,
+            9,
+            13
+          ],
+          "partition_signature": {
+            "boundary_count": 33,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              3
+            ],
+            "scc_count": 31,
+            "state_count": 33,
+            "terminal_sizes": [
+              1,
+              1,
+              1,
+              1,
+              3
+            ]
+          },
+          "scc_count": 31,
+          "set_id": "G5",
+          "state_count": 33,
+          "terminal_cells": [
+            [
+              0
+            ],
+            [
+              5
+            ],
+            [
+              16
+            ],
+            [
+              27,
+              28,
+              30
+            ],
+            [
+              32
+            ]
+          ],
+          "terminal_class_count": 5,
+          "terminal_class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "transition_graph_sha256": "6471f18ed67f03716176bdfed0192e89666504344dccf528da6d689f01166075"
+        }
+      },
+      "state_object_scope": "shared 33-cell admitted Bloch grid"
+    },
+    "L2_CHART": {
+      "anchor_byte_exact": true,
+      "axis_artifact_control": {
+        "base_axis_grid": {
+          "closed_under_G1": false,
+          "escaping_edge_count": 16,
+          "member_count": 9
+        },
+        "construction": "axis-snapped fake class: cells with world-coordinate z exactly 1/2",
+        "designed_fail_expected": true,
+        "dies_under_rotation": true,
+        "rotated_grid": {
+          "closed_under_G1": false,
+          "escaping_edge_count": 2,
+          "member_count": 1
+        }
+      },
+      "chart_relative_only": true,
+      "computed_from_source": true,
+      "continuous_cross_check": {
+        "closure_reason": "R_x and R_z generate the cube rotation subgroup. The Ne rotations are about the non-axis (1,1,1) family with angle 1 radian; this is not one of the finite SO(3) subgroup angles. Conjugating that circle by the cube rotations supplies nonparallel axes whose Lie algebra spans so(3).",
+        "closure_result": "SO(3)",
+        "continuous_generator_family": "rotations only; offsets are zero for R_x/R_z/Ne_Spiral_R/Ne_Vortex_L",
+        "exact_invariant_decomposition_of_ball": "one recurrent orbit class per radius sphere, plus the fixed origin; with radius erased, the admitted ball is one continuum recurrent basin under SO(3) closure.",
+        "finite_vs_continuum_comparison": "the three 33-cell G1 terminal classes are finite quantization structure at the stated grid/time-step, while the continuous closure merges them by radius-shell recurrence.",
+        "generator_angle_rows": {
+          "Ne_Spiral_R": {
+            "angle_over_pi": 0.318309886184,
+            "angle_radians": 1.0,
+            "determinant_close_to_one": true,
+            "trace": 2.080604611736
+          },
+          "Ne_Vortex_L": {
+            "angle_over_pi": 0.318309886184,
+            "angle_radians": 1.0,
+            "determinant_close_to_one": true,
+            "trace": 2.080604611736
+          },
+          "R_x": {
+            "angle_over_pi": 0.5,
+            "angle_radians": 1.570796326795,
+            "determinant_close_to_one": true,
+            "trace": 1.0
+          },
+          "R_z": {
+            "angle_over_pi": 0.5,
+            "angle_radians": 1.570796326795,
+            "determinant_close_to_one": true,
+            "trace": 1.0
+          }
+        },
+        "h_time_step_role": "Ne terrain rotations enter as exp(hA) with h=1/2; the observed Ne rotation angle is 1 radian, not a grid angle.",
+        "predicts_one_recurrent_class_after_radius_erasure": true
+      },
+      "crossover_proofs": {
+        "cvc5": {
+          "erased_flip_verdict": "sat",
+          "load_bearing": true,
+          "proof_row": {
+            "asserted_precomputed_boolean": false,
+            "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+            "erased_flip": "last expected fate code is changed",
+            "partition_identity_inputs": [
+              {
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 0,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 1,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 2,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 0,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 1,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 2,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "control": "rotated_33_cell_density_grid",
+                "fate": "CHANGED"
+              },
+              {
+                "class": 0,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "MERGE"
+              },
+              {
+                "class": 1,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "MERGE"
+              },
+              {
+                "class": 2,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "PERSIST"
+              }
+            ]
+          },
+          "ran": true,
+          "verdict": "unsat"
+        },
+        "z3": {
+          "erased_flip_verdict": "sat",
+          "load_bearing": true,
+          "proof_row": {
+            "asserted_precomputed_boolean": false,
+            "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+            "erased_flip": "last expected fate code is changed",
+            "partition_identity_inputs": [
+              {
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 0,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 1,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 2,
+                "control": "2x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 0,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 1,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "class": 2,
+                "control": "3x_density_refined_grid",
+                "fate": "PERSIST"
+              },
+              {
+                "control": "rotated_33_cell_density_grid",
+                "fate": "CHANGED"
+              },
+              {
+                "class": 0,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "MERGE"
+              },
+              {
+                "class": 1,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "MERGE"
+              },
+              {
+                "class": 2,
+                "control": "rotated_33_cell_density_grid",
+                "fate": "PERSIST"
+              }
+            ]
+          },
+          "ran": true,
+          "verdict": "unsat"
+        }
+      },
+      "name": "L2 CHART",
+      "refinement": [
+        {
+          "label": "2x_density_refined_grid",
+          "persistence": {
+            "committed_class_fates": {
+              "0": {
+                "committed_terminal_cells": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ],
+                "committed_terminal_class_id": 0,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  0
+                ]
+              },
+              "1": {
+                "committed_terminal_cells": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ],
+                "committed_terminal_class_id": 1,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  2
+                ]
+              },
+              "2": {
+                "committed_terminal_cells": [
+                  16
+                ],
+                "committed_terminal_class_id": 2,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  6
+                ]
+              }
+            },
+            "overall_fate": "PERSIST",
+            "terminal_to_committed_class_overlap": {
+              "0": [
+                0
+              ],
+              "2": [
+                1
+              ],
+              "6": [
+                2
+              ]
+            }
+          },
+          "state_count": 66,
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            24,
+            28
+          ]
+        },
+        {
+          "label": "3x_density_refined_grid",
+          "persistence": {
+            "committed_class_fates": {
+              "0": {
+                "committed_terminal_cells": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ],
+                "committed_terminal_class_id": 0,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  0
+                ]
+              },
+              "1": {
+                "committed_terminal_cells": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ],
+                "committed_terminal_class_id": 1,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  2
+                ]
+              },
+              "2": {
+                "committed_terminal_cells": [
+                  16
+                ],
+                "committed_terminal_class_id": 2,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  5
+                ]
+              }
+            },
+            "overall_fate": "PERSIST",
+            "terminal_to_committed_class_overlap": {
+              "0": [
+                0
+              ],
+              "2": [
+                1
+              ],
+              "5": [
+                2
+              ]
+            }
+          },
+          "state_count": 99,
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            40,
+            53
+          ]
+        }
+      ],
+      "rotated_grid": {
+        "label": "rotated_33_cell_density_grid",
+        "persistence": {
+          "committed_class_fates": {
+            "0": {
+              "committed_terminal_cells": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "committed_terminal_class_id": 0,
+              "fate": "MERGE",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "1": {
+              "committed_terminal_cells": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "committed_terminal_class_id": 1,
+              "fate": "MERGE",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "2": {
+              "committed_terminal_cells": [
+                16
+              ],
+              "committed_terminal_class_id": 2,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                1
+              ]
+            }
+          },
+          "overall_fate": "CHANGED",
+          "terminal_to_committed_class_overlap": {
+            "0": [
+              0,
+              1
+            ],
+            "1": [
+              2
+            ]
+          }
+        },
+        "state_count": 33,
+        "terminal_class_count": 2,
+        "terminal_class_sizes": [
+          1,
+          32
+        ]
+      },
+      "row_signature_sha256": "5f803c35dfb37e294cc49edf622bc37c6b78a176fa988f0fb501a259d6fd0c8a"
+    },
+    "L3_INFORMATION": {
+      "D_z": {
+        "holevo_nats": 0.411341122022618,
+        "killed_nats": 0.28180605853732726,
+        "row": {
+          "M": [
+            [
+              "7/10",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "capacity_status": "exact_for_dephasing_family",
+          "channel_class": "qubit_dephasing",
+          "classical_capacity_exact_float": 0.6931471805599453,
+          "classical_capacity_exact_nats": "log(2)",
+          "dephasing_factor_lambda": "7/10",
+          "information_killed_nats": 0.28180605853732726,
+          "phase_flip_probability_p": "3/20",
+          "quantum_capacity_exact_float": 0.2704380927539544,
+          "quantum_capacity_exact_nats": "log(17**(17/20)*3**(3/20)/10)",
+          "six_state": {
+            "avg_output_bloch": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "avg_output_entropy_nats": 0.6931471805599453,
+            "ensemble": "uniform six Pauli pure states",
+            "holevo_nats": 0.411341122022618,
+            "information_killed_from_identity_nats": 0.28180605853732726,
+            "mean_output_entropy_nats": 0.28180605853732726,
+            "output_radii": {
+              "+x": 0.7,
+              "+y": 0.7,
+              "+z": 1.0,
+              "-x": 0.7,
+              "-y": 0.7,
+              "-z": 1.0
+            }
+          },
+          "six_state_holevo_exact_nats": "-2*log(20)/3 + log(2) + log(22335487070931092632779)/30",
+          "six_state_information_killed_exact_nats": "-log(22335487070931092632779)/30 + 2*log(20)/3"
+        },
+        "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+      },
+      "active_channel_rows": {
+        "D_x": {
+          "capacity_status": "exact_for_dephasing_family",
+          "holevo_nats": 0.411341122022618,
+          "killed_nats": 0.28180605853732726,
+          "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+        },
+        "D_z": {
+          "capacity_status": "exact_for_dephasing_family",
+          "holevo_nats": 0.411341122022618,
+          "killed_nats": 0.28180605853732726,
+          "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+        },
+        "R_x": {
+          "capacity_status": "lossless_unitary_exact",
+          "holevo_nats": 0.6931471805599453,
+          "killed_nats": 0.0,
+          "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+        },
+        "R_z": {
+          "capacity_status": "lossless_unitary_exact",
+          "holevo_nats": 0.6931471805599453,
+          "killed_nats": 0.0,
+          "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+        }
+      },
+      "computed_from_source": true,
+      "name": "L3 INFORMATION",
+      "row_signature_sha256": "c72c9676fe943f10e570ed833bf10f4634db89239a36f3a7658a44679483a395",
+      "six_state_ensemble": "+x...six Pauli pure states",
+      "stage_word_curve": {
+        "stage_word_channels": [
+          "D_z",
+          "R_z",
+          "D_z",
+          "R_z",
+          "D_x",
+          "R_x",
+          "D_x",
+          "R_x"
+        ],
+        "stage_word_rows": [
+          {
+            "channel": "D_z",
+            "destroyed_nats": 0.28180605853732726,
+            "input_information_nats": 0.6931471805599453,
+            "output_information_nats": 0.411341122022618,
+            "processed_nats": 0.6931471805599453,
+            "signed_operator": "Ti_up",
+            "stage": "Se",
+            "step": 1,
+            "unitarity_split": "destroy_off_axis"
+          },
+          {
+            "channel": "R_z",
+            "destroyed_nats": 0.0,
+            "input_information_nats": 0.411341122022618,
+            "output_information_nats": 0.411341122022618,
+            "processed_nats": 0.411341122022618,
+            "signed_operator": "Fe_up",
+            "stage": "Ne",
+            "step": 2,
+            "unitarity_split": "preserve"
+          },
+          {
+            "channel": "D_z",
+            "destroyed_nats": 0.09670182964531715,
+            "input_information_nats": 0.411341122022618,
+            "output_information_nats": 0.31463929237730087,
+            "processed_nats": 0.411341122022618,
+            "signed_operator": "Ti_down",
+            "stage": "Ni",
+            "step": 3,
+            "unitarity_split": "destroy_off_axis"
+          },
+          {
+            "channel": "R_z",
+            "destroyed_nats": 0.0,
+            "input_information_nats": 0.31463929237730087,
+            "output_information_nats": 0.31463929237730087,
+            "processed_nats": 0.31463929237730087,
+            "signed_operator": "Fe_down",
+            "stage": "Si",
+            "step": 4,
+            "unitarity_split": "preserve"
+          },
+          {
+            "channel": "D_x",
+            "destroyed_nats": 0.16268617384551937,
+            "input_information_nats": 0.31463929237730087,
+            "output_information_nats": 0.1519531185317815,
+            "processed_nats": 0.31463929237730087,
+            "signed_operator": "Te_up",
+            "stage": "Se",
+            "step": 5,
+            "unitarity_split": "destroy_off_axis"
+          },
+          {
+            "channel": "R_x",
+            "destroyed_nats": 0.0,
+            "input_information_nats": 0.1519531185317815,
+            "output_information_nats": 0.1519531185317815,
+            "processed_nats": 0.1519531185317815,
+            "signed_operator": "Fi_up",
+            "stage": "Si",
+            "step": 6,
+            "unitarity_split": "preserve"
+          },
+          {
+            "channel": "D_x",
+            "destroyed_nats": 0.05866037410353031,
+            "input_information_nats": 0.1519531185317815,
+            "output_information_nats": 0.0932927444282512,
+            "processed_nats": 0.1519531185317815,
+            "signed_operator": "Te_down",
+            "stage": "Ni",
+            "step": 7,
+            "unitarity_split": "destroy_off_axis"
+          },
+          {
+            "channel": "R_x",
+            "destroyed_nats": 0.0,
+            "input_information_nats": 0.0932927444282512,
+            "output_information_nats": 0.0932927444282512,
+            "processed_nats": 0.0932927444282512,
+            "signed_operator": "Fi_down",
+            "stage": "Ne",
+            "step": 8,
+            "unitarity_split": "preserve"
+          }
+        ],
+        "type": "finite_holevo_information_nats_uniform_six_state_ensemble",
+        "word_output_information_nats": 0.0932927444282512
+      }
+    },
+    "L4_FUSION": {
+      "basin_conditioned_may_must_flow": [
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 33,
+          "may_only_cell_count": 32,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G0_terminal_class_1_basin_conditioned_flow",
+          "set_id": "G0",
+          "terminal_class_id": 1
+        },
+        {
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 14,
+          "may_only_cell_count": 0,
+          "must_cell_count": 14,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G1_terminal_class_0_basin_conditioned_flow",
+          "set_id": "G1",
+          "terminal_class_id": 0
+        },
+        {
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 18,
+          "may_only_cell_count": 0,
+          "must_cell_count": 18,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G1_terminal_class_1_basin_conditioned_flow",
+          "set_id": "G1",
+          "terminal_class_id": 1
+        },
+        {
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 1,
+          "may_only_cell_count": 0,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G1_terminal_class_2_basin_conditioned_flow",
+          "set_id": "G1",
+          "terminal_class_id": 2
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 33,
+          "may_only_cell_count": 32,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G2_terminal_class_1_basin_conditioned_flow",
+          "set_id": "G2",
+          "terminal_class_id": 1
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 1,
+          "may_only_cell_count": 0,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3L_terminal_class_1_basin_conditioned_flow",
+          "set_id": "G3L",
+          "terminal_class_id": 1
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 31,
+          "may_only_cell_count": 25,
+          "must_cell_count": 6,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3L_terminal_class_2_basin_conditioned_flow",
+          "set_id": "G3L",
+          "terminal_class_id": 2
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 14,
+          "may_only_cell_count": 13,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3L_terminal_class_5_basin_conditioned_flow",
+          "set_id": "G3L",
+          "terminal_class_id": 5
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 14,
+          "may_only_cell_count": 13,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3R_terminal_class_5_basin_conditioned_flow",
+          "set_id": "G3R",
+          "terminal_class_id": 5
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 31,
+          "may_only_cell_count": 25,
+          "must_cell_count": 6,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3R_terminal_class_6_basin_conditioned_flow",
+          "set_id": "G3R",
+          "terminal_class_id": 6
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 1,
+          "may_only_cell_count": 0,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G3R_terminal_class_7_basin_conditioned_flow",
+          "set_id": "G3R",
+          "terminal_class_id": 7
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": true,
+          "may_cell_count": 4,
+          "may_only_cell_count": 2,
+          "must_cell_count": 2,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G4_terminal_class_0_basin_conditioned_flow",
+          "set_id": "G4",
+          "terminal_class_id": 0
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 1,
+          "may_only_cell_count": 0,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G5_terminal_class_0_basin_conditioned_flow",
+          "set_id": "G5",
+          "terminal_class_id": 0
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 9,
+          "may_only_cell_count": 0,
+          "must_cell_count": 9,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G5_terminal_class_5_basin_conditioned_flow",
+          "set_id": "G5",
+          "terminal_class_id": 5
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 13,
+          "may_only_cell_count": 0,
+          "must_cell_count": 13,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G5_terminal_class_16_basin_conditioned_flow",
+          "set_id": "G5",
+          "terminal_class_id": 16
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 9,
+          "may_only_cell_count": 0,
+          "must_cell_count": 9,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G5_terminal_class_27_basin_conditioned_flow",
+          "set_id": "G5",
+          "terminal_class_id": 27
+        },
+        {
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "distinguishable_under_declared_probes": "no_may_only_cells",
+          "may_cell_count": 1,
+          "may_only_cell_count": 0,
+          "must_cell_count": 1,
+          "probe_identity_discipline": "a=a iff a~b under declared probe family",
+          "row_id": "G5_terminal_class_30_basin_conditioned_flow",
+          "set_id": "G5",
+          "terminal_class_id": 30
+        }
+      ],
+      "claim_sections": {
+        "boundary": [
+          "G1 rows are finite chart-relative original-33-cell structure, not invariant geometry",
+          "record construction here is the G1 merge syndrome object only, not a Z4 radiated-record object",
+          "scratch diagnostic only; no formal admission, bridge, axis, physics, or universal information scalar"
+        ],
+        "negative": [
+          "erased record drops retained entropy to zero and produces a nonzero defect",
+          "partial record retains a strict intermediate counting entropy",
+          "shuffled order changes the orbit production trajectory",
+          "similarity-only clusters fail the basin-conditioned guard"
+        ],
+        "positive": [
+          "orbit-step typed counting entropy is computed along actual generator-labelled R_C schedules",
+          "G1->G2 record retention is computed from a packet-local 33-row syndrome table",
+          "terminal-class throughput rows carry absent-exit proofs and exact finite support counts",
+          "may/must basin-conditioned flow reports probe distinguishability or probe-identity honestly"
+        ]
+      },
+      "computed_from_source": true,
+      "controls": {
+        "byte_exact_parent_anchor": {
+          "g0_anchor_byte_exact": true,
+          "parent_sweep_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+          "source_sweep_signature_sha256": "febc5d9e0a281d18f6656b445eef84b9085dd0bb48b45994b09303dd58850bde"
+        },
+        "erased_record_control": {
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "computed_from_syndrome_table": true,
+          "conservation_defect_nats": 1.0986122886681098,
+          "flipped": true,
+          "readout_key": "erased_record_control",
+          "readout_label_count": 1,
+          "readout_labels": [
+            "erased"
+          ],
+          "recoverable_counting_entropy_exact": "0",
+          "recoverable_counting_entropy_nats": 0.0,
+          "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+        },
+        "partial_record_control": {
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "computed_from_syndrome_table": true,
+          "conservation_defect_nats": 0.4054651081081645,
+          "flipped": true,
+          "readout_key": "partial_record_control",
+          "readout_label_count": 2,
+          "readout_labels": [
+            "retain_class_0",
+            "retain_other_chart_relative_classes"
+          ],
+          "recoverable_counting_entropy_exact": "log(2)",
+          "recoverable_counting_entropy_nats": 0.6931471805599453,
+          "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+        },
+        "shuffled_order_control": {
+          "computed": true,
+          "control": "permute two allowed G2 generator steps",
+          "final_cell_histogram_changed": true,
+          "order_matters_N01": true,
+          "original_schedule": [
+            "Ni_Pit_L",
+            "R_x"
+          ],
+          "original_trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "71f4c58b07c6b51c4dceaff3aa87df0d617a275c018f47ebf7780555ca66f6ce",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "0b84c76af45a37e83ee548136ece8e9699e4cebfb3cf7197060187206fa9a329",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 2,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "219db3d6d06670b488206c568ed757270451801123a1f156a2d966b8ef8614fc",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "0b84c76af45a37e83ee548136ece8e9699e4cebfb3cf7197060187206fa9a329",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 2,
+              "step_index": 2
+            }
+          ],
+          "production_trajectory_changed": true,
+          "shuffled_schedule": [
+            "R_x",
+            "Ni_Pit_L"
+          ],
+          "shuffled_trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "71f4c58b07c6b51c4dceaff3aa87df0d617a275c018f47ebf7780555ca66f6ce",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "0b84c76af45a37e83ee548136ece8e9699e4cebfb3cf7197060187206fa9a329",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 2,
+              "step_index": 2
+            }
+          ]
+        },
+        "similarity_only_control": {
+          "basin_conditioned_rows_fail": true,
+          "cluster_result": {
+            "basin_language_allowed": false,
+            "clusters": {
+              "inner": {
+                "closed_under_R_C": false,
+                "escaping_edge_count": 16,
+                "size": 7
+              },
+              "mid": {
+                "closed_under_R_C": false,
+                "escaping_edge_count": 32,
+                "size": 20
+              },
+              "outer": {
+                "closed_under_R_C": false,
+                "escaping_edge_count": 34,
+                "size": 6
+              }
+            },
+            "computed": true,
+            "fired": true
+          },
+          "computed": true,
+          "source_set_id": "G2",
+          "the_guard": "Clustering/model agreement is never a basin without S, Adm_C, R_C, trapping, partition, and escape evidence.",
+          "without_dynamics": "radius-only cell clusters"
+        },
+        "type_mixing_control": {
+          "deliberate_cross_type_sum_flagged": true,
+          "reason": "counting entropy over occupied readouts and any finite distribution entropy are separate types"
+        }
+      },
+      "crossover_proofs": {
+        "cvc5": {
+          "erased_flip_verdict": "sat",
+          "load_bearing": true,
+          "proof_row": {
+            "computed_erased_record_label_count": 1,
+            "computed_full_record_label_count": 3,
+            "computed_syndrome_class_count": 3,
+            "encoding": "bind computed syndrome class count and computed full-record readout label count; assert inequality",
+            "erased_flip": "replace full-record readout count with erased-record readout count"
+          },
+          "ran": true,
+          "verdict": "unsat"
+        },
+        "z3": {
+          "erased_flip_verdict": "sat",
+          "load_bearing": true,
+          "proof_row": {
+            "computed_erased_record_label_count": 1,
+            "computed_full_record_label_count": 3,
+            "computed_syndrome_class_count": 3,
+            "encoding": "bind computed syndrome class count and computed full-record readout label count; assert inequality",
+            "erased_flip": "replace full-record readout count with erased-record readout count"
+          },
+          "ran": true,
+          "verdict": "unsat"
+        }
+      },
+      "name": "L4 FUSION",
+      "orbit_entropy_trajectories": [
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Se_Funnel_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Ne_Spiral_R",
+            "D_z",
+            "R_x"
+          ],
+          "row_id": "G0_actual_R_C_orbit_entropy",
+          "set_id": "G0",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "cb5a37d91c95a251e8c31f4ca5078e878fcb2ed00a1def719d1a3f5f15aad231",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2006706954621511,
+                "count": 27,
+                "exact": "log(27)",
+                "nats": 3.295836866004329,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Funnel_L",
+              "occupied_cell_count": 27,
+              "occupied_communicating_class_count": 2,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "509b2f8fd517098efb882f9f4691234cae2a0f368e71ae441e38a205cd4ec159",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.35139788683788886,
+                "count": 19,
+                "exact": "log(19)",
+                "nats": 2.9444389791664403,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 19,
+              "occupied_communicating_class_count": 2,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "0ee4df7cb836378a62773fa50f0b39bbf3b6b864d9449d9aa60ef8ab72363487",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.30538164955118186,
+                "count": 14,
+                "exact": "log(14)",
+                "nats": 2.6390573296152584,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f967c7796fa4f2fbb7ada76285b5836f15668e94b287040c6161b3fca9ce488c",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Source_R",
+              "occupied_cell_count": 14,
+              "occupied_communicating_class_count": 2,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "9a3fec48a3605e39b1f9e38734f155b49e122de77ce7c7c8e596f343f0286583",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 14,
+                "exact": "log(14)",
+                "nats": 2.6390573296152584,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f967c7796fa4f2fbb7ada76285b5836f15668e94b287040c6161b3fca9ce488c",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Spiral_R",
+              "occupied_cell_count": 14,
+              "occupied_communicating_class_count": 2,
+              "step_index": 4
+            },
+            {
+              "cell_histogram_sha256": "3c53780ff60626fbd172a7c9fa013793fe058a8e50f165fbf11d35fc1bd53d74",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 14,
+                "exact": "log(14)",
+                "nats": 2.6390573296152584,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f967c7796fa4f2fbb7ada76285b5836f15668e94b287040c6161b3fca9ce488c",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "D_z",
+              "occupied_cell_count": 14,
+              "occupied_communicating_class_count": 2,
+              "step_index": 5
+            },
+            {
+              "cell_histogram_sha256": "ba3844e39cad121f2aa571d0ced0e322c21a7476a6e3ef0e39f739f3819c039e",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 14,
+                "exact": "log(14)",
+                "nats": 2.6390573296152584,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f967c7796fa4f2fbb7ada76285b5836f15668e94b287040c6161b3fca9ce488c",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 14,
+              "occupied_communicating_class_count": 2,
+              "step_index": 6
+            }
+          ],
+          "trajectory_signature_sha256": "f3a00b4bdcc3a0e90b0dea02728ea23981abd544c72a74d9d3d85989a429cc3d"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "R_x",
+            "R_z",
+            "Ne_Spiral_R",
+            "Ne_Vortex_L"
+          ],
+          "row_id": "G1_actual_R_C_orbit_entropy",
+          "set_id": "G1",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "bc4311d68625ef1d36cb537f81be6c4743f5efff40969b2591bfe6ea49697940",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 3,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "bc4311d68625ef1d36cb537f81be6c4743f5efff40969b2591bfe6ea49697940",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 3,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "bc4311d68625ef1d36cb537f81be6c4743f5efff40969b2591bfe6ea49697940",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_z",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 3,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "bc4311d68625ef1d36cb537f81be6c4743f5efff40969b2591bfe6ea49697940",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Spiral_R",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 3,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "bc4311d68625ef1d36cb537f81be6c4743f5efff40969b2591bfe6ea49697940",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Vortex_L",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 3,
+              "step_index": 4
+            }
+          ],
+          "trajectory_signature_sha256": "a0737b249533bb35cd970b1baa3969689f7ccd1c64a8a32beffe6626768246a4"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Ne_Spiral_R",
+            "Ne_Vortex_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Se_Cannon_R",
+            "Se_Funnel_L",
+            "Si_Citadel_R",
+            "Si_Hill_L",
+            "D_x",
+            "D_z",
+            "R_x",
+            "R_z"
+          ],
+          "row_id": "G2_actual_R_C_orbit_entropy",
+          "set_id": "G2",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Spiral_R",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "47bb5e3a0efbc5079fb7b3db72ff15ee6efea1f6fb52a5f8d7402a67963adc54",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Vortex_L",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 2,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "71f4c58b07c6b51c4dceaff3aa87df0d617a275c018f47ebf7780555ca66f6ce",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "0b84c76af45a37e83ee548136ece8e9699e4cebfb3cf7197060187206fa9a329",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 2,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "7002aad35146e064624cdf720d808b7cddbb88126ac89c538bf04b182b4a32f1",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2231435513142097,
+                "count": 20,
+                "exact": "log(20)",
+                "nats": 2.995732273553991,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Source_R",
+              "occupied_cell_count": 20,
+              "occupied_communicating_class_count": 2,
+              "step_index": 4
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2231435513142097,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Cannon_R",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 5
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Funnel_L",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 6
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Si_Citadel_R",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 7
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Si_Hill_L",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 8
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "D_x",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 9
+            },
+            {
+              "cell_histogram_sha256": "11a03500c491849aef8e7cb7ec31c03b010d217f0503323c82b3b686cb1d94a6",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "D_z",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 10
+            },
+            {
+              "cell_histogram_sha256": "e5566e9e5eaf97bde4f38fa78e712eb6f08d2b848003b713bb10f4efa0e4915b",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 11
+            },
+            {
+              "cell_histogram_sha256": "951343e80410682870518caf0aff72dd07a50d9911a451f093229c95a87ca391",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 16,
+                "exact": "log(16)",
+                "nats": 2.772588722239781,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "9ef53576ca4a80d8ffcac4bf4c383d38eaf9e9e3628095b468fbc7336e8ba564",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_z",
+              "occupied_cell_count": 16,
+              "occupied_communicating_class_count": 2,
+              "step_index": 12
+            }
+          ],
+          "trajectory_signature_sha256": "f5a88c5b96da53867ac733f98a121f91cc5ef22a290b93ca8ad2f001d905d280"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Ne_Vortex_L",
+            "Ni_Pit_L",
+            "Se_Funnel_L",
+            "Si_Hill_L"
+          ],
+          "row_id": "G3L_actual_R_C_orbit_entropy",
+          "set_id": "G3L",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "b4864695aa6fae25637421e327c6138075d307fc93d77d1308b2b096263b5b2e",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 8,
+                "exact": "log(8)",
+                "nats": 2.0794415416798357,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 8,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "b4864695aa6fae25637421e327c6138075d307fc93d77d1308b2b096263b5b2e",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 8,
+                "exact": "log(8)",
+                "nats": 2.0794415416798357,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Vortex_L",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 8,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "71f4c58b07c6b51c4dceaff3aa87df0d617a275c018f47ebf7780555ca66f6ce",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "346bf667ddb8caac3535ec27425113b41f67b1e734a405767217520347e783d5",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": -0.13353139262452252,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 7,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "252ad488e377d41d453b19a7a7814b323b8e5b94b61ad33405d5bc9d3faf8a8b",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2231435513142097,
+                "count": 20,
+                "exact": "log(20)",
+                "nats": 2.995732273553991,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "4722ab47047b98ee2027a323a39df2524224a6d3b7f9b353dd57140a866c8343",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Funnel_L",
+              "occupied_cell_count": 20,
+              "occupied_communicating_class_count": 7,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "252ad488e377d41d453b19a7a7814b323b8e5b94b61ad33405d5bc9d3faf8a8b",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 20,
+                "exact": "log(20)",
+                "nats": 2.995732273553991,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "4722ab47047b98ee2027a323a39df2524224a6d3b7f9b353dd57140a866c8343",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Si_Hill_L",
+              "occupied_cell_count": 20,
+              "occupied_communicating_class_count": 7,
+              "step_index": 4
+            }
+          ],
+          "trajectory_signature_sha256": "1aebdcfb97795bd2ce8a01cb8ad05c90c660b6d69b9062122278fb90481c353b"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Ne_Spiral_R",
+            "Ni_Source_R",
+            "Se_Cannon_R",
+            "Si_Citadel_R"
+          ],
+          "row_id": "G3R_actual_R_C_orbit_entropy",
+          "set_id": "G3R",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "b4864695aa6fae25637421e327c6138075d307fc93d77d1308b2b096263b5b2e",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 8,
+                "exact": "log(8)",
+                "nats": 2.0794415416798357,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 8,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "b4864695aa6fae25637421e327c6138075d307fc93d77d1308b2b096263b5b2e",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 8,
+                "exact": "log(8)",
+                "nats": 2.0794415416798357,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Spiral_R",
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 8,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "9fe629e2c7911a9ad478e742c777fd6cd2e1f22606bbf2a57d8f6fdfaac7855d",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "664374416f8b094a1286f78311c1d4f0c86b9801f8f8474345dc26e9a691571e",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": -0.13353139262452252,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Source_R",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 7,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "2d9267fa52f4015d583e72dfb1bf324ba022c9fe10841573a7f86f9608ea9346",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2231435513142097,
+                "count": 20,
+                "exact": "log(20)",
+                "nats": 2.995732273553991,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f61f504aa1836242f14ebc45e4398e2e9368aadb5260eb215d93f9e4eb8dd08a",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Cannon_R",
+              "occupied_cell_count": 20,
+              "occupied_communicating_class_count": 7,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "2d9267fa52f4015d583e72dfb1bf324ba022c9fe10841573a7f86f9608ea9346",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 20,
+                "exact": "log(20)",
+                "nats": 2.995732273553991,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f61f504aa1836242f14ebc45e4398e2e9368aadb5260eb215d93f9e4eb8dd08a",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 7,
+                "exact": "log(7)",
+                "nats": 1.9459101490553132,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Si_Citadel_R",
+              "occupied_cell_count": 20,
+              "occupied_communicating_class_count": 7,
+              "step_index": 4
+            }
+          ],
+          "trajectory_signature_sha256": "450ba0acab7f7282d6851bd0c75ef39bef7d65731c53b132936dc007fbfc7251"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Se_Funnel_L",
+            "Ni_Pit_L",
+            "Ni_Source_R",
+            "Ne_Spiral_R",
+            "D_z",
+            "R_x"
+          ],
+          "row_id": "G4_actual_R_C_orbit_entropy",
+          "set_id": "G4",
+          "state_scope": "G4 conditioned subset of the committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "cd3b17ec4aeb56fef0fbcf86614efe22712ddb951b95284febdacbd5820a5794",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 4,
+                "exact": "log(4)",
+                "nats": 1.3862943611198906,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "119393e783b4df57bd3f08d7c3b665dc3888e16c413b222748467af8eed3e517",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 4,
+              "occupied_communicating_class_count": 3,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "cd3b17ec4aeb56fef0fbcf86614efe22712ddb951b95284febdacbd5820a5794",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 4,
+                "exact": "log(4)",
+                "nats": 1.3862943611198906,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "119393e783b4df57bd3f08d7c3b665dc3888e16c413b222748467af8eed3e517",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Se_Funnel_L",
+              "occupied_cell_count": 4,
+              "occupied_communicating_class_count": 3,
+              "step_index": 1
+            },
+            {
+              "cell_histogram_sha256": "cd3b17ec4aeb56fef0fbcf86614efe22712ddb951b95284febdacbd5820a5794",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 4,
+                "exact": "log(4)",
+                "nats": 1.3862943611198906,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "119393e783b4df57bd3f08d7c3b665dc3888e16c413b222748467af8eed3e517",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L",
+              "occupied_cell_count": 4,
+              "occupied_communicating_class_count": 3,
+              "step_index": 2
+            },
+            {
+              "cell_histogram_sha256": "cd3b17ec4aeb56fef0fbcf86614efe22712ddb951b95284febdacbd5820a5794",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 4,
+                "exact": "log(4)",
+                "nats": 1.3862943611198906,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "119393e783b4df57bd3f08d7c3b665dc3888e16c413b222748467af8eed3e517",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Source_R",
+              "occupied_cell_count": 4,
+              "occupied_communicating_class_count": 3,
+              "step_index": 3
+            },
+            {
+              "cell_histogram_sha256": "e84c544846b1966b27953f407cd4cde747104d6f16fffda669f15b626365c90e",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.2876820724517808,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "06a5aba75c2a11bdd96be05176807532491c0375070936f13e100be8a7c605fd",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": -0.4054651081081645,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ne_Spiral_R",
+              "occupied_cell_count": 3,
+              "occupied_communicating_class_count": 2,
+              "step_index": 4
+            },
+            {
+              "cell_histogram_sha256": "e84c544846b1966b27953f407cd4cde747104d6f16fffda669f15b626365c90e",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 3,
+                "exact": "log(3)",
+                "nats": 1.0986122886681098,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "06a5aba75c2a11bdd96be05176807532491c0375070936f13e100be8a7c605fd",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "D_z",
+              "occupied_cell_count": 3,
+              "occupied_communicating_class_count": 2,
+              "step_index": 5
+            },
+            {
+              "cell_histogram_sha256": "9938002a4e173ca4e12e3cf3ac88435843575f9561aec632c356fd6c0aac491d",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.4054651081081645,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "171479aabb1726965b1d29745c3507090c5b249b79599989c228cb0e628486d9",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 2,
+                "exact": "log(2)",
+                "nats": 0.6931471805599453,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "R_x",
+              "occupied_cell_count": 2,
+              "occupied_communicating_class_count": 2,
+              "step_index": 6
+            }
+          ],
+          "trajectory_signature_sha256": "7d64c619a82689613a8e655a6ef03e5fe3591555edd9fbba13ef5feb34454ac8"
+        },
+        {
+          "actual_R_C_orbits": true,
+          "entropy_convention": "typed counting entropy per step; no endpoint delta substitution",
+          "generator_schedule": [
+            "Ni_Pit_L_then_R_x"
+          ],
+          "row_id": "G5_actual_R_C_orbit_entropy",
+          "set_id": "G5",
+          "state_scope": "committed 33-cell substrate",
+          "trajectory": [
+            {
+              "cell_histogram_sha256": "bcc48cd2759fdab2ca06d9e3836eb84fa3d269f6ec1e4059534b492a673fdca3",
+              "cell_support_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 33,
+                "exact": "log(33)",
+                "nats": 3.4965075614664802,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "65eeb9a4f40263ff9428b6a27de47bbd3316ec7f5ead977c16e7d328ca9c230d",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": 0.0,
+                "count": 31,
+                "exact": "log(31)",
+                "nats": 3.4339872044851463,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": null,
+              "occupied_cell_count": 33,
+              "occupied_communicating_class_count": 31,
+              "step_index": 0
+            },
+            {
+              "cell_histogram_sha256": "219db3d6d06670b488206c568ed757270451801123a1f156a2d966b8ef8614fc",
+              "cell_support_counting_entropy": {
+                "after_minus_before": -0.27763173659827967,
+                "count": 25,
+                "exact": "log(25)",
+                "nats": 3.2188758248682006,
+                "type": "counting_entropy_log_occupied_cells_nats"
+              },
+              "class_histogram_sha256": "f60f659ad8551799dbb749bae4797eb129fb1ac5681bab84f9d0f18054c9230a",
+              "communicating_class_counting_entropy": {
+                "after_minus_before": -0.2984929885559966,
+                "count": 23,
+                "exact": "log(23)",
+                "nats": 3.1354942159291497,
+                "type": "counting_entropy_log_occupied_communicating_classes_nats"
+              },
+              "generator_applied": "Ni_Pit_L_then_R_x",
+              "occupied_cell_count": 25,
+              "occupied_communicating_class_count": 23,
+              "step_index": 1
+            }
+          ],
+          "trajectory_signature_sha256": "506844a2442ded1e9216d6cee0f991bcb8a75a75188a2f4d23b91fcc81373a85"
+        }
+      ],
+      "record_retention_at_g1_merge": {
+        "caveat_q1_repaired_here_for_g1_merge_only": "record side is constructed for the G1 merge syndrome table; this does not construct a Z4 radiated-record object",
+        "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+        "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+        "readout_recoverability": {
+          "constructed_full_syndrome_record": {
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+            "computed_from_syndrome_table": true,
+            "conservation_defect_nats": 0.0,
+            "readout_key": "constructed_full_syndrome_record",
+            "readout_label_count": 3,
+            "readout_labels": [
+              "G1_chart_relative_class_0",
+              "G1_chart_relative_class_1",
+              "G1_chart_relative_class_2"
+            ],
+            "recoverable_counting_entropy_exact": "log(3)",
+            "recoverable_counting_entropy_nats": 1.0986122886681098,
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          },
+          "erased_record_control": {
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+            "computed_from_syndrome_table": true,
+            "conservation_defect_nats": 1.0986122886681098,
+            "readout_key": "erased_record_control",
+            "readout_label_count": 1,
+            "readout_labels": [
+              "erased"
+            ],
+            "recoverable_counting_entropy_exact": "0",
+            "recoverable_counting_entropy_nats": 0.0,
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          },
+          "partial_record_control": {
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+            "computed_from_syndrome_table": true,
+            "conservation_defect_nats": 0.4054651081081645,
+            "readout_key": "partial_record_control",
+            "readout_label_count": 2,
+            "readout_labels": [
+              "retain_class_0",
+              "retain_other_chart_relative_classes"
+            ],
+            "recoverable_counting_entropy_exact": "log(2)",
+            "recoverable_counting_entropy_nats": 0.6931471805599453,
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          },
+          "post_merge_terminal_readout_only": {
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+            "computed_from_syndrome_table": true,
+            "conservation_defect_nats": 1.0986122886681098,
+            "readout_key": "post_merge_terminal_readout",
+            "readout_label_count": 1,
+            "readout_labels": [
+              "G2_terminal_class_1"
+            ],
+            "recoverable_counting_entropy_exact": "0",
+            "recoverable_counting_entropy_nats": 0.0,
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          }
+        },
+        "record_object_constructed_packet_locally": true,
+        "record_retained": {
+          "computed_from": "constructed_full_syndrome_record readout over packet-local syndrome table",
+          "record_retained_nats": 1.0986122886681098,
+          "state_plus_record_defect_nats": 0.0
+        },
+        "state_only_syndrome_loss_exact": "log(3)",
+        "state_only_syndrome_loss_nats": 1.0986122886681098,
+        "syndrome_class_count": 3,
+        "syndrome_table": [
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_0",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 0
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_1",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 1
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_2",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 2
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_3",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 3
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_4",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 4
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_5",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 5
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_6",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 6
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_7",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 7
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_8",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 8
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_9",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 9
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_10",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 10
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_11",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 11
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_12",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 12
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_13",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 13
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_14",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 14
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_15",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 15
+          },
+          {
+            "G1_chart_relative_class_id": 2,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_2",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_16",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 16
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_17",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 17
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_18",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 18
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_19",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 19
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_20",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 20
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_21",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 21
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_22",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 22
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_23",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 23
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_24",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 24
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_25",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 25
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_26",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 26
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_27",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 27
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_28",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 28
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_29",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 29
+          },
+          {
+            "G1_chart_relative_class_id": 1,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_1",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_30",
+            "partial_record_control": "retain_other_chart_relative_classes",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 30
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_31",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 31
+          },
+          {
+            "G1_chart_relative_class_id": 0,
+            "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+            "constructed_full_syndrome_record": "G1_chart_relative_class_0",
+            "erased_record_control": "erased",
+            "orbit_id": "orbit_start_cell_32",
+            "partial_record_control": "retain_class_0",
+            "post_merge_terminal_readout": "G2_terminal_class_1",
+            "start_cell": 32
+          }
+        ],
+        "transition_id": "G1_to_G2"
+      },
+      "row_signature_sha256": "b1d9a69fb7fe111618d59da5e182339bc64ed9287339fc03453189e6c25ee199",
+      "terminal_class_restricted_throughput": [
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 6,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G0_terminal_class_1_throughput",
+          "set_id": "G0",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 1,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 56,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "row_id": "G1_terminal_class_0_throughput",
+          "set_id": "G1",
+          "terminal_cell_count": 14,
+          "terminal_class_id": 0,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(14)",
+            "exact_output": "log(14)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 14,
+            "input_counting_entropy_nats": 2.6390573296152584,
+            "output_counting_throughput_nats": 2.6390573296152584,
+            "output_support_count": 14,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 72,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "row_id": "G1_terminal_class_1_throughput",
+          "set_id": "G1",
+          "terminal_cell_count": 18,
+          "terminal_class_id": 1,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(18)",
+            "exact_output": "log(18)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 18,
+            "input_counting_entropy_nats": 2.8903717578961645,
+            "output_counting_throughput_nats": 2.8903717578961645,
+            "output_support_count": 18,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 4,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": "G1_CHART_RELATIVE_ORIGINAL_33_CELL_FINITE_STRUCTURE",
+          "chart_relative_note": "G1 has three finite chart-relative terminal classes in the original 33-cell chart; the split persists under declared 2x/3x containment refinements and merges under the pinned non-axis rotated chart, so it is not invariant geometry.",
+          "row_id": "G1_terminal_class_2_throughput",
+          "set_id": "G1",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 2,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 12,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G2_terminal_class_1_throughput",
+          "set_id": "G2",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 1,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 4,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3L_terminal_class_1_throughput",
+          "set_id": "G3L",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 1,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 24,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3L_terminal_class_2_throughput",
+          "set_id": "G3L",
+          "terminal_cell_count": 6,
+          "terminal_class_id": 2,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(6)",
+            "exact_output": "log(6)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 6,
+            "input_counting_entropy_nats": 1.791759469228055,
+            "output_counting_throughput_nats": 1.791759469228055,
+            "output_support_count": 6,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 4,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3L_terminal_class_5_throughput",
+          "set_id": "G3L",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 5,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 4,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3R_terminal_class_5_throughput",
+          "set_id": "G3R",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 5,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 24,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3R_terminal_class_6_throughput",
+          "set_id": "G3R",
+          "terminal_cell_count": 6,
+          "terminal_class_id": 6,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(6)",
+            "exact_output": "log(6)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 6,
+            "input_counting_entropy_nats": 1.791759469228055,
+            "output_counting_throughput_nats": 1.791759469228055,
+            "output_support_count": 6,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 4,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G3R_terminal_class_7_throughput",
+          "set_id": "G3R",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 7,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 12,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G4_terminal_class_0_throughput",
+          "set_id": "G4",
+          "terminal_cell_count": 2,
+          "terminal_class_id": 0,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(2)",
+            "exact_output": "log(2)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 2,
+            "input_counting_entropy_nats": 0.6931471805599453,
+            "output_counting_throughput_nats": 0.6931471805599453,
+            "output_support_count": 2,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 1,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G5_terminal_class_0_throughput",
+          "set_id": "G5",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 0,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 1,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G5_terminal_class_5_throughput",
+          "set_id": "G5",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 5,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 1,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G5_terminal_class_16_throughput",
+          "set_id": "G5",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 16,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 3,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G5_terminal_class_27_throughput",
+          "set_id": "G5",
+          "terminal_cell_count": 3,
+          "terminal_class_id": 27,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "log(3)",
+            "exact_output": "log(3)",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 3,
+            "input_counting_entropy_nats": 1.0986122886681098,
+            "output_counting_throughput_nats": 1.0986122886681098,
+            "output_support_count": 3,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        },
+        {
+          "absent_exit_proof": {
+            "checked_edge_count": 1,
+            "no_exit": true,
+            "outgoing_edge_count": 0
+          },
+          "chart_relative_label": null,
+          "chart_relative_note": null,
+          "row_id": "G5_terminal_class_30_throughput",
+          "set_id": "G5",
+          "terminal_cell_count": 1,
+          "terminal_class_id": 30,
+          "throughput": {
+            "destroyed_counting_entropy_nats": 0.0,
+            "exact_input": "0",
+            "exact_output": "0",
+            "exactness": "exact_finite_counting_support",
+            "input_count": 1,
+            "input_counting_entropy_nats": 0.0,
+            "output_counting_throughput_nats": 0.0,
+            "output_support_count": 1,
+            "pinned_ensemble": "uniform over terminal-class cells; readout is output cell id",
+            "type": "finite_counting_support_throughput_nats"
+          }
+        }
+      ]
+    },
+    "L5_LEDGER": {
+      "computed_from_source": true,
+      "name": "L5 LEDGER",
+      "record_side_co_citation": {
+        "convention": "state-plus-record finite-counting account; not a scalar conservation theorem",
+        "z4_syndrome_record_v0": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json"
+      },
+      "row_signature_sha256": "c86fe569395915135e6d9aa73141e09d143ca08819fb4fa3336dddfb15d9fd59",
+      "typed_consistency_matrix": {
+        "all_rows_typed": true,
+        "cross_type_accounts_have_conventions": true,
+        "explicit_conventions": [
+          "finite counting record rows may compare within the same constructed record table",
+          "state-plus-record finite quotient rows co-cite z4_syndrome_record_v0",
+          "Holevo information rows and counting entropy rows are never summed in v0",
+          "product bookkeeping is allowed only when explicitly named as a convention"
+        ],
+        "forbidden_cross_type_sum_found": false,
+        "parent_entropy_type_table": [
+          {
+            "entropy": "differential",
+            "layer": "measure",
+            "log_base": "e",
+            "reference": "Riemannian or induced area measure"
+          },
+          {
+            "entropy": "mixed differential plus discrete Shannon",
+            "layer": "conditioning bands/unions",
+            "log_base": "e",
+            "reference": "explicit mixture convention"
+          },
+          {
+            "entropy": "von_Neumann",
+            "layer": "carrier",
+            "log_base": "parent-stated; nats recorded where parent records nats",
+            "reference": "density matrix eigenvalues in cited ladder parents"
+          },
+          {
+            "entropy": "lattice/counting",
+            "layer": "terrain row restrictions",
+            "log_base": "e",
+            "reference": "uniform over committed row set"
+          }
+        ],
+        "typed_rows": [
+          {
+            "nats": 0.411341122022618,
+            "row_id": "L3_D_z_holevo",
+            "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+          },
+          {
+            "nats": 0.28180605853732726,
+            "row_id": "L3_D_z_killed",
+            "type": "finite_holevo_information_nats_uniform_six_state_ensemble"
+          },
+          {
+            "nats": 1.0986122886681098,
+            "row_id": "L4_G1_full_record",
+            "type": "counting_entropy_log_readout_partition_of_constructed_G1_syndrome_table"
+          },
+          {
+            "co_citation": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+            "nats": 1.3862943611198906,
+            "row_id": "Z4_full_record_co_citation",
+            "type": "finite_counting_entropy_nats"
+          }
+        ]
+      }
+    }
+  },
+  "mode": "all_three_full_sims",
+  "object_id": "manifold_super_sim_v0",
+  "parent_lineage": {
+    "audit_verdict_citation_context": {
+      "basin_generating_set_sweep_v0": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/audit_verdict.md",
+        "sha256": "354198034c27ffc7dba281e1c148ce9507fcadfa23d164f4ba42fe0337fc1f02"
+      },
+      "basin_grid_refinement_control_v0": {
+        "git_last_commit": "fe37547820d89e8a483643864f597ddf7b078855",
+        "path": "system_v6/sims/basin_grid_refinement_control_v0/audit_verdict.md",
+        "sha256": "3e68f868c66ab3d8c5dfe4d5bf839ea060b36168829d27fcc33ad863f73c6f82"
+      },
+      "basin_information_fusion_v1": {
+        "git_last_commit": "1c48f10502c45f1f95f8496320a2f0faa0e5a369",
+        "path": "system_v6/sims/basin_information_fusion_v1/audit_verdict.md",
+        "sha256": "0d750ca39b612cbf5d371509352be9b9409c6f2c2f788b5f07457367b6736ad1"
+      },
+      "basin_rc_transition_graph_v0": {
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/audit_verdict.md",
+        "sha256": "8063b5805852209501ee20aa279eba52361d56c1edc489947c46f85912307e7c"
+      },
+      "geo_s4_operator_stage_v0": {
+        "git_last_commit": "307b8ddf1693633ffb1ba9fd49dad7b71a6abc61",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/audit_verdict.md",
+        "sha256": "f5cfce14993f5fea7e22805c133c3e985bf1a3e9a4be9e9937af5a3c71dcb2d8"
+      },
+      "geo_s5_terrain_flows_v0": {
+        "git_last_commit": "6aa75cc96d3e5ff45fb090f25a5c2aa12892842f",
+        "path": "system_v6/sims/geo_s5_terrain_flows_v0/audit_verdict.md",
+        "sha256": "037b732d6af238f9f26dacb34653a156428336cfb7e373c2ac4d6c55519242a4"
+      },
+      "manifold_entropy_ledger_v0": {
+        "git_last_commit": "a542244765aa21f55a59b8df6a9f5443fac46bd1",
+        "path": "system_v6/sims/manifold_entropy_ledger_v0/audit_verdict.md",
+        "sha256": "b89ce3d17e4d9e21579894a0e8bd3fefdd0a81b1080dd9d8938859da8f9872aa"
+      },
+      "manifold_information_throughput_v0": {
+        "git_last_commit": "39682dd8792d91a981b20ce6bcadde97fc00f1d4",
+        "path": "system_v6/sims/manifold_information_throughput_v0/audit_verdict.md",
+        "sha256": "3e47bca02e7a2d7ece637ebd93144f675af58f905e59150f2e096af197fa5696"
+      },
+      "manifold_unified_run_v0": {
+        "git_last_commit": "6903e0388e4b49479d63b73ae831fb66b8b35c8e",
+        "path": "system_v6/sims/manifold_unified_run_v0/audit_verdict.md",
+        "sha256": "c2b5d3ea59ecd11aea98b779af77537befd2101d43949514c300c78b99a10eed"
+      },
+      "z4_syndrome_record_v0": {
+        "git_last_commit": "bd7a54080224f95a91bf7705f71032a745abd060",
+        "path": "system_v6/sims/z4_syndrome_record_v0/audit_verdict.md",
+        "sha256": "e24b8c40b5975faa14351fe808a2edd3f64b09fc7a823e58545d17e9864bfd2a"
+      }
+    },
+    "binding_caveat_discipline": {
+      "basin_packets": "all basin classes are chart-relative and may/must semantics are named",
+      "entropy_ledger": "typed entropy rows only; cross-type account requires explicit convention",
+      "geo_s4_operator_stage_v0": "consume pinned S4 M,c rows by hash; scratch ceiling carried",
+      "geo_s5_terrain_flows_v0": "consume pinned S5 A,b rows by hash; recompute exp(hA) at h=1/2",
+      "z4_syndrome_record_v0": "record-side language co-cites state-plus-record finite-counting convention"
+    },
+    "consumed_inputs": {
+      "basin_generating_set_sweep_v0": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+        "sha256": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0"
+      },
+      "basin_grid_refinement_control_v0": {
+        "git_last_commit": "fe37547820d89e8a483643864f597ddf7b078855",
+        "path": "system_v6/sims/basin_grid_refinement_control_v0/results/basin_grid_refinement_control_v0_envelope_results.json",
+        "sha256": "8c60e572a5121bce669cd39fad1b8bc06ca25bb81b886bfe1e060c139e8c7f2f"
+      },
+      "basin_information_fusion_v1": {
+        "git_last_commit": "1c48f10502c45f1f95f8496320a2f0faa0e5a369",
+        "path": "system_v6/sims/basin_information_fusion_v1/results/basin_information_fusion_v1_envelope_results.json",
+        "sha256": "17c91e379930293cbaa59b08157d97b767aa93c78ac233aa8a16d8515b14bdf4"
+      },
+      "basin_rc_transition_graph_v0": {
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json",
+        "sha256": "58f7cdce5974881bf86f68a9a94a7b967ca8cea6b69ffa3b1e3aea981ae9a0a8"
+      },
+      "geo_s4_operator_stage_v0": {
+        "git_last_commit": "307b8ddf1693633ffb1ba9fd49dad7b71a6abc61",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+        "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
+      },
+      "geo_s5_terrain_flows_v0": {
+        "git_last_commit": "6aa75cc96d3e5ff45fb090f25a5c2aa12892842f",
+        "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+        "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+      },
+      "manifold_entropy_ledger_v0": {
+        "git_last_commit": "a542244765aa21f55a59b8df6a9f5443fac46bd1",
+        "path": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json",
+        "sha256": "3babcf8fb66f1543e1e5fd3f5b0a2c6b74a47bf4d943489319c08a2b268c8eb6"
+      },
+      "manifold_information_throughput_v0": {
+        "git_last_commit": "39682dd8792d91a981b20ce6bcadde97fc00f1d4",
+        "path": "system_v6/sims/manifold_information_throughput_v0/results/manifold_information_throughput_v0_envelope_results.json",
+        "sha256": "cf05a1265fd883fba5b36c6134acfb3df8347aededc0bf0f7d31c6fa4883c104"
+      },
+      "manifold_unified_run_v0": {
+        "git_last_commit": "6903e0388e4b49479d63b73ae831fb66b8b35c8e",
+        "path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+        "sha256": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741"
+      },
+      "program_plan_factory": {
+        "git_last_commit": "1953675633ee511b89aa3b443c0445dd077c50bd",
+        "path": "system_v6/receipts/program_plan_factory_20260611.md",
+        "sha256": "515b26acb908f7ce5111a045223d7ac16d8d9d80d124c3fcb7780169ef944a37"
+      },
+      "z4_syndrome_record_v0": {
+        "git_last_commit": "7481c3fd6bd72c85961e61940c4fc070f22c2d4e",
+        "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+        "sha256": "ab333e09e7406624f549ef0630195262b1904697803527eaf4306d6689608eb8"
+      }
+    },
+    "raw_transition_graphs_persisted": false
+  },
+  "promotion_allowed": false,
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "manifold_super_sim_v0",
+  "source_import_audit": {
+    "audit_verdict_citation_context_hashes": {
+      "basin_generating_set_sweep_v0": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/audit_verdict.md",
+        "sha256": "354198034c27ffc7dba281e1c148ce9507fcadfa23d164f4ba42fe0337fc1f02"
+      },
+      "basin_grid_refinement_control_v0": {
+        "git_last_commit": "fe37547820d89e8a483643864f597ddf7b078855",
+        "path": "system_v6/sims/basin_grid_refinement_control_v0/audit_verdict.md",
+        "sha256": "3e68f868c66ab3d8c5dfe4d5bf839ea060b36168829d27fcc33ad863f73c6f82"
+      },
+      "basin_information_fusion_v1": {
+        "git_last_commit": "1c48f10502c45f1f95f8496320a2f0faa0e5a369",
+        "path": "system_v6/sims/basin_information_fusion_v1/audit_verdict.md",
+        "sha256": "0d750ca39b612cbf5d371509352be9b9409c6f2c2f788b5f07457367b6736ad1"
+      },
+      "basin_rc_transition_graph_v0": {
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/audit_verdict.md",
+        "sha256": "8063b5805852209501ee20aa279eba52361d56c1edc489947c46f85912307e7c"
+      },
+      "geo_s4_operator_stage_v0": {
+        "git_last_commit": "307b8ddf1693633ffb1ba9fd49dad7b71a6abc61",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/audit_verdict.md",
+        "sha256": "f5cfce14993f5fea7e22805c133c3e985bf1a3e9a4be9e9937af5a3c71dcb2d8"
+      },
+      "geo_s5_terrain_flows_v0": {
+        "git_last_commit": "6aa75cc96d3e5ff45fb090f25a5c2aa12892842f",
+        "path": "system_v6/sims/geo_s5_terrain_flows_v0/audit_verdict.md",
+        "sha256": "037b732d6af238f9f26dacb34653a156428336cfb7e373c2ac4d6c55519242a4"
+      },
+      "manifold_entropy_ledger_v0": {
+        "git_last_commit": "a542244765aa21f55a59b8df6a9f5443fac46bd1",
+        "path": "system_v6/sims/manifold_entropy_ledger_v0/audit_verdict.md",
+        "sha256": "b89ce3d17e4d9e21579894a0e8bd3fefdd0a81b1080dd9d8938859da8f9872aa"
+      },
+      "manifold_information_throughput_v0": {
+        "git_last_commit": "39682dd8792d91a981b20ce6bcadde97fc00f1d4",
+        "path": "system_v6/sims/manifold_information_throughput_v0/audit_verdict.md",
+        "sha256": "3e47bca02e7a2d7ece637ebd93144f675af58f905e59150f2e096af197fa5696"
+      },
+      "manifold_unified_run_v0": {
+        "git_last_commit": "6903e0388e4b49479d63b73ae831fb66b8b35c8e",
+        "path": "system_v6/sims/manifold_unified_run_v0/audit_verdict.md",
+        "sha256": "c2b5d3ea59ecd11aea98b779af77537befd2101d43949514c300c78b99a10eed"
+      },
+      "z4_syndrome_record_v0": {
+        "git_last_commit": "bd7a54080224f95a91bf7705f71032a745abd060",
+        "path": "system_v6/sims/z4_syndrome_record_v0/audit_verdict.md",
+        "sha256": "e24b8c40b5975faa14351fe808a2edd3f64b09fc7a823e58545d17e9864bfd2a"
+      }
+    },
+    "parent_hash_pins": {
+      "basin_generating_set_sweep_v0": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+        "sha256": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0"
+      },
+      "basin_grid_refinement_control_v0": {
+        "git_last_commit": "fe37547820d89e8a483643864f597ddf7b078855",
+        "path": "system_v6/sims/basin_grid_refinement_control_v0/results/basin_grid_refinement_control_v0_envelope_results.json",
+        "sha256": "8c60e572a5121bce669cd39fad1b8bc06ca25bb81b886bfe1e060c139e8c7f2f"
+      },
+      "basin_information_fusion_v1": {
+        "git_last_commit": "1c48f10502c45f1f95f8496320a2f0faa0e5a369",
+        "path": "system_v6/sims/basin_information_fusion_v1/results/basin_information_fusion_v1_envelope_results.json",
+        "sha256": "17c91e379930293cbaa59b08157d97b767aa93c78ac233aa8a16d8515b14bdf4"
+      },
+      "basin_rc_transition_graph_v0": {
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json",
+        "sha256": "58f7cdce5974881bf86f68a9a94a7b967ca8cea6b69ffa3b1e3aea981ae9a0a8"
+      },
+      "geo_s4_operator_stage_v0": {
+        "git_last_commit": "307b8ddf1693633ffb1ba9fd49dad7b71a6abc61",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+        "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
+      },
+      "geo_s5_terrain_flows_v0": {
+        "git_last_commit": "6aa75cc96d3e5ff45fb090f25a5c2aa12892842f",
+        "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+        "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+      },
+      "manifold_entropy_ledger_v0": {
+        "git_last_commit": "a542244765aa21f55a59b8df6a9f5443fac46bd1",
+        "path": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json",
+        "sha256": "3babcf8fb66f1543e1e5fd3f5b0a2c6b74a47bf4d943489319c08a2b268c8eb6"
+      },
+      "manifold_information_throughput_v0": {
+        "git_last_commit": "39682dd8792d91a981b20ce6bcadde97fc00f1d4",
+        "path": "system_v6/sims/manifold_information_throughput_v0/results/manifold_information_throughput_v0_envelope_results.json",
+        "sha256": "cf05a1265fd883fba5b36c6134acfb3df8347aededc0bf0f7d31c6fa4883c104"
+      },
+      "manifold_unified_run_v0": {
+        "git_last_commit": "6903e0388e4b49479d63b73ae831fb66b8b35c8e",
+        "path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+        "sha256": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741"
+      },
+      "program_plan_factory": {
+        "git_last_commit": "1953675633ee511b89aa3b443c0445dd077c50bd",
+        "path": "system_v6/receipts/program_plan_factory_20260611.md",
+        "sha256": "515b26acb908f7ce5111a045223d7ac16d8d9d80d124c3fcb7780169ef944a37"
+      },
+      "z4_syndrome_record_v0": {
+        "git_last_commit": "7481c3fd6bd72c85961e61940c4fc070f22c2d4e",
+        "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+        "sha256": "ab333e09e7406624f549ef0630195262b1904697803527eaf4306d6689608eb8"
+      }
+    },
+    "peer_result_reads": "parent envelopes are read only for hash-bound pinned rows and comparison anchors",
+    "raw_transition_graphs_imported": false,
+    "stale_imports": []
+  },
+  "stability_pairs": [
+    {
+      "hash": "515b26acb908f7ce5111a045223d7ac16d8d9d80d124c3fcb7780169ef944a37",
+      "subtree": "system_v6/receipts/program_plan_factory_20260611.md"
+    },
+    {
+      "hash": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661",
+      "subtree": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json"
+    },
+    {
+      "hash": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e",
+      "subtree": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json"
+    },
+    {
+      "hash": "58f7cdce5974881bf86f68a9a94a7b967ca8cea6b69ffa3b1e3aea981ae9a0a8",
+      "subtree": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json"
+    },
+    {
+      "hash": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0",
+      "subtree": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json"
+    },
+    {
+      "hash": "8c60e572a5121bce669cd39fad1b8bc06ca25bb81b886bfe1e060c139e8c7f2f",
+      "subtree": "system_v6/sims/basin_grid_refinement_control_v0/results/basin_grid_refinement_control_v0_envelope_results.json"
+    },
+    {
+      "hash": "cf05a1265fd883fba5b36c6134acfb3df8347aededc0bf0f7d31c6fa4883c104",
+      "subtree": "system_v6/sims/manifold_information_throughput_v0/results/manifold_information_throughput_v0_envelope_results.json"
+    },
+    {
+      "hash": "ab333e09e7406624f549ef0630195262b1904697803527eaf4306d6689608eb8",
+      "subtree": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json"
+    },
+    {
+      "hash": "17c91e379930293cbaa59b08157d97b767aa93c78ac233aa8a16d8515b14bdf4",
+      "subtree": "system_v6/sims/basin_information_fusion_v1/results/basin_information_fusion_v1_envelope_results.json"
+    },
+    {
+      "hash": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741",
+      "subtree": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json"
+    },
+    {
+      "hash": "3babcf8fb66f1543e1e5fd3f5b0a2c6b74a47bf4d943489319c08a2b268c8eb6",
+      "subtree": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json"
+    }
+  ],
+  "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+  "substrate": {
+    "Adm_C": "x^2 + y^2 + z^2 <= 1 on the five-point axis grid",
+    "family": "Family_A_Bloch_ball",
+    "generator_rebuild_rule": "S5 exp(hA) at h=1/2; S4 pinned affine M,c rows",
+    "grid_values": [
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0
+    ],
+    "raw_transition_graphs_persisted": false,
+    "state_count": 33
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "single_finite_constraint_manifold_integration",
+      "finite_transition_graph_rebuild",
+      "chart_relative_basin_control",
+      "typed_information_and_entropy_rows",
+      "computed_negative_controls"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent SMT negated identity UNSAT and erased/perturbed SAT flips over computed values",
+        "networkx": "workhorse finite graph and trajectory signature carrier for the shared object",
+        "sympy": "exact natural-log/accounting expressions for typed entropy controls",
+        "z3": "SMT negated identity UNSAT and erased/perturbed SAT flips over computed values"
+      },
+      "julia": {
+        "Graphs": "rebuild finite G0/G1 transition carriers and SCC terminal partitions from pinned generators",
+        "Z3": "prove computed partition/record identities and erased flips over emitted counts"
+      },
+      "pytorch": {
+        "cvc5": "independent SMT negated identity UNSAT and erased/perturbed SAT flips over computed values",
+        "sympy": "exact natural-log/counting expressions for typed entropy controls",
+        "torch.func": "supportive source_backing_probe vmap sanity; torch_expm uses plain torch.matrix_exp",
+        "torch_geometric": "supportive Data object in source_backing_probe only; finite transition rows use shared Python common path",
+        "z3": "SMT negated identity UNSAT and erased/perturbed SAT flips over computed values"
+      }
+    }
+  },
+  "trajectory_artifact": {
+    "path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_trajectory_artifact.json",
+    "payload": {
+      "all_pass": true,
+      "family": "Family_A_Bloch_ball_33_cell_constraint_manifold",
+      "kill_control_fires": {
+        "decorative_layer_detector": {
+          "L1_BASIN": true,
+          "L2_CHART": true,
+          "L3_INFORMATION": true,
+          "L4_FUSION": true,
+          "L5_LEDGER": true
+        },
+        "order_shuffled_N01": true,
+        "quotient_erased": true,
+        "root_off_similarity_only_guard": true,
+        "stale_import_control": true
+      },
+      "layer_signatures": {
+        "L1_BASIN": "126003b744f9bb758796318574026600d743efddf140e3c29d1684b496d28f75",
+        "L2_CHART": "5f803c35dfb37e294cc49edf622bc37c6b78a176fa988f0fb501a259d6fd0c8a",
+        "L3_INFORMATION": "c72c9676fe943f10e570ed833bf10f4634db89239a36f3a7658a44679483a395",
+        "L4_FUSION": "b1d9a69fb7fe111618d59da5e182339bc64ed9287339fc03453189e6c25ee199",
+        "L5_LEDGER": "c86fe569395915135e6d9aa73141e09d143ca08819fb4fa3336dddfb15d9fd59"
+      },
+      "raw_transition_graphs_persisted": false,
+      "schema_version": "manifold_super_sim_v0_trajectory_artifact_v1",
+      "sim_id": "manifold_super_sim_v0",
+      "state_count": 33,
+      "state_object_id": "manifold_super_sim_v0:271b13f6f2128dda74723ab9dd780a1c6c72940d9e1c8adee549dcbb8c4125c4",
+      "weld_anchor_passes": {
+        "D_z_information": true,
+        "G0_transition_graph_sha256": true,
+        "G1_partition": true,
+        "SMT_rows": true,
+        "fusion_regimes": true,
+        "rotated_chart": true,
+        "stage_word_endpoint": true
+      }
+    },
+    "payload_sha256": "712a498807a3cdd82fa633dd5bfc9d5081202d29983869d88e231c80291f76a7",
+    "sha_path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_trajectory_artifact.sha256",
+    "sha_verified": true,
+    "sidecar_sha256": "712a498807a3cdd82fa633dd5bfc9d5081202d29983869d88e231c80291f76a7"
+  },
+  "validator_expected_commands": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_super_sim_v0/validate_manifold_super_sim_v0.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/manifold_super_sim_v0/tests"
+  ],
+  "weld_anchors": {
+    "D_z_information": {
+      "holevo_nats": 0.411341122022618,
+      "killed_nats": 0.28180605853732726,
+      "pass": true
+    },
+    "G0_transition_graph_sha256": {
+      "computed": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0",
+      "expected": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0",
+      "pass": true
+    },
+    "G1_partition": {
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "may_equals_must": true,
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "pass": true,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ]
+    },
+    "SMT_rows": {
+      "cvc5": {
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "proof_row": {
+          "asserted_precomputed_boolean": false,
+          "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+          "erased_flip": "G5 expected terminal count decremented by one",
+          "partition_identity_inputs": [
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 2,
+              "set_id": "G0",
+              "state_count": 33,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 3,
+              "set_id": "G1",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 2,
+              "set_id": "G2",
+              "state_count": 33,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 8,
+              "set_id": "G3L",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 8,
+              "set_id": "G3R",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 3,
+              "set_id": "G4",
+              "state_count": 4,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 5,
+              "scc_count": 31,
+              "set_id": "G5",
+              "state_count": 33,
+              "terminal_class_count": 5
+            }
+          ]
+        },
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "pass": true,
+      "z3": {
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "proof_row": {
+          "asserted_precomputed_boolean": false,
+          "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+          "erased_flip": "G5 expected terminal count decremented by one",
+          "partition_identity_inputs": [
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 2,
+              "set_id": "G0",
+              "state_count": 33,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 3,
+              "set_id": "G1",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 2,
+              "set_id": "G2",
+              "state_count": 33,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 8,
+              "set_id": "G3L",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 3,
+              "scc_count": 8,
+              "set_id": "G3R",
+              "state_count": 33,
+              "terminal_class_count": 3
+            },
+            {
+              "expected_terminal_class_count": 1,
+              "scc_count": 3,
+              "set_id": "G4",
+              "state_count": 4,
+              "terminal_class_count": 1
+            },
+            {
+              "expected_terminal_class_count": 5,
+              "scc_count": 31,
+              "set_id": "G5",
+              "state_count": 33,
+              "terminal_class_count": 5
+            }
+          ]
+        },
+        "ran": true,
+        "verdict": "unsat"
+      }
+    },
+    "fusion_regimes": {
+      "G1_merge_erased_record_retained_nats": 0.0,
+      "G1_merge_full_record_retained_nats": 1.0986122886681098,
+      "G1_merge_partial_record_retained_nats": 0.6931471805599453,
+      "co_cites_z4_state_plus_record_convention": true,
+      "pass": true,
+      "z4_erased_record_retained_nats": 0.0,
+      "z4_partial_record_retained_nats": 0.6931471805599453
+    },
+    "rotated_chart": {
+      "pass": true,
+      "refined_terminal_counts": {
+        "2x": 3,
+        "3x": 3
+      },
+      "rotated_terminal_class_count": 2
+    },
+    "stage_word_endpoint": {
+      "pass": true,
+      "word_output_information_nats": 0.0932927444282512
+    }
+  }
+}

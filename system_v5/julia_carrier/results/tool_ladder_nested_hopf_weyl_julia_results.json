@@ -1,0 +1,163 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "Dates": "supportive",
+    "Grassmann": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Cl(6,0) generator anticommutation check for the Weyl carrier",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "supportive timestamping",
+      "tried": true,
+      "used": true
+    },
+    "Grassmann": {
+      "reason": "load-bearing even-subalgebra blade witness for the Weyl-spinor layer",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive finite norms, traces, and eigenspectrum checks",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing 3-qubit tensor Pauli/gamma construction for the Weyl chirality layer",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing integer SMT proof for the nested Hopf-to-Weyl weight split",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Grassmann",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "Scratch tool-ladder scout only: nested Hopf S3-to-S2 fiber invariance feeding a Weyl chirality split. No formal admission, no canonical claim.",
+  "classification": "scratch_diagnostic",
+  "cliffordalgebras": {
+    "anticommutation_failure_count": 0,
+    "anticommutation_failures": [],
+    "generator_count": 6,
+    "pass": true
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-09T18:45:56Z",
+  "grassmann": {
+    "basis": "S\"+++\"",
+    "even_basis": [
+      "1",
+      "v₁₂",
+      "v₁₃",
+      "v₂₃"
+    ],
+    "even_basis_count": 4,
+    "module_has_submanifold": true,
+    "pass": true,
+    "pseudoscalar": "v₁₂₃"
+  },
+  "hopf": {
+    "base": [
+      0.8660254037844386,
+      0.0,
+      0.4999999999999999
+    ],
+    "base_after_fiber_phase": [
+      0.8660254037844386,
+      -5.551115123125783e-17,
+      0.5
+    ],
+    "fiber_invariance_residual": 1.2412670766236366e-16,
+    "fiber_phase": 0.73,
+    "pass": true,
+    "q": [
+      0.8660254037844386,
+      0.0,
+      0.5,
+      0.0
+    ],
+    "s2_norm_residual": 2.220446049250313e-16
+  },
+  "julia_z3": {
+    "encoding": "scaled integer weights: p_plus+p_minus=1, p_plus-p_minus=Hopf_z=1/2; multiplied by 4 gives p4+m4=4 and p4-m4=2",
+    "identity_control_flips": true,
+    "identity_control_not_expected_3_1_verdict": "sat",
+    "main_not_expected_3_1_verdict": "unsat",
+    "main_proves_nested_weights": true
+  },
+  "negative_control_flip": {
+    "identity_control_flips": true,
+    "identity_control_not_expected_3_1_verdict": "sat"
+  },
+  "nested_signature": [
+    0.8660254037844386,
+    0.0,
+    0.4999999999999999,
+    0.4999999999999999,
+    4.0,
+    4.0
+  ],
+  "object_id": "tool_ladder_nested_hopf_weyl_julia",
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Grassmann",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/tool_ladder_nested_hopf_weyl_julia_results.json",
+  "schema_version": "engine_leg_result_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/tool_ladder_nested_hopf_weyl_julia.jl",
+  "values": {
+    "fiber_invariance_residual": 1.2412670766236366e-16,
+    "grassmann_even_basis_count": 4,
+    "hopf_base_x": 0.8660254037844386,
+    "hopf_base_y": 0.0,
+    "hopf_base_z": 0.4999999999999999,
+    "minus_dim": 4,
+    "nested_chirality_expectation": 0.4999999999999999,
+    "nested_expectation_residual": 0.0,
+    "plus_dim": 4
+  },
+  "weyl": {
+    "gamma7_square_residual": 0.0,
+    "gamma7_trace": 0.0,
+    "hopf_z_input": 0.4999999999999999,
+    "matrix_anticommutation_max_residual": 0.0,
+    "minus_dim": 4,
+    "nested_chirality_expectation": 0.4999999999999999,
+    "nested_expectation_residual": 0.0,
+    "p_minus_trace": 4.0,
+    "p_plus_trace": 4.0,
+    "pass": true,
+    "plus_dim": 4,
+    "rho_psd_min_eigenvalue": 0.0,
+    "rho_trace_residual": 1.1102230246251565e-16,
+    "spinor_dim": 8,
+    "theta": 0.5235987755982989
+  }
+}

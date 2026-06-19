@@ -1,0 +1,55 @@
+{
+  "schema": "codex_ratchet.sim_spec.v1",
+  "sim_id": "ring_checkerboard_axis2_kt_holonomy_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "finite-discretization diagnostic. GENUINE Axis-2 frame discriminator that replaces the BY-CONSTRUCTION K_t test of ring_checkerboard_euler_conversion_axis2_frame_v0 (DEMOTED 2026-06-15: K_direct/K_static = 0 via @zeros; K_dynamic = ||G|| by unitary norm-invariance -- none could come out otherwise). Here the holonomy of K_t around a closed frame loop is nontrivial IFF the loop encloses nonzero curvature; a FLAT (pure-gauge) connection around the SAME loop gives the identity -- the value-coupled control that proves it is NOT by-construction. The half-monopole Berry curvature is the standard spin-1/2 curvature, not a derived object. No M(C), Axis0, QIT-engine, manifold, or physics.",
+  "box_viii_status": "OPEN -- requires a MULTI-MODEL FLEET audit; a single fresh-context pipeline is insufficient (a near-identical sibling sim was caught rigged only by the full fleet after a single auditor passed it).",
+  "source_target": "owner ring-checkerboard runbook (three presentations) + axes12_deep_vein (Axis 2 = direct/conjugated frame, K_t = i V^dag V_dot, Lagrangian/Eulerian chart lens) + the euler sim's own audit_verdict.md, which named a 'K_t LOOP HOLONOMY (oint K_t nonzero in a moving/Eulerian frame, zero in a comoving/Lagrangian frame)' as the real test to replace the by-construction K_t values",
+  "object_under_test": {
+    "connection": "Axis-2 connection K_t = i V_t^dag dV_t along a path of frames V(s), s in [0,1]; for the spin-1/2 (Wilczek-Zee rank-1 -> Berry) frame this is K_t = i <n(s)| d/ds |n(s)>",
+    "frame": "the sim's own Bloch frame |n(theta,phi)> = up-eigenstate of n.sigma, carried around a closed loop V(1)=V(0) on the shell/fiber (theta,phi) sphere",
+    "holonomy": "U_loop = P prod_s exp(-i K(s) ds), computed as the gauge-covariant link product prod_s <n(s)|n(s+1)>/|<n(s)|n(s+1)>|",
+    "loop_parameters": {"n_steps": 4096, "theta_cap": "pi/3", "enclosed_solid_angle": "2*pi*(1-cos(theta_cap))"}
+  },
+  "hypotheses_under_test": [
+    "H_eulerian: the DYNAMIC/Eulerian frame (a closed loop enclosing nonzero Berry curvature) has NONtrivial holonomy U_loop != I.",
+    "H_stokes: the nontrivial holonomy phase magnitude EQUALS the enclosed curvature flux Omega/2 (non-abelian Stokes / Berry); it is not a free number.",
+    "H_lagrangian: the DIRECT/Lagrangian/comoving frame (V(s)=I) has TRIVIAL holonomy U_loop = I (the path-ordered product telescopes to V(1)^dag V(0)).",
+    "H_trivial_loop: a TRIVIAL loop (contractible to a point, zero enclosed area) has TRIVIAL holonomy.",
+    "H_flat_control: a FLAT/pure-gauge connection around the SAME loop topology has TRIVIAL holonomy -- the value-coupled proof that the dynamic holonomy is forced by enclosed CURVATURE, not the loop alone (NOT by-construction).",
+    "H_shrink: shrinking the loop (enclosed area -> 0) drives the holonomy -> I continuously, tracking the enclosed flux.",
+    "H_gauge: the CLOSED-loop holonomy trace is gauge-invariant; ERASING the loop (open path) makes the 'holonomy' gauge-DEPENDENT.",
+    "H_curvature_knob (deepseek) -- RE-TIERED post-audit 2026-06-15 to NUMERICS-CONSISTENCY: a tunable colatitude knob g in [0,1] on the SAME loop/link rule gives holonomy phase = g*Omega/2. NOT an independent measurement and NOT a coordinate-baking resolver: phase=g*Omega/2 is an ANALYTIC IDENTITY of the alpha_g formula (sin^2(alpha_g/2)=g*sin^2(theta_cap/2)) and the g=0 endpoint is a STRUCTURAL ZERO (alpha_g=0 -> phi-independent frame -> U=I for ANY constant frame). It legitimately checks that the link product reproduces the family (CAN fail for a wrong frame formula: alpha_g=g*theta_cap gives 0.421 at g=0.5 instead of 0.785) and is monotone in g.",
+    "H_ode_vs_link (grok): the geometric phase derived by integrating the actual time-dependent two-level Schrodinger ODE i dpsi/dt = H(t) psi around the loop (H(t) tracing the loop, NO reference to the enclosed solid angle) MATCHES the link-product holonomy phase in magnitude AND flips to ~0 for a flat loop (theta_cap=0, negative control) -- the link product did not smuggle the answer via the coordinate frame. This + the phi-dependent flat-connection control are the two LOAD-BEARING coordinate-baking resolvers."
+  ],
+  "fleet_coordinate_baking_flag": "the real fleet flagged that the Bloch frame V(theta,phi) is coordinate-hand-crafted, so the monopole flux Omega/2 might be baked into the GAUGE/coordinate choice rather than measuring enclosed dynamical CURVATURE. RESOLVED (post-audit 2026-06-15) by TWO value-coupled controls: the phi-DEPENDENT flat-connection control (theta=0 winding -> I while curved -> 1.41, triviality forced by zero curvature not phi-independence) and the grok ODE-vs-link control (independent Schrodinger integration, matches link product + flips flat->0). The deepseek colatitude-knob is a numerics-consistency check, NOT a coordinate-baking resolver (analytic identity + structural zero).",
+  "audit_retiering_2026_06_15": "5-sonnet adversarial fabrication audit (g-knob + ODE-frame control addition). CONVERGENT findings applied: (1) the deepseek colatitude-knob g=0 identity is a by-construction structural zero (any phi-independent frame -> U=I) and phase=g*Omega/2 is an analytic identity of alpha_g -> re-tiered from coordinate-baking discriminator to numerics-consistency check; (2) the genuine coordinate-baking resolvers are the phi-dependent flat-connection + the ODE control; (3) added an ODE flat-loop negative control (flat loop -> ODE phase ~0, value-coupled flip); (4) unified TOOL_INTEGRATION_DEPTH to load_bearing across all legs (exact was inconsistently 'supportive'); (5) pytorch re-tiered to an OPTIONAL fourth validation leg (canon: exact+jax+julia required), no longer a hard n_engines==4 co-gater; (6) documented that the four-engine NUMERIC agreement on the holonomy/knob legs is correlated (same overlap-product formula, distinct float paths) -- only the ODE is formula-independent across engines. REJECTED with evidence: 'ODE not independent' (ODE survives -- wrong theta_cap -> match_err 0.65-1.57, flat loop -> ~0, genuine 1/B residual); 'engines copy-paste' (distinct float fingerprints: flat-connection spans 1.4e-14 to 6.5e-13, ODE exact diverges 1.72e-7 from Rodrigues legs).",
+  "controls_that_must_fire": [
+    "direct_comoving: V(s)=I -> U_loop = I",
+    "trivial_loop: zero enclosed area -> U_loop = I",
+    "flat_connection: pure-gauge connection, SAME loop -> U_loop = I (anti-by-construction value-coupled control; |U-I| ~ 1e-13 vs curved ~1.41)",
+    "shrink_loop: enclosed area -> 0 -> |U_loop - I| -> 0 monotonically, phase tracks flux",
+    "open_path: open arc is gauge-dependent while the closed loop is gauge-invariant",
+    "curvature_knob (deepseek) -- NUMERICS-CONSISTENCY tier (re-tiered post-audit): g in [0,1] on the SAME loop/link rule -> holonomy(g) phase = g*Omega/2 (flux_err ~2e-7), monotone in g, slope |U-I|/g -> Omega/2 (~1.5708). Catches a wrong frame formula (alpha_g=g*theta_cap gives 0.421 at g=0.5 instead of 0.785). NOT a coordinate-baking discriminator: g=0 is a structural zero, phase=g*Omega/2 is an analytic identity.",
+    "ode_vs_link (grok): Schrodinger-ODE geometric phase (B=20000, M=1e6, exact 2x2 Rodrigues step, dynamical phase removed) MATCHES the link-product holonomy magnitude to ~3.7e-4 (adiabatic 1/B residual); distinct ODE routes (numpy expm-loop, jax lax.scan, torch tree-reduction, julia sequential) agree to ~1e-6 and are the ONLY formula-independent cross-engine route. Falsified by a flat loop (theta=0): ODE phase = 0 -> does NOT match link -> test FAILS.",
+    "ode_flat_loop_negative_control (grok, added post-audit): a flat loop (theta_cap=0) integrated through the SAME ODE gives geometric phase ~0 (exact -1.72e-7, jax -1.18e-13, julia -5.58e-14, pytorch +1.27e-12) while the curved loop gives ~-1.5704 -> the ODE phase is a real measurement that FLIPS curved->nontrivial / flat->trivial.",
+    "coordinate_baking_resolved (load-bearing): flat-connection control (phi-dependent, theta=0 -> I) AND ode_matches_link AND ode_flips_curved_vs_flat -- the two genuine resolvers, NOT the self-authored knob."
+  ],
+  "engines": {
+    "exact": "numpy/stdlib reference leg (overlap-product <n|n'>/|..| via complex division)",
+    "julia": "LinearAlgebra canon arbiter (link 1-form via arg()/exp() path-ordered product -- distinct float route)",
+    "jax": "vectorized (x64) batched loop construction + link-phase prod (deformation role)",
+    "pytorch": "complex128 tensor batched overlaps + torch.prod/torch.angle + tree-reduction ODE (complex-tensor role). OPTIONAL fourth validation leg per project canon (canonical = exact+jax+julia; pytorch sidelined). Real distinct route, not a required co-gater."
+  },
+  "agreement_invariants": [
+    "enclosed_solid_angle", "expected_holonomy_phase",
+    "dynamic_holonomy_abs_minus_I", "dynamic_holonomy_phase", "flux_match_err",
+    "direct_holonomy_abs_minus_I", "trivial_loop_holonomy_abs_minus_I",
+    "flat_connection_holonomy_abs_minus_I", "shrink_flux_max_err",
+    "open_arc_phase", "open_arc_phase_under_gauge", "closed_loop_phase_under_gauge",
+    "curvature_knob_flux_max_err", "curvature_knob_g0_abs_U_minus_I", "curvature_knob_linear_slope",
+    "ode_geometric_phase", "ode_vs_link_match_err"
+  ]
+}

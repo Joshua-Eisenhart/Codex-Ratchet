@@ -1,0 +1,654 @@
+{
+  "CHIRALITY_TEST": {
+    "L_R_optimal_survivor_sets_disjoint": true,
+    "L_R_survivors_differ": true,
+    "L_optimal_innermost_survivor_set": [
+      "b14"
+    ],
+    "R_optimal_innermost_survivor_set": [
+      "b10",
+      "b12"
+    ],
+    "chirality_physical_not_relabel_on_grounded_carrier": true,
+    "present_survivor_L": "b14",
+    "present_survivor_R": "b10"
+  },
+  "HARD_ACCEPTANCE": {
+    "L_R_different_survivors_on_chiral_carrier": true,
+    "independent_mirror_maps_L_to_R_not_constructor_swap": true,
+    "non_chiral_symmetric_control_L_equals_R": true
+  },
+  "INDEPENDENT_MIRROR_TEST": {
+    "L_objective_sha256": "21adc8c3123002e01ec279440e446c0bbe558f4aafcd4ad965bb93d938e318d3",
+    "L_over_PF_survivor_features": {
+      "bloch_coord": [
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "signature_xzy": [
+        1,
+        -1,
+        1
+      ]
+    },
+    "P_definition": "P_y(rho)=rho.conjugate(); Bloch (x,y,z)->(x,-y,z); flips sigma_y and preserves sigma_x,sigma_z",
+    "P_is_independent_data_operation": true,
+    "P_is_involution": true,
+    "P_moves_field": true,
+    "P_of_L_survivor_features": {
+      "bloch_coord": [
+        0.5,
+        -0.5,
+        0.0
+      ],
+      "signature_xzy": [
+        1,
+        0,
+        -1
+      ]
+    },
+    "P_of_R_survivor_features": {
+      "bloch_coord": [
+        0.5,
+        0.5,
+        -0.5
+      ],
+      "signature_xzy": [
+        1,
+        -1,
+        1
+      ]
+    },
+    "P_reflected_carrier_digest": "b59863093bafe64dac2eb6a22355b89b74be1f8fc5f00ed2d218e8ca53c4dc2a",
+    "R_objective_sha256": "5d975e486b199b856be8d30414e0c356e68c1595c1176900a74141690a8026d8",
+    "R_over_PF_survivor_features": {
+      "bloch_coord": [
+        0.5,
+        -0.5,
+        0.0
+      ],
+      "signature_xzy": [
+        1,
+        0,
+        -1
+      ]
+    },
+    "anti_tautology_reason": "The mirror is computed by reflecting density-matrix data and rerunning engines over P(F); no swapped constructor result or identical objective SHA is used as evidence.",
+    "engines_are_distinct_functions_objective_sha_differ": true,
+    "equivariance_P_maps_L_to_R": true,
+    "equivariance_P_maps_R_to_L": true,
+    "is_gnvw_swap_tautology": false,
+    "original_carrier_digest": "ae2c6e65f3a3b20301e1a0f3ea9435954840cdf075ecae16bf0d73fce24943d0",
+    "present_survivor_L_over_F": "b14",
+    "present_survivor_L_over_PF": "b10",
+    "present_survivor_R_over_F": "b10",
+    "present_survivor_R_over_PF": "b14"
+  },
+  "L_engine": {
+    "engine": "L_chiral_grounded_compression",
+    "handedness": "L",
+    "handedness_is_derived_from_sigma_y_flow": true,
+    "joint_assignment_by_shell": {
+      "Sigma_1": "b14",
+      "Sigma_2": "b11",
+      "Sigma_3": "b1"
+    },
+    "joint_assignment_outer_to_inner": [
+      "b1",
+      "b11",
+      "b14"
+    ],
+    "objective_digest_scope": "full finite shell-product score vector; no handedness label included in digest input",
+    "objective_identity_sha256": "21adc8c3123002e01ec279440e446c0bbe558f4aafcd4ad965bb93d938e318d3",
+    "present_survivor": "b14",
+    "probe_family": [
+      "sigma_x",
+      "sigma_z",
+      "sigma_y"
+    ],
+    "reading_rule": "score Hamming co-admissibility on outer-to-inner pairs with sigma_y flow - to +",
+    "scores": {
+      "base_unoriented_coadmissibility_score": 5,
+      "chiral_oriented_coadmissibility_score": 3
+    },
+    "selected_pair_rows": [
+      {
+        "coadmissibility_hamming_overlap": 2,
+        "inner": "b11",
+        "oriented_chiral_weight": 0,
+        "outer": "b1",
+        "sigma_y_signs": [
+          -1,
+          -1
+        ]
+      },
+      {
+        "coadmissibility_hamming_overlap": 1,
+        "inner": "b14",
+        "oriented_chiral_weight": 1,
+        "outer": "b1",
+        "sigma_y_signs": [
+          -1,
+          1
+        ]
+      },
+      {
+        "coadmissibility_hamming_overlap": 2,
+        "inner": "b14",
+        "oriented_chiral_weight": 2,
+        "outer": "b11",
+        "sigma_y_signs": [
+          -1,
+          1
+        ]
+      }
+    ]
+  },
+  "R_engine": {
+    "engine": "R_chiral_grounded_compression",
+    "handedness": "R",
+    "handedness_is_derived_from_sigma_y_flow": true,
+    "joint_assignment_by_shell": {
+      "Sigma_1": "b10",
+      "Sigma_2": "b6",
+      "Sigma_3": "b3"
+    },
+    "joint_assignment_outer_to_inner": [
+      "b3",
+      "b6",
+      "b10"
+    ],
+    "objective_digest_scope": "full finite shell-product score vector; no handedness label included in digest input",
+    "objective_identity_sha256": "5d975e486b199b856be8d30414e0c356e68c1595c1176900a74141690a8026d8",
+    "present_survivor": "b10",
+    "probe_family": [
+      "sigma_x",
+      "sigma_z",
+      "sigma_y"
+    ],
+    "reading_rule": "score Hamming co-admissibility on outer-to-inner pairs with sigma_y flow + to -",
+    "scores": {
+      "base_unoriented_coadmissibility_score": 4,
+      "chiral_oriented_coadmissibility_score": 2
+    },
+    "selected_pair_rows": [
+      {
+        "coadmissibility_hamming_overlap": 1,
+        "inner": "b6",
+        "oriented_chiral_weight": 1,
+        "outer": "b3",
+        "sigma_y_signs": [
+          1,
+          -1
+        ]
+      },
+      {
+        "coadmissibility_hamming_overlap": 1,
+        "inner": "b10",
+        "oriented_chiral_weight": 1,
+        "outer": "b3",
+        "sigma_y_signs": [
+          1,
+          -1
+        ]
+      },
+      {
+        "coadmissibility_hamming_overlap": 2,
+        "inner": "b10",
+        "oriented_chiral_weight": 0,
+        "outer": "b6",
+        "sigma_y_signs": [
+          -1,
+          -1
+        ]
+      }
+    ]
+  },
+  "SYMMETRIC_CONTROL_COLLAPSE": {
+    "L_engine_symmetric": {
+      "engine": "L_chiral_grounded_compression",
+      "handedness": "L",
+      "handedness_is_derived_from_sigma_y_flow": true,
+      "joint_assignment_by_shell": {
+        "Sigma_1": "q6",
+        "Sigma_2": "q6",
+        "Sigma_3": "q1"
+      },
+      "joint_assignment_outer_to_inner": [
+        "q1",
+        "q6",
+        "q6"
+      ],
+      "objective_digest_scope": "full finite shell-product score vector; no handedness label included in digest input",
+      "objective_identity_sha256": "f10a81208e58de83ee09d3a0d398cc6f6a6acbe4be0582b7d273a95772de8a6b",
+      "present_survivor": "q6",
+      "probe_family": [
+        "sigma_x",
+        "sigma_z",
+        "sigma_y"
+      ],
+      "reading_rule": "score Hamming co-admissibility on outer-to-inner pairs with sigma_y flow - to +",
+      "scores": {
+        "base_unoriented_coadmissibility_score": 7,
+        "chiral_oriented_coadmissibility_score": 0
+      },
+      "selected_pair_rows": [
+        {
+          "coadmissibility_hamming_overlap": 2,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q1",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        },
+        {
+          "coadmissibility_hamming_overlap": 2,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q1",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        },
+        {
+          "coadmissibility_hamming_overlap": 3,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q6",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "L_equals_R_on_symmetric_subcarrier": true,
+    "R_engine_symmetric": {
+      "engine": "R_chiral_grounded_compression",
+      "handedness": "R",
+      "handedness_is_derived_from_sigma_y_flow": true,
+      "joint_assignment_by_shell": {
+        "Sigma_1": "q6",
+        "Sigma_2": "q6",
+        "Sigma_3": "q1"
+      },
+      "joint_assignment_outer_to_inner": [
+        "q1",
+        "q6",
+        "q6"
+      ],
+      "objective_digest_scope": "full finite shell-product score vector; no handedness label included in digest input",
+      "objective_identity_sha256": "f10a81208e58de83ee09d3a0d398cc6f6a6acbe4be0582b7d273a95772de8a6b",
+      "present_survivor": "q6",
+      "probe_family": [
+        "sigma_x",
+        "sigma_z",
+        "sigma_y"
+      ],
+      "reading_rule": "score Hamming co-admissibility on outer-to-inner pairs with sigma_y flow + to -",
+      "scores": {
+        "base_unoriented_coadmissibility_score": 7,
+        "chiral_oriented_coadmissibility_score": 0
+      },
+      "selected_pair_rows": [
+        {
+          "coadmissibility_hamming_overlap": 2,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q1",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        },
+        {
+          "coadmissibility_hamming_overlap": 2,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q1",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        },
+        {
+          "coadmissibility_hamming_overlap": 3,
+          "inner": "q6",
+          "oriented_chiral_weight": 0,
+          "outer": "q6",
+          "sigma_y_signs": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "chirality_correctly_absent_on_symmetric_subcarrier": true,
+    "construction": "parity-pair averaged M(C) subcarrier: each q node is (rho_y_plus + rho_y_minus)/2 for one fixed (sigma_x,sigma_z) orbit, so sigma_y expectation is 0",
+    "control_kind": "non-chiral parity-symmetric M(C) subcarrier",
+    "parity_averaged_subcarrier": {
+      "branch_ids": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "branch_states": {
+        "q0": {
+          "bloch_coord": [
+            -0.5,
+            0.0,
+            -0.5
+          ],
+          "orbit_members": [
+            "b0",
+            "b3"
+          ],
+          "signature_xzy": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "q1": {
+          "bloch_coord": [
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "orbit_members": [
+            "b1",
+            "b4"
+          ],
+          "signature_xzy": [
+            -1,
+            0,
+            0
+          ]
+        },
+        "q2": {
+          "bloch_coord": [
+            -0.5,
+            0.0,
+            0.5
+          ],
+          "orbit_members": [
+            "b2",
+            "b5"
+          ],
+          "signature_xzy": [
+            -1,
+            1,
+            0
+          ]
+        },
+        "q3": {
+          "bloch_coord": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "orbit_members": [
+            "b6",
+            "b8"
+          ],
+          "signature_xzy": [
+            0,
+            -1,
+            0
+          ]
+        },
+        "q4": {
+          "bloch_coord": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "orbit_members": [
+            "b7",
+            "b9"
+          ],
+          "signature_xzy": [
+            0,
+            1,
+            0
+          ]
+        },
+        "q5": {
+          "bloch_coord": [
+            0.5,
+            0.0,
+            -0.5
+          ],
+          "orbit_members": [
+            "b10",
+            "b13"
+          ],
+          "signature_xzy": [
+            1,
+            -1,
+            0
+          ]
+        },
+        "q6": {
+          "bloch_coord": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "orbit_members": [
+            "b11",
+            "b14"
+          ],
+          "signature_xzy": [
+            1,
+            0,
+            0
+          ]
+        },
+        "q7": {
+          "bloch_coord": [
+            0.5,
+            0.0,
+            0.5
+          ],
+          "orbit_members": [
+            "b12",
+            "b15"
+          ],
+          "signature_xzy": [
+            1,
+            1,
+            0
+          ]
+        }
+      }
+    },
+    "present_survivor_L_symmetric": "q6",
+    "present_survivor_R_symmetric": "q6",
+    "sigma_y_signs": {
+      "q0": 0,
+      "q1": 0,
+      "q2": 0,
+      "q3": 0,
+      "q4": 0,
+      "q5": 0,
+      "q6": 0,
+      "q7": 0
+    },
+    "sigma_y_signs_all_zero": true,
+    "subcarrier_branch_count": 8,
+    "subcarrier_shells_outer_to_inner": [
+      [
+        "q0",
+        "q1",
+        "q2"
+      ],
+      [
+        "q3",
+        "q4",
+        "q6"
+      ],
+      [
+        "q5",
+        "q6",
+        "q7"
+      ]
+    ]
+  },
+  "all_pass": true,
+  "blocked_downstream_consumers": [
+    "macroscopic parity violation claim",
+    "cosmic birefringence / CMB polarization handedness claim",
+    "spacetime chirality claim",
+    "Weyl spinor admission",
+    "GNVW chirality admission",
+    "formal manifold admission",
+    "canonical process claim"
+  ],
+  "chiral_orientation_definition": {
+    "L": "outer-to-inner sigma_y sign flow - to +, weighted by Hamming co-admissibility",
+    "R": "outer-to-inner sigma_y sign flow + to -, weighted by Hamming co-admissibility",
+    "mirror": "P_y(rho)=rho.conjugate(), Bloch (x,y,z)->(x,-y,z)"
+  },
+  "chirality_earned_on_grounded_carrier": true,
+  "classification": "scratch_diagnostic",
+  "coadmissibility_definition": "Hamming overlap of observable signs sgn(Tr(rho O_k)) for O=(sigma_x,sigma_z,sigma_y)",
+  "criteria_checked": [
+    "L_R_different_survivors_on_chiral_M_C_carrier",
+    "L_R_optimal_survivor_sets_disjoint",
+    "P_y_independent_density_data_mirror_maps_L_to_R",
+    "P_y_is_involution_and_moves_field",
+    "engine_objective_shas_differ_without_hashing_handedness_label",
+    "non_chiral_parity_averaged_subcarrier_has_sigma_y_zero",
+    "non_chiral_parity_averaged_subcarrier_L_equals_R",
+    "source_grounded_carrier_density_matrices_valid",
+    "base_sigma_x_sigma_z_quotient_reproduces_8_classes"
+  ],
+  "formal_admission_allowed": false,
+  "honest_self_assessment": "EARNED on the grounded finite M(C) carrier as a scratch diagnostic: L and R select different survivors under a sigma_y-oriented co-admissibility compression, P_y is an independent density-data mirror that maps the two engines, and the parity-averaged non-chiral subcarrier collapses L and R to the same survivor. This escapes the specific GNVW swap-tautology. It remains definition-relative to choosing sigma_y sign as the chiral orientation axis, and it is not yet physics, cosmic birefringence, spacetime chirality, or canonical admission.",
+  "name": "rpf_chirality_grounded_v0",
+  "named_caveats": {
+    "G1": "The chiral axis is chosen as sigma_y sign. The diagnostic earns more than a constructor label, but it does not prove sigma_y is forced by deeper physics.",
+    "G2": "The parity-symmetric control uses a parity-pair averaged subcarrier, not a new external physical ensemble.",
+    "G3": "This is a finite compression diagnostic on a committed scratch carrier; no CMB/cosmic-birefringence prediction is admitted."
+  },
+  "object_name": "M(C)-grounded co-admissibility chirality diagnostic",
+  "probe_family": [
+    "sigma_x",
+    "sigma_z",
+    "sigma_y"
+  ],
+  "promotion_allowed": false,
+  "quotient_reproduction": {
+    "class_count": 8,
+    "classes": {
+      "[-1,-1]": [
+        "b0",
+        "b3"
+      ],
+      "[-1,0]": [
+        "b1",
+        "b4"
+      ],
+      "[-1,1]": [
+        "b2",
+        "b5"
+      ],
+      "[0,-1]": [
+        "b6",
+        "b8"
+      ],
+      "[0,1]": [
+        "b7",
+        "b9"
+      ],
+      "[1,-1]": [
+        "b10",
+        "b13"
+      ],
+      "[1,0]": [
+        "b11",
+        "b14"
+      ],
+      "[1,1]": [
+        "b12",
+        "b15"
+      ]
+    },
+    "probe_family": [
+      "sigma_x",
+      "sigma_z"
+    ],
+    "reproduces_grounded_carve_8_classes": true
+  },
+  "result_sha256": "4634879a444da5fdf8381772c36d06b1bcf3daae85c77b6f412e8315cbeee4d8",
+  "source_grounded_carrier": {
+    "all_density_matrices_valid": true,
+    "branch_count": 16,
+    "local_carrier_digest": "ae2c6e65f3a3b20301e1a0f3ea9435954840cdf075ecae16bf0d73fce24943d0",
+    "path": "system_v6/sims/retrocausal_possibility_field_carrier_grounded_v0/results/retrocausal_possibility_field_carrier_grounded_v0_results.json",
+    "source_carrier_bloch_digest": "f14ab06b362900ab1e5553e086ba3ac31f028a77f8f34c55321e04faf09ec10d",
+    "source_result_sha256": "4bcc09fe3f03b41b929a07ddfedf33ad900beb069a759351a05cd6d6eee2293e"
+  },
+  "tool_integration_depth": {
+    "hashlib": "load_bearing",
+    "itertools": "load_bearing",
+    "jax": null,
+    "json": "supportive",
+    "julia": null,
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "z3": null
+  },
+  "tool_manifest": {
+    "hashlib": {
+      "reason": "Load-bearing for anti-tautology receipts: hashes carrier data, reflected carrier data, and engine objective score vectors without relying on a stored left/right label.",
+      "tried": true,
+      "used": true
+    },
+    "itertools": {
+      "reason": "Load-bearing: enumerates the finite shell product for the L and R compression objectives and the parity-averaged symmetric control.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "Not scoped: the carrier is 16 fixed 2x2 density matrices and the compression is a tiny exhaustive product.",
+      "tried": false,
+      "used": false
+    },
+    "json": {
+      "reason": "Supportive: reads the committed grounded carrier result and writes the scratch diagnostic result envelope.",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "Not scoped: this consumes the committed Python result for the M(C)-grounded carrier rather than rebuilding a Julia Canon artifact.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "Load-bearing: rebuilds each 2x2 density matrix from the committed M(C) Bloch coordinates, verifies PSD/trace/Hermitian status, computes Tr(rho sigma_k), and applies P_y(rho)=rho.conjugate() for the independent mirror check.",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "Not scoped: no graph/network/autograd claim path.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "Not scoped: this is a finite scratch diagnostic by direct enumeration, not a formal impossibility proof.",
+      "tried": false,
+      "used": false
+    }
+  }
+}

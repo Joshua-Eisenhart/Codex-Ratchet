@@ -1,0 +1,176 @@
+{
+  "backend": "julia_full_sim",
+  "claim_ceiling": "Finite bracketing/probe diagnostic only; no basin, admission, engine, Axis0, bridge, gravity, or formal-admission claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "H_associativity_control_ok": true,
+    "O_alternativity_control_ok": true,
+    "O_general_nonassociativity_control_ok": true,
+    "control_miswired": false
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-06T01:05:37.311Z",
+  "numbers": {
+    "H_max_assoc_norm": 1.3322676295501878e-15,
+    "H_max_basis_probe_abs": 1.1102230246251565e-15,
+    "H_max_basis_reconstruction_error": 0.0,
+    "H_max_optimal_unit_probe_abs": 0.0,
+    "O_alternativity_xxy_max_norm": 6.4964650718159126e-15,
+    "O_alternativity_xyy_max_norm": 5.1598503419391096e-15,
+    "O_max_assoc_norm": 26.33511730030975,
+    "O_max_basis_probe_abs": 16.848952678024993,
+    "O_max_basis_reconstruction_error": 0.0,
+    "O_max_optimal_unit_probe_abs": 26.335117300309754,
+    "O_max_optimal_unit_probe_norm_error": 7.105427357601002e-15,
+    "sample_count": 64
+  },
+  "object_id": "nonassociativity_as_probe_bracketing",
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "O_max_basis_reconstruction_error",
+    "missing_keys": [],
+    "parity_max_diff": 3.552713678800501e-15,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/nonassociativity_as_probe_bracketing_jax_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H_max_optimal_unit_probe_abs"
+      },
+      {
+        "abs_diff": 3.552713678800501e-15,
+        "jax": 3.552713678800501e-15,
+        "julia": 0.0,
+        "key": "O_max_basis_reconstruction_error"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "sample_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.1102230246251565e-15,
+        "julia": 1.1102230246251565e-15,
+        "key": "H_max_basis_probe_abs"
+      },
+      {
+        "abs_diff": 3.552713678800501e-15,
+        "jax": 26.33511730030975,
+        "julia": 26.335117300309754,
+        "key": "O_max_optimal_unit_probe_abs"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 7.105427357601002e-15,
+        "julia": 7.105427357601002e-15,
+        "key": "O_max_optimal_unit_probe_norm_error"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 26.33511730030975,
+        "julia": 26.33511730030975,
+        "key": "O_max_assoc_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.848952678024993,
+        "julia": 16.848952678024993,
+        "key": "O_max_basis_probe_abs"
+      },
+      {
+        "abs_diff": 9.320432213515975e-16,
+        "jax": 5.564421850464315e-15,
+        "julia": 6.4964650718159126e-15,
+        "key": "O_alternativity_xxy_max_norm"
+      },
+      {
+        "abs_diff": 1.3026241356633775e-15,
+        "jax": 3.857226206275732e-15,
+        "julia": 5.1598503419391096e-15,
+        "key": "O_alternativity_xyy_max_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H_max_basis_reconstruction_error"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.3322676295501878e-15,
+        "julia": 1.3322676295501878e-15,
+        "key": "H_max_assoc_norm"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/nonassociativity_as_probe_bracketing_jax_results.json",
+  "plain_sentence": "Quaternion bracketings are probe-indistinguishable because the associator vanishes, while generic octonion bracketings have a nonzero associator resolved by component probes and by the optimal unit probe; alternativity still kills repeated-input associators.",
+  "probe_note": "Basis probes f_M(v)=Re(conj(M)v) recover the associator components; sqrt(sum basis readouts^2)=||associator||. The optimal unit probe M=assoc/||assoc|| attains ||assoc|| when assoc is nonzero.",
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/nonassociativity_as_probe_bracketing_julia_results.json",
+  "shared_booleans": {
+    "control.H_associativity_control_ok": true,
+    "control.O_alternativity_control_ok": true,
+    "control.O_general_nonassociativity_control_ok": true,
+    "control.control_miswired": false,
+    "verdict.H_bracketing_probe_indistinguishable": true,
+    "verdict.O_bracketing_probe_distinguishable": true
+  },
+  "shared_scalars": {
+    "H_max_assoc_norm": 1.3322676295501878e-15,
+    "H_max_basis_probe_abs": 1.1102230246251565e-15,
+    "H_max_basis_reconstruction_error": 0.0,
+    "H_max_optimal_unit_probe_abs": 0.0,
+    "O_alternativity_xxy_max_norm": 6.4964650718159126e-15,
+    "O_alternativity_xyy_max_norm": 5.1598503419391096e-15,
+    "O_max_assoc_norm": 26.33511730030975,
+    "O_max_basis_probe_abs": 16.848952678024993,
+    "O_max_basis_reconstruction_error": 0.0,
+    "O_max_optimal_unit_probe_abs": 26.335117300309754,
+    "O_max_optimal_unit_probe_norm_error": 7.105427357601002e-15,
+    "sample_count": 64
+  },
+  "sim_class": "probe_relative_bracketing_concept_probe",
+  "sim_execution_kind": "classical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/nonassociativity_as_probe_bracketing.jl",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive result serialization",
+    "Julia": "load-bearing quaternion/octonion multiplication, associators, and probe readouts",
+    "LinearAlgebra": "load-bearing associator norms and probe reconstruction norms"
+  },
+  "verdicts": {
+    "H_bracketing_probe_indistinguishable": true,
+    "O_bracketing_probe_distinguishable": true
+  },
+  "witness": {
+    "H": {
+      "assoc_norm": 1.3322676295501878e-15,
+      "basis_max_probe_abs": 8.881784197001252e-16,
+      "best_basis_probe_index0": 0,
+      "optimal_unit_probe_abs": 0.0,
+      "sample_idx": 5
+    },
+    "O": {
+      "assoc_norm": 26.33511730030975,
+      "basis_max_probe_abs": 16.262728762363533,
+      "best_basis_probe_index0": 6,
+      "optimal_unit_probe_abs": 26.335117300309754,
+      "sample_idx": 30
+    }
+  }
+}

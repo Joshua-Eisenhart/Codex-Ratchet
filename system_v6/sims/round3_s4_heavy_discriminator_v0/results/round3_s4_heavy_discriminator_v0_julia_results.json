@@ -1,0 +1,425 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "SHA": "supportive",
+    "Symbolics": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive finite matrix arithmetic",
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing Julia carrier route for one-qubit density/channel object sanity checks",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hashing",
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "supportive exact finite equation surface for fixed-set row labels",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia SMT polarity for finite commutator/quotient/Choi witnesses",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "promotion_allowed": false,
+    "pytorch": "omitted honestly; no graph/network/autograd/tensor claim path",
+    "scope": "S4 heavy-local queued rows only"
+  },
+  "candidate_verdicts": [
+    {
+      "candidate": "S4.R3.1_z_amplitude_damping_pair",
+      "co_survivor": false,
+      "exact_witness": {
+        "AD_z_gamma_1_5_fixed_set": [
+          {
+            "x": "0",
+            "y": "0",
+            "z": "1"
+          }
+        ],
+        "AD_z_gamma_1_5_order_gap_on_z_probe": [
+          "0",
+          "(-1 - 1/(-1 + sqrt(5)))/5",
+          "1/5"
+        ]
+      },
+      "pin_relative": false,
+      "registry_row": "N01/commutator and fixed-axis rows",
+      "verdict": "excluded-by-N01-commutator-and-fixed-axis-rows"
+    },
+    {
+      "candidate": "S4.R3.2_x_amplitude_damping_pair",
+      "co_survivor": false,
+      "exact_witness": {
+        "AD_x_gamma_1_5_z_probe_image": [
+          "1/5",
+          "0",
+          "sqrt(5)/5"
+        ],
+        "mortality_break_witness": {
+          "x_component": "1/5",
+          "y_component": "0",
+          "z_delta": "-1/2 + sqrt(5)/5"
+        }
+      },
+      "pin_relative": true,
+      "registry_row": "z-probe quotient descent/mortality",
+      "verdict": "excluded-under-pinned-parent-z-probe-convention-by-z-probe-quotient-descent-mortality"
+    },
+    {
+      "candidate": "S4.R3.3_dephase_rotate_hybrid",
+      "co_survivor": false,
+      "exact_witness": {
+        "lambda_1_2_output_z_gap": "1/2",
+        "lambda_7_10_output_z_gap": "1/2",
+        "same_z_shell_points": [
+          [
+            "0",
+            "0",
+            "1/2"
+          ],
+          [
+            "0",
+            "1/2",
+            "1/2"
+          ]
+        ]
+      },
+      "pin_relative": false,
+      "registry_row": "shell preservation/leakage then N01",
+      "verdict": "excluded-by-shell-preservation-leakage"
+    },
+    {
+      "candidate": "S4.R3.5_weak_nonunital_pauli_channel",
+      "co_survivor": false,
+      "exact_witness": {
+        "weak_shift_x_negative_choi_eigenvalues": [
+          "-1/40"
+        ],
+        "weak_shift_z_fixed_set": {
+          "empty_under_affine_equations": true,
+          "equations": [
+            "-3*x/10",
+            "-3*y/10",
+            "1/10"
+          ]
+        },
+        "weak_shift_z_negative_choi_eigenvalues": [
+          "-1/40"
+        ]
+      },
+      "pin_relative": false,
+      "registry_row": "fixed-axis plus Choi positivity",
+      "verdict": "excluded-by-Choi-positivity-and-fixed-axis"
+    }
+  ],
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "boundary_case": "finite pinned S4 heavy rows only",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one computed nonzero/negative witness is erased to zero",
+      "negative/erased_control": "perturbed erased values make the same disjunction SAT",
+      "positive_case": "computed commutator, quotient, and Choi witnesses cannot be erased",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "witness_values": {
+        "S4.R3.1 AD_z(1/5) comm_gap_z_scaled_10": 2,
+        "S4.R3.2 AD_x(1/5) quotient_x_scaled_10": 2,
+        "S4.R3.5 weak_shift choi_negative_scaled_40": -1
+      }
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T02:38:21Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "negative": {
+    "candidate_verdict_table": [
+      {
+        "candidate": "S4.R3.1_z_amplitude_damping_pair",
+        "co_survivor": false,
+        "exact_witness": {
+          "AD_z_gamma_1_5_fixed_set": [
+            {
+              "x": "0",
+              "y": "0",
+              "z": "1"
+            }
+          ],
+          "AD_z_gamma_1_5_order_gap_on_z_probe": [
+            "0",
+            "(-1 - 1/(-1 + sqrt(5)))/5",
+            "1/5"
+          ]
+        },
+        "pin_relative": false,
+        "registry_row": "N01/commutator and fixed-axis rows",
+        "verdict": "excluded-by-N01-commutator-and-fixed-axis-rows"
+      },
+      {
+        "candidate": "S4.R3.2_x_amplitude_damping_pair",
+        "co_survivor": false,
+        "exact_witness": {
+          "AD_x_gamma_1_5_z_probe_image": [
+            "1/5",
+            "0",
+            "sqrt(5)/5"
+          ],
+          "mortality_break_witness": {
+            "x_component": "1/5",
+            "y_component": "0",
+            "z_delta": "-1/2 + sqrt(5)/5"
+          }
+        },
+        "pin_relative": true,
+        "registry_row": "z-probe quotient descent/mortality",
+        "verdict": "excluded-under-pinned-parent-z-probe-convention-by-z-probe-quotient-descent-mortality"
+      },
+      {
+        "candidate": "S4.R3.3_dephase_rotate_hybrid",
+        "co_survivor": false,
+        "exact_witness": {
+          "lambda_1_2_output_z_gap": "1/2",
+          "lambda_7_10_output_z_gap": "1/2",
+          "same_z_shell_points": [
+            [
+              "0",
+              "0",
+              "1/2"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ]
+          ]
+        },
+        "pin_relative": false,
+        "registry_row": "shell preservation/leakage then N01",
+        "verdict": "excluded-by-shell-preservation-leakage"
+      },
+      {
+        "candidate": "S4.R3.5_weak_nonunital_pauli_channel",
+        "co_survivor": false,
+        "exact_witness": {
+          "weak_shift_x_negative_choi_eigenvalues": [
+            "-1/40"
+          ],
+          "weak_shift_z_fixed_set": {
+            "empty_under_affine_equations": true,
+            "equations": [
+              "-3*x/10",
+              "-3*y/10",
+              "1/10"
+            ]
+          },
+          "weak_shift_z_negative_choi_eigenvalues": [
+            "-1/40"
+          ]
+        },
+        "pin_relative": false,
+        "registry_row": "fixed-axis plus Choi positivity",
+        "verdict": "excluded-by-Choi-positivity-and-fixed-axis"
+      }
+    ]
+  },
+  "object_id": "round3_s4_heavy_discriminator_v0_julia",
+  "package_observables": {
+    "QuantumOptics": "one-qubit density/channel object route sanity for S4 channel rows",
+    "Z3": "finite witness UNSAT/perturbed SAT binding"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "Symbolics",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "positive": {
+    "anchor_choi_spectra": {
+      "D_x": [
+        "17/20",
+        "0",
+        "0",
+        "3/20"
+      ],
+      "D_z": [
+        "17/20",
+        "3/20",
+        "0",
+        "0"
+      ],
+      "R_x": [
+        "0",
+        "0",
+        "0",
+        "1"
+      ],
+      "R_z": [
+        "0",
+        "0",
+        "0",
+        "1"
+      ]
+    },
+    "deliberate_alias": "same exact affine/Choi table as anchor"
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "reference_variant_spectra": {
+    "AD_x_gamma_1_5": [
+      "9/10",
+      "1/10",
+      "0",
+      "0"
+    ],
+    "AD_x_gamma_3_10": [
+      "17/20",
+      "3/20",
+      "0",
+      "0"
+    ],
+    "AD_z_gamma_1_5": [
+      "9/10",
+      "0",
+      "0",
+      "1/10"
+    ],
+    "AD_z_gamma_3_10": [
+      "17/20",
+      "0",
+      "0",
+      "3/20"
+    ],
+    "D_z_1_2_after_R_x_pi_2": [
+      "3/4",
+      "1/4",
+      "0",
+      "0"
+    ],
+    "D_z_7_10_after_R_x_pi_2": [
+      "17/20",
+      "3/20",
+      "0",
+      "0"
+    ],
+    "anchor_D_x": [
+      "17/20",
+      "0",
+      "0",
+      "3/20"
+    ],
+    "anchor_D_z": [
+      "17/20",
+      "3/20",
+      "0",
+      "0"
+    ],
+    "weak_shift_x": [
+      "1/40",
+      "-1/40",
+      "(20 - sqrt(197))/40",
+      "(sqrt(197) + 20)/40"
+    ],
+    "weak_shift_z": [
+      "(20 - sqrt(197))/40",
+      "(sqrt(197) + 20)/40",
+      "-1/40",
+      "1/40"
+    ]
+  },
+  "result_path": "system_v6/sims/round3_s4_heavy_discriminator_v0/results/round3_s4_heavy_discriminator_v0_julia_results.json",
+  "role_id": "julia_quantumoptics_z3_s4_heavy_reference",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "round3_s4_heavy_discriminator_v0",
+  "source_path": "system_v6/sims/round3_s4_heavy_discriminator_v0/round3_s4_heavy_discriminator_v0_julia.jl",
+  "source_sha256": "e4106ce9be91d626b5af49dea36648a5cdbf7da927969fab9429c18036e07f7c",
+  "symbolic_fixed_equation_probe": [
+    "(-3//10)*x",
+    "(-3//10)*y",
+    "1//10"
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "2x2 one-qubit channel sanity route",
+      "demotion_condition": "if QuantumOptics route is removed, Julia lane is exact table plus SMT only",
+      "gates": [
+        "source_backed",
+        "all_pass"
+      ],
+      "input_object": "one-qubit S4 channel density objects",
+      "negative/erased_control": "without the route, Julia package claim is decorative",
+      "output_object": {
+        "center_components": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center_zero_pass": true,
+        "route": "QuantumOptics.SpinBasis/DenseOperator/sigmax/sigmay/sigmaz/sprepost/expect",
+        "superoperator_type": "SparseSuperOpType{Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, Tuple{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+      },
+      "positive_case": "QuantumOptics route constructs channel superoperator and reads density components",
+      "qualified_api/function": "QuantumOptics.SpinBasis/DenseOperator/sigmax/sigmay/sigmaz/sprepost/expect",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "finite pinned S4 heavy rows only",
+      "demotion_condition": "if raw values are replaced by booleans, SMT is decorative",
+      "gates": [
+        "crossover_proofs",
+        "all_pass"
+      ],
+      "input_object": "integer-scaled commutator, quotient, and Choi finite witnesses",
+      "negative/erased_control": "perturbed erased values are SAT",
+      "output_object": {
+        "boundary_case": "finite pinned S4 heavy rows only",
+        "flip_control_verdict": "sat",
+        "load_bearing": true,
+        "negated_assertion": "at least one computed nonzero/negative witness is erased to zero",
+        "negative/erased_control": "perturbed erased values make the same disjunction SAT",
+        "positive_case": "computed commutator, quotient, and Choi witnesses cannot be erased",
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "unsat",
+        "witness_values": {
+          "S4.R3.1 AD_z(1/5) comm_gap_z_scaled_10": 2,
+          "S4.R3.2 AD_x(1/5) quotient_x_scaled_10": 2,
+          "S4.R3.5 weak_shift choi_negative_scaled_40": -1
+        }
+      },
+      "positive_case": "nonzero/negative witnesses cannot be erased",
+      "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "codex_ratchet.sim_spec.v1",
+  "sim_id": "region_discovery_from_observables_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "finite Manifold-tower L12 scratch diagnostic only. Discovers inequality regions, connected components, cell membership, and equivalence classes from observable readouts on a finite probe grid. No terrain labels, hidden terrain classes, hand-written region labels, or universal equivalence are admitted.",
+  "source_target": "Manifold-tower L12: region discovery from observables (NO terrain labels).",
+  "object_under_test": {
+    "probe_set": "finite 10 x 12 probe grid P = {(x,y)} with 4-neighbor adjacency A4",
+    "observable_readout": "O(p) = (o0(p), o1(p), o2(p)) in integer readout space; all region structure is recomputed from these values",
+    "threshold_signature": "sigma_tau(O(p)) = (o0 <= 0, o1 >= 0, o2 >= 0)",
+    "equivalence_relation": "observable_threshold_component_equivalence_v0: p equiv_{O,tau,A4} q iff sigma_tau(O(p)) = sigma_tau(O(q)) and p,q are connected by an A4 path whose every cell has that same threshold signature",
+    "quotient": "P / equiv_{O,tau,A4}; each quotient class is one discovered connected component"
+  },
+  "hypotheses_under_test": [
+    "H_regions: inequality signatures induced by observable values partition the finite probe set into non-universal inequality regions.",
+    "H_components: same-signature 4-connected components form the discovered region classes and cover every probe cell exactly once.",
+    "H_membership: cell membership is derived from observable threshold signatures plus adjacency, not from terrain labels.",
+    "H_label_shuffle: shuffling display labels for signatures leaves the structural quotient invariant.",
+    "H_value_change: changing observable values, without editing any label or adjacency structure, moves region boundaries and changes quotient classes."
+  ],
+  "controls_that_must_fire": [
+    "label_shuffle_control: permute only display names attached to threshold signatures; the structure hash and cell memberships must remain invariant.",
+    "value_change_control: add a real data perturbation to observable o0 on a finite cell mask; the threshold memberships, boundary edges, and component count must change.",
+    "nonuniversal_relation_control: the named threshold-component equivalence must produce more than one class and more than one threshold signature."
+  ],
+  "engines": {
+    "exact": "numpy/stdlib exact integer reference leg using explicit BFS over same-signature 4-neighbor cells",
+    "jax": "JAX x64 leg using vectorized thresholding plus fixed-point min-label propagation for connected components"
+  },
+  "agreement_invariants": [
+    "grid_shape",
+    "n_probe_cells",
+    "equivalence_relation_name",
+    "threshold_signature_name",
+    "base_n_signatures",
+    "base_n_components",
+    "base_component_sizes",
+    "base_boundary_edges_count",
+    "base_structure_hash",
+    "label_shuffle_structure_hash",
+    "perturbed_n_signatures",
+    "perturbed_n_components",
+    "perturbed_component_sizes",
+    "perturbed_boundary_edges_count",
+    "perturbed_structure_hash",
+    "value_changed_cell_ids",
+    "boundary_edge_symmetric_difference_count"
+  ]
+}

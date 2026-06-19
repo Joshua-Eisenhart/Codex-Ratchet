@@ -1,0 +1,353 @@
+{
+  "C": {
+    "density_constraint_witness": {
+      "hermitian_pass": true,
+      "hermiticity_residual": 0.0,
+      "min_eigenvalue": 0.125,
+      "normalization": 1.0,
+      "psd_pass": true,
+      "trace": 1.0,
+      "trace_one_pass": true
+    },
+    "rung_specific_constraints": [
+      "Cayley-Dickson octonion multiplication table",
+      "L_ei^T = -L_ei",
+      "L_ei L_ej + L_ej L_ei = -2 delta_ij I",
+      "first six L_ei generate a 64-dimensional Cl(0,6) carrier on an 8-dimensional spinor"
+    ],
+    "state_constraints": [
+      "trace(rho)=1",
+      "rho PSD",
+      "rho Hermitian",
+      "normalization"
+    ]
+  },
+  "M": {
+    "entry_probe_count": 3136,
+    "observable_realization": "QuantumOptics NLevelBasis(8) operators i*L_ei are Hermitian finite probes",
+    "operators": [
+      "L_e1",
+      "L_e2",
+      "L_e3",
+      "L_e4",
+      "L_e5",
+      "L_e6",
+      "L_e7"
+    ],
+    "pair_probe_count": 49,
+    "probe_entries": "<basis_a | (L_ei L_ej + L_ej L_ei) | basis_b> for i,j=1..7 and a,b=1..8",
+    "probe_family": "finite octonion left-multiplication observables and anticommutator matrix entries",
+    "quotient_discriminators": [
+      "generator_count",
+      "carrier_dimension",
+      "anticommutation_signature",
+      "generated_clifford_rank",
+      "spinor_dimension"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing package comparison for Cl(0,6) dimension 64 and generator anticommutation",
+      "tried": true,
+      "used": true
+    },
+    "Dates": {
+      "reason": "supportive UTC timestamp",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive local matrix residuals, SVD ranks, and eigenvalue checks; not the carrier authority",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing finite 8-level observable realization of the i*L_ei probe family and density admissibility witness",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hash",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing in-solver derivation of octonion L-entry anticommutator products",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "Scratch diagnostic only: finite Cayley-Dickson octonion left-multiplication operators on O link to the 8-real-dimensional Cl(0,6) spinor carrier. No physics claim, no admission, no promotion.",
+  "classification": "scratch_diagnostic",
+  "cliffordalgebras_comparison": {
+    "basis_symbol_count": 64,
+    "constructed": "CliffordAlgebra(0, 6)",
+    "expected_cl6_dimension": 64,
+    "generator_anticommutation_max_residual": 0.0,
+    "package": "CliffordAlgebras",
+    "pass": true,
+    "spinor_dimension_compared": 8
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T02:00:23Z",
+  "julia_version": "1.12.6",
+  "julia_z3_clifford_proof": {
+    "L_entry_count": 448,
+    "correct_relation_violation": {
+      "binds_L_entries": true,
+      "bound_entry_count": 448,
+      "derived_expression": "sum_c(L_i[a,c]*L_j[c,b] + L_j[a,c]*L_i[c,b])",
+      "mode": "correct_all_violation",
+      "sort": "Int",
+      "status": "unsat"
+    },
+    "derived_anticommutator_entry_count": 3136,
+    "encoding": "Julia Z3.jl v2 witness: bind all computed octonion L_i entries, derive anticommutator entries inside Z3 from matrix products, and ask for a Clifford-relation violation.",
+    "erase_L_entry_binding_flip": {
+      "binds_L_entries": false,
+      "bound_entry_count": 0,
+      "derived_expression": "sum_c(L_i[a,c]*L_j[c,b] + L_j[a,c]*L_i[c,b])",
+      "mode": "correct_all_violation",
+      "sort": "Int",
+      "status": "sat"
+    },
+    "forbidden_pattern_guard": "No precomputed residual/count/boolean is asserted; Z3 builds products from bound L entries.",
+    "offdiag_pair_violation": {
+      "binds_L_entries": true,
+      "bound_entry_count": 448,
+      "derived_expression": "sum_c(L_i[a,c]*L_j[c,b] + L_j[a,c]*L_i[c,b])",
+      "mode": "offdiag_violation",
+      "sort": "Int",
+      "status": "unsat"
+    },
+    "pass": true,
+    "self_square_violation": {
+      "binds_L_entries": true,
+      "bound_entry_count": 448,
+      "derived_expression": "sum_c(L_i[a,c]*L_j[c,b] + L_j[a,c]*L_i[c,b])",
+      "mode": "self_square_violation",
+      "sort": "Int",
+      "status": "unsat"
+    },
+    "verdict": "unsat",
+    "wrong_sign_plus_I_violation_control": {
+      "binds_L_entries": true,
+      "bound_entry_count": 448,
+      "derived_expression": "sum_c(L_i[a,c]*L_j[c,b] + L_j[a,c]*L_i[c,b])",
+      "mode": "wrong_sign_violation",
+      "sort": "Int",
+      "status": "sat"
+    }
+  },
+  "negative_controls": {
+    "drop_dimension_and_rank_probe": {
+      "after_class_count": 1,
+      "before_class_count": 2,
+      "dropped_probe": "carrier dimension + generated Clifford rank",
+      "flips": true
+    },
+    "quaternion_H_control": {
+      "flips": true,
+      "octonion_rank": 64,
+      "octonion_spinor_dim": 8,
+      "quaternion_rank": 4,
+      "quaternion_spinor_dim": 2
+    },
+    "z3_erase_L_entry_binding_flip": {
+      "after_erasing_L_entry_bindings": "sat",
+      "flips": true,
+      "with_L_entry_bindings": "unsat"
+    },
+    "z3_wrong_sign_plus_I_control": {
+      "correct_relation_violation": "unsat",
+      "flips": true,
+      "wrong_sign_plus_I_violation": "sat"
+    }
+  },
+  "object_id": "foundation_r3_octonion_cl6_link_xhigh",
+  "octonion_left_action": {
+    "anticommutation": {
+      "failures": [],
+      "max_residual": 0.0,
+      "pass": true,
+      "relation": "L_i L_j + L_j L_i = -2 delta_ij I"
+    },
+    "carrier_real_dimension": 8,
+    "generated_rank_all_seven_matrix_image": {
+      "generator_count": 7,
+      "rank": 64,
+      "rank_tol": 1.1368683772161608e-11,
+      "word_count": 128
+    },
+    "generated_rank_first_six": {
+      "generator_count": 6,
+      "rank": 64,
+      "rank_tol": 4.019436694230466e-12,
+      "word_count": 64
+    },
+    "generator_count": 7,
+    "pseudoscalar_link": {
+      "minus_residual": 5.656854249492381,
+      "pass": true,
+      "plus_residual": 0.0,
+      "relation": "L_e1 L_e2 L_e3 L_e4 L_e5 L_e6 = L_e7 under this Cayley-Dickson orientation"
+    },
+    "skew": {
+      "max_residual": 0.0,
+      "pass": true,
+      "per_generator_residuals": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "spinor_dim": 8
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "quantumoptics_probe": {
+    "basis": "NLevelBasis{Int64}",
+    "density_constraint_witness": {
+      "hermitian_pass": true,
+      "hermiticity_residual": 0.0,
+      "min_eigenvalue": 0.125,
+      "normalization": 1.0,
+      "psd_pass": true,
+      "trace": 1.0,
+      "trace_one_pass": true
+    },
+    "iL_is_hermitian_max_residual": 0.0,
+    "observable_count": 7,
+    "observable_shape": [
+      8,
+      8
+    ],
+    "pass": true
+  },
+  "quaternion_control": {
+    "anticommutation": {
+      "failures": [],
+      "max_residual": 0.0,
+      "pass": true,
+      "relation": "L_i L_j + L_j L_i = -2 delta_ij I"
+    },
+    "carrier_real_dimension": 4,
+    "control_result": "Cl(0,2) rank 4 / spinor 2, not Cl(0,6) rank 64 / spinor 8",
+    "generated_rank_all_three_matrix_image": {
+      "generator_count": 3,
+      "rank": 4,
+      "rank_tol": 1.004859173557616e-12,
+      "word_count": 8
+    },
+    "generated_rank_first_two": {
+      "generator_count": 2,
+      "rank": 4,
+      "rank_tol": 7.105427357601002e-13,
+      "word_count": 4
+    },
+    "generator_count": 3,
+    "skew": {
+      "max_residual": 0.0,
+      "pass": true,
+      "per_generator_residuals": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "spinor_dim": 2
+  },
+  "quotient": {
+    "S": [
+      "octonion_left_action_on_O",
+      "quaternion_left_action_control_on_H"
+    ],
+    "coarse_probe_signatures_after_dropping_dimension_and_rank": {
+      "octonion_left_action_on_O": "skew=true;anticommutes=true",
+      "quaternion_left_action_control_on_H": "skew=true;anticommutes=true"
+    },
+    "coarsening_flip": {
+      "after_class_count": 1,
+      "before_class_count": 2,
+      "dropped_probe": "carrier dimension + generated Clifford rank",
+      "flips": true
+    },
+    "drop_dimension_and_rank_probe_class_count": 1,
+    "equivalence_relation": "x ~_M y iff all finite M probes match: generator count, carrier dimension, anticommutation signature, generated Clifford rank, and spinor dimension",
+    "full_probe_class_count": 2,
+    "full_probe_signatures": {
+      "octonion_left_action_on_O": "O:generators=7;carrier_dim=8;rank=64;spinor_dim=8;anticommutes=true",
+      "quaternion_left_action_control_on_H": "H:generators=3;carrier_dim=4;rank=4;spinor_dim=2;anticommutes=true"
+    },
+    "octonion_class": {
+      "generated_rank": 64,
+      "label": "Cl(0,6)_spinor_from_O_left_multiplication",
+      "spinor_dim": 8
+    },
+    "quaternion_control_class": {
+      "generated_rank": 4,
+      "label": "Cl(0,2)_control_from_H_left_multiplication",
+      "spinor_dim": 2
+    }
+  },
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r3_octonion_cl6_link_xhigh_julia_results.json",
+  "schema": "codex_ratchet.engine_leg.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r3_octonion_cl6_link_xhigh_julia.jl",
+  "source_sha256": "87ee7968b4ceab87089e15fc971d0b95d77c524b840f7f675e1874fa437b4eea",
+  "standalone": true,
+  "summary": {
+    "all_pass": true,
+    "coarse_quotient_class_count": 1,
+    "full_quotient_class_count": 2,
+    "octonion_all7_matrix_rank": 64,
+    "octonion_anticommutation_max_residual": 0.0,
+    "octonion_cl6_rank": 64,
+    "octonion_spinor_dim": 8,
+    "pseudoscalar_link_plus_residual": 0.0,
+    "quaternion_all3_matrix_rank": 4,
+    "quaternion_anticommutation_max_residual": 0.0,
+    "quaternion_cl2_rank": 4,
+    "quaternion_spinor_dim": 2,
+    "z3_erased_status": "sat",
+    "z3_offdiag_violation": "unsat",
+    "z3_self_square_violation": "unsat",
+    "z3_verdict": "unsat",
+    "z3_wrong_sign_control": "sat"
+  }
+}

@@ -55,7 +55,7 @@ def main():
                     timeout=1800)
     t0 = time.time()
     resp = client.chat.completions.create(
-        model="gemini-2.5-pro",
+        model="gemini-3.1-pro-preview",
         messages=[{"role": "user", "content": prompt}],
         timeout=1800,
     )

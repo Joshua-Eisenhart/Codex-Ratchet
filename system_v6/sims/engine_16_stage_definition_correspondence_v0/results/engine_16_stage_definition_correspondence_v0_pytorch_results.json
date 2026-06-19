@@ -1,0 +1,99 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact 16x16 matrix dimension and discovered-count guard.",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive tensor materialization for explicit stage matrices.",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing vmap application of all 16 maps to the carrier vector.",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "defined_distinct_component_count": 12,
+    "discovered_component_count": 16,
+    "exact_matched_component_count": 0,
+    "match_matrix_sha256": "7cc502cc26a97ce86e1d05cf571126498776adc32818e5a64b15084dc28149bc",
+    "normal_component_ids": [
+      "eng64_fp_b9cc552fa843db6e",
+      "eng64_fp_3795d2d8a93565de",
+      "eng64_fp_72dc0be80cc8214a",
+      "eng64_fp_72dc0be80cc8214a",
+      "eng64_fp_d5c5f195082952d4",
+      "eng64_fp_d5c5f195082952d4",
+      "eng64_fp_c60d46a2872fa38b",
+      "eng64_fp_57aa8643996068dc",
+      "eng64_fp_1f6865018e454188",
+      "eng64_fp_b0567258a8889250",
+      "eng64_fp_5cd36304934dc3a7",
+      "eng64_fp_5cd36304934dc3a7",
+      "eng64_fp_85ba027212f1e4ab",
+      "eng64_fp_85ba027212f1e4ab",
+      "eng64_fp_b2650ac10b8d8dd6",
+      "eng64_fp_df2a4a240f523a15"
+    ],
+    "perfect_bijection": false,
+    "stage_count": 16
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T20:31:46Z",
+  "package_observables": {
+    "sympy": "sp.Rational exact guard for 16 stage rows, 16 discovered rows, and 16x16 matrix shape",
+    "torch.func": "vmap over the 16 explicit 3x3 stage matrices applied to the representative Bloch vector"
+  },
+  "package_versions": {
+    "sympy": "1.14.0",
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/engine_16_stage_definition_correspondence_v0/results/engine_16_stage_definition_correspondence_v0_pytorch_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "engine_16_stage_definition_correspondence_v0",
+  "source_path": "system_v6/sims/engine_16_stage_definition_correspondence_v0/engine_16_stage_definition_correspondence_v0_pytorch.py",
+  "source_sha256": "b2c582f2ceef5bddcaf9d95a06da68c0084a76e94b315ab4495f11f29a1b21c3",
+  "sympy_guard": {
+    "discovered_count": "16",
+    "match_cols": "16",
+    "match_rows": "16",
+    "pass": true,
+    "stage_count": "16"
+  },
+  "torch_func_receipt": {
+    "matrix_tensor_shape": [
+      16,
+      3,
+      3
+    ],
+    "max_abs_delta_vs_common": 1e-12,
+    "output_tensor_shape": [
+      16,
+      3
+    ],
+    "pass": true
+  }
+}

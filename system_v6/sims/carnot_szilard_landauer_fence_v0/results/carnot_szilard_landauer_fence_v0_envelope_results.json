@@ -1,0 +1,940 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": {
+      "cvc5": "load_bearing",
+      "jax": "supportive",
+      "sympy": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "julia": {
+      "Graphs": "load_bearing",
+      "JSON3": "supportive",
+      "Z3": "load_bearing"
+    },
+    "pytorch": {
+      "cvc5": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "z3": "load_bearing"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "jax": {
+      "cvc5": {
+        "reason": "load_bearing independent SAT/UNSAT proof over same computed rational fence rows",
+        "tried": true,
+        "used": true
+      },
+      "jax": {
+        "reason": "supportive x64 integer-array workhorse for pinned coefficients",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "load_bearing exact Rational and ln(2) typed-entropy expression",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load_bearing SAT/UNSAT proof over computed rational fence rows",
+        "tried": true,
+        "used": true
+      }
+    },
+    "julia": {
+      "Graphs": {
+        "reason": "load_bearing order graph for shuffled-ledger N01 control",
+        "tried": true,
+        "used": true
+      },
+      "JSON3": {
+        "reason": "supportive result serialization",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "load_bearing Julia-side SMT check over computed exact Rational coefficients",
+        "tried": true,
+        "used": true
+      }
+    },
+    "pytorch": {
+      "cvc5": {
+        "reason": "load_bearing independent SAT/UNSAT proof over torch-derived coefficients",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "load_bearing exact Rational/log(2) typed entropy row",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "load_bearing vmap finite coefficient construction before solver binding",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load_bearing SAT/UNSAT proof over torch-derived coefficients",
+        "tried": true,
+        "used": true
+      }
+    }
+  },
+  "all_pass": true,
+  "boundary_convention": "closed reversible Carnot boundary admitted: eta <= eta_C, so eta = eta_C is SAT; only eta > eta_C is excluded",
+  "build_gates": {
+    "all_legs_passed": true,
+    "broken_fence_sat_flip": true,
+    "classification_scratch": true,
+    "closed_boundary_consistent": true,
+    "formal_admission_blocked": true,
+    "jax_z3_cvc5_expected": true,
+    "julia_z3_expected": true,
+    "promotion_blocked": true,
+    "pytorch_z3_cvc5_expected": true,
+    "shuffled_order_changes_verdict": true,
+    "typed_entropy_no_mixed_rows": true
+  },
+  "ceiling": "scratch_diagnostic",
+  "claim_path_tools": [
+    "Z3",
+    "Graphs",
+    "z3",
+    "cvc5",
+    "sympy",
+    "torch.func"
+  ],
+  "classical_fence": {
+    "admitted_rows": {
+      "carnot_equality_boundary": {
+        "bound": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "classification": "classical_baseline",
+        "eta": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "status": "sat"
+      },
+      "paid_erasure_one_bit": {
+        "classification": "classical_baseline",
+        "paid_ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "required_ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "status": "sat"
+      },
+      "sub_carnot_eta_1_4": {
+        "bound": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "classification": "classical_baseline",
+        "eta": {
+          "den": 4,
+          "num": 1,
+          "string": "1/4"
+        },
+        "status": "sat"
+      },
+      "trivial_zero_work": {
+        "bound": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "classification": "classical_baseline",
+        "eta": {
+          "den": 1,
+          "num": 0,
+          "string": "0/1"
+        },
+        "status": "sat"
+      }
+    },
+    "computed": {
+      "eta_C": {
+        "den": 2,
+        "num": 1,
+        "string": "1/2"
+      },
+      "landauer_min_erasure_cost": {
+        "exact": "ln(2)",
+        "ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "unit": "nats"
+      },
+      "szilard_single_bit_work": {
+        "exact": "ln(2)",
+        "ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "unit": "nats"
+      },
+      "typed_entropy_conversion": {
+        "bits": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "conversion": "1 bit * ln(2) = ln(2) nats",
+        "nats_exact": "ln(2)"
+      }
+    },
+    "excluded_rows": {
+      "below_landauer_half_paid": {
+        "classification": "classical_baseline",
+        "paid_ln2_coeff": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "required_ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "status": "unsat"
+      },
+      "single_bath_positive_work": {
+        "bound": {
+          "den": 1,
+          "num": 0,
+          "string": "0/1"
+        },
+        "classification": "classical_baseline",
+        "eta": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "status": "unsat"
+      },
+      "super_carnot_eta_3_4": {
+        "bound": {
+          "den": 2,
+          "num": 1,
+          "string": "1/2"
+        },
+        "classification": "classical_baseline",
+        "eta": {
+          "den": 4,
+          "num": 3,
+          "string": "3/4"
+        },
+        "status": "unsat"
+      },
+      "unpaid_erasure_surplus": {
+        "classification": "classical_baseline",
+        "paid_ln2_coeff": {
+          "den": 1,
+          "num": 0,
+          "string": "0/1"
+        },
+        "required_ln2_coeff": {
+          "den": 1,
+          "num": 1,
+          "string": "1/1"
+        },
+        "status": "unsat"
+      }
+    },
+    "expected_solver_status": {
+      "below_landauer_half_paid": "unsat",
+      "carnot_equality_boundary": "sat",
+      "paid_erasure_one_bit": "sat",
+      "single_bath_positive_work": "unsat",
+      "sub_carnot_eta_1_4": "sat",
+      "super_carnot_eta_3_4": "unsat",
+      "trivial_zero_work": "sat",
+      "unpaid_erasure_surplus": "unsat"
+    },
+    "pinned_units": {
+      "T_c": {
+        "den": 1,
+        "num": 1,
+        "string": "1/1"
+      },
+      "T_h": {
+        "den": 1,
+        "num": 2,
+        "string": "2/1"
+      },
+      "k_B": "1"
+    }
+  },
+  "classification": "scratch_diagnostic",
+  "connection_row": {
+    "claim_boundary": "same typed nats account only under the finite state-plus-record convention; no cross-type entropy sum outside that convention",
+    "consumes": {
+      "manifold_information_throughput_v0": "system_v6/sims/manifold_information_throughput_v0/audit_verdict.md",
+      "z4_syndrome_record_v0": "system_v6/sims/z4_syndrome_record_v0/audit_verdict.md"
+    },
+    "conversion": "1 bit = ln(2) nats; Z4 four-record row = ln(4) = 2 ln(2) nats; Landauer one-bit row = ln(2) nats",
+    "label": "read_only_observation_not_admission",
+    "observation": "Landauer paid-erasure row and the Z4 quotient-loss/record row are both finite-counting ledger rows in nats under explicit state-plus-record bookkeeping; this packet makes no scalar conservation or bridge/physics admission."
+  },
+  "controls": {
+    "broken_fence_drop_carnot_constraint_super_carnot": {
+      "expected": "sat",
+      "jax_cvc5": "sat",
+      "jax_z3": "sat",
+      "julia_z3": "sat",
+      "pytorch_cvc5": "sat",
+      "pytorch_z3": "sat"
+    },
+    "shuffled_ledger_order": {
+      "jax": {
+        "n01_order_gap": 1,
+        "normal_order": [
+          "measure",
+          "feedback",
+          "erase"
+        ],
+        "normal_verdict": "sat",
+        "shuffled_order": [
+          "feedback",
+          "measure",
+          "erase"
+        ],
+        "shuffled_verdict": "unsat"
+      },
+      "julia": {
+        "n01_order_gap": 1,
+        "normal": {
+          "feedback_before_erase": true,
+          "measure_before_feedback": true,
+          "order": [
+            "measure",
+            "feedback",
+            "erase"
+          ],
+          "path_measure_to_erase": true,
+          "verdict": "sat"
+        },
+        "shuffled": {
+          "feedback_before_erase": true,
+          "measure_before_feedback": false,
+          "order": [
+            "feedback",
+            "measure",
+            "erase"
+          ],
+          "path_measure_to_erase": true,
+          "verdict": "unsat"
+        }
+      },
+      "pytorch": {
+        "n01_order_gap": 1,
+        "normal_order": [
+          "measure",
+          "feedback",
+          "erase"
+        ],
+        "normal_verdict": "sat",
+        "shuffled_order": [
+          "feedback",
+          "measure",
+          "erase"
+        ],
+        "shuffled_verdict": "unsat"
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "broken_fence_control": "sat",
+      "details": {
+        "below_landauer_half_paid": "unsat",
+        "carnot_equality_boundary": "sat",
+        "paid_erasure_one_bit": "sat",
+        "single_bath_positive_work": "unsat",
+        "sub_carnot_eta_1_4": "sat",
+        "super_carnot_eta_3_4": "unsat",
+        "trivial_zero_work": "sat",
+        "unpaid_erasure_surplus": "unsat"
+      },
+      "load_bearing": true,
+      "meaning": "independent cvc5 parity for the same computed forbidden suite",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "details": {
+        "below_landauer_half_paid": {
+          "julia_z3": "unsat"
+        },
+        "carnot_equality_boundary": {
+          "julia_z3": "sat"
+        },
+        "paid_erasure_one_bit": {
+          "julia_z3": "sat"
+        },
+        "single_bath_positive_work": {
+          "julia_z3": "unsat"
+        },
+        "sub_carnot_eta_1_4": {
+          "julia_z3": "sat"
+        },
+        "super_carnot_eta_3_4": {
+          "julia_z3": "unsat"
+        },
+        "trivial_zero_work": {
+          "julia_z3": "sat"
+        },
+        "unpaid_erasure_surplus": {
+          "julia_z3": "unsat"
+        }
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "pytorch_cvc5": {
+      "details": {
+        "below_landauer_half_paid": "unsat",
+        "carnot_equality_boundary": "sat",
+        "paid_erasure_one_bit": "sat",
+        "single_bath_positive_work": "unsat",
+        "sub_carnot_eta_1_4": "sat",
+        "super_carnot_eta_3_4": "unsat",
+        "trivial_zero_work": "sat",
+        "unpaid_erasure_surplus": "unsat"
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "pytorch_z3": {
+      "details": {
+        "below_landauer_half_paid": "unsat",
+        "carnot_equality_boundary": "sat",
+        "paid_erasure_one_bit": "sat",
+        "single_bath_positive_work": "unsat",
+        "sub_carnot_eta_1_4": "sat",
+        "super_carnot_eta_3_4": "unsat",
+        "trivial_zero_work": "sat",
+        "unpaid_erasure_surplus": "unsat"
+      },
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "broken_fence_control": "sat",
+      "details": {
+        "below_landauer_half_paid": "unsat",
+        "carnot_equality_boundary": "sat",
+        "paid_erasure_one_bit": "sat",
+        "single_bath_positive_work": "unsat",
+        "sub_carnot_eta_1_4": "sat",
+        "super_carnot_eta_3_4": "unsat",
+        "trivial_zero_work": "sat",
+        "unpaid_erasure_surplus": "unsat"
+      },
+      "load_bearing": true,
+      "meaning": "forbidden suite contains no legal model for super-Carnot, single-bath positive work, below-Landauer, or unpaid-erasure surplus",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": 8.0,
+      "julia": 8.0,
+      "pytorch": 8.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "metric": "solver_status_rows_matched"
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engine_result_paths": {
+    "jax": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_jax_results.json",
+    "julia": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_julia_results.json",
+    "pytorch": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_pytorch_results.json"
+  },
+  "engines": {
+    "jax": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load_bearing independent SAT/UNSAT proof over same computed rational fence rows",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 integer-array workhorse for pinned coefficients",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load_bearing exact Rational and ln(2) typed-entropy expression",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load_bearing SAT/UNSAT proof over computed rational fence rows",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver checkSat statuses over computed exact rational coefficients",
+        "sympy": "sp.Rational/sp.log(2) typed entropy conversion row",
+        "z3": "z3.Solver statuses over computed exact rational coefficients"
+      },
+      "package_versions": {
+        "cvc5": "1.3.3",
+        "jax": "0.10.1",
+        "sympy": "1.14.0",
+        "z3": "4.16.0"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "sympy"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_jax_results.json",
+      "result_sha256": "f165468ceb4f9e657299222bf0e740742da1a3fa5cbfe7b5ef21f29f95cd492e",
+      "source_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_jax.py",
+      "source_sha256": "7617b174d3b7f9ed65a556d9c5e2e7b006c0cc9ed1e6e033c27d0effe31ae451",
+      "tool_calls": [
+        {
+          "boundary_case": "eta = eta_C admitted under closed-boundary convention",
+          "demotion_condition": "demote if solver receives only labels rather than computed coefficients",
+          "gates": [
+            "all_pass",
+            "falsifier_suite"
+          ],
+          "input_object": "computed rational Carnot/Landauer coefficients",
+          "negative/erased_control": "super-Carnot, below-Landauer, unpaid erasure, dropped constraint SAT flip",
+          "output_object": "SAT admitted rows, UNSAT forbidden rows, SAT broken-fence controls",
+          "positive_case": "sub-Carnot, equality boundary, paid erasure, zero work",
+          "qualified_api/function": "z3.Solver/z3.Int/solver.add/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "eta = eta_C admitted",
+          "demotion_condition": "demote if cvc5 parity is missing or mismatched",
+          "gates": [
+            "all_pass",
+            "crossover_proof"
+          ],
+          "input_object": "same computed rational coefficients as z3",
+          "negative/erased_control": "forbidden rows UNSAT and broken-fence SAT flip",
+          "output_object": "independent SAT/UNSAT parity",
+          "positive_case": "admitted classical rows SAT",
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+          "tool": "cvc5"
+        },
+        {
+          "boundary_case": "Landauer coefficient 1*ln(2)",
+          "demotion_condition": "demote if entropy rows mix bases without conversion",
+          "gates": [
+            "typed_entropy"
+          ],
+          "input_object": "bit-to-nat entropy row",
+          "negative/erased_control": "mixed bits/nats list empty",
+          "output_object": "1 bit * ln(2) = ln(2) nats",
+          "positive_case": "typed conversion row present",
+          "qualified_api/function": "sp.Rational/sp.log",
+          "tool": "sympy"
+        }
+      ]
+    },
+    "julia": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "Graphs": "load_bearing",
+        "JSON3": "supportive",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "Graphs": {
+          "reason": "load_bearing order graph for shuffled-ledger N01 control",
+          "tried": true,
+          "used": true
+        },
+        "JSON3": {
+          "reason": "supportive result serialization",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load_bearing Julia-side SMT check over computed exact Rational coefficients",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "Z3",
+        "Graphs"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.has_path order verdict changes for shuffled-ledger N01 control",
+        "Z3": "Z3.check statuses over computed exact Rational coefficients and broken-fence SAT flip"
+      },
+      "package_versions": {
+        "julia": "1.12.6",
+        "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml"
+      },
+      "packages_used": [
+        "JSON3",
+        "SHA",
+        "Z3",
+        "Graphs"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_julia_results.json",
+      "result_sha256": "cd9c2cb0012f631d764fce7d12bcd374f0a352ae378ebe11e10e04ac32496dc5",
+      "source_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_julia.jl",
+      "source_sha256": "ca34a5ae5370c9d135e84546ec25679fec5d8691b9fb227da652fc667de8404c",
+      "tool_calls": [
+        {
+          "boundary_case": "eta = eta_C admitted",
+          "demotion_condition": "demote if Z3 rows are not bound to computed Rational values",
+          "gates": [
+            "all_pass",
+            "julia_reference"
+          ],
+          "input_object": "computed exact Rational Carnot/Landauer coefficients",
+          "negative/erased_control": "super-Carnot, single-bath positive work, below-Landauer, unpaid erasure",
+          "output_object": "SAT admitted rows, UNSAT forbidden rows, SAT broken-fence control",
+          "positive_case": "sub-Carnot/equality/paid/zero rows",
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.IntVal/Z3.add/Z3.check",
+          "tool": "Z3"
+        },
+        {
+          "boundary_case": "three finite steps",
+          "demotion_condition": "demote if order verdict is label-only",
+          "gates": [
+            "N01_order_control"
+          ],
+          "input_object": "finite measurement-feedback-erasure step order",
+          "negative/erased_control": "feedback -> measure -> erase",
+          "output_object": "normal order SAT, shuffled order UNSAT",
+          "positive_case": "measure -> feedback -> erase",
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.has_path",
+          "tool": "Graphs"
+        }
+      ]
+    },
+    "pytorch": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "sympy": "load_bearing",
+        "torch.func": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load_bearing independent SAT/UNSAT proof over torch-derived coefficients",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load_bearing exact Rational/log(2) typed entropy row",
+          "tried": true,
+          "used": true
+        },
+        "torch.func": {
+          "reason": "load_bearing vmap finite coefficient construction before solver binding",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load_bearing SAT/UNSAT proof over torch-derived coefficients",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "z3",
+        "cvc5",
+        "sympy"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver checkSat statuses over computed exact rational coefficients",
+        "sympy": "sp.Rational/sp.log(2) typed entropy conversion row",
+        "torch.func": "torch.func.vmap finite coefficient tensor feeding z3/cvc5",
+        "z3": "z3.Solver statuses over computed exact rational coefficients"
+      },
+      "package_versions": {
+        "cvc5": "1.3.3",
+        "sympy": "1.14.0",
+        "torch": "2.11.0",
+        "z3": "4.16.0"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5",
+        "sympy"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_pytorch_results.json",
+      "result_sha256": "7f6aa184ad866b3a3541fb08183943ad393dcdcac9c81843b4c56b3aa7c17c00",
+      "source_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_pytorch.py",
+      "source_sha256": "a45449fb3242fe1ea5649befa3e496a2ce268fc6c1e4fcbf91accc4f4854afae",
+      "tool_calls": [
+        {
+          "boundary_case": "eta = eta_C row",
+          "demotion_condition": "demote if torch coefficients do not feed solver rows",
+          "gates": [
+            "all_pass",
+            "coefficient_binding"
+          ],
+          "input_object": "finite integer row coefficient tensor",
+          "negative/erased_control": "forbidden rows and broken-fence SAT flip",
+          "output_object": "row coefficients consumed by z3/cvc5",
+          "positive_case": "admitted classical rows",
+          "qualified_api/function": "torch.func.vmap",
+          "tool": "torch.func"
+        }
+      ]
+    }
+  },
+  "falsifier_results": {
+    "below_landauer_sat": "killed_by_unsat",
+    "equality_boundary_inconsistent": "killed_by_consistent_sat_boundary",
+    "free_erasure_surplus_sat": "killed_by_unsat",
+    "mixed_bits_nats_row": "killed_by_empty_typed_entropy_violations_and_conversion_row",
+    "super_carnot_sat": "killed_by_unsat"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T23:59:57Z",
+  "mode": "all_three_full_sims",
+  "object_id": "carnot_szilard_landauer_fence_v0",
+  "parent_lineage": {
+    "manifold_information_throughput_v0": "system_v6/sims/manifold_information_throughput_v0/audit_verdict.md",
+    "old_estate_mine_20260611": "system_v6/receipts/old_estate_mine_20260611.md@77fb7ca52",
+    "z4_syndrome_record_v0": "system_v6/sims/z4_syndrome_record_v0/audit_verdict.md"
+  },
+  "positive_negative_boundary_sections": {
+    "boundary": [
+      "carnot_equality_boundary",
+      "trivial_zero_work"
+    ],
+    "negative_excluded": [
+      "below_landauer_half_paid",
+      "single_bath_positive_work",
+      "super_carnot_eta_3_4",
+      "unpaid_erasure_surplus"
+    ],
+    "positive_admitted": [
+      "carnot_equality_boundary",
+      "paid_erasure_one_bit",
+      "sub_carnot_eta_1_4",
+      "trivial_zero_work"
+    ]
+  },
+  "promotion_allowed": false,
+  "purpose_boundary": "classical fence/exclusion evidence only; no physics admission, bridge claim, or nonclassical promotion",
+  "result_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_envelope_results.json",
+  "runtime_versions": {
+    "legs": {
+      "jax": {
+        "cvc5": "1.3.3",
+        "jax": "0.10.1",
+        "sympy": "1.14.0",
+        "z3": "4.16.0"
+      },
+      "julia": {
+        "julia": "1.12.6",
+        "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml"
+      },
+      "pytorch": {
+        "cvc5": "1.3.3",
+        "sympy": "1.14.0",
+        "torch": "2.11.0",
+        "z3": "4.16.0"
+      }
+    },
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.6"
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "carnot_szilard_landauer_fence_v0",
+  "source_path": "system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_envelope.py",
+  "source_sha256": "2ea7d94ba7a5a9b543797fb0ddf15d99e3d042630b1959e2360967dba1b55d0e",
+  "stability_pairs": [],
+  "standard_schema_mode": "all_three_full_sims",
+  "tool_calls": {
+    "jax": [
+      {
+        "boundary_case": "eta = eta_C admitted under closed-boundary convention",
+        "demotion_condition": "demote if solver receives only labels rather than computed coefficients",
+        "gates": [
+          "all_pass",
+          "falsifier_suite"
+        ],
+        "input_object": "computed rational Carnot/Landauer coefficients",
+        "negative/erased_control": "super-Carnot, below-Landauer, unpaid erasure, dropped constraint SAT flip",
+        "output_object": "SAT admitted rows, UNSAT forbidden rows, SAT broken-fence controls",
+        "positive_case": "sub-Carnot, equality boundary, paid erasure, zero work",
+        "qualified_api/function": "z3.Solver/z3.Int/solver.add/check",
+        "tool": "z3"
+      },
+      {
+        "boundary_case": "eta = eta_C admitted",
+        "demotion_condition": "demote if cvc5 parity is missing or mismatched",
+        "gates": [
+          "all_pass",
+          "crossover_proof"
+        ],
+        "input_object": "same computed rational coefficients as z3",
+        "negative/erased_control": "forbidden rows UNSAT and broken-fence SAT flip",
+        "output_object": "independent SAT/UNSAT parity",
+        "positive_case": "admitted classical rows SAT",
+        "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+        "tool": "cvc5"
+      },
+      {
+        "boundary_case": "Landauer coefficient 1*ln(2)",
+        "demotion_condition": "demote if entropy rows mix bases without conversion",
+        "gates": [
+          "typed_entropy"
+        ],
+        "input_object": "bit-to-nat entropy row",
+        "negative/erased_control": "mixed bits/nats list empty",
+        "output_object": "1 bit * ln(2) = ln(2) nats",
+        "positive_case": "typed conversion row present",
+        "qualified_api/function": "sp.Rational/sp.log",
+        "tool": "sympy"
+      }
+    ],
+    "julia": [
+      {
+        "boundary_case": "eta = eta_C admitted",
+        "demotion_condition": "demote if Z3 rows are not bound to computed Rational values",
+        "gates": [
+          "all_pass",
+          "julia_reference"
+        ],
+        "input_object": "computed exact Rational Carnot/Landauer coefficients",
+        "negative/erased_control": "super-Carnot, single-bath positive work, below-Landauer, unpaid erasure",
+        "output_object": "SAT admitted rows, UNSAT forbidden rows, SAT broken-fence control",
+        "positive_case": "sub-Carnot/equality/paid/zero rows",
+        "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.IntVal/Z3.add/Z3.check",
+        "tool": "Z3"
+      },
+      {
+        "boundary_case": "three finite steps",
+        "demotion_condition": "demote if order verdict is label-only",
+        "gates": [
+          "N01_order_control"
+        ],
+        "input_object": "finite measurement-feedback-erasure step order",
+        "negative/erased_control": "feedback -> measure -> erase",
+        "output_object": "normal order SAT, shuffled order UNSAT",
+        "positive_case": "measure -> feedback -> erase",
+        "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.has_path",
+        "tool": "Graphs"
+      }
+    ],
+    "pytorch": [
+      {
+        "boundary_case": "eta = eta_C row",
+        "demotion_condition": "demote if torch coefficients do not feed solver rows",
+        "gates": [
+          "all_pass",
+          "coefficient_binding"
+        ],
+        "input_object": "finite integer row coefficient tensor",
+        "negative/erased_control": "forbidden rows and broken-fence SAT flip",
+        "output_object": "row coefficients consumed by z3/cvc5",
+        "positive_case": "admitted classical rows",
+        "qualified_api/function": "torch.func.vmap",
+        "tool": "torch.func"
+      }
+    ]
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "classical_baseline",
+      "exact_arithmetic",
+      "smt_fence",
+      "typed_entropy_ledger"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver binds the same computed row values independently",
+        "sympy": "sp.Rational/sp.log(2) records exact typed entropy conversion",
+        "z3": "z3.Solver binds computed rational row values to SAT/UNSAT statuses"
+      },
+      "julia": {
+        "Graphs": "Graphs.has_path binds finite step-order N01 shuffled-ledger control",
+        "Z3": "Z3.check binds computed exact Rational coefficients for legal/forbidden fence rows"
+      },
+      "pytorch": {
+        "cvc5": "cvc5.Solver independently binds torch-derived rational row values",
+        "sympy": "sp.Rational/sp.log(2) records exact typed entropy conversion",
+        "torch.func": "torch.func.vmap computes finite row coefficients before solver binding",
+        "z3": "z3.Solver binds torch-derived rational row values"
+      }
+    }
+  },
+  "validator_commands": [
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_jax.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_pytorch.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/carnot_szilard_landauer_fence_v0/carnot_szilard_landauer_fence_v0_envelope.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/carnot_szilard_landauer_fence_v0/validate_carnot_szilard_landauer_fence_v0.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_envelope_results.json"
+  ]
+}

@@ -59,11 +59,13 @@ Never write "verified," "confirmed," "28/28 PASS," or "all pass" without specify
 
 ## Hard Stage Gate
 
-Do not soften this into flexible lanes:
+> **SUPERSEDED FRAMING NOTE (2026-06-08):** the current execution roadmap is `~/wiki/projects/codex-ratchet/current-canonical-plan-and-anti-drift-2026-06-08.md` (4-layer Julia-Canon / JAX / PyTorch / world-engine stack). `17_actual_lego_registry.md` + `MIGRATION_REGISTRY.md` are now a **MINE for math objects, NOT the roadmap**. The stage-gate ORDERING below still holds (tool → integration → lego → coupling → bridge); the *registry it pointed at* is historical. Current frontier is named by current receipts + repo gates, not by the old registry rows.
+
+Do not soften this into flexible lanes (the ORDER is binding; the lego stage is verified by current receipts/gates, not the old registry):
 
 1. tool sims
 2. tool-integration sims
-3. all lego rows, one by one, until the lego stage is complete across `system_v5/docs/17_actual_lego_registry.md`
+3. all lego rows, one by one, until the lego stage is complete — verified by current receipts and repo gates (the old `17_actual_lego_registry.md` is historical/a mine, not the authority)
 4. only then couplings
 5. only after coupling/coexistence/topology/emergence evidence, bridge or axis-level claims
 
@@ -92,7 +94,7 @@ Do not advance to step 6 without evidence from steps 1–5.
 
 | Lane | What it tracks | Current status |
 |---|---|---|
-| Foundation migration | 28 families numpy→torch | C2_graph_topology: 11/28 non-null, 0 mismatches (migration registry still NOT_STARTED) |
+| ~~Foundation migration (numpy→torch)~~ — **SUPERSEDED 2026-06-08** | now the 4-layer engine architecture: Julia Canon / JAX workhorse / PyTorch first-class graph-engine / world-engine | PyTorch substrate active (389 scouts + 10/14 legos torch); numpy→torch is NOT a pending migration. numpy = control-only |
 | Seam proof depth | z3/cvc5 load-bearing | Phi0 seam closed 2026-04-08; Axis 6 open |
 | Stack/nesting sims | shell-local→coupling→coexistence | Layer triple catalog done; coupling matrix in progress |
 
@@ -117,12 +119,14 @@ bridge, QIT, GStack, axis, or nonclassical admission by themselves.
 
 ---
 
-## Known Stale State (2026-04-08)
+## Known Stale State (2026-04-08 — now itself SUPERSEDED 2026-06-08)
 
-- Phase 7 table: "PASS" = C1/C3/C4 only; C2_graph_topology surface consistent (0 mismatches) — migration registry remains NOT_STARTED
-- MIGRATION_REGISTRY.md: shows all 28 NOT_STARTED; torch sims exist
+These rows describe the OLD numpy→torch migration framing, which is no longer the plan (PyTorch is now the first-class graph/network engine; numpy→torch is not a pending migration). Retained as historical:
 
-Do not edit these docs to show progress until the code/result gate is satisfied.
+- ~~Phase 7 table: "PASS" = C1/C3/C4 only; C2_graph_topology surface consistent (0 mismatches) — migration registry remains NOT_STARTED~~
+- ~~MIGRATION_REGISTRY.md: shows all 28 NOT_STARTED; torch sims exist~~
+
+Do not edit the OLD migration docs to show progress; they are a mine, not the roadmap. Current state lives in current receipts + repo gates + the 2026-06-08 canonical plan.
 
 ---
 

@@ -1,0 +1,1086 @@
+{
+  "package_versions": {
+    "Grassmann": "0.8.44",
+    "Z3": "1.0.4",
+    "QuantumOptics": "1.2.6"
+  },
+  "three_level_property_matrix": {
+    "conditioned_fixed_point_structure": {
+      "level_a": "degenerate",
+      "level_c": "exists_via_disintegration_rule",
+      "level_b": "degenerate"
+    },
+    "lr_signed_separation": {
+      "level_a": "undefined",
+      "level_c": "exists_shell_conditioned",
+      "level_b": "exists"
+    },
+    "shell_conditioned_gamma5_shift": {
+      "level_a": "undefined",
+      "level_c": "exists",
+      "level_b": "degenerate"
+    },
+    "bloch_flow": {
+      "level_a": "exists",
+      "level_c": "exists_on_shell_sites",
+      "level_b": "exists_with_spinor_lift_projection"
+    },
+    "shell_leakage_class": {
+      "level_a": "undefined",
+      "level_c": "exists",
+      "level_b": "undefined"
+    }
+  },
+  "result_path": "system_v6/sims/terrain_spinor_shell_nest_v0/results/terrain_spinor_shell_nest_v0_julia_results.json",
+  "packages_used": [
+    "QuantumOptics",
+    "Grassmann",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "source_sha256": "86ad32ddda898e5a546d7a4077eca86bfd09865466530ba9be732f7989d02323",
+  "pin_sha256": "5553a4a1c7f97b08b5c8d14ac86c7658fe0c8164ff0e5ec5d147d4ce430631e0",
+  "classification": "scratch_diagnostic",
+  "load_bearing_decomposition": {
+    "Si_Hill_L": {
+      "level_a_bloch": {
+        "flow_t1": [
+          0.436571720374,
+          0.184579562867,
+          0.707106781186
+        ],
+        "A": [
+          [
+            "-2/5",
+            "-2/5",
+            "0"
+          ],
+          [
+            "2/5",
+            "-2/5",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "pass": true
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Si_Hill_L",
+          "Si_Citadel_R"
+        ],
+        "on_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.436571720374,
+              0.184579562867,
+              0.707106781186
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 1.14367850156,
+            "right_bloch_t1": [
+              -0.707106781187,
+              0.184579562867,
+              -0.436571720374
+            ],
+            "mirror_counterpart_residual": 0.270535060813,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.082639950966,
+              -0.665206436095,
+              1.0e-12
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.226062872987,
+            "right_bloch_t1": [
+              0.5,
+              -0.534688975522,
+              -0.226062872986
+            ],
+            "mirror_counterpart_residual": 0.417360049034,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.378136450649,
+              0.285792418985,
+              -0.707106781186
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -1.303529092023,
+            "right_bloch_t1": [
+              0.353553390593,
+              0.193502637551,
+              0.596422310836
+            ],
+            "mirror_counterpart_residual": 0.11068447035,
+            "index": 2
+          }
+        ],
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ],
+        "pass": true,
+        "max_blind_abs_signal": 0.0
+      },
+      "level_c_shell": {
+        "shell_leakage": {
+          "site_rows": [
+            {
+              "theta": 0.0,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "shell_id": "shell_0",
+              "z_dot": 0.0,
+              "eta": 0.392699081699,
+              "site_id": "q0",
+              "purity_derivative": -0.4
+            },
+            {
+              "theta": 2.094395102393,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "shell_id": "shell_1",
+              "z_dot": 0.0,
+              "eta": 0.785398163397,
+              "site_id": "q1",
+              "purity_derivative": -0.8
+            },
+            {
+              "theta": 4.188790204786,
+              "leakage_class": "projected_shell_preserve_but_Hopf_leave",
+              "shell_id": "shell_2",
+              "z_dot": 0.0,
+              "eta": 1.178097245096,
+              "site_id": "q2",
+              "purity_derivative": -0.4
+            }
+          ],
+          "classes": [
+            "projected_shell_preserve_but_Hopf_leave"
+          ],
+          "pass": true,
+          "terrain": "Si_Hill_L"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.500129317135,
+          0.925232116376,
+          -1.561751491317
+        ],
+        "pass": true,
+        "max_abs_shell_conditioned_gamma5_shift": 1.561751491317,
+        "off_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.227895098038,
+              -0.194755274932,
+              0.333333333333
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.643549184425,
+            "right_bloch_t1": [
+              -0.2,
+              -0.15995061878,
+              -0.310215851091
+            ],
+            "mirror_counterpart_residual": 0.034804656152,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              0.009533580561,
+              0.149584621695,
+              -0.4
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.699169243389,
+            "right_bloch_t1": [
+              -0.1,
+              0.019067161123,
+              0.299169243389
+            ],
+            "mirror_counterpart_residual": 0.130517460572,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.250480424656,
+              0.076040935632,
+              0.2
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.258222399294,
+            "right_bloch_t1": [
+              0.3,
+              0.206558396204,
+              -0.058222399294
+            ],
+            "mirror_counterpart_residual": 0.141777600706,
+            "index": 2
+          }
+        ]
+      }
+    },
+    "Ni_Pit_L": {
+      "level_a_bloch": {
+        "flow_t1": [
+          0.597622463704,
+          0.082341617371,
+          -0.078805752204
+        ],
+        "A": [
+          [
+            "-1/4",
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-1/4",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15",
+            "-1/2"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "-1/2"
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "pass": true
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Ni_Pit_L",
+          "Ni_Source_R"
+        ],
+        "on_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.597622463704,
+              0.082341617371,
+              -0.078805752204
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.061367173122,
+            "right_bloch_t1": [
+              -0.467884274602,
+              0.035812903528,
+              -0.140172925325
+            ],
+            "mirror_counterpart_residual": 0.218978677529,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.282325529463,
+              -0.696261931045,
+              -0.469464761164
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -1.061058336653,
+            "right_bloch_t1": [
+              0.160372547545,
+              -0.670484799787,
+              0.591593575489
+            ],
+            "mirror_counterpart_residual": 0.122128814325,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.528106679725,
+              0.521454934524,
+              -0.636854103088
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -1.406328770918,
+            "right_bloch_t1": [
+              0.243018739746,
+              0.568409957492,
+              0.769474667829
+            ],
+            "mirror_counterpart_residual": 0.285087939979,
+            "index": 2
+          }
+        ],
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ],
+        "pass": true,
+        "max_blind_abs_signal": 0.0
+      },
+      "level_c_shell": {
+        "shell_leakage": {
+          "site_rows": [
+            {
+              "theta": 0.0,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_0",
+              "z_dot": -1.016852706779,
+              "eta": 0.392699081699,
+              "site_id": "q0",
+              "purity_derivative": -1.457106781186
+            },
+            {
+              "theta": 2.094395102393,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_1",
+              "z_dot": -0.584529946162,
+              "eta": 0.785398163397,
+              "site_id": "q1",
+              "purity_derivative": -0.500000000001
+            },
+            {
+              "theta": 4.188790204786,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_2",
+              "z_dot": 0.076624404923,
+              "eta": 1.178097245096,
+              "site_id": "q2",
+              "purity_derivative": -0.042893218814
+            }
+          ],
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "terrain": "Ni_Pit_L"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.570469546593,
+          0.104640348516,
+          -0.927155609287
+        ],
+        "pass": true,
+        "max_abs_shell_conditioned_gamma5_shift": 0.927155609287,
+        "off_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.220286352509,
+              -0.261073783444,
+              -0.293074075068
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.509102373471,
+            "right_bloch_t1": [
+              -0.22140855593,
+              -0.274328890494,
+              0.216028298403
+            ],
+            "mirror_counterpart_residual": 0.077045776665,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.074895402351,
+              0.262856744301,
+              -0.594556159982
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -1.165698685169,
+            "right_bloch_t1": [
+              -0.130663505559,
+              0.281079248789,
+              0.571142525188
+            ],
+            "mirror_counterpart_residual": 0.205558907911,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.274243815134,
+              0.140585268391,
+              -0.18841254674
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.479173161631,
+            "right_bloch_t1": [
+              0.256383133295,
+              0.151253146111,
+              0.290760614891
+            ],
+            "mirror_counterpart_residual": 0.102348068151,
+            "index": 2
+          }
+        ]
+      }
+    },
+    "Se_Funnel_L": {
+      "level_a_bloch": {
+        "flow_t1": [
+          0.380797333679,
+          0.016720521208,
+          0.237929260135
+        ],
+        "A": [
+          [
+            "-4/5",
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-4/5",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "2*sqrt(3)/15",
+            "-4/5"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "pass": true
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Se_Funnel_L",
+          "Se_Cannon_R"
+        ],
+        "on_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.380797333679,
+              0.016720521208,
+              0.237929260135
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.618726593813,
+            "right_bloch_t1": [
+              -0.237929260135,
+              -0.016720521208,
+              -0.380797333678
+            ],
+            "mirror_counterpart_residual": 0.142868073543,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.135592004247,
+              -0.42507501376,
+              -0.053127761633
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.186800134288,
+            "right_bloch_t1": [
+              0.115113631651,
+              -0.413251819829,
+              0.133672372655
+            ],
+            "mirror_counterpart_residual": 0.080544611021,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.284919308001,
+              0.283852903535,
+              -0.200362259615
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.486638952131,
+            "right_bloch_t1": [
+              0.156531630588,
+              0.308933685347,
+              0.286276692517
+            ],
+            "mirror_counterpart_residual": 0.128387677413,
+            "index": 2
+          }
+        ],
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ],
+        "pass": true,
+        "max_blind_abs_signal": 0.0
+      },
+      "level_c_shell": {
+        "shell_leakage": {
+          "site_rows": [
+            {
+              "theta": 0.0,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_0",
+              "z_dot": -0.728984741135,
+              "eta": 0.392699081699,
+              "site_id": "q0",
+              "purity_derivative": -1.6
+            },
+            {
+              "theta": 2.094395102393,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_1",
+              "z_dot": -0.084529946163,
+              "eta": 0.785398163397,
+              "site_id": "q1",
+              "purity_derivative": -1.6
+            },
+            {
+              "theta": 4.188790204786,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_2",
+              "z_dot": 0.788756439279,
+              "eta": 1.178097245096,
+              "site_id": "q2",
+              "purity_derivative": -1.6
+            }
+          ],
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "terrain": "Se_Funnel_L"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.411027318965,
+          0.110972094483,
+          -0.700329558083
+        ],
+        "pass": true,
+        "max_abs_shell_conditioned_gamma5_shift": 0.700329558083,
+        "off_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.158431823642,
+              -0.177437058221,
+              0.078915763128
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.207699274848,
+            "right_bloch_t1": [
+              -0.100541723042,
+              -0.190048465081,
+              -0.12878351172
+            ],
+            "mirror_counterpart_residual": 0.0578901006,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.020410171331,
+              0.13210104888,
+              -0.156623773961
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.297772228771,
+            "right_bloch_t1": [
+              -0.05567893799,
+              0.139194965239,
+              0.14114845481
+            ],
+            "mirror_counterpart_residual": 0.076089109322,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.127435484788,
+              0.054726832862,
+              0.140107996544
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.213690605952,
+            "right_bloch_t1": [
+              0.173756275201,
+              0.057091471648,
+              -0.073582609408
+            ],
+            "mirror_counterpart_residual": 0.066525387136,
+            "index": 2
+          }
+        ]
+      }
+    },
+    "Se_Cannon_R": {
+      "level_a_bloch": {
+        "flow_t1": [
+          0.237929260135,
+          0.016720521208,
+          0.380797333678
+        ],
+        "A": [
+          [
+            "-4/5",
+            "2*sqrt(3)/15",
+            "-2*sqrt(3)/15"
+          ],
+          [
+            "-2*sqrt(3)/15",
+            "-4/5",
+            "2*sqrt(3)/15"
+          ],
+          [
+            "2*sqrt(3)/15",
+            "-2*sqrt(3)/15",
+            "-4/5"
+          ]
+        ],
+        "b": [
+          "0",
+          "0",
+          "0"
+        ],
+        "initial_bloch": [
+          0.707106781187,
+          0.0,
+          0.707106781186
+        ],
+        "pass": true
+      },
+      "level_b_spinor": {
+        "family_pair": [
+          "Se_Funnel_L",
+          "Se_Cannon_R"
+        ],
+        "on_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.380797333679,
+              0.016720521208,
+              0.237929260135
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.618726593813,
+            "right_bloch_t1": [
+              -0.237929260135,
+              -0.016720521208,
+              -0.380797333678
+            ],
+            "mirror_counterpart_residual": 0.142868073543,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.135592004247,
+              -0.42507501376,
+              -0.053127761633
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.186800134288,
+            "right_bloch_t1": [
+              0.115113631651,
+              -0.413251819829,
+              0.133672372655
+            ],
+            "mirror_counterpart_residual": 0.080544611021,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.284919308001,
+              0.283852903535,
+              -0.200362259615
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.486638952131,
+            "right_bloch_t1": [
+              0.156531630588,
+              0.308933685347,
+              0.286276692517
+            ],
+            "mirror_counterpart_residual": 0.128387677413,
+            "index": 2
+          }
+        ],
+        "spinor_blind_control": [
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q0"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q1"
+          },
+          {
+            "gamma5_odd_sigma_z_L_minus_R": 0.0,
+            "reason": "same density quotient before sheet assignment removes L/R sign row",
+            "site_id": "q2"
+          }
+        ],
+        "pass": true,
+        "max_blind_abs_signal": 0.0
+      },
+      "level_c_shell": {
+        "shell_leakage": {
+          "site_rows": [
+            {
+              "theta": 0.0,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_0",
+              "z_dot": -0.402386108763,
+              "eta": 0.392699081699,
+              "site_id": "q0",
+              "purity_derivative": -1.6
+            },
+            {
+              "theta": 2.094395102393,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_1",
+              "z_dot": 0.084529946161,
+              "eta": 0.785398163397,
+              "site_id": "q1",
+              "purity_derivative": -1.6
+            },
+            {
+              "theta": 4.188790204786,
+              "leakage_class": "leave_foliation",
+              "shell_id": "shell_2",
+              "z_dot": 0.342614410619,
+              "eta": 1.178097245096,
+              "site_id": "q2",
+              "purity_derivative": -1.6
+            }
+          ],
+          "classes": [
+            "leave_foliation"
+          ],
+          "pass": true,
+          "terrain": "Se_Cannon_R"
+        },
+        "shell_minus_off_shell_gamma5": [
+          0.411027318965,
+          0.110972094483,
+          -0.700329558083
+        ],
+        "pass": true,
+        "max_abs_shell_conditioned_gamma5_shift": 0.700329558083,
+        "off_shell_gamma5_rows": [
+          {
+            "left_bloch_t1": [
+              0.158431823642,
+              -0.177437058221,
+              0.078915763128
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.207699274848,
+            "right_bloch_t1": [
+              -0.100541723042,
+              -0.190048465081,
+              -0.12878351172
+            ],
+            "mirror_counterpart_residual": 0.0578901006,
+            "index": 0
+          },
+          {
+            "left_bloch_t1": [
+              -0.020410171331,
+              0.13210104888,
+              -0.156623773961
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": -0.297772228771,
+            "right_bloch_t1": [
+              -0.05567893799,
+              0.139194965239,
+              0.14114845481
+            ],
+            "mirror_counterpart_residual": 0.076089109322,
+            "index": 1
+          },
+          {
+            "left_bloch_t1": [
+              -0.127435484788,
+              0.054726832862,
+              0.140107996544
+            ],
+            "gamma5_odd_sigma_z_L_minus_R": 0.213690605952,
+            "right_bloch_t1": [
+              0.173756275201,
+              0.057091471648,
+              -0.073582609408
+            ],
+            "mirror_counterpart_residual": 0.066525387136,
+            "index": 2
+          }
+        ]
+      }
+    }
+  },
+  "controls": {
+    "duplicate_etas": {
+      "eta_values_after_mutation": [
+        0.392699081699,
+        0.392699081699,
+        1.178097245096
+      ],
+      "pass": true,
+      "unique_eta_count_after_mutation": 2,
+      "required_unique_eta_count": 3
+    },
+    "collapsed_etas": {
+      "z_values_after_mutation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "unique_z_count_after_mutation": 1,
+      "pass": true
+    },
+    "naive_conditioning_fails": {
+      "naive_quotient": "nan",
+      "failure": "P(A and T_eta)/P(T_eta) is 0/0, returned by SymPy as nan",
+      "parent": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json",
+      "pass": true
+    },
+    "permuted_etas": {
+      "pass": true,
+      "reason": "ordered site-to-shell signature changes when q0/q2 etas are swapped"
+    },
+    "spinor_blind_quotient_first": {
+      "kills_signed_rows": true,
+      "pass": true,
+      "max_abs_signal_after_quotient": 0.0
+    },
+    "shell_blind_no_placement": {
+      "kills_leakage_rows": true,
+      "leakage_rows_without_sites": 0,
+      "pass": true
+    },
+    "level_a_byte_exact_s5": {
+      "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e",
+      "pass": true,
+      "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json"
+    }
+  },
+  "smt_identity_values": {
+    "erased_no_placement_non_preserve_count": 0,
+    "actual_non_preserve_shell_site_count": 12
+  },
+  "values": {
+    "spinor_blind_max_signal": 0.0,
+    "non_preserve_shell_site_count": 12.0,
+    "shell_conditioned_gamma5_positive_rows": 4.0,
+    "site_count": 3.0,
+    "required_terrain_count": 4.0,
+    "si_own_frame_pass": 1.0
+  },
+  "reads_peer_result": false,
+  "sim_id": "terrain_spinor_shell_nest_v0",
+  "formal_admission_allowed": false,
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Grassmann",
+    "Z3"
+  ],
+  "generated_at": "2026-06-11T07:09:41.425",
+  "TOOL_MANIFEST": {
+    "LinearAlgebra": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive matrix exponential for finite level-a Bloch flow"
+    },
+    "Grassmann": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing even-subalgebra bivector row for spinor sign carrier"
+    },
+    "JSON/Dates/SHA": {
+      "used": true,
+      "tried": true,
+      "reason": "supportive serialization, timestamping, and hashing"
+    },
+    "Z3": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing erased-placement SMT contradiction over computed non-preserve shell-site count"
+    },
+    "QuantumOptics": {
+      "used": true,
+      "tried": true,
+      "reason": "load-bearing SpinBasis/Ket/dm row for spinor-to-density quotient"
+    }
+  },
+  "all_pass": true,
+  "promotion_allowed": false,
+  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "TOOL_INTEGRATION_DEPTH": {
+    "LinearAlgebra": "supportive",
+    "Grassmann": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "Z3": "load_bearing",
+    "QuantumOptics": "load_bearing"
+  },
+  "role_id": "julia_authoritative_sim_builder",
+  "pin_spec": "terrain_spinor_shell_nest_v0|parents=terrain_weyl_spinor_lr_v0,terrain_exact_mirror_finder_v0,stage_lifted_spinor_shell_n3_v0,geo_s5_terrain_flows_v0,geo_disintegration_machinery_v0|rung1_unraveling_convention=standard quantum-jump unraveling: K_eff=-iH-1/2 sum_j L_j^dagger L_j for no-jump drift, jump maps psi -> L_j psi/||L_j psi||, ensemble density obeys the Lindblad generator. This is a choice; the density generator is the invariant object.|levels=(a:committed S5 Bloch affine terrain flow,b:rung-1 Weyl spinor L/R lift,c:n=3 shell-placed spinors plus shell leakage and conditioned gamma5 readout)|required_terrains=Se_Funnel_L,Ni_Pit_L,Si_Hill_L,Se_Cannon_R|si_frame=own_z_x_frames_not_H0_forced|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "engine": "julia",
+  "tool_calls": [
+    {
+      "boundary_case": "basis dimension two",
+      "demotion_condition": "if dm trace is not one, demote spinor quotient",
+      "output_object": {
+        "pass": true,
+        "tool": "QuantumOptics.SpinBasis/Ket/dm",
+        "rho_trace": 1.0
+      },
+      "positive_case": "density trace is one",
+      "gates": [
+        "level_b_spinor"
+      ],
+      "negative/erased_control": "phase quotient erases global phase",
+      "qualified_api/function": "QuantumOptics.SpinBasis/Ket/dm",
+      "tool": "QuantumOptics",
+      "input_object": "one-qubit spinor"
+    },
+    {
+      "boundary_case": "two-generator boundary",
+      "demotion_condition": "if bivector row is absent, demote spinor carrier",
+      "output_object": {
+        "bivector": "v₁₂",
+        "pass": true,
+        "tool": "Grassmann @basis"
+      },
+      "positive_case": "bivector exists",
+      "gates": [
+        "level_b_spinor"
+      ],
+      "negative/erased_control": "scalar-only erases sign carrier",
+      "qualified_api/function": "Grassmann.@basis",
+      "tool": "Grassmann",
+      "input_object": "Cl(2) even-subalgebra row"
+    },
+    {
+      "boundary_case": "actual=0 control is satisfiable",
+      "demotion_condition": "if erased flip does not change verdict, demote proof",
+      "output_object": {
+        "ran": true,
+        "load_bearing": true,
+        "verdict": "unsat",
+        "erased_control_verdict": "sat",
+        "pass": true,
+        "raw_values_bound": {
+          "erased": 0,
+          "actual": 12
+        },
+        "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it"
+      },
+      "positive_case": "actual count differs from erased count",
+      "gates": [
+        "crossover_proofs"
+      ],
+      "negative/erased_control": "erased count bound to actual zero count",
+      "qualified_api/function": "Z3.Solver/check",
+      "tool": "Z3",
+      "input_object": "computed non-preserve count and erased no-placement count"
+    }
+  ],
+  "si_frame_row": {
+    "frame_map": {
+      "Si_Hill_L_retained_axis": "z",
+      "Si_Citadel_R_retained_axis": "x",
+      "H0_sheet_override_forced": false
+    },
+    "Si_Citadel_R_frame": "x dephasing frame",
+    "honest_status": "own_frame_computed",
+    "Si_Hill_L_frame": "z dephasing frame",
+    "incompatibility": "Committed Si uses z/x dephasing frames; the rung-1 H0 sheet override is not forced onto Si.",
+    "pass": true
+  },
+  "capability_receipts": {
+    "grassmann": {
+      "bivector": "v₁₂",
+      "pass": true,
+      "tool": "Grassmann @basis"
+    },
+    "julia_z3": {
+      "ran": true,
+      "load_bearing": true,
+      "verdict": "unsat",
+      "erased_control_verdict": "sat",
+      "pass": true,
+      "raw_values_bound": {
+        "erased": 0,
+        "actual": 12
+      },
+      "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it"
+    },
+    "quantumoptics": {
+      "pass": true,
+      "tool": "QuantumOptics.SpinBasis/Ket/dm",
+      "rho_trace": 1.0
+    }
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "ran": true,
+      "load_bearing": true,
+      "verdict": "unsat",
+      "erased_control_verdict": "sat",
+      "pass": true,
+      "raw_values_bound": {
+        "erased": 0,
+        "actual": 12
+      },
+      "claim": "computed shell leakage nest has nonzero class count; erased no-placement control cannot equal it"
+    }
+  },
+  "source_path": "system_v6/sims/terrain_spinor_shell_nest_v0/terrain_spinor_shell_nest_v0_julia.jl",
+  "acceptance": {
+    "grassmann": true,
+    "z3": true,
+    "ceiling": true,
+    "quantumoptics": true,
+    "core_nest_pass": true
+  },
+  "seed": 2026061007,
+  "schema_version": "terrain_spinor_shell_nest_v0.julia_result.v1",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Grassmann",
+    "Z3"
+  ]
+}
+

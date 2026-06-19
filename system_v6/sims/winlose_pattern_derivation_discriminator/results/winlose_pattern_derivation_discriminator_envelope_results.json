@@ -1,0 +1,1712 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source identity pinning",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from independently run Julia, JAX, and PyTorch receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result-path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "claim_ceiling": "scratch diagnostic finite combinatorics discriminator only; no canonical promotion, no bridge claim, no scientific admission",
+  "claim_path_tools": [
+    "Z3",
+    "z3",
+    "cvc5",
+    "jax",
+    "jax.numpy",
+    "torch"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "controls": {
+    "chart_scaffold_consistency": {
+      "counts_when_dropped": {
+        "jax": 36,
+        "julia": 36,
+        "pytorch": 36
+      },
+      "increases_over_full": false,
+      "interpretation": "no increase: b6=-b0*b3 is retained as documented row-scaffold metadata consistency, not as an assignment-bit predicate"
+    },
+    "drop_balance": {
+      "changes_over_full": true,
+      "counts": {
+        "jax": 256,
+        "julia": 256,
+        "pytorch": 256
+      },
+      "interpretation": "balance is load-bearing: removing it raises the count from 36 to 256"
+    },
+    "outcome_coupling": {
+      "counts": {
+        "jax": {
+          "signs_plus_op": {
+            "brute_force_model_count": 1,
+            "cvc5_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "op"
+            ],
+            "functional": true,
+            "jax_model_count": 1,
+            "z3_model_count": 1
+          },
+          "signs_plus_token": {
+            "brute_force_model_count": 1,
+            "cvc5_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "token"
+            ],
+            "functional": true,
+            "jax_model_count": 1,
+            "z3_model_count": 1
+          }
+        },
+        "julia": {
+          "signs_plus_op": {
+            "brute_force_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "op"
+            ],
+            "functional": true
+          },
+          "signs_plus_token": {
+            "brute_force_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "token"
+            ],
+            "functional": true
+          }
+        },
+        "pytorch": {
+          "signs_plus_op": {
+            "brute_force_model_count": 1,
+            "cvc5_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "op"
+            ],
+            "functional": true,
+            "torch_model_count": 1,
+            "z3_model_count": 1
+          },
+          "signs_plus_token": {
+            "brute_force_model_count": 1,
+            "cvc5_model_count": 1,
+            "drops_from_36_to_1": true,
+            "features": [
+              "token"
+            ],
+            "functional": true,
+            "torch_model_count": 1,
+            "z3_model_count": 1
+          }
+        }
+      },
+      "interpretation": "signs alone split; signs plus operator id make outcome functional and reduce the 36 balanced-dual models to the documented table",
+      "selected_counts": {
+        "jax": 1,
+        "julia": 1,
+        "pytorch": 1
+      }
+    },
+    "scramble_one_documented_cell": {
+      "cell": "Type-1 Se outer LOSE -> WIN",
+      "smt_status": {
+        "cvc5_jax": "unsat",
+        "cvc5_pytorch": "unsat",
+        "julia_z3": "unsat",
+        "z3_jax": "unsat",
+        "z3_pytorch": "unsat"
+      },
+      "violations": [
+        {
+          "constraint": "per_engine_balance",
+          "detail": {
+            "Type-1": {
+              "LOSE": 1,
+              "WIN": 3,
+              "lose": 2,
+              "win": 2
+            },
+            "Type-2": {
+              "LOSE": 2,
+              "WIN": 2,
+              "lose": 2,
+              "win": 2
+            }
+          }
+        },
+        {
+          "constraint": "case_inversion_duality",
+          "detail": [
+            {
+              "topology": "Se",
+              "type1_inner": "win",
+              "type1_outer": "WIN",
+              "type2_inner": "lose",
+              "type2_outer": "WIN"
+            },
+            {
+              "topology": "Ne",
+              "type1_inner": "lose",
+              "type1_outer": "WIN",
+              "type2_inner": "win",
+              "type2_outer": "LOSE"
+            },
+            {
+              "topology": "Ni",
+              "type1_inner": "lose",
+              "type1_outer": "LOSE",
+              "type2_inner": "lose",
+              "type2_outer": "LOSE"
+            },
+            {
+              "topology": "Si",
+              "type1_inner": "win",
+              "type1_outer": "WIN",
+              "type2_inner": "win",
+              "type2_outer": "WIN"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "blocking_clause_status_after_full_count": "unsat",
+      "drop_balance_model_count": 256,
+      "drop_chart_scaffold_consistency_model_count": 36,
+      "load_bearing": true,
+      "model_count_full_constraints": 36,
+      "ran": true,
+      "scrambled_table_sat": "unsat",
+      "selected_outcome_coupling_model_count": 1,
+      "verdict": "sat"
+    },
+    "julia_z3": {
+      "drop_balance_model_count": 256,
+      "drop_chart_scaffold_consistency_model_count": 36,
+      "load_bearing": true,
+      "model_count_full_constraints": 36,
+      "ran": true,
+      "scrambled_table_sat": "unsat",
+      "selected_outcome_coupling_model_count": 1,
+      "target_blocking_status": "sat",
+      "verdict": "sat"
+    },
+    "z3": {
+      "blocking_clause_status_after_full_count": "unsat",
+      "drop_balance_model_count": 256,
+      "drop_chart_scaffold_consistency_model_count": 36,
+      "load_bearing": true,
+      "model_count_full_constraints": 36,
+      "ran": true,
+      "scrambled_table_sat": "unsat",
+      "selected_outcome_coupling_model_count": 1,
+      "verdict": "sat"
+    }
+  },
+  "divergence": {
+    "comparison_rule": "same finite model-count/control scalars across independent engine receipts",
+    "engine_values": {
+      "jax": 36.0,
+      "julia": 36.0,
+      "pytorch": 36.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "documented_table": [
+    {
+      "axis6": "UP",
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "engine": "Type-1",
+      "loop": "outer",
+      "op": "Ti",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 0,
+      "source_row": "Topology.png Type-1 row 1 outer",
+      "target": "LOSE",
+      "target_bit": 0,
+      "token": "TiSe",
+      "topology": "Se"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "engine": "Type-1",
+      "loop": "outer",
+      "op": "Ti",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 1,
+      "source_row": "Topology.png Type-1 row 2 outer",
+      "target": "WIN",
+      "target_bit": 1,
+      "token": "NeTi",
+      "topology": "Ne"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "engine": "Type-1",
+      "loop": "outer",
+      "op": "Fe",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 2,
+      "source_row": "Topology.png Type-1 row 3 outer",
+      "target": "LOSE",
+      "target_bit": 0,
+      "token": "NiFe",
+      "topology": "Ni"
+    },
+    {
+      "axis6": "UP",
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "engine": "Type-1",
+      "loop": "outer",
+      "op": "Fe",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 3,
+      "source_row": "Topology.png Type-1 row 4 outer",
+      "target": "WIN",
+      "target_bit": 1,
+      "token": "FeSi",
+      "topology": "Si"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "engine": "Type-1",
+      "loop": "inner",
+      "op": "Fi",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 4,
+      "source_row": "Topology.png Type-1 row 1 inner",
+      "target": "win",
+      "target_bit": 1,
+      "token": "SeFi",
+      "topology": "Se"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "engine": "Type-1",
+      "loop": "inner",
+      "op": "Te",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 5,
+      "source_row": "Topology.png Type-1 row 2 inner",
+      "target": "win",
+      "target_bit": 1,
+      "token": "SiTe",
+      "topology": "Si"
+    },
+    {
+      "axis6": "UP",
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "engine": "Type-1",
+      "loop": "inner",
+      "op": "Te",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 6,
+      "source_row": "Topology.png Type-1 row 3 inner",
+      "target": "lose",
+      "target_bit": 0,
+      "token": "TeNi",
+      "topology": "Ni"
+    },
+    {
+      "axis6": "UP",
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "engine": "Type-1",
+      "loop": "inner",
+      "op": "Fi",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 7,
+      "source_row": "Topology.png Type-1 row 4 inner",
+      "target": "lose",
+      "target_bit": 0,
+      "token": "FiNe",
+      "topology": "Ne"
+    },
+    {
+      "axis6": "UP",
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "engine": "Type-2",
+      "loop": "outer",
+      "op": "Fi",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 8,
+      "source_row": "Topology.png Type-2 row 1 outer",
+      "target": "WIN",
+      "target_bit": 1,
+      "token": "FiSe",
+      "topology": "Se"
+    },
+    {
+      "axis6": "UP",
+      "b0": -1,
+      "b3": -1,
+      "b6": -1,
+      "engine": "Type-2",
+      "loop": "outer",
+      "op": "Te",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 9,
+      "source_row": "Topology.png Type-2 row 2 outer",
+      "target": "WIN",
+      "target_bit": 1,
+      "token": "TeSi",
+      "topology": "Si"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "engine": "Type-2",
+      "loop": "outer",
+      "op": "Te",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 10,
+      "source_row": "Topology.png Type-2 row 3 outer",
+      "target": "LOSE",
+      "target_bit": 0,
+      "token": "NiTe",
+      "topology": "Ni"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": 1,
+      "b3": -1,
+      "b6": 1,
+      "engine": "Type-2",
+      "loop": "outer",
+      "op": "Fi",
+      "order": "Inductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 11,
+      "source_row": "Topology.png Type-2 row 4 outer",
+      "target": "LOSE",
+      "target_bit": 0,
+      "token": "NeFi",
+      "topology": "Ne"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "engine": "Type-2",
+      "loop": "inner",
+      "op": "Ti",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 12,
+      "source_row": "Topology.png Type-2 row 1 inner",
+      "target": "lose",
+      "target_bit": 0,
+      "token": "SeTi",
+      "topology": "Se"
+    },
+    {
+      "axis6": "UP",
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "engine": "Type-2",
+      "loop": "inner",
+      "op": "Ti",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 13,
+      "source_row": "Topology.png Type-2 row 2 inner",
+      "target": "win",
+      "target_bit": 1,
+      "token": "TiNe",
+      "topology": "Ne"
+    },
+    {
+      "axis6": "UP",
+      "b0": 1,
+      "b3": 1,
+      "b6": -1,
+      "engine": "Type-2",
+      "loop": "inner",
+      "op": "Fe",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 14,
+      "source_row": "Topology.png Type-2 row 3 inner",
+      "target": "lose",
+      "target_bit": 0,
+      "token": "FeNi",
+      "topology": "Ni"
+    },
+    {
+      "axis6": "DOWN",
+      "b0": -1,
+      "b3": 1,
+      "b6": 1,
+      "engine": "Type-2",
+      "loop": "inner",
+      "op": "Fe",
+      "order": "Deductive",
+      "relation_b6_equals_minus_b0_b3": true,
+      "slot": 15,
+      "source_row": "Topology.png Type-2 row 4 inner",
+      "target": "win",
+      "target_bit": 1,
+      "token": "SiFe",
+      "topology": "Si"
+    }
+  ],
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "documented_table_sat": {
+        "cvc5": "sat",
+        "direct_constraints": true,
+        "z3": "sat"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_jax_results.json",
+      "solution_counts": {
+        "drop_balance": 256,
+        "drop_chart_scaffold_consistency": 36,
+        "full_constraints": 36
+      },
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/winlose_pattern_derivation_discriminator_jax.py",
+      "source_sha256": "197c7eea2ea8bc153f5d8a4591aa5b1051682f5d33a1f75bcb04b761eaf41108",
+      "verdict": "underdetermined-36"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "documented_table_sat": {
+        "direct_constraints": true,
+        "julia_z3": "sat"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_julia_results.json",
+      "solution_counts": {
+        "drop_balance": 256,
+        "drop_chart_scaffold_consistency": 36,
+        "full_constraints": 36
+      },
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/winlose_pattern_derivation_discriminator_julia.jl",
+      "source_sha256": "77b017c32c89393a2529a787bee7da72fe34806b3ca916dd8fd1098ecb249a03",
+      "verdict": "underdetermined-36"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "documented_table_sat": {
+        "cvc5": "sat",
+        "direct_constraints": true,
+        "z3": "sat"
+      },
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "torch",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_pytorch_results.json",
+      "solution_counts": {
+        "drop_balance": 256,
+        "drop_chart_scaffold_consistency": 36,
+        "full_constraints": 36
+      },
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/winlose_pattern_derivation_discriminator_pytorch.py",
+      "source_sha256": "3235c6109843f831c749545913cb39e6b15914ed7146ac31afe293f4090e1796",
+      "verdict": "underdetermined-36"
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T22:42:00Z",
+  "identity_pin": {
+    "b3": {
+      "inner": 1,
+      "outer": -1
+    },
+    "b6": {
+      "DOWN": 1,
+      "UP": -1
+    },
+    "bit_convention": "outer WIN=1 LOSE=0; inner win=1 lose=0; b0 is separate Axis0 family sign: Ne/Ni=+1, Se/Si=-1",
+    "chart_scaffold_consistency": {
+      "interpretation": "metadata identity over documented row scaffold, not a predicate over assignment bits",
+      "status": true
+    },
+    "documented_table_sources": [
+      "system_v6/receipts/screenshots_math_report_20260609.md:NeTX.png",
+      "system_v6/receipts/screenshots_math_report_20260609.md:Topology.png",
+      "system_v6/foundations/symbolic_layer_iching_taijitu_20260609.md:section 2"
+    ],
+    "readout_fence": "WIN/LOSE/win/lose casing values are assignment/readout grammar, not b0 itself",
+    "relation": "b6=-b0*b3"
+  },
+  "ledger_result_paths": {
+    "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_jax_results.json",
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_pytorch_results.json"
+  },
+  "object_id": "winlose_pattern_derivation_discriminator_envelope",
+  "orbit_diagnostic": {
+    "jax": {
+      "declared_relabeling_group": "simultaneous S4 relabeling of the four stage/topology slots, preserving loop and engine duality",
+      "documented_table_orbit_key": 1,
+      "larger_wreath_product_note": "advisory surfaces mention larger bit/value relabeling groups; this diagnostic uses the conservative simultaneous stage relabeling only",
+      "orbit_count": 3,
+      "orbit_sizes_by_type1_outer_inner_win_intersection": {
+        "0": 6,
+        "1": 24,
+        "2": 6
+      },
+      "raw_model_count": 36,
+      "reading": "documented_axis6_scaffold_with_casing_balance_and_case_loop_duality"
+    },
+    "julia": {
+      "declared_relabeling_group": "simultaneous S4 relabeling of the four stage/topology slots, preserving loop and engine duality",
+      "documented_table_orbit_key": 1,
+      "larger_wreath_product_note": "advisory surfaces mention larger bit/value relabeling groups; this diagnostic uses the conservative simultaneous stage relabeling only",
+      "orbit_count": 3,
+      "orbit_sizes_by_type1_outer_inner_win_intersection": {
+        "0": 6,
+        "1": 24,
+        "2": 6
+      },
+      "raw_model_count": 36,
+      "reading": "documented_axis6_scaffold_with_casing_balance_and_case_loop_duality"
+    },
+    "pytorch": {
+      "declared_relabeling_group": "simultaneous S4 relabeling of the four stage/topology slots, preserving loop and engine duality",
+      "documented_table_orbit_key": 1,
+      "larger_wreath_product_note": "advisory surfaces mention larger bit/value relabeling groups; this diagnostic uses the conservative simultaneous stage relabeling only",
+      "orbit_count": 3,
+      "orbit_sizes_by_type1_outer_inner_win_intersection": {
+        "0": 6,
+        "1": 24,
+        "2": 6
+      },
+      "raw_model_count": 36,
+      "reading": "documented_axis6_scaffold_with_casing_balance_and_case_loop_duality"
+    },
+    "status": "primary_undertermination_orbits_under_conservative_stage_relabeling"
+  },
+  "out_of_tolerance_shared_scalars": {},
+  "primary_question": {
+    "documented_table_sat": true,
+    "question": "Are the documented two-bit outcomes determined by sign triple (b0,b3,b6), or is an additional row datum required; and what happens to the 36 balanced-dual models when the resulting coupling is encoded over assignment bits?",
+    "scrambled_cell_sat_to_unsat": true,
+    "selected_coupling_solution_count": 1,
+    "selected_minimal_extra_input": [
+      "op"
+    ],
+    "sign_determined": false,
+    "solution_count": 36,
+    "verdict": "underdetermined-36"
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/results/winlose_pattern_derivation_discriminator_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_scalar_spreads": {
+    "documented_table_sat": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.0,
+        "julia": 1.0,
+        "pytorch": 1.0
+      },
+      "within_tolerance": true
+    },
+    "drop_balance_solution_count": {
+      "spread": 0.0,
+      "values": {
+        "jax": 256.0,
+        "julia": 256.0,
+        "pytorch": 256.0
+      },
+      "within_tolerance": true
+    },
+    "drop_chart_scaffold_consistency_solution_count": {
+      "spread": 0.0,
+      "values": {
+        "jax": 36.0,
+        "julia": 36.0,
+        "pytorch": 36.0
+      },
+      "within_tolerance": true
+    },
+    "full_solution_count": {
+      "spread": 0.0,
+      "values": {
+        "jax": 36.0,
+        "julia": 36.0,
+        "pytorch": 36.0
+      },
+      "within_tolerance": true
+    },
+    "relaxed_raw_model_count": {
+      "spread": 0.0,
+      "values": {
+        "jax": 36.0,
+        "julia": 36.0,
+        "pytorch": 36.0
+      },
+      "within_tolerance": true
+    },
+    "scrambled_table_sat": {
+      "spread": 0.0,
+      "values": {
+        "jax": 0.0,
+        "julia": 0.0,
+        "pytorch": 0.0
+      },
+      "within_tolerance": true
+    },
+    "selected_outcome_coupling_solution_count": {
+      "spread": 0.0,
+      "values": {
+        "jax": 1.0,
+        "julia": 1.0,
+        "pytorch": 1.0
+      },
+      "within_tolerance": true
+    }
+  },
+  "sign_outcome_analysis": {
+    "answer": "b_requires_extra_row_datum",
+    "class_table": [
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "LOSE",
+          "WIN"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 0,
+            "token": "TiSe",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 3,
+            "token": "FeSi",
+            "topology": "Si"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 8,
+            "token": "FiSe",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 9,
+            "token": "TeSi",
+            "topology": "Si"
+          }
+        ],
+        "sign_triple": {
+          "b0": -1,
+          "b3": -1,
+          "b6": -1
+        },
+        "sign_triple_key": "b0=-1,b3=-1,b6=-1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "lose",
+          "win"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 4,
+            "token": "SeFi",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 5,
+            "token": "SiTe",
+            "topology": "Si"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 12,
+            "token": "SeTi",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 15,
+            "token": "SiFe",
+            "topology": "Si"
+          }
+        ],
+        "sign_triple": {
+          "b0": -1,
+          "b3": 1,
+          "b6": 1
+        },
+        "sign_triple_key": "b0=-1,b3=1,b6=1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "LOSE",
+          "WIN"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 1,
+            "token": "NeTi",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 2,
+            "token": "NiFe",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 10,
+            "token": "NiTe",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 11,
+            "token": "NeFi",
+            "topology": "Ne"
+          }
+        ],
+        "sign_triple": {
+          "b0": 1,
+          "b3": -1,
+          "b6": 1
+        },
+        "sign_triple_key": "b0=1,b3=-1,b6=1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "lose",
+          "win"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 6,
+            "token": "TeNi",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 7,
+            "token": "FiNe",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 13,
+            "token": "TiNe",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 14,
+            "token": "FeNi",
+            "topology": "Ni"
+          }
+        ],
+        "sign_triple": {
+          "b0": 1,
+          "b3": 1,
+          "b6": -1
+        },
+        "sign_triple_key": "b0=1,b3=1,b6=-1"
+      }
+    ],
+    "minimal_functional_feature_sets": [
+      {
+        "domain_product": 4,
+        "feature_count": 1,
+        "features": [
+          "op"
+        ]
+      },
+      {
+        "domain_product": 16,
+        "feature_count": 1,
+        "features": [
+          "token"
+        ]
+      }
+    ],
+    "outcome_bits_convention": "two-bit outcome is [case_bit, win_bit], case_bit 0=outer uppercase WIN/LOSE and 1=inner lowercase win/lose; win_bit 1=WIN/win and 0=LOSE/lose",
+    "question": "Is the documented two-bit outcome a function of sign triple (b0,b3,b6), and if not what smallest row datum makes it functional?",
+    "selected_minimal_extra_input": [
+      "op"
+    ],
+    "selected_reason": "smallest feature count, then smallest observed feature-domain product",
+    "signs_only_functional": false,
+    "split_classes": [
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "LOSE",
+          "WIN"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 0,
+            "token": "TiSe",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 3,
+            "token": "FeSi",
+            "topology": "Si"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 8,
+            "token": "FiSe",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 9,
+            "token": "TeSi",
+            "topology": "Si"
+          }
+        ],
+        "sign_triple": {
+          "b0": -1,
+          "b3": -1,
+          "b6": -1
+        },
+        "sign_triple_key": "b0=-1,b3=-1,b6=-1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "lose",
+          "win"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 4,
+            "token": "SeFi",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 5,
+            "token": "SiTe",
+            "topology": "Si"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 12,
+            "token": "SeTi",
+            "topology": "Se"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 15,
+            "token": "SiFe",
+            "topology": "Si"
+          }
+        ],
+        "sign_triple": {
+          "b0": -1,
+          "b3": 1,
+          "b6": 1
+        },
+        "sign_triple_key": "b0=-1,b3=1,b6=1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "LOSE",
+          "WIN"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              1
+            ],
+            "outcome_label": "WIN",
+            "slot": 1,
+            "token": "NeTi",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 2,
+            "token": "NiFe",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 10,
+            "token": "NiTe",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              0,
+              0
+            ],
+            "outcome_label": "LOSE",
+            "slot": 11,
+            "token": "NeFi",
+            "topology": "Ne"
+          }
+        ],
+        "sign_triple": {
+          "b0": 1,
+          "b3": -1,
+          "b6": 1
+        },
+        "sign_triple_key": "b0=1,b3=-1,b6=1"
+      },
+      {
+        "constant": false,
+        "outcome_bits_observed": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "outcome_labels_observed": [
+          "lose",
+          "win"
+        ],
+        "row_count": 4,
+        "rows": [
+          {
+            "engine": "Type-1",
+            "op": "Te",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 6,
+            "token": "TeNi",
+            "topology": "Ni"
+          },
+          {
+            "engine": "Type-1",
+            "op": "Fi",
+            "order": "Inductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 7,
+            "token": "FiNe",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Ti",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              1
+            ],
+            "outcome_label": "win",
+            "slot": 13,
+            "token": "TiNe",
+            "topology": "Ne"
+          },
+          {
+            "engine": "Type-2",
+            "op": "Fe",
+            "order": "Deductive",
+            "outcome_bits": [
+              1,
+              0
+            ],
+            "outcome_label": "lose",
+            "slot": 14,
+            "token": "FeNi",
+            "topology": "Ni"
+          }
+        ],
+        "sign_triple": {
+          "b0": 1,
+          "b3": 1,
+          "b6": -1
+        },
+        "sign_triple_key": "b0=1,b3=1,b6=-1"
+      }
+    ],
+    "truth_table": []
+  },
+  "smt_verdicts": {
+    "cvc5_jax_full_model_count": 36,
+    "cvc5_pytorch_full_model_count": 36,
+    "documented_table_sat": {
+      "cvc5_jax": "sat",
+      "cvc5_pytorch": "sat",
+      "julia_z3": "sat",
+      "z3_jax": "sat",
+      "z3_pytorch": "sat"
+    },
+    "julia_z3_full_model_count": 36,
+    "julia_z3_target_blocking_status": "sat",
+    "scrambled_table_sat": {
+      "cvc5_jax": "unsat",
+      "cvc5_pytorch": "unsat",
+      "julia_z3": "unsat",
+      "z3_jax": "unsat",
+      "z3_pytorch": "unsat"
+    },
+    "sign_class_functionality": {
+      "cvc5_jax": [
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": -1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=-1,b3=-1,b6=-1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": 1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=-1,b3=1,b6=1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": -1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=1,b3=-1,b6=1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": 1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=1,b3=1,b6=-1",
+          "solver": "cvc5"
+        }
+      ],
+      "cvc5_pytorch": [
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": -1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=-1,b3=-1,b6=-1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": 1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=-1,b3=1,b6=1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": -1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=1,b3=-1,b6=1",
+          "solver": "cvc5"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": 1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=1,b3=1,b6=-1",
+          "solver": "cvc5"
+        }
+      ],
+      "julia_z3": [
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": -1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=-1,b3=-1,b6=-1",
+          "solver": "julia_z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": 1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=-1,b3=1,b6=1",
+          "solver": "julia_z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": -1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=1,b3=-1,b6=1",
+          "solver": "julia_z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": 1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=1,b3=1,b6=-1",
+          "solver": "julia_z3"
+        }
+      ],
+      "z3_jax": [
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": -1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=-1,b3=-1,b6=-1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": 1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=-1,b3=1,b6=1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": -1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=1,b3=-1,b6=1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": 1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=1,b3=1,b6=-1",
+          "solver": "z3"
+        }
+      ],
+      "z3_pytorch": [
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": -1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=-1,b3=-1,b6=-1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": -1,
+            "b3": 1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=-1,b3=1,b6=1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": -1,
+            "b6": 1
+          },
+          "sign_triple_key": "b0=1,b3=-1,b6=1",
+          "solver": "z3"
+        },
+        {
+          "constant_constraint_status": "unsat",
+          "interpretation": "sat means the fixed documented outcomes are constant within this sign class; unsat means this class splits",
+          "sign_triple": {
+            "b0": 1,
+            "b3": 1,
+            "b6": -1
+          },
+          "sign_triple_key": "b0=1,b3=1,b6=-1",
+          "solver": "z3"
+        }
+      ]
+    },
+    "z3_jax_full_model_count": 36,
+    "z3_pytorch_full_model_count": 36
+  },
+  "solution_counts": {
+    "drop_balance": {
+      "jax": 256,
+      "julia": 256,
+      "pytorch": 256
+    },
+    "drop_chart_scaffold_consistency": {
+      "jax": 36,
+      "julia": 36,
+      "pytorch": 36
+    },
+    "full_constraints": {
+      "jax": 36,
+      "julia": 36,
+      "pytorch": 36
+    },
+    "selected_outcome_coupling": {
+      "jax": 1,
+      "julia": 1,
+      "pytorch": 1
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/winlose_pattern_derivation_discriminator/winlose_pattern_derivation_discriminator_envelope.py",
+  "source_sha256": "76b5c934025c15a0946e599710baddeb95a927ee2e473938df1486c0c252cd5a"
+}

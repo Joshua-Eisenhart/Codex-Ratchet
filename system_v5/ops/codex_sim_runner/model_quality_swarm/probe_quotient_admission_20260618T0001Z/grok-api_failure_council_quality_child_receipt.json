@@ -1,0 +1,91 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "grok-api_failure_council",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "{\n  \"diagnosis\": \"wizard_sim_admission rejects because basename claim 'probe_quotient_fingerprint_floor_v1_three_engine' + tool_target=jax asserts a nonclassical load-bearing JAX tool that is absent from two_root_constraints.py registry; object is explicitly rung-0 scratch_diagnostic with formal_admission_allowed=false so the claim itself is invalid.\",\n  \"smallest_executable_fix\": \"edit the generated admission packet (or its generator) to use basename=probe_quotient_fingerprint_floor_v1, drop three_engine suffix and jax tool_target, and set admission_allowed=false so wizard passes without touching any engine registry.\",\n  \"files_to_touch\": [\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"scripts/codex_sim_runner.py\",\n    \"AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"python scripts/wizard_sim_admission.py --packet system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py --claim probe_quotient_fingerprint_floor_v1\",\n    \"python scripts/codex_sim_runner.py --sim_id probe_quotient_fingerprint_floor_v1 --verify-only\"\n  ],\n  \"stop_condition\": \"formal_admission_allowed=false in result JSON or classification==scratch_diagnostic\",\n  \"one_risk\": \"packet generator silently re-adds three_engine suffix on next run, re-triggering the same registry failure\"\n}\n\nThe problem is with an audit for Codex Ratchet. The object is system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py, and there's a fresh result in a JSON file.",
+  "content_sha256": "b9372f8ea788582a6229dc67fcc7cfecc2be38ab5eb0918da16108652f5f27dd",
+  "created_at": "2026-06-18T07:10:01.237626+00:00",
+  "duration_ms": 9783,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": "XAI_API_KEY",
+  "evidence_role": "audit",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "content+reasoning_content",
+    "extraction_status": "usable_content",
+    "finish_reason": "stop",
+    "native_finish_reason": null,
+    "output_text": "{\n  \"diagnosis\": \"wizard_sim_admission rejects because basename claim 'probe_quotient_fingerprint_floor_v1_three_engine' + tool_target=jax asserts a nonclassical load-bearing JAX tool that is absent from two_root_constraints.py registry; object is explicitly rung-0 scratch_diagnostic with formal_admission_allowed=false so the claim itself is invalid.\",\n  \"smallest_executable_fix\": \"edit the generated admission packet (or its generator) to use basename=probe_quotient_fingerprint_floor_v1, drop three_engine suffix and jax tool_target, and set admission_allowed=false so wizard passes without touching any engine registry.\",\n  \"files_to_touch\": [\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"scripts/two_root_constraints.py\",\n    \"scripts/codex_sim_runner.py\",\n    \"AGENTS.md\"\n  ],\n  \"verifier_commands\": [\n    \"python scripts/wizard_sim_admission.py --packet system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py --claim probe_quotient_fingerprint_floor_v1\",\n    \"python scripts/codex_sim_runner.py --sim_id probe_quotient_fingerprint_floor_v1 --verify-only\"\n  ],\n  \"stop_condition\": \"formal_admission_allowed=false in result JSON or classification==scratch_diagnostic\",\n  \"one_risk\": \"packet generator silently re-adds three_engine suffix on next run, re-triggering the same registry failure\"\n}\n\nThe problem is with an audit for Codex Ratchet. The object is system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py, and there's a fresh result in a JSON file.",
+    "reasoning_present": true
+  },
+  "formal_admission_allowed": false,
+  "http_status": 200,
+  "launch_surface": "direct_xai_api",
+  "model": "grok-4.3",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "xai",
+  "raw_response_excerpt": "{\"choices\": [{\"finish_reason\": \"stop\", \"index\": 0, \"message\": {\"content\": \"{\\n  \\\"diagnosis\\\": \\\"wizard_sim_admission rejects because basename claim 'probe_quotient_fingerprint_floor_v1_three_engine' + tool_target=jax asserts a nonclassical load-bearing JAX tool that is absent from two_root_constraints.py registry; object is explicitly rung-0 scratch_diagnostic with formal_admission_allowed=false so the claim itself is invalid.\\\",\\n  \\\"smallest_executable_fix\\\": \\\"edit the generated admission packet (or its generator) to use basename=probe_quotient_fingerprint_floor_v1, drop three_engine suffix and jax tool_target, and set admission_allowed=false so wizard passes without touching any engine registry.\\\",\\n  \\\"files_to_touch\\\": [\\n    \\\"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\\\"\\n  ],\\n  \\\"files_not_to_touch\\\": [\\n    \\\"scripts/two_root_constraints.py\\\",\\n    \\\"scripts/codex_sim_runner.py\\\",\\n    \\\"AGENTS.md\\\"\\n  ],\\n  \\\"verifier_commands\\\": [\\n    \\\"python scripts/wizard_sim_admission.py --packet system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py --claim probe_quotient_fingerprint_floor_v1\\\",\\n    \\\"python scripts/codex_sim_runner.py --sim_id probe_quotient_fingerprint_floor_v1 --verify-only\\\"\\n  ],\\n  \\\"stop_condition\\\": \\\"formal_admission_allowed=false in result JSON or classification==scratch_diagnostic\\\",\\n  \\\"one_risk\\\": \\\"packet generator silently re-adds three_engine suffix on next run, re-triggering the same registry failure\\\"\\n}\", \"reasoning_content\": \"The problem is with an audit for Codex Ratchet. The object is system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py, and there's a fresh result in a JSON file.\\n\", \"refusal\": null, \"role\": \"assistant\"}}], \"created\": 1781766592, \"id\": \"4431299f-5874-9045-9ba7-a2fb9420e36f\", \"model\": \"grok-4.3\", \"object\": \"chat.completion\", \"service_tier\": \"default\", \"system_fingerprint\": \"fp_eb3c003fc66c14ed\", \"usage\": {\"completion_tokens\": 320, \"completion_tokens_",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "failure_council",
+  "runtime": "grok-api",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 20,
+      "evidence_specificity": 20,
+      "extraction_health": 8,
+      "gate_alignment": 6,
+      "novel_failure_detection": 6,
+      "overclaim_resistance": 0
+    },
+    "penalties": [],
+    "total": 60,
+    "word_count": 158
+  },
+  "status": "completed",
+  "usage": {
+    "completion_tokens": 320,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 356,
+      "rejected_prediction_tokens": 0
+    },
+    "cost_in_usd_ticks": 22668500,
+    "num_sources_used": 0,
+    "prompt_tokens": 569,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 128,
+      "image_tokens": 0,
+      "text_tokens": 569
+    },
+    "total_tokens": 1245
+  }
+}

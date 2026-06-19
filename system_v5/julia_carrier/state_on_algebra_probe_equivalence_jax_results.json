@@ -1,0 +1,335 @@
+{
+  "algebras": {
+    "H": {
+      "basis": "2x2 quaternionic Hermitian basis I,Z,offdiag{1,i,j,k}",
+      "state": "positive trace-one quaternionic Hermitian matrix"
+    },
+    "J3O": {
+      "basis": "3x3 octonionic Hermitian Jordan algebra coordinates",
+      "state": "normalized trace functional omega(A)=Tr(A)/3"
+    },
+    "M2C": {
+      "basis": "Hermitian Pauli probe basis I,X,Y,Z",
+      "state": "density matrix rho"
+    }
+  },
+  "backend": "jax_full_sim",
+  "claim_ceiling": "Finite state-on-algebra/probe-equivalence diagnostic only; no basin, admission, engine, Axis0, bridge, gravity, or manifold-closure claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "H_bad_functional_fails": true,
+    "J3O_bad_normalization_fails": true,
+    "M2C_bad_functionals_fail": true,
+    "control_miswired": false
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-06T01:05:00.493295+00:00",
+  "jax_enable_x64": true,
+  "numbers": {
+    "H.bad_positive_min_XstarX": -0.6000000000000001,
+    "H.determinant_margin": 0.23610000000000003,
+    "H.full_probe_distinct_gap": 0.4,
+    "H.hermitian_residual": 0.0,
+    "H.nonspanning_collision_max_abs_diff": 0.0,
+    "H.nonspanning_state_frobenius_gap": 0.28284271247461906,
+    "H.positivity_min_XstarX": 0.6282000000000001,
+    "H.spanning_reconstruction_residual": 0.0,
+    "H.trace_residual": 0.0,
+    "J3O.bad_normalization_residual": 0.5,
+    "J3O.identity_normalization_residual": 0.0,
+    "J3O.positivity_min_square": 0.3333333333333333,
+    "J3O.rank1_idempotent_residual": 0.0,
+    "J3O.trace_square_max_residual": 7.105427357601002e-15,
+    "M2C.bad_positive_min_AstarA": -0.2,
+    "M2C.bad_trace_normalization_residual": 0.3999999999999999,
+    "M2C.entropy_coarse": 0.6065680978792408,
+    "M2C.entropy_coarsening_gap_abs": 0.09409717509813964,
+    "M2C.entropy_full": 0.5124709227811012,
+    "M2C.full_probe_distinct_gap": 0.4,
+    "M2C.hermitian_residual": 0.0,
+    "M2C.linearity_max_residual": 3.925231146709438e-17,
+    "M2C.min_eigenvalue": 0.20888146743980748,
+    "M2C.nonspanning_collision_max_abs_diff": 0.0,
+    "M2C.nonspanning_state_frobenius_gap": 0.28284271247461906,
+    "M2C.normalization_residual": 0.0,
+    "M2C.positivity_min_AstarA": 0.4757500000000001,
+    "M2C.spanning_reconstructed_pair_max_abs_diff": 0.0,
+    "M2C.spanning_reconstruction_frobenius_residual": 0.0,
+    "M2C.star_preservation_residual": 0.0,
+    "M2C.trace_residual": 0.0
+  },
+  "object_id": "state_on_algebra_probe_equivalence",
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "M2C.min_eigenvalue",
+    "missing_keys": [],
+    "parity_max_diff": 1.942890293094024e-16,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/state_on_algebra_probe_equivalence_julia_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.trace_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.hermitian_residual"
+      },
+      {
+        "abs_diff": 1.942890293094024e-16,
+        "jax": 0.20888146743980748,
+        "julia": 0.2088814674398073,
+        "key": "M2C.min_eigenvalue"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.normalization_residual"
+      },
+      {
+        "abs_diff": 2.281104236408745e-17,
+        "jax": 3.925231146709438e-17,
+        "julia": 6.206335383118183e-17,
+        "key": "M2C.linearity_max_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.star_preservation_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.4757500000000001,
+        "julia": 0.4757500000000001,
+        "key": "M2C.positivity_min_AstarA"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.spanning_reconstruction_frobenius_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.spanning_reconstructed_pair_max_abs_diff"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.4,
+        "julia": 0.4,
+        "key": "M2C.full_probe_distinct_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "M2C.nonspanning_collision_max_abs_diff"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.28284271247461906,
+        "julia": 0.28284271247461906,
+        "key": "M2C.nonspanning_state_frobenius_gap"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.5124709227811012,
+        "julia": 0.5124709227811011,
+        "key": "M2C.entropy_full"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.6065680978792408,
+        "julia": 0.6065680978792408,
+        "key": "M2C.entropy_coarse"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.09409717509813964,
+        "julia": 0.09409717509813975,
+        "key": "M2C.entropy_coarsening_gap_abs"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.3999999999999999,
+        "julia": 0.3999999999999999,
+        "key": "M2C.bad_trace_normalization_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.2,
+        "julia": -0.2,
+        "key": "M2C.bad_positive_min_AstarA"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.trace_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.hermitian_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.23610000000000003,
+        "julia": 0.23610000000000003,
+        "key": "H.determinant_margin"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.6282000000000001,
+        "julia": 0.6282000000000001,
+        "key": "H.positivity_min_XstarX"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.spanning_reconstruction_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.4,
+        "julia": 0.4,
+        "key": "H.full_probe_distinct_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.nonspanning_collision_max_abs_diff"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.28284271247461906,
+        "julia": 0.28284271247461906,
+        "key": "H.nonspanning_state_frobenius_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.6000000000000001,
+        "julia": -0.6000000000000001,
+        "key": "H.bad_positive_min_XstarX"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "J3O.identity_normalization_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.3333333333333333,
+        "julia": 0.3333333333333333,
+        "key": "J3O.positivity_min_square"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 7.105427357601002e-15,
+        "julia": 7.105427357601002e-15,
+        "key": "J3O.trace_square_max_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "J3O.rank1_idempotent_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5,
+        "julia": 0.5,
+        "key": "J3O.bad_normalization_residual"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/state_on_algebra_probe_equivalence_julia_results.json",
+  "plain_sentence": "A state can be computed as a positive normalized functional on M2(C), quaternionic 2x2 observables, and J3(O); probe identity changes when the probe family is coarsened, and entropy is only a downstream readout of rho.",
+  "promotion_allowed": false,
+  "question": "Can state-on-algebra be computed as a positive normalized probe-functional across M2(C), quaternionic 2x2 observables, and J3(O), with identity only relative to the probe family?",
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/state_on_algebra_probe_equivalence_jax_results.json",
+  "shared_booleans": {
+    "control.H_bad_functional_fails": true,
+    "control.J3O_bad_normalization_fails": true,
+    "control.M2C_bad_functionals_fail": true,
+    "control.control_miswired": false,
+    "verdict.entropy_is_readout": true,
+    "verdict.probe_relative_identity": true,
+    "verdict.state_on_algebra_valid_H": true,
+    "verdict.state_on_algebra_valid_J3O": true,
+    "verdict.state_on_algebra_valid_M2C": true,
+    "verdict.state_on_algebra_valid_all": true
+  },
+  "shared_scalars": {
+    "H.bad_positive_min_XstarX": -0.6000000000000001,
+    "H.determinant_margin": 0.23610000000000003,
+    "H.full_probe_distinct_gap": 0.4,
+    "H.hermitian_residual": 0.0,
+    "H.nonspanning_collision_max_abs_diff": 0.0,
+    "H.nonspanning_state_frobenius_gap": 0.28284271247461906,
+    "H.positivity_min_XstarX": 0.6282000000000001,
+    "H.spanning_reconstruction_residual": 0.0,
+    "H.trace_residual": 0.0,
+    "J3O.bad_normalization_residual": 0.5,
+    "J3O.identity_normalization_residual": 0.0,
+    "J3O.positivity_min_square": 0.3333333333333333,
+    "J3O.rank1_idempotent_residual": 0.0,
+    "J3O.trace_square_max_residual": 7.105427357601002e-15,
+    "M2C.bad_positive_min_AstarA": -0.2,
+    "M2C.bad_trace_normalization_residual": 0.3999999999999999,
+    "M2C.entropy_coarse": 0.6065680978792408,
+    "M2C.entropy_coarsening_gap_abs": 0.09409717509813964,
+    "M2C.entropy_full": 0.5124709227811012,
+    "M2C.full_probe_distinct_gap": 0.4,
+    "M2C.hermitian_residual": 0.0,
+    "M2C.linearity_max_residual": 3.925231146709438e-17,
+    "M2C.min_eigenvalue": 0.20888146743980748,
+    "M2C.nonspanning_collision_max_abs_diff": 0.0,
+    "M2C.nonspanning_state_frobenius_gap": 0.28284271247461906,
+    "M2C.normalization_residual": 0.0,
+    "M2C.positivity_min_AstarA": 0.4757500000000001,
+    "M2C.spanning_reconstructed_pair_max_abs_diff": 0.0,
+    "M2C.spanning_reconstruction_frobenius_residual": 0.0,
+    "M2C.star_preservation_residual": 0.0,
+    "M2C.trace_residual": 0.0
+  },
+  "sim_class": "state_probe_equivalence_probe",
+  "sim_execution_kind": "nonclassical",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_state_on_algebra_probe_equivalence.py",
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1e-06,
+  "tol": 1e-09,
+  "tool_integration_depth": {
+    "JAX": "load_bearing",
+    "JSON": "supportive",
+    "jax.numpy": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX": "load_bearing complex, quaternionic, and octonionic finite algebra construction",
+    "JSON": "supportive result serialization",
+    "jax.numpy": "load_bearing x64 eigenvalue, norm, reconstruction, entropy, and finite algebra computations"
+  },
+  "verdicts": {
+    "entropy_is_readout": true,
+    "probe_relative_identity": true,
+    "state_on_algebra_valid_H": true,
+    "state_on_algebra_valid_J3O": true,
+    "state_on_algebra_valid_M2C": true,
+    "state_on_algebra_valid_all": true
+  }
+}

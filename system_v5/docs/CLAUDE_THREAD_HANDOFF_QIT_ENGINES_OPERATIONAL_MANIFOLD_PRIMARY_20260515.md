@@ -162,7 +162,10 @@ All sims declare TOOL_MANIFEST with `tried`, `used`, non-empty `reason`. At leas
 
 ## Interpreter, not optional
 
-Run all sims with: `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`. The repo Makefile defines `PYTHON` to this path; do not use system python3 or `.venv/bin/python` (does not exist in this worktree).
+Supersession note, 2026-06-08: this older handoff used the physical Python env
+path. Current sim routing uses `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3`
+via the repo `Makefile`; the physical target remains
+`/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main`.
 
 ---
 

@@ -1,0 +1,1142 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source, result, and PIN hash checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from fresh Julia and JAX receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_gates": {
+    "ceilings_preserved": true,
+    "double_cover_conditionals_honored": true,
+    "engine_legs_pass": true,
+    "equal_union_weights_fail": true,
+    "identical_pin_sha256": true,
+    "intersection_empty_branch_mortality": true,
+    "iterated_stage2_marginal": true,
+    "iterated_tower_property": true,
+    "julia_z3_finite_nested_tower": true,
+    "naive_union_conditioning_fails": true,
+    "no_peer_result_reads": true,
+    "order_row_agreement": true,
+    "pytorch_omission_declared": true,
+    "single_leaf_reduction": true,
+    "source_sha256_current": true,
+    "summary_boundary_present": true,
+    "union_two_shell_conditioning": true,
+    "wrong_stage2_marginal_fails": true,
+    "z3_cvc5_finite_nested_tower": true
+  },
+  "builder_hardening_addendum": {
+    "closed_caveat": "CAVEAT_PARENT_HASH_EMBED",
+    "closure": "Parent anchors are embedded as durable first-class parent_lineage fields in this rerun envelope.",
+    "pass_verdict_stands": true,
+    "scope_fences_untouched": [
+      "CAVEAT_TWO_LEAF_SCOPE",
+      "CAVEAT_HOPF_COMPATIBLE_ORDER_ONLY",
+      "CAVEAT_NO_NONLEAF_CONDITIONING",
+      "CAVEAT_BOUNDARY_LEAVES"
+    ]
+  },
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "not_applicable_measure_disintegration_over_Hopf_eta_phi_foliations",
+    "consumer_policy": "independent Julia Symbolics/Z3 and Python SymPy/z3/cvc5 recovery; no peer-result reads",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_pass": true,
+    "proof_tag": "geo_nested_disintegration_v0_julia_symbolics_z3",
+    "receipt_path": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "ded00b61a4624bc1a8b2513812d1e4f089136ac63c24ea7a6f1a3ad565db694d",
+    "table_version": null
+  },
+  "capability_receipts": {
+    "jax": {
+      "cvc5_version": "1.3.3",
+      "jax_version": "0.10.1",
+      "jax_x64_enabled": true,
+      "python": "/Users/joshuaeisenhart/Codex-Ratchet",
+      "sympy_version": "1.14.0",
+      "z3_version": "4.16.0"
+    },
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "load_path": "@:@v#.#:@stdlib",
+      "symbolics_version": "7.26.0",
+      "z3_positive_verdict": "unsat",
+      "z3_version": "1.0.4"
+    }
+  },
+  "claim": "Nested Hopf disintegration prerequisite: eta-shell disintegration followed by phi-circle conditioning inside T_eta, two-shell union conditioning with marginal-ratio weights, empty intersection mortality, and Hopf-fiber order agreement on the common refinement.",
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3",
+    "cvc5",
+    "sympy",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "equal_union_weights": {
+      "computed_nonzero_defect_equal_minus_correct": "7/4 - sqrt(3)",
+      "correct_marginal_ratio_weighted_value": "-3/2 + sqrt(3)",
+      "equal_weight_value": "1/4",
+      "exact_strength": "closed_form_integral",
+      "observable": "cos(2*eta)",
+      "pass": true
+    },
+    "finite_erased_controls": {
+      "cvc5_double_cover": "sat",
+      "cvc5_stage2_marginal": "sat",
+      "julia_z3_double_cover": "sat",
+      "julia_z3_stage2_marginal": "sat",
+      "z3_double_cover": "sat",
+      "z3_stage2_marginal": "sat"
+    },
+    "naive_union_conditioning": {
+      "constraint_set": "T_pi/6 union T_pi/4",
+      "denominator_mass": "0",
+      "exact_strength": "measure_theorem",
+      "failure": "P(A and (T_eta1 union T_eta2))/P(T_eta1 union T_eta2) is 0/0",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true
+    },
+    "single_leaf_reduction": {
+      "byte_exact_rows_match_parent_rule": true,
+      "committed_single_leaf_exact_rows": {
+        "conditional_total_mass": "1",
+        "finite_grid_physical_points": "N^2/2",
+        "stage1_conditional_chart_density": "1/(4*pi**2)"
+      },
+      "exact_strength": "symbolic_limit",
+      "limit": "eta2 weight lambda -> 0",
+      "pass": true,
+      "single_leaf_eta1_average": "a + b/2 + 3*c/4",
+      "union_formula_limit": "a + b/2 + 3*c/4"
+    },
+    "wrong_stage2_marginal": {
+      "computed_nonzero_defect": "-1/2",
+      "correct_recovery": "1",
+      "exact_strength": "closed_form_integral",
+      "observable": "1",
+      "pass": true,
+      "wrong_marginal": "1/(2*pi) on physical chi in [0,pi) instead of 1/pi",
+      "wrong_recovery": "1/2"
+    }
+  },
+  "convention_pin": {
+    "coordinate_chart": "z1=cos(eta) exp(i(phi+chi)), z2=sin(eta) exp(i(phi-chi))",
+    "double_cover": "(phi, chi) ~ (phi + pi, chi + pi)",
+    "eta_range": "[0, pi/2]",
+    "finite_grid_rule": "even N chart has N^2 points and N^2/2 physical quotient classes; physical chi classes are N/2",
+    "physical_common_refinement_density": "sin(2*eta)/(2*pi^2) d_eta d_chi d_phi on eta in [0,pi/2], chi in [0,pi), phi in [0,2*pi)",
+    "physical_torus_area": "2*pi^2*sin(2*eta)",
+    "s3_volume": "2*pi^2",
+    "stage1_conditional_chart_density": "1/(4*pi^2) d_phi d_chi on [0,2*pi)^2",
+    "stage1_eta_marginal": "sin(2*eta) d_eta",
+    "stage2_double_chart_chi_marginal": "1/(2*pi) d_chi on [0, 2*pi)",
+    "stage2_fiber_conditional": "1/(2*pi) d_phi on [0, 2*pi)",
+    "stage2_leaf_foliation": "Hopf fiber circles: phi varies at fixed physical chi class",
+    "stage2_physical_chi_base": "chi modulo pi, represented by chi in [0, pi)",
+    "stage2_physical_chi_marginal": "1/pi d_chi on [0, pi)",
+    "volume_form_double_chart": "(1/2)*sin(2*eta) d_eta d_phi d_chi"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "z3",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    }
+  },
+  "divergence": {
+    "basis": "Julia Symbolics and Python SymPy independently return zero nested/order defects; solver rows agree on finite nested tower.",
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "pytorch": {
+      "reason": "No graph/network/autograd claim path; PyTorch would be decorative for this nested measure-disintegration prerequisite.",
+      "scoped": false
+    }
+  },
+  "engines": {
+    "jax": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "jax": "supportive",
+        "jax.numpy": "supportive",
+        "python_stdlib": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load-bearing independent finite nested tower proof over the same bound integer data and erased control",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "supportive x64 vectorized diagnostics for union weights, grid cover counts, and order-row numeric equality",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "supportive x64 vectorized shell arithmetic and finite-grid diagnostic rows",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive JSON, hashing, timestamps, and deterministic path binding",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact symbolic integrals for nested tower, union-shell weights, order row, and controls",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing finite nested tower proof over bound integer weights, values, and erased stage-2 marginal control",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": {
+        "cvc5_version": "1.3.3",
+        "jax_version": "0.10.1",
+        "jax_x64_enabled": true,
+        "python": "/Users/joshuaeisenhart/Codex-Ratchet",
+        "sympy_version": "1.14.0",
+        "z3_version": "4.16.0"
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "pin_sha256": "97e4059cd221866ace841b5f3c58a98d4d85538dad7b75aadc2be558a3a07fc0",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_jax_results.json",
+      "result_sha256": "15e97e7f15cc4da4cb07d80b42de8936e31ca9d675818b5967529a5354e575fe",
+      "role_id": "jax_sympy_smt_nested_disintegration_builder",
+      "source_hash_current": true,
+      "source_path": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_jax.py",
+      "source_sha256": "641ba76406e521ce38b7cde7385e0f2b49c1697f68b3c1ee96314de48549c1f4",
+      "tool_calls": [
+        {
+          "boundary_case": "eta1=pi/6, eta2=pi/4 union shell weights",
+          "demotion_condition": "demote if SymPy does not derive the exact integral or limit rows",
+          "gates": [
+            "nested_tower",
+            "union_weights",
+            "controls"
+          ],
+          "input_object": "cover-invariant Hopf coordinates and band-limit union shells",
+          "negative/erased_control": "wrong stage-2 physical chi marginal has defect -1/2",
+          "output_object": "a + 2*c/3",
+          "positive_case": "nested tower defect is exactly 0",
+          "qualified_api/function": "sympy.integrate / sympy.limit / sympy.simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "N=4,8,16,64 cover rows",
+          "demotion_condition": "demote if x64 is disabled or counts are not even-cover compatible",
+          "gates": [
+            "diagnostics"
+          ],
+          "input_object": "x64 eta shell densities and finite cover counts",
+          "negative/erased_control": "no control claim; JAX is supportive only",
+          "output_object": [
+            {
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "normalized_union_weight": 0.46410161513775455,
+              "sin_2eta": 0.8660254037844386
+            },
+            {
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "normalized_union_weight": 0.5358983848622454,
+              "sin_2eta": 1.0
+            }
+          ],
+          "positive_case": "union weights sum to 1 under x64 diagnostics",
+          "qualified_api/function": "jax.config.update / jax.numpy.sin",
+          "tool": "jax"
+        },
+        {
+          "boundary_case": "N=8 with four physical chi classes",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_nested_tower"
+          ],
+          "input_object": "finite nested tower integer eta weights, chi values, and phi counts",
+          "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+          "output_object": "unsat",
+          "positive_case": "valid nested tower violation is UNSAT",
+          "qualified_api/function": "z3.Solver / z3.Int / z3.Sum / z3.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "N=8 with four physical chi classes",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_nested_tower"
+          ],
+          "input_object": "same finite nested tower integer data as z3",
+          "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+          "output_object": "unsat",
+          "positive_case": "valid nested tower violation is UNSAT",
+          "qualified_api/function": "cvc5.Solver / Kind.ADD / Kind.MULT / checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "JSON": "supportive",
+        "SHA": "supportive",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "JSON": {
+          "reason": "supportive receipt serialization",
+          "tried": true,
+          "used": true
+        },
+        "SHA": {
+          "reason": "supportive source and PIN hashing",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing symbolic algebra mirror for nested tower, union weights, order row, and single-leaf reduction",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side finite nested tower proof over bound integer values",
+          "tried": true,
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "capability_receipts": {
+        "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+        "load_path": "@:@v#.#:@stdlib",
+        "symbolics_version": "7.26.0",
+        "z3_positive_verdict": "unsat",
+        "z3_version": "1.0.4"
+      },
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "pin_sha256": "97e4059cd221866ace841b5f3c58a98d4d85538dad7b75aadc2be558a3a07fc0",
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_julia_results.json",
+      "result_sha256": "2da96866a24c535fe7bf87777a4283e3bd326ceba273165faddb5e38ab0bb6fa",
+      "role_id": "julia_symbolics_z3_nested_disintegration_builder",
+      "source_hash_current": true,
+      "source_path": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_julia.jl",
+      "source_sha256": "ded00b61a4624bc1a8b2513812d1e4f089136ac63c24ea7a6f1a3ad565db694d",
+      "tool_calls": [
+        {
+          "boundary_case": "eta1=pi/6, eta2=pi/4, lambda -> 0",
+          "demotion_condition": "demote if Symbolics does not participate in the algebraic mirror",
+          "gates": [
+            "symbolic_nested_tower",
+            "union_weights",
+            "controls"
+          ],
+          "input_object": "symbolic nested tower, union weight ratio, order row, and single-leaf limit",
+          "negative/erased_control": "wrong stage-2 marginal and equal union weights are nonzero controls",
+          "output_object": "0",
+          "positive_case": "Symbolics simplifies nested tower and order defects to 0",
+          "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+          "tool": "Symbolics"
+        },
+        {
+          "boundary_case": "N=8 with four physical chi classes",
+          "demotion_condition": "demote if solver binds only a precomputed boolean",
+          "gates": [
+            "finite_nested_tower"
+          ],
+          "input_object": "finite nested tower integer eta weights, chi values, and phi counts",
+          "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+          "output_object": "unsat",
+          "positive_case": "valid nested tower violation is UNSAT",
+          "qualified_api/function": "Z3.Solver / Z3.IntVar / Z3.add / Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    }
+  },
+  "finite_discretization_recovery": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "claim": "finite nested eta-then-chi-then-phi tower identity from bound integer eta weights, phi counts, and chi-class values",
+      "derived_expression": "sum_eta w_eta * sum_chi (phi_count * value_eta_chi) == target_nested_total",
+      "double_cover_erasure_defect": 832,
+      "erase_flip_unsat_to_sat": true,
+      "erased_double_cover_negated_identity_verdict": "sat",
+      "erased_stage2_marginal_negated_identity_verdict": "sat",
+      "expected_for_valid_recovery": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "raw_values": {
+        "N": 8,
+        "chi_values_by_eta": [
+          [
+            2,
+            4,
+            6,
+            8
+          ],
+          [
+            3,
+            5,
+            7,
+            9
+          ],
+          [
+            5,
+            7,
+            11,
+            13
+          ]
+        ],
+        "doubled_cover_total": 1664,
+        "eta_weights": [
+          1,
+          2,
+          1
+        ],
+        "phi_count": 8,
+        "physical_chi_count": 4,
+        "target_nested_total": 832,
+        "wrong_stage2_marginal_total": 416
+      },
+      "solver": "z3",
+      "verdict": "unsat",
+      "wrong_stage2_marginal_defect": -416
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "jax",
+        "jax.numpy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "SymPy exact derivation, JAX x64 diagnostics, z3/cvc5 finite proof"
+    },
+    "julia": {
+      "packages": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "role": "Symbolics/Z3 semantic mirror"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "omitted_no_graph_network_autograd_claim_path"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T04:11:12Z",
+  "jax_diagnostics": {
+    "api": "jax.numpy x64 shell weights and cover-count diagnostics",
+    "eta_grid_density_nonnegative": true,
+    "finite_grid_double_cover_rows": [
+      {
+        "N": 4,
+        "chart_chi_points": 4,
+        "chart_points": 16,
+        "double_cover_honored": true,
+        "phi_points": 4,
+        "physical_chi_classes": 2,
+        "physical_points": 8,
+        "stage2_physical_points": 8
+      },
+      {
+        "N": 8,
+        "chart_chi_points": 8,
+        "chart_points": 64,
+        "double_cover_honored": true,
+        "phi_points": 8,
+        "physical_chi_classes": 4,
+        "physical_points": 32,
+        "stage2_physical_points": 32
+      },
+      {
+        "N": 16,
+        "chart_chi_points": 16,
+        "chart_points": 256,
+        "double_cover_honored": true,
+        "phi_points": 16,
+        "physical_chi_classes": 8,
+        "physical_points": 128,
+        "stage2_physical_points": 128
+      },
+      {
+        "N": 64,
+        "chart_chi_points": 64,
+        "chart_points": 4096,
+        "double_cover_honored": true,
+        "phi_points": 64,
+        "physical_chi_classes": 32,
+        "physical_points": 2048,
+        "stage2_physical_points": 2048
+      }
+    ],
+    "pass": true,
+    "union_shells": [
+      {
+        "eta": 0.5235987755982988,
+        "eta_label": "pi/6",
+        "normalized_union_weight": 0.46410161513775455,
+        "sin_2eta": 0.8660254037844386
+      },
+      {
+        "eta": 0.7853981633974483,
+        "eta_label": "pi/4",
+        "normalized_union_weight": 0.5358983848622454,
+        "sin_2eta": 1.0
+      }
+    ],
+    "union_weight_sum": 1.0,
+    "x64_enabled": true
+  },
+  "lineage_citations": {
+    "geometry_program_mode4": [
+      "system_v6/receipts/geometry_sim_program_canonical_20260610.md:10-14",
+      "system_v6/receipts/geometry_sim_program_canonical_20260610.md:18"
+    ],
+    "parent_fixed_eta_packet": [
+      "system_v6/sims/geo_disintegration_machinery_v0/audit_verdict.md#CAVEAT_NESTED_SCOPE",
+      "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json#/summary"
+    ],
+    "s2_torus_area_and_cover": [
+      "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json#/receipts/S2.T",
+      "system_v6/sims/geo_s2_connection_flux_foliation_v0/results/geo_s2_connection_flux_foliation_v0_envelope_results.json#/receipts/S2.K"
+    ]
+  },
+  "mode": "RATCHETED_prerequisite_nested_disintegration_rule",
+  "object_id": "geo_nested_disintegration_v0",
+  "parent_lineage": {
+    "audit_bar_calibration_20260610": {
+      "path": "system_v6/receipts/audit_bar_calibration_20260610.md",
+      "sha256": "40a3736155126fa8ce3b539279966caa80df1e4e27d9a409e0ae7d98b06183ef"
+    },
+    "geo_disintegration_machinery_v0_pin": {
+      "path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py#/PIN_SPEC",
+      "sha256": "cfb0fce2ae4ca9691261638ce66afa222b7f7b57d6c0698a69b40733f498464d"
+    },
+    "geo_disintegration_machinery_v0_result": {
+      "path": "system_v6/sims/geo_disintegration_machinery_v0/results/geo_disintegration_machinery_v0_envelope_results.json",
+      "sha256": "ef95598ac9f7117107cb160826c50ebe8111eec0af60bcbe2b9f8e24d24aa1b6"
+    },
+    "geo_disintegration_machinery_v0_source": {
+      "path": "system_v6/sims/geo_disintegration_machinery_v0/geo_disintegration_machinery_v0_common.py",
+      "sha256": "c0e7de711a6977936fe191717fa444b8f4f2716ef6540bb1451b22049be7970a"
+    }
+  },
+  "pin_sha256": "97e4059cd221866ace841b5f3c58a98d4d85538dad7b75aadc2be558a3a07fc0",
+  "pin_spec": "geo_nested_disintegration_v0|purpose=close_CAVEAT_NESTED_SCOPE_iterated_and_multi_leaf_conditioning|base_measure=round_uniform_S3_volume|outer_foliation=S3_union_eta_T_eta|eta_range=[0,pi/2]|stage1_eta_marginal=sin(2*eta)|stage1_conditional_chart_density=1/(4*pi^2)|stage2_leaf_foliation=Hopf_phi_circles_inside_T_eta|physical_chi_period=pi|stage2_chi_marginal_physical=1/pi|stage2_phi_conditional=1/(2*pi)|double_chart_chi_marginal=1/(2*pi)|chart_double_cover=(phi,chi)~(phi+pi,chi+pi)|tower_property=eta_then_chi_then_phi_recovers_global_measure_for_cover_invariant_rows|union_shells=eta1=pi/6,eta2=pi/4|union_weights=sin(2eta_i)/sum_j_sin(2eta_j)|intersection_eta1_ne_eta2=empty|empty_conditioning_undefined=branch_mortality|order_row=eta_torus_then_phi_equals_direct_Hopf_fiber_disintegration_on_common_refinement|controls=wrong_stage2_marginal,equal_union_weights,naive_union_zero_denominator,single_leaf_limit|solver_row=finite_nested_tower_identity_with_erased_stage2_marginal_flip|engine_mode=julia_canon_plus_jax_diagnostic|pytorch_omitted=no_graph_network_autograd_claim|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "receipts": {
+    "C1_wrong_stage2_marginal_fails": {
+      "computed_nonzero_defect": "-1/2",
+      "correct_recovery": "1",
+      "exact_strength": "closed_form_integral",
+      "observable": "1",
+      "pass": true,
+      "wrong_marginal": "1/(2*pi) on physical chi in [0,pi) instead of 1/pi",
+      "wrong_recovery": "1/2"
+    },
+    "C2_equal_union_weights_fail": {
+      "computed_nonzero_defect_equal_minus_correct": "7/4 - sqrt(3)",
+      "correct_marginal_ratio_weighted_value": "-3/2 + sqrt(3)",
+      "equal_weight_value": "1/4",
+      "exact_strength": "closed_form_integral",
+      "observable": "cos(2*eta)",
+      "pass": true
+    },
+    "C3_naive_union_conditioning_fails": {
+      "constraint_set": "T_pi/6 union T_pi/4",
+      "denominator_mass": "0",
+      "exact_strength": "measure_theorem",
+      "failure": "P(A and (T_eta1 union T_eta2))/P(T_eta1 union T_eta2) is 0/0",
+      "naive_quotient": "nan",
+      "numerator_mass": "0",
+      "pass": true
+    },
+    "C4_single_leaf_reduction": {
+      "byte_exact_rows_match_parent_rule": true,
+      "committed_single_leaf_exact_rows": {
+        "conditional_total_mass": "1",
+        "finite_grid_physical_points": "N^2/2",
+        "stage1_conditional_chart_density": "1/(4*pi**2)"
+      },
+      "exact_strength": "symbolic_limit",
+      "limit": "eta2 weight lambda -> 0",
+      "pass": true,
+      "single_leaf_eta1_average": "a + b/2 + 3*c/4",
+      "union_formula_limit": "a + b/2 + 3*c/4"
+    },
+    "J1_symbolics_iterated_tower_identity": {
+      "defect": "0",
+      "exact_strength": "symbolic_identity",
+      "global_integral": "a + (2//3)*c",
+      "iterated_tower_integral": "a + (2//3)*c",
+      "pass": true,
+      "stage2_fiber_average_family": "a + d + b*e + c*(1 - (e^2))",
+      "stage2_leaf_average_family": "a + b*e + c*(1 - (e^2))"
+    },
+    "J2_symbolics_union_weight_ratio": {
+      "eta1": "pi/6",
+      "eta2": "pi/4",
+      "exact_strength": "symbolic_identity",
+      "generic_weight_eta1": "rho1 / (rho1 + rho2)",
+      "generic_weight_eta2": "rho2 / (rho1 + rho2)",
+      "pass": true,
+      "ratio_defect": "0",
+      "specialized_weight_eta1": "sqrt(3)/(sqrt(3)+2)",
+      "specialized_weight_eta2": "2/(sqrt(3)+2)"
+    },
+    "J3_symbolics_order_row": {
+      "agreement_or_gap": "agreement_on_common_refinement",
+      "eta_then_phi_tower": "a + (2//3)*c",
+      "exact_strength": "symbolic_identity",
+      "hopf_fiber_first_tower": "a + (2//3)*c",
+      "order_defect": "0",
+      "pass": true
+    },
+    "J4_symbolics_controls": {
+      "committed_single_leaf_conditional_chart_density": "1/(4*pi^2)",
+      "equal_union_weight_defect_equal_minus_correct": "(2 - sqrt(3))/(4*(sqrt(3)+2))",
+      "exact_strength": "symbolic_identity",
+      "naive_union_denominator_mass": "0",
+      "pass": true,
+      "single_leaf_limit_defect": "0",
+      "wrong_stage2_marginal_constant_defect": "-1//2"
+    },
+    "J5_intersection_empty_branch_mortality": {
+      "branch_mortality_row": "conditioning branch dies before a measure can be assigned",
+      "difference": "-1/4",
+      "empty_conditioning_status": "undefined",
+      "eta1": "pi/6",
+      "eta2": "pi/4",
+      "exact_strength": "coordinate_uniqueness",
+      "intersection": "empty",
+      "pass": true,
+      "sin_eta1_squared": "1/4",
+      "sin_eta2_squared": "1/2"
+    },
+    "R1_iterated_stage2_marginal_and_conditionals": {
+      "chi_period_honored": "physical chi is modulo pi; double chart chi is modulo 2*pi with the two sheets identified",
+      "double_chart_density": "sin(2*eta)/(4*pi**2)",
+      "exact_strength": "closed_form_integral",
+      "pass": true,
+      "physical_common_refinement_density": "sin(2*eta)/(2*pi**2)",
+      "stage1_conditional_chart_density": "1/(4*pi**2)",
+      "stage2_double_chart_chi_marginal": "1/(2*pi)",
+      "stage2_phi_conditional": "1/(2*pi)",
+      "stage2_physical_chi_marginal": "1/pi"
+    },
+    "R2_iterated_tower_property": {
+      "cover_shift_defect": "0",
+      "double_chart_global_integral": "a + 2*c/3",
+      "double_chart_tower_defect": "0",
+      "exact_strength": "symbolic_identity",
+      "iterated_tower_integral": "a + 2*c/3",
+      "pass": true,
+      "physical_global_integral": "a + 2*c/3",
+      "physical_tower_defect": "0",
+      "stage2_fiber_average": "a + b*cos(2*eta) + c*sin(2*eta)**2 + d*cos(2*chi) + e*sin(2*chi)",
+      "stage2_leaf_average": "a + b*cos(2*eta) + c*sin(2*eta)**2",
+      "test_function": "a + b*cos(2*eta) + c*sin(2*eta)**2 + d*cos(2*chi) + e*sin(2*chi) + f*cos(2*phi) + g*sin(2*phi) + h*cos(chi + phi) - i*sin(chi - phi)"
+    },
+    "R3_union_two_shell_conditioning": {
+      "band_mass_eta1": "sqrt(3)*sin(2*eps)/2",
+      "band_mass_eta2": "sin(2*eps)",
+      "conditional_measure": "w1*mu(.|T_eta1)+w2*mu(.|T_eta2), with each leaf using the committed flat torus conditional",
+      "correct_union_value": "-3/2 + sqrt(3)",
+      "eta1": "pi/6",
+      "eta2": "pi/4",
+      "exact_strength": "band_limit",
+      "marginal_density_ratio_sin2eta1_to_sin2eta2": "sqrt(3)/2",
+      "observable": "cos(2*eta)",
+      "pass": true,
+      "union_weight_eta1": "-3 + 2*sqrt(3)",
+      "union_weight_eta1_ratio_form": "sqrt(3)/(sqrt(3)+2)",
+      "union_weight_eta2": "4 - 2*sqrt(3)",
+      "union_weight_eta2_ratio_form": "2/(sqrt(3)+2)"
+    },
+    "R4_intersection_empty_branch_mortality": {
+      "T_eta_definition": "|z2|^2 = sin(eta)^2 with eta in [0, pi/2]",
+      "branch_mortality_row": "two-shell intersection branch dies at the measure level: there is no conditional on T_eta1 intersect T_eta2 when eta1 != eta2",
+      "difference": "-1/4",
+      "empty_conditioning_status": "undefined",
+      "eta1": "pi/6",
+      "eta2": "pi/4",
+      "exact_strength": "coordinate_uniqueness",
+      "intersection": "empty",
+      "pass": true,
+      "sin_eta1_squared": "1/4",
+      "sin_eta2_squared": "1/2"
+    },
+    "R5_order_row_eta_then_phi_vs_hopf_first": {
+      "agreement_or_gap": "agreement_on_common_refinement",
+      "common_refinement": "eta in [0,pi/2], physical chi in [0,pi), phi in [0,2*pi)",
+      "eta_then_phi_tower": "a + 2*c/3",
+      "exact_strength": "symbolic_identity",
+      "hopf_base_density": "sin(2*eta)/pi",
+      "hopf_fiber_first_tower": "a + 2*c/3",
+      "order_defect": "0",
+      "pass": true,
+      "scope": "No general commutation claim beyond this Hopf-compatible nested phi-circle refinement."
+    }
+  },
+  "result_path": "system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seed": {
+    "finite_eta_layers": [
+      "pi/12",
+      "pi/4",
+      "5*pi/12"
+    ],
+    "finite_solver_grid_N": 8,
+    "julia": 2026061101,
+    "python_jax": 2026061101,
+    "union_shells": [
+      "pi/6",
+      "pi/4"
+    ]
+  },
+  "sim_id": "geo_nested_disintegration_v0",
+  "source_path": "system_v6/sims/geo_nested_disintegration_v0/geo_nested_disintegration_v0_envelope.py",
+  "source_sha256": "3e5af7fb13d908c3db5cd9a914a3ae55293eb99fa6486e71b78ae0685416094f",
+  "stage": "mode4_prerequisite_nested_disintegration",
+  "summary": {
+    "anchor_values": {
+      "order_row": "agreement_on_common_refinement",
+      "stage1_conditional_chart_density": "1/(4*pi^2)",
+      "stage1_eta_marginal": "sin(2*eta)",
+      "stage2_phi_conditional": "1/(2*pi)",
+      "stage2_physical_chi_marginal": "1/pi",
+      "union_weight_eta1": "sqrt(3)/(sqrt(3)+2)",
+      "union_weight_eta2": "2/(sqrt(3)+2)"
+    },
+    "ceiling": "scratch_diagnostic",
+    "does_not_enable": "no ratchet sim is run here; no manifold, axis, bridge, physics, canonical admission, or all-nested-foliation commutation claim is made",
+    "enables": "multi-shell ratchet cards may cite the union rule for T_pi/6 union T_pi/4 and the eta-then-phi tower rule for Hopf-compatible nested conditioning",
+    "pytorch_omission": "no graph/network/autograd claim path; engine mode is julia_canon_plus_jax_diagnostic"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "eta1=pi/6, eta2=pi/4, lambda -> 0",
+      "demotion_condition": "demote if Symbolics does not participate in the algebraic mirror",
+      "gates": [
+        "symbolic_nested_tower",
+        "union_weights",
+        "controls"
+      ],
+      "input_object": "symbolic nested tower, union weight ratio, order row, and single-leaf limit",
+      "negative/erased_control": "wrong stage-2 marginal and equal union weights are nonzero controls",
+      "output_object": "0",
+      "positive_case": "Symbolics simplifies nested tower and order defects to 0",
+      "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "N=8 with four physical chi classes",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_nested_tower"
+      ],
+      "input_object": "finite nested tower integer eta weights, chi values, and phi counts",
+      "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+      "output_object": "unsat",
+      "positive_case": "valid nested tower violation is UNSAT",
+      "qualified_api/function": "Z3.Solver / Z3.IntVar / Z3.add / Z3.check",
+      "tool": "Z3"
+    },
+    {
+      "boundary_case": "eta1=pi/6, eta2=pi/4 union shell weights",
+      "demotion_condition": "demote if SymPy does not derive the exact integral or limit rows",
+      "gates": [
+        "nested_tower",
+        "union_weights",
+        "controls"
+      ],
+      "input_object": "cover-invariant Hopf coordinates and band-limit union shells",
+      "negative/erased_control": "wrong stage-2 physical chi marginal has defect -1/2",
+      "output_object": "a + 2*c/3",
+      "positive_case": "nested tower defect is exactly 0",
+      "qualified_api/function": "sympy.integrate / sympy.limit / sympy.simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "N=4,8,16,64 cover rows",
+      "demotion_condition": "demote if x64 is disabled or counts are not even-cover compatible",
+      "gates": [
+        "diagnostics"
+      ],
+      "input_object": "x64 eta shell densities and finite cover counts",
+      "negative/erased_control": "no control claim; JAX is supportive only",
+      "output_object": [
+        {
+          "eta": 0.5235987755982988,
+          "eta_label": "pi/6",
+          "normalized_union_weight": 0.46410161513775455,
+          "sin_2eta": 0.8660254037844386
+        },
+        {
+          "eta": 0.7853981633974483,
+          "eta_label": "pi/4",
+          "normalized_union_weight": 0.5358983848622454,
+          "sin_2eta": 1.0
+        }
+      ],
+      "positive_case": "union weights sum to 1 under x64 diagnostics",
+      "qualified_api/function": "jax.config.update / jax.numpy.sin",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "N=8 with four physical chi classes",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_nested_tower"
+      ],
+      "input_object": "finite nested tower integer eta weights, chi values, and phi counts",
+      "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+      "output_object": "unsat",
+      "positive_case": "valid nested tower violation is UNSAT",
+      "qualified_api/function": "z3.Solver / z3.Int / z3.Sum / z3.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "N=8 with four physical chi classes",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "finite_nested_tower"
+      ],
+      "input_object": "same finite nested tower integer data as z3",
+      "negative/erased_control": "erased stage-2 marginal and doubled-cover negated identities are SAT",
+      "output_object": "unsat",
+      "positive_case": "valid nested tower violation is UNSAT",
+      "qualified_api/function": "cvc5.Solver / Kind.ADD / Kind.MULT / checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "validator_expected_command": "/Users/joshuaeisenhart/Codex-Ratchet/scripts/validate_three_engine_sim_result.py system_v6/sims/geo_nested_disintegration_v0/results/geo_nested_disintegration_v0_envelope_results.json",
+  "validator_path": "scripts/validate_three_engine_sim_result.py"
+}

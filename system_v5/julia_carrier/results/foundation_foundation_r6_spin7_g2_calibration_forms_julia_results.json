@@ -1,0 +1,269 @@
+{
+  "C": {
+    "hermitian": true,
+    "normalization": "orthonormal octonion basis; QuantumOptics auxiliary probe projector is normalized trace-one",
+    "psd": true,
+    "rung_specific_constraint": "phi and Phi are computed from Cayley-Dickson octonion structure constants; X is skew and must preserve the calibration form",
+    "trace_eq_1": true
+  },
+  "M": {
+    "explicit_probe_family": [
+      "(X.phi)_{ijk}=sum_q X_{q,i} phi_{qjk}+X_{q,j} phi_{iqk}+X_{q,k} phi_{ijq} for all i<j<k in Im(O)",
+      "(Y.Phi)_{abcd}=sum_q Y_{q,a} Phi_{qbcd}+... for all a<b<c<d in O"
+    ],
+    "finite_probe_counts": {
+      "Phi_components": 70,
+      "phi_components": 35
+    },
+    "name": "form_preservation_probe",
+    "quantumoptics_probe_guard": {
+      "basis": "FockBasis(7)",
+      "basisstate_index": 1,
+      "hermitian": true,
+      "hermitian_defect": 0.0,
+      "normalization": "finite probe projector has trace one and unit-norm ket",
+      "package": "QuantumOptics",
+      "psd": true,
+      "trace": 1.0,
+      "trace_eq_1": true
+    }
+  },
+  "S_mod_M": {
+    "class_dimensions": {
+      "Stab_Phi_Spin7": 21,
+      "Stab_phi_G2": 14
+    },
+    "coset": "Spin(7)/G2 dimension = 21 - 14 = 7, matching the S^7 imaginary-unit/Fano-point horizon only",
+    "definition": "S is so(7) or so(8); A ~_M B iff the finite form-action probe cannot distinguish A-B; the stabilizer is ker(M)",
+    "quotient_summary": "ker(form-action on phi) has dimension 14; ker(form-action on Phi) has dimension 21"
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing Cayley-Dickson sanity check: the quaternion stage must match CliffordAlgebras(:Quaternions) before the octonion table is accepted",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "authoritative finite linear-algebra nullspace dimensions for Stab(phi) and Stab(Phi)",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing finite probe guard: constructs trace-one PSD Hermitian projectors for the calibration-form probe family",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side preservation/erase guard over computed phi components and a computed octonion derivation",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "calibration_forms": {
+    "Phi_definition": "Phi=e^0 wedge phi + *_7 phi on O=R plus Im(O)",
+    "phi_fano_line_count": 7,
+    "phi_fano_lines": [
+      {
+        "coefficient": 1,
+        "term": "e^123"
+      },
+      {
+        "coefficient": 1,
+        "term": "e^145"
+      },
+      {
+        "coefficient": -1,
+        "term": "e^167"
+      },
+      {
+        "coefficient": 1,
+        "term": "e^246"
+      },
+      {
+        "coefficient": 1,
+        "term": "e^257"
+      },
+      {
+        "coefficient": 1,
+        "term": "e^347"
+      },
+      {
+        "coefficient": -1,
+        "term": "e^356"
+      }
+    ]
+  },
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T04:27:31Z",
+  "julia_z3": {
+    "asserted_action_components": 35,
+    "asserted_precomputed_kernel_relations": 0,
+    "claim": "computed octonion derivation D(e1,e2) preserves full Cayley-Dickson phi, but an erased Fano-line form is not preserved",
+    "erase_flip_unsat_to_sat": true,
+    "erased_phi_nonpreservation_status": "sat",
+    "full_phi_nonpreservation_status": "unsat",
+    "solver": "Z3.jl"
+  },
+  "linear_algebra": {
+    "commutative_control": {
+      "ambient_dim": 7,
+      "constraint_cols": 21,
+      "constraint_rows": 35,
+      "exact_rank": 0,
+      "form_degree": 3,
+      "name": "forced_commutative_zero_phi_control",
+      "pivot_count": 0,
+      "probe_components": 35,
+      "so_dim": 21,
+      "stabilizer_dim": 21
+    },
+    "g2": {
+      "ambient_dim": 7,
+      "constraint_cols": 21,
+      "constraint_rows": 35,
+      "exact_rank": 7,
+      "form_degree": 3,
+      "name": "G2_stabilizer_of_associative_3_form_phi",
+      "pivot_count": 7,
+      "probe_components": 35,
+      "so_dim": 21,
+      "stabilizer_dim": 14
+    },
+    "generic_control": {
+      "ambient_dim": 7,
+      "constraint_cols": 21,
+      "constraint_rows": 35,
+      "exact_rank": 21,
+      "form_degree": 3,
+      "name": "generic_3_form_control",
+      "pivot_count": 21,
+      "probe_components": 35,
+      "so_dim": 21,
+      "stabilizer_dim": 0
+    },
+    "spin7": {
+      "ambient_dim": 8,
+      "constraint_cols": 28,
+      "constraint_rows": 70,
+      "exact_rank": 7,
+      "form_degree": 4,
+      "name": "Spin7_stabilizer_of_Cayley_4_form_Phi",
+      "pivot_count": 7,
+      "probe_components": 70,
+      "so_dim": 28,
+      "stabilizer_dim": 21
+    }
+  },
+  "negative_control_flip": {
+    "coset_21_minus_14_is_7": true,
+    "drop_form_preservation_probe_so7_dim_21_vs_14": true,
+    "erase_fano_line_e145_z3_unsat_to_sat": true,
+    "forced_commutative_zero_phi_dim_21_vs_14": true,
+    "generic_3_form_stabilizer_smaller_than_14": true
+  },
+  "object_id": "foundation_r6_spin7_g2_calibration_forms_julia",
+  "octonion_structure": {
+    "cliffordalgebras_crosscheck": {
+      "basis_labels": [
+        "𝟏",
+        "i",
+        "j",
+        "ij"
+      ],
+      "constructor": "CliffordAlgebra(:Quaternions)",
+      "i_j": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "i_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "ij_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "j_i": [
+        0,
+        0,
+        0,
+        -1
+      ],
+      "j_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "package": "CliffordAlgebras"
+    },
+    "construction": "Cayley-Dickson R -> C -> H -> O",
+    "quaternion_stage_matches_CliffordAlgebras": true,
+    "table_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r6_spin7_g2_calibration_forms_julia_results.json",
+  "rung_id": "foundation_r6_spin7_g2_calibration_forms",
+  "runtime_preflight": {
+    "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "julia_version": "1.12.6"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r6_spin7_g2_calibration_forms_julia.jl",
+  "stabilizer_dimension_summary": {
+    "asserted_precomputed_kernel_relations": 0,
+    "dim_Stab_Phi_Spin7": 21,
+    "dim_Stab_phi_G2": 14,
+    "forced_commutative_zero_phi_dim": 21,
+    "generic_3_form_stabilizer_dim": 0,
+    "so7_without_preservation_dim": 21,
+    "spin7_minus_g2_coset_dim": 7
+  },
+  "summary": {
+    "all_pass": true,
+    "dim_Stab_Phi_Spin7": 21,
+    "dim_Stab_phi_G2": 14,
+    "forced_commutative_zero_phi_dim": 21,
+    "generic_3_form_stabilizer_dim": 0,
+    "julia_z3_erased_phi_nonpreservation": "sat",
+    "julia_z3_full_phi_nonpreservation": "unsat",
+    "phi_fano_line_count": 7,
+    "spin7_minus_g2_coset_dim": 7
+  }
+}

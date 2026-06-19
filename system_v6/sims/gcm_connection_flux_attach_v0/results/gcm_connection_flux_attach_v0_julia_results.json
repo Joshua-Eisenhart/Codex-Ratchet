@@ -1,0 +1,87 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/Dates/SHA": "supportive",
+    "Manifolds": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/Dates/SHA": {
+      "reason": "supportive parsing and hashing",
+      "tried": true,
+      "used": true
+    },
+    "Manifolds": {
+      "reason": "load-bearing S3 carrier check",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Manifolds"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T22:45:34Z",
+  "leakage_status": "closed",
+  "manifold_receipt": {
+    "manifold_dimension": 3,
+    "sphere_type": "Sphere{ℝ, ManifoldsBase.TypeParameter{Tuple{3}}}"
+  },
+  "package_observables": {
+    "Manifolds": "Manifolds.Sphere(3) anchors the S3 carrier while occupied shell holonomy rows are recomputed"
+  },
+  "packages_used": [
+    "Manifolds",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_connection_flux_attach_v0/results/gcm_connection_flux_attach_v0_julia_results.json",
+  "row_receipts": [
+    {
+      "A_chi": 1.0,
+      "T_eta_label": "0",
+      "curvature_eta_chi": -0.0,
+      "holonomy": -6.283185307179586,
+      "occupied_survivor_count": 2
+    },
+    {
+      "A_chi": 0.7071067811865476,
+      "T_eta_label": "pi/8",
+      "curvature_eta_chi": -1.414213562373095,
+      "holonomy": -4.442882938158366,
+      "occupied_survivor_count": 4
+    },
+    {
+      "A_chi": 6.123233995736766e-17,
+      "T_eta_label": "pi/4",
+      "curvature_eta_chi": -2.0,
+      "holonomy": -3.8473413874435795e-16,
+      "occupied_survivor_count": 4
+    },
+    {
+      "A_chi": -0.7071067811865475,
+      "T_eta_label": "3pi/8",
+      "curvature_eta_chi": -1.4142135623730951,
+      "holonomy": 4.442882938158366,
+      "occupied_survivor_count": 4
+    },
+    {
+      "A_chi": -1.0,
+      "T_eta_label": "pi/2",
+      "curvature_eta_chi": -2.4492935982947064e-16,
+      "holonomy": 6.283185307179586,
+      "occupied_survivor_count": 2
+    }
+  ],
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "shell_count": 5,
+  "shell_occupation_signature": "2-4-4-4-2",
+  "sim_id": "gcm_connection_flux_attach_v0",
+  "source_path": "system_v6/sims/gcm_connection_flux_attach_v0/gcm_connection_flux_attach_v0_julia.jl",
+  "source_sha256": "e12ce37e9ddc59c0221c8b30823d8fb75751833cc1843e2b26fc67645b9c76c5",
+  "survivor_count": 16
+}

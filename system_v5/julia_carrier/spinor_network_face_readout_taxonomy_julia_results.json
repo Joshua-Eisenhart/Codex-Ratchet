@@ -1,0 +1,1820 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates": {
+      "reason": "supportive receipt writing to the exact Julia result path",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite spinor-network state construction, density/readout layers, entropy, CPTP channels, response rank, and parity scalars",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia",
+  "blocked_consumers": [
+    "dark matter admission",
+    "gravity admission",
+    "forces admission",
+    "Axis0",
+    "physics",
+    "M(C)",
+    "final manifold closure"
+  ],
+  "blockers": [],
+  "boundary": {
+    "finite_dimension_boundary": {
+      "hilbert_dimension": 32,
+      "n_spinor_nodes": 5,
+      "pass": true
+    },
+    "flat_fuzz_exact_control": {
+      "flat_vanish": true,
+      "pass": true
+    },
+    "julia_mirror_no_numpy_compute": {
+      "numpy_compute_used": false,
+      "pass": true
+    },
+    "knot_coupling_exact_control": {
+      "knot_couples": true,
+      "pass": true
+    }
+  },
+  "carrier": {
+    "density_status": "rho and rho_A are derived readout layers, not primitive state declarations",
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "hilbert_dimension": 32,
+    "nodes": 5,
+    "primitive": "finite spinor-network state psi over (C^2)^5",
+    "state_family": "finite graph-phase spinor network with local and composite knot perturbations"
+  },
+  "claim_ceiling": "finite readout taxonomy only: one substrate supports these distinct named readouts; NO admission of dark matter/gravity/forces/Axis0/physics/M(C)",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-07T04:28:02Z",
+  "eligible_consumers": [
+    "scratch diagnostic audits",
+    "readout taxonomy follow-up scouts",
+    "dual-backend parity checks"
+  ],
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "anti_physics_admission_fence": {
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "anti_single_scalar_relabel_control_fires": {
+      "minimum_rank_required": 2,
+      "pass": true,
+      "rank": 3
+    },
+    "density_and_reduced_density_are_readout_layers_not_primitives": {
+      "derived_layers": [
+        "rho=|psi><psi|",
+        "rho_A=reduced density for finite subsets A"
+      ],
+      "pass": true,
+      "primitive": "finite spinor-network state psi"
+    }
+  },
+  "name": "spinor_network_face_readout_taxonomy",
+  "nearby_variants": {
+    "passed": 4,
+    "total": 4,
+    "variants": [
+      "flat_fuzz",
+      "phase_twisted_flat",
+      "single_knot",
+      "composite_knot"
+    ]
+  },
+  "object_id": "spinor_network_face_readout_taxonomy",
+  "open_choices": [
+    "Readout families are finite diagnostics on one bounded carrier; none is admitted as physics.",
+    "The transition readout uses a tiny CPTP channel bank only; larger channel families would be separate scouts.",
+    "The gravity label is only the requested synchronization-gradient readout, not an admission of gravity."
+  ],
+  "parity": {
+    "diffs": {
+      "composite_knot.bounded_knot_matter_mass": 0.0,
+      "composite_knot.composite_knot_baryons_hadrons": 0.0,
+      "composite_knot.expansion_dark_energy_time": 0.0,
+      "composite_knot.preserved_info_dark_matter": 0.0,
+      "composite_knot.synchronization_gradient_gravity": 0.0,
+      "composite_knot.transition_forces": 3.3306690738754696e-16,
+      "cptp_ok": 0.0,
+      "distinct_probe": 0.0,
+      "flat_fuzz.bounded_knot_matter_mass": 0.0,
+      "flat_fuzz.composite_knot_baryons_hadrons": 0.0,
+      "flat_fuzz.expansion_dark_energy_time": 0.0,
+      "flat_fuzz.preserved_info_dark_matter": 0.0,
+      "flat_fuzz.synchronization_gradient_gravity": 0.0,
+      "flat_fuzz.transition_forces": 1.1102230246251565e-16,
+      "flat_vanish": 0.0,
+      "knot_couples": 0.0,
+      "phase_twisted_flat.bounded_knot_matter_mass": 0.0,
+      "phase_twisted_flat.composite_knot_baryons_hadrons": 0.0,
+      "phase_twisted_flat.expansion_dark_energy_time": 0.0,
+      "phase_twisted_flat.preserved_info_dark_matter": 1.1102230246251565e-16,
+      "phase_twisted_flat.synchronization_gradient_gravity": 0.0,
+      "phase_twisted_flat.transition_forces": 1.1102230246251565e-16,
+      "readout_response_rank": 0.0,
+      "response_singular_value_0": 2.220446049250313e-16,
+      "response_singular_value_1": 0.0,
+      "response_singular_value_2": 2.7755575615628914e-17,
+      "response_singular_value_3": 0.0,
+      "single_knot.bounded_knot_matter_mass": 0.0,
+      "single_knot.composite_knot_baryons_hadrons": 0.0,
+      "single_knot.expansion_dark_energy_time": 0.0,
+      "single_knot.preserved_info_dark_matter": 2.7755575615628914e-17,
+      "single_knot.synchronization_gradient_gravity": 0.0,
+      "single_knot.transition_forces": 2.220446049250313e-16
+    },
+    "parity_max_diff": 3.3306690738754696e-16,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/spinor_network_face_readout_taxonomy_results.json",
+    "within_1e_10": true,
+    "worst_key": "composite_knot.transition_forces"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/spinor_network_face_readout_taxonomy_results.json",
+  "positive": {
+    "composite_knot_turns_on_baryon_readout_without_promotion": {
+      "composite_best_edge": {
+        "edge": [
+          0,
+          1
+        ],
+        "internal_mi_norm": 1.0,
+        "pair_purity": 1.0,
+        "pair_purity_score": 1.0,
+        "score": 1.0
+      },
+      "composite_readouts": {
+        "bounded_knot_matter_mass": 0.5,
+        "composite_knot_baryons_hadrons": 1.0,
+        "expansion_dark_energy_time": 0.7999999999999999,
+        "preserved_info_dark_matter": 0.4,
+        "synchronization_gradient_gravity": 0.5,
+        "transition_forces": 0.6603780215540435
+      },
+      "pass": true
+    },
+    "distinct_probe_response_rank_not_single_scalar": {
+      "matrix_readout_order": [
+        "expansion_dark_energy_time",
+        "preserved_info_dark_matter",
+        "bounded_knot_matter_mass",
+        "composite_knot_baryons_hadrons",
+        "transition_forces",
+        "synchronization_gradient_gravity"
+      ],
+      "matrix_state_order": [
+        "flat_fuzz",
+        "phase_twisted_flat",
+        "single_knot",
+        "composite_knot"
+      ],
+      "pass": true,
+      "phase_variant_keeps_expansion_invariant": true,
+      "phase_variant_moved_readouts": {
+        "preserved_info_dark_matter": 0.21040208776627675,
+        "transition_forces": 0.0006417864061273315
+      },
+      "readout_response_matrix": [
+        [
+          0.9999999999999994,
+          0.0,
+          0.0,
+          0.0,
+          0.6436311970270983,
+          0.0
+        ],
+        [
+          0.9999999999999994,
+          0.21040208776627675,
+          0.0,
+          0.0,
+          0.6429894106209709,
+          0.0
+        ],
+        [
+          0.7999999999999999,
+          0.2,
+          1.0,
+          0.0,
+          0.5,
+          1.0
+        ],
+        [
+          0.7999999999999999,
+          0.4,
+          0.5,
+          1.0,
+          0.6603780215540435,
+          0.5
+        ]
+      ],
+      "readout_response_rank": 3,
+      "singular_values": [
+        1.7430794112548702,
+        0.8757905924130065,
+        0.1996117021059159,
+        0.0
+      ]
+    },
+    "finite_cptp_transition_channels_well_formed": {
+      "pass": true,
+      "transition_details": {
+        "composite_knot": {
+          "channel_trace_distances": {
+            "controlled_phase_edge01": 0.4999999999999998,
+            "damping_node0": 0.14151208621617423,
+            "local_x_node0": 1.0,
+            "local_z_node1": 0.9999999999999999
+          },
+          "max_cptp_residual": 0.0
+        },
+        "flat_fuzz": {
+          "channel_trace_distances": {
+            "controlled_phase_edge01": 0.4330127018922192,
+            "damping_node0": 0.14151208621617423,
+            "local_x_node0": 0.9999999999999996,
+            "local_z_node1": 1.0
+          },
+          "max_cptp_residual": 0.0
+        },
+        "phase_twisted_flat": {
+          "channel_trace_distances": {
+            "controlled_phase_edge01": 0.43301270189221924,
+            "damping_node0": 0.13894494059166468,
+            "local_x_node0": 1.0,
+            "local_z_node1": 0.9999999999999999
+          },
+          "max_cptp_residual": 0.0
+        },
+        "single_knot": {
+          "channel_trace_distances": {
+            "controlled_phase_edge01": 0.0,
+            "damping_node0": 0.0,
+            "local_x_node0": 0.9999999999999999,
+            "local_z_node1": 1.0000000000000002
+          },
+          "max_cptp_residual": 0.0
+        }
+      }
+    },
+    "flat_fuzz_vanishes_knot_readouts_and_maxes_expansion": {
+      "flat_readouts": {
+        "bounded_knot_matter_mass": 0.0,
+        "composite_knot_baryons_hadrons": 0.0,
+        "expansion_dark_energy_time": 0.9999999999999994,
+        "preserved_info_dark_matter": 0.0,
+        "synchronization_gradient_gravity": 0.0,
+        "transition_forces": 0.6436311970270983
+      },
+      "pass": true
+    },
+    "same_finite_spinor_network_substrate_has_six_readout_maps": {
+      "network_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "network_nodes": 5,
+      "pass": true,
+      "readout_keys": [
+        "expansion_dark_energy_time",
+        "preserved_info_dark_matter",
+        "bounded_knot_matter_mass",
+        "composite_knot_baryons_hadrons",
+        "transition_forces",
+        "synchronization_gradient_gravity"
+      ],
+      "readout_rows": {
+        "composite_knot": {
+          "bounded_knot_matter_mass": 0.5,
+          "composite_knot_baryons_hadrons": 1.0,
+          "expansion_dark_energy_time": 0.7999999999999999,
+          "preserved_info_dark_matter": 0.4,
+          "synchronization_gradient_gravity": 0.5,
+          "transition_forces": 0.6603780215540435
+        },
+        "flat_fuzz": {
+          "bounded_knot_matter_mass": 0.0,
+          "composite_knot_baryons_hadrons": 0.0,
+          "expansion_dark_energy_time": 0.9999999999999994,
+          "preserved_info_dark_matter": 0.0,
+          "synchronization_gradient_gravity": 0.0,
+          "transition_forces": 0.6436311970270983
+        },
+        "phase_twisted_flat": {
+          "bounded_knot_matter_mass": 0.0,
+          "composite_knot_baryons_hadrons": 0.0,
+          "expansion_dark_energy_time": 0.9999999999999994,
+          "preserved_info_dark_matter": 0.21040208776627675,
+          "synchronization_gradient_gravity": 0.0,
+          "transition_forces": 0.6429894106209709
+        },
+        "single_knot": {
+          "bounded_knot_matter_mass": 1.0,
+          "composite_knot_baryons_hadrons": 0.0,
+          "expansion_dark_energy_time": 0.7999999999999999,
+          "preserved_info_dark_matter": 0.2,
+          "synchronization_gradient_gravity": 1.0,
+          "transition_forces": 0.5
+        }
+      }
+    },
+    "single_knot_turns_on_matter_and_gravity_together": {
+      "gravity_best_subset": {
+        "knot_score": 1.0,
+        "local_entropy_norm": 0.0,
+        "neighbor_entropy_norm": 1.0,
+        "neighbor_nodes": [
+          1,
+          4
+        ],
+        "subset": [
+          0
+        ],
+        "sync_gradient_score": 1.0
+      },
+      "matter_best_subset": {
+        "locality_weighted_score": 1.0,
+        "purity": 1.0,
+        "purity_score": 1.0,
+        "subset": [
+          0
+        ]
+      },
+      "pass": true,
+      "single_knot_readouts": {
+        "bounded_knot_matter_mass": 1.0,
+        "composite_knot_baryons_hadrons": 0.0,
+        "expansion_dark_energy_time": 0.7999999999999999,
+        "preserved_info_dark_matter": 0.2,
+        "synchronization_gradient_gravity": 1.0,
+        "transition_forces": 0.5
+      }
+    }
+  },
+  "promotion_allowed": false,
+  "readout_details": {
+    "composite_knot": {
+      "composite": {
+        "best": {
+          "edge": [
+            0,
+            1
+          ],
+          "internal_mi_norm": 1.0,
+          "pair_purity": 1.0,
+          "pair_purity_score": 1.0,
+          "score": 1.0
+        },
+        "candidates": [
+          {
+            "edge": [
+              0,
+              1
+            ],
+            "internal_mi_norm": 1.0,
+            "pair_purity": 1.0,
+            "pair_purity_score": 1.0,
+            "score": 1.0
+          },
+          {
+            "edge": [
+              1,
+              2
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.25,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              2,
+              3
+            ],
+            "internal_mi_norm": 0.5000000000000001,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              3,
+              4
+            ],
+            "internal_mi_norm": 0.5,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              0,
+              4
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.25,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      "global_purity": 1.0,
+      "gravity": {
+        "best": {
+          "knot_score": 0.5,
+          "local_entropy_norm": 0.0,
+          "neighbor_entropy_norm": 1.0,
+          "neighbor_nodes": [
+            2,
+            4
+          ],
+          "subset": [
+            0,
+            1
+          ],
+          "sync_gradient_score": 0.5
+        },
+        "candidates": [
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              0
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.5,
+            "local_entropy_norm": 0.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              0,
+              1
+            ],
+            "sync_gradient_score": 0.5
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              1,
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.49999999999999994,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              2,
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.5,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              3,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              0,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          }
+        ]
+      },
+      "matter": {
+        "best": {
+          "locality_weighted_score": 0.5,
+          "purity": 1.0,
+          "purity_score": 1.0,
+          "subset": [
+            0,
+            1
+          ]
+        },
+        "candidates": [
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              0
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.5,
+            "purity": 1.0,
+            "purity_score": 1.0,
+            "subset": [
+              0,
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.25,
+            "purity_score": 0.0,
+            "subset": [
+              1,
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              2,
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              3,
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.25,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              4
+            ]
+          }
+        ]
+      },
+      "trace": 1.0,
+      "transition": {
+        "channel_trace_distances": {
+          "controlled_phase_edge01": 0.4999999999999998,
+          "damping_node0": 0.14151208621617423,
+          "local_x_node0": 1.0,
+          "local_z_node1": 0.9999999999999999
+        },
+        "max_cptp_residual": 0.0
+      }
+    },
+    "flat_fuzz": {
+      "composite": {
+        "best": {
+          "edge": [
+            0,
+            1
+          ],
+          "internal_mi_norm": 0.0,
+          "pair_purity": 0.24999999999999994,
+          "pair_purity_score": 0.0,
+          "score": 0.0
+        },
+        "candidates": [
+          {
+            "edge": [
+              0,
+              1
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.24999999999999994,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              1,
+              2
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.24999999999999994,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              2,
+              3
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.24999999999999994,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              3,
+              4
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.24999999999999994,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              0,
+              4
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.24999999999999994,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      "global_purity": 0.9999999999999999,
+      "gravity": {
+        "best": {
+          "knot_score": 0.0,
+          "local_entropy_norm": 1.0,
+          "neighbor_entropy_norm": 1.0,
+          "neighbor_nodes": [
+            1,
+            4
+          ],
+          "subset": [
+            0
+          ],
+          "sync_gradient_score": 0.0
+        },
+        "candidates": [
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              0
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              0,
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              1,
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              2,
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              3,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              0,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          }
+        ]
+      },
+      "matter": {
+        "best": {
+          "locality_weighted_score": 0.0,
+          "purity": 0.4999999999999999,
+          "purity_score": 0.0,
+          "subset": [
+            0
+          ]
+        },
+        "candidates": [
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.4999999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              0
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.4999999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.4999999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.4999999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.4999999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.24999999999999994,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.24999999999999994,
+            "purity_score": 0.0,
+            "subset": [
+              1,
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.24999999999999994,
+            "purity_score": 0.0,
+            "subset": [
+              2,
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.24999999999999994,
+            "purity_score": 0.0,
+            "subset": [
+              3,
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.24999999999999994,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              4
+            ]
+          }
+        ]
+      },
+      "trace": 0.9999999999999999,
+      "transition": {
+        "channel_trace_distances": {
+          "controlled_phase_edge01": 0.4330127018922192,
+          "damping_node0": 0.14151208621617423,
+          "local_x_node0": 0.9999999999999996,
+          "local_z_node1": 1.0
+        },
+        "max_cptp_residual": 0.0
+      }
+    },
+    "phase_twisted_flat": {
+      "composite": {
+        "best": {
+          "edge": [
+            0,
+            1
+          ],
+          "internal_mi_norm": 0.21040208776627672,
+          "pair_purity": 0.5624999999999999,
+          "pair_purity_score": 0.0,
+          "score": 0.0
+        },
+        "candidates": [
+          {
+            "edge": [
+              0,
+              1
+            ],
+            "internal_mi_norm": 0.21040208776627672,
+            "pair_purity": 0.5624999999999999,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              1,
+              2
+            ],
+            "internal_mi_norm": 0.2104020877662769,
+            "pair_purity": 0.5624999999999999,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              2,
+              3
+            ],
+            "internal_mi_norm": 0.2104020877662769,
+            "pair_purity": 0.5624999999999999,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              3,
+              4
+            ],
+            "internal_mi_norm": 0.21040208776627672,
+            "pair_purity": 0.5624999999999999,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              0,
+              4
+            ],
+            "internal_mi_norm": 0.21040208776627672,
+            "pair_purity": 0.5624999999999999,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      "global_purity": 0.9999999999999999,
+      "gravity": {
+        "best": {
+          "knot_score": 0.0,
+          "local_entropy_norm": 0.8112781244591329,
+          "neighbor_entropy_norm": 0.8112781244591329,
+          "neighbor_nodes": [
+            1,
+            4
+          ],
+          "subset": [
+            0
+          ],
+          "sync_gradient_score": 0.0
+        },
+        "candidates": [
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.8112781244591329,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              0
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.8112781244591329,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.8112781244591329,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.8112781244591329,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.8112781244591329,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.6008760366928563,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              0,
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.600876036692856,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              1,
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.600876036692856,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              2,
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.6008760366928563,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              3,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.6008760366928563,
+            "neighbor_entropy_norm": 0.8112781244591329,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              0,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          }
+        ]
+      },
+      "matter": {
+        "best": {
+          "locality_weighted_score": 0.0,
+          "purity": 0.6249999999999999,
+          "purity_score": 0.0,
+          "subset": [
+            0
+          ]
+        },
+        "candidates": [
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.6249999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              0
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.6249999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.6249999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.6249999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.6249999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5624999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5624999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              1,
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5624999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              2,
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5624999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              3,
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5624999999999999,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              4
+            ]
+          }
+        ]
+      },
+      "trace": 0.9999999999999999,
+      "transition": {
+        "channel_trace_distances": {
+          "controlled_phase_edge01": 0.43301270189221924,
+          "damping_node0": 0.13894494059166468,
+          "local_x_node0": 1.0,
+          "local_z_node1": 0.9999999999999999
+        },
+        "max_cptp_residual": 0.0
+      }
+    },
+    "single_knot": {
+      "composite": {
+        "best": {
+          "edge": [
+            0,
+            1
+          ],
+          "internal_mi_norm": 0.0,
+          "pair_purity": 0.5,
+          "pair_purity_score": 0.0,
+          "score": 0.0
+        },
+        "candidates": [
+          {
+            "edge": [
+              0,
+              1
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              1,
+              2
+            ],
+            "internal_mi_norm": 0.49999999999999994,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              2,
+              3
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.25,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              3,
+              4
+            ],
+            "internal_mi_norm": 0.5,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          },
+          {
+            "edge": [
+              0,
+              4
+            ],
+            "internal_mi_norm": 0.0,
+            "pair_purity": 0.5,
+            "pair_purity_score": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      "global_purity": 1.0,
+      "gravity": {
+        "best": {
+          "knot_score": 1.0,
+          "local_entropy_norm": 0.0,
+          "neighbor_entropy_norm": 1.0,
+          "neighbor_nodes": [
+            1,
+            4
+          ],
+          "subset": [
+            0
+          ],
+          "sync_gradient_score": 1.0
+        },
+        "candidates": [
+          {
+            "knot_score": 1.0,
+            "local_entropy_norm": 0.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              0
+            ],
+            "sync_gradient_score": 1.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 0.5,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 0.5,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.5,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              2,
+              4
+            ],
+            "subset": [
+              0,
+              1
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.5000000000000001,
+            "neighbor_entropy_norm": 0.5,
+            "neighbor_nodes": [
+              0,
+              3
+            ],
+            "subset": [
+              1,
+              2
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 1.0,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              4
+            ],
+            "subset": [
+              2,
+              3
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.5,
+            "neighbor_entropy_norm": 0.5,
+            "neighbor_nodes": [
+              0,
+              2
+            ],
+            "subset": [
+              3,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          },
+          {
+            "knot_score": 0.0,
+            "local_entropy_norm": 0.5,
+            "neighbor_entropy_norm": 1.0,
+            "neighbor_nodes": [
+              1,
+              3
+            ],
+            "subset": [
+              0,
+              4
+            ],
+            "sync_gradient_score": 0.0
+          }
+        ]
+      },
+      "matter": {
+        "best": {
+          "locality_weighted_score": 1.0,
+          "purity": 1.0,
+          "purity_score": 1.0,
+          "subset": [
+            0
+          ]
+        },
+        "candidates": [
+          {
+            "locality_weighted_score": 1.0,
+            "purity": 1.0,
+            "purity_score": 1.0,
+            "subset": [
+              0
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              1
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              1,
+              2
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.25,
+            "purity_score": 0.0,
+            "subset": [
+              2,
+              3
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              3,
+              4
+            ]
+          },
+          {
+            "locality_weighted_score": 0.0,
+            "purity": 0.5,
+            "purity_score": 0.0,
+            "subset": [
+              0,
+              4
+            ]
+          }
+        ]
+      },
+      "trace": 1.0,
+      "transition": {
+        "channel_trace_distances": {
+          "controlled_phase_edge01": 0.0,
+          "damping_node0": 0.0,
+          "local_x_node0": 0.9999999999999999,
+          "local_z_node1": 1.0000000000000002
+        },
+        "max_cptp_residual": 0.0
+      }
+    }
+  },
+  "readout_rows": {
+    "composite_knot": {
+      "bounded_knot_matter_mass": 0.5,
+      "composite_knot_baryons_hadrons": 1.0,
+      "expansion_dark_energy_time": 0.7999999999999999,
+      "preserved_info_dark_matter": 0.4,
+      "synchronization_gradient_gravity": 0.5,
+      "transition_forces": 0.6603780215540435
+    },
+    "flat_fuzz": {
+      "bounded_knot_matter_mass": 0.0,
+      "composite_knot_baryons_hadrons": 0.0,
+      "expansion_dark_energy_time": 0.9999999999999994,
+      "preserved_info_dark_matter": 0.0,
+      "synchronization_gradient_gravity": 0.0,
+      "transition_forces": 0.6436311970270983
+    },
+    "phase_twisted_flat": {
+      "bounded_knot_matter_mass": 0.0,
+      "composite_knot_baryons_hadrons": 0.0,
+      "expansion_dark_energy_time": 0.9999999999999994,
+      "preserved_info_dark_matter": 0.21040208776627675,
+      "synchronization_gradient_gravity": 0.0,
+      "transition_forces": 0.6429894106209709
+    },
+    "single_knot": {
+      "bounded_knot_matter_mass": 1.0,
+      "composite_knot_baryons_hadrons": 0.0,
+      "expansion_dark_energy_time": 0.7999999999999999,
+      "preserved_info_dark_matter": 0.2,
+      "synchronization_gradient_gravity": 1.0,
+      "transition_forces": 0.5
+    }
+  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/spinor_network_face_readout_taxonomy_julia_results.json",
+  "schema": "FINITE_SPINOR_NETWORK_READOUT_TAXONOMY_v1",
+  "shared_scalars": {
+    "composite_knot.bounded_knot_matter_mass": 0.5,
+    "composite_knot.composite_knot_baryons_hadrons": 1.0,
+    "composite_knot.expansion_dark_energy_time": 0.7999999999999999,
+    "composite_knot.preserved_info_dark_matter": 0.4,
+    "composite_knot.synchronization_gradient_gravity": 0.5,
+    "composite_knot.transition_forces": 0.6603780215540435,
+    "cptp_ok": 1.0,
+    "distinct_probe": 1.0,
+    "flat_fuzz.bounded_knot_matter_mass": 0.0,
+    "flat_fuzz.composite_knot_baryons_hadrons": 0.0,
+    "flat_fuzz.expansion_dark_energy_time": 0.9999999999999994,
+    "flat_fuzz.preserved_info_dark_matter": 0.0,
+    "flat_fuzz.synchronization_gradient_gravity": 0.0,
+    "flat_fuzz.transition_forces": 0.6436311970270983,
+    "flat_vanish": 1.0,
+    "knot_couples": 1.0,
+    "phase_twisted_flat.bounded_knot_matter_mass": 0.0,
+    "phase_twisted_flat.composite_knot_baryons_hadrons": 0.0,
+    "phase_twisted_flat.expansion_dark_energy_time": 0.9999999999999994,
+    "phase_twisted_flat.preserved_info_dark_matter": 0.21040208776627675,
+    "phase_twisted_flat.synchronization_gradient_gravity": 0.0,
+    "phase_twisted_flat.transition_forces": 0.6429894106209709,
+    "readout_response_rank": 3.0,
+    "response_singular_value_0": 1.7430794112548702,
+    "response_singular_value_1": 0.8757905924130065,
+    "response_singular_value_2": 0.1996117021059159,
+    "response_singular_value_3": 0.0,
+    "single_knot.bounded_knot_matter_mass": 1.0,
+    "single_knot.composite_knot_baryons_hadrons": 0.0,
+    "single_knot.expansion_dark_energy_time": 0.7999999999999999,
+    "single_knot.preserved_info_dark_matter": 0.2,
+    "single_knot.synchronization_gradient_gravity": 1.0,
+    "single_knot.transition_forces": 0.5
+  },
+  "six_readouts_owner_exact_list": [
+    "expansion readout -> DARK ENERGY/TIME: a monotone entropy / size-extent growth scalar (positive-entropy expansion / universal clock).",
+    "preserved-info readout -> DARK MATTER: preserved low/negative-entropy correlation (mutual information / preserved constraint pattern).",
+    "bounded-knot readout -> MATTER/MASS: detect a low-entropy bounded LOCAL pure subregion (purity x locality); its 'mass' = knot stability/binding.",
+    "composite-knot readout -> BARYONS/HADRONS: detect composite/bound multi-knot structure (confined composites).",
+    "transition readout -> FORCES: the admissible transformation channels among configurations (CPTP/transition operators between knot configs).",
+    "synchronization-gradient readout -> GRAVITY: the entropy-gradient / sync pressure between local knots and the global field (convergence gradient)."
+  ],
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/spinor_network_face_readout_taxonomy.jl",
+  "summary": {
+    "all_pass": true,
+    "flat_vanish": true,
+    "knot_couples": true,
+    "local_all_pass": true,
+    "parity_within_1e_10": true,
+    "readout_response_rank": 3
+  },
+  "thesis_instantiated": "entropic monism, nominalist: one finite substrate; named physics objects are not primitive; each name is a finite readout/probe family on the same state, with equivalence only under that probe",
+  "tool_integration_depth": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/Dates": {
+      "reason": "supportive receipt writing to the exact Julia result path",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite spinor-network state construction, density/readout layers, entropy, CPTP channels, response rank, and parity scalars",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": "This is a v5 scratch diagnostic dual-backend readout taxonomy; it is not a v4 probe or promotion artifact."
+}

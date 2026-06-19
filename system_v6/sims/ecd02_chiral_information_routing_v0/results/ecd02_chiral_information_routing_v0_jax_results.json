@@ -1,0 +1,695 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent routing/index SMT contract",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact signed-index identity check",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing routing/index SMT contract",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "capability_discriminator_only",
+  "classification": "scratch_diagnostic",
+  "core": {
+    "all_pass": true,
+    "authority_inputs": {
+      "alt_view_chiral_diode": {
+        "path": "system_v6/receipts/altviews_capability_and_surface_miss_20260612.md",
+        "role": "advisory only: finite chiral diode test design"
+      },
+      "capability_registry_ECD_02": {
+        "path": "system_v6/receipts/engine_capability_differentiators_20260612.md",
+        "role": "authority: chiral information routing capability discriminator"
+      },
+      "panel8_open_chain_calibration": {
+        "path": "system_v6/receipts/cross_model_anchor_recompute_panel8_20260612.md",
+        "role": "advisory pre-registration: right shift +1, left shift -1, onsite 0"
+      },
+      "qca_v3_fixture": {
+        "path": "system_v6/sims/ring_checkerboard_qca_v3/",
+        "role": "authority seed: distinct open-chain L/R engine unitaries with extracted indices L=-1, R=+1"
+      }
+    },
+    "boundary_section": {
+      "claim_ceiling": "capability_discriminator_only",
+      "forbidden_claims": [
+        "finite-ring GNVW admission",
+        "all-cells QCA admission",
+        "physics chirality claim",
+        "canonical engine admission"
+      ]
+    },
+    "chain": {
+      "endpoint_mutual_information_unit": "bits",
+      "max_steps": 5,
+      "sites": 6
+    },
+    "claim_ceiling": "capability_discriminator_only",
+    "classification": "scratch_diagnostic",
+    "controls": {
+      "diode_pass": true,
+      "falsifier_reachable_and_kills_original_R_direction": true,
+      "index0_symmetric": true,
+      "index_sign_predicts_routing_direction": true,
+      "mirror_pass": true,
+      "swapped_chirality_mirror_flips_direction": true,
+      "szilard_baseline_fails": true
+    },
+    "crossover_proofs": {
+      "cvc5": {
+        "claim": "cvc5 independently binds the computed index/routing contract and gets the same UNSAT negation",
+        "erased_flip_verdict": "sat",
+        "forced_R_left_falsifier_verdict": "unsat",
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "claim": "z3 binds computed index signs and endpoint routing asymmetries; negating the exact contract is UNSAT",
+        "erased_flip_verdict": "sat",
+        "forced_R_left_falsifier_verdict": "unsat",
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "engine_values": {
+      "L_index": -1,
+      "L_routing_asymmetry": -1.0,
+      "R_index": 1,
+      "R_routing_asymmetry": 1.0,
+      "diode_pass": 1,
+      "index0": 0,
+      "mirror_pass": 1,
+      "szilard_routing_asymmetry": 0.0
+    },
+    "formal_admission_allowed": false,
+    "negative_section": {
+      "SZILARD_FAIL": {
+        "failure_reason": "same-chain measurement/reset baseline has no intrinsic chirality or opposite-end routing index",
+        "passes_capability": false,
+        "routing_asymmetry": 0.0,
+        "signed_index": 0
+      },
+      "index0_control": {
+        "capability_tracks_index": true,
+        "routing_asymmetry": 0.0,
+        "signed_index": 0,
+        "symmetric": true
+      }
+    },
+    "positive_section": {
+      "QIT_PASS": "L/R rows retain opposite index-predicted endpoint routing asymmetry",
+      "diode": {
+        "attenuation_R_to_L": 1.0,
+        "blocks_R_to_L_bits": 1.0,
+        "diode_pass": true,
+        "passes_L_to_R_bits": 1.0,
+        "row_id": "R_engine_chiral_diode"
+      },
+      "mirror": {
+        "attenuation_L_to_R": 1.0,
+        "blocks_L_to_R_bits": 1.0,
+        "mirror_pass": true,
+        "passes_R_to_L_bits": 1.0,
+        "row_id": "L_engine_mirror_diode"
+      }
+    },
+    "promotion_allowed": false,
+    "qca_v3_indices_consumed": {
+      "L": -1,
+      "L_index0_control": 0,
+      "R": 1,
+      "R_index0_control": 0,
+      "forced_R_left": -1,
+      "zero": 0
+    },
+    "qca_v3_source_fixture_boundary": "bounded open-chain local-unitary fixture only; no finite-ring GNVW admission",
+    "routing": {
+      "diode_row": {
+        "attenuation_R_to_L": 1.0,
+        "blocks_R_to_L_bits": 1.0,
+        "diode_pass": true,
+        "passes_L_to_R_bits": 1.0,
+        "row_id": "R_engine_chiral_diode"
+      },
+      "index0_control": {
+        "capability_tracks_index": true,
+        "routing_asymmetry": 0.0,
+        "signed_index": 0,
+        "symmetric": true
+      },
+      "mirror_diode_row": {
+        "attenuation_L_to_R": 1.0,
+        "blocks_L_to_R_bits": 1.0,
+        "mirror_pass": true,
+        "passes_R_to_L_bits": 1.0,
+        "row_id": "L_engine_mirror_diode"
+      },
+      "profiles": {
+        "L_engine_left_to_right": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "left",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "engine_L_flux_IN_left_O1",
+          "signed_index": -1,
+          "target_end": "right"
+        },
+        "L_engine_right_to_left": {
+          "attenuation": 0.0,
+          "first_arrival_step": 5,
+          "injection_end": "right",
+          "opposite_end_arrival_bits": 1.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 4,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 3,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 2,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 1,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 1.0
+            }
+          ],
+          "rule_id": "engine_L_flux_IN_left_O1",
+          "signed_index": -1,
+          "target_end": "left"
+        },
+        "R_engine_left_to_right": {
+          "attenuation": 0.0,
+          "first_arrival_step": 5,
+          "injection_end": "left",
+          "opposite_end_arrival_bits": 1.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 1,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 2,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 3,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": 4,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 1.0
+            }
+          ],
+          "rule_id": "engine_R_flux_OUT_right_O1",
+          "signed_index": 1,
+          "target_end": "right"
+        },
+        "R_engine_right_to_left": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "right",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 0.0,
+              "position": null,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "engine_R_flux_OUT_right_O1",
+          "signed_index": 1,
+          "target_end": "left"
+        },
+        "index0_left_injection": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "left",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "index0_control",
+          "signed_index": 0,
+          "target_end": "right"
+        },
+        "index0_right_injection": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "right",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "index0_control",
+          "signed_index": 0,
+          "target_end": "left"
+        },
+        "szilard_left_injection": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "left",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 1.0,
+              "mi_right_bits": 0.0,
+              "position": 0,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "szilard_no_chirality_baseline",
+          "signed_index": 0,
+          "target_end": "right"
+        },
+        "szilard_right_injection": {
+          "attenuation": 1.0,
+          "first_arrival_step": null,
+          "injection_end": "right",
+          "opposite_end_arrival_bits": 0.0,
+          "profile": [
+            {
+              "k": 0,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 1,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 2,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 3,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 4,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            },
+            {
+              "k": 5,
+              "mi_left_bits": 0.0,
+              "mi_right_bits": 1.0,
+              "position": 5,
+              "target_mi_bits": 0.0
+            }
+          ],
+          "rule_id": "szilard_no_chirality_baseline",
+          "signed_index": 0,
+          "target_end": "left"
+        }
+      },
+      "routing_asymmetry": {
+        "L_engine_left_to_right_minus_right_to_left": -1.0,
+        "R_engine_left_to_right_minus_right_to_left": 1.0,
+        "index0_left_to_right_minus_right_to_left": 0.0,
+        "szilard_baseline_left_to_right_minus_right_to_left": 0.0
+      },
+      "szilard_baseline": {
+        "failure_reason": "same-chain measurement/reset baseline has no intrinsic chirality or opposite-end routing index",
+        "passes_capability": false,
+        "routing_asymmetry": 0.0,
+        "signed_index": 0
+      }
+    },
+    "sim_id": "ecd02_chiral_information_routing_v0",
+    "sympy_row": {
+      "L_identity": "-1",
+      "R_identity": "1",
+      "all_pass": true,
+      "formula": "routing_asymmetry == signed_log2_index for chiral rows",
+      "zero_identity": "0"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "cvc5 independently binds the computed index/routing contract and gets the same UNSAT negation",
+      "erased_flip_verdict": "sat",
+      "forced_R_left_falsifier_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "z3 binds computed index signs and endpoint routing asymmetries; negating the exact contract is UNSAT",
+      "erased_flip_verdict": "sat",
+      "forced_R_left_falsifier_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_values": {
+    "L_index": -1,
+    "L_routing_asymmetry": -1.0,
+    "R_index": 1,
+    "R_routing_asymmetry": 1.0,
+    "diode_pass": 1,
+    "index0": 0,
+    "mirror_pass": 1,
+    "szilard_routing_asymmetry": 0.0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T09:01:00Z",
+  "package_observables": {
+    "cvc5": "cvc5.Solver independently proves the same routing/index contract",
+    "sympy": "sp.symbols/sp.simplify checks exact signed-index identities used in the routing row",
+    "z3": "z3.Solver proves the negated routing/index contract is UNSAT from computed integer observables"
+  },
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "sympy": "1.14.0",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/ecd02_chiral_information_routing_v0/results/ecd02_chiral_information_routing_v0_jax_results.json",
+  "routing_signature_sha256": "10255c9ba987d394dfb35c71dd5968805f378d62820656642c7324b807bbd37d",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "ecd02_chiral_information_routing_v0",
+  "source_backed_solver_smoke": {
+    "cvc5": "unsat",
+    "z3": "unsat"
+  },
+  "source_path": "system_v6/sims/ecd02_chiral_information_routing_v0/ecd02_chiral_information_routing_v0_jax.py",
+  "source_sha256": "ec7a197e31d8b248349ffa3e4ded240e3d56f33d0cf694df63d0e89eb9ff02c5",
+  "sympy_check": {
+    "L_matches_minus_one": true,
+    "R_matches_plus_one": true,
+    "szilard_zero": true
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "chain endpoint arrival after k=5",
+      "demotion_condition": "demote if proof no longer binds computed routing asymmetry",
+      "input_object": "computed index and routing asymmetry integers",
+      "negative/erased_control": "Szilard/index0 asymmetry zero and forced-R-left falsifier UNSAT",
+      "output_object": "UNSAT negated contract",
+      "positive_case": "R=+1 routes left-to-right; L=-1 routes right-to-left",
+      "qualified_api/function": "z3.Solver",
+      "tool": "z3"
+    }
+  ]
+}

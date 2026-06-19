@@ -1,0 +1,390 @@
+{
+  "FORMAL_ADMISSION_ALLOWED": false,
+  "PROMOTION_ALLOWED": false,
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX jax.numpy x64": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX jax.numpy x64": {
+      "reason": "supportive peer parity lane read from its result JSON when present; no JAX compute is used inside Julia",
+      "role": "peer_mirror_expected",
+      "tried": true,
+      "used": false
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing for native density-matrix Lindblad/RK4 evolution, PSD projection, trace distances, eigenvalue checks, and JSON result scalars",
+      "role": "reference_exact_native_linearalgebra",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "computed scratch verdicts for owner non-collapse criteria C1-C4",
+    "no-flip control checks whether distinctness is load-bearing on Weyl sign and Pit/Source operator flip",
+    "stage WIN/LOSE and win/lose counts are grammar only"
+  ],
+  "backend": "julia",
+  "backend_roles": {
+    "jax": "mirror_stress_jnp_x64_no_numpy",
+    "julia": "reference_exact_native_linearalgebra"
+  },
+  "blocked_consumers": [
+    "Axis0",
+    "gravity",
+    "bridge",
+    "formal_admission",
+    "promotion",
+    "win_lose_dynamical_claim",
+    "canonical_engine_admission"
+  ],
+  "carrier_layer": "single_qubit_density_matrix_left_right_weyl_engine_diagnostic",
+  "claim_ceiling": "Scratch diagnostic only: tests owner Type 1/Type 2 engine non-collapse criteria under Weyl-flipped terrain equations; no Axis0, gravity, bridge, win/lose dynamics, promotion, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "same_sign_no_flip_control": "Type 2 is evaluated with s=+1/H_R=+H0-equivalent commutator sign and Source mapped to sigma_minus/Pit dynamics; this must collapse trajectories.",
+    "win_lose_fence": "WIN/LOSE and win/lose are counted only as chart grammar, not as a dynamical variable."
+  },
+  "created_at": "2026-06-06T05:37:00Z",
+  "distinct_tol": 1.0e-5,
+  "divergence_log": [
+    "Type 1 and Type 2 trajectories are compared from the same rho0 under the Weyl-flipped terrain equations.",
+    "The decisive no-flip control removes the Weyl sign flip and maps Source to Pit/sigma_minus dynamics; it must collapse trajectories to zero trace distance.",
+    "Pit versus Source is tested as sigma_minus sink z-flow versus sigma_plus source z-flow.",
+    "WIN/LOSE and win/lose labels are balanced chart grammar only, not a dynamical distinctness claim."
+  ],
+  "dt": 0.002,
+  "engine_equations": {
+    "type1": [
+      "Funnel: sum_k D_Lk(rho) - i eps_F [H0,rho]",
+      "Vortex: -i[H0,rho] + eps_V sum_k D_Lk(rho)",
+      "Pit: D_sigma_minus(rho) - i eps_P [H0,rho]",
+      "Hill: -i[H_C,rho] + sum_j kappa_j(P_j rho P_j - 0.5{P_j,rho})"
+    ],
+    "type2": [
+      "Cannon: sum_k D_Lk(rho) + i eps_F [H0,rho]",
+      "Spiral: +i[H0,rho] + eps_V sum_k D_Lk(rho)",
+      "Source: D_sigma_plus(rho) + i eps_P [H0,rho]",
+      "Citadel: +i[H_C,rho] + sum_j kappa_j(P_j rho P_j - 0.5{P_j,rho})"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "geometry_layer": "owner_terrain_lindblad_generators_on_left_right_weyl_flip",
+  "grammar_balance": {
+    "type1": {
+      "balanced": true,
+      "inner_lose": 2,
+      "inner_win": 2,
+      "outer_LOSE": 2,
+      "outer_WIN": 2
+    },
+    "type2": {
+      "balanced": true,
+      "inner_lose": 2,
+      "inner_win": 2,
+      "outer_LOSE": 2,
+      "outer_WIN": 2
+    }
+  },
+  "h0_generic_n": [
+    0.369005027828836,
+    -0.5086285518721794,
+    0.7779024910986273
+  ],
+  "honest_caveat": "scratch_diagnostic is used intentionally; this result is not canonical admission, promotion, Axis0, gravity, bridge, or win/lose dynamical evidence.",
+  "jax_x64_enabled": null,
+  "numpy_compute_used": false,
+  "object_id": "engine_noncollapse_probe",
+  "out_of_scope": [
+    "Axis0",
+    "gravity",
+    "bridge",
+    "formal admission",
+    "promotion",
+    "win/lose as dynamics"
+  ],
+  "parity": {
+    "diffs": {
+      "c1_flip_terminal_trace_distance": 7.216449660063518e-15,
+      "c1_flip_trajectory_max_trace_distance": 7.216449660063518e-15,
+      "c1_no_flip_control_max_trace_distance": 0.0,
+      "c1_no_flip_control_terminal_trace_distance": 0.0,
+      "c2_type1_min_pairwise_terrain_trace_distance": 6.855627177060342e-15,
+      "c2_type2_min_pairwise_terrain_trace_distance": 3.3306690738754696e-15,
+      "c3_type1_inner_lose_count": 0.0,
+      "c3_type1_inner_win_count": 0.0,
+      "c3_type1_outer_LOSE_count": 0.0,
+      "c3_type1_outer_WIN_count": 0.0,
+      "c3_type2_inner_lose_count": 0.0,
+      "c3_type2_inner_win_count": 0.0,
+      "c3_type2_outer_LOSE_count": 0.0,
+      "c3_type2_outer_WIN_count": 0.0,
+      "c4_pit_source_z_sum": 1.1102230246251565e-16,
+      "c4_type1_pit_terminal_z": 0.0,
+      "c4_type2_source_terminal_z": 1.1102230246251565e-16,
+      "engine_stage_placements_per_engine": 0.0,
+      "engine_total_stage_placements": 0.0,
+      "numpy_compute_used_flag": 0.0,
+      "stage_grammar_dynamics_claim_flag": 0.0,
+      "verdict_collapse_under_no_flip_control": 0.0,
+      "verdict_engines_distinct_under_flip": 0.0,
+      "verdict_four_terrains_distinct_per_engine": 0.0,
+      "verdict_outcomes_balanced_grammar": 0.0,
+      "verdict_owner_noncollapse_supported": 0.0,
+      "verdict_pit_source_opposite_z_flow": 0.0
+    },
+    "missing_from_peer": [],
+    "missing_from_self": [],
+    "parity_max_diff": 7.216449660063518e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/engine_noncollapse_probe_jax_results.json",
+    "status": "pass",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": false,
+    "within_1e_9": true,
+    "worst_key": "c1_flip_trajectory_max_trace_distance"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/engine_noncollapse_probe_jax_results.json",
+  "pit_source_flow": {
+    "opposite_signs": true,
+    "type1_pit_terminal_z": -0.9985778957875975,
+    "type2_source_terminal_z": 0.9985790222631342
+  },
+  "pit_source_steps": 4200,
+  "placements": {
+    "type1": [
+      {
+        "grammar_label": "win",
+        "loop": "inner",
+        "terrain": "Funnel"
+      },
+      {
+        "grammar_label": "lose",
+        "loop": "inner",
+        "terrain": "Vortex"
+      },
+      {
+        "grammar_label": "lose",
+        "loop": "inner",
+        "terrain": "Pit"
+      },
+      {
+        "grammar_label": "win",
+        "loop": "inner",
+        "terrain": "Hill"
+      },
+      {
+        "grammar_label": "LOSE",
+        "loop": "outer",
+        "terrain": "Funnel"
+      },
+      {
+        "grammar_label": "WIN",
+        "loop": "outer",
+        "terrain": "Vortex"
+      },
+      {
+        "grammar_label": "LOSE",
+        "loop": "outer",
+        "terrain": "Pit"
+      },
+      {
+        "grammar_label": "WIN",
+        "loop": "outer",
+        "terrain": "Hill"
+      }
+    ],
+    "type2": [
+      {
+        "grammar_label": "lose",
+        "loop": "inner",
+        "terrain": "Cannon"
+      },
+      {
+        "grammar_label": "win",
+        "loop": "inner",
+        "terrain": "Spiral"
+      },
+      {
+        "grammar_label": "lose",
+        "loop": "inner",
+        "terrain": "Source"
+      },
+      {
+        "grammar_label": "win",
+        "loop": "inner",
+        "terrain": "Citadel"
+      },
+      {
+        "grammar_label": "WIN",
+        "loop": "outer",
+        "terrain": "Cannon"
+      },
+      {
+        "grammar_label": "LOSE",
+        "loop": "outer",
+        "terrain": "Spiral"
+      },
+      {
+        "grammar_label": "LOSE",
+        "loop": "outer",
+        "terrain": "Source"
+      },
+      {
+        "grammar_label": "WIN",
+        "loop": "outer",
+        "terrain": "Citadel"
+      }
+    ]
+  },
+  "plain_sentence": "The owner's two engines stay distinct under the Weyl-flipped terrain dynamics when C1 and C4 pass; they collapse when the no-flip control sets both engines to s=+1 and maps Source back to Pit/sigma_minus dynamics.",
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/engine_noncollapse_probe_julia_results.json",
+  "shared_scalars": {
+    "c1_flip_terminal_trace_distance": 0.5530451310915571,
+    "c1_flip_trajectory_max_trace_distance": 0.5530451310915571,
+    "c1_no_flip_control_max_trace_distance": 0.0,
+    "c1_no_flip_control_terminal_trace_distance": 0.0,
+    "c2_type1_min_pairwise_terrain_trace_distance": 0.06462374235947346,
+    "c2_type2_min_pairwise_terrain_trace_distance": 0.06259354403616635,
+    "c3_type1_inner_lose_count": 2.0,
+    "c3_type1_inner_win_count": 2.0,
+    "c3_type1_outer_LOSE_count": 2.0,
+    "c3_type1_outer_WIN_count": 2.0,
+    "c3_type2_inner_lose_count": 2.0,
+    "c3_type2_inner_win_count": 2.0,
+    "c3_type2_outer_LOSE_count": 2.0,
+    "c3_type2_outer_WIN_count": 2.0,
+    "c4_pit_source_z_sum": 1.1264755367390578e-6,
+    "c4_type1_pit_terminal_z": -0.9985778957875975,
+    "c4_type2_source_terminal_z": 0.9985790222631342,
+    "engine_stage_placements_per_engine": 8.0,
+    "engine_total_stage_placements": 16.0,
+    "numpy_compute_used_flag": 0.0,
+    "stage_grammar_dynamics_claim_flag": 0.0,
+    "verdict_collapse_under_no_flip_control": 1.0,
+    "verdict_engines_distinct_under_flip": 1.0,
+    "verdict_four_terrains_distinct_per_engine": 1.0,
+    "verdict_outcomes_balanced_grammar": 1.0,
+    "verdict_owner_noncollapse_supported": 1.0,
+    "verdict_pit_source_opposite_z_flow": 1.0
+  },
+  "sigma_convention": {
+    "sigma_minus": "[[0,0],[1,0]], sink toward Pauli-z=-1",
+    "sigma_plus": "[[0,1],[0,0]], source toward Pauli-z=+1"
+  },
+  "sim_class": "engine_noncollapse_probe",
+  "sim_execution_kind": "nonclassical",
+  "source_alignment": {
+    "atlas_source": "system_v5/READ ONLY Reference Docs/ENGINE_64_SCHEDULE_ATLAS.md:103-116",
+    "owner_source": "system_v5/READ ONLY Reference Docs/apple axes terrain operator math.md:1249-1306",
+    "weyl_sheet_pair_tie_in": "Uses the same s=+1/s=-1 left/right Weyl sign flip family as weyl_sheet_pair_probe; this is a consistency note only."
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/engine_noncollapse_probe.jl",
+  "stage_steps": 90,
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "terrain_distinctness": {
+    "type1": {
+      "all_pairwise_distinct": true,
+      "min_pairwise_trace_distance": 0.06462374235947346,
+      "pair_distances": {
+        "Funnel__Hill": 0.10509815716457967,
+        "Funnel__Pit": 0.45889450798261966,
+        "Funnel__Vortex": 0.10342905672446492,
+        "Pit__Hill": 0.48983510145025744,
+        "Vortex__Hill": 0.06462374235947346,
+        "Vortex__Pit": 0.533787717303275
+      },
+      "terrains": [
+        "Funnel",
+        "Vortex",
+        "Pit",
+        "Hill"
+      ]
+    },
+    "type2": {
+      "all_pairwise_distinct": true,
+      "min_pairwise_trace_distance": 0.06259354403616635,
+      "pair_distances": {
+        "Cannon__Citadel": 0.12745499075420944,
+        "Cannon__Source": 0.35922040855380366,
+        "Cannon__Spiral": 0.1185652258477155,
+        "Source__Citadel": 0.36201365869535185,
+        "Spiral__Citadel": 0.06259354403616635,
+        "Spiral__Source": 0.30928972903708285
+      },
+      "terrains": [
+        "Cannon",
+        "Spiral",
+        "Source",
+        "Citadel"
+      ]
+    }
+  },
+  "terrain_steps": 360,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "JAX jax.numpy x64": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX jax.numpy x64": {
+      "reason": "supportive peer parity lane read from its result JSON when present; no JAX compute is used inside Julia",
+      "role": "peer_mirror_expected",
+      "tried": true,
+      "used": false
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing for native density-matrix Lindblad/RK4 evolution, PSD projection, trace distances, eigenvalue checks, and JSON result scalars",
+      "role": "reference_exact_native_linearalgebra",
+      "tried": true,
+      "used": true
+    }
+  },
+  "tools": [
+    "Julia LinearAlgebra",
+    "JAX jax.numpy x64"
+  ],
+  "trajectory_metrics": {
+    "flip": {
+      "max_trace_distance": 0.5530451310915571,
+      "per_state_trace_distances": [
+        0.0,
+        0.009302418413747862,
+        0.05832758197320674,
+        0.3460740883613619,
+        0.35595019096976155,
+        0.3301378026043249,
+        0.320388800176598,
+        0.5494633139381775,
+        0.5530451310915571
+      ],
+      "terminal_trace_distance": 0.5530451310915571
+    },
+    "no_flip_control": {
+      "max_trace_distance": 0.0,
+      "per_state_trace_distances": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "terminal_trace_distance": 0.0
+    }
+  },
+  "verdicts": {
+    "collapse_under_no_flip_control": true,
+    "engines_distinct_under_flip": true,
+    "four_terrains_distinct_per_engine": true,
+    "outcomes_balanced_grammar": true,
+    "owner_noncollapse_supported": true,
+    "pit_source_opposite_z_flow": true
+  }
+}

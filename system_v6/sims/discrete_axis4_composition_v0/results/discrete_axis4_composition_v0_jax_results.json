@@ -1,0 +1,207 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "independent Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX-slot finite directed graph carrier and adjacency metadata",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact symbolic generator commutator and panel-form rows",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+      "receipt_id": "jax_networkx_axis4_composition_candidate",
+      "status": "used",
+      "tool": "networkx"
+    },
+    {
+      "computed_what": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+      "receipt_id": "jax_sympy_axis4_composition_candidate",
+      "status": "used",
+      "tool": "sympy"
+    },
+    {
+      "computed_what": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+      "receipt_id": "jax_z3_axis4_composition_candidate",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+      "receipt_id": "jax_cvc5_axis4_composition_candidate",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "axis6_predicts_axis4_majority_accuracy": 0.48484848484848486,
+    "changed_edge_count": 41,
+    "edge_count": 198,
+    "leading_order_relative_error": 0.00017833747193845168,
+    "negative": 14,
+    "neutral": 5,
+    "nonneutral": 28,
+    "positive": 14,
+    "readout_signature_sha256": "16aec93ddb27d67adc7d6791630ceb30157e7604e92171dcf499d08808ae4cc9",
+    "stable_edge_count": 157,
+    "state_count": 33
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "axis6_not_predict_axis4": 1,
+        "commuting_neutral_count": 33,
+        "leading_order_pass": 1,
+        "negative": 14,
+        "neutral": 5,
+        "positive": 14,
+        "shuffled_changed_count": 14,
+        "total": 33
+      },
+      "erased_flip_bindings": {
+        "axis6_not_predict_axis4": 0,
+        "commuting_neutral_count": 0,
+        "leading_order_pass": 0,
+        "negative": 0,
+        "positive": 0,
+        "shuffled_changed_count": 0
+      },
+      "erased_flip_verdict": "sat",
+      "identity": "positive>0 and negative>0 and total accounted and commuting all-neutral and panel leading-order pass and shuffled differs and axis6 does not predict axis4",
+      "load_bearing": true,
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T08:24:10Z",
+  "object_id": "discrete_axis4_composition_v0_jax",
+  "package_observables": {
+    "cvc5": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+    "networkx": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+    "sympy": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+    "z3": "z3.Solver/z3.Int computed positive/negative Axis-4 identity"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_jax_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis4_composition_v0",
+  "source_backing_probe": {
+    "cvc5_positive_negative_not_zero": "unsat",
+    "jax_vmap_matches_common_table": true,
+    "jax_vmap_negative": 14,
+    "jax_vmap_neutral": 5,
+    "jax_vmap_positive": 14,
+    "networkx_collapsed_edge_count": 116,
+    "networkx_node_count": 33,
+    "pass": true,
+    "sympy_commutator": "Matrix([[0, 0, 0], [0, 0, log((7/10)**(pi/2))], [0, log((7/10)**(pi/2)), 0]])",
+    "sympy_commutator_nonzero_entries": 2,
+    "sympy_leading_order_2ue_commutator": "Matrix([[0, 0, 0], [0, 0, log(70**(pi/1000000)/10**(pi/500000))], [0, log(70**(pi/1000000)/10**(pi/500000)), 0]])",
+    "z3_positive_negative_not_zero": "unsat"
+  },
+  "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_jax.py",
+  "source_sha256": "243dcaeed7dfe74154d90e7adf964c5e355ecaedc287d6e270cfb33afeb15956",
+  "state_object_id": "discrete_axis4_composition_v0:a968f1fc7688f60050f7d20c61c73086aff05e9788ae3ad04fa77e56bdef2632",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "nx.DiGraph carrier with 33 nodes and committed generator adjacency",
+      "receipt_id": "jax_networkx_axis4_composition_candidate",
+      "tool": "networkx"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "sp.Matrix/sp.log exact R_x/D_z generator commutator and 2ue[A,B] source row",
+      "receipt_id": "jax_sympy_axis4_composition_candidate",
+      "tool": "sympy"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "z3.Solver/z3.Int computed positive/negative Axis-4 identity",
+      "receipt_id": "jax_z3_axis4_composition_candidate",
+      "tool": "z3"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat computed positive/negative Axis-4 identity",
+      "receipt_id": "jax_cvc5_axis4_composition_candidate",
+      "tool": "cvc5"
+    }
+  ]
+}

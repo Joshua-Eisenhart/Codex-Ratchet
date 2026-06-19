@@ -1,0 +1,627 @@
+{
+  "object_id": "carnot_szilard_qit_axis_engine_v1",
+  "claim_ceiling": "Finite maps for Carnot (Clausius entropy), Szilard (Shannon entropy), and pure-QIT (von Neumann entropy) engines under F01+N01. Does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics. promotion_allowed=false.",
+  "promotion_allowed": false,
+  "carnot_engine": {
+    "positive_example": {
+      "T_h": 400.0,
+      "T_c": 300.0,
+      "Q_h": 100.0,
+      "Q_c": 75.0,
+      "W_net": 25.0,
+      "eta": 0.25,
+      "DS_hot_reservoir": -0.25,
+      "DS_cold_reservoir": 0.25,
+      "DS_cycle_working_substance": 0.0,
+      "clausius_inequality_satisfied": true,
+      "strokes": [
+        {
+          "name": "A_isothermal_expansion_Th",
+          "dQ": 100.0,
+          "dS_clausius": 0.25,
+          "T": 400.0
+        },
+        {
+          "name": "B_adiabatic_expansion",
+          "dQ": 0.0,
+          "dS_clausius": 0.0,
+          "T": null
+        },
+        {
+          "name": "C_isothermal_compression_Tc",
+          "dQ": -75.0,
+          "dS_clausius": -0.25,
+          "T": 300.0
+        },
+        {
+          "name": "D_adiabatic_compression",
+          "dQ": 0.0,
+          "dS_clausius": 0.0,
+          "T": null
+        }
+      ],
+      "entropy_kind": "Clausius_dS=dQ/T"
+    },
+    "boundary_example": {
+      "T_h": 300.000001,
+      "T_c": 300.0,
+      "Q_h": 100.0,
+      "Q_c": 99.99999966666667,
+      "W_net": 3.3333332760676626e-07,
+      "eta": 3.3333332760676626e-09,
+      "DS_hot_reservoir": -0.3333333322222222,
+      "DS_cold_reservoir": 0.3333333322222222,
+      "DS_cycle_working_substance": 0.0,
+      "clausius_inequality_satisfied": true,
+      "strokes": [
+        {
+          "name": "A_isothermal_expansion_Th",
+          "dQ": 100.0,
+          "dS_clausius": 0.3333333322222222,
+          "T": 300.000001
+        },
+        {
+          "name": "B_adiabatic_expansion",
+          "dQ": 0.0,
+          "dS_clausius": 0.0,
+          "T": null
+        },
+        {
+          "name": "C_isothermal_compression_Tc",
+          "dQ": -99.99999966666667,
+          "dS_clausius": -0.3333333322222222,
+          "T": 300.0
+        },
+        {
+          "name": "D_adiabatic_compression",
+          "dQ": 0.0,
+          "dS_clausius": 0.0,
+          "T": null
+        }
+      ],
+      "entropy_kind": "Clausius_dS=dQ/T"
+    },
+    "entropy_kind": "Clausius_dS=dQ/T",
+    "eta_formula": "1 - T_c/T_h",
+    "DS_cycle_zero": true
+  },
+  "szilard_engine": {
+    "positive_example": {
+      "kT": 1.0,
+      "p_L": 0.5,
+      "p_R": 0.5,
+      "H_shannon_bits": 1.0,
+      "H_shannon_nats": 0.6931471805599453,
+      "W_extracted": 0.6931471805599453,
+      "E_reset": 0.6931471805599453,
+      "W_net_szilard": 0.0,
+      "second_law_balanced": true,
+      "steps": [
+        {
+          "name": "measure_partition",
+          "H_bits_gained": 1.0,
+          "W": 0.0
+        },
+        {
+          "name": "insert_partition",
+          "H_bits_gained": 0.0,
+          "W": 0.0
+        },
+        {
+          "name": "isothermal_expansion",
+          "H_bits_gained": -1.0,
+          "W": 0.6931471805599453
+        },
+        {
+          "name": "landauer_reset",
+          "H_bits_gained": 1.0,
+          "W": -0.6931471805599453
+        }
+      ],
+      "entropy_kind": "Shannon_H_bits"
+    },
+    "negative_example": {
+      "kT": 1.0,
+      "p_L": 0.9,
+      "p_R": 0.09999999999999998,
+      "H_shannon_bits": 0.4689955935892811,
+      "H_shannon_nats": 0.3250829733914482,
+      "W_extracted": 0.6931471805599453,
+      "E_reset": 0.32508297339144815,
+      "W_net_szilard": 0.36806420716849714,
+      "second_law_balanced": false,
+      "steps": [
+        {
+          "name": "measure_partition",
+          "H_bits_gained": 0.4689955935892811,
+          "W": 0.0
+        },
+        {
+          "name": "insert_partition",
+          "H_bits_gained": 0.0,
+          "W": 0.0
+        },
+        {
+          "name": "isothermal_expansion",
+          "H_bits_gained": -0.4689955935892811,
+          "W": 0.6931471805599453
+        },
+        {
+          "name": "landauer_reset",
+          "H_bits_gained": 0.4689955935892811,
+          "W": -0.32508297339144815
+        }
+      ],
+      "entropy_kind": "Shannon_H_bits"
+    },
+    "boundary_example": {
+      "kT": 1.0,
+      "p_L": 0.99999999,
+      "p_R": 1.0000000050247593e-08,
+      "H_shannon_bits": 2.8018119926309496e-07,
+      "H_shannon_nats": 1.9420680831511852e-07,
+      "W_extracted": 0.6931471805599453,
+      "E_reset": 1.942068083151185e-07,
+      "W_net_szilard": 0.693146986353137,
+      "second_law_balanced": false,
+      "steps": [
+        {
+          "name": "measure_partition",
+          "H_bits_gained": 2.8018119926309496e-07,
+          "W": 0.0
+        },
+        {
+          "name": "insert_partition",
+          "H_bits_gained": 0.0,
+          "W": 0.0
+        },
+        {
+          "name": "isothermal_expansion",
+          "H_bits_gained": -2.8018119926309496e-07,
+          "W": 0.6931471805599453
+        },
+        {
+          "name": "landauer_reset",
+          "H_bits_gained": 2.8018119926309496e-07,
+          "W": -1.942068083151185e-07
+        }
+      ],
+      "entropy_kind": "Shannon_H_bits"
+    },
+    "entropy_kind": "Shannon_H_bits",
+    "W_formula": "kT_ln2_per_bit",
+    "landauer_reset_cost": "kT_ln2_per_bit_erased"
+  },
+  "axis_dof_mapping": {
+    "operators": {
+      "Ti": "z_dephasing_channel",
+      "Te": "x_dephasing_channel",
+      "Fi": "x_rotation_Rx_unitary",
+      "Fe": "z_rotation_Rz_unitary"
+    },
+    "carnot_stroke_to_operator": {
+      "A_isothermal_Th": "Ti",
+      "B_adiabatic_expansion": "Fi",
+      "C_isothermal_Tc": "Te",
+      "D_adiabatic_compression": "Fe"
+    },
+    "szilard_step_to_operator": {
+      "measure_partition": "Ti",
+      "insert_partition": "Fe",
+      "isothermal_expansion": "Fi",
+      "landauer_reset": "Te"
+    },
+    "axis_0_entropy_monotone": {
+      "description": "S(rho) non-decreasing under Ti and Te; preserved (zero delta) under Fi and Fe",
+      "dephasing_ops_increase_S": true,
+      "unitary_ops_preserve_S": true
+    },
+    "axis_6_noncommutation": {
+      "description": "Stroke order is load-bearing. Ti\u00b7Fi != Fi\u00b7Ti (z-dephase and x-rotation cross basis families). Te\u00b7Fe != Fe\u00b7Te (x-dephase and z-rotation cross basis families). NOTE: Ti\u00b7Fe and Te\u00b7Fi DO commute (same-basis pairs). N01 witnessed on the cross-basis pairs.",
+      "n01_ti_fi_order_gap": 0.06123724356957945,
+      "n01_witnessed": "True",
+      "commuting_control_gap": 0.0,
+      "commuting_control_confirms_specificity": true,
+      "same_basis_pairs_commute_correct": true
+    }
+  },
+  "qit_carnot": {
+    "positive_example": {
+      "S_init": 0.29715917741199127,
+      "S_after_Ti": 0.6599788123857764,
+      "S_after_Fi": 0.6599788123857764,
+      "S_after_Te": 0.677060735854219,
+      "S_after_Fe": 0.677060735854219,
+      "DS_Ti": 0.3628196349737851,
+      "DS_Fi": 0.0,
+      "DS_Te": 0.017081923468442617,
+      "DS_Fe": 0.0,
+      "DS_total_cycle": 0.3799015584422277,
+      "coherence_init": 0.4,
+      "coherence_after_Ti": 0.08000000000000002,
+      "coherence_after_Te": 0.08717797887081348,
+      "rho_final": [
+        [
+          "(0.52+0j)",
+          "(0.08106343992275558-0.03207364506709204j)"
+        ],
+        [
+          "(0.08106343992275558+0.03207364506709204j)",
+          "(0.4800000000000001+0j)"
+        ]
+      ],
+      "cycle_closes_approx": true,
+      "entropy_kind": "von_Neumann_nats",
+      "no_classical_kT_or_ln2": true
+    },
+    "entropy_kind": "von_Neumann_nats",
+    "no_classical_kT_ln2": true
+  },
+  "qit_szilard": {
+    "positive_example": {
+      "S_init": 0.3250829733914482,
+      "coh_init": 0.4,
+      "S_after_Ti": 0.6931471805599452,
+      "coh_after_Ti": 0.0,
+      "S_after_Fe": 0.6931471805599453,
+      "S_after_Fi": 0.6931471805599453,
+      "S_after_Te": 0.6931471805599453,
+      "info_gain_vN": -0.36806420716849697,
+      "coherence_destroyed": 0.4,
+      "DS_total_cycle": 0.3680642071684971,
+      "entropy_kind": "von_Neumann_nats",
+      "no_classical_kT_or_ln2": true
+    },
+    "negative_example": {
+      "S_init": 0.6730116670092565,
+      "coh_init": 0.0,
+      "S_after_Ti": 0.6730116670092563,
+      "coh_after_Ti": 0.0,
+      "S_after_Fe": 0.6730116670092563,
+      "S_after_Fi": 0.6730116670092563,
+      "S_after_Te": 0.6923469670899614,
+      "info_gain_vN": 2.220446049250313e-16,
+      "coherence_destroyed": 0.0,
+      "DS_total_cycle": 0.01933530008070483,
+      "entropy_kind": "von_Neumann_nats",
+      "no_classical_kT_or_ln2": true
+    },
+    "boundary_example": {
+      "S_init": 3.453877639491069e-14,
+      "coh_init": 0.5,
+      "S_after_Ti": 0.6931471805599452,
+      "coh_after_Ti": 0.0,
+      "S_after_Fe": 0.6931471805599452,
+      "S_after_Fi": 0.6931471805599453,
+      "S_after_Te": 0.6931471805599452,
+      "info_gain_vN": -0.6931471805599106,
+      "coherence_destroyed": 0.5,
+      "DS_total_cycle": 0.6931471805599106,
+      "entropy_kind": "von_Neumann_nats",
+      "no_classical_kT_or_ln2": true
+    },
+    "n01_order_gap": 0.2571964229922336,
+    "entropy_kind": "von_Neumann_nats",
+    "no_classical_kT_ln2": true
+  },
+  "qit_push": {
+    "f01_satisfied": true,
+    "n01_satisfied": true,
+    "qit_carnot_cycle_well_defined": true,
+    "qit_szilard_cycle_well_defined": true,
+    "von_neumann_entropy_per_stroke": true,
+    "entropy_monotone_dephasing": true,
+    "entropy_preserved_unitary": true,
+    "order_sensitive_strokes": true,
+    "coherence_destruction_szilard": true,
+    "extractable_work_without_hamiltonian": "OPEN \u2014 H_op not specified",
+    "absolute_free_energy": "OPEN \u2014 requires Tr(rho H)",
+    "classical_kT_ln2": "EXCLUDED \u2014 pure QIT, no classical constants",
+    "cycle_closure_guaranteed": "OPEN \u2014 depends on stroke parameters",
+    "promotion_allowed": false,
+    "candidates_not_proven": true
+  },
+  "entropy_distinctness": {
+    "clausius_Carnot": {
+      "defined_on": "heat_reservoirs_and_working_substance_path",
+      "unit": "J/K or nats (times kB)",
+      "zero_for_adiabatic": true,
+      "requires_temperature_field": true,
+      "engine_role": "tracks_heat_flow_per_stroke"
+    },
+    "shannon_Szilard": {
+      "defined_on": "probability_distributions_over_outcomes",
+      "unit": "bits",
+      "requires_probability_over_positions": true,
+      "engine_role": "tracks_measurement_uncertainty_and_erasure_cost"
+    },
+    "von_Neumann_QIT": {
+      "defined_on": "density_matrices",
+      "unit": "nats",
+      "reduces_to_shannon_when_diagonal": true,
+      "requires_quantum_state": true,
+      "engine_role": "tracks_quantum_uncertainty_per_stroke_channel",
+      "no_classical_kT_or_ln2": true
+    },
+    "genuinely_distinct": true,
+    "coincide_only_in_degenerate_limits": [
+      "vN=Shannon when rho diagonal",
+      "Shannon=Clausius (up to kB and base) only at equilibrium for ideal gas",
+      "Clausius undefined for pure quantum states without heat bath"
+    ]
+  },
+  "dynamiqs_lindblad": {
+    "available": true,
+    "S_init": 0.4039544864181133,
+    "S_final": 0.4897542866677666,
+    "DS": 0.08579980024965328,
+    "S_increases_under_Lindblad_dephasing": true,
+    "rho_final": [
+      [
+        "(0.7+0j)",
+        "(0.2336402354841965+0j)"
+      ],
+      [
+        "(0.2336402354841965+0j)",
+        "(0.3+0j)"
+      ]
+    ]
+  },
+  "f01_finite": true,
+  "n01_load_bearing": {
+    "Ti_Fi_order_gap": 0.06123724356957945,
+    "n01_witnessed": "True",
+    "commuting_control_Ti_Ti_gap": 0.0,
+    "commuting_control_confirms_specificity": true,
+    "szilard_Te_Fe_order_gap": 0.2571964229922336,
+    "stroke_order_is_loadbearing": true,
+    "note": "Ti-Fe and Te-Fi are same-basis pairs that commute; cross-basis pairs Ti-Fi and Te-Fe are load-bearing"
+  },
+  "entropy_distinctness_verdict": true,
+  "size_ladder_carnot": {
+    "8": {
+      "n_configs": 8,
+      "eta_min": 0.33333333333333337,
+      "eta_max": 0.8,
+      "all_positive_W": true
+    },
+    "16": {
+      "n_configs": 16,
+      "eta_min": 0.33333333333333337,
+      "eta_max": 0.8,
+      "all_positive_W": true
+    },
+    "32": {
+      "n_configs": 32,
+      "eta_min": 0.33333333333333337,
+      "eta_max": 0.8,
+      "all_positive_W": true
+    },
+    "64": {
+      "n_configs": 64,
+      "eta_min": 0.33333333333333337,
+      "eta_max": 0.8,
+      "all_positive_W": true
+    }
+  },
+  "size_ladder_szilard": {
+    "8": {
+      "n_configs": 8,
+      "H_min": 0.28639695711595625,
+      "H_max": 0.988042611964058,
+      "all_W_kTln2": true
+    },
+    "16": {
+      "n_configs": 16,
+      "H_min": 0.28639695711595625,
+      "H_max": 0.9974015885677396,
+      "all_W_kTln2": true
+    },
+    "32": {
+      "n_configs": 32,
+      "H_min": 0.28639695711595625,
+      "H_max": 0.9993919109263929,
+      "all_W_kTln2": true
+    },
+    "64": {
+      "n_configs": 64,
+      "H_min": 0.28639695711595625,
+      "H_max": 0.9998527812126372,
+      "all_W_kTln2": true
+    }
+  },
+  "size_ladder_qit": {
+    "8": {
+      "n_states": 8,
+      "S_init_mean": 0.3250829733914483,
+      "S_final_mean": 0.6541410857290071,
+      "DS_mean": 0.32905811233755883
+    },
+    "16": {
+      "n_states": 16,
+      "S_init_mean": 0.3250829733914483,
+      "S_final_mean": 0.6552901536836818,
+      "DS_mean": 0.3302071802922336
+    },
+    "32": {
+      "n_states": 32,
+      "S_init_mean": 0.3250829733914482,
+      "S_final_mean": 0.6552098999779972,
+      "DS_mean": 0.33012692658654885
+    },
+    "64": {
+      "n_states": 64,
+      "S_init_mean": 0.3250829733914482,
+      "S_final_mean": 0.654337237430864,
+      "DS_mean": 0.3292542640394158
+    }
+  },
+  "all_checks_passed": true,
+  "check_log": [
+    {
+      "check": "carnot_positive_eta",
+      "passed": true,
+      "detail": "eta=0.250000 expected 0.25"
+    },
+    {
+      "check": "carnot_positive_W_net",
+      "passed": true,
+      "detail": "W=25.000000 expected 25.0"
+    },
+    {
+      "check": "carnot_positive_DS_cycle_zero",
+      "passed": true,
+      "detail": "DS_cycle=0.00e+00"
+    },
+    {
+      "check": "carnot_clausius_inequality",
+      "passed": true,
+      "detail": "DS_cold + DS_hot >= 0"
+    },
+    {
+      "check": "carnot_negative_reversed_eta_lt_0",
+      "passed": true,
+      "detail": "eta=-0.3333 should be negative for T_c>T_h"
+    },
+    {
+      "check": "carnot_boundary_eta_near_zero",
+      "passed": true,
+      "detail": "eta=3.33e-09"
+    },
+    {
+      "check": "szilard_positive_H_one_bit",
+      "passed": true,
+      "detail": "H=1.000000"
+    },
+    {
+      "check": "szilard_positive_W_kTln2",
+      "passed": true,
+      "detail": "W=0.693147 kTln2=0.693147"
+    },
+    {
+      "check": "szilard_positive_second_law",
+      "passed": true,
+      "detail": "W_net=0.00e+00"
+    },
+    {
+      "check": "szilard_negative_H_lt_1",
+      "passed": true,
+      "detail": "H=0.468996 (biased)"
+    },
+    {
+      "check": "szilard_boundary_H_near_zero",
+      "passed": true,
+      "detail": "H=0.0000"
+    },
+    {
+      "check": "n01_ti_fi_noncommuting",
+      "passed": true,
+      "detail": "Ti-Fi order gap=6.1237e-02 (z-dephase x-rotate cross-basis)"
+    },
+    {
+      "check": "n01_control_ti_ti_commutes",
+      "passed": true,
+      "detail": "Ti-Ti control gap=0.0000e+00 should be ~0"
+    },
+    {
+      "check": "axis0_Ti_increases_or_preserves_S",
+      "passed": true,
+      "detail": "S0=0.4040 S_Ti=0.6032"
+    },
+    {
+      "check": "axis0_Fi_preserves_S",
+      "passed": true,
+      "detail": "S0=0.4040 S_Fi=0.4040"
+    },
+    {
+      "check": "qit_carnot_Ti_increases_S",
+      "passed": true,
+      "detail": "DS_Ti=0.3628"
+    },
+    {
+      "check": "qit_carnot_Fi_preserves_S",
+      "passed": true,
+      "detail": "DS_Fi=0.00e+00"
+    },
+    {
+      "check": "qit_carnot_Te_increases_S",
+      "passed": true,
+      "detail": "DS_Te=0.0171"
+    },
+    {
+      "check": "qit_carnot_Fe_preserves_S",
+      "passed": true,
+      "detail": "DS_Fe=0.00e+00"
+    },
+    {
+      "check": "qit_carnot_negative_degenerate_S_monotone",
+      "passed": true,
+      "detail": "S_start=0.6730 S_end=0.6730"
+    },
+    {
+      "check": "qit_carnot_negative_degenerate_purity_decreases",
+      "passed": true,
+      "detail": "purity_start=0.5200 purity_end=0.5200"
+    },
+    {
+      "check": "qit_carnot_boundary_maxmixed_S",
+      "passed": true,
+      "detail": "S_max=0.693147 ln2=0.693147"
+    },
+    {
+      "check": "qit_carnot_boundary_Ti_on_maxmixed_noop",
+      "passed": true,
+      "detail": "delta=1.11e-16"
+    },
+    {
+      "check": "qit_szilard_positive_coherence_destroyed",
+      "passed": true,
+      "detail": "coh_destroyed=0.4000"
+    },
+    {
+      "check": "qit_szilard_negative_no_coherence_nothing_destroyed",
+      "passed": true,
+      "detail": "coh_destroyed=0.00e+00"
+    },
+    {
+      "check": "qit_szilard_n01_Te_Fe_order_matters",
+      "passed": true,
+      "detail": "Te-Fe vs Fe-Te gap=2.5720e-01 (cross-basis: x-dephase, z-rotate)"
+    },
+    {
+      "check": "qit_szilard_boundary_pure_coherence_fully_destroyed",
+      "passed": true,
+      "detail": "coh_after_Ti=0.00e+00"
+    },
+    {
+      "check": "ladder_carnot_all_sizes",
+      "passed": true,
+      "detail": "n=4"
+    },
+    {
+      "check": "ladder_szilard_all_sizes",
+      "passed": true,
+      "detail": "n=4"
+    },
+    {
+      "check": "ladder_qit_all_sizes",
+      "passed": true,
+      "detail": "n=4"
+    },
+    {
+      "check": "entropy_vN_eq_shannon_for_diagonal",
+      "passed": true,
+      "detail": "vN=0.610864 Shannon_nats=0.610864"
+    },
+    {
+      "check": "entropy_vN_neq_shannon_for_coherent",
+      "passed": true,
+      "detail": "vN=0.325083 Shannon_diag=0.693147 -- vN is lower due to coherence"
+    },
+    {
+      "check": "dynamiqs_Lindblad_S_increases",
+      "passed": true,
+      "detail": "S_init=0.4040 S_final=0.4898"
+    }
+  ]
+}

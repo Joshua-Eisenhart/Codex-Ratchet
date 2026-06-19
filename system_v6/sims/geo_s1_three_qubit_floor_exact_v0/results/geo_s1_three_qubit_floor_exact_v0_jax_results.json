@@ -1,0 +1,512 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "python_stdlib": "supportive",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent SMT polarity check matching z3",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive result serialization, hashing, and deterministic paths",
+      "tried": true,
+      "used": true
+    },
+    "rustworkx": {
+      "reason": "load-bearing exact graph clique search for max-anticommuting family counts 3/5/7; hand label recursion retained as mirror",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact CAS for reduced densities, hyperdeterminant 3-tangle, Cl(6) rank/span, and exact Pauli-string algebra",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing UNSAT/SAT proof polarity over exact integer deltas and exact tau values",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "rustworkx"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "rustworkx"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "conflation_control": {
+      "conflation_control_pass": true,
+      "global_phase_density_quotient": "S^15 -> CP^7 via psi psi^dagger",
+      "merged": false,
+      "octonionic_fibration": "S^15 -> S^8 via O^2 is different and not used in quotient computations",
+      "octonionic_structure_used_in_quotient_computations": false,
+      "present": true
+    },
+    "corrupted_gamma": {
+      "cvc5": "sat",
+      "fired": true,
+      "z3": "sat"
+    },
+    "two_qubit_comparison_rows": {
+      "-1": 2,
+      "1": 2
+    },
+    "wrong_state_W_labeled_GHZ": {
+      "expected_if_GHZ": "1",
+      "fails_exactly": true,
+      "tau_observed": "0"
+    }
+  },
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:16:44.585069+00:00",
+  "non_conflation": {
+    "conflation_control_pass": true,
+    "global_phase_density_quotient": "S^15 -> CP^7 via psi psi^dagger",
+    "merged": false,
+    "octonionic_fibration": "S^15 -> S^8 via O^2 is different and not used in quotient computations",
+    "octonionic_structure_used_in_quotient_computations": false,
+    "present": true
+  },
+  "packages_used": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "rustworkx"
+  ],
+  "pin_sha256": "77a6788ab9b4f664f6019d94ef0f0fa03cd5d28ee45332de4928d4a6b7535e0f",
+  "pin_spec": "geo_s1_three_qubit_floor_exact_v0|three_spinor_C2x3_to_C8|S15_to_CP7_density_quotient|Cl6_Jordan_Wigner_gamma7_minus_i_product|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "P1_anticommutation_table": {
+      "corrupted_generator_control_cvc5": "sat",
+      "corrupted_generator_control_z3": "sat",
+      "cvc5_assert_some_bad": "unsat",
+      "pass": true,
+      "z3_assert_some_bad": "unsat"
+    },
+    "P2_tau_polynomial": {
+      "cvc5_assert_tau_ghz_not_1_or_tau_w_not_0": "unsat",
+      "cvc5_ghz_w_swapped_control": "sat",
+      "pass": true,
+      "z3_assert_tau_ghz_not_1_or_tau_w_not_0": "unsat",
+      "z3_ghz_w_swapped_control": "sat"
+    }
+  },
+  "reads_peer_result": false,
+  "receipts": {
+    "Y1": {
+      "basis_dictionary": {
+        "000": 0,
+        "001": 1,
+        "010": 2,
+        "011": 3,
+        "100": 4,
+        "101": 5,
+        "110": 6,
+        "111": 7
+      },
+      "carrier": "(C^2)^{x3} ~= C^8",
+      "global_phase_density_quotient": "S^15 -> CP^7 via psi psi^dagger",
+      "normalized_state_locus": "S^15 subset C^8 by sum_{k=0}^7 |psi_k|^2 = 1",
+      "pass": true,
+      "phase_erasure_identity": {
+        "all_8x8_entries_covered_by_same_component_formula": true,
+        "imag_delta_factor": "c**2*u*y - c**2*v*x + s**2*u*y - s**2*v*x - u*y + v*x",
+        "pass": true,
+        "phase_unit_constraint": "c^2 + s^2 = 1",
+        "real_delta_factor": "c**2*u*x + c**2*v*y + s**2*u*x + s**2*v*y - u*x - v*y"
+      }
+    },
+    "Y2": {
+      "cas": "sympy exact Matrix/eigenvals/log",
+      "pass": true,
+      "states": {
+        "GHZ": {
+          "eigenvalues_A": [
+            "1/2",
+            "1/2"
+          ],
+          "entropy_A": "log(2)",
+          "expected_entropy_A": "log(2)",
+          "pass": true,
+          "rho_A": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          "rho_C": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        "W": {
+          "eigenvalues_A": [
+            "1/3",
+            "2/3"
+          ],
+          "entropy_A": "log(3) - 2*log(2)/3",
+          "expected_entropy_A": "log(3) - 2*log(2)/3",
+          "pass": true,
+          "rho_A": [
+            [
+              "2/3",
+              "0"
+            ],
+            [
+              "0",
+              "1/3"
+            ]
+          ],
+          "rho_B": [
+            [
+              "2/3",
+              "0"
+            ],
+            [
+              "0",
+              "1/3"
+            ]
+          ],
+          "rho_C": [
+            [
+              "2/3",
+              "0"
+            ],
+            [
+              "0",
+              "1/3"
+            ]
+          ]
+        },
+        "product_000": {
+          "eigenvalues_A": [
+            "0",
+            "1"
+          ],
+          "entropy_A": "0",
+          "expected_entropy_A": "0",
+          "pass": true,
+          "rho_A": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "rho_C": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        }
+      }
+    },
+    "Y3": {
+      "biseparable_controls": {
+        "Bell_AB_tensor_0C": "0"
+      },
+      "hyperdeterminant_components": {
+        "GHZ": {
+          "d1": "1/4",
+          "d2": "0",
+          "d3": "0",
+          "hyperdeterminant": "1/4",
+          "tau": "1"
+        },
+        "W": {
+          "d1": "0",
+          "d2": "0",
+          "d3": "0",
+          "hyperdeterminant": "0",
+          "tau": "0"
+        },
+        "biseparable_Bell_AB_tensor_0C": {
+          "d1": "0",
+          "d2": "0",
+          "d3": "0",
+          "hyperdeterminant": "0",
+          "tau": "0"
+        },
+        "product_000": {
+          "d1": "0",
+          "d2": "0",
+          "d3": "0",
+          "hyperdeterminant": "0",
+          "tau": "0"
+        }
+      },
+      "method": "Coffman-Kundu-Wootters 3-tangle via Cayley hyperdeterminant",
+      "pass": true,
+      "tau": {
+        "GHZ": "1",
+        "W": "0",
+        "biseparable_Bell_AB_tensor_0C": "0",
+        "product_000": "0"
+      }
+    },
+    "Y4": {
+      "algebra_generated_dimension": 64,
+      "all_36_pairs_exact": true,
+      "anticommutation_pairs_checked": 36,
+      "cl6_complex_is_m8c_receipt": "dim span = 64 = dim M_8(C)",
+      "convention": [
+        "gamma_1 = X\u2297I\u2297I",
+        "gamma_2 = Y\u2297I\u2297I",
+        "gamma_3 = Z\u2297X\u2297I",
+        "gamma_4 = Z\u2297Y\u2297I",
+        "gamma_5 = Z\u2297Z\u2297X",
+        "gamma_6 = Z\u2297Z\u2297Y",
+        "gamma_7 = -i gamma_1 gamma_2 gamma_3 gamma_4 gamma_5 gamma_6"
+      ],
+      "corrupted_generator_control": {
+        "cvc5": "sat",
+        "fired": true,
+        "z3": "sat"
+      },
+      "gamma7_eigenspace_split": {
+        "-1": 4,
+        "1": 4
+      },
+      "gamma7_squared_identity": true,
+      "pass": true
+    },
+    "Y5": {
+      "associativity": {
+        "exact_integer_8x8": true,
+        "failures": 0,
+        "first_failure": null,
+        "mode": "exhaustive_ordered_pauli_string_triples",
+        "ordered_triples": 262144,
+        "pair_products_precomputed_by_exact_matrix_multiplication": 4096,
+        "pauli_strings": 64,
+        "statement": "all 64^3 ordered 3-qubit Pauli-string triples satisfy associativity under exact 8x8 matrix multiplication; matrix multiplication associativity is the theorem-level boundary"
+      },
+      "commutators": {
+        "XII_IXI": {
+          "nonzero_entries": 0,
+          "zero": true
+        },
+        "XII_ZII": {
+          "nonzero_entries": 8,
+          "zero": false
+        }
+      },
+      "pass": true,
+      "site_grouped_action_receipt": {
+        "exact_delta_zero": true,
+        "flattened_action_equal": true,
+        "left_grouping": "((A\u2297B)\u2297C)-grouped on sites ((0,1),2)",
+        "left_sparse_result": {
+          "2": "sqrt(2)*I/2",
+          "5": "sqrt(2)*I/2"
+        },
+        "nested_labels_differ": true,
+        "pinned_definition": "grouping means operation-application order on named sites, with final comparison after the canonical flattening C^2\u2297C^2\u2297C^2 -> C^8",
+        "right_grouping": "A\u2297(B\u2297C)-grouped on sites (0,(1,2))",
+        "right_sparse_result": {
+          "2": "sqrt(2)*I/2",
+          "5": "sqrt(2)*I/2"
+        }
+      }
+    },
+    "Y6": {
+      "cl4_gamma5_split": {
+        "-1": 2,
+        "1": 2
+      },
+      "cl6_gamma7_split": {
+        "-1": 4,
+        "1": 4
+      },
+      "committed_doctrine_cross_reference": "Cl(6)/3-qubit floor = where >= 7 anticommuting units first fit; exhaustive Pauli-string clique search returns exact maxima 3/5/7 at 1/2/3 qubits",
+      "exhaustive_anticommuting_clique_search": [
+        {
+          "candidate_pair_checks": 3,
+          "candidate_vertices": 3,
+          "example_max_clique": [
+            "X",
+            "Y",
+            "Z"
+          ],
+          "exhaustive_search": true,
+          "graph_edges": 3,
+          "graph_nodes": 3,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_label_recursion_mirror": true,
+          "load_bearing_route": "exact anticommutation graph clique search",
+          "max_clique_size": 3,
+          "n_qubits": 1,
+          "recursive_nodes_visited": 4
+        },
+        {
+          "candidate_pair_checks": 105,
+          "candidate_vertices": 15,
+          "example_max_clique": [
+            "XI",
+            "YI",
+            "ZX",
+            "ZY",
+            "ZZ"
+          ],
+          "exhaustive_search": true,
+          "graph_edges": 60,
+          "graph_nodes": 15,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_label_recursion_mirror": true,
+          "load_bearing_route": "exact anticommutation graph clique search",
+          "max_clique_size": 5,
+          "n_qubits": 2,
+          "recursive_nodes_visited": 35
+        },
+        {
+          "candidate_pair_checks": 1953,
+          "candidate_vertices": 63,
+          "example_max_clique": [
+            "XII",
+            "YII",
+            "ZXI",
+            "ZYI",
+            "ZZX",
+            "ZZY",
+            "ZZZ"
+          ],
+          "exhaustive_search": true,
+          "graph_edges": 1008,
+          "graph_nodes": 63,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_label_recursion_mirror": true,
+          "load_bearing_route": "exact anticommutation graph clique search",
+          "max_clique_size": 7,
+          "n_qubits": 3,
+          "recursive_nodes_visited": 3793
+        }
+      ],
+      "max_anticommuting_family_counts": [
+        {
+          "anticommutation_exact": true,
+          "count": 3,
+          "maximality_bound": "m <= 2*1+1 from dim irreducible Cl_m(C) representation <= 2^1",
+          "n_qubits": 1
+        },
+        {
+          "anticommutation_exact": true,
+          "count": 5,
+          "maximality_bound": "m <= 2*2+1 from dim irreducible Cl_m(C) representation <= 2^2",
+          "n_qubits": 2
+        },
+        {
+          "anticommutation_exact": true,
+          "count": 7,
+          "maximality_bound": "m <= 2*3+1 from dim irreducible Cl_m(C) representation <= 2^3",
+          "n_qubits": 3
+        }
+      ],
+      "pass": true,
+      "two_qubit_comparison_rows_computed_not_asserted": true
+    },
+    "Y7": {
+      "bare_float_rows": [],
+      "classification_table": [
+        {
+          "achieved_strength": "symbolic",
+          "bare_float": false,
+          "claim": "Y1 carrier and phase quotient"
+        },
+        {
+          "achieved_strength": "closed-form",
+          "bare_float": false,
+          "claim": "Y2 reduced densities and entropies"
+        },
+        {
+          "achieved_strength": "exact-polynomial",
+          "bare_float": false,
+          "claim": "Y3 3-tangle witnesses"
+        },
+        {
+          "achieved_strength": "exact-integer",
+          "bare_float": false,
+          "claim": "Y4 Cl(6) gamma table"
+        },
+        {
+          "achieved_strength": "exact-integer",
+          "bare_float": false,
+          "claim": "Y5 three-slot floor"
+        },
+        {
+          "achieved_strength": "exact-integer/closed-form",
+          "bare_float": false,
+          "claim": "Y6 chirality irreducibility"
+        },
+        {
+          "achieved_strength": "exact-SMT",
+          "bare_float": false,
+          "claim": "P1/P2 proofs"
+        }
+      ],
+      "pass": true
+    }
+  },
+  "result_path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_jax_results.json",
+  "role_id": "jax_rich_mirror_sim_builder",
+  "schema_version": "geo_s1_three_qubit_floor_exact_v0_leg_v1",
+  "shared_scalars": {
+    "exact_failure_count": 0
+  },
+  "sim_id": "geo_s1_three_qubit_floor_exact_v0",
+  "source_path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/geo_s1_three_qubit_floor_exact_v0_jax.py",
+  "source_sha256": "12ab938dc8075adf1c1781942de93d1c0aa67a3d9ec4c958fccfdfb549b158d6"
+}

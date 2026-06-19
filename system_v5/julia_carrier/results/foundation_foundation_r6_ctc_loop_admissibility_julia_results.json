@@ -1,0 +1,255 @@
+{
+  "C": {
+    "acyclicity_constraint": "No event may be reachable from itself in the derived transitive closure for the bare order.",
+    "rung_specific_constraint": "Bare admissibility order binds edges A->B->C->D and excludes a closed directed loop unless D->A is explicitly installed.",
+    "state_constraint_values": {
+      "details": [
+        {
+          "hermitian_residual": 0.0,
+          "id": "A_prepare",
+          "min_eigenvalue": 0.0,
+          "normalization_residual": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        },
+        {
+          "hermitian_residual": 0.0,
+          "id": "B_apply",
+          "min_eigenvalue": 0.0,
+          "normalization_residual": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        },
+        {
+          "hermitian_residual": 0.0,
+          "id": "C_measure",
+          "min_eigenvalue": 0.0,
+          "normalization_residual": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        },
+        {
+          "hermitian_residual": 0.0,
+          "id": "D_record",
+          "min_eigenvalue": 0.0,
+          "normalization_residual": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        }
+      ],
+      "hermitian": true,
+      "normalized": true,
+      "psd": true,
+      "trace_one": true
+    },
+    "state_constraints": [
+      "trace=1",
+      "PSD",
+      "Hermiticity",
+      "normalization"
+    ]
+  },
+  "M": {
+    "explicit_probe_family": [
+      "edge(A_prepare,B_apply)",
+      "edge(B_apply,C_measure)",
+      "edge(C_measure,D_record)",
+      "edge(D_record,A_prepare)",
+      "closed_directed_loop_exists"
+    ],
+    "measurement_object": "finite directed graph of constraint-application events"
+  },
+  "S": {
+    "carrier": "finite directed causal-order scenarios over four events",
+    "events": [
+      "A_prepare",
+      "B_apply",
+      "C_measure",
+      "D_record"
+    ],
+    "scenario_ids": [
+      "bare_order",
+      "forced_commutative_bare_edges",
+      "retro_edge_but_B_to_C_dropped",
+      "retrocausal_edge_installed"
+    ]
+  },
+  "S_quotient": {
+    "classes": [
+      {
+        "class_id": "M_q0",
+        "members": [
+          "retro_edge_but_B_to_C_dropped"
+        ],
+        "signature": {
+          "closed_directed_loop_probe": false,
+          "edge_probe_values": {
+            "M_edge_1_A_prepare_to_B_apply": true,
+            "M_edge_2_B_apply_to_C_measure": false,
+            "M_edge_3_C_measure_to_D_record": true,
+            "M_edge_4_D_record_to_A_prepare": true
+          }
+        }
+      },
+      {
+        "class_id": "M_q1",
+        "members": [
+          "bare_order"
+        ],
+        "signature": {
+          "closed_directed_loop_probe": false,
+          "edge_probe_values": {
+            "M_edge_1_A_prepare_to_B_apply": true,
+            "M_edge_2_B_apply_to_C_measure": true,
+            "M_edge_3_C_measure_to_D_record": true,
+            "M_edge_4_D_record_to_A_prepare": false
+          }
+        }
+      },
+      {
+        "class_id": "M_q2",
+        "members": [
+          "forced_commutative_bare_edges"
+        ],
+        "signature": {
+          "closed_directed_loop_probe": true,
+          "edge_probe_values": {
+            "M_edge_1_A_prepare_to_B_apply": true,
+            "M_edge_2_B_apply_to_C_measure": true,
+            "M_edge_3_C_measure_to_D_record": true,
+            "M_edge_4_D_record_to_A_prepare": false
+          }
+        }
+      },
+      {
+        "class_id": "M_q3",
+        "members": [
+          "retrocausal_edge_installed"
+        ],
+        "signature": {
+          "closed_directed_loop_probe": true,
+          "edge_probe_values": {
+            "M_edge_1_A_prepare_to_B_apply": true,
+            "M_edge_2_B_apply_to_C_measure": true,
+            "M_edge_3_C_measure_to_D_record": true,
+            "M_edge_4_D_record_to_A_prepare": true
+          }
+        }
+      }
+    ],
+    "full_M_class_count": 4,
+    "loop_admissibility_classes": [
+      {
+        "class_id": "loop_excluded",
+        "loop_admissible": false,
+        "members": [
+          "bare_order",
+          "retro_edge_but_B_to_C_dropped"
+        ]
+      },
+      {
+        "class_id": "loop_admissible",
+        "loop_admissible": true,
+        "members": [
+          "forced_commutative_bare_edges",
+          "retrocausal_edge_installed"
+        ]
+      }
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite directed graph construction and independent cycle check",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive state-constraint diagnostics for finite event-basis density matrices",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing derivation of reachability/cycle existence from bound edge variables",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "Finite directed constraint-order diagnostic only. Closed directed loops are tested on a four-event order; no GR metric, cosmology, Godel, chronology-protection, or promotion claim.",
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "forced_vs_installed": "INSTALLED",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T04:26:09Z",
+  "julia_version": "1.12.6",
+  "negative_control_flip": {
+    "bare_assert_loop_verdict": "unsat",
+    "drop_forward_edge_after_retro_assert_loop_verdict": "unsat",
+    "force_commutativity_loop_admissible": true,
+    "quotient_changes_when_cycle_probe_dropped": true,
+    "retrocausal_edge_assert_loop_verdict": "sat",
+    "sat_unsat_flip": true
+  },
+  "object_id": "foundation_foundation_r6_ctc_loop_admissibility_julia",
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r6_ctc_loop_admissibility_julia_results.json",
+  "rung_id": "foundation_r6_ctc_loop_admissibility",
+  "schema_version": "engine_leg_result_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r6_ctc_loop_admissibility_julia.jl",
+  "values": {
+    "bare_loop_admissible": 0,
+    "bare_loop_int": 0,
+    "drop_forward_edge_loop_admissible": 0,
+    "forced_commutative_loop_admissible": 1,
+    "full_M_class_count": 4,
+    "loop_admissibility_class_count": 2,
+    "retro_loop_int": 1,
+    "retrocausal_edge_loop_admissible": 1
+  },
+  "z3": {
+    "bare": {
+      "asserted_edge_equalities": 16,
+      "cycle_assertion": "exists event e with reachability[e,e] derived from bound directed edges",
+      "derived_reachability_layers": 4,
+      "label": "bare",
+      "verdict": "unsat"
+    },
+    "drop_forward_edge": {
+      "asserted_edge_equalities": 16,
+      "cycle_assertion": "exists event e with reachability[e,e] derived from bound directed edges",
+      "derived_reachability_layers": 4,
+      "label": "drop_forward",
+      "verdict": "unsat"
+    },
+    "retrocausal_edge": {
+      "asserted_edge_equalities": 16,
+      "cycle_assertion": "exists event e with reachability[e,e] derived from bound directed edges",
+      "derived_reachability_layers": 4,
+      "label": "retro",
+      "verdict": "sat"
+    }
+  }
+}

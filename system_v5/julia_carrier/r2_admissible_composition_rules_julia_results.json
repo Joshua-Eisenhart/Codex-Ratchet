@@ -1,0 +1,1020 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX reference": {
+      "reason": "load-bearing peer backend parity for shared scalar, boolean, and string fields",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and parity comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent backend for finite complex operation maps and matrix-composition residuals",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix norms and finite matrix products",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "R2 finite admissible operation composition is associative at the foundation operation layer, while N01 order-sensitivity remains live."
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_admissible_composition_rules_julia_results.json"
+  ],
+  "assoc_residual_norm": 0.0,
+  "backend": "julia",
+  "blocked_consumers": [
+    "all promotion, formal admission, and higher-layer consumers"
+  ],
+  "boundary": {
+    "claim_ceiling": "Allowed only: R2 bottom operation-composition rule placement. No promotion, no formal admission, no higher-layer consumer.",
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_allowed_false": {
+      "pass": true
+    },
+    "foundation_associativity_tolerance": {
+      "pass": true,
+      "tolerance": 1.0e-12
+    },
+    "promotion_allowed_false": {
+      "pass": true
+    },
+    "toy_control_not_promoted": {
+      "pass": true
+    }
+  },
+  "branch_status_before_run": "scratch_diagnostic_only",
+  "bridge_layer": "none",
+  "carrier_layer": "finite_2x2_operation_maps_only",
+  "claim_ceiling": "Allowed only: R2 bottom operation-composition rule placement. No promotion, no formal admission, no higher-layer consumer.",
+  "classification": "scratch_diagnostic",
+  "commuting_erasure_control": {
+    "control_is_genuine": true,
+    "erased_case_gap_norm": 0.0,
+    "erased_case_passes_control": true,
+    "left_expression_id": "compose(D_Z,U_S)",
+    "left_operation_ids": [
+      "D_Z",
+      "U_S"
+    ],
+    "pass": true,
+    "positive_case_gap_norm": 1.414213562373095,
+    "positive_case_passes_control": false,
+    "right_expression_id": "compose(U_S,D_Z)",
+    "right_operation_ids": [
+      "U_S",
+      "D_Z"
+    ]
+  },
+  "composition_assoc_at_foundation": true,
+  "composition_convention": "compose(A,B) means A after B and is computed as A * B on finite operation matrices",
+  "composition_order_matters_n01": true,
+  "criteria_checked": [
+    "finite operation set is explicit",
+    "all operation triples have associative composition residual <= 1e-12",
+    "D_Z and U_H have nonzero N01 order gap",
+    "commuting control uses D_Z and U_S in both orders, not a self-diff",
+    "toy product detector returns nonzero associativity residual",
+    "classification and promotion fences are false as required",
+    "JAX/Julia shared scalar, boolean, and string parity"
+  ],
+  "cut_layer": "none",
+  "eligible_consumers": [],
+  "fail_rule": "any required boolean false, any parity mismatch, or any self-diff control",
+  "formal_admission_allowed": false,
+  "foundation_associativity_scan": {
+    "max_residual_norm": 0.0,
+    "max_residual_triple": null,
+    "pass": true,
+    "rows": [
+      {
+        "left_expression_id": "((D_Z compose D_Z) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (D_Z compose D_Z))",
+        "triple": [
+          "D_Z",
+          "D_Z",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose D_Z) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (D_Z compose U_H))",
+        "triple": [
+          "D_Z",
+          "D_Z",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose D_Z) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (D_Z compose U_S))",
+        "triple": [
+          "D_Z",
+          "D_Z",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_H) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_H compose D_Z))",
+        "triple": [
+          "D_Z",
+          "U_H",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_H) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_H compose U_H))",
+        "triple": [
+          "D_Z",
+          "U_H",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_H) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_H compose U_S))",
+        "triple": [
+          "D_Z",
+          "U_H",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_S) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_S compose D_Z))",
+        "triple": [
+          "D_Z",
+          "U_S",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_S) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_S compose U_H))",
+        "triple": [
+          "D_Z",
+          "U_S",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((D_Z compose U_S) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(D_Z compose (U_S compose U_S))",
+        "triple": [
+          "D_Z",
+          "U_S",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose D_Z) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (D_Z compose D_Z))",
+        "triple": [
+          "U_H",
+          "D_Z",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose D_Z) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (D_Z compose U_H))",
+        "triple": [
+          "U_H",
+          "D_Z",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose D_Z) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (D_Z compose U_S))",
+        "triple": [
+          "U_H",
+          "D_Z",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_H) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_H compose D_Z))",
+        "triple": [
+          "U_H",
+          "U_H",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_H) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_H compose U_H))",
+        "triple": [
+          "U_H",
+          "U_H",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_H) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_H compose U_S))",
+        "triple": [
+          "U_H",
+          "U_H",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_S) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_S compose D_Z))",
+        "triple": [
+          "U_H",
+          "U_S",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_S) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_S compose U_H))",
+        "triple": [
+          "U_H",
+          "U_S",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_H compose U_S) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_H compose (U_S compose U_S))",
+        "triple": [
+          "U_H",
+          "U_S",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose D_Z) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (D_Z compose D_Z))",
+        "triple": [
+          "U_S",
+          "D_Z",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose D_Z) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (D_Z compose U_H))",
+        "triple": [
+          "U_S",
+          "D_Z",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose D_Z) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (D_Z compose U_S))",
+        "triple": [
+          "U_S",
+          "D_Z",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_H) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_H compose D_Z))",
+        "triple": [
+          "U_S",
+          "U_H",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_H) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_H compose U_H))",
+        "triple": [
+          "U_S",
+          "U_H",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_H) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_H compose U_S))",
+        "triple": [
+          "U_S",
+          "U_H",
+          "U_S"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_S) compose D_Z)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_S compose D_Z))",
+        "triple": [
+          "U_S",
+          "U_S",
+          "D_Z"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_S) compose U_H)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_S compose U_H))",
+        "triple": [
+          "U_S",
+          "U_S",
+          "U_H"
+        ]
+      },
+      {
+        "left_expression_id": "((U_S compose U_S) compose U_S)",
+        "pass": true,
+        "residual_norm": 0.0,
+        "right_expression_id": "(U_S compose (U_S compose U_S))",
+        "triple": [
+          "U_S",
+          "U_S",
+          "U_S"
+        ]
+      }
+    ]
+  },
+  "generated_at": "2026-06-07T07:23:35Z",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "nonassoc_as_R2_operation_rule": {
+      "pass": true,
+      "reason": "operation composition residual is near zero while detector control is nonzero"
+    },
+    "order_commutes_by_default": {
+      "pass": true,
+      "reason": "D_Z and U_H have nonzero composition order gap"
+    },
+    "self_diff_control": {
+      "pass": true,
+      "reason": "all controls compare named left/right computations with distinct expression ids"
+    }
+  },
+  "kill_conditions": [
+    "operation composition associativity residual exceeds tolerance",
+    "N01 order gap is absent for D_Z and U_H",
+    "commuting erasure control uses a self-diff or has nonzero gap",
+    "toy non-associative detector has zero residual",
+    "JAX/Julia parity exceeds tolerance"
+  ],
+  "law_or_candidate_tested": "admissible finite operation composition associativity and N01 order gap",
+  "name": "r2_admissible_composition_rules",
+  "nearby_variants": {
+    "all_pass": true,
+    "passed": 3,
+    "rows": [
+      {
+        "name": "operation_triples",
+        "pass": true
+      },
+      {
+        "name": "noncommuting_order_pair",
+        "pass": true
+      },
+      {
+        "name": "commuting_erasure_pair",
+        "pass": true
+      }
+    ],
+    "total": 3
+  },
+  "negative": {
+    "commuting_erasure_control": {
+      "erased_case_gap_norm": 0.0,
+      "pass": true,
+      "positive_case_gap_norm": 1.414213562373095,
+      "reason": "the order-gap control compares two distinct commuting computed compositions"
+    },
+    "toy_nonassoc_detector": {
+      "assoc_residual_norm": 1.4142135623730951,
+      "pass": true,
+      "reason": "the same associativity test detects a deliberately non-associative toy product"
+    }
+  },
+  "negatives_run": [
+    "toy_nonassoc_detector",
+    "commuting_erasure_control"
+  ],
+  "no_self_diff_tautologies": true,
+  "nonassoc_absent_at_operation_layer": true,
+  "numpy_compute_used": false,
+  "numpy_imported": false,
+  "object_id": "r2_admissible_composition_rules",
+  "operation_set": [
+    {
+      "description": "finite diagonal projective update map",
+      "id": "D_Z",
+      "superoperator_matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    },
+    {
+      "description": "finite two-state unitary update map",
+      "id": "U_H",
+      "superoperator_matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            -0.5,
+            0.5,
+            -0.5
+          ],
+          [
+            0.5,
+            0.5,
+            -0.5,
+            -0.5
+          ],
+          [
+            0.5,
+            -0.5,
+            -0.5,
+            0.5
+          ]
+        ]
+      }
+    },
+    {
+      "description": "finite diagonal phase update map",
+      "id": "U_S",
+      "superoperator_matrix": {
+        "imag": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "real": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    }
+  ],
+  "order_gap_norm": 1.414213562373095,
+  "order_gap_witness": {
+    "left_expression_id": "compose(D_Z,U_H)",
+    "left_matrix": {
+      "imag": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "real": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          -0.5,
+          -0.5,
+          0.5
+        ]
+      ]
+    },
+    "left_operation_ids": [
+      "D_Z",
+      "U_H"
+    ],
+    "order_gap_norm": 1.414213562373095,
+    "pass": true,
+    "right_expression_id": "compose(U_H,D_Z)",
+    "right_matrix": {
+      "imag": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "real": [
+        [
+          0.5,
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0,
+          -0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0,
+          -0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0,
+          0.5
+        ]
+      ]
+    },
+    "right_operation_ids": [
+      "U_H",
+      "D_Z"
+    ]
+  },
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "operation_set_size"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 1.4142135623730947,
+        "julia": 1.414213562373095,
+        "key": "order_gap_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "commuting_erasure_gap_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.4142135623730951,
+        "julia": 1.4142135623730951,
+        "key": "toy_assoc_residual_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "assoc_residual_norm"
+      }
+    ],
+    "parity_max_diff": 2.220446049250313e-16,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_admissible_composition_rules_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_1e_12": true
+  },
+  "pass_rule": "operation assoc <= 1e-12, N01 order gap > 1e-9, toy detector nonzero, no self-diff controls, and JAX/Julia parity <= 1e-12",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_admissible_composition_rules_results.json",
+  "positive": {
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "composition_assoc_at_foundation": {
+      "assoc_residual_norm": 0.0,
+      "pass": true
+    },
+    "composition_order_matters_n01": {
+      "order_gap_norm": 1.414213562373095,
+      "pass": true
+    },
+    "dual_backend_parity": {
+      "pass": true
+    },
+    "formal_admission_false": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "nonassoc_absent_at_operation_layer": {
+      "pass": true
+    },
+    "promotion_false": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "control_expression_pairs": [
+      {
+        "left_expression_id": "compose(compose(A,B),C)",
+        "name": "foundation_associativity",
+        "right_expression_id": "compose(A,compose(B,C))"
+      },
+      {
+        "left_expression_id": "compose(D_Z,U_H)",
+        "name": "n01_order_positive",
+        "right_expression_id": "compose(U_H,D_Z)"
+      },
+      {
+        "left_expression_id": "compose(D_Z,U_S)",
+        "name": "commuting_erasure_control",
+        "right_expression_id": "compose(U_S,D_Z)"
+      },
+      {
+        "left_expression_id": "toy(toy(a,b),c)",
+        "name": "toy_nonassoc_control",
+        "right_expression_id": "toy(a,toy(b,c))"
+      }
+    ],
+    "operation_associativity_residual_norm": 0.0,
+    "operation_order_gap_norm": 1.414213562373095,
+    "question": "finite operation-composition rule placement",
+    "toy_detector_residual_norm": 1.4142135623730951
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "scratch_diagnostic",
+    "no formal admission",
+    "higher-layer placement only"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "purpose": "Place the R2 admissible-composition rule at the bottom operation layer.",
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r2_admissible_composition_rules_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_admissible_composition_rules_julia_results.json"
+  ],
+  "required_negatives": [
+    "toy_nonassoc_detector",
+    "commuting_erasure_control"
+  ],
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JAX reference"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_admissible_composition_rules_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "assoc_residual_norm": 0.0,
+    "composition_assoc_at_foundation": true,
+    "composition_order_matters_n01": true,
+    "no_self_diff_tautologies": true,
+    "nonassoc_absent_at_operation_layer": true,
+    "order_gap_norm": 1.414213562373095,
+    "parity_with_jax": true,
+    "toy_assoc_residual_norm": 1.4142135623730951
+  },
+  "root_constraints_in_force": [
+    "F01",
+    "N01",
+    "admissible_composition_rules"
+  ],
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "scientific_question": "Is finite operation composition associative at R2 while N01 order sensitivity remains live?",
+  "shared_booleans": {
+    "classification_is_scratch_diagnostic": true,
+    "commuting_erasure_control_pass": true,
+    "composition_assoc_at_foundation": true,
+    "composition_order_matters_n01": true,
+    "formal_admission_false": true,
+    "no_self_diff_tautologies": true,
+    "nonassoc_absent_at_operation_layer": true,
+    "promotion_false": true,
+    "toy_nonassoc_control_detects": true
+  },
+  "shared_scalars": {
+    "assoc_residual_norm": 0.0,
+    "commuting_erasure_gap_norm": 0.0,
+    "operation_set_size": 3.0,
+    "order_gap_norm": 1.414213562373095,
+    "toy_assoc_residual_norm": 1.4142135623730951
+  },
+  "shared_strings": {
+    "allowed_claim": "R2 finite admissible operation composition is associative at the foundation operation layer, while N01 order-sensitivity remains live.",
+    "object_id": "r2_admissible_composition_rules",
+    "rung_pin": "nonassoc_belongs_above_R2_operation_composition_in_R3_carrier_tests"
+  },
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "r2_admissible_composition_rules",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r2_admissible_composition_rules.jl",
+  "stop_condition_fired": false,
+  "tier": "R2_admissible_composition_rules_foundation",
+  "tool_integration_depth": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX reference": {
+      "reason": "load-bearing peer backend parity for shared scalar, boolean, and string fields",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and parity comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent backend for finite complex operation maps and matrix-composition residuals",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix norms and finite matrix products",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [],
+  "toy_nonassoc_detector_control": {
+    "assoc_residual_norm": 1.4142135623730951,
+    "control_is_genuine": true,
+    "input_ids": [
+      "toy_a",
+      "toy_b",
+      "toy_c"
+    ],
+    "left_expression_id": "toy(toy(a,b),c)",
+    "left_value": [
+      0.0,
+      1.0
+    ],
+    "pass": true,
+    "right_expression_id": "toy(a,toy(b,c))",
+    "right_value": [
+      1.0,
+      -0.0
+    ],
+    "scope": "small toy product only; not imported into the operation carrier"
+  },
+  "version": "1.0",
+  "why_not_v4_probes": "This is a v5 scratch diagnostic mirror receipt with no promotion or formal admission.",
+  "witness_trace_id": "r2_admissible_composition_rules:julia:2026-06-07T07:23:35Z"
+}

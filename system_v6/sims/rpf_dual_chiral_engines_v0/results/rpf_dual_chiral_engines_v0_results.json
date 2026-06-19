@@ -1,0 +1,470 @@
+{
+  "CHIRALITY_TEST": {
+    "L_R_optimal_survivor_sets_disjoint": true,
+    "L_R_survivors_differ": true,
+    "L_assignment": {
+      "Sigma_1": "b4",
+      "Sigma_2": "b8",
+      "Sigma_3": "b0"
+    },
+    "L_optimal_innermost_survivor_set": [
+      "b4",
+      "b6"
+    ],
+    "L_oriented_pair_count": 2,
+    "R_assignment": {
+      "Sigma_1": "b5",
+      "Sigma_2": "b3",
+      "Sigma_3": "b2"
+    },
+    "R_optimal_innermost_survivor_set": [
+      "b5"
+    ],
+    "R_oriented_pair_count": 2,
+    "chirality_is_physical": true,
+    "honest_message": "EARNED: the L (counterclockwise) and R (clockwise) engines select DIFFERENT survivors on the chiral field, and their OPTIMAL survivor sets are DISJOINT (no tie-break crossover) -- handedness is physical, not a relabel",
+    "present_survivor_L": "b4",
+    "present_survivor_R": "b5"
+  },
+  "INDEPENDENT_MIRROR_TEST": {
+    "L_objective_sha256": "9ea3ce10c2adfbfb9f1ec544dc15dacb2fb36d1bd59c03f7f06552d962e1ff2e",
+    "P_definition": "pos -> (N-1)-pos  (spatial reflection of the directed ring; sends R_dir to its transpose; data reflection involution)",
+    "P_is_genuine_reflection": true,
+    "P_is_involution": true,
+    "P_moves_field": true,
+    "P_of_survivor_L_features": {
+      "h": 1,
+      "pos": 1
+    },
+    "P_of_survivor_L_label_twin": "b1",
+    "P_of_survivor_R_features": {
+      "h": -1,
+      "pos": 0
+    },
+    "P_of_survivor_R_label_twin": null,
+    "R_objective_sha256": "acf61358a39958b450205543c0d74181c883bbd81a70c76726c3ecbf7c53d3d9",
+    "engines_are_distinct_functions_objective_sha_differ": true,
+    "equivariance_L_maps_to_R": true,
+    "equivariance_R_maps_to_L": true,
+    "honest_message": "EARNED: parity P (an INDEPENDENT data reflection, not a constructor swap) maps the L engine onto the R engine and back; the engines have DISTINCT objective identities, so this is a genuine mirror law, not the GNVW swap-tautology",
+    "is_swap_tautology": false,
+    "parity_maps_L_to_R_and_R_to_L": true,
+    "present_survivor_L_over_F": "b4",
+    "present_survivor_L_over_PF": "b5",
+    "present_survivor_R_over_F": "b5",
+    "present_survivor_R_over_PF": "b4",
+    "survivor_L_over_PF_features": {
+      "h": -1,
+      "pos": 0
+    },
+    "survivor_R_over_PF_features": {
+      "h": 1,
+      "pos": 1
+    }
+  },
+  "L_engine": {
+    "constraint_family": "R_dir oriented (non-symmetric) over the directed ring",
+    "engine": "chiral_engine",
+    "handedness_DERIVED": "LEFT_counterclockwise",
+    "handedness_is_derived_from_reading_direction": true,
+    "joint_assignment": {
+      "Sigma_1": "b4",
+      "Sigma_2": "b8",
+      "Sigma_3": "b0"
+    },
+    "objective_identity_sha256": "9ea3ce10c2adfbfb9f1ec544dc15dacb2fb36d1bd59c03f7f06552d962e1ff2e",
+    "oriented_admissible_pair_count": 2,
+    "present_survivor": "b4",
+    "probe_assignment_for_digest": [
+      "b0",
+      "b1",
+      "b4"
+    ],
+    "reading_direction": "outer_to_inner_R_dir(p,q)",
+    "reverse": false,
+    "shell_order_outer_to_inner": [
+      "Sigma_3",
+      "Sigma_2",
+      "Sigma_1"
+    ]
+  },
+  "R_engine": {
+    "constraint_family": "R_dir oriented (non-symmetric) over the directed ring",
+    "engine": "chiral_engine",
+    "handedness_DERIVED": "RIGHT_clockwise",
+    "handedness_is_derived_from_reading_direction": true,
+    "joint_assignment": {
+      "Sigma_1": "b5",
+      "Sigma_2": "b3",
+      "Sigma_3": "b2"
+    },
+    "objective_identity_sha256": "acf61358a39958b450205543c0d74181c883bbd81a70c76726c3ecbf7c53d3d9",
+    "oriented_admissible_pair_count": 2,
+    "present_survivor": "b5",
+    "probe_assignment_for_digest": [
+      "b0",
+      "b1",
+      "b4"
+    ],
+    "reading_direction": "inner_to_outer_R_dir(q,p)",
+    "reverse": true,
+    "shell_order_outer_to_inner": [
+      "Sigma_3",
+      "Sigma_2",
+      "Sigma_1"
+    ]
+  },
+  "SYMMETRIC_CONTROL_COLLAPSE": {
+    "L_equals_R_on_symmetric_field": true,
+    "chirality_correctly_absent_on_symmetric_field": true,
+    "honest_message": "EARNED: on the symmetrized (non-chiral) field the L and R engines collapse to the SAME survivor -- the L!=R divergence tracks the broken symmetry, not the optimizer",
+    "mechanism": "R_sym(p,q) = R_dir(p,q) OR R_dir(q,p): symmetric closure (no handedness)",
+    "present_survivor_L_symmetric": "b4",
+    "present_survivor_R_symmetric": "b4",
+    "symmetric_closure_is_actually_symmetric": true
+  },
+  "all_invariants_hold": true,
+  "all_pass": true,
+  "blocked_downstream_consumers": [
+    "Axis0 claim",
+    "flux claim",
+    "physics claim",
+    "Weyl spinor / spacetime chirality claim",
+    "formal manifold admission",
+    "GNVW finite-ring chirality admission",
+    "claim that this trivial carrier is THE dual chiral engine of the real model",
+    "claim that the broken symmetry is forced rather than installed by R_dir"
+  ],
+  "branch_states": {
+    "b0": {
+      "h": 1,
+      "pos": 0
+    },
+    "b1": {
+      "h": 1,
+      "pos": 1
+    },
+    "b2": {
+      "h": -1,
+      "pos": 2
+    },
+    "b3": {
+      "h": -1,
+      "pos": 3
+    },
+    "b4": {
+      "h": 1,
+      "pos": 4
+    },
+    "b5": {
+      "h": -1,
+      "pos": 5
+    },
+    "b6": {
+      "h": -1,
+      "pos": 1
+    },
+    "b7": {
+      "h": -1,
+      "pos": 4
+    },
+    "b8": {
+      "h": 1,
+      "pos": 2
+    }
+  },
+  "chirality_earned": true,
+  "claim_ceiling": "'dual chiral engines' EARNED only as a BROKEN-SYMMETRY computational separation on a trivial finite directed-ring carrier: two engines reading ONE non-symmetric oriented relation R_dir in opposite senses (L outer->inner, R inner->outer) select DIFFERENT survivors (present_survivor_L != present_survivor_R); a parity P (an INDEPENDENT pos->(N-1)-pos SPATIAL ring reflection that sends R_dir to its transpose, NOT a constructor swap) maps L<->R -- the SAME L engine over P(F) does the R job -- with the engines verified to have DISTINCT objective identities (so it is NOT the GNVW swap-tautology where swapped==identical-SHA); and on the SYMMETRIC closure of R_dir the engines COLLAPSE to one survivor (chirality correctly absent). This is a COMPUTATIONAL broken-symmetry separation, NOT physics, NOT a Weyl spinor, NOT a topology theorem, NOT a spacetime chirality claim, NOT Axis0/manifold/canonical. The broken symmetry is INSTALLED by the chosen non-symmetric R_dir (a CHOICE on a trivial carrier), not derived from deeper necessity.",
+  "classification": "scratch_diagnostic",
+  "constraint_set": "C_Rdir_oriented_nonsymmetric_directed_ring; L=outer_to_inner; R=inner_to_outer; sym_control=symmetric_closure",
+  "criteria_checked": [
+    "CHIRALITY_L_AND_R_DIFFER",
+    "CHIRALITY_OPTIMAL_SURVIVOR_SETS_DISJOINT_NO_TIEBREAK_CROSSOVER",
+    "HARD_STOP_future_continuations_ne_present_survivor",
+    "INDEPENDENT_MIRROR_P_MAPS_L_TO_R",
+    "SYMMETRIC_CONTROL_COLLAPSES_L_EQUALS_R",
+    "compression_spans_multiple_strata",
+    "engine_handedness_DERIVED_not_stored",
+    "engines_have_distinct_objective_identities",
+    "engines_read_opposite_oriented_senses",
+    "future_continuations_future_indexed",
+    "future_continuations_lists_of_distinct_ge2",
+    "present_survivor_L_is_innermost_of_L_joint_assignment",
+    "present_survivor_R_is_innermost_of_R_joint_assignment",
+    "relation_is_NON_symmetric_broken_symmetry",
+    "relation_is_oriented_boolean_pair_relation",
+    "relation_non_degenerate"
+  ],
+  "engine_handedness_DERIVED": {
+    "L_engine": "LEFT_counterclockwise",
+    "R_engine": "RIGHT_clockwise"
+  },
+  "event_x": "event_x:apex_decision_node",
+  "first_class_keys_present": [
+    "event_x",
+    "ring_N",
+    "shells",
+    "shell_radius_r",
+    "branch_states",
+    "future_continuations",
+    "oriented_relation_R_dir",
+    "L_engine",
+    "R_engine",
+    "engine_handedness_DERIVED",
+    "present_survivor_L",
+    "present_survivor_R"
+  ],
+  "formal_admission_allowed": false,
+  "future_continuations": {
+    "Sigma_1": [
+      "b4",
+      "b5",
+      "b6"
+    ],
+    "Sigma_2": [
+      "b1",
+      "b3",
+      "b8"
+    ],
+    "Sigma_3": [
+      "b0",
+      "b2",
+      "b7"
+    ]
+  },
+  "honest_self_assessment": "Chirality is EARNED beyond a labeled left/right shift: (1) L and R DIVERGE on the chiral field, and their OPTIMAL innermost-survivor SETS are DISJOINT (L in {b4,b6}, R in {b5}) so NO tie-break of either engine could make them agree -- the separation is structural, not a tie-break artifact; (2) the divergence COLLAPSES under the symmetric control, so it tracks the broken symmetry not the optimizer; (3) the mirror P(L)=R is checked with P a SPATIAL ring reflection (pos->(N-1)-pos) independent of the engine constructors -- the SAME L engine re-run over the reflected ring -- P verified to actually move the field, and the two engines verified to have DISTINCT objective SHAs -- so it is NOT the GNVW DEFINITION_SENSITIVE swap-tautology (swapped==identical-SHA). It remains DEFINITION-relative in the honest sense that the broken symmetry is installed by the chosen non-symmetric R_dir on a trivial finite carrier, not derived from necessity.",
+  "independent_divergence_search": {
+    "L_assignment": {
+      "Sigma_1": "b4",
+      "Sigma_2": "b8",
+      "Sigma_3": "b0"
+    },
+    "L_oriented_pair_count": 2,
+    "R_assignment": {
+      "Sigma_1": "b5",
+      "Sigma_2": "b3",
+      "Sigma_3": "b2"
+    },
+    "R_oriented_pair_count": 2,
+    "assignments_differ": true,
+    "present_survivor_L": "b4",
+    "present_survivor_R": "b5",
+    "survivors_differ": true
+  },
+  "invariants": {
+    "CHIRALITY_L_AND_R_DIFFER": true,
+    "CHIRALITY_OPTIMAL_SURVIVOR_SETS_DISJOINT_NO_TIEBREAK_CROSSOVER": true,
+    "HARD_STOP_future_continuations_ne_present_survivor": true,
+    "INDEPENDENT_MIRROR_P_MAPS_L_TO_R": true,
+    "SYMMETRIC_CONTROL_COLLAPSES_L_EQUALS_R": true,
+    "compression_spans_multiple_strata": true,
+    "engine_handedness_DERIVED_not_stored": true,
+    "engines_have_distinct_objective_identities": true,
+    "engines_read_opposite_oriented_senses": true,
+    "future_continuations_future_indexed": true,
+    "future_continuations_lists_of_distinct_ge2": true,
+    "present_survivor_L_is_innermost_of_L_joint_assignment": true,
+    "present_survivor_R_is_innermost_of_R_joint_assignment": true,
+    "relation_is_NON_symmetric_broken_symmetry": true,
+    "relation_is_oriented_boolean_pair_relation": true,
+    "relation_non_degenerate": true
+  },
+  "name": "rpf_dual_chiral_engines_v0",
+  "negative_control_handedness_clause_load_bearing": {
+    "full_relation_L_R": [
+      "b4",
+      "b5"
+    ],
+    "h_blind_L_equals_R": true,
+    "h_blind_relation_L_R": [
+      "b4",
+      "b4"
+    ],
+    "h_blind_relation_is_symmetric": true,
+    "handedness_clause_is_load_bearing": true,
+    "mechanism": "drop the handedness clause from R_dir (short step EITHER direction; symmetric)"
+  },
+  "negative_control_scramble_futures": {
+    "all_invariants_hold": false,
+    "control_breaks": true,
+    "mechanism": "scramble future_continuations to 1 distinct branch per shell"
+  },
+  "object_name": "DualChiralEnginesOverPossibilityField",
+  "oriented_relation_R_dir": {
+    "b0>b1": true,
+    "b0>b2": false,
+    "b0>b3": false,
+    "b0>b4": false,
+    "b0>b5": false,
+    "b0>b6": false,
+    "b0>b7": false,
+    "b0>b8": true,
+    "b1>b0": false,
+    "b1>b2": false,
+    "b1>b3": false,
+    "b1>b4": false,
+    "b1>b5": false,
+    "b1>b6": false,
+    "b1>b7": false,
+    "b1>b8": true,
+    "b2>b0": false,
+    "b2>b1": false,
+    "b2>b3": false,
+    "b2>b4": false,
+    "b2>b5": false,
+    "b2>b6": true,
+    "b2>b7": false,
+    "b2>b8": false,
+    "b3>b0": false,
+    "b3>b1": false,
+    "b3>b2": true,
+    "b3>b4": false,
+    "b3>b5": false,
+    "b3>b6": true,
+    "b3>b7": false,
+    "b3>b8": false,
+    "b4>b0": true,
+    "b4>b1": false,
+    "b4>b2": false,
+    "b4>b3": false,
+    "b4>b5": false,
+    "b4>b6": false,
+    "b4>b7": false,
+    "b4>b8": false,
+    "b5>b0": false,
+    "b5>b1": false,
+    "b5>b2": false,
+    "b5>b3": true,
+    "b5>b4": false,
+    "b5>b6": false,
+    "b5>b7": true,
+    "b5>b8": false,
+    "b6>b0": false,
+    "b6>b1": false,
+    "b6>b2": false,
+    "b6>b3": false,
+    "b6>b4": false,
+    "b6>b5": true,
+    "b6>b7": false,
+    "b6>b8": false,
+    "b7>b0": false,
+    "b7>b1": false,
+    "b7>b2": true,
+    "b7>b3": true,
+    "b7>b4": false,
+    "b7>b5": false,
+    "b7>b6": false,
+    "b7>b8": false,
+    "b8>b0": false,
+    "b8>b1": false,
+    "b8>b2": false,
+    "b8>b3": false,
+    "b8>b4": true,
+    "b8>b5": false,
+    "b8>b6": false,
+    "b8>b7": false
+  },
+  "present_survivor_L": "b4",
+  "present_survivor_R": "b5",
+  "probe_family": "M_oriented_Rdir_readout_plus_LR_survivor_plus_parity_data_reflection",
+  "promotion_allowed": false,
+  "relation_is_non_symmetric": true,
+  "ring_N": 6,
+  "shell_radius_r": [
+    3,
+    2,
+    1
+  ],
+  "shells": [
+    {
+      "role": "future possibility stratum (outer)",
+      "shell_id": "Sigma_3",
+      "shell_radius_r": 3,
+      "stratum_kind": "future"
+    },
+    {
+      "role": "future possibility stratum (mid)",
+      "shell_id": "Sigma_2",
+      "shell_radius_r": 2,
+      "stratum_kind": "future"
+    },
+    {
+      "role": "future possibility stratum (inner)",
+      "shell_id": "Sigma_1",
+      "shell_radius_r": 1,
+      "stratum_kind": "future"
+    }
+  ],
+  "tool_integration_depth": {
+    "copy": "supportive",
+    "hashlib": "load_bearing",
+    "itertools": "load_bearing",
+    "jax": null,
+    "json": "supportive",
+    "julia": null,
+    "numpy": null,
+    "pytorch": null,
+    "z3": null
+  },
+  "tool_manifest": {
+    "copy": {
+      "reason": "copy.deepcopy isolates the parity-reflected field so the parity operation never mutates the canonical carrier the result serializes. Supportive (hygiene), required so the serialized object reflects the canonical field.",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "sha256 of each engine's scored ordered-pair list (its OBJECTIVE) on a fixed probe assignment gives a per-engine objective-identity digest. Used to assert the L and R engines are DISTINCT functions (objective SHAs differ) -- the load-bearing guard against the GNVW swap-tautology where the 'mirror' was byte-identical to its target by construction (swapped==identical-SHA).",
+      "tried": true,
+      "used": true
+    },
+    "itertools": {
+      "reason": "itertools.product enumerates the finite shell-product so each chiral engine can pick the JOINT assignment maximizing its ORIENTED admissible-pair count under the non-symmetric R_dir (L scores outer->inner R_dir(p,q); R scores inner->outer R_dir(q,p)). The two oriented optima are what DIVERGE on a chiral field; the enumeration is load-bearing for the chirality probe separation.",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "not needed: trivial finite carrier; each engine optimum is a tiny exhaustive product, not a batched numeric sweep needing JAX.",
+      "tried": false,
+      "used": false
+    },
+    "json": {
+      "reason": "canonical_json serialization for the objective-identity digests and the result receipt; supportive (serialization, not the claim itself).",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "not needed: no Canon algebra artifact is consumed; field instantiation with two oriented-relation engines only.",
+      "tried": false,
+      "used": false
+    },
+    "numpy": {
+      "reason": "available but deliberately NOT used: trivial finite directed ring, a boolean oriented predicate, and a small exhaustive product. Pure-Python keeps the broken-symmetry separation auditable; heavy numeric tooling would re-enter the proxy basin.",
+      "tried": true,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not needed: no density matrix / network / autograd / Weyl-spinor carrier; using it would be decorative and re-enter the proxy basin.",
+      "tried": false,
+      "used": false
+    },
+    "z3": {
+      "reason": "not needed: this is a field-instantiation receipt establishing a broken-symmetry separation by direct enumeration, not a structural-impossibility (UNSAT) proof. No formal admission is claimed.",
+      "tried": false,
+      "used": false
+    }
+  },
+  "trap_state_mutation": {
+    "base_L_R": [
+      "b4",
+      "b5"
+    ],
+    "carrier_restored_no_contamination": true,
+    "handedness_mutation_moves_a_survivor": true,
+    "mutated_L_R": [
+      "b6",
+      "b5"
+    ],
+    "mutated_branch": "b0",
+    "mutation": "b0.h -> -b0.h (on a deepcopy; global restored from a deep snapshot)"
+  }
+}

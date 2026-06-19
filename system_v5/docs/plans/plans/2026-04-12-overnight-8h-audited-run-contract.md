@@ -57,7 +57,7 @@ Keep these in a separate classical/QIT lane and only advance when geometry worke
 - geometry-before-axis; no bridge/Axis widening; no flux promotion
 - only run parallel lanes when file sets do not overlap
 - after each successful packet:
-  - rerun with Makefile interpreter `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3`
+  - rerun with Makefile interpreter `/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3`
   - run `system_v4/probes/probe_truth_audit.py`
   - run `system_v4/probes/controller_alignment_audit.py`
   - patch only directly stale ledger/truth/wiki surfaces

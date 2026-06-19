@@ -1,0 +1,90 @@
+{
+  "object_id": "axis5_spectral_gradient_v1",
+  "claim_ceiling": "Does NOT assert layer-completion, manifold admission, coupling, bridge, flux, or physics. promotion_allowed=false. A state that passes is a candidate, not a proven object.",
+  "promotion_allowed": false,
+  "classification": "tool_lego_fit_probe",
+  "generated_at": "2026-06-04T07:31:23.010164+00:00",
+  "source_path": "/tmp/wb_axis5_spectral_gradient_jax.py",
+  "source_sha256": "b0e3f3330f0d4708ac7c1ad3d9bc7d704e17429349d9fff56d8e7ba36d4de58a",
+  "execution_command": "/tmp/wb_axis5_spectral_gradient_jax.py",
+  "julia_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/wb_axis5_spectral_gradient_julia_results.json",
+  "julia_result_exists": true,
+  "parity_N": 32,
+  "rng_seed": 20260604,
+  "seed_protocol": "deterministic arithmetic state table shared by Julia and JAX",
+  "julia_spectral_entropy_gain": 0.4564875170489178,
+  "jax_spectral_entropy_gain": 0.4564875170489178,
+  "julia_gradient_entropy_gain": -1.3877787807814457e-17,
+  "jax_gradient_entropy_gain": 1.0408340855860858e-17,
+  "delta_spectral": 0.0,
+  "delta_gradient": 2.4286128663675315e-17,
+  "max_abs_delta": 2.4286128663675315e-17,
+  "delta_threshold": 1e-06,
+  "parity_pass": true,
+  "julia_all_pass": true,
+  "jax_gate_pass": true,
+  "jax_reference": {
+    "N": 32,
+    "rng_seed": 20260604,
+    "jax_spectral_entropy_gain": 0.4564875170489178,
+    "jax_gradient_entropy_gain": 1.0408340855860858e-17,
+    "mean_gain_spectral_Te": 0.5241247400922863,
+    "mean_gain_gradient_Fe": 4.857225732735061e-17,
+    "min_gain_spectral_Ti": 0.16374777096183346,
+    "min_gain_spectral_Te": 0.062430671723572376,
+    "max_abs_gain_gradient_Fi": 5.551115123125784e-16,
+    "max_abs_gain_gradient_Fe": 6.66133814775094e-16,
+    "spectral_entropy_gain_positive": true,
+    "gradient_entropy_gain_near_zero": true,
+    "n01_noncommuting_control_survived": true,
+    "wrong_structure_control_indistinguishable": true,
+    "rho_valid": true,
+    "max_n01_gap": 0.7068021292447882,
+    "max_commuting_control_order_gap": 0.0,
+    "max_commuting_control_entropy_gain_gap": 0.0
+  },
+  "finite_map": {
+    "domain": "(rho_L or rho_R, op_class in {spectral, gradient, commuting_control})",
+    "codomain_or_output": "(von_Neumann_entropy_after, entropy_gain, frobenius_order_gap, axis5_class)"
+  },
+  "TOOL_MANIFEST": {
+    "JAX": {
+      "used": true,
+      "reason": "load_bearing: independent parity recomputation of entropy monotone values"
+    },
+    "entropy_monotone_check": {
+      "used": true,
+      "reason": "load_bearing: parity_pass depends on spectral and gradient entropy gain deltas"
+    },
+    "json": {
+      "used": true,
+      "reason": "supportive: reads Julia receipt and writes parity receipt"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX": "load_bearing",
+    "entropy_monotone_check": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_manifest": {
+    "JAX": "load_bearing",
+    "entropy_monotone_check": "load_bearing",
+    "json": "supportive"
+  },
+  "tool_integration_depth": {
+    "JAX": "load_bearing",
+    "entropy_monotone_check": "load_bearing",
+    "json": "supportive"
+  },
+  "blocked_consumers": [
+    "layer-completion",
+    "manifold admission",
+    "coupling",
+    "bridge",
+    "Phi0",
+    "Xi",
+    "Axis0",
+    "flux",
+    "physics"
+  ]
+}

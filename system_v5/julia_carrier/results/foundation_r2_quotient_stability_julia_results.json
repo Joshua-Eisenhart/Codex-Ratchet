@@ -1,0 +1,448 @@
+{
+  "C": {
+    "admitted_operation": "phase_Z_pi_over_2",
+    "constraints_hold": {
+      "details": [
+        {
+          "active_expectations": [
+            1.0
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_z0",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        },
+        {
+          "active_expectations": [
+            0.0
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_z1",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 0.0
+        },
+        {
+          "active_expectations": [
+            0.5
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_x_plus",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 2.220446049250313e-16
+        },
+        {
+          "active_expectations": [
+            0.5
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_x_minus",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 2.220446049250313e-16
+        },
+        {
+          "active_expectations": [
+            0.5
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_y_plus",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 2.220446049250313e-16
+        },
+        {
+          "active_expectations": [
+            0.5
+          ],
+          "hermitian_residual": 0.0,
+          "id": "pure_y_minus",
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "trace_residual": 2.220446049250313e-16
+        },
+        {
+          "active_expectations": [
+            0.5
+          ],
+          "hermitian_residual": 0.0,
+          "id": "maximally_mixed",
+          "min_eigenvalue": 0.5,
+          "psd": true,
+          "trace_residual": 0.0
+        }
+      ],
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true
+    },
+    "nonadmitted_control_operation": "Hadamard",
+    "operation_constraints_hold": {
+      "admitted_operation_stable": true,
+      "admitted_unitary_residual": 0.0,
+      "nonadmitted_control_unitary_residual": 3.1401849173675503e-16,
+      "nonadmitted_operation_stable": false
+    },
+    "rung_specific_constraint": "active-M equivalence must be stable under admitted operations",
+    "state_constraints": [
+      "trace=1",
+      "PSD",
+      "Hermitian"
+    ]
+  },
+  "M": {
+    "active_probe_family": [
+      "Z0"
+    ],
+    "dropped_probe_family": [],
+    "probes": [
+      {
+        "effect": "|0><0|",
+        "name": "Z0"
+      }
+    ]
+  },
+  "S": {
+    "density_matrix_shape": [
+      2,
+      2
+    ],
+    "ids": [
+      "pure_z0",
+      "pure_z1",
+      "pure_x_plus",
+      "pure_x_minus",
+      "pure_y_plus",
+      "pure_y_minus",
+      "maximally_mixed"
+    ],
+    "size": 7
+  },
+  "S_quotient": {
+    "class_count": 3,
+    "classes": [
+      {
+        "class_id": "active_M_Z0_q0",
+        "members": [
+          "pure_z1"
+        ],
+        "signature": [
+          0.0
+        ]
+      },
+      {
+        "class_id": "active_M_Z0_q1",
+        "members": [
+          "maximally_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus"
+        ],
+        "signature": [
+          0.5
+        ]
+      },
+      {
+        "class_id": "active_M_Z0_q2",
+        "members": [
+          "pure_z0"
+        ],
+        "signature": [
+          1.0
+        ]
+      }
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive Hermitian/PSD residual checks",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing density matrices, projective expectations, and unitary image computation",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Real expectation-variable proof over QuantumOptics-computed Tr(rho O) values",
+      "tried": true,
+      "used": true
+    }
+  },
+  "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "equivalence": {
+    "is_equivalence_relation": true,
+    "reflexive": true,
+    "symmetric": true,
+    "transitive": true
+  },
+  "expectations": {
+    "active_M": [
+      [
+        1.0
+      ],
+      [
+        0.0
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ]
+    ],
+    "post_admitted_operation": [
+      [
+        1.0
+      ],
+      [
+        0.0
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ]
+    ],
+    "post_nonadmitted_operation": [
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        1.0
+      ],
+      [
+        0.0
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ],
+      [
+        0.5
+      ]
+    ],
+    "probe_order": [
+      "Z0"
+    ],
+    "row_ids": [
+      "pure_z0",
+      "pure_z1",
+      "pure_x_plus",
+      "pure_x_minus",
+      "pure_y_plus",
+      "pure_y_minus",
+      "maximally_mixed"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T00:30:09.496",
+  "julia_version": "1.12.6",
+  "negative_control_flip": {
+    "active_M_class_count": 3,
+    "admitted_operation_stable": true,
+    "cvc5_main_verdict": "run_in_jax_crossover_leg",
+    "cvc5_nonadmitted_violation_verdict": "run_in_jax_crossover_leg",
+    "drop_M_changed_quotient": true,
+    "drop_M_class_count": 1,
+    "nonadmitted_operation_stable": false,
+    "z3_main_verdict": "unsat",
+    "z3_nonadmitted_violation_verdict": "sat"
+  },
+  "object_id": "foundation_r2_quotient_stability_v2",
+  "packages_used": [
+    "QuantumOptics",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "proof_encoding_note": "Julia Z3.jl creates Real expectation variables e[i,O] and e_post[i,O], asserts they equal QuantumOptics-computed Tr(rho_i O) values, and defines rho_i ~ rho_j inside Z3 as conjunctions of Real equalities; no precomputed Bool relation matrix is bound to solver Bools. cvc5 is run in the JAX crossover leg.",
+  "quotient": {
+    "class_count": 3,
+    "classes": [
+      {
+        "class_id": "active_M_Z0_q0",
+        "members": [
+          "pure_z1"
+        ],
+        "signature": [
+          0.0
+        ]
+      },
+      {
+        "class_id": "active_M_Z0_q1",
+        "members": [
+          "maximally_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus"
+        ],
+        "signature": [
+          0.5
+        ]
+      },
+      {
+        "class_id": "active_M_Z0_q2",
+        "members": [
+          "pure_z0"
+        ],
+        "signature": [
+          1.0
+        ]
+      }
+    ],
+    "name": "active_M_Z0",
+    "probe_names": [
+      "Z0"
+    ]
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r2_quotient_stability_julia_results.json",
+  "rung_id": "foundation_r2_quotient_stability_v2",
+  "schema_version": "engine_leg_result_v1",
+  "smt": {
+    "julia_z3": {
+      "load_bearing": true,
+      "main_asserted_real_equalities": 14,
+      "main_no_violation_verdict": "unsat",
+      "main_violation_terms": 448,
+      "nonadmitted_stability_violation_verdict": "sat",
+      "nonadmitted_stability_witness": {
+        "ids": [
+          "pure_x_plus",
+          "pure_x_minus"
+        ],
+        "indices": [
+          2,
+          3
+        ]
+      }
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r2_quotient_stability_julia.jl",
+  "source_sha256": "006bbd077afe121dec9b0402d269c315bb1bb57cc93be79a7ea19fed823d01d7",
+  "stability": {
+    "admitted_operation": {
+      "stable": true,
+      "violating_pairs": []
+    },
+    "nonadmitted_operation": {
+      "stable": false,
+      "violating_pairs": [
+        {
+          "left": "pure_x_plus",
+          "right": "pure_x_minus"
+        },
+        {
+          "left": "pure_x_plus",
+          "right": "pure_y_plus"
+        },
+        {
+          "left": "pure_x_plus",
+          "right": "pure_y_minus"
+        },
+        {
+          "left": "pure_x_plus",
+          "right": "maximally_mixed"
+        },
+        {
+          "left": "pure_x_minus",
+          "right": "pure_x_plus"
+        },
+        {
+          "left": "pure_x_minus",
+          "right": "pure_y_plus"
+        },
+        {
+          "left": "pure_x_minus",
+          "right": "pure_y_minus"
+        },
+        {
+          "left": "pure_x_minus",
+          "right": "maximally_mixed"
+        },
+        {
+          "left": "pure_y_plus",
+          "right": "pure_x_plus"
+        },
+        {
+          "left": "pure_y_plus",
+          "right": "pure_x_minus"
+        },
+        {
+          "left": "pure_y_minus",
+          "right": "pure_x_plus"
+        },
+        {
+          "left": "pure_y_minus",
+          "right": "pure_x_minus"
+        },
+        {
+          "left": "maximally_mixed",
+          "right": "pure_x_plus"
+        },
+        {
+          "left": "maximally_mixed",
+          "right": "pure_x_minus"
+        }
+      ]
+    }
+  },
+  "values": {
+    "admitted_stable": true,
+    "class_count": 3,
+    "drop_M_class_count": 1,
+    "nonadmitted_stable": false,
+    "z3_main_verdict": "unsat",
+    "z3_nonadmitted_violation_verdict": "sat"
+  }
+}

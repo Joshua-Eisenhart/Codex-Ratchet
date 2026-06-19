@@ -1,0 +1,5708 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "cvc5": "load_bearing",
+    "numpy": "load_bearing",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "load-bearing builder/auditor file-boundary gate; builder must not author audit_verdict.md",
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent computed-value SMT gate for the same Matrix64 schedule facts",
+      "used": true
+    },
+    "numpy": {
+      "reason": "load-bearing finite Bloch-vector carrier, affine terrain/operator maps, norms, entropy/purity readouts, and trajectory controls",
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive JSON, hashing, deterministic shuffle, timestamps, and path handling",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing computed-value SMT gate for 64-slot coordinate counts and controls with erased-coordinate SAT control",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "64 schedule slots computed on a pinned finite carrier",
+    "32 slots per engine family under the declared Matrix64 coordinate schedule",
+    "per-slot coordinate consistency rows computed",
+    "Type1-L versus Type2-R full-run chirality difference computed on this carrier",
+    "shuffled, truncated, and bit-coordinate-erasure controls computed"
+  ],
+  "builder_audit_boundary": {
+    "audit_verdict_path": "system_v6/sims/engine_64_stage_full_run_v0/audit_verdict.md",
+    "helper_path": "scripts/builder_audit_boundary.py",
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true
+  },
+  "claim": "One realization-relative finite run of Type1-L then Type2-R through all 64 Matrix64 schedule slots, with per-slot state and coordinate ledger.",
+  "claim_ceiling": "scratch_diagnostic; realization-relative schedule trajectory only; no source admission, no match-lane claim, no basin/subbasin claim",
+  "classification": "scratch_diagnostic",
+  "common_source_path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0_common.py",
+  "common_source_sha256": "cba273d8a29a71a216aac238a636dcc44b503a017aeae9543af8acd15c9b5f05",
+  "controls": {
+    "bit_coordinate_erasure_control": {
+      "erasure_rule": "preserve slot count and engine family; erase axis1, axis2, axis4, axis5, axis6 to zero in active map decoding",
+      "final_state_l2_vs_full": 0.048414436830429,
+      "pass": true,
+      "slot_count": 64,
+      "trajectory_signature_equal_to_full": false,
+      "unique_coordinate_count_after_erasure": 2
+    },
+    "shuffled_schedule_control": {
+      "final_state_l2_vs_full": 0.077291784083582,
+      "pass": true,
+      "rng_seed": 20260612,
+      "slot_count": 64,
+      "trajectory_signature_equal_to_full": false
+    },
+    "truncated_schedule_boundary": {
+      "boundary": "32 slots = one engine family (Type1-L)",
+      "final_state_l2_vs_full": 0.185358727170346,
+      "pass": true,
+      "slot_count": 32
+    }
+  },
+  "coordinate_consistency": {
+    "all_rows_pass": true,
+    "bad_row_count": 0,
+    "rows": [
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 0,
+        "pass": true,
+        "slot_index": 0
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 32,
+        "pass": true,
+        "slot_index": 1
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 16,
+        "pass": true,
+        "slot_index": 2
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 48,
+        "pass": true,
+        "slot_index": 3
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 2,
+        "pass": true,
+        "slot_index": 4
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 34,
+        "pass": true,
+        "slot_index": 5
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 18,
+        "pass": true,
+        "slot_index": 6
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 50,
+        "pass": true,
+        "slot_index": 7
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 1,
+        "pass": true,
+        "slot_index": 8
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 33,
+        "pass": true,
+        "slot_index": 9
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 17,
+        "pass": true,
+        "slot_index": 10
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 49,
+        "pass": true,
+        "slot_index": 11
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 3,
+        "pass": true,
+        "slot_index": 12
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 35,
+        "pass": true,
+        "slot_index": 13
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 19,
+        "pass": true,
+        "slot_index": 14
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 51,
+        "pass": true,
+        "slot_index": 15
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 8,
+        "pass": true,
+        "slot_index": 16
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 40,
+        "pass": true,
+        "slot_index": 17
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 24,
+        "pass": true,
+        "slot_index": 18
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Hill",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Hill",
+        "matrix64_index": 56,
+        "pass": true,
+        "slot_index": 19
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 10,
+        "pass": true,
+        "slot_index": 20
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 42,
+        "pass": true,
+        "slot_index": 21
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 26,
+        "pass": true,
+        "slot_index": 22
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Pit",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Pit",
+        "matrix64_index": 58,
+        "pass": true,
+        "slot_index": 23
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 9,
+        "pass": true,
+        "slot_index": 24
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 41,
+        "pass": true,
+        "slot_index": 25
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 25,
+        "pass": true,
+        "slot_index": 26
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Vortex",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Vortex",
+        "matrix64_index": 57,
+        "pass": true,
+        "slot_index": 27
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 11,
+        "pass": true,
+        "slot_index": 28
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 43,
+        "pass": true,
+        "slot_index": 29
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 27,
+        "pass": true,
+        "slot_index": 30
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Funnel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 0,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Funnel",
+        "matrix64_index": 59,
+        "pass": true,
+        "slot_index": 31
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 4,
+        "pass": true,
+        "slot_index": 32
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 36,
+        "pass": true,
+        "slot_index": 33
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 20,
+        "pass": true,
+        "slot_index": 34
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 52,
+        "pass": true,
+        "slot_index": 35
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 6,
+        "pass": true,
+        "slot_index": 36
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 38,
+        "pass": true,
+        "slot_index": 37
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 22,
+        "pass": true,
+        "slot_index": 38
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 54,
+        "pass": true,
+        "slot_index": 39
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 5,
+        "pass": true,
+        "slot_index": 40
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 37,
+        "pass": true,
+        "slot_index": 41
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 21,
+        "pass": true,
+        "slot_index": 42
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 53,
+        "pass": true,
+        "slot_index": 43
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 7,
+        "pass": true,
+        "slot_index": 44
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 39,
+        "pass": true,
+        "slot_index": 45
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 23,
+        "pass": true,
+        "slot_index": 46
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 0,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 55,
+        "pass": true,
+        "slot_index": 47
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 12,
+        "pass": true,
+        "slot_index": 48
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 44,
+        "pass": true,
+        "slot_index": 49
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 28,
+        "pass": true,
+        "slot_index": 50
+      },
+      {
+        "actual_operator_family": "Ti",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ne",
+        "actual_terrain": "Ne/Spiral",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Ti",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ne",
+        "expected_terrain": "Ne/Spiral",
+        "matrix64_index": 60,
+        "pass": true,
+        "slot_index": 51
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 14,
+        "pass": true,
+        "slot_index": 52
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 46,
+        "pass": true,
+        "slot_index": 53
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 30,
+        "pass": true,
+        "slot_index": 54
+      },
+      {
+        "actual_operator_family": "Te",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Ni",
+        "actual_terrain": "Ni/Source",
+        "axis_bits": {
+          "axis1": 0,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Te",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Ni",
+        "expected_terrain": "Ni/Source",
+        "matrix64_index": 62,
+        "pass": true,
+        "slot_index": 55
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 13,
+        "pass": true,
+        "slot_index": 56
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 45,
+        "pass": true,
+        "slot_index": 57
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 29,
+        "pass": true,
+        "slot_index": 58
+      },
+      {
+        "actual_operator_family": "Fi",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Si",
+        "actual_terrain": "Si/Citadel",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 0,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fi",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Si",
+        "expected_terrain": "Si/Citadel",
+        "matrix64_index": 61,
+        "pass": true,
+        "slot_index": 59
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 15,
+        "pass": true,
+        "slot_index": 60
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 0,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 47,
+        "pass": true,
+        "slot_index": 61
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "operator_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 0
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "operator_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 31,
+        "pass": true,
+        "slot_index": 62
+      },
+      {
+        "actual_operator_family": "Fe",
+        "actual_precedence": "terrain_first",
+        "actual_stage": "Se",
+        "actual_terrain": "Se/Cannon",
+        "axis_bits": {
+          "axis1": 1,
+          "axis2": 1,
+          "axis3": 1,
+          "axis4": 1,
+          "axis5": 1,
+          "axis6": 1
+        },
+        "checks": {
+          "matrix64_index_matches_axis_bits": true,
+          "operator_family_matches_axis1_axis2": true,
+          "precedence_matches_axis6": true,
+          "readout_matches_committed_discipline_row": true,
+          "stage_matches_engine_direction_and_stroke": true,
+          "substage_matches_axis5_axis6": true,
+          "terrain_matches_sheet_and_stage": true
+        },
+        "expected_operator_family": "Fe",
+        "expected_precedence": "terrain_first",
+        "expected_stage": "Se",
+        "expected_terrain": "Se/Cannon",
+        "matrix64_index": 63,
+        "pass": true,
+        "slot_index": 63
+      }
+    ]
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_control": "bit-coordinate-erased schedule has fewer than 64 unique realized coordinates",
+      "erased_control_verdict": "sat",
+      "identity": "same computed Matrix64 full-run gate independently encoded in cvc5",
+      "load_bearing": true,
+      "positive_case": "negating any required full-run gate is UNSAT after binding computed values",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_control": "bit-coordinate-erased schedule has fewer than 64 unique realized coordinates",
+      "erased_control_verdict": "sat",
+      "identity": "computed schedule counts, coordinate consistency, and controls imply the Matrix64 full-run gate",
+      "load_bearing": true,
+      "positive_case": "negating any required full-run gate is UNSAT after binding computed values",
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "source-admitted substage convention",
+    "I Ching or hexagram matching claim",
+    "64-subsubbasin, basin, or subbasin claim",
+    "canonical Matrix64 admission",
+    "physics, bridge, or axis-level admission"
+  ],
+  "eng_64_parent_context": {
+    "all_checks_passed": true,
+    "allowed_use": "hash-pinned parent context only; this packet computes a new stateful 64-slot trajectory and does not inherit the old final-density fingerprint claim",
+    "classification": "tool_lego_fit_probe",
+    "fingerprint_counts": {
+      "fp_tolerance": 1e-07,
+      "honest_headline": "n_distinct=16 out of 64 stages; collapses due to honest geometric degeneracy (hot pair commutes) reported below",
+      "n_distinct": 16,
+      "n_distinct_carnot": 8,
+      "n_distinct_szilard": 8
+    },
+    "object_id": "eng_64_hexagram_julia_v1",
+    "promotion_allowed": false,
+    "stage_count": {
+      "carnot_half": 32,
+      "expected_per_half": 32,
+      "expected_total": 64,
+      "szilard_half": 32,
+      "total": 64
+    }
+  },
+  "fences": {
+    "basin_claim": false,
+    "formal_admission_allowed": false,
+    "match_lane_claim": false,
+    "realization_relative_only": true,
+    "source_admitted_substage_convention": false
+  },
+  "formal_admission_allowed": false,
+  "gate_values": {
+    "bad_coordinate_rows": 0,
+    "erased_unique_coordinate_count": 2,
+    "erasure_differs": 1,
+    "shuffle_differs": 1,
+    "total_slots": 64,
+    "truncated_slots": 32,
+    "type1_slots": 32,
+    "type2_slots": 32,
+    "unique_coordinate_count": 64
+  },
+  "generated_at": "2026-06-12T08:55:34Z",
+  "matrix64_schedule": {
+    "engine_specs": {
+      "0": {
+        "base_order": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "base_order_name": "C_D",
+        "chirality_sign": 1.0,
+        "engine_family": "Type1-L",
+        "readout_discipline": "alternating",
+        "readouts": [
+          "LOSE",
+          "WIN",
+          "LOSE",
+          "WIN"
+        ],
+        "sheet": "L"
+      },
+      "1": {
+        "base_order": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "base_order_name": "C_I",
+        "chirality_sign": -1.0,
+        "engine_family": "Type2-R",
+        "readout_discipline": "paired",
+        "readouts": [
+          "WIN",
+          "WIN",
+          "LOSE",
+          "LOSE"
+        ],
+        "sheet": "R"
+      }
+    },
+    "factorization": "2 engine families x 2 directions(axis4) x 4 strokes(axis1xaxis2) x 4 substages(axis5xaxis6) = 64",
+    "per_engine_family": "4 strokes x 4 substages x 2 directions = 32",
+    "slot_order": "Type1-L first, then Type2-R; within each family: axis4 direction, stroke_index, substage_index",
+    "strokes": [
+      {
+        "axis1": 0,
+        "axis2": 0,
+        "operator_family": "Ti",
+        "stroke_index": 0,
+        "stroke_label": "expand_open"
+      },
+      {
+        "axis1": 0,
+        "axis2": 1,
+        "operator_family": "Te",
+        "stroke_index": 1,
+        "stroke_label": "expand_closed"
+      },
+      {
+        "axis1": 1,
+        "axis2": 0,
+        "operator_family": "Fi",
+        "stroke_index": 2,
+        "stroke_label": "compress_open"
+      },
+      {
+        "axis1": 1,
+        "axis2": 1,
+        "operator_family": "Fe",
+        "stroke_index": 3,
+        "stroke_label": "compress_closed"
+      }
+    ],
+    "substages": [
+      {
+        "axis5": 0,
+        "axis6": 0,
+        "substage_index": 0,
+        "substage_label": "family0_operator_first"
+      },
+      {
+        "axis5": 0,
+        "axis6": 1,
+        "substage_index": 1,
+        "substage_label": "family0_terrain_first"
+      },
+      {
+        "axis5": 1,
+        "axis6": 0,
+        "substage_index": 2,
+        "substage_label": "family1_operator_first"
+      },
+      {
+        "axis5": 1,
+        "axis6": 1,
+        "substage_index": 3,
+        "substage_label": "family1_terrain_first"
+      }
+    ],
+    "terrain_realizations": {
+      "L:Ne": "Ne/Vortex",
+      "L:Ni": "Ni/Pit",
+      "L:Se": "Se/Funnel",
+      "L:Si": "Si/Hill",
+      "R:Ne": "Ne/Spiral",
+      "R:Ni": "Ni/Source",
+      "R:Se": "Se/Cannon",
+      "R:Si": "Si/Citadel"
+    }
+  },
+  "mode": "realization_relative_matrix64_stage_full_run",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "engine_64_stage_full_run_v0",
+  "parent_source_locks": {
+    "eng_64_julia_result": {
+      "exists": true,
+      "git_last_commit": "75dd0b158",
+      "path": "system_v5/julia_carrier/eng_64_hexagram_julia_results.json",
+      "role": "eng_64_julia_result",
+      "sha256": "afa7cfba071b7a625a616fea178939c3bf1c9b70b961961b4505307bc0c1c653"
+    },
+    "eng_64_julia_source": {
+      "exists": true,
+      "git_last_commit": "75dd0b158",
+      "path": "system_v5/julia_carrier/eng_64_hexagram_julia.jl",
+      "role": "eng_64_julia_source",
+      "sha256": "dcee35953958f996a541919732f0288d4bdd5c34da2c944a7567007603d28e84"
+    },
+    "matrix64_mine": {
+      "exists": true,
+      "git_last_commit": "07fe7bce2",
+      "path": "system_v6/receipts/matrix64_mine_20260610.md",
+      "role": "matrix64_mine",
+      "sha256": "f30bb598da17998c1da95f20f72129412111984a4d5e3762facf804dfe75980e"
+    },
+    "substage_transition_convention_mining": {
+      "exists": true,
+      "git_last_commit": "ec03d00bc",
+      "path": "system_v6/receipts/substage_transition_convention_mining_20260611.md",
+      "role": "substage_transition_convention_mining",
+      "sha256": "12c6648a6097c39e6b2f2f490b835bbd8c9cde24c7bf8880cd0d2d6231603d1d"
+    },
+    "two_engine_readout_automaton": {
+      "exists": true,
+      "git_last_commit": "dd9ec4999",
+      "path": "system_v6/foundations/two_engine_readout_automaton_20260609.md",
+      "role": "two_engine_readout_automaton",
+      "sha256": "ca99877dfd1cae2d098225ae06bfbec8384de5f4079b3bd4de075e100f08abed"
+    }
+  },
+  "pinned_carrier": {
+    "carrier": "3-component Bloch vector inside unit ball",
+    "clamp_rule": "states with norm above 0.999999 are projected back to radius 0.999999",
+    "initial_entropy": 0.412896642841357,
+    "initial_purity": 0.752882264403959,
+    "initial_state": [
+      0.271828182845904,
+      -0.314159265358979,
+      0.577215664901533
+    ]
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/engine_64_stage_full_run_v0/results/engine_64_stage_full_run_v0_results.json",
+  "runs": {
+    "full_64_slot_trajectory": {
+      "final_entropy": 0.686377782286023,
+      "final_purity": 0.506754109513484,
+      "final_state": [
+        0.032517112513397,
+        -0.087562518916975,
+        -0.069164020282753
+      ],
+      "initial_state": [
+        0.271828182845904,
+        -0.314159265358979,
+        0.577215664901533
+      ],
+      "label": "full_type1_l_then_type2_r",
+      "slot_count": 64,
+      "trajectory": [
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.099177252442897,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.470368080531658,
+          "entropy_before": 0.412896642841357,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 0,
+          "purity_after": 0.705665186836319,
+          "purity_before": 0.752882264403959,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 0,
+          "stage": "Se",
+          "state_after": [
+            0.279176065503295,
+            -0.226697325883039,
+            0.531036176319671
+          ],
+          "state_before": [
+            0.271828182845904,
+            -0.314159265358979,
+            0.577215664901533
+          ],
+          "state_mid": [
+            0.222899109933642,
+            -0.257610597594363,
+            0.577215664901533
+          ],
+          "stroke_index": 0,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.080720375325467,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.517320549182281,
+          "entropy_before": 0.470368080531658,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 32,
+          "purity_after": 0.665250739361734,
+          "purity_before": 0.705665186836319,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 1,
+          "stage": "Se",
+          "state_after": [
+            0.266756856093886,
+            -0.163584790357201,
+            0.482267845511354
+          ],
+          "state_before": [
+            0.279176065503295,
+            -0.226697325883039,
+            0.531036176319671
+          ],
+          "state_mid": [
+            0.325313239138885,
+            -0.199493646777075,
+            0.482267845511354
+          ],
+          "stroke_index": 0,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.07326196208949,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.551341573218639,
+          "entropy_before": 0.517320549182281,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 16,
+          "purity_after": 0.634963907451781,
+          "purity_before": 0.665250739361734,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 2,
+          "stage": "Se",
+          "state_after": [
+            0.264845748025428,
+            -0.108955649617414,
+            0.433489574353133
+          ],
+          "state_before": [
+            0.266756856093886,
+            -0.163584790357201,
+            0.482267845511354
+          ],
+          "state_mid": [
+            0.205402779192292,
+            -0.125960288575045,
+            0.482267845511354
+          ],
+          "stroke_index": 0,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.06823783545125,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.585046788272747,
+          "entropy_before": 0.551341573218639,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 48,
+          "purity_after": 0.604145075277088,
+          "purity_before": 0.634963907451781,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 3,
+          "stage": "Se",
+          "state_after": [
+            0.239747678288312,
+            -0.072569910427679,
+            0.381503354389
+          ],
+          "state_before": [
+            0.264845748025428,
+            -0.108955649617414,
+            0.433489574353133
+          ],
+          "state_mid": [
+            0.311360621153651,
+            -0.094246636919063,
+            0.381503354389
+          ],
+          "stroke_index": 0,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.130322409085302,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.629600829401835,
+          "entropy_before": 0.585046788272747,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 2,
+          "purity_after": 0.562188446527528,
+          "purity_before": 0.604145075277088,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 4,
+          "stage": "Ne",
+          "state_after": [
+            0.221198842617287,
+            -0.000263807053815,
+            0.274677803045072
+          ],
+          "state_before": [
+            0.239747678288312,
+            -0.072569910427679,
+            0.381503354389
+          ],
+          "state_mid": [
+            0.239747678288312,
+            -0.059507326550696,
+            0.31283275059898
+          ],
+          "stroke_index": 1,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.091983295968253,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.653203892823995,
+          "entropy_before": 0.629600829401835,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 34,
+          "purity_after": 0.539408563826832,
+          "purity_before": 0.562188446527528,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 5,
+          "stage": "Ne",
+          "state_after": [
+            0.195890045549928,
+            0.041568246184439,
+            0.196764576632233
+          ],
+          "state_before": [
+            0.221198842617287,
+            -0.000263807053815,
+            0.274677803045072
+          ],
+          "state_mid": [
+            0.195890045549928,
+            0.050692983151754,
+            0.239956800771015
+          ],
+          "stroke_index": 1,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.091064695651642,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.668129973554145,
+          "entropy_before": 0.653203892823995,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 18,
+          "purity_after": 0.524807880346363,
+          "purity_before": 0.539408563826832,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 6,
+          "stage": "Ne",
+          "state_after": [
+            0.164324286052829,
+            0.085651932679268,
+            0.123600307986103
+          ],
+          "state_before": [
+            0.195890045549928,
+            0.041568246184439,
+            0.196764576632233
+          ],
+          "state_mid": [
+            0.195890045549928,
+            0.032007549562018,
+            0.151508724006819
+          ],
+          "stroke_index": 1,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.061557224795362,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.677256913254905,
+          "entropy_before": 0.668129973554145,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 50,
+          "purity_after": 0.515805920408089,
+          "purity_before": 0.524807880346363,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 7,
+          "stage": "Ne",
+          "state_after": [
+            0.127395051249799,
+            0.09805909896078,
+            0.075939152248623
+          ],
+          "state_before": [
+            0.164324286052829,
+            0.085651932679268,
+            0.123600307986103
+          ],
+          "state_mid": [
+            0.127395051249799,
+            0.127349479169844,
+            0.098622275647562
+          ],
+          "stroke_index": 1,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.034108880424183,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.681455683904815,
+          "entropy_before": 0.677256913254905,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 1,
+          "purity_after": 0.511645861430657,
+          "purity_before": 0.515805920408089,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 8,
+          "stage": "Ni",
+          "state_after": [
+            0.119559744074827,
+            0.065733682874329,
+            0.068383282999961
+          ],
+          "state_before": [
+            0.127395051249799,
+            0.09805909896078,
+            0.075939152248623
+          ],
+          "state_mid": [
+            0.127395051249799,
+            0.074251146522055,
+            0.099343389178142
+          ],
+          "stroke_index": 2,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.029351302771235,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.684449583110337,
+          "entropy_before": 0.681455683904815,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 33,
+          "purity_after": 0.508672351987511,
+          "purity_before": 0.511645861430657,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 9,
+          "stage": "Ni",
+          "state_after": [
+            0.112821379904352,
+            0.040911447263224,
+            0.054242913770638
+          ],
+          "state_before": [
+            0.119559744074827,
+            0.065733682874329,
+            0.068383282999961
+          ],
+          "state_mid": [
+            0.112821379904352,
+            0.053897552520734,
+            0.041365372520686
+          ],
+          "stroke_index": 2,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.031867305498208,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.686523238965656,
+          "entropy_before": 0.684449583110337,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 17,
+          "purity_after": 0.506609303091861,
+          "purity_before": 0.508672351987511,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 10,
+          "stage": "Ni",
+          "state_after": [
+            0.107334066019177,
+            0.013508503947342,
+            0.038929741543164
+          ],
+          "state_before": [
+            0.112821379904352,
+            0.040911447263224,
+            0.054242913770638
+          ],
+          "state_mid": [
+            0.112821379904352,
+            0.022414075309787,
+            0.064137738029241
+          ],
+          "stroke_index": 2,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.028018914783435,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.687701037515554,
+          "entropy_before": 0.686523238965656,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 49,
+          "purity_after": 0.505436249016993,
+          "purity_before": 0.506609303091861,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 11,
+          "stage": "Ni",
+          "state_after": [
+            0.102697285786205,
+            -0.004045984005653,
+            0.017589642962776
+          ],
+          "state_before": [
+            0.107334066019177,
+            0.013508503947342,
+            0.038929741543164
+          ],
+          "state_mid": [
+            0.102697285786205,
+            0.001512746105948,
+            0.017985469839592
+          ],
+          "stroke_index": 2,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.018017603398309,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.687700102641912,
+          "entropy_before": 0.687701037515554,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 3,
+          "purity_after": 0.505437180492325,
+          "purity_before": 0.505436249016993,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 12,
+          "stage": "Si",
+          "state_after": [
+            0.102404663852344,
+            -0.018475716554383,
+            0.006803947658593
+          ],
+          "state_before": [
+            0.102697285786205,
+            -0.004045984005653,
+            0.017589642962776
+          ],
+          "state_mid": [
+            0.097897464049867,
+            -0.031291996213608,
+            0.017589642962776
+          ],
+          "stroke_index": 3,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.019162771369289,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.687662043948314,
+          "entropy_before": 0.687700102641912,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 35,
+          "purity_after": 0.505475100345043,
+          "purity_before": 0.505437180492325,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 13,
+          "stage": "Si",
+          "state_after": [
+            0.09877333607977,
+            -0.03440533017611,
+            -0.003209676811211
+          ],
+          "state_before": [
+            0.102404663852344,
+            -0.018475716554383,
+            0.006803947658593
+          ],
+          "state_mid": [
+            0.104371849798276,
+            -0.006812902064489,
+            -0.003209676811211
+          ],
+          "stroke_index": 3,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.016868251773647,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.6883532712384,
+          "entropy_before": 0.687662043948314,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 19,
+          "purity_after": 0.504786243888814,
+          "purity_before": 0.505475100345043,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 14,
+          "stage": "Si",
+          "state_after": [
+            0.086706309306212,
+            -0.044292824067403,
+            -0.00962545792461
+          ],
+          "state_before": [
+            0.09877333607977,
+            -0.03440533017611,
+            -0.003209676811211
+          ],
+          "state_mid": [
+            0.083569520648458,
+            -0.062897010131176,
+            -0.003209676811211
+          ],
+          "stroke_index": 3,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.015634622558747,
+          "direction": "CW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.68877036653927,
+          "entropy_before": 0.6883532712384,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 51,
+          "purity_after": 0.504370424784191,
+          "purity_before": 0.504786243888814,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 15,
+          "stage": "Si",
+          "state_after": [
+            0.075309584781778,
+            -0.053149356890833,
+            -0.015635276475629
+          ],
+          "state_before": [
+            0.086706309306212,
+            -0.044292824067403,
+            -0.00962545792461
+          ],
+          "state_mid": [
+            0.087933516062805,
+            -0.027642077540326,
+            -0.015635276475629
+          ],
+          "stroke_index": 3,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.033762801335228,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.690179735567954,
+          "entropy_before": 0.68877036653927,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 8,
+          "purity_after": 0.502964508585319,
+          "purity_before": 0.504370424784191,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 16,
+          "stage": "Si",
+          "state_after": [
+            0.070589109012776,
+            -0.029660050111939,
+            0.008153299134595
+          ],
+          "state_before": [
+            0.075309584781778,
+            -0.053149356890833,
+            -0.015635276475629
+          ],
+          "state_mid": [
+            0.061753859521058,
+            -0.043582472650483,
+            -0.015635276475629
+          ],
+          "stroke_index": 0,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.02872062359035,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.690757893514065,
+          "entropy_before": 0.690179735567954,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 40,
+          "purity_after": 0.502387383541278,
+          "purity_before": 0.502964508585319,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 17,
+          "stage": "Si",
+          "state_after": [
+            0.060651653593627,
+            -0.013932329393529,
+            0.030033884140821
+          ],
+          "state_before": [
+            0.070589109012776,
+            -0.029660050111939,
+            0.008153299134595
+          ],
+          "state_mid": [
+            0.07396543121174,
+            -0.016990645601865,
+            0.030033884140821
+          ],
+          "stroke_index": 0,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.026277764588405,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.690788798233547,
+          "entropy_before": 0.690757893514065,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 24,
+          "purity_after": 0.502356527753524,
+          "purity_before": 0.502387383541278,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 18,
+          "stage": "Si",
+          "state_after": [
+            0.049600640100247,
+            0.002398535198449,
+            0.047403365256019
+          ],
+          "state_before": [
+            0.060651653593627,
+            -0.013932329393529,
+            0.030033884140821
+          ],
+          "state_mid": [
+            0.046701773267093,
+            -0.010727893633018,
+            0.030033884140821
+          ],
+          "stroke_index": 0,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Si",
+            "terrain_id": "Si/Hill"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.021287321866221,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.690449686814848,
+          "entropy_before": 0.690788798233547,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 56,
+          "purity_after": 0.502695067380492,
+          "purity_before": 0.502356527753524,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 19,
+          "stage": "Si",
+          "state_after": [
+            0.037111314199161,
+            0.010892950532011,
+            0.062403755881382
+          ],
+          "state_before": [
+            0.049600640100247,
+            0.002398535198449,
+            0.047403365256019
+          ],
+          "state_mid": [
+            0.048196511946963,
+            0.014146689002612,
+            0.062403755881382
+          ],
+          "stroke_index": 0,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.036173340591517,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691543196502112,
+          "entropy_before": 0.690449686814848,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 10,
+          "purity_after": 0.501603126285964,
+          "purity_before": 0.502695067380492,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 20,
+          "stage": "Ni",
+          "state_after": [
+            0.041915730211279,
+            -0.01308642954063,
+            0.035750097827295
+          ],
+          "state_before": [
+            0.037111314199161,
+            0.010892950532011,
+            0.062403755881382
+          ],
+          "state_mid": [
+            0.037111314199161,
+            0.008932219436249,
+            0.051171079822734
+          ],
+          "stroke_index": 1,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.02398367458863,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691653925798923,
+          "entropy_before": 0.691543196502112,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 42,
+          "purity_after": 0.501492511342978,
+          "purity_before": 0.501603126285964,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 21,
+          "stage": "Ni",
+          "state_after": [
+            0.0460475279817,
+            -0.025059666059755,
+            0.015383789835548
+          ],
+          "state_before": [
+            0.041915730211279,
+            -0.01308642954063,
+            0.035750097827295
+          ],
+          "state_mid": [
+            0.0460475279817,
+            -0.030560568365555,
+            0.018760719311643
+          ],
+          "stroke_index": 1,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.025249769675311,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.69119230474004,
+          "entropy_before": 0.691653925798923,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 26,
+          "purity_after": 0.501953601641,
+          "purity_before": 0.501492511342978,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 22,
+          "stage": "Ni",
+          "state_after": [
+            0.050910161144536,
+            -0.035575887285163,
+            -0.007050887753359
+          ],
+          "state_before": [
+            0.0460475279817,
+            -0.025059666059755,
+            0.015383789835548
+          ],
+          "state_mid": [
+            0.0460475279817,
+            -0.019295942866012,
+            0.011845518173372
+          ],
+          "stroke_index": 1,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ni",
+            "terrain_id": "Ni/Pit"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.014002430317059,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.690780787220523,
+          "entropy_before": 0.69119230474004,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 58,
+          "purity_after": 0.502364526143829,
+          "purity_before": 0.501953601641,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 23,
+          "stage": "Ni",
+          "state_after": [
+            0.055019086167133,
+            -0.035838409584974,
+            -0.020434305552445
+          ],
+          "state_before": [
+            0.050910161144536,
+            -0.035575887285163,
+            -0.007050887753359
+          ],
+          "state_mid": [
+            0.055019086167133,
+            -0.046543389071395,
+            -0.02653805915902
+          ],
+          "stroke_index": 1,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.013427172049398,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691576873826891,
+          "entropy_before": 0.690780787220523,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 9,
+          "purity_after": 0.501569484606385,
+          "purity_before": 0.502364526143829,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 24,
+          "stage": "Ne",
+          "state_after": [
+            0.045494426535495,
+            -0.026452161608582,
+            -0.019222630236503
+          ],
+          "state_before": [
+            0.055019086167133,
+            -0.035838409584974,
+            -0.020434305552445
+          ],
+          "state_mid": [
+            0.055019086167133,
+            -0.03999048780778,
+            -0.010134758501652
+          ],
+          "stroke_index": 2,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.009970069554369,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691913515575348,
+          "entropy_before": 0.691576873826891,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 41,
+          "purity_after": 0.501233157591324,
+          "purity_before": 0.501569484606385,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 25,
+          "stage": "Ne",
+          "state_after": [
+            0.039340760388217,
+            -0.019629324372015,
+            -0.023093492144413
+          ],
+          "state_before": [
+            0.045494426535495,
+            -0.026452161608582,
+            -0.019222630236503
+          ],
+          "state_mid": [
+            0.039340760388217,
+            -0.012758411207232,
+            -0.027492593515218
+          ],
+          "stroke_index": 2,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.013268210171051,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.692216064303243,
+          "entropy_before": 0.691913515575348,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 25,
+          "purity_after": 0.50093082722831,
+          "purity_before": 0.501233157591324,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 26,
+          "stage": "Ne",
+          "state_after": [
+            0.033151643417278,
+            -0.008346451476434,
+            -0.026324128534566
+          ],
+          "state_before": [
+            0.039340760388217,
+            -0.019629324372015,
+            -0.023093492144413
+          ],
+          "state_mid": [
+            0.039340760388217,
+            -0.025738533777937,
+            -0.016004612887783
+          ],
+          "stroke_index": 2,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Ne",
+            "terrain_id": "Ne/Vortex"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.011496605695771,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691993206045748,
+          "entropy_before": 0.692216064303243,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 57,
+          "purity_after": 0.501153530560126,
+          "purity_before": 0.50093082722831,
+          "readout": "WIN",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 27,
+          "stage": "Ne",
+          "state_after": [
+            0.031238076146418,
+            -0.003068837524657,
+            -0.036356924445972
+          ],
+          "state_before": [
+            0.033151643417278,
+            -0.008346451476434,
+            -0.026324128534566
+          ],
+          "state_mid": [
+            0.031238076146418,
+            0.008168436801509,
+            -0.035560095038437
+          ],
+          "stroke_index": 2,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.027962202087584,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.691756687242156,
+          "entropy_before": 0.691993206045748,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 11,
+          "purity_after": 0.501389848707647,
+          "purity_before": 0.501153530560126,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 28,
+          "stage": "Se",
+          "state_after": [
+            0.049723306575324,
+            0.00472957816143,
+            -0.016879611634291
+          ],
+          "state_before": [
+            0.031238076146418,
+            -0.003068837524657,
+            -0.036356924445972
+          ],
+          "state_mid": [
+            0.030924904090295,
+            0.005374520637989,
+            -0.036356924445972
+          ],
+          "stroke_index": 3,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.028458239064928,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.69103781042772,
+          "entropy_before": 0.691756687242156,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 43,
+          "purity_after": 0.502107886567115,
+          "purity_before": 0.501389848707647,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 29,
+          "stage": "Se",
+          "state_after": [
+            0.061261800275304,
+            0.021273185215432,
+            0.003196334157997
+          ],
+          "state_before": [
+            0.049723306575324,
+            0.00472957816143,
+            -0.016879611634291
+          ],
+          "state_mid": [
+            0.064716567419777,
+            0.004162028782058,
+            0.003196334157997
+          ],
+          "stroke_index": 3,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.026704200416719,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.689980477569883,
+          "entropy_before": 0.69103781042772,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 27,
+          "purity_after": 0.503163358906754,
+          "purity_before": 0.502107886567115,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 30,
+          "stage": "Se",
+          "state_after": [
+            0.067164369232258,
+            0.033689682370697,
+            0.026089665020892
+          ],
+          "state_before": [
+            0.061261800275304,
+            0.021273185215432,
+            0.003196334157997
+          ],
+          "state_mid": [
+            0.051852100079177,
+            0.038947609677107,
+            0.003196334157997
+          ],
+          "stroke_index": 3,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "L",
+            "stage": "Se",
+            "terrain_id": "Se/Funnel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 0,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.029037457876418,
+          "direction": "CCW",
+          "engine_family": "Type1-L",
+          "entropy_after": 0.688488246585064,
+          "entropy_before": 0.689980477569883,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 59,
+          "purity_after": 0.50465169424599,
+          "purity_before": 0.503163358906754,
+          "readout": "LOSE",
+          "readout_discipline": "alternating",
+          "sheet": "L",
+          "slot_index": 31,
+          "stage": "Se",
+          "state_after": [
+            0.065236827231741,
+            0.051497326527878,
+            0.048944562774595
+          ],
+          "state_before": [
+            0.067164369232258,
+            0.033689682370697,
+            0.026089665020892
+          ],
+          "state_mid": [
+            0.077836924776699,
+            0.029141575250653,
+            0.048944562774595
+          ],
+          "stroke_index": 3,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.025458486199502,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690038569283364,
+          "entropy_before": 0.688488246585064,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 4,
+          "purity_after": 0.503105388784307,
+          "purity_before": 0.50465169424599,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 32,
+          "stage": "Se",
+          "state_after": [
+            0.063144778497025,
+            0.038587429995001,
+            0.027102117326061
+          ],
+          "state_before": [
+            0.065236827231741,
+            0.051497326527878,
+            0.048944562774595
+          ],
+          "state_mid": [
+            0.053494198330027,
+            0.04222780775286,
+            0.048944562774595
+          ],
+          "stroke_index": 0,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.022610868089388,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.691017131917362,
+          "entropy_before": 0.690038569283364,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 36,
+          "purity_after": 0.502128535843442,
+          "purity_before": 0.503105388784307,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 33,
+          "stage": "Se",
+          "state_after": [
+            0.058900846530804,
+            0.026822517806835,
+            0.008265258818695
+          ],
+          "state_before": [
+            0.063144778497025,
+            0.038587429995001,
+            0.027102117326061
+          ],
+          "state_mid": [
+            0.071830300647322,
+            0.032710387569311,
+            0.008265258818695
+          ],
+          "stroke_index": 0,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.022463124286344,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.691334862337863,
+          "entropy_before": 0.691017131917362,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 20,
+          "purity_after": 0.501811223124792,
+          "purity_before": 0.502128535843442,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 34,
+          "stage": "Se",
+          "state_after": [
+            0.058137981868417,
+            0.012618894545437,
+            -0.009120570941742
+          ],
+          "state_before": [
+            0.058900846530804,
+            0.026822517806835,
+            0.008265258818695
+          ],
+          "state_mid": [
+            0.045353651828719,
+            0.020653338711263,
+            0.008265258818695
+          ],
+          "stroke_index": 0,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.017905380237221,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.691450567839834,
+          "entropy_before": 0.691334862337863,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 52,
+          "purity_after": 0.501695653004598,
+          "purity_before": 0.501811223124792,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 35,
+          "stage": "Se",
+          "state_after": [
+            0.053478127744232,
+            0.002235344867848,
+            -0.022943388927733
+          ],
+          "state_before": [
+            0.058137981868417,
+            0.012618894545437,
+            -0.009120570941742
+          ],
+          "state_mid": [
+            0.069452113953549,
+            0.00290304528292,
+            -0.022943388927733
+          ],
+          "stroke_index": 0,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.022531484910759,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.691460831713348,
+          "entropy_before": 0.691450567839834,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 6,
+          "purity_after": 0.501685400709102,
+          "purity_before": 0.501695653004598,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 36,
+          "stage": "Si",
+          "state_after": [
+            0.057525971137482,
+            -0.007280621750307,
+            -0.002925168340737
+          ],
+          "state_before": [
+            0.053478127744232,
+            0.002235344867848,
+            -0.022943388927733
+          ],
+          "state_mid": [
+            0.053478127744232,
+            0.001832982791636,
+            -0.018813578920741
+          ],
+          "stroke_index": 1,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.013896919695413,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.691140898713756,
+          "entropy_before": 0.691460831713348,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 38,
+          "purity_after": 0.502004939764562,
+          "purity_before": 0.501685400709102,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 37,
+          "stage": "Si",
+          "state_after": [
+            0.06104759488961,
+            -0.014609449073017,
+            0.008344739966038
+          ],
+          "state_before": [
+            0.057525971137482,
+            -0.007280621750307,
+            -0.002925168340737
+          ],
+          "state_mid": [
+            0.06104759488961,
+            -0.017816401308558,
+            0.010176512153704
+          ],
+          "stroke_index": 1,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.016594368847576,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690481799881,
+          "entropy_before": 0.691140898713756,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 22,
+          "purity_after": 0.502663011751306,
+          "purity_before": 0.502004939764562,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 38,
+          "stage": "Si",
+          "state_after": [
+            0.065395693630616,
+            -0.025197060732156,
+            0.020360129853308
+          ],
+          "state_before": [
+            0.06104759488961,
+            -0.014609449073017,
+            0.008344739966038
+          ],
+          "state_mid": [
+            0.06104759488961,
+            -0.011249275786223,
+            0.006425449773849
+          ],
+          "stroke_index": 1,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.007173214248653,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690017404833688,
+          "entropy_before": 0.690481799881,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 54,
+          "purity_after": 0.503126509195783,
+          "purity_before": 0.502663011751306,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 39,
+          "stage": "Si",
+          "state_after": [
+            0.069113318054177,
+            -0.030647884756412,
+            0.023174874736779
+          ],
+          "state_before": [
+            0.065395693630616,
+            -0.025197060732156,
+            0.020360129853308
+          ],
+          "state_mid": [
+            0.069113318054177,
+            -0.0398024477356,
+            0.030097239917894
+          ],
+          "stroke_index": 1,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.031934313894966,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690059674502695,
+          "entropy_before": 0.690017404833688,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 5,
+          "purity_after": 0.50308432718219,
+          "purity_before": 0.503126509195783,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 40,
+          "stage": "Ni",
+          "state_after": [
+            0.077615441236695,
+            -0.002025606415784,
+            0.01184882123509
+          ],
+          "state_before": [
+            0.069113318054177,
+            -0.030647884756412,
+            0.023174874736779
+          ],
+          "state_mid": [
+            0.069113318054177,
+            -0.023356071729781,
+            0.030510024130784
+          ],
+          "stroke_index": 2,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.028143059996152,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.68952114701751,
+          "entropy_before": 0.690059674502695,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 37,
+          "purity_after": 0.50362164871252,
+          "purity_before": 0.50308432718219,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 41,
+          "stage": "Ni",
+          "state_after": [
+            0.083108513844035,
+            0.015895226718632,
+            -0.009144075636136
+          ],
+          "state_before": [
+            0.077615441236695,
+            -0.002025606415784,
+            0.01184882123509
+          ],
+          "state_mid": [
+            0.083108513844035,
+            0.017758369334172,
+            -0.004573037313121
+          ],
+          "stroke_index": 2,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.028455711673585,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.68828271789808,
+          "entropy_before": 0.68952114701751,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 21,
+          "purity_after": 0.504856569865433,
+          "purity_before": 0.50362164871252,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 42,
+          "stage": "Ni",
+          "state_after": [
+            0.087154027210562,
+            0.035122966149586,
+            -0.029726966220959
+          ],
+          "state_before": [
+            0.083108513844035,
+            0.015895226718632,
+            -0.009144075636136
+          ],
+          "state_mid": [
+            0.083108513844035,
+            0.012348078760002,
+            -0.013557186382611
+          ],
+          "stroke_index": 2,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.029118518246235,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.686791016451651,
+          "entropy_before": 0.68828271789808,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 53,
+          "purity_after": 0.506342685711101,
+          "purity_before": 0.504856569865433,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 43,
+          "stage": "Ni",
+          "state_after": [
+            0.08779609853568,
+            0.039399566324965,
+            -0.058522565541163
+          ],
+          "state_before": [
+            0.087154027210562,
+            0.035122966149586,
+            -0.029726966220959
+          ],
+          "state_mid": [
+            0.08779609853568,
+            0.055374343695362,
+            -0.043713825781129
+          ],
+          "stroke_index": 2,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.008914149472863,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.687617123976004,
+          "entropy_before": 0.686791016451651,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 7,
+          "purity_after": 0.505519855200818,
+          "purity_before": 0.506342685711101,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 44,
+          "stage": "Ne",
+          "state_after": [
+            0.083625796218763,
+            0.038409417320835,
+            -0.050706540697312
+          ],
+          "state_before": [
+            0.08779609853568,
+            0.039399566324965,
+            -0.058522565541163
+          ],
+          "state_mid": [
+            0.074106221652385,
+            0.061390134851535,
+            -0.058522565541163
+          ],
+          "stroke_index": 3,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.009346408394484,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.687941537530785,
+          "entropy_before": 0.687617123976004,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 39,
+          "purity_after": 0.505196603833595,
+          "purity_before": 0.505519855200818,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 45,
+          "stage": "Ne",
+          "state_after": [
+            0.082782461087945,
+            0.04201919564126,
+            -0.042126701758789
+          ],
+          "state_before": [
+            0.083625796218763,
+            0.038409417320835,
+            -0.050706540697312
+          ],
+          "state_mid": [
+            0.090991167148006,
+            0.018416193069127,
+            -0.042126701758789
+          ],
+          "stroke_index": 3,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.010765212084243,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.688974666716077,
+          "entropy_before": 0.687941537530785,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 23,
+          "purity_after": 0.504166707316657,
+          "purity_before": 0.505196603833595,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 46,
+          "stage": "Ne",
+          "state_after": [
+            0.074682487010514,
+            0.037805674972684,
+            -0.036423504871152
+          ],
+          "state_before": [
+            0.082782461087945,
+            0.04201919564126,
+            -0.042126701758789
+          ],
+          "state_mid": [
+            0.066018198165035,
+            0.065269795289689,
+            -0.042126701758789
+          ],
+          "stroke_index": 3,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 0,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.007012740760058,
+          "direction": "CW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.689303284877752,
+          "entropy_before": 0.688974666716077,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 55,
+          "purity_after": 0.503838967974146,
+          "purity_before": 0.504166707316657,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 47,
+          "stage": "Ne",
+          "state_after": [
+            0.072960126187506,
+            0.03841192820236,
+            -0.029652650923188
+          ],
+          "state_before": [
+            0.074682487010514,
+            0.037805674972684,
+            -0.036423504871152
+          ],
+          "state_mid": [
+            0.081200267872035,
+            0.014323852101645,
+            -0.029652650923188
+          ],
+          "stroke_index": 3,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.036623530298414,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690335477761315,
+          "entropy_before": 0.689303284877752,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 12,
+          "purity_after": 0.502809066584835,
+          "purity_before": 0.503838967974146,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 48,
+          "stage": "Ne",
+          "state_after": [
+            0.055597968611963,
+            0.012403069579563,
+            -0.048715120043956
+          ],
+          "state_before": [
+            0.072960126187506,
+            0.03841192820236,
+            -0.029652650923188
+          ],
+          "state_mid": [
+            0.059827303473755,
+            0.031497781125935,
+            -0.029652650923188
+          ],
+          "stroke_index": 0,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.027593056182284,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690246942306462,
+          "entropy_before": 0.690335477761315,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 44,
+          "purity_after": 0.502897433373409,
+          "purity_before": 0.502809066584835,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 49,
+          "stage": "Ne",
+          "state_after": [
+            0.039766198832493,
+            -0.003451650161939,
+            -0.064819767728614
+          ],
+          "state_before": [
+            0.055597968611963,
+            0.012403069579563,
+            -0.048715120043956
+          ],
+          "state_mid": [
+            0.04849536442987,
+            -0.00420932946578,
+            -0.064819767728614
+          ],
+          "stroke_index": 0,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "operator_first",
+            "signed_operator_id": "Ti+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.027925573961904,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.689773734555271,
+          "entropy_before": 0.690246942306462,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 28,
+          "purity_after": 0.503369650915689,
+          "purity_before": 0.502897433373409,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 50,
+          "stage": "Ne",
+          "state_after": [
+            0.020934224904253,
+            -0.020272393884113,
+            -0.076746922448025
+          ],
+          "state_before": [
+            0.039766198832493,
+            -0.003451650161939,
+            -0.064819767728614
+          ],
+          "state_mid": [
+            0.03061997310102,
+            -0.002657770624693,
+            -0.064819767728614
+          ],
+          "stroke_index": 0,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Ti",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Ti-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ne",
+            "terrain_id": "Ne/Spiral"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.017128228359814,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.689137246208344,
+          "entropy_before": 0.689773734555271,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 60,
+          "purity_after": 0.504004571621215,
+          "purity_before": 0.503369650915689,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 51,
+          "stage": "Ne",
+          "state_after": [
+            0.00757457031143,
+            -0.027206330513606,
+            -0.084921049846383
+          ],
+          "state_before": [
+            0.020934224904253,
+            -0.020272393884113,
+            -0.076746922448025
+          ],
+          "state_mid": [
+            0.009837104300558,
+            -0.035332896770916,
+            -0.084921049846383
+          ],
+          "stroke_index": 0,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.021609191836545,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690052360446336,
+          "entropy_before": 0.689137246208344,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 14,
+          "purity_after": 0.50309162615658,
+          "purity_before": 0.504004571621215,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 52,
+          "stage": "Ni",
+          "state_after": [
+            0.016541583487648,
+            -0.009546621227946,
+            -0.07627902956915
+          ],
+          "state_before": [
+            0.00757457031143,
+            -0.027206330513606,
+            -0.084921049846383
+          ],
+          "state_mid": [
+            0.00757457031143,
+            -0.022309191021157,
+            -0.069635260874034
+          ],
+          "stroke_index": 1,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.016558879949395,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690536798643633,
+          "entropy_before": 0.690052360446336,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 46,
+          "purity_after": 0.502608109759948,
+          "purity_before": 0.50309162615658,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 53,
+          "stage": "Ni",
+          "state_after": [
+            0.026091682863836,
+            0.000609093841624,
+            -0.067342947737098
+          ],
+          "state_before": [
+            0.016541583487648,
+            -0.009546621227946,
+            -0.07627902956915
+          ],
+          "state_mid": [
+            0.026091682863836,
+            0.000742797367835,
+            -0.082125546020852
+          ],
+          "stroke_index": 1,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "operator_first",
+            "signed_operator_id": "Te+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.015719246920263,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690403832952001,
+          "entropy_before": 0.690536798643633,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 30,
+          "purity_after": 0.502740838036796,
+          "purity_before": 0.502608109759948,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 54,
+          "stage": "Ni",
+          "state_after": [
+            0.037809150727221,
+            0.010077090298677,
+            -0.062853770340294
+          ],
+          "state_before": [
+            0.026091682863836,
+            0.000609093841624,
+            -0.067342947737098
+          ],
+          "state_mid": [
+            0.026091682863836,
+            0.000469002258051,
+            -0.051854069757566
+          ],
+          "stroke_index": 1,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Te",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Te-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Ni",
+            "terrain_id": "Ni/Source"
+          },
+          "axis_bits": {
+            "axis1": 0,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.014032012211759,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690280514232942,
+          "entropy_before": 0.690403832952001,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 62,
+          "purity_after": 0.502863926019597,
+          "purity_before": 0.502740838036796,
+          "readout": "LOSE",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 55,
+          "stage": "Ni",
+          "state_after": [
+            0.04955072208259,
+            0.012939909194128,
+            -0.055723753735153
+          ],
+          "state_before": [
+            0.037809150727221,
+            0.010077090298677,
+            -0.062853770340294
+          ],
+          "state_mid": [
+            0.04955072208259,
+            0.016805076875491,
+            -0.072368511344355
+          ],
+          "stroke_index": 1,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.022170248690719,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.69101795455842,
+          "entropy_before": 0.690280514232942,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 13,
+          "purity_after": 0.502127714370834,
+          "purity_before": 0.502863926019597,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 56,
+          "stage": "Si",
+          "state_after": [
+            0.054109128211853,
+            0.003298556400787,
+            -0.036287057079514
+          ],
+          "state_before": [
+            0.04955072208259,
+            0.012939909194128,
+            -0.055723753735153
+          ],
+          "state_mid": [
+            0.04955072208259,
+            0.02733438477439,
+            -0.050253451516228
+          ],
+          "stroke_index": 2,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.018745087398298,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.69114972846222,
+          "entropy_before": 0.69101795455842,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 45,
+          "purity_after": 0.501996121804811,
+          "purity_before": 0.502127714370834,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 57,
+          "stage": "Si",
+          "state_after": [
+            0.058074941544312,
+            -0.009375381277335,
+            -0.023057471677356
+          ],
+          "state_before": [
+            0.054109128211853,
+            0.003298556400787,
+            -0.036287057079514
+          ],
+          "state_mid": [
+            0.058074941544312,
+            -0.015185872164342,
+            -0.019721411228807
+          ],
+          "stroke_index": 2,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fi+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.022058797531813,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.690936031778704,
+          "entropy_before": 0.69114972846222,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 29,
+          "purity_after": 0.502209518573821,
+          "purity_before": 0.501996121804811,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 58,
+          "stage": "Si",
+          "state_after": [
+            0.062854075020387,
+            -0.021064023865641,
+            -0.004970844954548
+          ],
+          "state_before": [
+            0.058074941544312,
+            -0.009375381277335,
+            -0.023057471677356
+          ],
+          "state_mid": [
+            0.058074941544312,
+            -0.001894609451157,
+            -0.024818445343636
+          ],
+          "stroke_index": 2,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fi",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fi-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Si",
+            "terrain_id": "Si/Citadel"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 0,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.019196336659961,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.69021850791343,
+          "entropy_before": 0.690936031778704,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 61,
+          "purity_after": 0.502925812486982,
+          "purity_before": 0.502209518573821,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 59,
+          "stage": "Si",
+          "state_after": [
+            0.066940234142431,
+            -0.036607045542905,
+            0.005527589306429
+          ],
+          "state_before": [
+            0.062854075020387,
+            -0.021064023865641,
+            -0.004970844954548
+          ],
+          "state_mid": [
+            0.066940234142431,
+            -0.033175879508205,
+            0.016431404254595
+          ],
+          "stroke_index": 2,
+          "substage_index": 3
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 0
+          },
+          "delta_norm": 0.026367553371875,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.68945071958118,
+          "entropy_before": 0.69021850791343,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 15,
+          "purity_after": 0.503691904121099,
+          "purity_before": 0.502925812486982,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 60,
+          "stage": "Se",
+          "state_after": [
+            0.064275719650621,
+            -0.055637120764541,
+            -0.012528004574706
+          ],
+          "state_before": [
+            0.066940234142431,
+            -0.036607045542905,
+            0.005527589306429
+          ],
+          "state_mid": [
+            0.054750799611801,
+            -0.053135869921289,
+            0.005527589306429
+          ],
+          "stroke_index": 3,
+          "substage_index": 0
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 0,
+            "axis6": 1
+          },
+          "delta_norm": 0.025589503081399,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.688512724882861,
+          "entropy_before": 0.68945071958118,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 47,
+          "purity_after": 0.50462729184771,
+          "purity_before": 0.503691904121099,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 61,
+          "stage": "Se",
+          "state_after": [
+            0.055309172491246,
+            -0.073267617716969,
+            -0.028763437343871
+          ],
+          "state_before": [
+            0.064275719650621,
+            -0.055637120764541,
+            -0.012528004574706
+          ],
+          "state_mid": [
+            0.072848147685559,
+            -0.055860502561016,
+            -0.028763437343871
+          ],
+          "stroke_index": 3,
+          "substage_index": 1
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "operator_first",
+            "signed_operator_id": "Fe+"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 0
+          },
+          "delta_norm": 0.025762443239079,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.687527784954445,
+          "entropy_before": 0.688512724882861,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 31,
+          "purity_after": 0.505608861823481,
+          "purity_before": 0.50462729184771,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 62,
+          "stage": "Se",
+          "state_after": [
+            0.044834847984886,
+            -0.081366390208901,
+            -0.050863253902072
+          ],
+          "state_before": [
+            0.055309172491246,
+            -0.073267617716969,
+            -0.028763437343871
+          ],
+          "state_mid": [
+            0.030321862129815,
+            -0.086647752680417,
+            -0.028763437343871
+          ],
+          "stroke_index": 3,
+          "substage_index": 2
+        },
+        {
+          "active_operator": {
+            "axis_bits_source": "axis1_axis2_for_family_axis6_for_precedence",
+            "family": "Fe",
+            "precedence": "terrain_first",
+            "signed_operator_id": "Fe-"
+          },
+          "active_terrain": {
+            "axis_bits_source": "axis3_axis4_axis1_axis2_for_engine_direction_stage",
+            "sheet": "R",
+            "stage": "Se",
+            "terrain_id": "Se/Cannon"
+          },
+          "axis_bits": {
+            "axis1": 1,
+            "axis2": 1,
+            "axis3": 1,
+            "axis4": 1,
+            "axis5": 1,
+            "axis6": 1
+          },
+          "delta_norm": 0.02291367862725,
+          "direction": "CCW",
+          "engine_family": "Type2-R",
+          "entropy_after": 0.686377782286023,
+          "entropy_before": 0.687527784954445,
+          "entry_type": "engine_64_stage_transition",
+          "matrix64_index": 63,
+          "purity_after": 0.506754109513484,
+          "purity_before": 0.505608861823481,
+          "readout": "WIN",
+          "readout_discipline": "paired",
+          "sheet": "R",
+          "slot_index": 63,
+          "stage": "Se",
+          "state_after": [
+            0.032517112513397,
+            -0.087562518916975,
+            -0.069164020282753
+          ],
+          "state_before": [
+            0.044834847984886,
+            -0.081366390208901,
+            -0.050863253902072
+          ],
+          "state_mid": [
+            0.057678840466624,
+            -0.073469100223973,
+            -0.069164020282753
+          ],
+          "stroke_index": 3,
+          "substage_index": 3
+        }
+      ],
+      "trajectory_signature_sha256": "26f68b5b29754c3afa3a67e28a22a17af94ba3dac8a2128e21093478bde21032"
+    },
+    "type1_l_independent_half": {
+      "final_entropy": 0.688488246585064,
+      "final_purity": 0.50465169424599,
+      "final_state": [
+        0.065236827231741,
+        0.051497326527878,
+        0.048944562774595
+      ],
+      "initial_state": [
+        0.271828182845904,
+        -0.314159265358979,
+        0.577215664901533
+      ],
+      "label": "type1_l_independent_half",
+      "slot_count": 32,
+      "trajectory_signature_sha256": "447e27b12d0edecb65ca00772154b7a335020ed7021bf26df035783c3086efd4"
+    },
+    "type2_r_independent_half": {
+      "final_entropy": 0.686396000661884,
+      "final_purity": 0.506735973356894,
+      "final_state": [
+        0.031491298648636,
+        -0.088771147068158,
+        -0.067822771039047
+      ],
+      "initial_state": [
+        0.271828182845904,
+        -0.314159265358979,
+        0.577215664901533
+      ],
+      "label": "type2_r_independent_half",
+      "slot_count": 32,
+      "trajectory_signature_sha256": "909982c25370ffe255018b90d8a47b94eea58071e1adac61037c940f37866085"
+    }
+  },
+  "schema_version": "engine_64_stage_full_run_v0_result_v1",
+  "sim_id": "engine_64_stage_full_run_v0",
+  "source_path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0.py",
+  "source_sha256": "d5c8d58c2c6c3d3391c76089bf7c8c71303824adfa72b8c3fb6fa8b02aabf076",
+  "substage_realization": {
+    "name": "v2_v3_cyclic_substage_realization_choice",
+    "realization_relative_only": true,
+    "registration_discipline": "cite this packet only as realization-relative evidence under the declared cyclic convention",
+    "source_admitted": false,
+    "stage_wrap": "after four strokes, direction advances; after two directions, engine family advances from Type1-L to Type2-R",
+    "status": "UNPINNED",
+    "substage_cycle": "axis5_axis6 ordered as (0,0),(0,1),(1,0),(1,1); substage wrap advances stroke/stage inside the declared schedule"
+  },
+  "type1_l_vs_type2_r_comparison": {
+    "chirality_difference_detected": true,
+    "final_state_l2": 0.185603382593803,
+    "same_initial_state": true,
+    "trajectory_signature_equal": false,
+    "type1_l_final_state": [
+      0.065236827231741,
+      0.051497326527878,
+      0.048944562774595
+    ],
+    "type2_r_final_state": [
+      0.031491298648636,
+      -0.088771147068158,
+      -0.067822771039047
+    ]
+  }
+}

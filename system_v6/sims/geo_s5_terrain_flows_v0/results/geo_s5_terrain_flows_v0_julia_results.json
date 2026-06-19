@@ -1,0 +1,822 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "DifferentialEquations": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "SHA": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "DifferentialEquations": {
+      "reason": "load-bearing Julia carrier ODEProblem/solve(Tsit5) route for pinned affine Bloch flow evolution",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive matrix multiplication and traces",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source and PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing Julia-side derivation from density generator forms into Bloch A,b rows",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SMT pinned-entry contradiction check; not a full symbolic flow proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Symbolics",
+    "Z3",
+    "DifferentialEquations"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3",
+    "DifferentialEquations"
+  ],
+  "classification": "scratch_diagnostic",
+  "convention_pin": {
+    "component_rule": "r_i = Tr(generator(rho) * basis_i)",
+    "conversion_rule": "A_s1_pinned = J * A_source_locked_standard * J and b_s1_pinned = J * b",
+    "hamiltonian_pin": {
+      "H0": "(sigma_x + sigma_y + sigma_z) / sqrt(3)",
+      "H_L": "+H0",
+      "H_R": "-H0",
+      "n": [
+        "1/sqrt(3)",
+        "1/sqrt(3)",
+        "1/sqrt(3)"
+      ]
+    },
+    "primary_table_basis": "source_locked_standard_bloch",
+    "rho_rule": "rho(r) = (I + r.basis) / 2",
+    "s1_pinned_bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "si_frame_pin": {
+      "Citadel": "x frame",
+      "Hill": "z frame"
+    },
+    "sigma_y_standard": [
+      [
+        "0",
+        "-i"
+      ],
+      [
+        "i",
+        "0"
+      ]
+    ],
+    "source_locked_bloch_basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ],
+    "stage": "S5 density/Bloch terrain flows only",
+    "standard_to_s1_pinned_J": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ]
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "2*Pit_b_z": -1
+      },
+      "claim": "pinned-entry contradiction only: Pit b_z=-1/2 contradicts fake unital b_z=0",
+      "load_bearing": true,
+      "proof_scope": "pinned_entry_contradiction_not_full_symbolic_flow_or_basin_proof",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "wrong_control_can_fail": true,
+      "wrong_control_verdict": "sat"
+    }
+  },
+  "density_generator_derivation": {
+    "all_pass": true,
+    "basis": [
+      "sigma_x",
+      "sigma_y_standard",
+      "sigma_z"
+    ],
+    "rows": {
+      "Ne_Spiral_R": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "0",
+              "2.0 / sqrt(3)",
+              "-2.0 / sqrt(3)"
+            ],
+            [
+              "-2.0 / sqrt(3)",
+              "0",
+              "2.0 / sqrt(3)"
+            ],
+            [
+              "(2//3)*sqrt(3)",
+              "(-2//3)*sqrt(3)",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "0",
+              "2.0 / sqrt(3)",
+              "-2.0 / sqrt(3)"
+            ],
+            [
+              "-2.0 / sqrt(3)",
+              "0",
+              "2.0 / sqrt(3)"
+            ],
+            [
+              "(2//3)*sqrt(3)",
+              "(-2//3)*sqrt(3)",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "Ne_Vortex_L": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "0",
+              "-2.0 / sqrt(3)",
+              "2.0 / sqrt(3)"
+            ],
+            [
+              "2.0 / sqrt(3)",
+              "0",
+              "-2.0 / sqrt(3)"
+            ],
+            [
+              "(-2//3)*sqrt(3)",
+              "(2//3)*sqrt(3)",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "0",
+              "-2.0 / sqrt(3)",
+              "2.0 / sqrt(3)"
+            ],
+            [
+              "2.0 / sqrt(3)",
+              "0",
+              "-2.0 / sqrt(3)"
+            ],
+            [
+              "(-2//3)*sqrt(3)",
+              "(2//3)*sqrt(3)",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "Ni_Pit_L": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "-1//4",
+              "(-2//5) / sqrt(3)",
+              "0.4 / sqrt(3)"
+            ],
+            [
+              "(2//5) / sqrt(3)",
+              "-1//4",
+              "-0.4 / sqrt(3)"
+            ],
+            [
+              "(-2//15)*sqrt(3)",
+              "(2//15)*sqrt(3)",
+              "-1//2"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "-1//2"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "(-1//2)*gamma_Ni_L",
+              "((-2//1)*epsilon_Ni_L) / sqrt(3)",
+              "(2.0epsilon_Ni_L) / sqrt(3)"
+            ],
+            [
+              "(2epsilon_Ni_L) / sqrt(3)",
+              "(-1//2)*gamma_Ni_L",
+              "(-2.0epsilon_Ni_L) / sqrt(3)"
+            ],
+            [
+              "(-2//3)*epsilon_Ni_L*sqrt(3)",
+              "(2//3)*epsilon_Ni_L*sqrt(3)",
+              "-gamma_Ni_L"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "-gamma_Ni_L"
+          ]
+        }
+      },
+      "Ni_Source_R": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "-1//4",
+              "(2//5) / sqrt(3)",
+              "-0.4 / sqrt(3)"
+            ],
+            [
+              "(-2//5) / sqrt(3)",
+              "-1//4",
+              "0.4 / sqrt(3)"
+            ],
+            [
+              "(2//15)*sqrt(3)",
+              "(-2//15)*sqrt(3)",
+              "-1//2"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "1//2"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "(-1//2)*gamma_Ni_R",
+              "((2//1)*epsilon_Ni_R) / sqrt(3)",
+              "(-2.0epsilon_Ni_R) / sqrt(3)"
+            ],
+            [
+              "(-2epsilon_Ni_R) / sqrt(3)",
+              "(-1//2)*gamma_Ni_R",
+              "(2.0epsilon_Ni_R) / sqrt(3)"
+            ],
+            [
+              "(2//3)*epsilon_Ni_R*sqrt(3)",
+              "(-2//3)*epsilon_Ni_R*sqrt(3)",
+              "-gamma_Ni_R"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "gamma_Ni_R"
+          ]
+        }
+      },
+      "Se_Cannon_R": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "-4//5",
+              "(2//5) / sqrt(3)",
+              "-0.4 / sqrt(3)"
+            ],
+            [
+              "(-2//5) / sqrt(3)",
+              "-4//5",
+              "0.4 / sqrt(3)"
+            ],
+            [
+              "(2//15)*sqrt(3)",
+              "(-2//15)*sqrt(3)",
+              "-4//5"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "(-4//1)*lambda_Se_R",
+              "((2//1)*epsilon_Se_R) / sqrt(3)",
+              "(-2.0epsilon_Se_R) / sqrt(3)"
+            ],
+            [
+              "(-2epsilon_Se_R) / sqrt(3)",
+              "(-4//1)*lambda_Se_R",
+              "(2.0epsilon_Se_R) / sqrt(3)"
+            ],
+            [
+              "(2//3)*epsilon_Se_R*sqrt(3)",
+              "(-2//3)*epsilon_Se_R*sqrt(3)",
+              "(-4//1)*lambda_Se_R"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "Se_Funnel_L": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "-4//5",
+              "(-2//5) / sqrt(3)",
+              "0.4 / sqrt(3)"
+            ],
+            [
+              "(2//5) / sqrt(3)",
+              "-4//5",
+              "-0.4 / sqrt(3)"
+            ],
+            [
+              "(-2//15)*sqrt(3)",
+              "(2//15)*sqrt(3)",
+              "-4//5"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "(-4//1)*lambda_Se_L",
+              "((-2//1)*epsilon_Se_L) / sqrt(3)",
+              "(2.0epsilon_Se_L) / sqrt(3)"
+            ],
+            [
+              "(2epsilon_Se_L) / sqrt(3)",
+              "(-4//1)*lambda_Se_L",
+              "(-2.0epsilon_Se_L) / sqrt(3)"
+            ],
+            [
+              "(-2//3)*epsilon_Se_L*sqrt(3)",
+              "(2//3)*epsilon_Se_L*sqrt(3)",
+              "(-4//1)*lambda_Se_L"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "Si_Citadel_R": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "-2//5",
+              "-2//5"
+            ],
+            [
+              "0",
+              "2//5",
+              "-2//5"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "-kappa_Si_R",
+              "(-2//1)*omega_Si_R"
+            ],
+            [
+              "0",
+              "(2//1)*omega_Si_R",
+              "-kappa_Si_R"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "Si_Hill_L": {
+        "derived_from": "Julia density generator form, then component extraction by Tr(generator(rho)*sigma_i)",
+        "pinned": {
+          "A": [
+            [
+              "-2//5",
+              "-2//5",
+              "0"
+            ],
+            [
+              "2//5",
+              "-2//5",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "symbolic": {
+          "A": [
+            [
+              "-kappa_Si_L",
+              "(-2//1)*omega_Si_L",
+              "0"
+            ],
+            [
+              "2omega_Si_L",
+              "-kappa_Si_L",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ]
+          ],
+          "b": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      }
+    }
+  },
+  "engine": "julia",
+  "flow_solver_route": {
+    "all_pass": true,
+    "claim_path_role": "load-bearing Julia carrier flow-evolution solver route",
+    "matrix_exponential_role": "exact constant-coefficient special-case parity check only",
+    "ordinarydiffeq_note": "Tsit5 is used through DifferentialEquations in the strict carrier project; direct OrdinaryDiffEq is not declared in this project",
+    "qualified_api/function": "DifferentialEquations.ODEProblem / DifferentialEquations.solve(Tsit5)",
+    "rows": {
+      "Ne_Spiral_R": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            -0.4052771249515769,
+            0.29939634257445114,
+            0.23921411571045917
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 4.85150808415824e-12,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          -0.4052771249467254,
+          0.2993963425726883,
+          0.2392141157073704
+        ],
+        "t": 1.0
+      },
+      "Ne_Vortex_L": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.36469810913691036,
+            0.15940084546745348,
+            -0.39076562127103043
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 4.319156143850478e-12,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.3646981091327108,
+          0.159400845467334,
+          -0.39076562126671127
+        ],
+        "t": 1.0
+      },
+      "Ni_Pit_L": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.22028635250866213,
+            -0.2610737834440958,
+            -0.2930740750676605
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 6.459277557269161e-13,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.22028635250930806,
+          -0.26107378344422627,
+          -0.2930740750682684
+        ],
+        "t": 1.0
+      },
+      "Ni_Source_R": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            -0.01627991469881665,
+            -0.22107032706453622,
+            0.6667142517953899
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 5.333511410299252e-13,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          -0.016279914699030062,
+          -0.22107032706496318,
+          0.6667142517959233
+        ],
+        "t": 1.0
+      },
+      "Se_Cannon_R": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.010264781002756036,
+            -0.1504975959231592,
+            0.20014334346936608
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 1.1966816426678406e-12,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.01026478100321708,
+          -0.1504975959222289,
+          0.2001433434681694
+        ],
+        "t": 1.0
+      },
+      "Se_Funnel_L": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.1584318236418265,
+            -0.17743705822117203,
+            0.0789157631283084
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 1.213557032642143e-12,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.1584318236407847,
+          -0.17743705821995848,
+          0.07891576312833334
+        ],
+        "t": 1.0
+      },
+      "Si_Citadel_R": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.2,
+            -0.33397389954181056,
+            0.10138791417649909
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 7.976258542541359e-13,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.2,
+          -0.3339738995421862,
+          0.10138791417570146
+        ],
+        "t": 1.0
+      },
+      "Si_Hill_L": {
+        "exact_special_case_check": {
+          "method": "LinearAlgebra.exp on augmented constant-coefficient affine generator",
+          "r_t": [
+            0.22789509803771194,
+            -0.1947552749319669,
+            0.3333333333333333
+          ],
+          "role": "exact_special_case_check_not_primary_solver_route"
+        },
+        "initial": [
+          "1/5",
+          "-2/5",
+          "1/3"
+        ],
+        "max_abs_error_vs_exact_special_case": 6.253886297713507e-13,
+        "method": "DifferentialEquations.ODEProblem plus solve(Tsit5) over pinned affine Bloch ODE r'=A*r+b",
+        "pass": true,
+        "r_t_diffeq": [
+          0.22789509803833732,
+          -0.19475527493142422,
+          0.3333333333333333
+        ],
+        "t": 1.0
+      }
+    },
+    "tool": "DifferentialEquations"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:12:02Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "limits": "Julia derives density-generator A,b rows, runs DifferentialEquations pinned-flow solver receipts, and runs Julia Z3 pinned-entry control. JAX/SymPy owns the fuller exact symbolic flow and basin formula receipts.",
+  "packages_used": [
+    "Symbolics",
+    "Z3",
+    "DifferentialEquations",
+    "LinearAlgebra",
+    "JSON",
+    "SHA"
+  ],
+  "pin_sha256": "ced1d4a8395b66077defbfa44dade651cac9c02ef7ea95cca9918a4019b0634a",
+  "pin_spec": "geo_s5_terrain_flows_v0|sigma_y_standard=[[0,-i],[i,0]]|primary_bloch_basis=(sigma_x,sigma_y_standard,sigma_z)|s1_pinned_bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|standard_to_s1_pinned_J=diag(1,-1,1)|component_rule=r_i=Tr(generator(rho)*basis_i)|rho_rule=rho(r)=(I+r.basis)/2|H0=(sigma_x+sigma_y+sigma_z)/sqrt(3)|H_L=+H0|H_R=-H0|rows=(Se/Funnel,Se/Cannon,Ne/Vortex,Ne/Spiral,Ni/Pit,Ni/Source,Si/Hill,Si/Citadel)|symbolic_parameters=(lambda_Se_L,epsilon_Se_L,lambda_Se_R,epsilon_Se_R,gamma_Ni_L,epsilon_Ni_L,gamma_Ni_R,epsilon_Ni_R,kappa_Si_L,omega_Si_L,kappa_Si_R,omega_Si_R)|pin_row=(lambda_Se_L=1/5,epsilon_Se_L=1/5,lambda_Se_R=1/5,epsilon_Se_R=1/5,gamma_Ni_L=1/2,epsilon_Ni_L=1/5,gamma_Ni_R=1/2,epsilon_Ni_R=1/5,kappa_Si_L=2/5,omega_Si_L=1/5,kappa_Si_R=2/5,omega_Si_R=1/5)|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_julia_results.json",
+  "role_id": "julia_density_generator_derivation_builder",
+  "schema_version": "geo_s5_engine_result_v1",
+  "sim_id": "geo_s5_terrain_flows_v0",
+  "source_path": "system_v6/sims/geo_s5_terrain_flows_v0/geo_s5_terrain_flows_v0_julia.jl",
+  "source_sha256": "05291185993245e2db1a5f7f828ca092e0272e0984e0b805ec7a96f72a68ea68",
+  "tool_calls": [
+    {
+      "boundary_case": "Julia records generator derivation and leaves full flow formulas to the JAX/SymPy exact lane",
+      "demotion_condition": "if rows are hand-copied without density derivation, Julia lane is diagnostic only",
+      "gates": [
+        "all_pass",
+        "P2"
+      ],
+      "input_object": "density generator forms for eight terrain rows",
+      "negative/erased_control": "fake unital Ni is contradicted by derived b_z",
+      "output_object": "Julia-derived Bloch A,b rows",
+      "positive_case": "all eight rows are derived from generator(rho) component extraction",
+      "qualified_api/function": "Symbolics.substitute/Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "pinned-entry proof only",
+      "demotion_condition": "if solver binds only a boolean, proof is demoted",
+      "gates": [
+        "all_pass",
+        "P8"
+      ],
+      "input_object": "2*Pit_b_z pinned integer entry",
+      "negative/erased_control": "0=0 wrong control is sat",
+      "output_object": "unsat contradiction against fake unital b_z=0",
+      "positive_case": "2*Pit_b_z=-1 and 2*Pit_b_z=0 is unsat",
+      "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+      "tool": "Z3"
+    },
+    {
+      "boundary_case": "singular pure-Ne and Si rows solve without stationary inversion",
+      "demotion_condition": "if ODEProblem/solve is removed or parity check fails, Julia flow route is demoted",
+      "gates": [
+        "all_pass"
+      ],
+      "input_object": "pinned affine Bloch ODE rows r'=A*r+b",
+      "negative/erased_control": "matrix exponential alone is relabeled as special-case parity check, not the solver route",
+      "output_object": "finite-time flow states r(1) from each terrain row",
+      "positive_case": "ODE solver flow matches exact constant-coefficient matrix-exponential check within tolerance",
+      "qualified_api/function": "DifferentialEquations.ODEProblem/DifferentialEquations.solve/DifferentialEquations.Tsit5",
+      "tool": "DifferentialEquations"
+    }
+  ]
+}

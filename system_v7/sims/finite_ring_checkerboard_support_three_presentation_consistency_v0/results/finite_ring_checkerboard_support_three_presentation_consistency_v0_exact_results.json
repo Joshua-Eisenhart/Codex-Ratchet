@@ -1,0 +1,84 @@
+{
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "exact finite tables, graph adjacency, quotient classes, density rows",
+      "used": true
+    }
+  },
+  "all_controls_pass": true,
+  "all_tests_pass": true,
+  "claim": "three finite presentations are candidate-equivalent at support/chart level under stated readouts",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "density_probe_phi_blind_but_phase_probe_splits": true,
+    "fiber_coordinate_erasure_merges_classes": true,
+    "label_shuffle_preserves_counts_not_adjacency_without_map": true,
+    "relation_ablation_breaks_adjacency_components": true,
+    "shell_nesting_erasure_merges_classes": true
+  },
+  "density_quotient_sample": {
+    "q_046b9c786600": [
+      "L:eta0:phi0:chi0",
+      "L:eta0:phi1:chi0",
+      "L:eta0:phi2:chi0",
+      "L:eta0:phi3:chi0"
+    ],
+    "q_1ab7b6d2febb": [
+      "L:eta0:phi0:chi2",
+      "L:eta0:phi1:chi2",
+      "L:eta0:phi2:chi2",
+      "L:eta0:phi3:chi2"
+    ],
+    "q_21e5851d3a5b": [
+      "L:eta0:phi0:chi3",
+      "L:eta0:phi1:chi3",
+      "L:eta0:phi2:chi3",
+      "L:eta0:phi3:chi3"
+    ],
+    "q_6306902ce70e": [
+      "L:eta0:phi0:chi1",
+      "L:eta0:phi1:chi1",
+      "L:eta0:phi2:chi1",
+      "L:eta0:phi3:chi1"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "honest_scope": {
+    "does_not_earn": "final M(C), Axis0 closure, QIT engine, smooth manifold, physics claim, or full Hopf/Weyl runtime; one exact engine only until cross-engine/fleet audit",
+    "earns": "finite support/chart consistency for flat/spherical/nested-ring presentations at scratch ceiling; density phi-blindness from spinor table; phase-sensitive probes split density quotients"
+  },
+  "promotion_allowed": false,
+  "schema": "codex_ratchet.sim_result.v1",
+  "sim_id": "finite_ring_checkerboard_support_three_presentation_consistency_v0",
+  "source_target": "Levos packet sim_targets/finite_ring_checkerboard_support_three_presentation_consistency_v0.md + ring-checkerboard runbook",
+  "support_parameters": {
+    "K_eta": 3,
+    "N_chi": 4,
+    "N_phi": 4,
+    "sheets": [
+      "L",
+      "R"
+    ],
+    "support_count": 96
+  },
+  "tests": {
+    "density_rows_where_applicable": true,
+    "finite_cell_support_count_agrees": true,
+    "folding_reindexing_invariants_valid": {
+      "flat_edges": 256,
+      "full_components": 2,
+      "passes": true,
+      "ring_edges": 256
+    },
+    "phi_blindness_under_density_probes": true,
+    "probe_bins_density_and_phase_computed": true,
+    "quotient_classes_density_vs_phase": {
+      "density_class_count": 24,
+      "phase_sensitive_class_count": 96,
+      "phase_splits_density": true
+    },
+    "relation_adjacency_readouts_agree": true,
+    "ring_fiber_coordinate_table_agrees": true,
+    "shell_eta_index_agrees": true
+  }
+}

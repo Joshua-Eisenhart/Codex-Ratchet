@@ -3,8 +3,8 @@
 # every CYCLE_SEC; exits after IDLE_CYCLES consecutive cycles with nothing to enqueue.
 # No API calls, no tokens.
 set -u
-ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
-PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+ROOT="${CODEX_RATCHET_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)}"
+PY="${CODEX_RATCHET_PYTHON:-${SIM_PY:-/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3}}"
 RESULTS="$ROOT/system_v4/probes/a2_state/sim_results"
 RESEED_PIDFILE="/tmp/codex_ratchet_autonomous_reseed.pid"
 cd "$ROOT"

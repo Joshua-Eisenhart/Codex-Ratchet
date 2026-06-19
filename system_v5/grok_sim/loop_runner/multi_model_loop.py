@@ -3,11 +3,12 @@
 
 Roles:
   GENERATION (alternates per iter to avoid single-model idiosyncrasy):
-    - grok-code-fast-1     — fast concrete code generation
-    - gemini-2.5-pro       — long context, careful math derivation
+    - grok-build-0.1       — concrete code generation
+    - gemini-3.1-pro-preview — long context, careful math derivation
+    - gemini-3.5-flash     — cheap contrast and liveness checks
 
   AUDIT (every iteration; orthogonal to the generator):
-    - claude_subagent      — adversarial code review (Opus role; fresh context)
+    - claude_subagent      — adversarial code review (Sonnet by default; no Opus)
     - codex CLI            — local execution + independent test run
 
   ORCHESTRATION (this script):
@@ -21,7 +22,7 @@ A loop iteration:
   3. Else: pick next generator (alternates G→C→G→C…).
   4. Sanitize the failure list; build the patch prompt; call the chosen generator.
   5. Save new candidate; run runner again to verify it imports + improves.
-  6. Spawn Opus subagent for adversarial cheat-check on the new candidate.
+  6. Spawn a Sonnet/cheap-model subagent for adversarial cheat-check on the new candidate when enabled.
   7. Optionally invoke Codex CLI for independent test execution.
   8. If audit flags new cheats → loop again with the OTHER generator and the audit
      findings as input.
@@ -66,18 +67,19 @@ def _load_key(var: str) -> str:
 
 # ---------- generators ----------
 def gen_grok(prompt: str) -> str:
-    """Grok 4.3 — strong reasoning model but 'too hot' (drifts on real-life detail).
+    """Grok build first, with Grok 4.3 as the stronger fallback/audit model.
     Every output MUST be frontier-audited before acceptance.
 
     Retries on 429/rate-limit and 503 with exponential backoff. Falls back to
-    grok-4-fast-reasoning if 4.3 stays at capacity (audit catches any quality drop).
+    the current 4.20 reasoning snapshot if the preferred current models are
+    blocked.
     """
     key = _load_key("XAI_API_KEY")
     if not key:
         raise RuntimeError("XAI_API_KEY not loaded")
     client = OpenAI(api_key=key, base_url="https://api.x.ai/v1", timeout=1800)
     last_exc = None
-    for model_name in ("grok-4.3", "grok-4-fast-reasoning"):
+    for model_name in ("grok-build-0.1", "grok-4.3", "grok-4.20-0309-reasoning"):
         for attempt in range(3):
             try:
                 resp = client.chat.completions.create(
@@ -85,7 +87,7 @@ def gen_grok(prompt: str) -> str:
                     messages=[{"role": "user", "content": prompt}],
                     timeout=1800,
                 )
-                if attempt > 0 or model_name != "grok-4.3":
+                if attempt > 0 or model_name != "grok-build-0.1":
                     print(f"    (grok: succeeded on {model_name} attempt {attempt+1})")
                 return resp.choices[0].message.content
             except Exception as e:
@@ -109,7 +111,7 @@ def gen_gemini(prompt: str) -> str:
     on real-life detail). Every output MUST be frontier-audited before acceptance.
 
     Retries on transient 503/UNAVAILABLE up to 3 times; if 3.1-pro-preview stays
-    overloaded, falls back to gemini-3-pro-preview, then gemini-2.5-pro.
+    overloaded, falls back through pro/latest aliases and Gemini 3 Flash.
     """
     key = _load_key("GEMINI_API_KEY")
     if not key:
@@ -118,7 +120,14 @@ def gen_gemini(prompt: str) -> str:
                     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
                     timeout=1800)
     last_exc = None
-    for model_name in ("gemini-3.1-pro-preview", "gemini-3-pro-preview", "gemini-2.5-pro"):
+    for model_name in (
+        "gemini-3.1-pro-preview",
+        "gemini-pro-latest",
+        "gemini-3-pro-preview",
+        "gemini-3.5-flash",
+        "gemini-flash-latest",
+        "gemini-2.5-pro",
+    ):
         for attempt in range(3):
             try:
                 resp = client.chat.completions.create(

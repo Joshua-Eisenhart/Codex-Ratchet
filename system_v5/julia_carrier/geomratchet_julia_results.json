@@ -1,0 +1,158 @@
+{
+  "claim_ceiling": "carrier-level invariants and finite maps only. NOT asserting layer-completion, manifold-admission, coupling, bridge, rho_AB, Xi, Phi0, Axis0, flux, or physics.",
+  "classification": "tool_lego_fit_probe",
+  "f01_in_force": true,
+  "n01_in_force": true,
+  "object_id": "geomratchet_julia_v1",
+  "promotion_allowed": false,
+  "ratchet_summary": {
+    "G1_all_pass": true,
+    "G2_all_pass": true,
+    "G3_all_pass": true,
+    "G4_all_pass": true,
+    "all_rungs_pass": true,
+    "chirality_first_at_dim8": true,
+    "g2_decomposable": true,
+    "g4_nesting_survives": true,
+    "note": "Each rung is a simultaneous constraint surface. All four active simultaneously. promotion_allowed: false.",
+    "ratchet_each_restricts_prior": true
+  },
+  "rungs": [
+    {
+      "all_pass": true,
+      "boundary_control": {
+        "pass": true
+      },
+      "chern_number": {
+        "L_raw": -0.9986320330543416,
+        "L_rounded": -1.0,
+        "R_raw": 0.9986320330543401,
+        "R_rounded": 1.0,
+        "interpretation": "Chern ±1 (Dirac monopole): L and R sectors carry opposite topological charge",
+        "magnitude_ok": true,
+        "method": "FHS lattice Chern on S^2 discretization",
+        "opposite_sign": true
+      },
+      "codomain": "{rho_L, rho_R in Herm(2), chern_number_L, chern_number_R in Z}",
+      "description": "S^3 = SU(2) = unit quaternions; minimal spinor carrier (dim=2)",
+      "domain": "finite sample N=20 unit quaternions on S^3",
+      "f01_finite": true,
+      "gamma5_split": {
+        "pass": true,
+        "tr_L": 0.901588621702163,
+        "tr_R": 0.09841137829783693
+      },
+      "n01_witness": "SU(2) group multiplication is non-Abelian",
+      "negative_control": {
+        "non_unit_fails_su2": true,
+        "non_unit_q_det_error": 3.0,
+        "pass": true
+      },
+      "positive_control": {
+        "pass": true,
+        "rho_L_trace_ok": true,
+        "rho_R_trace_ok": true,
+        "su2_det_max_error": 2.482534153247273e-16,
+        "su2_unitary_max_error": 2.220446049250313e-16
+      },
+      "ratchet_claim": "S^3 is the minimal finite carrier admitting SU(2) spinors and L/R density matrices. Opposite-sign Chern numbers survive probe. dim=2 is a CHOICE: minimal representation of SU(2).",
+      "rung": "G1"
+    },
+    {
+      "all_pass": true,
+      "codomain": "{P_L, P_R in Herm(4), JL_1..3, JR_1..3 in su(2) generators, [JLi,JRj]=0 certificate}",
+      "decomposability": {
+        "decomposable_Spin4_isoSU2xSU2": true,
+        "interpretation": "JL and JR commute → Spin(4)≅SU(2)_L×SU(2)_R → chirality is REDUCIBLE at dim4",
+        "max_comm_JL_JR": 0.0,
+        "su2L_structure": true,
+        "su2R_structure": true
+      },
+      "description": "Cl(4)/Spin(4) dim=4 (2 qubits) — Weyl sectors decomposable (fake/reducible chirality)",
+      "domain": "4x4 gamma matrices generating Cl(4)",
+      "f01_finite": true,
+      "n01_witness": "Clifford anticommutators; spin(4) generators are noncommutative matrices",
+      "projector_check": {
+        "PL_idempotent_err": 0.0,
+        "PR_idempotent_err": 0.0,
+        "pass": true
+      },
+      "ratchet_claim": "G2 restricts G1: the 4D Weyl split is DECOMPOSABLE (Spin(4)≅SU(2)×SU(2)). Chirality is fake/reducible at dim=4 — a choice, not forced by geometry.",
+      "rung": "G2",
+      "weyl_sector_dims": {
+        "dim_L": 2,
+        "dim_R": 2
+      },
+      "wrong_structure_control": {
+        "interpretation": "random su(4) generators have nonzero cross-commutators; JL,JR do not (product structure)",
+        "random_generator_cross_comm_K1K2": 14.716155540959791,
+        "random_generator_cross_comm_K2K3": 16.509582313519047,
+        "random_gens_not_product_form": true
+      }
+    },
+    {
+      "all_pass": true,
+      "clifford_anticommutator_max_err": 0.0,
+      "clifford_ok": true,
+      "codomain": "{P_L, P_R in Herm(8), commutant_dim_L, commutant_dim_R in Z}",
+      "description": "Cl(6)/Spin(6) dim=8 (3 qubits) — Weyl sectors irreducible (genuine chirality first here)",
+      "domain": "8x8 gamma matrices generating Cl(6)",
+      "f01_finite": true,
+      "gamma7_anticomm_max_err": 0.0,
+      "gamma7_ok": true,
+      "gamma7_sq_err": 0.0,
+      "irreducibility": {
+        "commutant_dim_L": 1,
+        "commutant_dim_R": 1,
+        "interpretation": "commutant_dim=1 ↔ Schur's lemma: Spin(6)≅SU(4) acts IRREDUCIBLY on each 4-dim Weyl sector",
+        "irreducible_L": true,
+        "irreducible_R": true
+      },
+      "n01_witness": "Clifford anticommutators {gamma_i,gamma_j}=2*delta_ij; max_err=0.0",
+      "ratchet_claim": "G3 restricts G2: at dim=8/Spin(6)≅SU(4), each Weyl sector is an IRREDUCIBLE 4-dim representation. Genuine chirality first appears here. The 3-qubit threshold is the geometric meaning of genuine Weyl irreducibility.",
+      "rung": "G3",
+      "weyl_sector_dims": {
+        "dim_L": 4,
+        "dim_R": 4
+      },
+      "wrong_structure_control": {
+        "G2_Spin4_commutant_dim_on_full_4x4_rep": 2,
+        "G2_reducible": true,
+        "interpretation": "spin(4) on full 4x4 spinor rep has commutant_dim>1 (reducible) → confirms G3 irreducibility is not trivial"
+      }
+    },
+    {
+      "all_pass": true,
+      "boundary_control": {
+        "same_shell_max_dist": 0.0,
+        "same_shell_zero_dist": true
+      },
+      "codomain": "{rho_L on Sigma_inner, rho_L on Sigma_outer, trace_distance, gauss_linking_number}",
+      "description": "Nested-shell quaternion-spinor torus: alpha_inner=0.0 alpha_outer=1.047",
+      "domain": "finite grid N_theta=8 x N_phi=8 x 2 shells",
+      "f01_finite": true,
+      "gauss_linking_number": {
+        "computed": -1.0000000000000107,
+        "ctrl_unlinked": true,
+        "geometry": "C1=(cos t, sin t, 0), C2=(1+0.5*cos s, 0, 0.5*sin s): Hopf-like link, C2 threads C1 disk at s=pi",
+        "nontrivial": true,
+        "rounded": -1.0,
+        "wrong_structure_control_coplanar": 0.0
+      },
+      "inter_shell_distinguishability": {
+        "max_trace_distance": 0.4999999999999999,
+        "mean_trace_distance": 0.2563561681124318,
+        "min_trace_distance": 8.203578021122302e-18,
+        "shells_distinguishable_f01": true
+      },
+      "n01_witness": "Quaternion fiber over T^2; SU(2) non-Abelian structure on each shell",
+      "nesting_constraint": {
+        "alpha_inner": 0.0,
+        "alpha_outer": 1.0471975511965976,
+        "shells_distinct": true
+      },
+      "ratchet_claim": "G4 restricts G3: nesting adds a further constraint surface. Inter-shell distinguishability (F01 probe, mean_trace_dist > 0) and Gauss linking number (|L|=1 for genuinely linked core curves) are well-defined finite invariants. The nested geometry is a candidate beyond the single-shell Weyl sector.",
+      "rung": "G4"
+    }
+  ]
+}

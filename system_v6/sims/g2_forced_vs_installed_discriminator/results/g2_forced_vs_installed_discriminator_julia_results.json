@@ -1,0 +1,217 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON/Dates/SHA": "supportive",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON/Dates/SHA": {
+      "reason": "supportive result serialization, timestamps, and source hashing",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive rank/nullity computation for the derivation equation matrix",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side SAT/UNSAT checks for root admission and seven-unit exclusion",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "scratch diagnostic: G2 is discriminated as installed by the octonion/Fano carrier constraint, not promoted as canonical.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "bare_root_failing_control_fires": true,
+    "classification_ceiling_held": true,
+    "corrupted_octonion_dim_changes": true,
+    "erased_closure_readmits_H": true,
+    "forced_commutative_control_unsat": true
+  },
+  "derivation_dimensions": {
+    "H": {
+      "basis_dimension": 4,
+      "carrier": "H",
+      "equation_count": 64,
+      "nullity_dim_der": 3,
+      "rank": 13,
+      "rank_method": "LinearAlgebra.rank atol=1e-8 rtol=0",
+      "unknown_count": 16
+    },
+    "M2R": {
+      "basis_dimension": 4,
+      "carrier": "M2R",
+      "equation_count": 64,
+      "nullity_dim_der": 3,
+      "rank": 13,
+      "rank_method": "LinearAlgebra.rank atol=1e-8 rtol=0",
+      "unknown_count": 16
+    },
+    "O": {
+      "basis_dimension": 8,
+      "carrier": "O",
+      "equation_count": 512,
+      "nullity_dim_der": 14,
+      "rank": 50,
+      "rank_method": "LinearAlgebra.rank atol=1e-8 rtol=0",
+      "unknown_count": 64
+    },
+    "O_corrupted": {
+      "basis_dimension": 8,
+      "carrier": "O_corrupted",
+      "equation_count": 512,
+      "nullity_dim_der": 3,
+      "rank": 61,
+      "rank_method": "LinearAlgebra.rank atol=1e-8 rtol=0",
+      "unknown_count": 64
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-09T22:45:42Z",
+  "noncommutation_witnesses": {
+    "H": {
+      "i": 1,
+      "j": 2,
+      "norm": 2.0,
+      "vector": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    "M2R": {
+      "i": 1,
+      "j": 2,
+      "norm": 1.4142135623730951,
+      "vector": [
+        1,
+        0,
+        0,
+        -1
+      ]
+    },
+    "O": {
+      "i": 1,
+      "j": 2,
+      "norm": 2.0,
+      "vector": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "O_corrupted": {
+      "i": 1,
+      "j": 3,
+      "norm": 2.0,
+      "vector": [
+        0,
+        0,
+        -2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "object_id": "g2_forced_vs_installed_discriminator",
+  "packages_used": [
+    "LinearAlgebra",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "pin_spec": "G2 forced-vs-installed discriminator: bare root={finite table, nonzero commutator}; controls H and M2(R); installed carrier constraint=seven anticommuting imaginary units closed by the Fano/Cayley-Dickson octonion table; derivations solve D(xy)=D(x)y+xD(y).",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/g2_forced_vs_installed_discriminator/results/g2_forced_vs_installed_discriminator_julia_results.json",
+  "schema_version": "three_engine_leg_result_v1",
+  "shared_scalars": {
+    "H_dim_der": 3.0,
+    "H_root_sat": 1.0,
+    "M2R_dim_der": 3.0,
+    "M2R_root_sat": 1.0,
+    "O_7unit_sat": 1.0,
+    "O_corrupted_dim_der": 3.0,
+    "O_dim_der": 14.0,
+    "alternative_3unit_7closure_unsat": 1.0,
+    "forced_by_root": 0.0,
+    "installed_by_carrier_constraint": 1.0
+  },
+  "smt": {
+    "julia_z3": {
+      "H_7unit_closure": {
+        "available_imaginary_slots": 3,
+        "constraint_family": "distinct 7 imaginary units; every chosen pair anticommutes and closes to one imaginary Fano/Cayley-Dickson product",
+        "required_units": 7,
+        "status": "unsat"
+      },
+      "H_bare_root": {
+        "basis_dimension": 4,
+        "bound_commutator_coordinates": 24,
+        "finite_table_bound": true,
+        "force_commutative": false,
+        "status": "sat"
+      },
+      "H_erased_closure_control": {
+        "basis_dimension": 4,
+        "bound_commutator_coordinates": 24,
+        "finite_table_bound": true,
+        "force_commutative": false,
+        "status": "sat"
+      },
+      "H_forced_commutative_control": {
+        "basis_dimension": 4,
+        "bound_commutator_coordinates": 24,
+        "finite_table_bound": true,
+        "force_commutative": true,
+        "status": "unsat"
+      },
+      "M2R_bare_root": {
+        "basis_dimension": 4,
+        "bound_commutator_coordinates": 24,
+        "finite_table_bound": true,
+        "force_commutative": false,
+        "status": "sat"
+      },
+      "O_7unit_closure": {
+        "available_imaginary_slots": 7,
+        "constraint_family": "distinct 7 imaginary units; every chosen pair anticommutes and closes to one imaginary Fano/Cayley-Dickson product",
+        "required_units": 7,
+        "status": "sat"
+      },
+      "alternative_3unit_7closure": {
+        "available_imaginary_slots": 3,
+        "constraint_family": "distinct 7 imaginary units; every chosen pair anticommutes and closes to one imaginary Fano/Cayley-Dickson product",
+        "required_units": 7,
+        "status": "unsat"
+      }
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/g2_forced_vs_installed_discriminator/g2_forced_vs_installed_discriminator_julia.jl",
+  "source_sha256": "5ce4c39af1f4ab4c0164ae3759354bb12cd921b2337a678beb9c9ee9d9a0133d",
+  "verdicts": {
+    "bare_root_counterexamples": [
+      "H",
+      "M2R"
+    ],
+    "forced_by_root": false,
+    "installed_by_carrier_constraint": true
+  }
+}

@@ -6,7 +6,7 @@ import sys
 from openai import OpenAI
 
 if len(sys.argv) < 2:
-    print("Usage: grok_chat.py 'your prompt'  [--model grok-4]  [--stream]")
+    print("Usage: grok_chat.py 'your prompt'  [--model grok-4.3|grok-build-0.1]  [--stream]")
     sys.exit(1)
 
 key = os.environ.get("XAI_API_KEY")
@@ -16,7 +16,7 @@ if not key:
 
 # Parse args: prompt is positional, --model and --stream optional
 args = sys.argv[1:]
-model = "grok-4-fast-non-reasoning"
+model = os.environ.get("GROK_CHAT_MODEL", "grok-4.3")
 stream = False
 if "--model" in args:
     i = args.index("--model")

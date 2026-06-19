@@ -208,7 +208,7 @@ def _wizard_admission_allows_sim(sim_path: str, admission_file: str | None = Non
 def enqueue(lane: str, sim_path: str, admission_file: str | None = None) -> Path:
     _ensure_dirs()
     claim = _stage_gate_claim_for_sim(sim_path)
-    if claim and not _stage_gate_allows_claim(claim):
+    if claim is not None and not _stage_gate_allows_claim(claim):
         return _write_blocked_payload(lane, sim_path, "stage_gate_blocked", claim)
     if (STRICT_WIZARD_QUEUE_ADMISSION or admission_file) and not _wizard_admission_allows_sim(
         sim_path,
@@ -312,7 +312,7 @@ def _stage_gate_claim_for_sim(sim_path: str | Path) -> str | None:
         return "scientific_coupling"
     if any(token in stem for token in LATE_INFO_KEYWORDS):
         return "default_late_stage"
-    return None
+    return "off_program"
 
 
 def _stage_gate_allows_claim(claim: str) -> bool:
@@ -407,7 +407,7 @@ def claim(lane: str, worker_id: str) -> Path | None:
         data["claimed_at"] = time.time()
         target.write_text(json.dumps(data, sort_keys=True))
         claim = _stage_gate_claim_for_sim(str(data.get("sim_path", "")))
-        if claim and not _stage_gate_allows_claim(claim):
+        if claim is not None and not _stage_gate_allows_claim(claim):
             data["blocked_reason"] = "stage_gate_blocked"
             data["blocked_stage_claim"] = claim
             data["blocked_at"] = time.time()

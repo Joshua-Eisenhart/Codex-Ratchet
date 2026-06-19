@@ -1,0 +1,77 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "supportive",
+    "fiber_augmented_cover_v1_common": "load_bearing",
+    "gudhi": "load_bearing",
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "shared builder/audit boundary guard so the builder packet does not claim its own audit verdict",
+      "tried": true,
+      "used": true
+    },
+    "fiber_augmented_cover_v1_common": {
+      "reason": "rebuilds the v1 and zero-shift product covers from the committed packet machinery by hash",
+      "tried": true,
+      "used": true
+    },
+    "gudhi": {
+      "reason": "independently computes Betti numbers on the same finite simplicial complex",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "eigenvalue kernel-count check for TopoNetX Hodge Laplacians",
+      "tried": true,
+      "used": true
+    },
+    "toponetx": {
+      "reason": "builds CellComplex incidence matrices and Hodge Laplacian kernel dimensions for the finite parity complex",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+  "classification": "scratch_diagnostic",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T11:03:06Z",
+  "no_builder_audit_verdict": true,
+  "parity_adjudication": {
+    "complex_building_resolution_indicted": true,
+    "computed_b1_differs": true,
+    "computed_product_betti": [
+      1,
+      151,
+      0,
+      0
+    ],
+    "computed_profiles_differ": true,
+    "computed_v1_betti": [
+      1,
+      157,
+      0,
+      0
+    ],
+    "cover_construction_indicted": false,
+    "discretization_fidelity_caveat": "the coarse adjacency-derived complex is not sufficient to adjudicate S3-like versus S2xS1 homology",
+    "expected_distinction": "v1 ideal b1=0 versus product ideal b1>=1",
+    "finding": "the lifted adjacency flag complex distinguishes v1 from the zero-shift product, but both Betti profiles miss the preregistered ideal-space profile",
+    "guard_status": "not_earned_resolution_insufficient",
+    "ideal_profiles_match": false,
+    "outcome": "discretization_fidelity_caveat",
+    "parity_question": "do the v1 and zero-shift product finite complexes differ as the bundle claim predicts"
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/topology_parity_micro_v0/results/topology_parity_micro_v0_results.json",
+  "result_summary": {
+    "claim_ceiling": "scratch_diagnostic_independent_topology_guard_for_fiber_augmented_cover_v1_only",
+    "guard_status": "not_earned_resolution_insufficient",
+    "independent_guard_earned": false,
+    "reference_controls_pass": true,
+    "v1_vs_product_profiles_differ": true
+  },
+  "sim_id": "topology_parity_micro_v0"
+}

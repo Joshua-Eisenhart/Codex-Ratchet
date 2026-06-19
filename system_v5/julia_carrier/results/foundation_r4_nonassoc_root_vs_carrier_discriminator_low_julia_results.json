@@ -1,0 +1,244 @@
+{
+  "C": {
+    "rung_specific_constraint": "optional Cl6/7 mutually anticommuting imaginary units",
+    "state_constraints": [
+      "trace=1",
+      "PSD",
+      "Hermiticity",
+      "normalization"
+    ]
+  },
+  "M": {
+    "probes": [
+      "finite dimension",
+      "imaginary unit square=-1",
+      "pairwise anticommutator zero",
+      "noncommutator witness",
+      "Cl6/7-unit flag"
+    ]
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "bare_root": {
+    "C": {
+      "bare_root_admissible": false,
+      "carrier": "C",
+      "dimension": 2,
+      "finite": true,
+      "noncommutation_nonzero": false,
+      "noncommutation_witness_units_1_2": [
+        0,
+        0
+      ],
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          2,
+          1,
+          0
+        ],
+        "well_defined": true
+      }
+    },
+    "H": {
+      "bare_root_admissible": true,
+      "carrier": "H",
+      "dimension": 4,
+      "finite": true,
+      "noncommutation_nonzero": true,
+      "noncommutation_witness_units_1_2": [
+        0,
+        0,
+        0,
+        2
+      ],
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          4,
+          3,
+          1
+        ],
+        "well_defined": true
+      }
+    },
+    "O": {
+      "bare_root_admissible": true,
+      "carrier": "O",
+      "dimension": 8,
+      "finite": true,
+      "noncommutation_nonzero": true,
+      "noncommutation_witness_units_1_2": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          8,
+          7,
+          1
+        ],
+        "well_defined": true
+      }
+    },
+    "R": {
+      "bare_root_admissible": false,
+      "carrier": "R",
+      "dimension": 1,
+      "finite": true,
+      "noncommutation_nonzero": false,
+      "noncommutation_witness_units_1_2": [
+        0
+      ],
+      "quotient": {
+        "M": [
+          "dimension",
+          "imaginary_unit_square_minus_one_count",
+          "noncommutator_witness"
+        ],
+        "signature": [
+          1,
+          0,
+          0
+        ],
+        "well_defined": true
+      }
+    }
+  },
+  "claim_path_tools": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "cliffordalgebras_report": {
+    "basis_symbol_count": 64,
+    "constructed": "CliffordAlgebra(0, 6)",
+    "generator_anticommutation_max_residual": 0.0,
+    "package": "CliffordAlgebras",
+    "pass": true
+  },
+  "density_constraint_witness": {
+    "hermitian_pass": true,
+    "hermiticity_residual": 0.0,
+    "min_eigenvalue": 0.25,
+    "normalization": 1.0,
+    "psd_pass": true,
+    "trace": 1.0,
+    "trace_one_pass": true
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T02:03:13Z",
+  "julia_z3_control": {
+    "claim": "integer equality contradiction for H 3-vs-7 control",
+    "ran": true,
+    "verdict": "unsat"
+  },
+  "negative_control_flip": {
+    "bare_root_admits_H": true,
+    "cl6_admits_O": true,
+    "cl6_excludes_H": true,
+    "flips": true,
+    "forced_nonassoc_under_bare_root": false,
+    "verdict": "INSTALLED_BY_CL6_7_UNIT_CONSTRAINT_NOT_FORCED_BY_BARE_ROOT"
+  },
+  "object_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "quotient": {
+    "S": [
+      "R",
+      "C",
+      "H",
+      "O"
+    ],
+    "admitted_under_bare_root": [
+      "H",
+      "O"
+    ],
+    "admitted_under_cl6_constraint": [
+      "O"
+    ],
+    "classes": {
+      "C": [
+        2,
+        1,
+        0,
+        0
+      ],
+      "H": [
+        4,
+        3,
+        1,
+        0
+      ],
+      "O": [
+        8,
+        7,
+        1,
+        1
+      ],
+      "R": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "equivalence_relation": "carriers are equivalent under M when dimension, imaginary-unit count, noncommutation witness, and Cl6/7-unit admissibility flag match"
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia_results.json",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "foundation_r4_nonassoc_root_vs_carrier_discriminator_low",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_r4_nonassoc_root_vs_carrier_discriminator_low_julia.jl",
+  "source_sha256": "aaea0c6a9529914edb245ba75767a36307e521b01c0206c03a46ede14fbc8b1e",
+  "summary": {
+    "C_unit_count": 1,
+    "H_bare_root_admissible": true,
+    "H_cl6_admissible": false,
+    "H_unit_count": 3,
+    "O_cl6_admissible": true,
+    "O_unit_count": 7,
+    "R_unit_count": 0,
+    "forced_nonassoc_under_bare_root": false,
+    "installed_constraint": "Cl(6)/>=7 mutually anticommuting imaginary units"
+  },
+  "unit_counts": {
+    "C": 1,
+    "H": 3,
+    "O": 7,
+    "R": 0
+  }
+}

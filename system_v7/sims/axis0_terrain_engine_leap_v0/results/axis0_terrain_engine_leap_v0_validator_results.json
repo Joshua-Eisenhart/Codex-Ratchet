@@ -1,0 +1,50 @@
+{
+  "_BAD_TWIN_FIXTURE": "NEGATIVE FIXTURE — expected gate failures documented here. All violations are intentional.",
+  "sim_id": "axis0_terrain_engine_leap_v0",
+  "classification": "scratch_diagnostic",
+  "fixture_purpose": "Negative fixture to verify gates fire on the correct failure modes. This sim should NOT pass any gate that a real sim is required to pass.",
+  "all_pass": false,
+  "gate_verdicts": {
+    "GATE-1_jargon_without_ancestry": {
+      "fires": true,
+      "description": "Sim name contains axis0/terrain/engine — top-floor vocabulary — with f01_ancestry=null and n01_ancestry=null in jax results. No F01/N01 grounding established anywhere in the packet.",
+      "evidence_key": "jax_results.f01_ancestry = null, jax_results.n01_ancestry = null"
+    },
+    "GATE-2_count_tautology_smt": {
+      "fires": true,
+      "description": "validate_smt_not_tautology.py GATE-2: z3 in jax_results and cvc5 in pytorch_results are both tagged load_bearing. Both proofs are pure SAT count-equality tautologies: solver.add(terrain_engine_survivor_count == computed); solver.add(terrain_engine_survivor_count == EXPECTED). No sign relation, no structural predicate, no erased_flip with math reason. Both match COUNT_EQ_RE2 pattern in the gate.",
+      "offending_files": [
+        "results/axis0_terrain_engine_leap_v0_jax_results.json :: crossover_proofs.z3",
+        "results/axis0_terrain_engine_leap_v0_pytorch_results.json :: crossover_proofs.cvc5",
+        "results/axis0_terrain_engine_leap_v0_envelope_results.json :: crossover_proofs.z3",
+        "results/axis0_terrain_engine_leap_v0_envelope_results.json :: crossover_proofs.cvc5"
+      ]
+    },
+    "GATE-3_unfenced_verdict_bearing_token": {
+      "fires": true,
+      "description": "validate_canon_firewall.py dynamic-key gate: 'axis0_earned=true' (jax_results), 'axis0_terrain_engine_activated=true' (pytorch_results), 'axis0_terrain_engine_survived=true' (envelope_results). All are positive claims in dynamic/LLM-authored key-value slots. None have local audit_verdict, independent_recompute, source_sha, or control evidence in the same record. The key 'axis0_earned_claim_string' contains the prose token 'earned' in a string value without local fence — fires prose_promotion_leak.",
+      "offending_files": [
+        "results/axis0_terrain_engine_leap_v0_jax_results.json :: axis0_earned",
+        "results/axis0_terrain_engine_leap_v0_pytorch_results.json :: axis0_terrain_engine_activated",
+        "results/axis0_terrain_engine_leap_v0_envelope_results.json :: axis0_terrain_engine_survived",
+        "results/axis0_terrain_engine_leap_v0_envelope_results.json :: axis0_earned_claim_string (prose: 'earned')"
+      ]
+    },
+    "GATE-4_engine_independence_by_construction": {
+      "fires": true,
+      "description": "validate_canon_firewall.py independence gate + validate_three_engine_sim_result.py reads_peer_result gate: jax and pytorch legs both have reads_peer_result=true, meaning they consume a shared build_packet(). engine_consensus.independent=true in the envelope is by-construction (both legs compute over identical output from the same shared function). The independence gate fires because engine_consensus.independent=true lacks independent_recompute=true in any lane_evidence.",
+      "offending_files": [
+        "results/axis0_terrain_engine_leap_v0_jax_results.json :: reads_peer_result=true",
+        "results/axis0_terrain_engine_leap_v0_pytorch_results.json :: reads_peer_result=true",
+        "results/axis0_terrain_engine_leap_v0_envelope_results.json :: engine_consensus.independent=true without independent_recompute"
+      ]
+    }
+  },
+  "gates_expected_to_fire": [
+    "validate_smt_not_tautology.py",
+    "validate_canon_firewall.py",
+    "validate_three_engine_sim_result.py (reads_peer_result must be false)"
+  ],
+  "gates_expected_to_pass": [],
+  "audit_verdict": "FAIL — intentional negative fixture; all violations are load-bearing test signals, not defects to fix"
+}

@@ -1,0 +1,30 @@
+{
+  "sim_id": "pcg_noncommutation_topology_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim": "Probe-consensus graph-floor candidate: a finite commutation table builds a clique complex whose Betti-1 flips between a fully commuting control and a chordless-cycle noncommuting witness.",
+  "ceiling": "candidate weakest-first structure; not canon; held beside bare quotient and probe-inversion branches",
+  "probes": [
+    "x_probe",
+    "x_guard",
+    "z_probe",
+    "z_guard"
+  ],
+  "target_forbidden_relation": [
+    "x_probe",
+    "z_probe"
+  ],
+  "fixture_boundary": "The H1 witness is not a two-node-only object. It needs the named forbidden relation inside a finite four-probe boundary cycle.",
+  "decisive_controls": {
+    "fully_commuting_h1": 0,
+    "noncommuting_h1_min": 1,
+    "target_relation_restored_h1": 0
+  },
+  "allowed_terms": "finite graph, clique complex, Betti-1, SMT table binding",
+  "banned_surface": [
+    "state-probability notation",
+    "downstream carrier names",
+    "trace notation"
+  ]
+}

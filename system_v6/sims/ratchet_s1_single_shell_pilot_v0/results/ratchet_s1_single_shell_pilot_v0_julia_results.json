@@ -1,0 +1,145 @@
+{
+    "result_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/results/ratchet_s1_single_shell_pilot_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "SHA",
+        "Dates",
+        "Z3"
+    ],
+    "source_sha256": "d216cd9c8016af398e0a0838a11ef721dac3eddedb26a4015e8ee1a8d7f21b7b",
+    "load_path": [
+        "@",
+        "@stdlib"
+    ],
+    "classification": "scratch_diagnostic",
+    "sim_id": "ratchet_s1_single_shell_pilot_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T00:46:52Z",
+    "all_pass": true,
+    "promotion_allowed": false,
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "tool_calls": [
+        {
+            "boundary_case": "N=1 collapses quotient generator to the old full global cycle",
+            "demotion_condition": "Z3.jl verdict not UNSAT or source not independently executable",
+            "output_object": {
+                "ran": true,
+                "positive_case": "negated quotient-order identity is UNSAT",
+                "bound_values": {
+                    "h_full_global": 4,
+                    "h_Z4_global": 1
+                },
+                "load_bearing": true,
+                "verdict": "unsat",
+                "solver": "Z3.jl",
+                "multiplier": 4,
+                "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check"
+            },
+            "positive_case": "negated quotient-order identity is UNSAT",
+            "load_bearing": true,
+            "gates": [
+                "G1_SOURCE_BACKED_LANES"
+            ],
+            "negative/erased_control": "multiplier 3 control",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3",
+            "input_object": "quotient-order identity 4 * h_Z4_global = h_full_global over q=1, full=4"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "erased_flip": "replace multiplier 4 by 3",
+            "bound_values": {
+                "h_full_global": 4,
+                "h_Z4_global": 1
+            },
+            "load_bearing": true,
+            "gates": [
+                "G1_SOURCE_BACKED_LANES",
+                "proof",
+                "all_pass"
+            ],
+            "erased_flip_verdict": "unsat",
+            "demotion_condition": "demote G1 if Z3.jl does not make the quotient-order identity UNSAT with the bound q/full rows",
+            "positive_case": "negated quotient-order identity is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "multiplier": 4,
+            "erased_flip_detected": true,
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check"
+        }
+    },
+    "engine_values": {
+        "fundamental_holonomy_chi_cycle": "pi",
+        "A_T_dchi_coefficient": "1/2",
+        "full_global_holonomy_pi_over_2_units": 4,
+        "non_Z4_saturated_window_witness": 1,
+        "fundamental_holonomy_beta_cycle": "pi/2",
+        "metric_radii_alpha": "sqrt(3)/2",
+        "fundamental_holonomy_phi_cycle": "2*pi",
+        "fundamental_holonomy_alpha_cycle": "3*pi/2",
+        "quotient_global_holonomy_pi_over_2_units": 1,
+        "metric_radii_beta": "1/2",
+        "quotient_area": "sqrt(3)*pi**2/4",
+        "julia_z3_quotient_order_identity_verified": 1
+    },
+    "source_path": "system_v6/sims/ratchet_s1_single_shell_pilot_v0/ratchet_s1_single_shell_pilot_v0_julia.jl",
+    "exact_rows": {
+        "metric_radii": {
+            "alpha": "sqrt(3)/2",
+            "beta": "1/2"
+        },
+        "eta0": "pi/6",
+        "metric_phi_chi": [
+            [
+                "1",
+                "1/2"
+            ],
+            [
+                "1/2",
+                "1"
+            ]
+        ],
+        "path_specificity": {
+            "branch_mortality": "quotient-first branch kills the non-Z4-saturated alpha window as a coherent quotient constraint",
+            "not_numeric_order_gap_family": true,
+            "claim_kind": "quotient_well_definedness_equivariance_failure",
+            "membership_in_window": [
+                true,
+                true,
+                false,
+                false
+            ],
+            "is_Z4_saturated": false,
+            "witness_orbit_under_Z4": [
+                "pi/4",
+                "3*pi/4",
+                "5*pi/4",
+                "7*pi/4"
+            ]
+        },
+        "fundamental_cycle_holonomies": {
+            "phi_cycle_delta_2pi_0": "2*pi",
+            "chi_cycle_delta_0_2pi": "pi",
+            "beta_cycle_delta_pi_neg_pi": "pi/2",
+            "alpha_cycle_delta_pi_pi": "3*pi/2"
+        },
+        "quotient_area": "sqrt(3)*pi**2/4",
+        "connection_pullback": {
+            "dchi": "1/2",
+            "dphi": "1"
+        },
+        "quotient_holonomy_identity": {
+            "h_full_global_pi_over_2_units": 4,
+            "h_Z4_global_pi_over_2_units": 1,
+            "identity": "4 * h_Z4_global = h_full_global"
+        },
+        "t_eta0_physical_area": "sqrt(3)*pi**2"
+    },
+    "schema_version": "ratchet_s1_single_shell_pilot_v0_julia_result_v1"
+}

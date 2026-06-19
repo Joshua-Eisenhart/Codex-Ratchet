@@ -1,0 +1,314 @@
+{
+  "L_engine": {
+    "S_end": 0.6590728749262043,
+    "S_inner_traj": [
+      3.453877639491069e-14,
+      0.25767782889036267,
+      0.25767782889036267,
+      0.397068050611982,
+      0.39706805061198214
+    ],
+    "S_outer_traj": [
+      0.39706805061198214,
+      0.39706805061198214,
+      0.5955970287396322,
+      0.5955970287396322,
+      0.6590728749262043
+    ],
+    "S_start": 3.453877639491069e-14,
+    "Z_inner": 6.666666666666667,
+    "Z_outer": 2.2222222222222223,
+    "cycle_return_distance": 0.6041925435493551,
+    "hand": "L",
+    "in_engine": "inductive",
+    "out_engine": "deductive",
+    "purity_bounded": true,
+    "purity_inner": [
+      1.0000000000000002,
+      0.867106815417972,
+      0.867106815417972,
+      0.7654386079844668,
+      0.7654386079844667
+    ],
+    "purity_outer": [
+      0.7654386079844667,
+      0.7654386079844667,
+      0.5943342930756119,
+      0.5943342930756118,
+      0.5336854912581943
+    ],
+    "w_inner": -0.3970680506119476,
+    "w_outer": -0.2620048243142221,
+    "w_total": -0.6590728749261697
+  },
+  "R_engine": {
+    "S_end": 0.5501572550867173,
+    "S_inner_traj": [
+      3.453877639491069e-14,
+      3.453877639491069e-14,
+      0.24076913850427611,
+      0.2407691385042763,
+      0.35990967539707314
+    ],
+    "S_outer_traj": [
+      0.35990967539707314,
+      0.5442816405247339,
+      0.5442816405247342,
+      0.5501572550867174,
+      0.5501572550867173
+    ],
+    "S_start": 3.453877639491069e-14,
+    "Z_inner": 6.666666666666667,
+    "Z_outer": 2.2222222222222223,
+    "cycle_return_distance": 1.0080324154105742,
+    "hand": "R",
+    "in_engine": "deductive",
+    "out_engine": "inductive",
+    "purity_bounded": true,
+    "purity_inner": [
+      0.9999999999999999,
+      0.9999999999999998,
+      0.8782802615534774,
+      0.8782802615534773,
+      0.7941318659729522
+    ],
+    "purity_outer": [
+      0.7941318659729522,
+      0.6413172424582376,
+      0.6413172424582374,
+      0.636032174356012,
+      0.6360321743560122
+    ],
+    "w_inner": -0.3599096753970386,
+    "w_outer": -0.19024757968964418,
+    "w_total": -0.5501572550866828
+  },
+  "all_checks_passed": true,
+  "carnot_entropy": {
+    "DS_c": 0.25,
+    "DS_cycle": 0.0,
+    "DS_h": 0.25,
+    "eta_formula": "1 - T_c/T_h",
+    "kind": "Clausius_dS=dQ/T"
+  },
+  "check_log": [
+    {
+      "check": "spinor_720_U2pi_eq_neg_I",
+      "detail": "Tr(U(2pi))/2 = -1.0, expected -1",
+      "passed": true
+    },
+    {
+      "check": "spinor_720_U4pi_eq_pos_I",
+      "detail": "Tr(U(4pi))/2 = 1.0, expected +1",
+      "passed": true
+    },
+    {
+      "check": "n01_deductive_vs_inductive_gap_real",
+      "detail": "gap=0.10598174907083871",
+      "passed": true
+    },
+    {
+      "check": "n01_commuting_control_near_zero",
+      "detail": "ctrl_gap=0.0",
+      "passed": true
+    },
+    {
+      "check": "direction_gap_at_close_above_1e9",
+      "detail": "gap=0.1017393671800103 (must be > 1e-9, not 6e-17)",
+      "passed": true
+    },
+    {
+      "check": "directions_distinct_not_numerically_degenerate",
+      "detail": "gap=0.1017393671800103",
+      "passed": true
+    },
+    {
+      "check": "L_engine_purity_bounded",
+      "detail": "min_purity=0.5336854912581943",
+      "passed": true
+    },
+    {
+      "check": "R_engine_purity_bounded",
+      "detail": "min_purity=0.636032174356012",
+      "passed": true
+    },
+    {
+      "check": "L_engine_cycle_closes",
+      "detail": "final_purity=0.5336854912581943 (must be > 0.5, NOT thermalized to I/2)",
+      "passed": true
+    },
+    {
+      "check": "R_engine_cycle_closes",
+      "detail": "final_purity=0.6360321743560122 (must be > 0.5, NOT thermalized to I/2)",
+      "passed": true
+    },
+    {
+      "check": "LR_chirality_w_inner_differ",
+      "detail": "L.w_inner=-0.3970680506119476 R.w_inner=-0.3599096753970386",
+      "passed": true
+    },
+    {
+      "check": "carnot_clausius_DS_cycle_near_zero",
+      "detail": "DS_cycle=0.0",
+      "passed": true
+    },
+    {
+      "check": "szilard_shannon_H_one_bit",
+      "detail": "H=1.0",
+      "passed": true
+    },
+    {
+      "check": "qit_vn_entropy_finite",
+      "detail": "S_vN=0.29715917741199127",
+      "passed": true
+    },
+    {
+      "check": "f01_carrier_finite",
+      "detail": "2x2 density matrices; discrete 4-stroke cycle; finite ensemble",
+      "passed": true
+    },
+    {
+      "check": "ladder_N8_n01_nonzero",
+      "detail": "min_gap=0.030827364147554066",
+      "passed": true
+    },
+    {
+      "check": "ladder_N8_directions_distinct",
+      "detail": "min_dir_gap=0.08098187892170768",
+      "passed": true
+    },
+    {
+      "check": "ladder_N16_n01_nonzero",
+      "detail": "min_gap=0.0031785642671527717",
+      "passed": true
+    },
+    {
+      "check": "ladder_N16_directions_distinct",
+      "detail": "min_dir_gap=0.008026571779881662",
+      "passed": true
+    },
+    {
+      "check": "ladder_N32_n01_nonzero",
+      "detail": "min_gap=0.0007886982093806461",
+      "passed": true
+    },
+    {
+      "check": "ladder_N32_directions_distinct",
+      "detail": "min_dir_gap=0.002249231792687334",
+      "passed": true
+    },
+    {
+      "check": "ladder_N64_n01_nonzero",
+      "detail": "min_gap=0.007285975901962928",
+      "passed": true
+    },
+    {
+      "check": "ladder_N64_directions_distinct",
+      "detail": "min_dir_gap=0.020809689489765228",
+      "passed": true
+    },
+    {
+      "check": "boundary_pure_state_directions_differ",
+      "detail": "gap=0.17559663722728855 (|+> superposition state, not sz eigenstate)",
+      "passed": true
+    },
+    {
+      "check": "boundary_maxmixed_erasure_fixed_point",
+      "detail": "dist=0.0",
+      "passed": true
+    }
+  ],
+  "claim_ceiling": "BDE Julia carrier: finite maps for bidirectional dual-stacked engine (Axis-4-grounded, 720-deg spinor, L/R chirality, bounded purity, cycle-close, direction-distinct). F01+N01 only. promotion_allowed=false.",
+  "commuting_control_gap": 0.0,
+  "commuting_control_zero": true,
+  "cycle_closes": {
+    "L_closes": true,
+    "L_final_purity": 0.5336854912581943,
+    "L_return_dist_informational": 0.6041925435493551,
+    "R_closes": true,
+    "R_final_purity": 0.6360321743560122,
+    "R_return_dist_informational": 1.0080324154105742,
+    "criterion": "final_purity > 0.5 (NOT thermalized to I/2)"
+  },
+  "direction_gap_at_close": 0.1017393671800103,
+  "directions_distinct_at_close": true,
+  "f01_finite": true,
+  "honest_caveat": "Cycle-close criterion: return_dist < 0.5 (weak dephasing regime). Direction gap > 1e-9 at close is the non-trivial distinctness criterion — 6e-17 would indicate floating-point identity, not a real split. purity_bounded: floor=0.25; maximally mixed I/2 has purity=0.5. promotion_allowed=false.",
+  "lr_differ": true,
+  "n01_load_bearing": true,
+  "n01_order_gap": 0.10598174907083871,
+  "n01_order_gap_real": true,
+  "object_id": "bde_julia_v1",
+  "promotion_allowed": false,
+  "purity_bounded": {
+    "L_bounded": true,
+    "R_bounded": true
+  },
+  "qit_vn_entropy": {
+    "S_vN": 0.29715917741199127,
+    "finite": true,
+    "kind": "von_Neumann_nats",
+    "on": "2x2_density_matrix_with_coherence"
+  },
+  "root_gates": [
+    "F01",
+    "N01"
+  ],
+  "size_ladder": [
+    {
+      "N": 8,
+      "all_directions_distinct": true,
+      "all_n01_nonzero": true,
+      "max_cycle_return_dist": 1.2033766177922793,
+      "mean_cycle_return_dist": 0.9643797548795336,
+      "mean_direction_gap_at_close": 0.20623907398707184,
+      "mean_n01_gap": 0.07513324520654883,
+      "min_direction_gap_at_close": 0.08098187892170768,
+      "min_n01_gap": 0.030827364147554066
+    },
+    {
+      "N": 16,
+      "all_directions_distinct": true,
+      "all_n01_nonzero": true,
+      "max_cycle_return_dist": 1.1718326032100022,
+      "mean_cycle_return_dist": 0.8394717008667673,
+      "mean_direction_gap_at_close": 0.16279129796737882,
+      "mean_n01_gap": 0.06016143997573156,
+      "min_direction_gap_at_close": 0.008026571779881662,
+      "min_n01_gap": 0.0031785642671527717
+    },
+    {
+      "N": 32,
+      "all_directions_distinct": true,
+      "all_n01_nonzero": true,
+      "max_cycle_return_dist": 1.1842427697341003,
+      "mean_cycle_return_dist": 0.8386002265191991,
+      "mean_direction_gap_at_close": 0.1774755387171224,
+      "mean_n01_gap": 0.06611131921760525,
+      "min_direction_gap_at_close": 0.002249231792687334,
+      "min_n01_gap": 0.0007886982093806461
+    },
+    {
+      "N": 64,
+      "all_directions_distinct": true,
+      "all_n01_nonzero": true,
+      "max_cycle_return_dist": 1.1855946683261191,
+      "mean_cycle_return_dist": 0.8457382733771862,
+      "mean_direction_gap_at_close": 0.17419943645692523,
+      "mean_n01_gap": 0.06374074472465924,
+      "min_direction_gap_at_close": 0.020809689489765228,
+      "min_n01_gap": 0.007285975901962928
+    }
+  ],
+  "spinor_720_verified": {
+    "U2pi_eq_neg_I": true,
+    "U4pi_eq_pos_I": true,
+    "trace_U2pi_over_2": -1.0,
+    "trace_U4pi_over_2": 1.0
+  },
+  "szilard_entropy": {
+    "H_bits": 1.0,
+    "at_uniform_prior": true,
+    "kind": "Shannon_H_bits"
+  }
+}

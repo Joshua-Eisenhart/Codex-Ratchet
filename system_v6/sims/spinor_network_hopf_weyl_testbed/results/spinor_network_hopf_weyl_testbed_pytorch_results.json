@@ -1,0 +1,705 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "e3nn": "supportive",
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "kingdon": "load_bearing",
+    "python_stdlib": "supportive",
+    "sympy": "load_bearing",
+    "toponetx": "load_bearing",
+    "torch": "supportive",
+    "torch_geometric": "load_bearing",
+    "xgi": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "GUDHI": {
+      "reason": "load-bearing persistence readout on the coupling-weighted graph filtration",
+      "tried": true,
+      "used": true
+    },
+    "TopoNetX": {
+      "reason": "load-bearing simplicial boundary check for the added 3-way relation",
+      "tried": true,
+      "used": true
+    },
+    "XGI": {
+      "reason": "load-bearing hypergraph carrier for the added relation on nodes 0,2,4",
+      "tried": true,
+      "used": true
+    },
+    "e3nn": {
+      "reason": "supportive SO(3) API self-comparison retained as a demoted residual; the load-bearing control is the explicit wrong-transform failure",
+      "tried": true,
+      "used": true
+    },
+    "geomstats": {
+      "reason": "load-bearing Hypersphere metric distances between pinned node Bloch states",
+      "tried": true,
+      "used": true
+    },
+    "kingdon": {
+      "reason": "load-bearing geometric algebra product check for edge-product anticommutation",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive result serialization, path handling, timestamps, and hashes",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact commutator identity for one scheduled noncommuting pair",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive complex tensor runtime for local Hopf/Weyl density schedule arithmetic",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing MessagePassing API carries quaternion edge updates on the pinned graph",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch_geometric",
+    "kingdon",
+    "geomstats",
+    "sympy",
+    "gudhi",
+    "toponetx",
+    "xgi"
+  ],
+  "all_pass": true,
+  "ceiling_note": "tool-testbed + dual-stack flow diagnostic; no M(C), bridge, Axis0, engine admission, or canonical claim.",
+  "claim_path_tools": [
+    "torch_geometric",
+    "kingdon",
+    "geomstats",
+    "sympy",
+    "gudhi",
+    "toponetx",
+    "xgi"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_only_tools": [],
+  "controls": {
+    "base_loop_density_visible": true,
+    "classical_so3_has_no_spinor_sign_defect": true,
+    "density_only_return_blind": true,
+    "dual_stack_two_step_equals_collapsed_phase": true,
+    "fiber_density_stationary": true,
+    "geomstats_distances_nonzero": true,
+    "kingdon_anticommutator_zero": true,
+    "network_state_coherent_information_finite": true,
+    "pyg_noncomm_gap_positive": true,
+    "pyg_swapped_order_negative_control_gap_positive": true,
+    "same_axis_commuting_control_zero": true,
+    "sign_erasure_kills_chirality": true,
+    "so3_wrong_transform_negative_control_fails": true,
+    "sympy_commutator_identity": true,
+    "topology_label_shuffle_control_changes_features": true
+  },
+  "crossover_proofs": {},
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T07:36:27Z",
+  "object_id": "spinor_network_hopf_weyl_testbed",
+  "packages_used": [
+    "torch",
+    "torch_geometric",
+    "kingdon",
+    "e3nn",
+    "geomstats",
+    "sympy",
+    "gudhi",
+    "toponetx",
+    "xgi"
+  ],
+  "pin_sha256": "a411f0b9aff06c40e1135fe16bea635ab3d14b29b99911fb8677881127d631e9",
+  "pin_spec": "N=6 nodes; graph = hexagon edges (i,i+1 mod 6) + chord (0,3); node Hopf coords eta_i = pi/8 + i*pi/20, phi_i = 0.3i, chi_i = 0.2i; psi_L/psi_R per scaffold 1.1 with H_0 = (sigma_x+sigma_y+sigma_z)/sqrt(3), H_L=+H_0, H_R=-H_0; hexagon edges carry quaternion unit couplings (cycle i,j,k); chord carries octonion pair (e1,e2) as nonassoc witness; operator params q1=q2=0.3, theta=phi=pi/2; terrain finite-time Phi=expm(0.4*X) using the EXACT terrain laws (scaffold 4.1/4.2); SCHEDULE = one dual-stacked cycle: Type-1 deductive outer (stage tokens TiSe UP, NeTi DOWN, NiFe DOWN, FeSi UP) then Type-2 inductive outer (FiSe UP, TeSi UP, NiTe DOWN, NeFi DOWN); UP=operator-first Phi_T(O(rho)), DOWN=terrain-first O(Phi_T(rho)).",
+  "promotion_allowed": false,
+  "readouts": {
+    "chirality": {
+      "nodes": [
+        {
+          "chirality_gap": 1.6329931618554523,
+          "node": 0,
+          "sign_erasure_control_gap": 0.0
+        },
+        {
+          "chirality_gap": 1.07120133760744,
+          "node": 1,
+          "sign_erasure_control_gap": 0.0
+        },
+        {
+          "chirality_gap": 0.15708466639199015,
+          "node": 2,
+          "sign_erasure_control_gap": 0.0
+        },
+        {
+          "chirality_gap": -0.8303475520068633,
+          "node": 3,
+          "sign_erasure_control_gap": 0.0
+        },
+        {
+          "chirality_gap": -1.5826718943117708,
+          "node": 4,
+          "sign_erasure_control_gap": 0.0
+        },
+        {
+          "chirality_gap": -1.898717290181906,
+          "node": 5,
+          "sign_erasure_control_gap": 0.0
+        }
+      ]
+    },
+    "coherent_information": {
+      "I_c": -2.6439892404490655,
+      "S_AB": 5.461669388384243,
+      "S_B": 2.817680147935177,
+      "bond_angle_from_carrier_phi_chi": 0.525,
+      "chord": [
+        0,
+        3
+      ],
+      "construction": "six_node_schedule_evolved_density_with_quaternion_i_sigma_xx_chord_bond",
+      "cut_A_nodes": [
+        0,
+        1,
+        2
+      ],
+      "cut_B_nodes": [
+        3,
+        4,
+        5
+      ]
+    },
+    "dual_stack_720_flow": {
+      "computed_defect_arrays": {
+        "classical_so3_vector_dual_stack_defects": [
+          3.6541395340912367e-16,
+          2.0770370905276122e-16,
+          1.6653345369377348e-16,
+          1.4087150935148696e-15,
+          5.551115123125783e-17,
+          2.9893669801409083e-16
+        ],
+        "classical_so3_vector_single_loop_defects": [
+          4.000011936854919e-16,
+          1.6653345369377348e-16,
+          1.9229626863835638e-16,
+          1.4988010832439613e-15,
+          6.546139416680338e-17,
+          4.1540741810552243e-16
+        ],
+        "density_dual_stack_return_defects": [
+          3.664665459818128e-16,
+          2.0770370905276124e-16,
+          2.0770370905276124e-16,
+          1.4087150935148698e-15,
+          5.551115123125783e-17,
+          2.9893669801409088e-16
+        ],
+        "density_single_loop_return_defects": [
+          3.9320268450957215e-16,
+          1.6653345369377348e-16,
+          2.2887833992611187e-16,
+          1.4791404317453768e-15,
+          6.546139416680338e-17,
+          4.2367047432750185e-16
+        ]
+      },
+      "honesty_note": "Pinned Hopf geometry was measured directly; no parameter was tuned to force -1/+1 spinor return.",
+      "nodes": [
+        {
+          "classical_so3_vector_dual_stack_defect": 3.6541395340912367e-16,
+          "classical_so3_vector_single_loop_defect": 4.000011936854919e-16,
+          "density_dual_stack_return_defect": 3.664665459818128e-16,
+          "density_single_loop_return_defect": 3.9320268450957215e-16,
+          "dual_stack_component_phase_shifts_rad": [
+            1.8403023690212204,
+            1.8403023690212204
+          ],
+          "dual_stack_spinor_return_defect": 1.5913864031349618,
+          "node": 0,
+          "single_loop_component_phase_shifts_rad": [
+            1.8403023690212204,
+            1.8403023690212204
+          ],
+          "single_loop_spinor_return_defect": 1.5913864031349618
+        },
+        {
+          "classical_so3_vector_dual_stack_defect": 2.0770370905276122e-16,
+          "classical_so3_vector_single_loop_defect": 1.6653345369377348e-16,
+          "density_dual_stack_return_defect": 2.0770370905276124e-16,
+          "density_single_loop_return_defect": 1.6653345369377348e-16,
+          "dual_stack_component_phase_shifts_rad": [
+            -2.8525064375626386,
+            -2.8525064375626386
+          ],
+          "dual_stack_spinor_return_defect": 1.9791436400470244,
+          "node": 1,
+          "single_loop_component_phase_shifts_rad": [
+            -2.8525064375626386,
+            -2.8525064375626386
+          ],
+          "single_loop_spinor_return_defect": 1.9791436400470244
+        },
+        {
+          "classical_so3_vector_dual_stack_defect": 1.6653345369377348e-16,
+          "classical_so3_vector_single_loop_defect": 1.9229626863835638e-16,
+          "density_dual_stack_return_defect": 2.0770370905276124e-16,
+          "density_single_loop_return_defect": 2.2887833992611187e-16,
+          "dual_stack_component_phase_shifts_rad": [
+            -0.9829067322772774,
+            -0.9829067322772774
+          ],
+          "dual_stack_spinor_return_defect": 0.9438154867486034,
+          "node": 2,
+          "single_loop_component_phase_shifts_rad": [
+            -0.9829067322772774,
+            -0.9829067322772774
+          ],
+          "single_loop_spinor_return_defect": 0.9438154867486034
+        },
+        {
+          "classical_so3_vector_dual_stack_defect": 1.4087150935148696e-15,
+          "classical_so3_vector_single_loop_defect": 1.4988010832439613e-15,
+          "density_dual_stack_return_defect": 1.4087150935148698e-15,
+          "density_single_loop_return_defect": 1.4791404317453768e-15,
+          "dual_stack_component_phase_shifts_rad": [
+            0.9829067322772769,
+            0.9829067322772769
+          ],
+          "dual_stack_spinor_return_defect": 0.9438154867486028,
+          "node": 3,
+          "single_loop_component_phase_shifts_rad": [
+            0.9829067322772769,
+            0.9829067322772769
+          ],
+          "single_loop_spinor_return_defect": 0.9438154867486028
+        },
+        {
+          "classical_so3_vector_dual_stack_defect": 5.551115123125783e-17,
+          "classical_so3_vector_single_loop_defect": 6.546139416680338e-17,
+          "density_dual_stack_return_defect": 5.551115123125783e-17,
+          "density_single_loop_return_defect": 6.546139416680338e-17,
+          "dual_stack_component_phase_shifts_rad": [
+            2.852506437562638,
+            2.852506437562638
+          ],
+          "dual_stack_spinor_return_defect": 1.9791436400470241,
+          "node": 4,
+          "single_loop_component_phase_shifts_rad": [
+            2.852506437562638,
+            2.852506437562638
+          ],
+          "single_loop_spinor_return_defect": 1.9791436400470241
+        },
+        {
+          "classical_so3_vector_dual_stack_defect": 2.9893669801409083e-16,
+          "classical_so3_vector_single_loop_defect": 4.1540741810552243e-16,
+          "density_dual_stack_return_defect": 2.9893669801409088e-16,
+          "density_single_loop_return_defect": 4.2367047432750185e-16,
+          "dual_stack_component_phase_shifts_rad": [
+            -1.8403023690212204,
+            -1.8403023690212204
+          ],
+          "dual_stack_spinor_return_defect": 1.5913864031349618,
+          "node": 5,
+          "single_loop_component_phase_shifts_rad": [
+            -1.8403023690212204,
+            -1.8403023690212204
+          ],
+          "single_loop_spinor_return_defect": 1.5913864031349618
+        }
+      ],
+      "two_step_vs_collapsed_phase_check": {
+        "base_then_fiber_to_collapsed_spinor_norm": 4.847302891456678e-16,
+        "collapsed_formula": "exp(-i*2*pi*cos(2*eta_i))*psi_i",
+        "node": 0,
+        "passed": true,
+        "transport": "base_then_fiber"
+      }
+    },
+    "geomstats_hypersphere_distances": {
+      "edge_distance_max": 2.3575624575645806,
+      "edge_distance_mean": 0.881695775999036,
+      "edge_distance_min": 0.44798428019185177
+    },
+    "kingdon_ga_products": {
+      "anticommutator_norm": 0.0,
+      "e1e2": "1 \ud835\udc1e\u2081\u2082",
+      "e2e1": "-1 \ud835\udc1e\u2081\u2082",
+      "genuinely_on_carrier": "yes"
+    },
+    "loop_geometry": {
+      "nodes": [
+        {
+          "base_bloch_traversal_length": 8.885765876316732,
+          "fiber_density_stationarity_residual": 2.394121170875332e-32,
+          "node": 0
+        },
+        {
+          "base_bloch_traversal_length": 11.196718202763012,
+          "fiber_density_stationarity_residual": 3.387999773988765e-16,
+          "node": 1
+        },
+        {
+          "base_bloch_traversal_length": 12.411657739399914,
+          "fiber_density_stationarity_residual": 7.631521572941402e-16,
+          "node": 2
+        },
+        {
+          "base_bloch_traversal_length": 12.411657739399914,
+          "fiber_density_stationarity_residual": 1.002279930454752e-15,
+          "node": 3
+        },
+        {
+          "base_bloch_traversal_length": 11.196718202763012,
+          "fiber_density_stationarity_residual": 4.074643521442485e-16,
+          "node": 4
+        },
+        {
+          "base_bloch_traversal_length": 8.885765876316732,
+          "fiber_density_stationarity_residual": 0.0,
+          "node": 5
+        }
+      ]
+    },
+    "pyg_quaternion_message": {
+      "commuting_edge_control_gap": 0.0,
+      "message_norm": 3.833327581578515,
+      "noncommutative_message_gap": 2.0,
+      "swapped_order_control": "original i-then-j propagation vs negative-control j-then-i propagation on path 0->1->2",
+      "swapped_order_second_propagation_gap": 2.0
+    },
+    "schedule": {
+      "commuting_control_gap_mean": {
+        "commuting_control_gap_mean_FeSi": 1.9081958235744878e-17,
+        "commuting_control_gap_mean_FiSe": 2.394298915373042e-16,
+        "commuting_control_gap_mean_NeFi": 2.0415576187911945e-16,
+        "commuting_control_gap_mean_NeTi": 2.103813674715622e-17,
+        "commuting_control_gap_mean_NiFe": 3.7662472248198567e-17,
+        "commuting_control_gap_mean_NiTe": 4.220284134020009e-17,
+        "commuting_control_gap_mean_TeSi": 7.139963823152523e-17,
+        "commuting_control_gap_mean_TiSe": 1.5258942153797924e-17
+      },
+      "order_gap_mean": {
+        "order_gap_mean_FeSi": 0.3950134509641512,
+        "order_gap_mean_FiSe": 0.057635730404066825,
+        "order_gap_mean_NeFi": 0.18780355790093406,
+        "order_gap_mean_NeTi": 0.09301021615670481,
+        "order_gap_mean_NiFe": 0.04056406619805256,
+        "order_gap_mean_NiTe": 0.10212135459983596,
+        "order_gap_mean_TeSi": 0.10538539513457677,
+        "order_gap_mean_TiSe": 0.012436858063778458
+      },
+      "stage_density_delta_mean": {
+        "stage_density_delta_mean_FeSi": 0.5744570189954822,
+        "stage_density_delta_mean_FiSe": 0.9884160988880644,
+        "stage_density_delta_mean_NeFi": 0.40029067251594413,
+        "stage_density_delta_mean_NeTi": 0.31527309800515413,
+        "stage_density_delta_mean_NiFe": 0.45520409328096517,
+        "stage_density_delta_mean_NiTe": 0.3506258547574241,
+        "stage_density_delta_mean_TeSi": 0.5194079768186025,
+        "stage_density_delta_mean_TiSe": 0.44730555724482374
+      }
+    },
+    "so3_equivariance": {
+      "api_self_comparison_residual": 0.0,
+      "self_comparison_load_bearing": false,
+      "self_comparison_residual": 0.0,
+      "wrong_transform_negative_control": {
+        "fails_above_tolerance": true,
+        "residual": 1.975166096313398,
+        "transform": "axis_swapped_columns_0_1"
+      }
+    },
+    "symbolic_identity": {
+      "identity": "[sigma_x,sigma_z] = -2i sigma_y",
+      "residual_zero": true
+    },
+    "terrain_law_conventions": {
+      "Ni_Pit": {
+        "jump_operator": "sigma_minus",
+        "matrix_symbol": "SM",
+        "sheet": "L"
+      },
+      "Ni_Source": {
+        "jump_operator": "sigma_plus",
+        "matrix_symbol": "SP",
+        "sheet": "R"
+      }
+    },
+    "topology": {
+      "betti_numbers": [
+        1,
+        4
+      ],
+      "intended_hypergraph_xgi_no_closure": {
+        "closure_injected_edges": [],
+        "object_name": "XGI hypergraph hexagon+chord+[0,2,4] without simplicial closure injection",
+        "pairwise_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "pairwise_skeleton_beta1": 2,
+        "three_way_relations": [
+          [
+            0,
+            2,
+            4
+          ]
+        ],
+        "xgi_num_edges": 8
+      },
+      "label_shuffle_control_changed": true,
+      "reported_object": "simplicial closure of hexagon+chord+[0,2,4]",
+      "simplicial_closure_complex": {
+        "betti_numbers": [
+          1,
+          4
+        ],
+        "closure_injected_edges": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "edge_count": 10,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "euler_characteristic": -3,
+        "object_name": "simplicial closure of hexagon+chord+[0,2,4]",
+        "two_simplex": [
+          0,
+          2,
+          4
+        ],
+        "vertices": 6
+      },
+      "toponetx_boundary_nnz_rank2": 3,
+      "xgi_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ]
+      ]
+    },
+    "two_site_chord_ansatz_entropy": {
+      "chord": [
+        0,
+        3
+      ],
+      "probability_11": 0.3454915028125263,
+      "torch_formula_entropy": 0.9299770054431931
+    }
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/spinor_network_hopf_weyl_testbed/results/spinor_network_hopf_weyl_testbed_pytorch_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_scalars": {
+    "base_bloch_traversal_length_mean": 10.831380606159888,
+    "base_bloch_traversal_length_min": 8.885765876316732,
+    "chirality_gap_abs_mean": 1.1955026503925705,
+    "chirality_gap_mean": -0.24174292844094292,
+    "classical_so3_vector_dual_stack_defect_max": 1.4087150935148696e-15,
+    "classical_so3_vector_single_loop_defect_max": 1.4988010832439613e-15,
+    "commuting_control_gap_mean_FeSi": 1.9081958235744878e-17,
+    "commuting_control_gap_mean_FiSe": 2.394298915373042e-16,
+    "commuting_control_gap_mean_NeFi": 2.0415576187911945e-16,
+    "commuting_control_gap_mean_NeTi": 2.103813674715622e-17,
+    "commuting_control_gap_mean_NiFe": 3.7662472248198567e-17,
+    "commuting_control_gap_mean_NiTe": 4.220284134020009e-17,
+    "commuting_control_gap_mean_TeSi": 7.139963823152523e-17,
+    "commuting_control_gap_mean_TiSe": 1.5258942153797924e-17,
+    "density_dual_stack_return_defect_max": 1.4087150935148698e-15,
+    "density_single_loop_return_defect_max": 1.4791404317453768e-15,
+    "dual_stack_two_step_collapsed_phase_error_node0": 4.847302891456678e-16,
+    "fiber_density_stationarity_residual_max": 1.002279930454752e-15,
+    "fiber_density_stationarity_residual_mean": 4.1861606954866956e-16,
+    "intended_hypergraph_pairwise_skeleton_betti1": 2.0,
+    "intended_hypergraph_three_way_relation_count": 1.0,
+    "label_shuffle_weight_delta": 0.8284271247461903,
+    "network_state_coherent_information_chord_cut": -2.6439892404490655,
+    "order_gap_mean_FeSi": 0.3950134509641512,
+    "order_gap_mean_FiSe": 0.057635730404066825,
+    "order_gap_mean_NeFi": 0.18780355790093406,
+    "order_gap_mean_NeTi": 0.09301021615670481,
+    "order_gap_mean_NiFe": 0.04056406619805256,
+    "order_gap_mean_NiTe": 0.10212135459983596,
+    "order_gap_mean_TeSi": 0.10538539513457677,
+    "order_gap_mean_TiSe": 0.012436858063778458,
+    "sign_erasure_control_gap_max": 0.0,
+    "simplicial_closure_edge_count": 10.0,
+    "so3_equivariance_residual": 0.0,
+    "so3_wrong_transform_negative_control_residual": 1.975166096313398,
+    "spinor_dual_stack_return_defect_mean": 1.5047818433101963,
+    "spinor_single_loop_return_defect_mean": 1.5047818433101963,
+    "stage_density_delta_mean_FeSi": 0.5744570189954822,
+    "stage_density_delta_mean_FiSe": 0.9884160988880644,
+    "stage_density_delta_mean_NeFi": 0.40029067251594413,
+    "stage_density_delta_mean_NeTi": 0.31527309800515413,
+    "stage_density_delta_mean_NiFe": 0.45520409328096517,
+    "stage_density_delta_mean_NiTe": 0.3506258547574241,
+    "stage_density_delta_mean_TeSi": 0.5194079768186025,
+    "stage_density_delta_mean_TiSe": 0.44730555724482374,
+    "topology_betti0": 1.0,
+    "topology_betti1": 4.0,
+    "topology_betti2": 0.0,
+    "toponetx_boundary_nnz_rank2": 3.0,
+    "two_site_chord_ansatz_entropy": 0.9299770054431931,
+    "xgi_hyperedge_count": 8.0
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v6/sims/spinor_network_hopf_weyl_testbed/spinor_network_hopf_weyl_testbed_pytorch.py",
+  "source_sha256": "9e2d333cd87fc4f84925e3f521c6e6534d4187d761487a05f884039d85aeba17",
+  "tool_exercise_map": {
+    "GUDHI": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",
+      "computed_what": "load-bearing persistence readout on the coupling-weighted graph filtration",
+      "genuinely_on_carrier": "yes"
+    },
+    "TopoNetX": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
+      "computed_what": "load-bearing simplicial boundary check for the added 3-way relation",
+      "genuinely_on_carrier": "yes"
+    },
+    "XGI": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/xgi_capability_results.json",
+      "computed_what": "load-bearing hypergraph carrier for the added relation on nodes 0,2,4",
+      "genuinely_on_carrier": "yes"
+    },
+    "e3nn": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",
+      "computed_what": "supportive SO(3) API self-comparison retained as a demoted residual; the load-bearing control is the explicit wrong-transform failure",
+      "genuinely_on_carrier": "yes"
+    },
+    "geomstats": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/geomstats_capability_results.json",
+      "computed_what": "load-bearing Hypersphere metric distances between pinned node Bloch states",
+      "genuinely_on_carrier": "yes"
+    },
+    "kingdon": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/kingdon_capability_results.json",
+      "computed_what": "load-bearing geometric algebra product check for edge-product anticommutation",
+      "genuinely_on_carrier": "yes"
+    },
+    "sympy": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
+      "computed_what": "load-bearing exact commutator identity for one scheduled noncommuting pair",
+      "genuinely_on_carrier": "yes"
+    },
+    "torch_geometric": {
+      "capability_receipt_path": "system_v4/probes/a2_state/sim_results/sim_capability_pyg_isolated_results.json",
+      "computed_what": "load-bearing MessagePassing API carries quaternion edge updates on the pinned graph",
+      "genuinely_on_carrier": "yes"
+    }
+  }
+}

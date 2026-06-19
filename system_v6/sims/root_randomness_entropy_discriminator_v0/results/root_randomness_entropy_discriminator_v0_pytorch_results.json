@@ -1,0 +1,397 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "sympy": "load_bearing",
+    "torch": "supportive",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "independent computed count/order discriminator flags with UNSAT/SAT parity",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supporting finite computation",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supporting finite computation",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact finite entropy expression over pinned outcome probabilities",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "supportive probability tensor and entropy nats computation",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "jacrev confirms the normalized diagonal entropy boundary has zero scale derivative",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "computed count/order discriminator flags with UNSAT negated identity and SAT flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "root_layer_discriminator_only",
+  "claim_path_tools": [
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "bit_identical_guard": {
+      "geometry_not_bit_identical_to_baseline": true,
+      "hashes": {
+        "baseline_order_ledger": "f3897ec0affae46a17a1c0216f8f526eb32d9abb3f3d3f59a557314110dfec74",
+        "baseline_readout": "76c3876e19a17f959af50198a7315af40edbd0310e6d9a764e0fbc318738084e",
+        "geometry_first_readout": "8adc93f0f05afae1d4bceb00971061401cdf1a4e9fce6426d14aa7715de17a2f",
+        "geometry_order_ledger": "5eca607a8273159a87a5c9c803516e6f016a9a36ba6615b10b569efcb11abba3",
+        "label_shuffle_map": "b5314d5a15b1150be0c1819b31ea148eb3e6bd0db9a41f632a033646a373a217",
+        "label_shuffle_readout": "6c3778bfaeca2a039f4969c212f94892de1607225e92bdfeadd29422ed0e5f07",
+        "label_structured_readout": "53b88b40bc43781a2755eb21c59cf7587dd2a0c3ca3e8ca5cdc740c1ffa2d56d"
+      },
+      "label_shuffle_root_invariant_but_map_changed": true,
+      "label_structured_not_bit_identical_to_shuffle": true
+    },
+    "geometry_first_control": {
+      "geometry_entropy_bits": {
+        "base": "bits",
+        "counts": {
+          "ring_cell_0": 4,
+          "ring_cell_1": 4,
+          "ring_cell_2": 4,
+          "ring_cell_3": 4
+        },
+        "den": 1000000,
+        "float": 2.0,
+        "formula": "H=-sum_i p_i log(p_i)",
+        "num": 2000000
+      },
+      "geometry_rule": "index ring quotient idx mod 4 before entropy ladder",
+      "n01_style_order_test": "survived",
+      "order_changed": true,
+      "readout_hash": "8adc93f0f05afae1d4bceb00971061401cdf1a4e9fce6426d14aa7715de17a2f",
+      "root_rows_differ_from_randomness_first": true
+    },
+    "label_shuffle_control": {
+      "label_dependent_rows_changed": true,
+      "label_map_hash_changed": true,
+      "nominalism_row_computed": true,
+      "readout_hash": "6c3778bfaeca2a039f4969c212f94892de1607225e92bdfeadd29422ed0e5f07",
+      "root_rows_invariant": true,
+      "shuffled_mutual_information_bits": 0.06027734752141378
+    },
+    "label_structured_control": {
+      "label_conditional_entropy_bits": 0.9885175931739851,
+      "label_mutual_information_bits": 0.9886994082884974,
+      "label_rows_distinguish": true,
+      "meaningful_label_rule": "first bit 1 -> compressed_order; first bit 0 -> expanded_disorder",
+      "readout_hash": "53b88b40bc43781a2755eb21c59cf7587dd2a0c3ca3e8ca5cdc740c1ffa2d56d",
+      "root_randomness_first_has_teeth": true,
+      "root_rows_alone_do_not_read_label_meaning": true,
+      "same_ensemble_counts": true
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "load_bearing": true,
+      "perturbed_control_verdict": "sat",
+      "perturbed_entry": "label_structured_distinguishes",
+      "proof_kind": "independent computed finite discriminator count/order flags",
+      "ran": true,
+      "raw_bound_values": {
+        "density_psd": 1,
+        "density_trace_one": 1,
+        "geometry_first_differs": 1,
+        "geometry_order_changed": 1,
+        "label_shuffle_map_changed": 1,
+        "label_shuffle_root_invariant": 1,
+        "label_structured_distinguishes": 1,
+        "outcome_support_count": 4,
+        "possibility_basis_count": 4,
+        "sample_count": 16
+      },
+      "solver": "cvc5",
+      "supportive": false,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "load_bearing": true,
+      "perturbed_control_verdict": "sat",
+      "perturbed_entry": "label_structured_distinguishes",
+      "proof_kind": "computed finite discriminator count/order flags; negated identity UNSAT and erased-control SAT",
+      "ran": true,
+      "raw_bound_values": {
+        "density_psd": 1,
+        "density_trace_one": 1,
+        "geometry_first_differs": 1,
+        "geometry_order_changed": 1,
+        "label_shuffle_map_changed": 1,
+        "label_shuffle_root_invariant": 1,
+        "label_structured_distinguishes": 1,
+        "outcome_support_count": 4,
+        "possibility_basis_count": 4,
+        "sample_count": 16
+      },
+      "solver": "z3",
+      "supportive": false,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "pytorch",
+  "engine_values": {
+    "counting_entropy_bits": 1.9772170014624826,
+    "geometry_entropy_bits": 2.0,
+    "label_structured_mi_bits": 0.9886994082884974,
+    "outcome_support_count": 4,
+    "sample_count": 16,
+    "smt_values_hash": "2cf36dd61a627976811b1c8a9e40d8a1900eb74f657858f56b2ad162025236c3",
+    "torch_numeric_receipt": {
+      "api": "torch.func.jacrev",
+      "entropy_nats": 1.3705023899189088,
+      "normalized_scale_derivative": -1.3877787807814457e-17,
+      "pass": true,
+      "probabilities_sum": 1.0,
+      "source_backed_smt_tokens": {
+        "cvc5_api": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat",
+        "sympy_api": "7/16",
+        "z3_api": "z3.Solver/z3.Int/solver.add/check"
+      },
+      "support_count": 4
+    },
+    "von_neumann_entropy_nats": 1.370502389918909
+  },
+  "finite_carrier": {
+    "carrier_hash": "e78f0d0eb70fbacc810b402a0d9fb76a1a333d15252ce4e87c0ecf35a3ef4f6a",
+    "outcome_alphabet": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
+    "outcome_counts": {
+      "00": 3,
+      "01": 4,
+      "10": 4,
+      "11": 5
+    },
+    "pinned_process": "python Random(1729) finite draw recorded as a fixed receipt vector",
+    "sample_count": 16,
+    "samples": [
+      "00",
+      "11",
+      "11",
+      "01",
+      "00",
+      "01",
+      "10",
+      "10",
+      "10",
+      "01",
+      "01",
+      "11",
+      "00",
+      "11",
+      "10",
+      "11"
+    ],
+    "seed": 1729
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T08:12:27Z",
+  "package_observables": {
+    "cvc5": "independent computed count/order discriminator flags with UNSAT/SAT parity",
+    "sympy": "exact finite entropy expression over pinned outcome probabilities",
+    "torch.func": "jacrev confirms the normalized diagonal entropy boundary has zero scale derivative",
+    "z3": "computed count/order discriminator flags with UNSAT negated identity and SAT flip"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy",
+    "z3",
+    "cvc5",
+    "json",
+    "pathlib"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/root_randomness_entropy_discriminator_v0/results/root_randomness_entropy_discriminator_v0_pytorch_results.json",
+  "root_randomness_first": {
+    "counting_entropy_bits": {
+      "base": "bits",
+      "counts": {
+        "00": 3,
+        "01": 4,
+        "10": 4,
+        "11": 5
+      },
+      "den": 1000000,
+      "float": 1.9772170014624826,
+      "formula": "H=-sum_i p_i log(p_i)",
+      "num": 1977217
+    },
+    "density_matrix": {
+      "basis": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "density_kind": "classical_diagonal_vn_proxy",
+      "diagonal_probabilities": [
+        {
+          "den": 16,
+          "float": 0.1875,
+          "num": 3,
+          "string": "3/16"
+        },
+        {
+          "den": 4,
+          "float": 0.25,
+          "num": 1,
+          "string": "1/4"
+        },
+        {
+          "den": 4,
+          "float": 0.25,
+          "num": 1,
+          "string": "1/4"
+        },
+        {
+          "den": 16,
+          "float": 0.3125,
+          "num": 5,
+          "string": "5/16"
+        }
+      ],
+      "eigenvalue_sum_one": true,
+      "hermitian": true,
+      "physical_claim": "none; finite diagonal count density only",
+      "psd": true,
+      "trace_one": true
+    },
+    "entropy_is_first_derived_structure": true,
+    "flow_direction_quotient": {
+      "counts": {
+        "negative_order_information": 13,
+        "positive_random_disorder": 3
+      },
+      "entropy_bits": {
+        "base": "bits",
+        "counts": {
+          "negative_order_information": 13,
+          "positive_random_disorder": 3
+        },
+        "den": 1000000,
+        "float": 0.6962122601251458,
+        "formula": "H=-sum_i p_i log(p_i)",
+        "num": 696212
+      },
+      "labels": [
+        "positive_random_disorder",
+        "negative_order_information"
+      ]
+    },
+    "label_readout_excluded_at_root": {
+      "compressed_order": 9,
+      "expanded_disorder": 7
+    },
+    "order": [
+      "pinned_random_ensemble",
+      "entropy_ladder",
+      "label_readout_excluded",
+      "geometry_readout_excluded"
+    ],
+    "outcome_counts": {
+      "00": 3,
+      "01": 4,
+      "10": 4,
+      "11": 5
+    },
+    "outcome_support_count": 4,
+    "possibility_index": {
+      "basis": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "basis_count": 4,
+      "no_branch_control": "basis_removed_control_has_no_entropy_ladder",
+      "sampled_support_count": 4
+    },
+    "typed_counting_vn_agree_on_diagonal_density": true,
+    "von_neumann_entropy_nats": {
+      "base": "nats",
+      "counts": {
+        "00": 3,
+        "01": 4,
+        "10": 4,
+        "11": 5
+      },
+      "den": 1000000,
+      "float": 1.370502389918909,
+      "formula": "H=-sum_i p_i log(p_i)",
+      "num": 1370502
+    }
+  },
+  "schema_version": "engine_leg_result_v1",
+  "sim_id": "root_randomness_entropy_discriminator_v0",
+  "source_path": "system_v6/sims/root_randomness_entropy_discriminator_v0/root_randomness_entropy_discriminator_v0_pytorch.py",
+  "source_sha256": "05e2c09b39eb3a775318abdbd92bd9ea27d42fa614098644993384d5ce475762",
+  "tool_calls": [
+    {
+      "boundary_case": "SMT binds count/order predicates only; entropy logs stay numeric/symbolic outside SMT",
+      "demotion_condition": "demote if raw_bound_values are absent or a flip is not SAT",
+      "gates": [
+        "smt_binds_computed_rows",
+        "controls_nonvacuous"
+      ],
+      "input_object": "computed finite discriminator flags",
+      "negative/erased_control": "label_structured_distinguishes flag erased to 0 remains SAT as a mutation",
+      "output_object": "UNSAT negated identity plus SAT erased-control flip",
+      "positive_case": "all computed finite flags are bound to solver variables",
+      "qualified_api/function": "z3.Solver/z3.Int/solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "combinatorial support only",
+      "demotion_condition": "demote if cvc5 disagrees with z3",
+      "gates": [
+        "smt_binds_computed_rows",
+        "controls_nonvacuous"
+      ],
+      "input_object": "computed finite discriminator flags",
+      "negative/erased_control": "same erased-control mutation remains SAT",
+      "output_object": "independent UNSAT/SAT parity with z3",
+      "positive_case": "cvc5 agrees with z3 on computed flags",
+      "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+      "tool": "cvc5"
+    }
+  ]
+}

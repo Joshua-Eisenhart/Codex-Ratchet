@@ -1,0 +1,566 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "supportive",
+    "owner finite carrier scripts": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia LinearAlgebra": "load-bearing for finite matrices, ranks, commutators, charge reconstruction, and parity scalars",
+    "canonical_qit_engine_specs.py mirror constants": "load-bearing source mirror for H0, Type1/Type2 sign, Lindblad/operator inventory, and 32-substage schedule checks",
+    "owner finite carrier scripts": "load-bearing source for R/C/H/O multiplication, octonion Fano table, G2 derivation dimension, and Clifford dimension witnesses"
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite representation witness",
+    "backend parity witness",
+    "control-firing diagnostic"
+  ],
+  "backend": "julia_float64",
+  "blocked_consumers": [
+    "physics_claims",
+    "SM_admission",
+    "M(C)_admission",
+    "Axis0",
+    "bridge",
+    "formal_admission"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_physics_axis_bridge": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_disallowed": {
+      "pass": true
+    },
+    "promotion_disallowed": {
+      "pass": true
+    }
+  },
+  "carrier_checks": {
+    "c_dim": 2,
+    "cl3_dim": 8,
+    "cl6_fermion_fock_dim": 8,
+    "cl6_real_dim": 64,
+    "der_o_dim": 14,
+    "h_dim": 4,
+    "h_i_j_minus_k_residual": 0.0,
+    "o_dim": 8,
+    "o_fano_e1_e2_minus_e3_residual": 0.0,
+    "octonion_complex_color_pairs": [
+      [
+        1,
+        6
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "octonion_stabilized_unit": "e7",
+    "quaternion_units": [
+      "i",
+      "j",
+      "k"
+    ],
+    "r_dim": 1
+  },
+  "charge_classes": {
+    "charged_lepton": [
+      -1.0
+    ],
+    "d_quark": [
+      -0.333333333333
+    ],
+    "lepton_color_counts": {
+      "e": 1,
+      "nu": 1
+    },
+    "neutrino": [
+      0.0
+    ],
+    "quark_color_counts": {
+      "d": 3,
+      "u": 3
+    },
+    "u_quark": [
+      0.666666666667
+    ]
+  },
+  "claim_ceiling": "Finite R x C x H x O / SM-gauge representation witness only; no physics, Standard Model validation, M(C), Axis0, bridge, basin, or formal-admission claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "dropping_H_loses_su2": true,
+    "dropping_O_loses_su3": true,
+    "erasing_hypercharge_breaks_electric_charge": true,
+    "wrong_color_structure_not_su3": true
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T03:44:50Z",
+  "graveyard_companions": {
+    "dropping_H_loses_su2": {
+      "pass": true
+    },
+    "dropping_O_loses_su3": {
+      "pass": true
+    },
+    "erasing_hypercharge_breaks_electric_charge": {
+      "pass": true
+    },
+    "wrong_color_structure_not_su3": {
+      "pass": true
+    }
+  },
+  "name": "mp_full_sm_gauge",
+  "nearby_variants": {
+    "passed": 4,
+    "total": 4,
+    "variant_names": [
+      "dropping_H_loses_su2",
+      "dropping_O_loses_su3",
+      "erasing_hypercharge_breaks_electric_charge",
+      "wrong_color_structure_not_su3"
+    ]
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp_full_sm_gauge",
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": "erased_hypercharge_charge_residual",
+    "missing_keys": [],
+    "parity_max_diff": 2.220446049250313e-16,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_full_sm_gauge_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 1.3630591484676346e-16,
+        "jax": 3.237375219639202e-16,
+        "julia": 1.8743160711715676e-16,
+        "key": "su3_closure_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "h_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "charge_quantization_residual"
+      },
+      {
+        "abs_diff": 1.3754070169514083e-16,
+        "jax": 3.178485809792401e-16,
+        "julia": 1.8030787928409926e-16,
+        "key": "su2_closure_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "qit_type_two_schedule_len"
+      },
+      {
+        "abs_diff": 2.220446049250313e-16,
+        "jax": 1.8257418583505538,
+        "julia": 1.8257418583505536,
+        "key": "erased_hypercharge_charge_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "der_o_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 12.0,
+        "julia": 12.0,
+        "key": "full_group_rank_sum"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "o_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 16.0,
+        "julia": 16.0,
+        "key": "state_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "su2_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "cl6_fermion_fock_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "wrong_color_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "su3_u1_commutator_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "cl6_real_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "su3_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 9.614813431917819e-17,
+        "julia": 9.614813431917819e-17,
+        "key": "charge_reconstruction_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "su2_u1_commutator_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "drop_h_su2_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "drop_o_su3_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "qit_type_one_schedule_len"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "qit_type_two_minus_h0_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "su3_su2_commutator_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "qit_substage_count_per_engine"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "u1_rank"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_full_sm_gauge_results.json",
+  "plain_sentence": "Finite witness: octonion color generators give su3 on quark triplets, quaternion weak generators give su2 on left doublets, and hypercharge reconstructs quantized electric charges on one generation.",
+  "positive": {
+    "octonion_su3_color_triplet_witness": {
+      "pass": true
+    },
+    "qit_engine_spec_readback": {
+      "pass": true
+    },
+    "quaternion_su2_weak_doublet_witness": {
+      "pass": true
+    },
+    "u1_hypercharge_charge_reconstruction": {
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "qit_spec_checks": {
+    "h0_trace_abs": 0.0,
+    "lindblad_count": 4,
+    "operator_generator_count": 4,
+    "qit_spec_ok": true,
+    "substage_count_per_engine": 32,
+    "type_one_h0_residual": 0.0,
+    "type_one_schedule_len": 8,
+    "type_two_minus_h0_residual": 0.0,
+    "type_two_schedule_len": 8
+  },
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_full_sm_gauge_julia_results.json",
+  "schema": "SCRATCH_DIAGNOSTIC_RESULT_v1",
+  "shared_booleans": {
+    "control.dropping_H_loses_su2": true,
+    "control.dropping_O_loses_su3": true,
+    "control.erasing_hypercharge_breaks_electric_charge": true,
+    "control.wrong_color_structure_not_su3": true,
+    "verdict.carrier_dependencies_ok": true,
+    "verdict.charge_quantization": true,
+    "verdict.charges_match": true,
+    "verdict.full_group": true,
+    "verdict.qit_spec_ok": true,
+    "verdict.su2": true,
+    "verdict.su3": true,
+    "verdict.u1": true
+  },
+  "shared_scalars": {
+    "charge_quantization_residual": 0.0,
+    "charge_reconstruction_residual": 9.614813431917819e-17,
+    "cl6_fermion_fock_dim": 8.0,
+    "cl6_real_dim": 64.0,
+    "der_o_dim": 14.0,
+    "drop_h_su2_rank": 0.0,
+    "drop_o_su3_rank": 0.0,
+    "erased_hypercharge_charge_residual": 1.8257418583505536,
+    "full_group_rank_sum": 12.0,
+    "h_dim": 4.0,
+    "o_dim": 8.0,
+    "qit_substage_count_per_engine": 32.0,
+    "qit_type_one_schedule_len": 8.0,
+    "qit_type_two_minus_h0_residual": 0.0,
+    "qit_type_two_schedule_len": 8.0,
+    "state_count": 16.0,
+    "su2_closure_residual": 1.8030787928409926e-16,
+    "su2_rank": 3.0,
+    "su2_u1_commutator_residual": 0.0,
+    "su3_closure_residual": 1.8743160711715676e-16,
+    "su3_rank": 8.0,
+    "su3_su2_commutator_residual": 0.0,
+    "su3_u1_commutator_residual": 0.0,
+    "u1_rank": 1.0,
+    "wrong_color_rank": 3.0
+  },
+  "sim_class": "finite_formal_scout",
+  "sim_execution_kind": "classical",
+  "source_dependencies": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_sedenion_break_prelim.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py"
+  ],
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_full_sm_gauge_julia.jl",
+  "states": [
+    {
+      "chirality": "L",
+      "color": 0,
+      "family": "u",
+      "name": "u_L_r",
+      "q": 0.6666666666666666,
+      "weak": 0,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": 0,
+      "family": "d",
+      "name": "d_L_r",
+      "q": -0.3333333333333333,
+      "weak": 1,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": 1,
+      "family": "u",
+      "name": "u_L_g",
+      "q": 0.6666666666666666,
+      "weak": 0,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": 1,
+      "family": "d",
+      "name": "d_L_g",
+      "q": -0.3333333333333333,
+      "weak": 1,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": 2,
+      "family": "u",
+      "name": "u_L_b",
+      "q": 0.6666666666666666,
+      "weak": 0,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": 2,
+      "family": "d",
+      "name": "d_L_b",
+      "q": -0.3333333333333333,
+      "weak": 1,
+      "y": 0.3333333333333333
+    },
+    {
+      "chirality": "L",
+      "color": -1,
+      "family": "nu",
+      "name": "nu_L",
+      "q": 0.0,
+      "weak": 0,
+      "y": -1.0
+    },
+    {
+      "chirality": "L",
+      "color": -1,
+      "family": "e",
+      "name": "e_L",
+      "q": -1.0,
+      "weak": 1,
+      "y": -1.0
+    },
+    {
+      "chirality": "R",
+      "color": 0,
+      "family": "u",
+      "name": "u_R_r",
+      "q": 0.6666666666666666,
+      "weak": -1,
+      "y": 1.3333333333333333
+    },
+    {
+      "chirality": "R",
+      "color": 0,
+      "family": "d",
+      "name": "d_R_r",
+      "q": -0.3333333333333333,
+      "weak": -1,
+      "y": -0.6666666666666666
+    },
+    {
+      "chirality": "R",
+      "color": 1,
+      "family": "u",
+      "name": "u_R_g",
+      "q": 0.6666666666666666,
+      "weak": -1,
+      "y": 1.3333333333333333
+    },
+    {
+      "chirality": "R",
+      "color": 1,
+      "family": "d",
+      "name": "d_R_g",
+      "q": -0.3333333333333333,
+      "weak": -1,
+      "y": -0.6666666666666666
+    },
+    {
+      "chirality": "R",
+      "color": 2,
+      "family": "u",
+      "name": "u_R_b",
+      "q": 0.6666666666666666,
+      "weak": -1,
+      "y": 1.3333333333333333
+    },
+    {
+      "chirality": "R",
+      "color": 2,
+      "family": "d",
+      "name": "d_R_b",
+      "q": -0.3333333333333333,
+      "weak": -1,
+      "y": -0.6666666666666666
+    },
+    {
+      "chirality": "R",
+      "color": -1,
+      "family": "nu",
+      "name": "nu_R",
+      "q": 0.0,
+      "weak": -1,
+      "y": 0.0
+    },
+    {
+      "chirality": "R",
+      "color": -1,
+      "family": "e",
+      "name": "e_R",
+      "q": -1.0,
+      "weak": -1,
+      "y": -2.0
+    }
+  ],
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "supportive",
+    "owner finite carrier scripts": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia LinearAlgebra": "load-bearing for finite matrices, ranks, commutators, charge reconstruction, and parity scalars",
+    "canonical_qit_engine_specs.py mirror constants": "load-bearing source mirror for H0, Type1/Type2 sign, Lindblad/operator inventory, and 32-substage schedule checks",
+    "owner finite carrier scripts": "load-bearing source for R/C/H/O multiplication, octonion Fano table, G2 derivation dimension, and Clifford dimension witnesses"
+  },
+  "tools": [
+    "Julia LinearAlgebra",
+    "owner finite carrier scripts",
+    "canonical_qit_engine_specs.py mirror constants"
+  ],
+  "verdicts": {
+    "carrier_dependencies_ok": true,
+    "charge_quantization": true,
+    "charges_match": true,
+    "full_group": true,
+    "qit_spec_ok": true,
+    "su2": true,
+    "su3": true,
+    "u1": true
+  },
+  "why_not_v4_probes": [
+    "finite witness only, no formal proof layer",
+    "one-generation representation check only, no dynamics or phenomenology",
+    "controls erase O/H/Y structure instead of proving source inevitability"
+  ]
+}

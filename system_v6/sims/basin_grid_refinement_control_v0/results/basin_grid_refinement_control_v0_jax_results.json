@@ -1,0 +1,3486 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax.scipy.linalg": "supportive",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent persistence identity proof",
+      "tried": true,
+      "used": true
+    },
+    "jax.scipy.linalg": {
+      "reason": "supportive terrain matrix exponentials",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "load-bearing SCC partitions on each grid control",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing symbolic continuous-closure row",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing persistence identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "analysis": {
+    "all_pass": true,
+    "analysis_signature_sha256": "5f803c35dfb37e294cc49edf622bc37c6b78a176fa988f0fb501a259d6fd0c8a",
+    "c1_answer": {
+      "closure": "C1 closes as discretization-scale structure, not invariant continuum basin geometry.",
+      "continuum_reading": "The continuous rotations-only closure is SO(3), so the ball has one recurrent class after radius erasure.",
+      "finite_grid_reading": "The 33-cell G1 classes are real terminal classes of the finite quantized transition system.",
+      "promotion_allowed": false
+    },
+    "crossover_proofs": {
+      "cvc5": {
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "proof_row": {
+          "asserted_precomputed_boolean": false,
+          "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+          "erased_flip": "last expected fate code is changed",
+          "partition_identity_inputs": [
+            {
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 0,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 1,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 2,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 0,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 1,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 2,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "control": "rotated_33_cell_density_grid",
+              "fate": "CHANGED"
+            },
+            {
+              "class": 0,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "MERGE"
+            },
+            {
+              "class": 1,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "MERGE"
+            },
+            {
+              "class": 2,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "PERSIST"
+            }
+          ]
+        },
+        "ran": true,
+        "verdict": "unsat"
+      },
+      "z3": {
+        "erased_flip_verdict": "sat",
+        "load_bearing": true,
+        "proof_row": {
+          "asserted_precomputed_boolean": false,
+          "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+          "erased_flip": "last expected fate code is changed",
+          "partition_identity_inputs": [
+            {
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 0,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 1,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 2,
+              "control": "2x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 0,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 1,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "class": 2,
+              "control": "3x_density_refined_grid",
+              "fate": "PERSIST"
+            },
+            {
+              "control": "rotated_33_cell_density_grid",
+              "fate": "CHANGED"
+            },
+            {
+              "class": 0,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "MERGE"
+            },
+            {
+              "class": 1,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "MERGE"
+            },
+            {
+              "class": 2,
+              "control": "rotated_33_cell_density_grid",
+              "fate": "PERSIST"
+            }
+          ]
+        },
+        "ran": true,
+        "verdict": "unsat"
+      }
+    },
+    "g1_generator_names": [
+      "R_x",
+      "R_z",
+      "Ne_Spiral_R",
+      "Ne_Vortex_L"
+    ],
+    "grid_declaration": {
+      "committed_cell_count": 33,
+      "refined_cell_counts": {
+        "2x": 66,
+        "3x": 99
+      },
+      "refinement_rule": "deterministic child cells inside each committed cell containment region; no dense carrier",
+      "rotated_grid": {
+        "angle_over_pi": "sqrt(2)-1",
+        "angle_radians": 1.3012902845685732,
+        "axis": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "cell_count": 33
+      }
+    },
+    "persistence_table": {
+      "anchor": {
+        "byte_exact": true,
+        "exact_rederived_partition_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "scc_count": 3,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        },
+        "exact_rederived_terminal_cells": [
+          [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10,
+            14,
+            18,
+            22,
+            23,
+            25,
+            29,
+            31,
+            32
+          ],
+          [
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            15,
+            17,
+            19,
+            20,
+            21,
+            24,
+            26,
+            27,
+            28,
+            30
+          ],
+          [
+            16
+          ]
+        ],
+        "exact_rederived_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d",
+        "local_partition_signature": {
+          "boundary_count": 0,
+          "class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "scc_count": 3,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        },
+        "local_terminal_cells": [
+          [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10,
+            14,
+            18,
+            22,
+            23,
+            25,
+            29,
+            31,
+            32
+          ],
+          [
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            15,
+            17,
+            19,
+            20,
+            21,
+            24,
+            26,
+            27,
+            28,
+            30
+          ],
+          [
+            16
+          ]
+        ],
+        "local_terminal_class_count": 3,
+        "parent_commit_hint": "ba1bfc4d1",
+        "parent_partition_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "scc_count": 3,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        },
+        "parent_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+        "parent_terminal_cells": [
+          [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10,
+            14,
+            18,
+            22,
+            23,
+            25,
+            29,
+            31,
+            32
+          ],
+          [
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            15,
+            17,
+            19,
+            20,
+            21,
+            24,
+            26,
+            27,
+            28,
+            30
+          ],
+          [
+            16
+          ]
+        ],
+        "parent_terminal_class_count": 3,
+        "parent_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d",
+        "state_count": 33
+      },
+      "axis_artifact_control": {
+        "base_axis_grid": {
+          "closed_under_G1": false,
+          "escaping_edge_count": 16,
+          "member_count": 9
+        },
+        "construction": "axis-snapped fake class: cells with world-coordinate z exactly 1/2",
+        "designed_fail_expected": true,
+        "dies_under_rotation": true,
+        "rotated_grid": {
+          "closed_under_G1": false,
+          "escaping_edge_count": 2,
+          "member_count": 1
+        }
+      },
+      "continuous_cross_check": {
+        "closure_reason": "R_x and R_z generate the cube rotation subgroup. The Ne rotations are about the non-axis (1,1,1) family with angle 1 radian; this is not one of the finite SO(3) subgroup angles. Conjugating that circle by the cube rotations supplies nonparallel axes whose Lie algebra spans so(3).",
+        "closure_result": "SO(3)",
+        "continuous_generator_family": "rotations only; offsets are zero for R_x/R_z/Ne_Spiral_R/Ne_Vortex_L",
+        "exact_invariant_decomposition_of_ball": "one recurrent orbit class per radius sphere, plus the fixed origin; with radius erased, the admitted ball is one continuum recurrent basin under SO(3) closure.",
+        "finite_vs_continuum_comparison": "the three 33-cell G1 terminal classes are finite quantization structure at the stated grid/time-step, while the continuous closure merges them by radius-shell recurrence.",
+        "generator_angle_rows": {
+          "Ne_Spiral_R": {
+            "angle_over_pi": 0.318309886184,
+            "angle_radians": 1.0,
+            "determinant_close_to_one": true,
+            "trace": 2.080604611736
+          },
+          "Ne_Vortex_L": {
+            "angle_over_pi": 0.318309886184,
+            "angle_radians": 1.0,
+            "determinant_close_to_one": true,
+            "trace": 2.080604611736
+          },
+          "R_x": {
+            "angle_over_pi": 0.5,
+            "angle_radians": 1.570796326795,
+            "determinant_close_to_one": true,
+            "trace": 1.0
+          },
+          "R_z": {
+            "angle_over_pi": 0.5,
+            "angle_radians": 1.570796326795,
+            "determinant_close_to_one": true,
+            "trace": 1.0
+          }
+        },
+        "h_time_step_role": "Ne terrain rotations enter as exp(hA) with h=1/2; the observed Ne rotation angle is 1 radian, not a grid angle.",
+        "predicts_one_recurrent_class_after_radius_erasure": true
+      },
+      "g0_dissipative_refined_control": [
+        {
+          "label": "G0_2x_density_refined_grid",
+          "partition_signature": {
+            "boundary_count": 5,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              61
+            ],
+            "scc_count": 6,
+            "state_count": 66,
+            "terminal_sizes": [
+              61
+            ]
+          },
+          "state_count": 66,
+          "stays_one_class": true,
+          "terminal_class_count": 1,
+          "terminal_class_sizes": [
+            61
+          ]
+        },
+        {
+          "label": "G0_3x_density_refined_grid",
+          "partition_signature": {
+            "boundary_count": 5,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              94
+            ],
+            "scc_count": 6,
+            "state_count": 99,
+            "terminal_sizes": [
+              94
+            ]
+          },
+          "state_count": 99,
+          "stays_one_class": true,
+          "terminal_class_count": 1,
+          "terminal_class_sizes": [
+            94
+          ]
+        }
+      ],
+      "refinement": [
+        {
+          "edge_count": 264,
+          "invariant_characterization": {
+            "0": {
+              "cells": [
+                0,
+                1,
+                2,
+                6,
+                7,
+                14,
+                18,
+                19,
+                20,
+                21,
+                28,
+                29,
+                36,
+                44,
+                45,
+                46,
+                47,
+                50,
+                51,
+                58,
+                59,
+                62,
+                64,
+                65
+              ],
+              "overlaps_committed_terminal_classes": {
+                "0": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ]
+              },
+              "parent_cell_ids": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "radius_squared_values": [
+                0.57421875,
+                0.57544375,
+                0.765625,
+                0.76685
+              ]
+            },
+            "2": {
+              "cells": [
+                4,
+                5,
+                8,
+                9,
+                10,
+                11,
+                12,
+                16,
+                17,
+                22,
+                24,
+                25,
+                26,
+                30,
+                31,
+                34,
+                35,
+                38,
+                39,
+                40,
+                41,
+                42,
+                48,
+                52,
+                54,
+                55,
+                56,
+                60
+              ],
+              "overlaps_committed_terminal_classes": {
+                "1": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ]
+              },
+              "parent_cell_ids": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "radius_squared_values": [
+                0.19140625,
+                0.19263125,
+                0.3828125,
+                0.3840375
+              ]
+            },
+            "6": {
+              "cells": [
+                32
+              ],
+              "overlaps_committed_terminal_classes": {
+                "2": [
+                  16
+                ]
+              },
+              "parent_cell_ids": [
+                16
+              ],
+              "radius_squared_values": [
+                0.0
+              ]
+            }
+          },
+          "label": "2x_density_refined_grid",
+          "partition_signature": {
+            "boundary_count": 13,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2,
+              2,
+              24,
+              28
+            ],
+            "scc_count": 14,
+            "state_count": 66,
+            "terminal_sizes": [
+              1,
+              24,
+              28
+            ]
+          },
+          "persistence": {
+            "committed_class_fates": {
+              "0": {
+                "committed_terminal_cells": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ],
+                "committed_terminal_class_id": 0,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  0
+                ]
+              },
+              "1": {
+                "committed_terminal_cells": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ],
+                "committed_terminal_class_id": 1,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  2
+                ]
+              },
+              "2": {
+                "committed_terminal_cells": [
+                  16
+                ],
+                "committed_terminal_class_id": 2,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  6
+                ]
+              }
+            },
+            "overall_fate": "PERSIST",
+            "terminal_to_committed_class_overlap": {
+              "0": [
+                0
+              ],
+              "2": [
+                1
+              ],
+              "6": [
+                2
+              ]
+            }
+          },
+          "scc_count": 14,
+          "state_count": 66,
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            24,
+            28
+          ],
+          "terminal_classes": [
+            {
+              "cells": [
+                0,
+                1,
+                2,
+                6,
+                7,
+                14,
+                18,
+                19,
+                20,
+                21,
+                28,
+                29,
+                36,
+                44,
+                45,
+                46,
+                47,
+                50,
+                51,
+                58,
+                59,
+                62,
+                64,
+                65
+              ],
+              "class_id": 0,
+              "parent_cell_ids": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "size": 24,
+              "terminal_closed": true
+            },
+            {
+              "cells": [
+                4,
+                5,
+                8,
+                9,
+                10,
+                11,
+                12,
+                16,
+                17,
+                22,
+                24,
+                25,
+                26,
+                30,
+                31,
+                34,
+                35,
+                38,
+                39,
+                40,
+                41,
+                42,
+                48,
+                52,
+                54,
+                55,
+                56,
+                60
+              ],
+              "class_id": 2,
+              "parent_cell_ids": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "size": 28,
+              "terminal_closed": true
+            },
+            {
+              "cells": [
+                32
+              ],
+              "class_id": 6,
+              "parent_cell_ids": [
+                16
+              ],
+              "size": 1,
+              "terminal_closed": true
+            }
+          ],
+          "transition_graph_sha256": "4ec89496debbc09cb0b4c9382525bc086029aa818734f49c22e864310f349497"
+        },
+        {
+          "edge_count": 396,
+          "invariant_characterization": {
+            "0": {
+              "cells": [
+                0,
+                1,
+                3,
+                4,
+                5,
+                9,
+                10,
+                11,
+                21,
+                22,
+                23,
+                27,
+                28,
+                30,
+                31,
+                32,
+                42,
+                43,
+                44,
+                54,
+                55,
+                56,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                75,
+                76,
+                77,
+                87,
+                88,
+                89,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98
+              ],
+              "overlaps_committed_terminal_classes": {
+                "0": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ]
+              },
+              "parent_cell_ids": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "radius_squared_values": [
+                0.57421875,
+                0.57544375,
+                0.765625,
+                0.76685
+              ]
+            },
+            "2": {
+              "cells": [
+                6,
+                7,
+                8,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                24,
+                25,
+                26,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                45,
+                46,
+                47,
+                51,
+                52,
+                53,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                72,
+                73,
+                74,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                90,
+                91,
+                92
+              ],
+              "overlaps_committed_terminal_classes": {
+                "1": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ]
+              },
+              "parent_cell_ids": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "radius_squared_values": [
+                0.19140625,
+                0.19263125,
+                0.3828125,
+                0.3840375
+              ]
+            },
+            "5": {
+              "cells": [
+                48
+              ],
+              "overlaps_committed_terminal_classes": {
+                "2": [
+                  16
+                ]
+              },
+              "parent_cell_ids": [
+                16
+              ],
+              "radius_squared_values": [
+                0.0
+              ]
+            }
+          },
+          "label": "3x_density_refined_grid",
+          "partition_signature": {
+            "boundary_count": 5,
+            "class_sizes": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              40,
+              53
+            ],
+            "scc_count": 8,
+            "state_count": 99,
+            "terminal_sizes": [
+              1,
+              40,
+              53
+            ]
+          },
+          "persistence": {
+            "committed_class_fates": {
+              "0": {
+                "committed_terminal_cells": [
+                  0,
+                  1,
+                  3,
+                  7,
+                  9,
+                  10,
+                  14,
+                  18,
+                  22,
+                  23,
+                  25,
+                  29,
+                  31,
+                  32
+                ],
+                "committed_terminal_class_id": 0,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  0
+                ]
+              },
+              "1": {
+                "committed_terminal_cells": [
+                  2,
+                  4,
+                  5,
+                  6,
+                  8,
+                  11,
+                  12,
+                  13,
+                  15,
+                  17,
+                  19,
+                  20,
+                  21,
+                  24,
+                  26,
+                  27,
+                  28,
+                  30
+                ],
+                "committed_terminal_class_id": 1,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  2
+                ]
+              },
+              "2": {
+                "committed_terminal_cells": [
+                  16
+                ],
+                "committed_terminal_class_id": 2,
+                "fate": "PERSIST",
+                "refined_or_rotated_terminal_class_ids": [
+                  5
+                ]
+              }
+            },
+            "overall_fate": "PERSIST",
+            "terminal_to_committed_class_overlap": {
+              "0": [
+                0
+              ],
+              "2": [
+                1
+              ],
+              "5": [
+                2
+              ]
+            }
+          },
+          "scc_count": 8,
+          "state_count": 99,
+          "terminal_class_count": 3,
+          "terminal_class_sizes": [
+            1,
+            40,
+            53
+          ],
+          "terminal_classes": [
+            {
+              "cells": [
+                0,
+                1,
+                3,
+                4,
+                5,
+                9,
+                10,
+                11,
+                21,
+                22,
+                23,
+                27,
+                28,
+                30,
+                31,
+                32,
+                42,
+                43,
+                44,
+                54,
+                55,
+                56,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                75,
+                76,
+                77,
+                87,
+                88,
+                89,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98
+              ],
+              "class_id": 0,
+              "parent_cell_ids": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "size": 40,
+              "terminal_closed": true
+            },
+            {
+              "cells": [
+                6,
+                7,
+                8,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                24,
+                25,
+                26,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                45,
+                46,
+                47,
+                51,
+                52,
+                53,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                72,
+                73,
+                74,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                90,
+                91,
+                92
+              ],
+              "class_id": 2,
+              "parent_cell_ids": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "size": 53,
+              "terminal_closed": true
+            },
+            {
+              "cells": [
+                48
+              ],
+              "class_id": 5,
+              "parent_cell_ids": [
+                16
+              ],
+              "size": 1,
+              "terminal_closed": true
+            }
+          ],
+          "transition_graph_sha256": "9d3a230632b73308107db92bb2f356f585fc6ad05f504e339411ed411d492db7"
+        }
+      ],
+      "rotated_grid": {
+        "edge_count": 132,
+        "invariant_characterization": {
+          "0": {
+            "cells": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ],
+            "overlaps_committed_terminal_classes": {
+              "0": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "1": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ]
+            },
+            "parent_cell_ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ],
+            "radius_squared_values": [
+              0.25,
+              0.499999999999,
+              0.5,
+              0.75,
+              0.999999999999
+            ]
+          },
+          "1": {
+            "cells": [
+              16
+            ],
+            "overlaps_committed_terminal_classes": {
+              "2": [
+                16
+              ]
+            },
+            "parent_cell_ids": [
+              16
+            ],
+            "radius_squared_values": [
+              0.0
+            ]
+          }
+        },
+        "label": "rotated_33_cell_density_grid",
+        "partition_signature": {
+          "boundary_count": 0,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            32
+          ]
+        },
+        "persistence": {
+          "committed_class_fates": {
+            "0": {
+              "committed_terminal_cells": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "committed_terminal_class_id": 0,
+              "fate": "MERGE",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "1": {
+              "committed_terminal_cells": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "committed_terminal_class_id": 1,
+              "fate": "MERGE",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "2": {
+              "committed_terminal_cells": [
+                16
+              ],
+              "committed_terminal_class_id": 2,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                1
+              ]
+            }
+          },
+          "overall_fate": "CHANGED",
+          "terminal_to_committed_class_overlap": {
+            "0": [
+              0,
+              1
+            ],
+            "1": [
+              2
+            ]
+          }
+        },
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_class_count": 2,
+        "terminal_class_sizes": [
+          1,
+          32
+        ],
+        "terminal_classes": [
+          {
+            "cells": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ],
+            "class_id": 0,
+            "parent_cell_ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32
+            ],
+            "size": 32,
+            "terminal_closed": true
+          },
+          {
+            "cells": [
+              16
+            ],
+            "class_id": 1,
+            "parent_cell_ids": [
+              16
+            ],
+            "size": 1,
+            "terminal_closed": true
+          }
+        ],
+        "transition_graph_sha256": "46a1082e5176ba1aeda33d6815eb8c9bb4ad7952ab6ff75532060f0183779c80"
+      }
+    },
+    "source_locks": {
+      "parent_rc_common": {
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/basin_rc_transition_graph_v0_common.py",
+        "sha256": "5cbfa68172d9edc73ef47c00ec1d1f29c46187616a80cc330b7eec762d17315b"
+      },
+      "parent_sweep_common": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_common.py",
+        "sha256": "7da3e19e33f8ddbc5b69a7e7363cb1c315a8cbcdd40e42482f927bdbaf659875"
+      },
+      "parent_sweep_envelope": {
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+        "sha256": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0"
+      }
+    }
+  },
+  "analysis_signature_sha256": "5f803c35dfb37e294cc49edf622bc37c6b78a176fa988f0fb501a259d6fd0c8a",
+  "c1_answer": {
+    "closure": "C1 closes as discretization-scale structure, not invariant continuum basin geometry.",
+    "continuum_reading": "The continuous rotations-only closure is SO(3), so the ball has one recurrent class after radius erasure.",
+    "finite_grid_reading": "The 33-cell G1 classes are real terminal classes of the finite quantized transition system.",
+    "promotion_allowed": false
+  },
+  "capability_receipts": [
+    {
+      "computed_what": "G1 partitions on committed, refined, and rotated grids with containment fates",
+      "receipt_id": "jax_networkx_grid_refinement_control",
+      "status": "used",
+      "tool": "networkx"
+    },
+    {
+      "computed_what": "computed persistence identity with erased fate flip",
+      "receipt_id": "jax_z3_persistence_identity",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "computed persistence identity with erased fate flip",
+      "receipt_id": "jax_cvc5_persistence_identity",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "claim_path_tools": [
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+        "erased_flip": "last expected fate code is changed",
+        "partition_identity_inputs": [
+          {
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 0,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 1,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 2,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 0,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 1,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 2,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "control": "rotated_33_cell_density_grid",
+            "fate": "CHANGED"
+          },
+          {
+            "class": 0,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "MERGE"
+          },
+          {
+            "class": 1,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "MERGE"
+          },
+          {
+            "class": 2,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "PERSIST"
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed persistence fates are integer-coded; assert existence of a mismatch against the emitted fate table",
+        "erased_flip": "last expected fate code is changed",
+        "partition_identity_inputs": [
+          {
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 0,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 1,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 2,
+            "control": "2x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 0,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 1,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "class": 2,
+            "control": "3x_density_refined_grid",
+            "fate": "PERSIST"
+          },
+          {
+            "control": "rotated_33_cell_density_grid",
+            "fate": "CHANGED"
+          },
+          {
+            "class": 0,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "MERGE"
+          },
+          {
+            "class": 1,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "MERGE"
+          },
+          {
+            "class": 2,
+            "control": "rotated_33_cell_density_grid",
+            "fate": "PERSIST"
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T22:31:03Z",
+  "object_id": "basin_grid_refinement_control_v0_jax",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "networkx": "3.6.1",
+    "sympy": "1.14.0",
+    "z3-solver": "4.16.0.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "jax.scipy.linalg",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "parent_lineage": {
+    "builder_output_only": true,
+    "closes_carried_caveat": "CAVEAT C1: whether the three G1 rotation classes are invariant geometry or grid artifacts",
+    "consumed_inputs": [
+      {
+        "commit_hint": "ba1bfc4d1",
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "id": "basin_generating_set_sweep_v0_envelope",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+        "sha256": "a833df81f9be68406ecb598a022ba8ba8cb80aa9876f12c5c0617b658b6398c0"
+      },
+      {
+        "commit_hint": null,
+        "git_last_commit": "ba1bfc4d188f08dc48b8c03bd7e344f89813de1f",
+        "id": "basin_generating_set_sweep_v0_common",
+        "path": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_common.py",
+        "sha256": "7da3e19e33f8ddbc5b69a7e7363cb1c315a8cbcdd40e42482f927bdbaf659875"
+      },
+      {
+        "commit_hint": null,
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "id": "basin_rc_transition_graph_v0_common",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/basin_rc_transition_graph_v0_common.py",
+        "sha256": "5cbfa68172d9edc73ef47c00ec1d1f29c46187616a80cc330b7eec762d17315b"
+      },
+      {
+        "commit_hint": "000f48e71",
+        "git_last_commit": "000f48e716d28fa84984e6aad6cb35c115745616",
+        "id": "basin_contract",
+        "path": "system_v6/receipts/attractor_basin_criterion_20260611.md",
+        "sha256": "4c84dec9e19aba093493adfe76fc36233445d7f5cef40de5db179dc0a46431a0"
+      }
+    ],
+    "parent_committed_hash_bound": {
+      "basin_contract": "000f48e71",
+      "basin_generating_set_sweep_v0": "ba1bfc4d1",
+      "basin_rc_transition_graph_v0": "631f1c3db"
+    }
+  },
+  "persistence_table": {
+    "anchor": {
+      "byte_exact": true,
+      "exact_rederived_partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "exact_rederived_terminal_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "exact_rederived_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d",
+      "local_partition_signature": {
+        "boundary_count": 0,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "local_terminal_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "local_terminal_class_count": 3,
+      "parent_commit_hint": "ba1bfc4d1",
+      "parent_partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "parent_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+      "parent_terminal_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "parent_terminal_class_count": 3,
+      "parent_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d",
+      "state_count": 33
+    },
+    "axis_artifact_control": {
+      "base_axis_grid": {
+        "closed_under_G1": false,
+        "escaping_edge_count": 16,
+        "member_count": 9
+      },
+      "construction": "axis-snapped fake class: cells with world-coordinate z exactly 1/2",
+      "designed_fail_expected": true,
+      "dies_under_rotation": true,
+      "rotated_grid": {
+        "closed_under_G1": false,
+        "escaping_edge_count": 2,
+        "member_count": 1
+      }
+    },
+    "continuous_cross_check": {
+      "closure_reason": "R_x and R_z generate the cube rotation subgroup. The Ne rotations are about the non-axis (1,1,1) family with angle 1 radian; this is not one of the finite SO(3) subgroup angles. Conjugating that circle by the cube rotations supplies nonparallel axes whose Lie algebra spans so(3).",
+      "closure_result": "SO(3)",
+      "continuous_generator_family": "rotations only; offsets are zero for R_x/R_z/Ne_Spiral_R/Ne_Vortex_L",
+      "exact_invariant_decomposition_of_ball": "one recurrent orbit class per radius sphere, plus the fixed origin; with radius erased, the admitted ball is one continuum recurrent basin under SO(3) closure.",
+      "finite_vs_continuum_comparison": "the three 33-cell G1 terminal classes are finite quantization structure at the stated grid/time-step, while the continuous closure merges them by radius-shell recurrence.",
+      "generator_angle_rows": {
+        "Ne_Spiral_R": {
+          "angle_over_pi": 0.318309886184,
+          "angle_radians": 1.0,
+          "determinant_close_to_one": true,
+          "trace": 2.080604611736
+        },
+        "Ne_Vortex_L": {
+          "angle_over_pi": 0.318309886184,
+          "angle_radians": 1.0,
+          "determinant_close_to_one": true,
+          "trace": 2.080604611736
+        },
+        "R_x": {
+          "angle_over_pi": 0.5,
+          "angle_radians": 1.570796326795,
+          "determinant_close_to_one": true,
+          "trace": 1.0
+        },
+        "R_z": {
+          "angle_over_pi": 0.5,
+          "angle_radians": 1.570796326795,
+          "determinant_close_to_one": true,
+          "trace": 1.0
+        }
+      },
+      "h_time_step_role": "Ne terrain rotations enter as exp(hA) with h=1/2; the observed Ne rotation angle is 1 radian, not a grid angle.",
+      "predicts_one_recurrent_class_after_radius_erasure": true
+    },
+    "g0_dissipative_refined_control": [
+      {
+        "label": "G0_2x_density_refined_grid",
+        "partition_signature": {
+          "boundary_count": 5,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            61
+          ],
+          "scc_count": 6,
+          "state_count": 66,
+          "terminal_sizes": [
+            61
+          ]
+        },
+        "state_count": 66,
+        "stays_one_class": true,
+        "terminal_class_count": 1,
+        "terminal_class_sizes": [
+          61
+        ]
+      },
+      {
+        "label": "G0_3x_density_refined_grid",
+        "partition_signature": {
+          "boundary_count": 5,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            94
+          ],
+          "scc_count": 6,
+          "state_count": 99,
+          "terminal_sizes": [
+            94
+          ]
+        },
+        "state_count": 99,
+        "stays_one_class": true,
+        "terminal_class_count": 1,
+        "terminal_class_sizes": [
+          94
+        ]
+      }
+    ],
+    "refinement": [
+      {
+        "edge_count": 264,
+        "invariant_characterization": {
+          "0": {
+            "cells": [
+              0,
+              1,
+              2,
+              6,
+              7,
+              14,
+              18,
+              19,
+              20,
+              21,
+              28,
+              29,
+              36,
+              44,
+              45,
+              46,
+              47,
+              50,
+              51,
+              58,
+              59,
+              62,
+              64,
+              65
+            ],
+            "overlaps_committed_terminal_classes": {
+              "0": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ]
+            },
+            "parent_cell_ids": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "radius_squared_values": [
+              0.57421875,
+              0.57544375,
+              0.765625,
+              0.76685
+            ]
+          },
+          "2": {
+            "cells": [
+              4,
+              5,
+              8,
+              9,
+              10,
+              11,
+              12,
+              16,
+              17,
+              22,
+              24,
+              25,
+              26,
+              30,
+              31,
+              34,
+              35,
+              38,
+              39,
+              40,
+              41,
+              42,
+              48,
+              52,
+              54,
+              55,
+              56,
+              60
+            ],
+            "overlaps_committed_terminal_classes": {
+              "1": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ]
+            },
+            "parent_cell_ids": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            "radius_squared_values": [
+              0.19140625,
+              0.19263125,
+              0.3828125,
+              0.3840375
+            ]
+          },
+          "6": {
+            "cells": [
+              32
+            ],
+            "overlaps_committed_terminal_classes": {
+              "2": [
+                16
+              ]
+            },
+            "parent_cell_ids": [
+              16
+            ],
+            "radius_squared_values": [
+              0.0
+            ]
+          }
+        },
+        "label": "2x_density_refined_grid",
+        "partition_signature": {
+          "boundary_count": 13,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            24,
+            28
+          ],
+          "scc_count": 14,
+          "state_count": 66,
+          "terminal_sizes": [
+            1,
+            24,
+            28
+          ]
+        },
+        "persistence": {
+          "committed_class_fates": {
+            "0": {
+              "committed_terminal_cells": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "committed_terminal_class_id": 0,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "1": {
+              "committed_terminal_cells": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "committed_terminal_class_id": 1,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                2
+              ]
+            },
+            "2": {
+              "committed_terminal_cells": [
+                16
+              ],
+              "committed_terminal_class_id": 2,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                6
+              ]
+            }
+          },
+          "overall_fate": "PERSIST",
+          "terminal_to_committed_class_overlap": {
+            "0": [
+              0
+            ],
+            "2": [
+              1
+            ],
+            "6": [
+              2
+            ]
+          }
+        },
+        "scc_count": 14,
+        "state_count": 66,
+        "terminal_class_count": 3,
+        "terminal_class_sizes": [
+          1,
+          24,
+          28
+        ],
+        "terminal_classes": [
+          {
+            "cells": [
+              0,
+              1,
+              2,
+              6,
+              7,
+              14,
+              18,
+              19,
+              20,
+              21,
+              28,
+              29,
+              36,
+              44,
+              45,
+              46,
+              47,
+              50,
+              51,
+              58,
+              59,
+              62,
+              64,
+              65
+            ],
+            "class_id": 0,
+            "parent_cell_ids": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "size": 24,
+            "terminal_closed": true
+          },
+          {
+            "cells": [
+              4,
+              5,
+              8,
+              9,
+              10,
+              11,
+              12,
+              16,
+              17,
+              22,
+              24,
+              25,
+              26,
+              30,
+              31,
+              34,
+              35,
+              38,
+              39,
+              40,
+              41,
+              42,
+              48,
+              52,
+              54,
+              55,
+              56,
+              60
+            ],
+            "class_id": 2,
+            "parent_cell_ids": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            "size": 28,
+            "terminal_closed": true
+          },
+          {
+            "cells": [
+              32
+            ],
+            "class_id": 6,
+            "parent_cell_ids": [
+              16
+            ],
+            "size": 1,
+            "terminal_closed": true
+          }
+        ],
+        "transition_graph_sha256": "4ec89496debbc09cb0b4c9382525bc086029aa818734f49c22e864310f349497"
+      },
+      {
+        "edge_count": 396,
+        "invariant_characterization": {
+          "0": {
+            "cells": [
+              0,
+              1,
+              3,
+              4,
+              5,
+              9,
+              10,
+              11,
+              21,
+              22,
+              23,
+              27,
+              28,
+              30,
+              31,
+              32,
+              42,
+              43,
+              44,
+              54,
+              55,
+              56,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              75,
+              76,
+              77,
+              87,
+              88,
+              89,
+              93,
+              94,
+              95,
+              96,
+              97,
+              98
+            ],
+            "overlaps_committed_terminal_classes": {
+              "0": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ]
+            },
+            "parent_cell_ids": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "radius_squared_values": [
+              0.57421875,
+              0.57544375,
+              0.765625,
+              0.76685
+            ]
+          },
+          "2": {
+            "cells": [
+              6,
+              7,
+              8,
+              12,
+              13,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              24,
+              25,
+              26,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              45,
+              46,
+              47,
+              51,
+              52,
+              53,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              72,
+              73,
+              74,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              90,
+              91,
+              92
+            ],
+            "overlaps_committed_terminal_classes": {
+              "1": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ]
+            },
+            "parent_cell_ids": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            "radius_squared_values": [
+              0.19140625,
+              0.19263125,
+              0.3828125,
+              0.3840375
+            ]
+          },
+          "5": {
+            "cells": [
+              48
+            ],
+            "overlaps_committed_terminal_classes": {
+              "2": [
+                16
+              ]
+            },
+            "parent_cell_ids": [
+              16
+            ],
+            "radius_squared_values": [
+              0.0
+            ]
+          }
+        },
+        "label": "3x_density_refined_grid",
+        "partition_signature": {
+          "boundary_count": 5,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            40,
+            53
+          ],
+          "scc_count": 8,
+          "state_count": 99,
+          "terminal_sizes": [
+            1,
+            40,
+            53
+          ]
+        },
+        "persistence": {
+          "committed_class_fates": {
+            "0": {
+              "committed_terminal_cells": [
+                0,
+                1,
+                3,
+                7,
+                9,
+                10,
+                14,
+                18,
+                22,
+                23,
+                25,
+                29,
+                31,
+                32
+              ],
+              "committed_terminal_class_id": 0,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                0
+              ]
+            },
+            "1": {
+              "committed_terminal_cells": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                11,
+                12,
+                13,
+                15,
+                17,
+                19,
+                20,
+                21,
+                24,
+                26,
+                27,
+                28,
+                30
+              ],
+              "committed_terminal_class_id": 1,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                2
+              ]
+            },
+            "2": {
+              "committed_terminal_cells": [
+                16
+              ],
+              "committed_terminal_class_id": 2,
+              "fate": "PERSIST",
+              "refined_or_rotated_terminal_class_ids": [
+                5
+              ]
+            }
+          },
+          "overall_fate": "PERSIST",
+          "terminal_to_committed_class_overlap": {
+            "0": [
+              0
+            ],
+            "2": [
+              1
+            ],
+            "5": [
+              2
+            ]
+          }
+        },
+        "scc_count": 8,
+        "state_count": 99,
+        "terminal_class_count": 3,
+        "terminal_class_sizes": [
+          1,
+          40,
+          53
+        ],
+        "terminal_classes": [
+          {
+            "cells": [
+              0,
+              1,
+              3,
+              4,
+              5,
+              9,
+              10,
+              11,
+              21,
+              22,
+              23,
+              27,
+              28,
+              30,
+              31,
+              32,
+              42,
+              43,
+              44,
+              54,
+              55,
+              56,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              75,
+              76,
+              77,
+              87,
+              88,
+              89,
+              93,
+              94,
+              95,
+              96,
+              97,
+              98
+            ],
+            "class_id": 0,
+            "parent_cell_ids": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "size": 40,
+            "terminal_closed": true
+          },
+          {
+            "cells": [
+              6,
+              7,
+              8,
+              12,
+              13,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              24,
+              25,
+              26,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              45,
+              46,
+              47,
+              51,
+              52,
+              53,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              72,
+              73,
+              74,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              90,
+              91,
+              92
+            ],
+            "class_id": 2,
+            "parent_cell_ids": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            "size": 53,
+            "terminal_closed": true
+          },
+          {
+            "cells": [
+              48
+            ],
+            "class_id": 5,
+            "parent_cell_ids": [
+              16
+            ],
+            "size": 1,
+            "terminal_closed": true
+          }
+        ],
+        "transition_graph_sha256": "9d3a230632b73308107db92bb2f356f585fc6ad05f504e339411ed411d492db7"
+      }
+    ],
+    "rotated_grid": {
+      "edge_count": 132,
+      "invariant_characterization": {
+        "0": {
+          "cells": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "overlaps_committed_terminal_classes": {
+            "0": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "1": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ]
+          },
+          "parent_cell_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "radius_squared_values": [
+            0.25,
+            0.499999999999,
+            0.5,
+            0.75,
+            0.999999999999
+          ]
+        },
+        "1": {
+          "cells": [
+            16
+          ],
+          "overlaps_committed_terminal_classes": {
+            "2": [
+              16
+            ]
+          },
+          "parent_cell_ids": [
+            16
+          ],
+          "radius_squared_values": [
+            0.0
+          ]
+        }
+      },
+      "label": "rotated_33_cell_density_grid",
+      "partition_signature": {
+        "boundary_count": 0,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          32
+        ]
+      },
+      "persistence": {
+        "committed_class_fates": {
+          "0": {
+            "committed_terminal_cells": [
+              0,
+              1,
+              3,
+              7,
+              9,
+              10,
+              14,
+              18,
+              22,
+              23,
+              25,
+              29,
+              31,
+              32
+            ],
+            "committed_terminal_class_id": 0,
+            "fate": "MERGE",
+            "refined_or_rotated_terminal_class_ids": [
+              0
+            ]
+          },
+          "1": {
+            "committed_terminal_cells": [
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              20,
+              21,
+              24,
+              26,
+              27,
+              28,
+              30
+            ],
+            "committed_terminal_class_id": 1,
+            "fate": "MERGE",
+            "refined_or_rotated_terminal_class_ids": [
+              0
+            ]
+          },
+          "2": {
+            "committed_terminal_cells": [
+              16
+            ],
+            "committed_terminal_class_id": 2,
+            "fate": "PERSIST",
+            "refined_or_rotated_terminal_class_ids": [
+              1
+            ]
+          }
+        },
+        "overall_fate": "CHANGED",
+        "terminal_to_committed_class_overlap": {
+          "0": [
+            0,
+            1
+          ],
+          "1": [
+            2
+          ]
+        }
+      },
+      "scc_count": 2,
+      "state_count": 33,
+      "terminal_class_count": 2,
+      "terminal_class_sizes": [
+        1,
+        32
+      ],
+      "terminal_classes": [
+        {
+          "cells": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "class_id": 0,
+          "parent_cell_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "size": 32,
+          "terminal_closed": true
+        },
+        {
+          "cells": [
+            16
+          ],
+          "class_id": 1,
+          "parent_cell_ids": [
+            16
+          ],
+          "size": 1,
+          "terminal_closed": true
+        }
+      ],
+      "transition_graph_sha256": "46a1082e5176ba1aeda33d6815eb8c9bb4ad7952ab6ff75532060f0183779c80"
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_grid_refinement_control_v0/results/basin_grid_refinement_control_v0_jax_results.json",
+  "result_stability_sha256": "4ffadf0318297b1f04bac4d059bdef02e368e11f2790f1ddeb76c2c354519439",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "deterministic_tie_break": "cell_id_ascending",
+    "rng": "none"
+  },
+  "sim_id": "basin_grid_refinement_control_v0",
+  "source_backing_probe": {
+    "cvc5_check": "sat",
+    "jax_expm_shape": [
+      2,
+      2
+    ],
+    "networkx_edge_count": 1,
+    "sympy_guard": "1",
+    "z3_check": "sat"
+  },
+  "source_path": "system_v6/sims/basin_grid_refinement_control_v0/basin_grid_refinement_control_v0_jax.py",
+  "source_sha256": "6849b689ae03fc2e3ff8e515e1fd8877060eb4da48823b0a8fa2011235923337",
+  "tool_calls": [
+    {
+      "boundary_case": "2x and 3x refined grids stay within declared resource guard",
+      "demotion_condition": "demote if class fates are not recomputed from explicit transition edges",
+      "gates": [
+        "persistence_table",
+        "axis_artifact_control",
+        "all_pass"
+      ],
+      "input_object": "G1 generator-labelled finite cells for committed, refined, and rotated grids",
+      "negative/erased_control": "axis-snapped fake class dies under the pinned non-axis grid rotation",
+      "output_object": "terminal classes, containment correspondence, class fates, and artifact control",
+      "positive_case": "33-cell G1 anchor matches the committed parent byte-exact partition",
+      "qualified_api/function": "networkx.DiGraph/networkx.strongly_connected_components",
+      "receipt_id": "jax_networkx_grid_refinement_control",
+      "tool": "networkx"
+    },
+    {
+      "boundary_case": "PERSIST, MERGE, SPLIT_FURTHER, and DISSOLVE are all admissible fate codes",
+      "demotion_condition": "demote if solver does not bind computed fate rows",
+      "gates": [
+        "proof",
+        "identity",
+        "all_pass"
+      ],
+      "input_object": "computed persistence fate table",
+      "negative/erased_control": "one expected fate code is flipped",
+      "output_object": "UNSAT persistence identity proof and SAT erased flip",
+      "positive_case": "all emitted class fates match the solver-bound fate rows",
+      "qualified_api/function": "z3.Solver/z3.Int/check",
+      "receipt_id": "jax_z3_persistence_identity",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "PERSIST, MERGE, SPLIT_FURTHER, and DISSOLVE are all admissible fate codes",
+      "demotion_condition": "demote if solver does not bind computed fate rows",
+      "gates": [
+        "proof",
+        "identity",
+        "all_pass"
+      ],
+      "input_object": "computed persistence fate table",
+      "negative/erased_control": "one expected fate code is flipped",
+      "output_object": "UNSAT persistence identity proof and SAT erased flip",
+      "positive_case": "all emitted class fates match the solver-bound fate rows",
+      "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+      "receipt_id": "jax_cvc5_persistence_identity",
+      "tool": "cvc5"
+    }
+  ]
+}

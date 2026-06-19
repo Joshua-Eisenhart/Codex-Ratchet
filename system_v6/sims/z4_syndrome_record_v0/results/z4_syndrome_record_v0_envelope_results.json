@@ -1,0 +1,1655 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "build_three_engine_envelope": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "build_three_engine_envelope": {
+      "reason": "load-bearing controller envelope construction through the standard helper",
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive lineage and row hashes",
+      "used": true
+    },
+    "json": {
+      "reason": "supportive controller serialization",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "packet-local Z4 syndrome/preimage table over the pinned state family",
+    "finite counting entropy state-loss and record-retention row with separate code paths",
+    "bit-exact reconstruction with quotient output plus syndrome",
+    "computed erased, partial, shuffled, and trivial boundary controls"
+  ],
+  "claim": "packet-local Z4 syndrome record object closes quotient loss only when the constructed syndrome is retained",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch_geometric",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erased_record": {
+      "jax": {
+        "computed_defect_nats": 1.3862943611198906,
+        "defect_log2_coefficient": 2,
+        "different_code_paths": true,
+        "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+        "record_code_path_id": "distribution_counts_to_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "erased_record",
+        "row_hash": "2503c51e5654349f1881b39f6127b747de099c72f27d8e3ec948470c9b39978c",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "julia": {
+        "computed_defect_nats": 1.3862943611198906,
+        "defect_log2_coefficient": 2,
+        "different_code_paths": true,
+        "loss_code_path_id": "Graphs.SimpleDiGraph_outdegree_preimage_counts_to_average_log_fiber_size",
+        "record_code_path_id": "julia_count_distribution_to_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "erased_record",
+        "row_hash": "8055d4e47beca1a62d36f027c6bb376cfe31902c441cddb56a700ca6edf765e2",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "pytorch": {
+        "computed_defect_nats": 1.3862943611198906,
+        "defect_log2_coefficient": 2,
+        "different_code_paths": true,
+        "loss_code_path_id": "torch_geometric_incidence_graph_indegree_to_average_log_fiber_size",
+        "record_code_path_id": "torch_counts_to_sympy_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "erased_record",
+        "row_hash": "8055d4e47beca1a62d36f027c6bb376cfe31902c441cddb56a700ca6edf765e2",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      }
+    },
+    "partial_record_one_bit": {
+      "jax": {
+        "computed_defect_nats": 0.6931471805599453,
+        "defect_log2_coefficient": 1,
+        "different_code_paths": true,
+        "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+        "record_code_path_id": "distribution_counts_to_shannon_entropy",
+        "record_log2_coefficient": 1,
+        "record_retained_nats": 0.6931471805599453,
+        "regime": "partial_record_one_bit",
+        "row_hash": "2796fcfa1328256d1bdac8d46a28b4ec13aefa1ea1e14930aaf69b75af77668b",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "julia": {
+        "computed_defect_nats": 0.6931471805599453,
+        "defect_log2_coefficient": 1,
+        "different_code_paths": true,
+        "loss_code_path_id": "Graphs.SimpleDiGraph_outdegree_preimage_counts_to_average_log_fiber_size",
+        "record_code_path_id": "julia_count_distribution_to_shannon_entropy",
+        "record_log2_coefficient": 1,
+        "record_retained_nats": 0.6931471805599453,
+        "regime": "partial_record_one_bit",
+        "row_hash": "506b5e38ad3065afc2e2f1d9eea427e79415d3a56e65071eb43ead52f3d2fab1",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "pytorch": {
+        "computed_defect_nats": 0.6931471805599453,
+        "defect_log2_coefficient": 1,
+        "different_code_paths": true,
+        "loss_code_path_id": "torch_geometric_incidence_graph_indegree_to_average_log_fiber_size",
+        "record_code_path_id": "torch_counts_to_sympy_shannon_entropy",
+        "record_log2_coefficient": 1,
+        "record_retained_nats": 0.6931471805599453,
+        "regime": "partial_record_one_bit",
+        "row_hash": "506b5e38ad3065afc2e2f1d9eea427e79415d3a56e65071eb43ead52f3d2fab1",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      }
+    },
+    "shuffled_syndrome": {
+      "jax": {
+        "bit_exact_roundtrip": false,
+        "checked_count": 24,
+        "failure_count": 24,
+        "failure_rate": 1.0,
+        "failure_sample": [
+          {
+            "input": "z_plus::phase_0",
+            "recovered": "z_plus::phase_1"
+          },
+          {
+            "input": "z_plus::phase_1",
+            "recovered": "z_plus::phase_2"
+          },
+          {
+            "input": "z_plus::phase_2",
+            "recovered": "z_plus::phase_3"
+          },
+          {
+            "input": "z_plus::phase_3",
+            "recovered": "z_plus::phase_0"
+          },
+          {
+            "input": "z_minus::phase_0",
+            "recovered": "z_minus::phase_1"
+          },
+          {
+            "input": "z_minus::phase_1",
+            "recovered": "z_minus::phase_2"
+          }
+        ],
+        "syndrome_transform": "shift_plus_one"
+      },
+      "julia": {
+        "bit_exact_roundtrip": false,
+        "checked_count": 24,
+        "failure_count": 24,
+        "failure_rate": 1.0,
+        "recovered_code_sample": [
+          1,
+          2,
+          3,
+          0,
+          5,
+          6,
+          7,
+          4
+        ],
+        "syndrome_shift": 1
+      },
+      "pytorch": {
+        "bit_exact_roundtrip": false,
+        "checked_count": 24,
+        "failure_count": 24,
+        "failure_rate": 1.0,
+        "recovered_code_sample": [
+          1,
+          2,
+          3,
+          0,
+          5,
+          6,
+          7,
+          4
+        ],
+        "syndrome_shift": 1
+      }
+    },
+    "trivial_quotient": {
+      "jax": {
+        "computed_defect_nats": 0.0,
+        "defect_log2_coefficient": 0,
+        "different_code_paths": true,
+        "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+        "record_code_path_id": "distribution_counts_to_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "trivial_quotient",
+        "row_hash": "04cfa55ee2e7682e8e62b91acef2cb7bb3d6e5942d848c4002bae019f86fd1c9",
+        "state_loss_log2_coefficient": 0,
+        "state_loss_without_record_nats": 0.0,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "julia": {
+        "computed_defect_nats": 0.0,
+        "defect_log2_coefficient": 0,
+        "different_code_paths": true,
+        "loss_code_path_id": "Graphs.SimpleDiGraph_outdegree_preimage_counts_to_average_log_fiber_size",
+        "record_code_path_id": "julia_count_distribution_to_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "trivial_quotient",
+        "row_hash": "d00323d65596dd2eec2dbf39c91a9d71beff34dc28b2bc8f6428a4a1252445e8",
+        "state_loss_log2_coefficient": 0,
+        "state_loss_without_record_nats": 0.0,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      },
+      "pytorch": {
+        "computed_defect_nats": 0.0,
+        "defect_log2_coefficient": 0,
+        "different_code_paths": true,
+        "loss_code_path_id": "torch_geometric_incidence_graph_indegree_to_average_log_fiber_size",
+        "record_code_path_id": "torch_counts_to_sympy_shannon_entropy",
+        "record_log2_coefficient": 0,
+        "record_retained_nats": 0.0,
+        "regime": "trivial_quotient",
+        "row_hash": "d00323d65596dd2eec2dbf39c91a9d71beff34dc28b2bc8f6428a4a1252445e8",
+        "state_loss_log2_coefficient": 0,
+        "state_loss_without_record_nats": 0.0,
+        "typed_entropy_label": "finite_counting_entropy_nats"
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "bound_values": {
+        "defect_log2_coefficient": 0,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 2
+      },
+      "load_bearing": true,
+      "polarity": "negated_zero-defect_conservation",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "bound_values": {
+        "defect_log2_coefficient": 0,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 2
+      },
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "bound_values": {
+        "defect_log2_coefficient": 0,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 2
+      },
+      "load_bearing": true,
+      "polarity": "negated_zero-defect_conservation",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "formal admission",
+    "canonical manifold theorem",
+    "universal entropy scalar",
+    "cross-type entropy conservation outside the finite state-plus-record bookkeeping convention"
+  ],
+  "divergence": {
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "pytorch": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "observable": "positive.computed_defect_nats",
+    "shared_value_deltas": {
+      "boundary_trivial_quotient.state_loss_without_record_nats": 0.0,
+      "negative_erased_record.computed_defect_nats": 0.0,
+      "negative_partial_record.computed_defect_nats": 0.0,
+      "positive.computed_defect_nats": 0.0,
+      "positive.record_retained_nats": 0.0,
+      "positive.state_loss_without_record_nats": 0.0
+    }
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver over computed log2 coefficients for full/erased/partial/trivial regimes",
+        "sympy": "sp.log/sp.Rational exact finite counting entropy expressions from computed distributions",
+        "z3": "z3.Solver over computed log2 coefficients for full/erased/partial/trivial regimes"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_jax_results.json",
+      "result_sha256": "40104428dc631ad30bfb31ccddfc59245ee4a47753f65ab629e9b4e815ffabf6",
+      "role_id": "jax_exact_z4_syndrome_record_leg",
+      "source_path": "system_v6/sims/z4_syndrome_record_v0/z4_syndrome_record_v0_jax.py",
+      "source_sha256": "598b6222241f0cd6942fec3fe07edac81580535a693c4cc204d3bf957a1d41fa",
+      "tool_calls": [
+        {
+          "boundary_case": "trivial quotient has loss 0 and record 0",
+          "demotion_condition": "demote if entropy values are assigned as literals instead of computed from counts",
+          "gates": [
+            "regimes",
+            "all_pass"
+          ],
+          "input_object": "packet-local quotient preimage counts and syndrome counts",
+          "negative/erased_control": "erased and partial records leave ln4 and ln2 defects",
+          "output_object": "finite_counting_entropy_nats loss, record, and defect rows",
+          "positive_case": "full syndrome distribution entropy equals quotient preimage loss",
+          "qualified_api/function": "sp.Rational/sp.log/sp.simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "trivial quotient zero-loss row is UNSAT under negated equality",
+          "demotion_condition": "demote if solver binds precomputed booleans only",
+          "gates": [
+            "crossover_proofs",
+            "all_pass"
+          ],
+          "input_object": "computed integer coefficients of log(2)",
+          "negative/erased_control": "erased and partial no-record/no-full-record controls are SAT",
+          "output_object": "full UNSAT, erased SAT, partial SAT, trivial boundary",
+          "positive_case": "full negated zero-defect conservation is UNSAT",
+          "qualified_api/function": "z3.Solver/z3.Int/solver.add/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "trivial quotient zero-loss row is UNSAT under negated equality",
+          "demotion_condition": "demote if cvc5 row is removed or mirrors z3 output without solving",
+          "gates": [
+            "crossover_proofs",
+            "all_pass"
+          ],
+          "input_object": "same computed integer coefficients as the z3 lane",
+          "negative/erased_control": "erased and partial no-record/no-full-record controls are SAT",
+          "output_object": "independent cvc5 SAT/UNSAT polarity matrix",
+          "positive_case": "full negated zero-defect conservation is UNSAT",
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/assertFormula/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "Graphs",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.outdegree quotient preimage counts",
+        "Z3": "Z3.Solver/Z3.add/Z3.check over computed log2 coefficients"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_julia_results.json",
+      "result_sha256": "0a9ae913e6cdda79283c1c3d4428e667ecdf6d8fbebec824d63741e9b3bf5d3c",
+      "role_id": "julia_graphs_z3_z4_syndrome_record_leg",
+      "source_path": "system_v6/sims/z4_syndrome_record_v0/z4_syndrome_record_v0_julia.jl",
+      "source_sha256": "c72865daa7adbb950b4bc02c695c7d3476e3e6340f42040a9791ef8a2be64c25",
+      "tool_calls": [
+        {
+          "boundary_case": "identity quotient has preimage counts all one",
+          "demotion_condition": "demote if graph route is replaced by literal counts",
+          "gates": [
+            "state_loss_without_record",
+            "all_pass"
+          ],
+          "input_object": "Z4 quotient output to representative incidence table",
+          "negative/erased_control": "same loss paired with erased or partial syndrome record",
+          "output_object": "preimage counts for state_loss_without_record",
+          "positive_case": "all six quotient classes have four representatives",
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.outdegree",
+          "tool": "Graphs"
+        },
+        {
+          "boundary_case": "trivial quotient has zero loss",
+          "demotion_condition": "demote if solver does not bind computed rows",
+          "gates": [
+            "crossover_proofs",
+            "all_pass"
+          ],
+          "input_object": "computed log2 coefficients",
+          "negative/erased_control": "erased and partial records do not close the zero-defect equation",
+          "output_object": "UNSAT full conservation and SAT erased/partial controls",
+          "positive_case": "full record closes ln4 loss",
+          "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "claim_path_tools": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "cvc5.Solver over torch-derived log2 coefficients",
+        "sympy": "sp.log/sp.Rational exact finite counting entropy rows from torch-derived counts",
+        "torch.func": "vmap roundtrip reconstruction over all representative codes",
+        "torch_geometric": "Data.edge_index quotient-to-representative incidence graph; source-node counts compute preimage cardinalities",
+        "z3": "z3.Solver over torch-derived log2 coefficients"
+      },
+      "packages_used": [
+        "torch",
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_pytorch_results.json",
+      "result_sha256": "568f4e9a476fa51dc2796e32ef777ea7ba3b53e1b090eb294cde7f520790c6c9",
+      "role_id": "pytorch_graph_z4_syndrome_record_leg",
+      "source_path": "system_v6/sims/z4_syndrome_record_v0/z4_syndrome_record_v0_pytorch.py",
+      "source_sha256": "a3a5630088e74e2f6a6760f571ba34d6aecfbee39fce1e7ef8d7dced2a0f2c0d",
+      "tool_calls": [
+        {
+          "boundary_case": "identity quotient graph has all preimage counts 1",
+          "demotion_condition": "demote if graph incidence is replaced by literal count",
+          "gates": [
+            "state_loss_without_record",
+            "all_pass"
+          ],
+          "input_object": "quotient-to-representative edge_index",
+          "negative/erased_control": "erased and partial record regimes use same graph loss with reduced record entropy",
+          "output_object": "preimage counts and ambiguity 4",
+          "positive_case": "Z4 quotient has six quotient nodes each with four representatives",
+          "qualified_api/function": "torch_geometric.data.Data",
+          "tool": "torch_geometric"
+        },
+        {
+          "boundary_case": "quotient-alone ambiguity remains 4",
+          "demotion_condition": "demote if reconstruction is not evaluated over the table",
+          "gates": [
+            "reconstruction",
+            "all_pass"
+          ],
+          "input_object": "orbit/syndrome representative code tensor",
+          "negative/erased_control": "shifted syndrome fails all representatives",
+          "output_object": "roundtrip reconstruction and shuffled-syndrome failure rate",
+          "positive_case": "identity syndrome reconstructs all representatives",
+          "qualified_api/function": "torch.func.vmap",
+          "tool": "torch.func"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T23:26:31Z",
+  "jax_proof_controls": {
+    "cvc5": {
+      "defect_account_erased": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "defect_account_full": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "defect_account_partial": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "erased_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "partial_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "trivial_quotient_boundary": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 0,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      }
+    },
+    "z3": {
+      "defect_account_erased": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "defect_account_full": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "defect_account_partial": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "polarity": "negated_defect_account_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "erased_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "partial_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "trivial_quotient_boundary": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 0,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "polarity": "negated_zero-defect_conservation",
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    }
+  },
+  "julia_z3_controls": {
+    "erased_record_control": {
+      "bound_values": {
+        "defect_log2_coefficient": 2,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 0
+      },
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "sat"
+    },
+    "full_record": {
+      "bound_values": {
+        "defect_log2_coefficient": 0,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 2
+      },
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "partial_record_control": {
+      "bound_values": {
+        "defect_log2_coefficient": 1,
+        "loss_log2_coefficient": 2,
+        "record_log2_coefficient": 1
+      },
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "sat"
+    },
+    "trivial_quotient_boundary": {
+      "bound_values": {
+        "defect_log2_coefficient": 0,
+        "loss_log2_coefficient": 0,
+        "record_log2_coefficient": 0
+      },
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "mode": "all_three_full_sims",
+  "object_id": "z4_syndrome_record_v0",
+  "parent_lineage": {
+    "compression_flow_radiated_record_v0": {
+      "allowed_use": "record reconstruction/control row pattern only",
+      "blob": "18ae006f81538eea08218077334cfc88565b2457",
+      "path": "system_v6/sims/compression_flow_radiated_record_v0/results/compression_flow_radiated_record_v0_envelope_results.json",
+      "sha256": "a97366493f03d06ffcdbd59adf9f86ba7d5f8fb5b53993c4bbdcc0e81e1d1e18",
+      "source": "git show HEAD:<path>"
+    },
+    "manifold_entropy_ledger_v0": {
+      "allowed_use": "typed entropy separation; finite counting entropy label discipline",
+      "blob": "29b21f5b9e08a0dbddb7b51e247937c236ec7901",
+      "path": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json",
+      "sha256": "3babcf8fb66f1543e1e5fd3f5b0a2c6b74a47bf4d943489319c08a2b268c8eb6",
+      "source": "git show HEAD:<path>"
+    },
+    "manifold_information_throughput_v0": {
+      "allowed_use": "hard Q1 caveat target; this packet resolves packet-local Z4 syndrome object only",
+      "blob": "e1d4dd91a47c3eeadb2fc3e66bbb7860413423bf",
+      "path": "system_v6/sims/manifold_information_throughput_v0/audit_verdict.md",
+      "sha256": "3e47bca02e7a2d7ece637ebd93144f675af58f905e59150f2e096af197fa5696",
+      "source": "git show HEAD:<path>"
+    },
+    "ratchet_deep_chain_v0": {
+      "allowed_use": "parent Z4 quotient generator alpha += pi/2 and orbit_order 4",
+      "blob": "552b3eee60c6c58e5d324015a6afc4f29831d980",
+      "path": "system_v6/sims/ratchet_deep_chain_v0/results/ratchet_deep_chain_v0_envelope_results.json",
+      "sha256": "94794717ebb92d7599abe2800a8b699a9c8b2bf7836fb361c3714d680cc927fa",
+      "source": "git show HEAD:<path>"
+    }
+  },
+  "promotion_allowed": false,
+  "pytorch_proof_controls": {
+    "cvc5": {
+      "erased_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "partial_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "sat"
+      },
+      "trivial_quotient_boundary": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 0,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      }
+    },
+    "z3": {
+      "erased_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 2,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "full_record": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 2
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "partial_record_control": {
+        "bound_values": {
+          "defect_log2_coefficient": 1,
+          "loss_log2_coefficient": 2,
+          "record_log2_coefficient": 1
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "sat"
+      },
+      "trivial_quotient_boundary": {
+        "bound_values": {
+          "defect_log2_coefficient": 0,
+          "loss_log2_coefficient": 0,
+          "record_log2_coefficient": 0
+        },
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    }
+  },
+  "reconstruction": {
+    "quotient_alone": {
+      "jax": {
+        "ambiguities": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "attempt": "reconstruct representative from quotient output alone",
+        "computed_ambiguity": 4,
+        "reconstruction_fails": true,
+        "unique_reconstruction_possible": false
+      },
+      "julia": {
+        "ambiguities": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "computed_ambiguity": 4,
+        "reconstruction_fails": true,
+        "unique_reconstruction_possible": false
+      },
+      "pytorch": {
+        "ambiguities": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "computed_ambiguity": 4,
+        "reconstruction_fails": true,
+        "unique_reconstruction_possible": false
+      }
+    },
+    "with_quotient_and_syndrome": {
+      "jax": {
+        "bit_exact_roundtrip": true,
+        "checked_count": 24,
+        "failure_count": 0,
+        "failure_rate": 0.0,
+        "failure_sample": [],
+        "syndrome_transform": "identity"
+      },
+      "julia": {
+        "bit_exact_roundtrip": true,
+        "checked_count": 24,
+        "failure_count": 0,
+        "failure_rate": 0.0,
+        "recovered_code_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "syndrome_shift": 0
+      },
+      "pytorch": {
+        "bit_exact_roundtrip": true,
+        "checked_count": 24,
+        "failure_count": 0,
+        "failure_rate": 0.0,
+        "recovered_code_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "syndrome_shift": 0
+      }
+    }
+  },
+  "regime_hashes": {
+    "boundary_trivial_quotient": "04cfa55ee2e7682e8e62b91acef2cb7bb3d6e5942d848c4002bae019f86fd1c9",
+    "negative_erased_record": "2503c51e5654349f1881b39f6127b747de099c72f27d8e3ec948470c9b39978c",
+    "negative_partial_record": "2796fcfa1328256d1bdac8d46a28b4ec13aefa1ea1e14930aaf69b75af77668b",
+    "positive": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415"
+  },
+  "regime_hashes_distinct": true,
+  "regimes": {
+    "boundary_trivial_quotient": {
+      "computed_defect_nats": 0.0,
+      "defect_log2_coefficient": 0,
+      "different_code_paths": true,
+      "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+      "record_code_path_id": "distribution_counts_to_shannon_entropy",
+      "record_log2_coefficient": 0,
+      "record_retained_nats": 0.0,
+      "regime": "trivial_quotient",
+      "row_hash": "04cfa55ee2e7682e8e62b91acef2cb7bb3d6e5942d848c4002bae019f86fd1c9",
+      "state_loss_log2_coefficient": 0,
+      "state_loss_without_record_nats": 0.0,
+      "typed_entropy_label": "finite_counting_entropy_nats"
+    },
+    "negative_erased_record": {
+      "computed_defect_nats": 1.3862943611198906,
+      "defect_log2_coefficient": 2,
+      "different_code_paths": true,
+      "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+      "record_code_path_id": "distribution_counts_to_shannon_entropy",
+      "record_log2_coefficient": 0,
+      "record_retained_nats": 0.0,
+      "regime": "erased_record",
+      "row_hash": "2503c51e5654349f1881b39f6127b747de099c72f27d8e3ec948470c9b39978c",
+      "state_loss_log2_coefficient": 2,
+      "state_loss_without_record_nats": 1.3862943611198906,
+      "typed_entropy_label": "finite_counting_entropy_nats"
+    },
+    "negative_partial_record": {
+      "computed_defect_nats": 0.6931471805599453,
+      "defect_log2_coefficient": 1,
+      "different_code_paths": true,
+      "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+      "record_code_path_id": "distribution_counts_to_shannon_entropy",
+      "record_log2_coefficient": 1,
+      "record_retained_nats": 0.6931471805599453,
+      "regime": "partial_record_one_bit",
+      "row_hash": "2796fcfa1328256d1bdac8d46a28b4ec13aefa1ea1e14930aaf69b75af77668b",
+      "state_loss_log2_coefficient": 2,
+      "state_loss_without_record_nats": 1.3862943611198906,
+      "typed_entropy_label": "finite_counting_entropy_nats"
+    },
+    "positive": {
+      "computed_defect_nats": 0.0,
+      "defect_log2_coefficient": 0,
+      "different_code_paths": true,
+      "loss_code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+      "record_code_path_id": "distribution_counts_to_shannon_entropy",
+      "record_log2_coefficient": 2,
+      "record_retained_nats": 1.3862943611198906,
+      "regime": "full_record",
+      "row_hash": "b93adf41affd5daeeb01fdb798b54a391cf9e0280f6f1026c6ad89f427b9c415",
+      "state_loss_log2_coefficient": 2,
+      "state_loss_without_record_nats": 1.3862943611198906,
+      "typed_entropy_label": "finite_counting_entropy_nats"
+    },
+    "source_rows": {
+      "erased_record": {
+        "code_path_id": "distribution_counts_to_shannon_entropy",
+        "counts": [
+          24
+        ],
+        "entropy_exact": "0",
+        "entropy_log2_coefficient": 0,
+        "entropy_nats": 0.0,
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "probabilities_exact": [
+          "1"
+        ]
+      },
+      "full_loss": {
+        "code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "preimage_counts": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "preimage_table": {
+          "orbit::x_minus": [
+            "x_minus::phase_0",
+            "x_minus::phase_1",
+            "x_minus::phase_2",
+            "x_minus::phase_3"
+          ],
+          "orbit::x_plus": [
+            "x_plus::phase_0",
+            "x_plus::phase_1",
+            "x_plus::phase_2",
+            "x_plus::phase_3"
+          ],
+          "orbit::y_minus": [
+            "y_minus::phase_0",
+            "y_minus::phase_1",
+            "y_minus::phase_2",
+            "y_minus::phase_3"
+          ],
+          "orbit::y_plus": [
+            "y_plus::phase_0",
+            "y_plus::phase_1",
+            "y_plus::phase_2",
+            "y_plus::phase_3"
+          ],
+          "orbit::z_minus": [
+            "z_minus::phase_0",
+            "z_minus::phase_1",
+            "z_minus::phase_2",
+            "z_minus::phase_3"
+          ],
+          "orbit::z_plus": [
+            "z_plus::phase_0",
+            "z_plus::phase_1",
+            "z_plus::phase_2",
+            "z_plus::phase_3"
+          ]
+        },
+        "quotient_key": "quotient_output",
+        "state_loss_exact": "log(4)",
+        "state_loss_log2_coefficient": 2,
+        "state_loss_without_record_nats": 1.3862943611198906
+      },
+      "full_record": {
+        "code_path_id": "distribution_counts_to_shannon_entropy",
+        "counts": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "entropy_exact": "log(4)",
+        "entropy_log2_coefficient": 2,
+        "entropy_nats": 1.3862943611198906,
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "probabilities_exact": [
+          "1/4",
+          "1/4",
+          "1/4",
+          "1/4"
+        ]
+      },
+      "partial_record": {
+        "code_path_id": "distribution_counts_to_shannon_entropy",
+        "counts": [
+          12,
+          12
+        ],
+        "entropy_exact": "log(2)",
+        "entropy_log2_coefficient": 1,
+        "entropy_nats": 0.6931471805599453,
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "probabilities_exact": [
+          "1/2",
+          "1/2"
+        ]
+      },
+      "trivial_loss": {
+        "code_path_id": "quotient_preimage_cardinalities_to_average_log_fiber_size",
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "preimage_counts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "preimage_table": {
+          "x_minus::phase_0": [
+            "x_minus::phase_0"
+          ],
+          "x_minus::phase_1": [
+            "x_minus::phase_1"
+          ],
+          "x_minus::phase_2": [
+            "x_minus::phase_2"
+          ],
+          "x_minus::phase_3": [
+            "x_minus::phase_3"
+          ],
+          "x_plus::phase_0": [
+            "x_plus::phase_0"
+          ],
+          "x_plus::phase_1": [
+            "x_plus::phase_1"
+          ],
+          "x_plus::phase_2": [
+            "x_plus::phase_2"
+          ],
+          "x_plus::phase_3": [
+            "x_plus::phase_3"
+          ],
+          "y_minus::phase_0": [
+            "y_minus::phase_0"
+          ],
+          "y_minus::phase_1": [
+            "y_minus::phase_1"
+          ],
+          "y_minus::phase_2": [
+            "y_minus::phase_2"
+          ],
+          "y_minus::phase_3": [
+            "y_minus::phase_3"
+          ],
+          "y_plus::phase_0": [
+            "y_plus::phase_0"
+          ],
+          "y_plus::phase_1": [
+            "y_plus::phase_1"
+          ],
+          "y_plus::phase_2": [
+            "y_plus::phase_2"
+          ],
+          "y_plus::phase_3": [
+            "y_plus::phase_3"
+          ],
+          "z_minus::phase_0": [
+            "z_minus::phase_0"
+          ],
+          "z_minus::phase_1": [
+            "z_minus::phase_1"
+          ],
+          "z_minus::phase_2": [
+            "z_minus::phase_2"
+          ],
+          "z_minus::phase_3": [
+            "z_minus::phase_3"
+          ],
+          "z_plus::phase_0": [
+            "z_plus::phase_0"
+          ],
+          "z_plus::phase_1": [
+            "z_plus::phase_1"
+          ],
+          "z_plus::phase_2": [
+            "z_plus::phase_2"
+          ],
+          "z_plus::phase_3": [
+            "z_plus::phase_3"
+          ]
+        },
+        "quotient_key": "identity_quotient_output",
+        "state_loss_exact": "0",
+        "state_loss_log2_coefficient": 0,
+        "state_loss_without_record_nats": 0.0
+      },
+      "trivial_record": {
+        "code_path_id": "distribution_counts_to_shannon_entropy",
+        "counts": [
+          24
+        ],
+        "entropy_exact": "0",
+        "entropy_log2_coefficient": 0,
+        "entropy_nats": 0.0,
+        "entropy_type": "finite_counting_entropy_nats",
+        "log_base": "e",
+        "probabilities_exact": [
+          "1"
+        ]
+      }
+    }
+  },
+  "result_path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+  "schema": "z4_syndrome_record_v0_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "shared_value_deltas": {
+    "boundary_trivial_quotient.state_loss_without_record_nats": 0.0,
+    "negative_erased_record.computed_defect_nats": 0.0,
+    "negative_partial_record.computed_defect_nats": 0.0,
+    "positive.computed_defect_nats": 0.0,
+    "positive.record_retained_nats": 0.0,
+    "positive.state_loss_without_record_nats": 0.0
+  },
+  "sim_id": "z4_syndrome_record_v0",
+  "source_path": "system_v6/sims/z4_syndrome_record_v0/z4_syndrome_record_v0_envelope.py",
+  "source_sha256": "b10e7a64330f6d240e8fd013da5d7e43fd1cedf13295a439b7244db9d78206b8",
+  "stability_pairs": [
+    {
+      "hash": "f0cd541be0eea9e040fb06109964896d3ce13c61127b03bc854af6a1668fa295",
+      "subtree": "regime_hashes"
+    }
+  ],
+  "syndrome_table": [
+    {
+      "alpha": "0",
+      "canonical_spinor": "(1,0)",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "z_plus",
+      "orbit_index": 0,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_plus",
+      "representative_id": "z_plus::phase_0",
+      "representative_spinor": "1*(1,0)",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(1,0)",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "z_plus",
+      "orbit_index": 0,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_plus",
+      "representative_id": "z_plus::phase_1",
+      "representative_spinor": "i*(1,0)",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(1,0)",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "z_plus",
+      "orbit_index": 0,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_plus",
+      "representative_id": "z_plus::phase_2",
+      "representative_spinor": "-1*(1,0)",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(1,0)",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "z_plus",
+      "orbit_index": 0,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_plus",
+      "representative_id": "z_plus::phase_3",
+      "representative_spinor": "-i*(1,0)",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    },
+    {
+      "alpha": "0",
+      "canonical_spinor": "(0,1)",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "z_minus",
+      "orbit_index": 1,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_minus",
+      "representative_id": "z_minus::phase_0",
+      "representative_spinor": "1*(0,1)",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(0,1)",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "z_minus",
+      "orbit_index": 1,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_minus",
+      "representative_id": "z_minus::phase_1",
+      "representative_spinor": "i*(0,1)",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(0,1)",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "z_minus",
+      "orbit_index": 1,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_minus",
+      "representative_id": "z_minus::phase_2",
+      "representative_spinor": "-1*(0,1)",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(0,1)",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "z_minus",
+      "orbit_index": 1,
+      "orbit_order": 4,
+      "quotient_output": "orbit::z_minus",
+      "representative_id": "z_minus::phase_3",
+      "representative_spinor": "-i*(0,1)",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    },
+    {
+      "alpha": "0",
+      "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "x_plus",
+      "orbit_index": 2,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_plus",
+      "representative_id": "x_plus::phase_0",
+      "representative_spinor": "1*(1/sqrt(2),1/sqrt(2))",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "x_plus",
+      "orbit_index": 2,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_plus",
+      "representative_id": "x_plus::phase_1",
+      "representative_spinor": "i*(1/sqrt(2),1/sqrt(2))",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "x_plus",
+      "orbit_index": 2,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_plus",
+      "representative_id": "x_plus::phase_2",
+      "representative_spinor": "-1*(1/sqrt(2),1/sqrt(2))",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(1/sqrt(2),1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "x_plus",
+      "orbit_index": 2,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_plus",
+      "representative_id": "x_plus::phase_3",
+      "representative_spinor": "-i*(1/sqrt(2),1/sqrt(2))",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    },
+    {
+      "alpha": "0",
+      "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "x_minus",
+      "orbit_index": 3,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_minus",
+      "representative_id": "x_minus::phase_0",
+      "representative_spinor": "1*(1/sqrt(2),-1/sqrt(2))",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "x_minus",
+      "orbit_index": 3,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_minus",
+      "representative_id": "x_minus::phase_1",
+      "representative_spinor": "i*(1/sqrt(2),-1/sqrt(2))",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "x_minus",
+      "orbit_index": 3,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_minus",
+      "representative_id": "x_minus::phase_2",
+      "representative_spinor": "-1*(1/sqrt(2),-1/sqrt(2))",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(1/sqrt(2),-1/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "x_minus",
+      "orbit_index": 3,
+      "orbit_order": 4,
+      "quotient_output": "orbit::x_minus",
+      "representative_id": "x_minus::phase_3",
+      "representative_spinor": "-i*(1/sqrt(2),-1/sqrt(2))",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    },
+    {
+      "alpha": "0",
+      "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "y_plus",
+      "orbit_index": 4,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_plus",
+      "representative_id": "y_plus::phase_0",
+      "representative_spinor": "1*(1/sqrt(2),i/sqrt(2))",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "y_plus",
+      "orbit_index": 4,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_plus",
+      "representative_id": "y_plus::phase_1",
+      "representative_spinor": "i*(1/sqrt(2),i/sqrt(2))",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "y_plus",
+      "orbit_index": 4,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_plus",
+      "representative_id": "y_plus::phase_2",
+      "representative_spinor": "-1*(1/sqrt(2),i/sqrt(2))",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(1/sqrt(2),i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "y_plus",
+      "orbit_index": 4,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_plus",
+      "representative_id": "y_plus::phase_3",
+      "representative_spinor": "-i*(1/sqrt(2),i/sqrt(2))",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    },
+    {
+      "alpha": "0",
+      "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "1",
+      "orbit_id": "y_minus",
+      "orbit_index": 5,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_minus",
+      "representative_id": "y_minus::phase_0",
+      "representative_spinor": "1*(1/sqrt(2),-i/sqrt(2))",
+      "syndrome": 0,
+      "syndrome_bits": "00"
+    },
+    {
+      "alpha": "pi/2",
+      "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "i",
+      "orbit_id": "y_minus",
+      "orbit_index": 5,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_minus",
+      "representative_id": "y_minus::phase_1",
+      "representative_spinor": "i*(1/sqrt(2),-i/sqrt(2))",
+      "syndrome": 1,
+      "syndrome_bits": "01"
+    },
+    {
+      "alpha": "pi",
+      "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-1",
+      "orbit_id": "y_minus",
+      "orbit_index": 5,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_minus",
+      "representative_id": "y_minus::phase_2",
+      "representative_spinor": "-1*(1/sqrt(2),-i/sqrt(2))",
+      "syndrome": 2,
+      "syndrome_bits": "10"
+    },
+    {
+      "alpha": "3*pi/2",
+      "canonical_spinor": "(1/sqrt(2),-i/sqrt(2))",
+      "generator": "alpha += pi/2",
+      "global_phase": "-i",
+      "orbit_id": "y_minus",
+      "orbit_index": 5,
+      "orbit_order": 4,
+      "quotient_output": "orbit::y_minus",
+      "representative_id": "y_minus::phase_3",
+      "representative_spinor": "-i*(1/sqrt(2),-i/sqrt(2))",
+      "syndrome": 3,
+      "syndrome_bits": "11"
+    }
+  ],
+  "tool_intent": {
+    "claim_classes": [
+      "finite_counting_entropy",
+      "z4_syndrome_record",
+      "smt_conservation_control"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver over computed log2 coefficients for full/erased/partial/trivial regimes",
+        "sympy": "sp.log/sp.Rational exact finite counting entropy expressions from computed distributions",
+        "z3": "z3.Solver over computed log2 coefficients for full/erased/partial/trivial regimes"
+      },
+      "julia": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.outdegree quotient preimage counts",
+        "Z3": "Z3.Solver/Z3.add/Z3.check over computed log2 coefficients"
+      },
+      "pytorch": {
+        "cvc5": "cvc5.Solver over torch-derived log2 coefficients",
+        "sympy": "sp.log/sp.Rational exact finite counting entropy rows from torch-derived counts",
+        "torch.func": "vmap roundtrip reconstruction over all representative codes",
+        "torch_geometric": "Data.edge_index quotient-to-representative incidence graph; source-node counts compute preimage cardinalities",
+        "z3": "z3.Solver over torch-derived log2 coefficients"
+      }
+    }
+  },
+  "typed_entropy_discipline": {
+    "all_rows_label": "finite_counting_entropy_nats",
+    "cross_type_sum": false,
+    "log_base": "e",
+    "product_bookkeeping_convention": "state quotient loss and retained finite syndrome record are compared within the same finite representative table"
+  },
+  "validator_expected_commands": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/z4_syndrome_record_v0/validate_z4_syndrome_record_v0.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json"
+  ]
+}

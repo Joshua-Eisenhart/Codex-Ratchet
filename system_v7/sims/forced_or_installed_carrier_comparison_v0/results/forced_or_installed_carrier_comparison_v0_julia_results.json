@@ -1,0 +1,785 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive spec/result JSON handling",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Z3.jl QF_NRA second-density-carrier existence search",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "carrier_type": "qubit_density_2x2_real_coordinates",
+  "claim_ceiling": "FORCED here = no second carrier with DIFFERENT (a,b,c) coordinates reproduces the table = COORDINATE-uniqueness vs the reference, NOT isomorphic/ontological uniqueness; no gauge quotient is applied in v0. For these fixtures only: installed means a second density carrier reproduces the measured incomplete probe table. No rho exclusion, no Hilbert exclusion, no Rung-0.5 collapse, no promotion.",
+  "claim_path_tools": [
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "criteria_checked": [
+    "installed_incomplete Z3.jl SAT",
+    "forced_complete Z3.jl UNSAT",
+    "no headline solver returned unknown",
+    "reproduce ON/OFF controls differ for forced and invalid measured tables",
+    "scrambled complete table flips to SAT"
+  ],
+  "engine": "julia_z3jl_qf_nra",
+  "first_carrier": {
+    "a": "1/2",
+    "b": "1/8",
+    "c": "1/10",
+    "psd_margin": "359/1600"
+  },
+  "first_carrier_readouts": {
+    "X": "1/4",
+    "Y": "1/5",
+    "Z": "0"
+  },
+  "fixture_results": {
+    "forced_complete": {
+      "julia_z3": {
+        "carrier_type": "qubit_density_2x2_real_coordinates",
+        "constraints": {
+          "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+          "non_isomorphism": true,
+          "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+          "reproduce_table": true,
+          "require_readout_mismatch": false
+        },
+        "first_carrier": {
+          "a": "1/2",
+          "b": "1/8",
+          "c": "1/10",
+          "psd_margin": "359/1600"
+        },
+        "first_carrier_readouts": {
+          "X": "1/4",
+          "Y": "1/5",
+          "Z": "0"
+        },
+        "first_carrier_reproduces_measured": true,
+        "fixture": "forced_complete",
+        "measured_probe_table": {
+          "X": "1/4",
+          "Y": "1/5",
+          "Z": "0"
+        },
+        "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+        "probe_set": [
+          "Z",
+          "X",
+          "Y"
+        ],
+        "readout_definition": {
+          "X": "Tr(sigma_x rho)=2b",
+          "Y": "declared sigma_y-orientation readout=2c",
+          "Z": "Tr(sigma_z rho)=2a-1"
+        },
+        "second_carrier_variables": {
+          "a": "julia_forced_c2_a:Real",
+          "b": "julia_forced_c2_b:Real",
+          "c": "julia_forced_c2_c:Real"
+        },
+        "solver": "Z3.jl",
+        "solver_logic": "QF_NRA",
+        "solver_status": "unsat",
+        "verdict": "forced",
+        "verdict_source": "string(Z3.check(solver))",
+        "witness_model_string": null
+      }
+    },
+    "installed_incomplete": {
+      "julia_z3": {
+        "carrier_type": "qubit_density_2x2_real_coordinates",
+        "constraints": {
+          "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+          "non_isomorphism": true,
+          "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+          "reproduce_table": true,
+          "require_readout_mismatch": false
+        },
+        "first_carrier": {
+          "a": "1/2",
+          "b": "1/8",
+          "c": "1/10",
+          "psd_margin": "359/1600"
+        },
+        "first_carrier_readouts": {
+          "X": "1/4",
+          "Y": "1/5",
+          "Z": "0"
+        },
+        "first_carrier_reproduces_measured": true,
+        "fixture": "installed_incomplete",
+        "measured_probe_table": {
+          "X": "1/4",
+          "Z": "0"
+        },
+        "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+        "probe_set": [
+          "Z",
+          "X"
+        ],
+        "readout_definition": {
+          "X": "Tr(sigma_x rho)=2b",
+          "Y": "declared sigma_y-orientation readout=2c",
+          "Z": "Tr(sigma_z rho)=2a-1"
+        },
+        "second_carrier_variables": {
+          "a": "julia_installed_c2_a:Real",
+          "b": "julia_installed_c2_b:Real",
+          "c": "julia_installed_c2_c:Real"
+        },
+        "solver": "Z3.jl",
+        "solver_logic": "QF_NRA",
+        "solver_status": "sat",
+        "verdict": "installed",
+        "verdict_source": "string(Z3.check(solver))",
+        "witness_model_string": "julia_installed_c2_c -> 0.0\njulia_installed_c2_a -> (/ 1.0 2.0)\njulia_installed_c2_b -> (/ 1.0 8.0)\n"
+      }
+    },
+    "load_bearing_controls": {
+      "forced_reproduce_off": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "forced_complete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X",
+            "Y"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_forced_no_reproduce_c2_a:Real",
+            "b": "julia_forced_no_reproduce_c2_b:Real",
+            "c": "julia_forced_no_reproduce_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_forced_no_reproduce_c2_c -> 0.0\njulia_forced_no_reproduce_c2_b -> 0.0\njulia_forced_no_reproduce_c2_a -> 0.0\n"
+        }
+      },
+      "forced_reproduce_off_mismatch": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": true
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "forced_complete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X",
+            "Y"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_forced_no_reproduce_mismatch_c2_a:Real",
+            "b": "julia_forced_no_reproduce_mismatch_c2_b:Real",
+            "c": "julia_forced_no_reproduce_mismatch_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_forced_no_reproduce_mismatch_c2_a -> 0.0\njulia_forced_no_reproduce_mismatch_c2_b -> 0.0\njulia_forced_no_reproduce_mismatch_c2_c -> 0.0\n"
+        }
+      },
+      "forced_scrambled_values": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+            "reproduce_table": true,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": false,
+          "fixture": "forced_complete_scrambled",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Y": "-1/5",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X",
+            "Y"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_forced_scrambled_c2_a:Real",
+            "b": "julia_forced_scrambled_c2_b:Real",
+            "c": "julia_forced_scrambled_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_forced_scrambled_c2_b -> (/ 1.0 8.0)\njulia_forced_scrambled_c2_a -> (/ 1.0 2.0)\njulia_forced_scrambled_c2_c -> (- (/ 1.0 10.0))\n"
+        }
+      },
+      "forced_without_non_isomorphism": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": false,
+            "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+            "reproduce_table": true,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "forced_complete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X",
+            "Y"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_forced_no_noniso_c2_a:Real",
+            "b": "julia_forced_no_noniso_c2_b:Real",
+            "c": "julia_forced_no_noniso_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_forced_no_noniso_c2_a -> (/ 1.0 2.0)\njulia_forced_no_noniso_c2_c -> (/ 1.0 10.0)\njulia_forced_no_noniso_c2_b -> (/ 1.0 8.0)\n"
+        }
+      },
+      "installed_reproduce_off": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "installed_incomplete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_installed_no_reproduce_c2_a:Real",
+            "b": "julia_installed_no_reproduce_c2_b:Real",
+            "c": "julia_installed_no_reproduce_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_installed_no_reproduce_c2_a -> 0.0\njulia_installed_no_reproduce_c2_c -> 0.0\njulia_installed_no_reproduce_c2_b -> 0.0\n"
+        }
+      },
+      "installed_reproduce_off_mismatch": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": true
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "installed_incomplete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_installed_no_reproduce_mismatch_c2_a:Real",
+            "b": "julia_installed_no_reproduce_mismatch_c2_b:Real",
+            "c": "julia_installed_no_reproduce_mismatch_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_installed_no_reproduce_mismatch_c2_a -> 0.0\njulia_installed_no_reproduce_mismatch_c2_b -> 0.0\njulia_installed_no_reproduce_mismatch_c2_c -> 0.0\n"
+        }
+      },
+      "installed_scrambled_values": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+            "reproduce_table": true,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": false,
+          "fixture": "installed_incomplete_scrambled",
+          "measured_probe_table": {
+            "X": "-1/4",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_installed_scrambled_c2_a:Real",
+            "b": "julia_installed_scrambled_c2_b:Real",
+            "c": "julia_installed_scrambled_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_installed_scrambled_c2_c -> 0.0\njulia_installed_scrambled_c2_a -> (/ 1.0 2.0)\njulia_installed_scrambled_c2_b -> (- (/ 1.0 8.0))\n"
+        }
+      },
+      "installed_without_non_isomorphism": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": false,
+            "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+            "reproduce_table": true,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": true,
+          "fixture": "installed_incomplete",
+          "measured_probe_table": {
+            "X": "1/4",
+            "Z": "0"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z",
+            "X"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_installed_no_noniso_c2_a:Real",
+            "b": "julia_installed_no_noniso_c2_b:Real",
+            "c": "julia_installed_no_noniso_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_installed_no_noniso_c2_c -> 0.0\njulia_installed_no_noniso_c2_b -> (/ 1.0 8.0)\njulia_installed_no_noniso_c2_a -> (/ 1.0 2.0)\n"
+        }
+      },
+      "invalid_measured_z_reproduce_off": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": false,
+          "fixture": "invalid_measured_z",
+          "measured_probe_table": {
+            "Z": "2"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_invalid_z_no_reproduce_c2_a:Real",
+            "b": "julia_invalid_z_no_reproduce_c2_b:Real",
+            "c": "julia_invalid_z_no_reproduce_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_invalid_z_no_reproduce_c2_b -> 0.0\njulia_invalid_z_no_reproduce_c2_a -> 0.0\njulia_invalid_z_no_reproduce_c2_c -> 0.0\n"
+        }
+      },
+      "invalid_measured_z_reproduce_off_mismatch": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "omitted",
+            "reproduce_table": false,
+            "require_readout_mismatch": true
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": false,
+          "fixture": "invalid_measured_z",
+          "measured_probe_table": {
+            "Z": "2"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_invalid_z_no_reproduce_mismatch_c2_a:Real",
+            "b": "julia_invalid_z_no_reproduce_mismatch_c2_b:Real",
+            "c": "julia_invalid_z_no_reproduce_mismatch_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "sat",
+          "verdict": "installed",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": "julia_invalid_z_no_reproduce_mismatch_c2_c -> 0.0\njulia_invalid_z_no_reproduce_mismatch_c2_a -> 0.0\njulia_invalid_z_no_reproduce_mismatch_c2_b -> 0.0\n"
+        }
+      },
+      "invalid_measured_z_reproduce_on": {
+        "julia_z3": {
+          "carrier_type": "qubit_density_2x2_real_coordinates",
+          "constraints": {
+            "carrier_psd": "0 <= a <= 1 and a*(1-a)-b^2-c^2 >= 0",
+            "non_isomorphism": true,
+            "reproduce_binding": "readout_k(C2) == measured_k for every active probe",
+            "reproduce_table": true,
+            "require_readout_mismatch": false
+          },
+          "first_carrier": {
+            "a": "1/2",
+            "b": "1/8",
+            "c": "1/10",
+            "psd_margin": "359/1600"
+          },
+          "first_carrier_readouts": {
+            "X": "1/4",
+            "Y": "1/5",
+            "Z": "0"
+          },
+          "first_carrier_reproduces_measured": false,
+          "fixture": "invalid_measured_z",
+          "measured_probe_table": {
+            "Z": "2"
+          },
+          "non_isomorphism_predicate": "coordinate inequality: (a,b,c) for C2 differs from C1; no gauge quotient is applied in v0",
+          "probe_set": [
+            "Z"
+          ],
+          "readout_definition": {
+            "X": "Tr(sigma_x rho)=2b",
+            "Y": "declared sigma_y-orientation readout=2c",
+            "Z": "Tr(sigma_z rho)=2a-1"
+          },
+          "second_carrier_variables": {
+            "a": "julia_invalid_z_c2_a:Real",
+            "b": "julia_invalid_z_c2_b:Real",
+            "c": "julia_invalid_z_c2_c:Real"
+          },
+          "solver": "Z3.jl",
+          "solver_logic": "QF_NRA",
+          "solver_status": "unsat",
+          "verdict": "forced",
+          "verdict_source": "string(Z3.check(solver))",
+          "witness_model_string": null
+        }
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "headline_checks": {
+    "forced_fixture_unsat": true,
+    "installed_fixture_sat": true,
+    "no_unknown_headline": true,
+    "noniso_off_is_sat": true,
+    "reproduce_on_off": {
+      "julia_z3": {
+        "forced_off": "sat",
+        "forced_off_mismatch": "sat",
+        "forced_on": "unsat",
+        "forced_status_differs": true,
+        "installed_off": "sat",
+        "installed_off_mismatch": "sat",
+        "installed_on": "sat",
+        "invalid_off": "sat",
+        "invalid_off_mismatch": "sat",
+        "invalid_on": "unsat",
+        "invalid_status_differs": true
+      }
+    },
+    "reproduce_on_off_differs": true,
+    "scramble_changes_forced_verdict": true,
+    "scramble_keeps_installed_sat_with_different_table": true,
+    "unknowns": []
+  },
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "non_isomorphism_predicate": "C2 is coordinate-distinct iff at least one of a,b,c differs from C1; no gauge quotient is applied in v0.",
+  "package_observables": {
+    "JSON": "spec/result JSON handling only",
+    "Z3": "Z3.jl QF_NRA installed SAT and forced UNSAT checks plus reproduce/non-isomorphism/scramble controls"
+  },
+  "packages_used": [
+    "JSON",
+    "SHA",
+    "Dates",
+    "Z3"
+  ],
+  "promotion_allowed": false,
+  "readout_definition": {
+    "Z": "Tr(sigma_z rho)=2a-1",
+    "X": "Tr(sigma_x rho)=2b",
+    "Y": "declared sigma_y-orientation readout=2c"
+  },
+  "reads_peer_result": false,
+  "same_decide_code": "decide in forced_or_installed_carrier_comparison_v0_julia.jl with local real-sort wrappers",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "forced_or_installed_carrier_comparison_v0",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/forced_or_installed_carrier_comparison_v0/forced_or_installed_carrier_comparison_v0_julia.jl",
+  "source_sha256": "b5fe84e2dcf6d916b49a4f3441b9f80b186073989dc4f0d0d275f912e27828bf",
+  "spec_sha256": "e58982e1d96b7593e89aa085ce2373994cfa380f7204023d7e6ac94000429b55",
+  "surviving_alternatives": [
+    {
+      "reading": "Rung-0.5 Boolean lattice reading",
+      "status": "live",
+      "statement": "The Boolean lattice of P-invariant subsets may be admitted as the exclusion-composition surface after Q."
+    },
+    {
+      "reading": "Rung-0.5 dual reading",
+      "status": "live",
+      "statement": "The Boolean lattice of P-invariant subsets may remain only a derived or dual presentation of Q; counting and cardinality stay open."
+    }
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "scrambled complete table is SAT, so forced is value-coupled",
+      "demotion_condition": "demote if Z3.check is bypassed or C2 variables are not free",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "free C2 density coordinates a,b,c with PSD, reproduce, and non-isomorphism constraints",
+      "negative/erased_control": "Z/X/Y complete table rejects coordinate-distinct C2; reproduce-off mismatch controls are SAT",
+      "output_object": "SAT installed model and UNSAT complete-table coordinate-uniqueness result",
+      "positive_case": "Z/X incomplete table admits a coordinate-distinct C2",
+      "qualified_api/function": "Z3.Solver/Z3.Libz3 real-sort constructors/Z3.check/Z3.model",
+      "tool": "Z3"
+    }
+  ],
+  "written_at": "2026-06-18T06:27:23Z"
+}

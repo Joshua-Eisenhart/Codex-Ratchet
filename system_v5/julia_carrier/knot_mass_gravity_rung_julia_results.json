@@ -1,0 +1,1685 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates": {
+      "reason": "supportive receipt writing and peer parity JSON parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite spinor-network construction, reduced-state mass readout, shell entropy-gradient gravity readout, sweep correlation, falloff fit, and parity scalars",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "backend": "julia",
+  "blocked_consumers": [
+    "gravity admission",
+    "G estimation",
+    "mass admission",
+    "physics",
+    "Axis0",
+    "M(C)",
+    "bridge",
+    "final manifold closure"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_fence_non_admitting": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "finite_spinor_network_boundary": {
+      "distances_from_knot": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "hilbert_dimension": 256,
+      "n_spinor_sites": 8,
+      "pass": true
+    },
+    "julia_mirror_no_numpy_compute": {
+      "numpy_compute_used": false,
+      "pass": true
+    }
+  },
+  "carrier": {
+    "density_status": "rho and rho_A are derived readout layers, not primitive state declarations",
+    "distance_surface": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7
+    },
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "hilbert_dimension": 256,
+    "knot_subregion": [
+      0
+    ],
+    "nodes": 8,
+    "primitive": "finite spinor-network state psi over (C^2)^8",
+    "state_family": "finite graph-phase spinor network with tunable local amplitude knot and surrounding field weights"
+  },
+  "claim_ceiling": "finite knot rung: mass and gravity co-arise as two readouts of one finite knot; NO admission of gravity/G/mass/physics/Axis0/M(C); the 1/r^2 fit is diagnostic only",
+  "classification": "scratch_diagnostic",
+  "created_at": "2026-06-07T04:26:15Z",
+  "eligible_consumers": [
+    "scratch diagnostic audits",
+    "dual-backend parity checks",
+    "future non-promoting knot-readout scouts"
+  ],
+  "formal_admission_allowed": false,
+  "graveyard_companions": {
+    "mass_and_gravity_are_not_same_scalar": {
+      "decoupling_witness": true,
+      "gravity_definition": "surrounding shell entropy-drop pressure times knot source divided by finite shell area",
+      "mass_definition": "knot subregion reduced-state purity excess times bounded negentropy and locality",
+      "pass": true
+    },
+    "one_over_r2_not_forced": {
+      "best_model_by_sse": "power_e_2",
+      "fixed_1_over_r2_sse": 5.0861861693623495e-6,
+      "free_power_exponent": 2.0168222346401685,
+      "pass": true
+    },
+    "physics_promotion_rejected": {
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    }
+  },
+  "name": "knot_mass_gravity_rung",
+  "nearby_variants": {
+    "all_pass": true,
+    "passed": 3,
+    "total": 3,
+    "variants": [
+      "flatten_s0",
+      "base_knot_strength_sweep",
+      "shape_perturbed_same_knot_mass"
+    ]
+  },
+  "object_id": "knot_mass_gravity_rung",
+  "open_choices": [
+    "Falloff exponent is a fitted diagnostic on a finite graph-distance profile, not a physical law.",
+    "Mass and gravity labels are requested readout names only; neither is admitted as physics.",
+    "Shape perturbation keeps the local knot source fixed while changing surrounding field weights to exhibit functional separation."
+  ],
+  "parity": {
+    "diffs": {
+      "co_scaling": 0.0,
+      "dark_energy_distinct": 0.0,
+      "decoupling_witness": 0.0,
+      "falloff_exponent": 4.440892098500626e-16,
+      "falloff_one_over_r2_sse": 5.929230630780102e-19,
+      "falloff_pass": 0.0,
+      "falloff_profile.r1": 4.218847493575595e-15,
+      "falloff_profile.r2": 8.326672684688674e-16,
+      "falloff_profile.r3": 4.3021142204224816e-16,
+      "falloff_profile.r4": 2.5673907444456745e-16,
+      "falloff_profile.r5": 1.5265566588595902e-16,
+      "falloff_profile.r6": 1.1449174941446927e-16,
+      "falloff_profile.r7": 7.632783294297951e-17,
+      "flatten_both_vanish": 0.0,
+      "flatten_expansion_dark_energy": 2.7755575615628914e-15,
+      "flatten_gravity": 0.0,
+      "flatten_mass": 0.0,
+      "mass_gravity_corr": 2.220446049250313e-16,
+      "shape_b_falloff_exponent": 0.0,
+      "shape_exponent_delta": 4.440892098500626e-16,
+      "shape_mass_abs_diff": 7.771561172376096e-16,
+      "shape_perturbed_profile.r1": 5.551115123125783e-16,
+      "shape_perturbed_profile.r2": 2.220446049250313e-16,
+      "shape_perturbed_profile.r3": 4.85722573273506e-17,
+      "shape_perturbed_profile.r4": 3.8163916471489756e-17,
+      "shape_perturbed_profile.r5": 3.642919299551295e-17,
+      "shape_perturbed_profile.r6": 6.938893903907228e-18,
+      "shape_perturbed_profile.r7": 1.734723475976807e-17,
+      "shape_profile_l2_diff": 8.951173136040325e-16,
+      "sweep_0.expansion_dark_energy": 2.7755575615628914e-15,
+      "sweep_0.mass": 0.0,
+      "sweep_0.strength": 0.0,
+      "sweep_0.total_gravity": 0.0,
+      "sweep_1.expansion_dark_energy": 3.3306690738754696e-16,
+      "sweep_1.mass": 3.8163916471489756e-17,
+      "sweep_1.strength": 0.0,
+      "sweep_1.total_gravity": 4.9873299934333204e-18,
+      "sweep_2.expansion_dark_energy": 8.881784197001252e-16,
+      "sweep_2.mass": 1.4155343563970746e-15,
+      "sweep_2.strength": 0.0,
+      "sweep_2.total_gravity": 4.163336342344337e-16,
+      "sweep_3.expansion_dark_energy": 6.661338147750939e-16,
+      "sweep_3.mass": 7.771561172376096e-16,
+      "sweep_3.strength": 0.0,
+      "sweep_3.total_gravity": 3.885780586188048e-16,
+      "sweep_4.expansion_dark_energy": 8.881784197001252e-16,
+      "sweep_4.mass": 1.5543122344752192e-15,
+      "sweep_4.strength": 0.0,
+      "sweep_4.total_gravity": 1.887379141862766e-15,
+      "sweep_5.expansion_dark_energy": 6.661338147750939e-16,
+      "sweep_5.mass": 8.104628079763643e-15,
+      "sweep_5.strength": 0.0,
+      "sweep_5.total_gravity": 1.2878587085651816e-14,
+      "sweep_6.expansion_dark_energy": 5.551115123125783e-17,
+      "sweep_6.mass": 5.10702591327572e-15,
+      "sweep_6.strength": 0.0,
+      "sweep_6.total_gravity": 8.881784197001252e-15,
+      "sweep_7.expansion_dark_energy": 0.0,
+      "sweep_7.mass": 5.440092820663267e-15,
+      "sweep_7.strength": 0.0,
+      "sweep_7.total_gravity": 1.0658141036401503e-14,
+      "sweep_8.expansion_dark_energy": 1.3877787807814457e-16,
+      "sweep_8.mass": 3.219646771412954e-15,
+      "sweep_8.strength": 0.0,
+      "sweep_8.total_gravity": 6.439293542825908e-15,
+      "sweep_9.expansion_dark_energy": 0.0,
+      "sweep_9.mass": 3.9968028886505635e-15,
+      "sweep_9.strength": 0.0,
+      "sweep_9.total_gravity": 7.327471962526033e-15
+    },
+    "missing_from_peer": [],
+    "missing_from_self": [],
+    "parity_max_diff": 1.2878587085651816e-14,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/knot_mass_gravity_rung_results.json",
+    "within_1e_10": true,
+    "worst_key": "sweep_5.total_gravity"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/knot_mass_gravity_rung_results.json",
+  "positive": {
+    "anti_by_construction_shape_decoupling_witness": {
+      "base_falloff_exponent": 2.0168222346401685,
+      "base_field_weights_by_node": [
+        0.0,
+        1.0,
+        0.94,
+        0.89,
+        0.84,
+        0.8,
+        0.76,
+        0.68
+      ],
+      "base_gravity_profile": [
+        0.4859659943515192,
+        0.09959006545295168,
+        0.040560712490773206,
+        0.02085948796956922,
+        0.012257054529403505,
+        0.007651209666007771,
+        0.007352554665853912
+      ],
+      "base_mass": 0.7927959072596934,
+      "exponent_delta": 0.06163400263020158,
+      "falloff_reference_strength": 3.1,
+      "mass_abs_diff": 3.3306690738754696e-15,
+      "mass_invariant_tolerance": 1.0e-8,
+      "pass": true,
+      "perturbed_falloff_exponent": 2.07845623727037,
+      "perturbed_gravity_profile": [
+        0.5316660331860805,
+        0.11355337200432762,
+        0.04130616060486943,
+        0.027393904184858802,
+        0.014605381246000184,
+        0.012313567969864188,
+        0.009963511867312817
+      ],
+      "perturbed_mass": 0.7927959072596901,
+      "profile_change_min": 0.001,
+      "profile_l2_diff": 0.048587972671462934,
+      "reference_strength": 1.15,
+      "shape_perturbed_weights_by_node": [
+        0.0,
+        1.0,
+        1.16,
+        0.67,
+        1.18,
+        0.62,
+        1.21,
+        0.54
+      ]
+    },
+    "co_scaling_same_source_strength_sweep": {
+      "correlation_min": 0.95,
+      "gravity_monotone_non_decreasing": true,
+      "mass_gravity_corr": 0.9527351128774205,
+      "mass_monotone_non_decreasing": true,
+      "mass_values": [
+        0.0,
+        0.014618456236192397,
+        0.15262040521982007,
+        0.4804088982662553,
+        0.7927959072596934,
+        0.944370923430784,
+        0.9892517357385215,
+        0.9984316352234817,
+        0.9998546016038721,
+        0.9999913820061527
+      ],
+      "pass": true,
+      "strengths": [
+        0.0,
+        0.25,
+        0.5,
+        0.8,
+        1.15,
+        1.55,
+        2.0,
+        2.5,
+        3.1,
+        3.8
+      ],
+      "total_gravity_values": [
+        0.0,
+        0.0006287405780454653,
+        0.028339152675148385,
+        0.2281230978522527,
+        0.6742370791260786,
+        1.1108546461181215,
+        1.3612237369208595,
+        1.4648621810131857,
+        1.500750450151878,
+        1.5098088016498967
+      ]
+    },
+    "dark_energy_distinct_from_local_knot_readouts": {
+      "flatten_expansion_dark_energy": 1.000000000000002,
+      "flatten_gravity": 0.0,
+      "flatten_mass": 0.0,
+      "pass": true
+    },
+    "falloff_by_network_distance_reported_not_forced": {
+      "alternative_fits": {
+        "exponential": {
+          "amplitude": 1.0078382362365659,
+          "lambda": 0.6158762178068399,
+          "sse": 0.2095017298523023
+        },
+        "free_power": {
+          "exponent": 2.0168222346401685,
+          "sse": 1.8548161388929092e-5
+        },
+        "power_e_0": {
+          "amplitude": 0.21439292145026828,
+          "sse": 0.7508492156684106
+        },
+        "power_e_1": {
+          "amplitude": 0.7853425478641441,
+          "sse": 0.1401791285113057
+        },
+        "power_e_2": {
+          "amplitude": 0.9958558173369976,
+          "sse": 5.0861861693623495e-6
+        },
+        "power_e_3": {
+          "amplitude": 1.0152574718571363,
+          "sse": 0.023983932498596906
+        }
+      },
+      "best_model_by_sse": "power_e_2",
+      "falloff_exponent": 2.0168222346401685,
+      "monotone_decreasing": true,
+      "one_over_r2_sse": 5.0861861693623495e-6,
+      "pass": true,
+      "profile": [
+        0.9963526014203442,
+        0.24792292467070262,
+        0.10969204356841855,
+        0.061327339133392764,
+        0.03894751095984147,
+        0.026675426220244308,
+        0.019832604178934357
+      ],
+      "radii": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ]
+    },
+    "flatten_control_mass_and_gravity_vanish_together": {
+      "flatten_both_vanish": true,
+      "mass": 0.0,
+      "pass": true,
+      "strength": 0.0,
+      "total_gravity": 0.0
+    }
+  },
+  "promotion_allowed": false,
+  "readout_definitions": {
+    "dark_energy_expansion": "global computational-support entropy; maximal in the flattened no-knot carrier",
+    "gravity": "surrounding entropy/possibility-gradient: shell entropy drop from flat x knot source / graph-distance shell area",
+    "mass": "local stability/binding of the knot subregion: local purity excess x locality x bounded negentropy"
+  },
+  "reference_readouts": {
+    "expansion_dark_energy": 0.10572220559237115,
+    "gravity_detail": {
+      "mass_source_detail": {
+        "boundedness_negentropy": 0.9998802258551414,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.00011977414485860669,
+        "local_purity": 0.9999871863396201,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9999743726792403
+      },
+      "profile": [
+        {
+          "entropy_drop_from_flat": 0.9964974905572167,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.9963526014203442,
+          "node": 1,
+          "r": 1,
+          "shell_area_square_possibilities": 1.0,
+          "shell_entropy_norm": 0.0035025094427833504
+        },
+        {
+          "entropy_drop_from_flat": 0.9918359100333514,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.24792292467070262,
+          "node": 2,
+          "r": 2,
+          "shell_area_square_possibilities": 4.0,
+          "shell_entropy_norm": 0.00816408996664867
+        },
+        {
+          "entropy_drop_from_flat": 0.9873719544143205,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.10969204356841855,
+          "node": 3,
+          "r": 3,
+          "shell_area_square_possibilities": 9.0,
+          "shell_entropy_norm": 0.012628045585679488
+        },
+        {
+          "entropy_drop_from_flat": 0.9813801172293212,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.061327339133392764,
+          "node": 4,
+          "r": 4,
+          "shell_area_square_possibilities": 16.0,
+          "shell_entropy_norm": 0.018619882770678848
+        },
+        {
+          "entropy_drop_from_flat": 0.9738293672241334,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.03894751095984147,
+          "node": 5,
+          "r": 5,
+          "shell_area_square_possibilities": 25.0,
+          "shell_entropy_norm": 0.02617063277586667
+        },
+        {
+          "entropy_drop_from_flat": 0.960454992544264,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.026675426220244308,
+          "node": 6,
+          "r": 6,
+          "shell_area_square_possibilities": 36.0,
+          "shell_entropy_norm": 0.039545007455735935
+        },
+        {
+          "entropy_drop_from_flat": 0.9719389231283407,
+          "flat_shell_entropy_norm": 1.0,
+          "gravity_gradient": 0.019832604178934357,
+          "node": 7,
+          "r": 7,
+          "shell_area_square_possibilities": 49.0,
+          "shell_entropy_norm": 0.028061076871659298
+        }
+      ],
+      "total_gravity": 1.500750450151878
+    },
+    "gravity_profile": [
+      0.9963526014203442,
+      0.24792292467070262,
+      0.10969204356841855,
+      0.061327339133392764,
+      0.03894751095984147,
+      0.026675426220244308,
+      0.019832604178934357
+    ],
+    "mass": 0.9998546016038721,
+    "mass_detail": {
+      "boundedness_negentropy": 0.9998802258551414,
+      "knot_site": 0.0,
+      "local_entropy_norm": 0.00011977414485860669,
+      "local_purity": 0.9999871863396201,
+      "locality_weight": 1.0,
+      "purity_excess_norm": 0.9999743726792403
+    },
+    "strength": 3.1,
+    "total_gravity": 1.500750450151878
+  },
+  "reference_strength": 3.1,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/knot_mass_gravity_rung_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "decoupling_witness": true,
+    "falloff_exponent": 2.0168222346401685,
+    "flatten_both_vanish": true,
+    "local_all_pass": true,
+    "mass_gravity_corr": 0.9527351128774205,
+    "parity_within_1e_10": true
+  },
+  "schema": "FINITE_KNOT_MASS_GRAVITY_RUNG_v1",
+  "shape_decoupling": {
+    "base_falloff_exponent": 2.0168222346401685,
+    "base_field_weights_by_node": [
+      0.0,
+      1.0,
+      0.94,
+      0.89,
+      0.84,
+      0.8,
+      0.76,
+      0.68
+    ],
+    "base_gravity_profile": [
+      0.4859659943515192,
+      0.09959006545295168,
+      0.040560712490773206,
+      0.02085948796956922,
+      0.012257054529403505,
+      0.007651209666007771,
+      0.007352554665853912
+    ],
+    "base_mass": 0.7927959072596934,
+    "exponent_delta": 0.06163400263020158,
+    "falloff_reference_strength": 3.1,
+    "mass_abs_diff": 3.3306690738754696e-15,
+    "mass_invariant_tolerance": 1.0e-8,
+    "pass": true,
+    "perturbed_falloff_exponent": 2.07845623727037,
+    "perturbed_gravity_profile": [
+      0.5316660331860805,
+      0.11355337200432762,
+      0.04130616060486943,
+      0.027393904184858802,
+      0.014605381246000184,
+      0.012313567969864188,
+      0.009963511867312817
+    ],
+    "perturbed_mass": 0.7927959072596901,
+    "profile_change_min": 0.001,
+    "profile_l2_diff": 0.048587972671462934,
+    "reference_strength": 1.15,
+    "shape_perturbed_weights_by_node": [
+      0.0,
+      1.0,
+      1.16,
+      0.67,
+      1.18,
+      0.62,
+      1.21,
+      0.54
+    ]
+  },
+  "shared_scalars": {
+    "co_scaling": 1.0,
+    "dark_energy_distinct": 1.0,
+    "decoupling_witness": 1.0,
+    "falloff_exponent": 2.0168222346401685,
+    "falloff_one_over_r2_sse": 5.0861861693623495e-6,
+    "falloff_pass": 1.0,
+    "falloff_profile.r1": 0.9963526014203442,
+    "falloff_profile.r2": 0.24792292467070262,
+    "falloff_profile.r3": 0.10969204356841855,
+    "falloff_profile.r4": 0.061327339133392764,
+    "falloff_profile.r5": 0.03894751095984147,
+    "falloff_profile.r6": 0.026675426220244308,
+    "falloff_profile.r7": 0.019832604178934357,
+    "flatten_both_vanish": 1.0,
+    "flatten_expansion_dark_energy": 1.000000000000002,
+    "flatten_gravity": 0.0,
+    "flatten_mass": 0.0,
+    "mass_gravity_corr": 0.9527351128774205,
+    "shape_b_falloff_exponent": 2.07845623727037,
+    "shape_exponent_delta": 0.06163400263020158,
+    "shape_mass_abs_diff": 3.3306690738754696e-15,
+    "shape_perturbed_profile.r1": 0.5316660331860805,
+    "shape_perturbed_profile.r2": 0.11355337200432762,
+    "shape_perturbed_profile.r3": 0.04130616060486943,
+    "shape_perturbed_profile.r4": 0.027393904184858802,
+    "shape_perturbed_profile.r5": 0.014605381246000184,
+    "shape_perturbed_profile.r6": 0.012313567969864188,
+    "shape_perturbed_profile.r7": 0.009963511867312817,
+    "shape_profile_l2_diff": 0.048587972671462934,
+    "sweep_0.expansion_dark_energy": 1.000000000000002,
+    "sweep_0.mass": 0.0,
+    "sweep_0.strength": 0.0,
+    "sweep_0.total_gravity": 0.0,
+    "sweep_1.expansion_dark_energy": 0.9723059293246642,
+    "sweep_1.mass": 0.014618456236192397,
+    "sweep_1.strength": 0.25,
+    "sweep_1.total_gravity": 0.0006287405780454653,
+    "sweep_2.expansion_dark_energy": 0.8978886320574135,
+    "sweep_2.mass": 0.15262040521982007,
+    "sweep_2.strength": 0.5,
+    "sweep_2.total_gravity": 0.028339152675148385,
+    "sweep_3.expansion_dark_energy": 0.7735323540012725,
+    "sweep_3.mass": 0.4804088982662553,
+    "sweep_3.strength": 0.8,
+    "sweep_3.total_gravity": 0.2281230978522527,
+    "sweep_4.expansion_dark_energy": 0.6165061554296046,
+    "sweep_4.mass": 0.7927959072596934,
+    "sweep_4.strength": 1.15,
+    "sweep_4.total_gravity": 0.6742370791260786,
+    "sweep_5.expansion_dark_energy": 0.45305575121531805,
+    "sweep_5.mass": 0.944370923430784,
+    "sweep_5.strength": 1.55,
+    "sweep_5.total_gravity": 1.1108546461181215,
+    "sweep_6.expansion_dark_energy": 0.30680760621028064,
+    "sweep_6.mass": 0.9892517357385215,
+    "sweep_6.strength": 2.0,
+    "sweep_6.total_gravity": 1.3612237369208595,
+    "sweep_7.expansion_dark_energy": 0.19185031649027315,
+    "sweep_7.mass": 0.9984316352234817,
+    "sweep_7.strength": 2.5,
+    "sweep_7.total_gravity": 1.4648621810131857,
+    "sweep_8.expansion_dark_energy": 0.10572220559237115,
+    "sweep_8.mass": 0.9998546016038721,
+    "sweep_8.strength": 3.1,
+    "sweep_8.total_gravity": 1.500750450151878,
+    "sweep_9.expansion_dark_energy": 0.05134915508490992,
+    "sweep_9.mass": 0.9999913820061527,
+    "sweep_9.strength": 3.8,
+    "sweep_9.total_gravity": 1.5098088016498967
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/knot_mass_gravity_rung.jl",
+  "summary": {
+    "all_pass": true,
+    "decoupling_witness": true,
+    "falloff_exponent": 2.0168222346401685,
+    "flatten_both_vanish": true,
+    "local_all_pass": true,
+    "mass_gravity_corr": 0.9527351128774205,
+    "parity_within_1e_10": true
+  },
+  "sweep_rows": [
+    {
+      "expansion_dark_energy": 1.000000000000002,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.0,
+          "knot_site": 0.0,
+          "local_entropy_norm": 1.0,
+          "local_purity": 0.5,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.0
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 1.0
+          },
+          {
+            "entropy_drop_from_flat": 0.0,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 1.0
+          }
+        ],
+        "total_gravity": 0.0
+      },
+      "gravity_profile": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mass": 0.0,
+      "mass_detail": {
+        "boundedness_negentropy": 0.0,
+        "knot_site": 0.0,
+        "local_entropy_norm": 1.0,
+        "local_purity": 0.5,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.0
+      },
+      "strength": 0.0,
+      "total_gravity": 0.0
+    },
+    {
+      "expansion_dark_energy": 0.9723059293246642,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.10395756413521817,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.8960424358647818,
+          "local_purity": 0.5703097285791445,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.14061945715828905
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.03085418086352476,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.00045104049265700167,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.9691458191364752
+          },
+          {
+            "entropy_drop_from_flat": 0.025903581617731986,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 9.466759355986323e-5,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.974096418382268
+          },
+          {
+            "entropy_drop_from_flat": 0.023173819955964348,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 3.764060809462965e-5,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.9768261800440357
+          },
+          {
+            "entropy_drop_from_flat": 0.02062848710720533,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 1.8847289749721264e-5,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.9793715128927947
+          },
+          {
+            "entropy_drop_from_flat": 0.018679816318066256,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 1.0922803093830567e-5,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.9813201836819337
+          },
+          {
+            "entropy_drop_from_flat": 0.01680212805851189,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 6.822810380507121e-6,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.9831978719414881
+          },
+          {
+            "entropy_drop_from_flat": 0.02949354145331884,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 8.798980509911586e-6,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.9705064585466812
+          }
+        ],
+        "total_gravity": 0.0006287405780454653
+      },
+      "gravity_profile": [
+        0.00045104049265700167,
+        9.466759355986323e-5,
+        3.764060809462965e-5,
+        1.8847289749721264e-5,
+        1.0922803093830567e-5,
+        6.822810380507121e-6,
+        8.798980509911586e-6
+      ],
+      "mass": 0.014618456236192397,
+      "mass_detail": {
+        "boundedness_negentropy": 0.10395756413521817,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.8960424358647818,
+        "local_purity": 0.5703097285791445,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.14061945715828905
+      },
+      "strength": 0.25,
+      "total_gravity": 0.0006287405780454653
+    },
+    {
+      "expansion_dark_energy": 0.8978886320574135,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.3465069308501476,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.6534930691498524,
+          "local_purity": 0.7202270598821343,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.4404541197642686
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.1360291618718118,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.020760825806588414,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.8639708381281882
+          },
+          {
+            "entropy_drop_from_flat": 0.10631350837100051,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.004056402681980708,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.8936864916289995
+          },
+          {
+            "entropy_drop_from_flat": 0.09494432784056439,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.001610049087594487,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.9050556721594356
+          },
+          {
+            "entropy_drop_from_flat": 0.08456503288902462,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0008066468491843968,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.9154349671109754
+          },
+          {
+            "entropy_drop_from_flat": 0.07641385263089173,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.00046649252611737237,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.9235861473691083
+          },
+          {
+            "entropy_drop_from_flat": 0.06829327521649875,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.00028952631492585375,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.9317067247835013
+          },
+          {
+            "entropy_drop_from_flat": 0.11211646964542532,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0003492094087571524,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.8878835303545747
+          }
+        ],
+        "total_gravity": 0.028339152675148385
+      },
+      "gravity_profile": [
+        0.020760825806588414,
+        0.004056402681980708,
+        0.001610049087594487,
+        0.0008066468491843968,
+        0.00046649252611737237,
+        0.00028952631492585375,
+        0.0003492094087571524
+      ],
+      "mass": 0.15262040521982007,
+      "mass_detail": {
+        "boundedness_negentropy": 0.3465069308501476,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.6534930691498524,
+        "local_purity": 0.7202270598821343,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.4404541197642686
+      },
+      "strength": 0.5,
+      "total_gravity": 0.028339152675148385
+    },
+    {
+      "expansion_dark_energy": 0.7735323540012725,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.6426852677422978,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.35731473225770216,
+          "local_purity": 0.8737512919456623,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.7475025838913245
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.34888829051508186,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.1676090392643477,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.6511117094849181
+          },
+          {
+            "entropy_drop_from_flat": 0.2695784672239687,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.03237697360884316,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.7304215327760313
+          },
+          {
+            "entropy_drop_from_flat": 0.2423049323952826,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.012933938401833022,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.7576950676047174
+          },
+          {
+            "entropy_drop_from_flat": 0.217472489582494,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.006529732445221602,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.782527510417506
+          },
+          {
+            "entropy_drop_from_flat": 0.19708968093861778,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0037873454591747665,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.8029103190613822
+          },
+          {
+            "entropy_drop_from_flat": 0.1756357522764369,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0023438049513135554,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.8243642477235631
+          },
+          {
+            "entropy_drop_from_flat": 0.2593018630670473,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.0025422637215189304,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.7406981369329527
+          }
+        ],
+        "total_gravity": 0.2281230978522527
+      },
+      "gravity_profile": [
+        0.1676090392643477,
+        0.03237697360884316,
+        0.012933938401833022,
+        0.006529732445221602,
+        0.0037873454591747665,
+        0.0023438049513135554,
+        0.0025422637215189304
+      ],
+      "mass": 0.4804088982662553,
+      "mass_detail": {
+        "boundedness_negentropy": 0.6426852677422978,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.35731473225770216,
+        "local_purity": 0.8737512919456623,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.7475025838913245
+      },
+      "strength": 0.8,
+      "total_gravity": 0.2281230978522527
+    },
+    {
+      "expansion_dark_energy": 0.6165061554296046,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.8595850513637682,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.14041494863623183,
+          "local_purity": 0.9611503573741127,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9223007147482254
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.6129774257176293,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.4859659943515192,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.38702257428237075
+          },
+          {
+            "entropy_drop_from_flat": 0.5024751744604015,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.09959006545295168,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.4975248255395986
+          },
+          {
+            "entropy_drop_from_flat": 0.4604544613237791,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.040560712490773206,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.5395455386762209
+          },
+          {
+            "entropy_drop_from_flat": 0.42098073975523387,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.02085948796956922,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.5790192602447661
+          },
+          {
+            "entropy_drop_from_flat": 0.3865135533989489,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.012257054529403505,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.6134864466010511
+          },
+          {
+            "entropy_drop_from_flat": 0.347433110405871,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.007651209666007771,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.652566889594129
+          },
+          {
+            "entropy_drop_from_flat": 0.4544362241628318,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.007352554665853912,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.5455637758371682
+          }
+        ],
+        "total_gravity": 0.6742370791260786
+      },
+      "gravity_profile": [
+        0.4859659943515192,
+        0.09959006545295168,
+        0.040560712490773206,
+        0.02085948796956922,
+        0.012257054529403505,
+        0.007651209666007771,
+        0.007352554665853912
+      ],
+      "mass": 0.7927959072596934,
+      "mass_detail": {
+        "boundedness_negentropy": 0.8595850513637682,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.14041494863623183,
+        "local_purity": 0.9611503573741127,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9223007147482254
+      },
+      "strength": 1.15,
+      "total_gravity": 0.6742370791260786
+    },
+    {
+      "expansion_dark_energy": 0.45305575121531805,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.960555248832039,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.03944475116796095,
+          "local_purity": 0.9915755364301356,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9831510728602713
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.8230482561072154,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.7772628416480675,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.17695174389278462
+          },
+          {
+            "entropy_drop_from_flat": 0.7320614833339025,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.17283439475603676,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.2679385166660974
+          },
+          {
+            "entropy_drop_from_flat": 0.6896552062963215,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.07236559155765611,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.31034479370367857
+          },
+          {
+            "entropy_drop_from_flat": 0.6472554116594879,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.03820307442527767,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.35274458834051214
+          },
+          {
+            "entropy_drop_from_flat": 0.6072810296470743,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.022939941869992195,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.39271897035292574
+          },
+          {
+            "entropy_drop_from_flat": 0.5576171034532252,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.014627704969692259,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.44238289654677476
+          },
+          {
+            "entropy_drop_from_flat": 0.654863181758965,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.012621096891398675,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.345136818241035
+          }
+        ],
+        "total_gravity": 1.1108546461181215
+      },
+      "gravity_profile": [
+        0.7772628416480675,
+        0.17283439475603676,
+        0.07236559155765611,
+        0.03820307442527767,
+        0.022939941869992195,
+        0.014627704969692259,
+        0.012621096891398675
+      ],
+      "mass": 0.944370923430784,
+      "mass_detail": {
+        "boundedness_negentropy": 0.960555248832039,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.03944475116796095,
+        "local_purity": 0.9915755364301356,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9831510728602713
+      },
+      "strength": 1.55,
+      "total_gravity": 1.1108546461181215
+    },
+    {
+      "expansion_dark_energy": 0.30680760621028064,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.9919250440578906,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.008074955942109356,
+          "local_purity": 0.9986524645509338,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9973049291018676
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.9372796895042442,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.9272055597145361,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.06272031049575574
+          },
+          {
+            "entropy_drop_from_flat": 0.888462337501257,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.21972822737785566,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.11153766249874295
+          },
+          {
+            "entropy_drop_from_flat": 0.859581231624403,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.09448246948807743,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.14041876837559697
+          },
+          {
+            "entropy_drop_from_flat": 0.8281612984527009,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.051203750122862636,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.1718387015472991
+          },
+          {
+            "entropy_drop_from_flat": 0.7958130343238443,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.031490377021128106,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.20418696567615569
+          },
+          {
+            "entropy_drop_from_flat": 0.7511497453329793,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.02064100526028328,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.24885025466702068
+          },
+          {
+            "entropy_drop_from_flat": 0.8159147158504887,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.016472347936116297,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.1840852841495113
+          }
+        ],
+        "total_gravity": 1.3612237369208595
+      },
+      "gravity_profile": [
+        0.9272055597145361,
+        0.21972822737785566,
+        0.09448246948807743,
+        0.051203750122862636,
+        0.031490377021128106,
+        0.02064100526028328,
+        0.016472347936116297
+      ],
+      "mass": 0.9892517357385215,
+      "mass_detail": {
+        "boundedness_negentropy": 0.9919250440578906,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.008074955942109356,
+        "local_purity": 0.9986524645509338,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9973049291018676
+      },
+      "strength": 2.0,
+      "total_gravity": 1.3612237369208595
+    },
+    {
+      "expansion_dark_energy": 0.19185031649027315,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.9987613472460243,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.0012386527539757209,
+          "local_purity": 0.9998349395361306,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9996698790722611
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.9823800746062391,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.9808393443000732,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.017619925393760866
+          },
+          {
+            "entropy_drop_from_flat": 0.9639121723253207,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.2406001016066471,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.03608782767467937
+          },
+          {
+            "entropy_drop_from_flat": 0.9500403651539677,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.10539448392322107,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.049959634846032316
+          },
+          {
+            "entropy_drop_from_flat": 0.9334050418341601,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.058246320140270175,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.06659495816583992
+          },
+          {
+            "entropy_drop_from_flat": 0.9145682424198622,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.036525354632109146,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.08543175758013774
+          },
+          {
+            "entropy_drop_from_flat": 0.8853627552779094,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.024554838431058063,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.11463724472209054
+          },
+          {
+            "entropy_drop_from_flat": 0.9178246448545497,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.018701737979806926,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.08217535514545021
+          }
+        ],
+        "total_gravity": 1.4648621810131857
+      },
+      "gravity_profile": [
+        0.9808393443000732,
+        0.2406001016066471,
+        0.10539448392322107,
+        0.058246320140270175,
+        0.036525354632109146,
+        0.024554838431058063,
+        0.018701737979806926
+      ],
+      "mass": 0.9984316352234817,
+      "mass_detail": {
+        "boundedness_negentropy": 0.9987613472460243,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.0012386527539757209,
+        "local_purity": 0.9998349395361306,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9996698790722611
+      },
+      "strength": 2.5,
+      "total_gravity": 1.4648621810131857
+    },
+    {
+      "expansion_dark_energy": 0.10572220559237115,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.9998802258551414,
+          "knot_site": 0.0,
+          "local_entropy_norm": 0.00011977414485860669,
+          "local_purity": 0.9999871863396201,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9999743726792403
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.9964974905572167,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.9963526014203442,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.0035025094427833504
+          },
+          {
+            "entropy_drop_from_flat": 0.9918359100333514,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.24792292467070262,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.00816408996664867
+          },
+          {
+            "entropy_drop_from_flat": 0.9873719544143205,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.10969204356841855,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.012628045585679488
+          },
+          {
+            "entropy_drop_from_flat": 0.9813801172293212,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.061327339133392764,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.018619882770678848
+          },
+          {
+            "entropy_drop_from_flat": 0.9738293672241334,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.03894751095984147,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.02617063277586667
+          },
+          {
+            "entropy_drop_from_flat": 0.960454992544264,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.026675426220244308,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.039545007455735935
+          },
+          {
+            "entropy_drop_from_flat": 0.9719389231283407,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.019832604178934357,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.028061076871659298
+          }
+        ],
+        "total_gravity": 1.500750450151878
+      },
+      "gravity_profile": [
+        0.9963526014203442,
+        0.24792292467070262,
+        0.10969204356841855,
+        0.061327339133392764,
+        0.03894751095984147,
+        0.026675426220244308,
+        0.019832604178934357
+      ],
+      "mass": 0.9998546016038721,
+      "mass_detail": {
+        "boundedness_negentropy": 0.9998802258551414,
+        "knot_site": 0.0,
+        "local_entropy_norm": 0.00011977414485860669,
+        "local_purity": 0.9999871863396201,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9999743726792403
+      },
+      "strength": 3.1,
+      "total_gravity": 1.500750450151878
+    },
+    {
+      "expansion_dark_energy": 0.05134915508490992,
+      "gravity_detail": {
+        "mass_source_detail": {
+          "boundedness_negentropy": 0.9999926576497119,
+          "knot_site": 0.0,
+          "local_entropy_norm": 7.342350288146981e-6,
+          "local_purity": 0.9999993621735372,
+          "locality_weight": 1.0,
+          "purity_excess_norm": 0.9999987243470745
+        },
+        "profile": [
+          {
+            "entropy_drop_from_flat": 0.9995038190008089,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.9994952052830464,
+            "node": 1,
+            "r": 1,
+            "shell_area_square_possibilities": 1.0,
+            "shell_entropy_norm": 0.0004961809991911475
+          },
+          {
+            "entropy_drop_from_flat": 0.9986972468267596,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.24967216001500778,
+            "node": 2,
+            "r": 2,
+            "shell_area_square_possibilities": 4.0,
+            "shell_entropy_norm": 0.0013027531732403817
+          },
+          {
+            "entropy_drop_from_flat": 0.9977201338358677,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.11085683727665477,
+            "node": 3,
+            "r": 3,
+            "shell_area_square_possibilities": 9.0,
+            "shell_entropy_norm": 0.002279866164132289
+          },
+          {
+            "entropy_drop_from_flat": 0.9962372437617386,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.062264291137206336,
+            "node": 4,
+            "r": 4,
+            "shell_area_square_possibilities": 16.0,
+            "shell_entropy_norm": 0.0037627562382613754
+          },
+          {
+            "entropy_drop_from_flat": 0.9941418317536639,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.03976533056981898,
+            "node": 5,
+            "r": 5,
+            "shell_area_square_possibilities": 25.0,
+            "shell_entropy_norm": 0.005858168246336111
+          },
+          {
+            "entropy_drop_from_flat": 0.9898487054373545,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.027495560414647256,
+            "node": 6,
+            "r": 6,
+            "shell_area_square_possibilities": 36.0,
+            "shell_entropy_norm": 0.010151294562645486
+          },
+          {
+            "entropy_drop_from_flat": 0.9927199859769802,
+            "flat_shell_entropy_norm": 1.0,
+            "gravity_gradient": 0.020259416953515283,
+            "node": 7,
+            "r": 7,
+            "shell_area_square_possibilities": 49.0,
+            "shell_entropy_norm": 0.007280014023019793
+          }
+        ],
+        "total_gravity": 1.5098088016498967
+      },
+      "gravity_profile": [
+        0.9994952052830464,
+        0.24967216001500778,
+        0.11085683727665477,
+        0.062264291137206336,
+        0.03976533056981898,
+        0.027495560414647256,
+        0.020259416953515283
+      ],
+      "mass": 0.9999913820061527,
+      "mass_detail": {
+        "boundedness_negentropy": 0.9999926576497119,
+        "knot_site": 0.0,
+        "local_entropy_norm": 7.342350288146981e-6,
+        "local_purity": 0.9999993621735372,
+        "locality_weight": 1.0,
+        "purity_excess_norm": 0.9999987243470745
+      },
+      "strength": 3.8,
+      "total_gravity": 1.5098088016498967
+    }
+  ],
+  "tool_integration_depth": {
+    "Julia JSON/Dates": "supportive",
+    "Julia LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/Dates": {
+      "reason": "supportive receipt writing and peer parity JSON parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite spinor-network construction, reduced-state mass readout, shell entropy-gradient gravity readout, sweep correlation, falloff fit, and parity scalars",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": "This is a v5 dual-backend scratch diagnostic formal scout; it is not a v4 probe or promotion artifact."
+}

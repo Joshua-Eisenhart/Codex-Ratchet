@@ -1,0 +1,305 @@
+{
+  "C": {
+    "hermitian": true,
+    "normalization": "basis probes are unit-normalized; QuantumOptics fixed-unit projector has trace one",
+    "psd": true,
+    "rung_specific_constraint": "D is an octonion derivation and D(e1)=0 for the chosen imaginary unit e1",
+    "trace_eq_1": true
+  },
+  "M": {
+    "explicit_probe_family": [
+      "derivation rows: for every ordered octonion basis pair (e_a,e_b) and output coordinate c, D(e_a e_b)_c - (D(e_a)e_b + e_aD(e_b))_c",
+      "unit-fixing rows: for fixed imaginary unit u=e1 and output coordinate c, D(u)_c"
+    ],
+    "finite_probe_counts": {
+      "derivation_rows": 512,
+      "total_rows": 520,
+      "unit_fixing_rows": 8
+    },
+    "name": "unit_fixing_derivation_probe",
+    "quantumoptics_probe_guard": {
+      "basis": "FockBasis(7)",
+      "fixed_unit_index0": 1,
+      "hermitian": true,
+      "hermitian_defect": 0.0,
+      "normalization": "chosen probe ket has norm one and projector trace one",
+      "package": "QuantumOptics",
+      "psd": true,
+      "trace": 1.0,
+      "trace_eq_1": true
+    }
+  },
+  "S_mod_M": {
+    "class_dimensions": {
+      "Der_O": 14,
+      "fix_e1": 8
+    },
+    "definition": "S=Der(O), D ~_M D' iff (D-D')(e1)=0 under the explicit unit-fixing probe; the selected quotient class is the kernel/stabilizer fixing e1",
+    "interpretation": "the unit-fixing subalgebra has dimension 8, the structural su(3) stabilizer dimension at scratch ceiling",
+    "quotient_rank": 56
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing quaternion stage cross-check before the Cayley-Dickson octonion table is accepted",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive SVD/nullspace residual diagnostics after exact rational rank computation",
+      "tried": true,
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing finite probe guard: constructs the chosen imaginary-unit probe ket and trace-one projector used to bind the unit-fixing measurement surface",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side no-extra-kernel and erase-flip guard over the computed unit-fixing constraint rows",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T02:33:34Z",
+  "julia_z3": {
+    "asserted_constrained_rows": 520,
+    "asserted_derivation_only_rows": 512,
+    "claim": "no nonzero integer-scaled kernel vector remains after the computed unit-fixing free coordinates are zeroed; erasing unit-fixing constraints admits one",
+    "dimension_not_expected_status": "unsat",
+    "drop_unit_fixing_constraints_status": "sat",
+    "erase_flip_unsat_to_sat": true,
+    "free_coordinate_count": 8,
+    "solver": "Z3.jl",
+    "upper_bound_no_extra_solution_status": "unsat"
+  },
+  "negative_control_flip": {
+    "drop_unit_fixing_probe_dim_14_vs_8": true,
+    "drop_unit_fixing_probe_z3_unsat_to_sat": true,
+    "forced_commutative_unit_fixing_dim": 15,
+    "forced_commutative_unit_fixing_dim_changes": true,
+    "two_independent_units_dim_changes_3_vs_8": true
+  },
+  "object_id": "foundation_r5_g2_su3_reduction_julia",
+  "package_crosscheck": {
+    "details": {
+      "basis_labels": [
+        "𝟏",
+        "i",
+        "j",
+        "ij"
+      ],
+      "constructor": "CliffordAlgebra(:Quaternions)",
+      "i_j": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "i_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "ij_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "j_i": [
+        0,
+        0,
+        0,
+        -1
+      ],
+      "j_squared": [
+        -1,
+        0,
+        0,
+        0
+      ],
+      "package": "CliffordAlgebras"
+    },
+    "h_cliffordalgebras_matches_cayley_dickson": true
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r5_g2_su3_reduction_julia_results.json",
+  "rung_id": "foundation_r5_g2_su3_reduction",
+  "runtime_preflight": {
+    "active_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+    "julia_version": "1.12.6"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r5_g2_su3_reduction_julia.jl",
+  "summaries": {
+    "Der_O_fix_e1_e2_two_unit_control": {
+      "basis_derivation_residual_max": 5.730851650068503e-16,
+      "basis_fixation_residual_max": 2.0275123707030583e-16,
+      "carrier_dim": 8,
+      "constraint_cols": 64,
+      "constraint_rows": 528,
+      "derivation_constraint_rows": 512,
+      "exact_rank": 61,
+      "fixing_constraint_rows": 16,
+      "free_columns_1based": [
+        61,
+        62,
+        63
+      ],
+      "free_coordinate_count": 3,
+      "kernel_dim": 3,
+      "largest_zero_singular_value": 2.6779764944155188e-15,
+      "name": "Der_O_fix_e1_e2_two_unit_control",
+      "pivot_count": 61,
+      "rank_tol": 7.068394548138235e-11,
+      "smallest_nonzero_singular_value": 0.402205155148557,
+      "stabilizer_dim": 3,
+      "structure_constants_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360",
+      "svd_rank": 61
+    },
+    "Der_O_fix_e1_unit_stabilizer": {
+      "basis_derivation_residual_max": 3.161977962740596e-16,
+      "basis_fixation_residual_max": 1.183412030228903e-15,
+      "carrier_dim": 8,
+      "constraint_cols": 64,
+      "constraint_rows": 520,
+      "derivation_constraint_rows": 512,
+      "exact_rank": 56,
+      "fixing_constraint_rows": 8,
+      "free_columns_1based": [
+        43,
+        44,
+        45,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "free_coordinate_count": 8,
+      "kernel_dim": 8,
+      "largest_zero_singular_value": 5.231786024362812e-15,
+      "name": "Der_O_fix_e1_unit_stabilizer",
+      "pivot_count": 56,
+      "rank_tol": 6.944656714292221e-11,
+      "smallest_nonzero_singular_value": 0.5700460140205029,
+      "stabilizer_dim": 8,
+      "structure_constants_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360",
+      "svd_rank": 56
+    },
+    "Der_O_forced_commutative_fix_e1_control": {
+      "basis_derivation_residual_max": 3.3809867353605984e-16,
+      "basis_fixation_residual_max": 2.9445207865492225e-16,
+      "carrier_dim": 8,
+      "constraint_cols": 64,
+      "constraint_rows": 520,
+      "derivation_constraint_rows": 512,
+      "exact_rank": 49,
+      "fixing_constraint_rows": 8,
+      "free_columns_1based": [
+        27,
+        35,
+        36,
+        43,
+        44,
+        45,
+        51,
+        52,
+        53,
+        54,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "free_coordinate_count": 15,
+      "kernel_dim": 15,
+      "largest_zero_singular_value": 2.1792873737759944e-15,
+      "name": "Der_O_forced_commutative_fix_e1_control",
+      "pivot_count": 49,
+      "rank_tol": 5.591409828704011e-11,
+      "smallest_nonzero_singular_value": 0.6621534468619561,
+      "stabilizer_dim": 15,
+      "structure_constants_sha256": "be5c5f75164a45838fd391dac2241dc65329be7228f6b87891e1c82141da4e70",
+      "svd_rank": 49
+    },
+    "Der_O_no_unit_fixing_control": {
+      "basis_derivation_residual_max": 5.691207850315033e-16,
+      "basis_fixation_residual_max": 0.0,
+      "carrier_dim": 8,
+      "constraint_cols": 64,
+      "constraint_rows": 512,
+      "derivation_constraint_rows": 512,
+      "exact_rank": 50,
+      "fixing_constraint_rows": 0,
+      "free_columns_1based": [
+        43,
+        44,
+        45,
+        50,
+        51,
+        52,
+        53,
+        54,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "free_coordinate_count": 14,
+      "kernel_dim": 14,
+      "largest_zero_singular_value": 5.205163014009228e-15,
+      "name": "Der_O_no_unit_fixing_control",
+      "pivot_count": 50,
+      "rank_tol": 6.821210263296964e-11,
+      "smallest_nonzero_singular_value": 2.82842712474619,
+      "stabilizer_dim": 14,
+      "structure_constants_sha256": "4b82f7b3bd9efbe6eee61d5813fedd2c9ab3018bccfed37cf1274527c3f25360",
+      "svd_rank": 50
+    }
+  },
+  "summary": {
+    "der_O_dim": 14,
+    "fix_e1_e2_stabilizer_dim": 3,
+    "fix_e1_stabilizer_dim": 8,
+    "forced_commutative_fix_e1_dim": 15,
+    "unit_fix_rank": 56,
+    "z3_dimension_not_8": "unsat",
+    "z3_drop_unit_fixing": "sat"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "codex_cocoindex_grounding_receipt_v1",
+  "created_at": "2026-06-18T06:36:01Z",
+  "required_corpora": [
+    "wiki",
+    "repo"
+  ],
+  "queries": [
+    {
+      "tool": "mcp__cocoindex_wiki.search",
+      "refresh_index": true,
+      "query": "Codex Ratchet CocoIndex wiki repo retrieval exact read route truth Wizard v4.3 runner grounding"
+    },
+    {
+      "tool": "mcp__cocoindex_wiki.search",
+      "refresh_index": false,
+      "query": "Codex Ratchet codex sim runner wizard v4.3 object preservation parent child swarm model proposal runner current repo scripts"
+    }
+  ],
+  "hits": [
+    {
+      "corpus": "wiki",
+      "retrieval": "cocoindex_wiki",
+      "path": "/Users/joshuaeisenhart/wiki/projects/codex-ratchet/cocoindex-and-bloat-cleanup-policy-2026-06-17.md",
+      "lines": [
+        9,
+        27
+      ],
+      "exact_read": true,
+      "reason": "CocoIndex policy: semantic map, not authority; search then exact-read wiki/repo files."
+    },
+    {
+      "corpus": "wiki",
+      "retrieval": "cocoindex_wiki",
+      "path": "/Users/joshuaeisenhart/wiki/hermes-current/wiki-wizard-v4-3-object-preservation-guard.md",
+      "lines": [
+        12,
+        32
+      ],
+      "exact_read": true,
+      "reason": "Wiki route note: v4.3 is the current-task object-preservation gate before legacy/provenance v4.2 councils."
+    },
+    {
+      "corpus": "repo",
+      "retrieval": "exact_repo_read_after_cocoindex_hit",
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/AGENTS.md",
+      "lines": [
+        22,
+        140
+      ],
+      "exact_read": true,
+      "reason": "Repo authority: v4.3 runtime, sim-mode Max Assembly, parent/child topology, worker pool truth, and count rules."
+    },
+    {
+      "corpus": "repo",
+      "retrieval": "exact_repo_read_after_cocoindex_hit",
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/scripts/codex_sim_runner.py",
+      "lines": [
+        1,
+        55
+      ],
+      "exact_read": true,
+      "reason": "Runner source: deterministic harness plus v4.3, swarm, and CocoIndex receipt planes."
+    }
+  ],
+  "claim": "CocoIndex was used as a semantic retrieval map only; exact wiki and repo reads are the evidence-bearing surfaces."
+}

@@ -1,0 +1,99 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hashing",
+      "tried": true,
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing mirror of S6 narrowing arithmetic and S7 lens-order commensurability",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing can-fail controls for erased S6 exclusions and incommensurate S7 lens quotient",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Symbolics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T06:54:13Z",
+  "julia_project": "system_v5/julia_carrier",
+  "packages_used": [
+    "Symbolics",
+    "Z3",
+    "JSON",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_julia_results.json",
+  "sim_id": "geo_s6_s7_mode_sweep_v0",
+  "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0_julia.jl",
+  "source_sha256": "08da51c55e816b255667c229cd748fd345882ba24daf16fb614b309f7d7719cc",
+  "symbolics_mode_receipt": {
+    "pass": true,
+    "s6_bound_identity_value": "0",
+    "s6_bound_values": {
+      "after": 16,
+      "before": 40,
+      "excluded": 24
+    },
+    "s6_count_identity_expression": "-after + before - excluded",
+    "s7_commensurate_sample_N8_mod4": "0",
+    "s7_incommensurate_sample_N6_mod4": "2"
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "integer arithmetic mirror only",
+      "demotion_condition": "demote if arithmetic is replaced by literal statuses",
+      "gates": [
+        "julia_symbolics_z3_mirror"
+      ],
+      "input_object": "S6 before/after/excluded counts and S7 N mod lens_order samples",
+      "negative/erased_control": "N=6 mod 4 is nonzero",
+      "output_object": "computed count identity and commensurability rows",
+      "positive_case": "40-16-24=0 and N=8 mod 4 equals 0",
+      "qualified_api/function": "Symbolics.@variables / Symbolics.substitute / Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "QF integer arithmetic only",
+      "demotion_condition": "demote if can-fail controls are removed",
+      "gates": [
+        "julia_symbolics_z3_mirror"
+      ],
+      "input_object": "S6 count identity and S7 incommensurate quotient branch",
+      "negative/erased_control": "erasing excluded rows or forcing N=6=4q fails",
+      "output_object": "unsat identity violation, unsat erased exclusion, unsat N=6 lens quotient",
+      "positive_case": "valid S6 identity has no counterexample",
+      "qualified_api/function": "Z3.Solver / Z3.add / Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "z3_controls": {
+    "pass": true,
+    "s6_erased_excluded_control_verdict": "unsat",
+    "s6_identity_violation_verdict": "unsat",
+    "s7_N6_commensurate_control_verdict": "unsat"
+  }
+}

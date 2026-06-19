@@ -1,0 +1,193 @@
+{
+  "C": {
+    "computed_admitted_ranks": [
+      3,
+      3,
+      3
+    ],
+    "computed_rank_source": "QuantumOptics.eigenenergies(rho), count(eigenvalue > tol)",
+    "f01_support_bound": "r <= d",
+    "hermitian": true,
+    "normalization": true,
+    "psd": true,
+    "rung_specific_constraint": "F01 admits candidate iff computed support rank r <= reference carrier dimension d",
+    "trace_equals_one": true
+  },
+  "M": {
+    "carrier_dimension": 3,
+    "computed_dimension_source": "size(dense(rho_a).data, 1)",
+    "description": "finite QuantumOptics probe family on a d=3 carrier",
+    "identity_residual": 0.0,
+    "identity_residual_projectors_only": 0.0,
+    "probe_count": 4,
+    "probe_names": [
+      "P0",
+      "P1",
+      "P2",
+      "X01_half"
+    ],
+    "probe_vectors": [
+      [
+        0.5,
+        0.3,
+        0.2,
+        0.0
+      ],
+      [
+        0.5,
+        0.3,
+        0.2,
+        0.05
+      ],
+      [
+        0.5,
+        0.2,
+        0.3,
+        0.0
+      ]
+    ],
+    "resolves_identity": true
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_candidates": {
+    "admitted_reference": {
+      "carrier_dimension": 3,
+      "computed_rank": 3,
+      "eigenvalues": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "f01_admitted": true,
+      "name": "rho_a_diag_503020"
+    },
+    "excluded_over_support": {
+      "candidate_carrier_dimension": 4,
+      "computed_rank": 4,
+      "eigenvalues": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "f01_admitted": false,
+      "name": "rho_over_padded_maximally_mixed_rank_4",
+      "reference_f01_dimension": 3
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T00:29:55.912",
+  "julia_project": "/Users/joshuaeisenhart/.julia/environments/v1.12/Project.toml",
+  "negative_control": {
+    "computed_rank_values": {
+      "d": 3,
+      "over_support_r": 4
+    },
+    "drop_probe_control": {
+      "coarsened": true,
+      "drop_probe": "X01_half",
+      "drop_probe_class_count": 2,
+      "full_probe_class_count": 3
+    },
+    "erase": "drop_f01_finite_support_constraint",
+    "flipped": true,
+    "with_f01": "unsat",
+    "without_f01": "sat"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "quotient": {
+    "admitted_cardinality": 3,
+    "candidate_family": [
+      "rho_a_diag_503020",
+      "rho_b_coherent_503020_x01_005",
+      "rho_c_diag_502030"
+    ],
+    "class_count": 3,
+    "classes": {
+      "class_1": {
+        "members": [
+          "rho_a_diag_503020"
+        ],
+        "probe_vector": [
+          0.5,
+          0.3,
+          0.2,
+          0.0
+        ],
+        "representative": "rho_a_diag_503020"
+      },
+      "class_2": {
+        "members": [
+          "rho_b_coherent_503020_x01_005"
+        ],
+        "probe_vector": [
+          0.5,
+          0.3,
+          0.2,
+          0.05
+        ],
+        "representative": "rho_b_coherent_503020_x01_005"
+      },
+      "class_3": {
+        "members": [
+          "rho_c_diag_502030"
+        ],
+        "probe_vector": [
+          0.5,
+          0.2,
+          0.3,
+          0.0
+        ],
+        "representative": "rho_c_diag_502030"
+      }
+    },
+    "drop_probe": "X01_half",
+    "drop_probe_class_count": 2,
+    "relation": "rho ~_M sigma iff all finite probe expectations in M match"
+  },
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r1_f01_finitude_julia_results.json",
+  "rung_id": "foundation_r1_f01_finitude",
+  "schema_version": "engine_leg_result_v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r1_f01_finitude_julia.jl",
+  "summary": {
+    "all_admitted_have_finite_support": true,
+    "all_pass": true,
+    "claim_ceiling": "F01 finite support fence at micro scale; no promotion, no later-rung claim",
+    "computed_dim": 3,
+    "computed_padded_dim": 4,
+    "computed_rank_admit": 3,
+    "computed_rank_over": 4,
+    "finite_cardinality": 3
+  },
+  "z3": {
+    "admitted_with_f01": "sat",
+    "bound_values": {
+      "admitted_r": 3,
+      "d": 3,
+      "over_support_r": 4
+    },
+    "integer_model": "assert d == computed reference dimension; assert r == computed spectral rank; optional F01 asserts r <= d",
+    "load_bearing": true,
+    "over_support_with_f01": "unsat",
+    "over_support_without_f01": "sat",
+    "ran": true
+  }
+}

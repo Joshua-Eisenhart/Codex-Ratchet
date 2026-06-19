@@ -1,0 +1,23 @@
+{
+  "spec_id": "distinguishability_quotient_floor_v0.spec.v1",
+  "description": "Finite set S of single-qubit density matrices given by exact-rational Bloch vectors. Probe family M = {X, Y, Z} Pauli expectations. This file is pure DATA (state coordinates + probe identities). Each engine leg reads it and computes the probe-expectation invariant and the quotient S/~_M independently; no engine ships a precomputed invariant here.",
+  "bloch_vectors_rational": {
+    "s0": {"rx": [0, 1], "ry": [0, 1], "rz": [0, 1]},
+    "s1": {"rx": [1, 2], "ry": [0, 1], "rz": [3, 10]},
+    "s2": {"rx": [1, 2], "ry": [0, 1], "rz": [-3, 10]},
+    "s3": {"rx": [0, 1], "ry": [3, 5], "rz": [0, 1]}
+  },
+  "probe_family_full": ["X", "Y", "Z"],
+  "probe_family_erased": ["X", "Y"],
+  "erased_probe": "Z",
+  "indistinguishability_definition": "rho_a ~_M rho_b  iff  tr(rho_a P) == tr(rho_b P) for every probe P in M",
+  "expected_quotient_class_count_full": 4,
+  "expected_quotient_class_count_erased": 3,
+  "flip_pair": ["s1", "s2"],
+  "flip_claim": "s1 and s2 are distinguishable under M={X,Y,Z} (separated by Z) but indistinguishable under M={X,Y} (Z erased). The SMT proof asks 'does an active probe separate s1,s2?' -> SAT under full M, UNSAT under erased M. This is a real-vs-erased structural flip over the exact expectation values, not a count assertion.",
+  "lineage": {
+    "F01": "simultaneous-distinguishability surface: a probe family acts on the finite set at once; ~_M is the joint kernel of the probe expectations.",
+    "N01": "order/persistence note: the probe expectations tr(rho P) are read on a fixed finite set; this rung exercises the F01 distinguishability surface only and makes no N01 order-gap claim.",
+    "root_axiom": "a = a iff a ~ b -- identity here is the equivalence class S/~_M, probe-relative, not primitive."
+  }
+}

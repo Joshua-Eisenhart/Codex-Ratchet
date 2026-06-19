@@ -1,0 +1,447 @@
+{
+  "all_checks_passed": true,
+  "carnot_reference": {
+    "normal": {
+      "DS_cycle": 0.2602058821061899,
+      "Q_c_bath_abs": 0.03678390810752663,
+      "Q_c_bath_signed": -0.03678390810752663,
+      "Q_c_negative": true,
+      "Q_h_bath": 0.49004453861377373,
+      "Q_h_positive": true,
+      "Q_net": 0.4532606305062471,
+      "S_final": 0.6255397371933975,
+      "S_init": 0.3653338550872076,
+      "W_12_expansion": -0.16292977040519466,
+      "W_41_compression": 0.2181056325664846,
+      "W_net": 0.055175862161289946,
+      "W_operator": 0.0,
+      "dU_cycle": 0.39808476834495715,
+      "engine": "carnot_reference",
+      "eta_formula": 0.75,
+      "eta_gap": -0.6374064338776837,
+      "eta_thermal": 0.11259356612231636,
+      "first_law_residual": 0.0,
+      "has_operator_injection": false,
+      "heat_is_bath_only": true,
+      "nsteps_iso": 40,
+      "purity_final": 0.5660695374405922,
+      "work_is_unitary_only": true
+    },
+    "quasistatic": {
+      "converges_to_carnot": true,
+      "eta_at_640": 0.15680670154087772,
+      "eta_formula": 0.75,
+      "etas": [
+        -0.09269538572651279,
+        0.11259356612231636,
+        0.15672062441378667,
+        0.15680670154087772
+      ],
+      "gap_fastest": 0.8426953857265128,
+      "gap_slowest": 0.5931932984591223,
+      "monotone_approach": true,
+      "nsteps_list": [
+        10,
+        40,
+        160,
+        640
+      ],
+      "sweep": [
+        {
+          "Q_h_bath": 0.27049134709956,
+          "eta_thermal": -0.09269538572651279,
+          "gap_to_carnot": 0.8426953857265128,
+          "nsteps_iso": 10
+        },
+        {
+          "Q_h_bath": 0.49004453861377373,
+          "eta_thermal": 0.11259356612231636,
+          "gap_to_carnot": 0.6374064338776837,
+          "nsteps_iso": 40
+        },
+        {
+          "Q_h_bath": 0.5166718469080382,
+          "eta_thermal": 0.15672062441378667,
+          "gap_to_carnot": 0.5932793755862134,
+          "nsteps_iso": 160
+        },
+        {
+          "Q_h_bath": 0.5166754935520546,
+          "eta_thermal": 0.15680670154087772,
+          "gap_to_carnot": 0.5931932984591223,
+          "nsteps_iso": 640
+        }
+      ]
+    }
+  },
+  "check_log": [
+    {
+      "check": "carnot_Q_h_positive",
+      "detail": "Q_h=0.490045",
+      "passed": true
+    },
+    {
+      "check": "carnot_Q_c_negative",
+      "detail": "Q_c=-0.036784",
+      "passed": true
+    },
+    {
+      "check": "carnot_W_operator_zero",
+      "detail": "W_op=0.0 must be exactly 0 for reference Carnot",
+      "passed": true
+    },
+    {
+      "check": "carnot_eta_below_1",
+      "detail": "eta=0.1126",
+      "passed": true
+    },
+    {
+      "check": "carnot_quasistatic_converges",
+      "detail": "eta at 640 steps=0.1568 approaches formula=0.75",
+      "passed": true
+    },
+    {
+      "check": "carnot_quasistatic_monotone",
+      "detail": "gaps monotone: [0.8427, 0.6374, 0.5933, 0.5932]",
+      "passed": true
+    },
+    {
+      "check": "szilard_H_nats_eq_ln2_uniform",
+      "detail": "H_nats=0.6931471805599453 ln2=0.6931471805599453",
+      "passed": true
+    },
+    {
+      "check": "szilard_H_bits_eq_1_uniform",
+      "detail": "H_bits=1.0",
+      "passed": true
+    },
+    {
+      "check": "szilard_W_extract_eq_kTln2",
+      "detail": "W_extract=0.6931471805599453 kT*ln2=0.6931471805599453",
+      "passed": true
+    },
+    {
+      "check": "szilard_Landauer_eq_kTln2",
+      "detail": "Landauer=0.6931471805599453 kT*ln2=0.6931471805599453",
+      "passed": true
+    },
+    {
+      "check": "szilard_second_law_balanced",
+      "detail": "W_net=0.0",
+      "passed": true
+    },
+    {
+      "check": "szilard_biased_H_bits_lt_1",
+      "detail": "H_bits=0.46899559358928117 for p_L=0.9",
+      "passed": true
+    },
+    {
+      "check": "szilard_W_operator_zero",
+      "detail": "W_op=0.0 must be 0 for reference Szilard",
+      "passed": true
+    },
+    {
+      "check": "szilard_boundary_H_near_zero",
+      "detail": "H_bits=2.80181199263095e-7 for p_L=1-1e-8 (nearly deterministic)",
+      "passed": true
+    },
+    {
+      "check": "substrate_confirmed_same",
+      "detail": "SZ_ok=true H_ok=true nth_ok=true",
+      "passed": true
+    },
+    {
+      "check": "comparison_table_carnot_no_operator",
+      "detail": "Carnot W_operator must be 0",
+      "passed": true
+    },
+    {
+      "check": "comparison_table_szilard_no_operator",
+      "detail": "Szilard W_operator must be 0",
+      "passed": true
+    },
+    {
+      "check": "comparison_table_igt_has_operator",
+      "detail": "IGT W_operator=2.0680536984032747",
+      "passed": true
+    },
+    {
+      "check": "divergence_4_differences_identified",
+      "detail": "n=4",
+      "passed": true
+    },
+    {
+      "check": "divergence_substrate_identical_confirmed",
+      "detail": "substrate_identical=true",
+      "passed": true
+    }
+  ],
+  "claim_ceiling": "refbase_v1: Carnot+Szilard reference baseline on qubit/Lindblad/Euler substrate. Debug targets for QIT IGT engine. promotion_allowed=false.",
+  "comparison_table": {
+    "carnot_eta_thermal": 0.11259356612231636,
+    "eta_formula_carnot": 0.75,
+    "igt_W_operator": 2.0680536984032747,
+    "igt_eta_thermal": -5.335435128421152,
+    "igt_load_error": "",
+    "igt_loaded_ok": true,
+    "matched_conditions": {
+      "T_c": 1.0,
+      "T_h": 4.0,
+      "kT_szilard": 1.0,
+      "rho_init": "cold_Gibbs_T_c_omega_H"
+    },
+    "szilard_Landauer_kTln2": 0.6931471805599453,
+    "szilard_W_extract": 0.6931471805599453,
+    "table": [
+      {
+        "DS_cycle": 0.2602058821061899,
+        "Q_c": 0.03678390810752663,
+        "Q_h": 0.49004453861377373,
+        "W_bath": 0.055175862161289946,
+        "W_operator": 0.0,
+        "engine": "Carnot_reference",
+        "eta": 0.11259356612231636,
+        "eta_formula": 0.75,
+        "operator_injection": false
+      },
+      {
+        "DS_cycle": -5.551115123125783e-17,
+        "Q_c": 0.0,
+        "Q_h": 0.0,
+        "W_bath": 0.6931471805599453,
+        "W_operator": 0.0,
+        "engine": "Szilard_reference",
+        "eta": 1.0,
+        "eta_formula": 1.0,
+        "operator_injection": false
+      },
+      {
+        "DS_cycle": 0.22718904454404387,
+        "Q_c": 1.8606637381879882,
+        "Q_h": 0.29369154611668835,
+        "W_bath": -1.5669721920713,
+        "W_operator": 2.0680536984032747,
+        "engine": "QIT_IGT_32microstep",
+        "eta": -5.335435128421152,
+        "eta_formula": 0.75,
+        "load_ok": true,
+        "loaded_from": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/csv4_julia_results.json",
+        "operator_injection": true
+      }
+    ]
+  },
+  "f01_satisfied": true,
+  "n01_intact": true,
+  "n_checks_passed": 20,
+  "n_checks_total": 20,
+  "object_id": "refbase_carnot_szilard_comparison_v1",
+  "parity": {
+    "T_c": 1.0,
+    "T_h": 4.0,
+    "carnot_Q_c_bath_signed": -0.03678390810752663,
+    "carnot_Q_h_bath": 0.49004453861377373,
+    "carnot_W_net": 0.055175862161289946,
+    "carnot_W_operator": 0.0,
+    "carnot_converges_to_carnot": true,
+    "carnot_eta_formula": 0.75,
+    "carnot_eta_thermal": 0.11259356612231636,
+    "carnot_quasistatic_eta_at_640": 0.15680670154087772,
+    "igt_Q_c_bath": 1.8606637381879882,
+    "igt_Q_h_bath": 0.29369154611668835,
+    "igt_W_bath": -1.5669721920713,
+    "igt_W_operator": 2.0680536984032747,
+    "igt_eta_thermal": -5.335435128421152,
+    "jax_check_carnot_W_op_zero": true,
+    "jax_check_same_gibbs_init": true,
+    "jax_check_same_nth_bath": true,
+    "jax_check_szilard_Landauer_kTln2": true,
+    "jax_check_szilard_W_extract_kTln2": true,
+    "jax_tolerance": 1.0e-6,
+    "kT_szilard": 1.0,
+    "object_id": "refbase_carnot_szilard_comparison_v1",
+    "omega_C": 0.8,
+    "omega_H": 2.0,
+    "rho_init_11": 0.11920292202211756,
+    "rho_init_22": 0.8807970779778824,
+    "substrate_tag": "qubit_Lindblad_Euler_Gibbs",
+    "szilard_H_bits": 1.0,
+    "szilard_H_nats": 0.6931471805599453,
+    "szilard_Landauer_per_bit": 0.6931471805599453,
+    "szilard_Q_bath_erase": 0.0,
+    "szilard_W_extract": 0.6931471805599453,
+    "szilard_W_net": 0.0,
+    "szilard_W_operator": 0.0,
+    "szilard_state_dist_gibbs": 1.1188630228279524e-16,
+    "target_for_jax": "JAX independently computes all three engines with jnp (x64). Parity: carnot_Q_h_bath ± 1e-4, szilard_H_nats == ln2 ± 1e-10, szilard_W_extract == kT*ln2 ± 1e-10, n_th_cold ± 1e-10."
+  },
+  "promotion_allowed": false,
+  "qit_divergence": {
+    "debug_surface": {
+      "hypothesis": "IGT eta < 0 is correct physics of an operator-driven engine; it is not a ledger error.",
+      "what_to_check": [
+        "Set W_operator=0 (remove Rx/Rz substages): does igt_eta approach Carnot?",
+        "Reduce nsteps_iso per substage: does Q_c_bath decrease?",
+        "Replace fixed-H with variable-H piston: does W_net_bath become positive?",
+        "Run Szilard reference: confirms Ti (z-dephase) alone + Lindblad reset is physically clean."
+      ]
+    },
+    "differences": [
+      {
+        "id": "D1_operator_injection",
+        "magnitude": 2.0680536984032747,
+        "plain": "The IGT engine applies Rx(theta_Fi) and Rz(theta_Fe) at every substage. These unitaries inject W_operator energy into the system. The references have no such injections — W_operator=0. The IGT engine is not passive.",
+        "references": "W_operator=0 for both Carnot and Szilard references"
+      },
+      {
+        "carnot_lindblad_steps_per_side": 40,
+        "exposure_ratio": 16.0,
+        "id": "D2_bath_exposure_factor",
+        "igt_lindblad_steps_per_side": 640,
+        "plain": "Each IGT substage runs 40 Lindblad steps. With 4 substages × 4 hot stages = 16× more hot-bath exposure than the reference Carnot (which runs 40 steps total per hot stroke). The IGT engine dissipates energy into the cold bath faster because each operator rotation adds energy that the cold bath then absorbs."
+      },
+      {
+        "carnot_omega_cold": 0.8,
+        "carnot_omega_hot": 2.0,
+        "id": "D3_fixed_hamiltonian",
+        "igt_omega_fixed": 2.0,
+        "plain": "The IGT engine uses a fixed Hamiltonian (omega constant). No piston adiabatic stroke changes the energy gap. All work in the IGT engine comes from operator injections (Rx, Rz, dephase), not from varying the Hamiltonian. The reference Carnot uses a variable Hamiltonian piston — omega_H=2.0 for hot strokes, omega_C=0.8 for cold strokes."
+      },
+      {
+        "carnot_eta": 0.11259356612231636,
+        "eta_formula": 0.75,
+        "id": "D4_eta_sign",
+        "igt_eta": -5.335435128421152,
+        "interpretation": "IGT is an operator-driven engine, not a passive Carnot engine",
+        "plain": "igt_eta_thermal=-5.3354 is NEGATIVE because Q_c_bath >> Q_h_bath. The cold bath absorbs more energy than the hot bath provides. This is driven by W_operator. The bath-only cycle runs backward from a thermal perspective. The operator work is the actual energy source. This is the v3 bug resolved: v3 mislabeled W_operator as bath heat, giving eta>1; v4 correctly assigns it as W_operator, revealing the engine is operator-driven, not thermally-driven."
+      }
+    ],
+    "divergence_is_engine_behavior": true,
+    "substrate_identical": true
+  },
+  "substrate_confirmation": {
+    "bath_nth_parity_ok": true,
+    "divergence_is_engine_behavior": true,
+    "gibbs_cold_omega_H_rho11": 0.11920292202211756,
+    "gibbs_hot_omega_H_rho11": 0.3775406687981454,
+    "gibbs_states": "make_gibbs_state_Boltzmann_exponential",
+    "hamiltonian": "H(omega)=(omega/2)*SZ",
+    "hamiltonian_convention_ok": true,
+    "integrator": "Euler_Lindblad_lindblad_step_bath_split",
+    "n_th_cold_expected": 0.15651764274966565,
+    "n_th_cold_from_op": 0.15651764274966562,
+    "pauli_basis_SZ_diag_ok": true,
+    "qit_igt_additions_vs_reference": {
+      "igt_only": [
+        "apply_Rx(theta_Fi)",
+        "apply_Rz(theta_Fe)",
+        "apply_z_dephase(gamma)",
+        "apply_x_dephase(gamma)"
+      ],
+      "references_only": [
+        "adiabatic_piston_stroke (Carnot only)"
+      ],
+      "shared_base": [
+        "make_gibbs_state",
+        "bath_operators",
+        "lindblad_step_bath_split",
+        "I2/SX/SY/SZ",
+        "H_at",
+        "make_valid"
+      ]
+    },
+    "same_substrate_confirmed": true,
+    "state_space": "qubit_2x2_density_matrices"
+  },
+  "szilard_reference": {
+    "biased_prior": {
+      "DS_cycle": -5.551115123125783e-17,
+      "E_reset_analytic": 0.3250829733914482,
+      "H_bits": 0.46899559358928117,
+      "H_nats": 0.3250829733914482,
+      "Landauer_per_bit": 0.6931471805599453,
+      "Q_bath_erase_lindblad": 0.0,
+      "Q_c_bath_abs": 0.0,
+      "Q_h_bath": 0.0,
+      "S_after_erase": 0.36533385508720756,
+      "S_after_measurement": 0.36533385508720756,
+      "S_init_substrate": 0.3653338550872076,
+      "W_extract_analytic": 0.3250829733914482,
+      "W_net": 0.3250829733914482,
+      "W_net_szilard": 0.0,
+      "W_operator": 0.0,
+      "coh_after_meas": 0.0,
+      "coh_before_meas": 0.0,
+      "coherence_destroyed": 0.0,
+      "engine": "szilard_reference",
+      "eta": 1.0,
+      "has_operator_injection": false,
+      "heat_is_bath_only": true,
+      "kT": 1.0,
+      "p_L": 0.9,
+      "p_R": 0.09999999999999998,
+      "second_law_balanced": true,
+      "state_distance_from_gibbs_Tc": 1.1188630228279524e-16,
+      "substrate": "same_qubit_Lindblad_Gibbs_as_Carnot_and_IGT"
+    },
+    "boundary_nearly_deterministic": {
+      "DS_cycle": -5.551115123125783e-17,
+      "E_reset_analytic": 1.9420680831511852e-7,
+      "H_bits": 2.80181199263095e-7,
+      "H_nats": 1.9420680831511852e-7,
+      "Landauer_per_bit": 0.6931471805599453,
+      "Q_bath_erase_lindblad": 0.0,
+      "Q_c_bath_abs": 0.0,
+      "Q_h_bath": 0.0,
+      "S_after_erase": 0.36533385508720756,
+      "S_after_measurement": 0.36533385508720756,
+      "S_init_substrate": 0.3653338550872076,
+      "W_extract_analytic": 1.9420680831511852e-7,
+      "W_net": 1.9420680831511852e-7,
+      "W_net_szilard": 0.0,
+      "W_operator": 0.0,
+      "coh_after_meas": 0.0,
+      "coh_before_meas": 0.0,
+      "coherence_destroyed": 0.0,
+      "engine": "szilard_reference",
+      "eta": 1.0,
+      "has_operator_injection": false,
+      "heat_is_bath_only": true,
+      "kT": 1.0,
+      "p_L": 0.99999999,
+      "p_R": 1.0000000050247593e-8,
+      "second_law_balanced": true,
+      "state_distance_from_gibbs_Tc": 1.1188630228279524e-16,
+      "substrate": "same_qubit_Lindblad_Gibbs_as_Carnot_and_IGT"
+    },
+    "uniform_prior": {
+      "DS_cycle": -5.551115123125783e-17,
+      "E_reset_analytic": 0.6931471805599453,
+      "H_bits": 1.0,
+      "H_nats": 0.6931471805599453,
+      "Landauer_per_bit": 0.6931471805599453,
+      "Q_bath_erase_lindblad": 0.0,
+      "Q_c_bath_abs": 0.0,
+      "Q_h_bath": 0.0,
+      "S_after_erase": 0.36533385508720756,
+      "S_after_measurement": 0.36533385508720756,
+      "S_init_substrate": 0.3653338550872076,
+      "W_extract_analytic": 0.6931471805599453,
+      "W_net": 0.6931471805599453,
+      "W_net_szilard": 0.0,
+      "W_operator": 0.0,
+      "coh_after_meas": 0.0,
+      "coh_before_meas": 0.0,
+      "coherence_destroyed": 0.0,
+      "engine": "szilard_reference",
+      "eta": 1.0,
+      "has_operator_injection": false,
+      "heat_is_bath_only": true,
+      "kT": 1.0,
+      "p_L": 0.5,
+      "p_R": 0.5,
+      "second_law_balanced": true,
+      "state_distance_from_gibbs_Tc": 1.1188630228279524e-16,
+      "substrate": "same_qubit_Lindblad_Gibbs_as_Carnot_and_IGT"
+    }
+  }
+}

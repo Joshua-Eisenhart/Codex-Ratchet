@@ -6473,12 +6473,12 @@ def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
     module.QUEUE_ROOT = queue_root
     low = lane / "b.json"
     low.write_text(
-        '{"sim_path":"sim_low.py","lane":"lane_B","priority":"low"}\n',
+        '{"sim_path":"classical_baseline_low.py","lane":"lane_B","priority":"low"}\n',
         encoding="utf-8",
     )
     high = lane / "a.json"
     high.write_text(
-        '{"sim_path":"sim_high.py","lane":"lane_B","priority":"high"}\n',
+        '{"sim_path":"classical_baseline_high.py","lane":"lane_B","priority":"high"}\n',
         encoding="utf-8",
     )
 
@@ -6486,7 +6486,7 @@ def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_high.py"
+    assert payload["sim_path"] == "classical_baseline_high.py"
 
 
 def test_queue_claim_inferrs_priority_for_legacy_items(tmp_path) -> None:
@@ -6610,7 +6610,7 @@ def test_queue_claim_demotes_axis_stage_within_core_ladder(tmp_path) -> None:
     )
     early = lane / "b.json"
     early.write_text(
-        '{"sim_path":"sim_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        '{"sim_path":"classical_baseline_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
         encoding="utf-8",
     )
 
@@ -6618,7 +6618,7 @@ def test_queue_claim_demotes_axis_stage_within_core_ladder(tmp_path) -> None:
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+    assert payload["sim_path"] == "classical_baseline_z3_negative_quasiprob_exclusion.py"
 
 
 def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> None:
@@ -6640,7 +6640,7 @@ def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> Non
     )
     early = lane / "b.json"
     early.write_text(
-        '{"sim_path":"sim_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        '{"sim_path":"classical_baseline_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
         encoding="utf-8",
     )
 
@@ -6648,7 +6648,7 @@ def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> Non
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+    assert payload["sim_path"] == "classical_baseline_z3_negative_quasiprob_exclusion.py"
 
 
 def test_queue_claim_stage_gate_sees_engine_qit_and_nonclassical_tokens() -> None:
@@ -6669,7 +6669,7 @@ def test_queue_claim_does_not_stage_gate_demoted_partial_trace_baseline() -> Non
         REPO_ROOT / "scripts" / "queue_claim.py",
     )
 
-    sim = "system_v4/probes/sim_partial_trace_classical.py"
+    sim = "system_v4/probes/classical_baseline_partial_trace.py"
 
     assert module._plan_stage_from_sim_path(sim) == "early_core"
     assert module._stage_gate_claim_for_sim(sim) is None
@@ -6734,7 +6734,7 @@ def test_queue_claim_classifies_coherent_info_as_late_info(tmp_path) -> None:
     )
     early = lane / "b.json"
     early.write_text(
-        '{"sim_path":"sim_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        '{"sim_path":"classical_baseline_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
         encoding="utf-8",
     )
 
@@ -6742,7 +6742,7 @@ def test_queue_claim_classifies_coherent_info_as_late_info(tmp_path) -> None:
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+    assert payload["sim_path"] == "classical_baseline_z3_negative_quasiprob_exclusion.py"
 
 
 def test_queue_claim_classifies_entanglement_as_late_info(tmp_path) -> None:
@@ -6764,7 +6764,7 @@ def test_queue_claim_classifies_entanglement_as_late_info(tmp_path) -> None:
     )
     early = lane / "b.json"
     early.write_text(
-        '{"sim_path":"sim_geom_cp1_u1_projective.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        '{"sim_path":"classical_baseline_geom_cp1_u1_projective.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
         encoding="utf-8",
     )
 
@@ -6772,7 +6772,7 @@ def test_queue_claim_classifies_entanglement_as_late_info(tmp_path) -> None:
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_geom_cp1_u1_projective.py"
+    assert payload["sim_path"] == "classical_baseline_geom_cp1_u1_projective.py"
 
 
 def test_autonomous_reseed_loop_uses_deterministic_stage_aware_enqueue() -> None:
@@ -9058,7 +9058,7 @@ def test_wizard_full_matrix_compact_caps_child_count_to_route_obligation() -> No
         opus_timeout_sec = 1
         haiku_timeout_sec = 1
         sonnet_count = 7
-        opus_count = 1
+        opus_count = 0
         haiku_count = 0
         sonnet_budget = 0.1
         opus_budget = 0.1
@@ -9527,7 +9527,7 @@ def test_wizard_v42_compact_defaults_shrink_fanout(monkeypatch, tmp_path) -> Non
     assert module.main() == 1
     assert seen["mode"] == "compact"
     assert seen["sonnet_count"] == 1
-    assert seen["opus_count"] == 1
+    assert seen["opus_count"] == 0
     assert seen["haiku_count"] == 0
     assert seen["full_model_council"] is False
     assert seen["attempt_gemini"] is False
@@ -9782,7 +9782,7 @@ def test_wizard_full_matrix_caps_repair_fanout_to_missing_children() -> None:
     command = module.route_command(Args, "failure.loophole_auditor", REPO_ROOT, ["voice.strategy"])
 
     assert command[command.index("--sonnet-count") + 1] == "1"
-    assert command[command.index("--opus-count") + 1] == "1"
+    assert command[command.index("--opus-count") + 1] == "0"
     assert command[command.index("--haiku-count") + 1] == "0"
     assert command[command.index("--only-children") + 1] == "voice.strategy"
 
@@ -10133,6 +10133,84 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     assert "- Non-formal boundary rows: `1`" in text
     assert "## Non-Formal Boundary Rows" in text
     assert "| `system_v5/ops/formal_scouts/results/bad_probe_results.json` | `canonical` |" in text
+
+
+def test_formal_scout_validator_accepts_tool_capability_receipts(tmp_path) -> None:
+    module = _load_module(
+        "validate_formal_scout_results_tool_capability_under_test",
+        REPO_ROOT / "system_v5" / "ops" / "formal_scouts" / "validate_formal_scout_results.py",
+    )
+    result = tmp_path / "tool_capability_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "classification": "scratch_diagnostic",
+                "evidence_level": "tool_capability",
+                "promotion_allowed": False,
+                "formal_admission_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Tool capability only; does not admit geometry.",
+                "summary": {"failed_or_blocked": [], "pass_count": 1, "probe_count": 1},
+                "tool_claim": {
+                    "tiny_graph": {
+                        "tool": "rustworkx",
+                        "api_surface": "PyDiGraph.topological_sort",
+                        "observable": "finite DAG order",
+                        "positive": "acyclic graph sorts",
+                        "negative": "cycle blocks sort",
+                        "boundary": "empty graph demotes",
+                        "demotion_condition": "if stdlib list sort gives same claim, tool is decorative",
+                    }
+                },
+                "engine_contract": {"python": "ran"},
+                "blocked_downstream_consumers": ["M(C)", "geometry"],
+                "source_path": "sim_tool_capability.py",
+                "source_sha256": "abc123",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    row = module.validate(result)
+
+    assert row["pass"] is True
+    assert row["errors"] == []
+
+
+def test_formal_scout_validator_accepts_consumer_gate_receipts(tmp_path) -> None:
+    module = _load_module(
+        "validate_formal_scout_results_consumer_gate_under_test",
+        REPO_ROOT / "system_v5" / "ops" / "formal_scouts" / "validate_formal_scout_results.py",
+    )
+    result = tmp_path / "consumer_gate_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "classification": "scratch_diagnostic",
+                "evidence_level": "consumer_gate",
+                "promotion_allowed": False,
+                "formal_admission_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Consumer gate only; does not admit geometry.",
+                "positive": {"receipt_exists": {"pass": True}},
+                "negative": {"strong_consumers_blocked": {"pass": True}},
+                "boundary": {"stage_movement_forbidden": {"pass": True}},
+                "allowed_next_uses": ["quarantined_scratch_fuel"],
+                "blocked_downstream_consumers": ["M(C)", "geometry"],
+                "receipt_schema_validation": {"default": {"ok": True}},
+                "stage_movement_allowed": False,
+                "stage4_unlock_allowed": False,
+                "source_path": "sim_consumer_gate.py",
+                "source_sha256": "abc123",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    row = module.validate(result)
+
+    assert row["pass"] is True
+    assert row["errors"] == []
 
 
 def test_formal_scout_validator_uses_configurable_fresh_rerun_timeout(tmp_path, monkeypatch) -> None:
@@ -10778,11 +10856,11 @@ def test_wizard_full_matrix_stops_on_capacity_even_when_routes_return_zero(
     assert launched_waves == [module.council_wave_routes("Decision")]
 
 
-def test_wizard_child_matrix_full_model_council_expands_opus_and_haiku() -> None:
+def test_wizard_child_matrix_full_model_council_keeps_opus_explicit_and_haiku_optional() -> None:
     text = (REPO_ROOT / "scripts" / "wizard_child_matrix.py").read_text(encoding="utf-8")
 
     assert 'parser.add_argument("--full-model-council"' in text
-    assert "opus_count = args.opus_count if args.opus_count > 0 else (full_role_count if args.full_model_council else 1)" in text
+    assert "opus_count = args.opus_count if args.opus_count > 0 else 0" in text
     assert "haiku_count = full_role_count if args.full_model_council and args.haiku_count > 0 else args.haiku_count" in text
     assert "roles = roles if args.full_model_council and roles else [\"outside-model contrast and sanity check\"]" in text
     assert "gemini_group_receipt.json" in text
@@ -11312,6 +11390,32 @@ def _valid_wizard_admission_payload(
     }
 
 
+def _write_valid_wizard_result_artifact(repo: Path, basename: str, artifact: Path) -> None:
+    result = repo / "system_v4/probes/a2_state/sim_results" / f"{basename}_results.json"
+    result.parent.mkdir(parents=True, exist_ok=True)
+    result.write_text(
+        json.dumps(
+            {
+                "name": basename,
+                "classification": "canonical",
+                "tool_manifest": {"tool": {"tried": True, "used": True, "reason": "fixture"}},
+                "tool_integration_depth": {"tool": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact.parent.mkdir(parents=True, exist_ok=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(result),
+                "result_sha256": __import__("hashlib").sha256(result.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
 def _write_allow_stage_gate(repo: Path) -> None:
     stage_gate = repo / "scripts" / "stage_gate.py"
     stage_gate.parent.mkdir(parents=True, exist_ok=True)
@@ -11354,8 +11458,7 @@ def test_wizard_sim_admission_accepts_exact_queue_ready_packet(tmp_path) -> None
     repo = tmp_path / "repo"
     _write_allow_stage_gate(repo)
     artifact = repo / "receipts" / "admission.json"
-    artifact.parent.mkdir(parents=True)
-    artifact.write_text("{}", encoding="utf-8")
+    _write_valid_wizard_result_artifact(repo, "sim_probe_object", artifact)
     admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
     admission_dir.mkdir(parents=True)
     admission_path = admission_dir / "sim_probe_object.json"
@@ -11389,8 +11492,7 @@ def test_wizard_sim_admission_rejects_legacy_v41_without_recovery_flag(tmp_path)
     repo = tmp_path / "repo"
     _write_allow_stage_gate(repo)
     artifact = repo / "receipts" / "admission.json"
-    artifact.parent.mkdir(parents=True)
-    artifact.write_text("{}", encoding="utf-8")
+    _write_valid_wizard_result_artifact(repo, "sim_probe_object", artifact)
     payload = _valid_wizard_admission_payload(
         repo=repo,
         basename="sim_probe_object",
@@ -11417,8 +11519,7 @@ def test_wizard_sim_admission_accepts_legacy_v41_with_recovery_flag(tmp_path) ->
     repo = tmp_path / "repo"
     _write_allow_stage_gate(repo)
     artifact = repo / "receipts" / "admission.json"
-    artifact.parent.mkdir(parents=True)
-    artifact.write_text("{}", encoding="utf-8")
+    _write_valid_wizard_result_artifact(repo, "sim_probe_object", artifact)
     payload = _valid_wizard_admission_payload(
         repo=repo,
         basename="sim_probe_object",
@@ -11443,8 +11544,7 @@ def test_wizard_sim_admission_path_only_matches_runner_call(tmp_path) -> None:
     repo = tmp_path / "repo"
     _write_allow_stage_gate(repo)
     artifact = repo / "receipts" / "admission.json"
-    artifact.parent.mkdir(parents=True)
-    artifact.write_text("{}", encoding="utf-8")
+    _write_valid_wizard_result_artifact(repo, "sim_probe_object", artifact)
     admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
     admission_dir.mkdir(parents=True)
     admission_path = admission_dir / "sim_probe_object.json"
@@ -11998,6 +12098,7 @@ def test_queue_claim_blocks_strict_wizard_admission_without_artifact(tmp_path, m
     monkeypatch.setattr(module, "ROOT", repo)
     monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
     monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", True)
+    monkeypatch.setattr(module, "_stage_gate_claim_for_sim", lambda sim_path: None)
 
     terminal = module.enqueue("lane_A", "system_v4/probes/sim_probe_object.py")
 
@@ -12017,6 +12118,7 @@ def test_queue_claim_claim_rechecks_wizard_admission_even_when_enqueue_relaxed(t
     monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
     monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", False)
     monkeypatch.setattr(module, "CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION", True)
+    monkeypatch.setattr(module, "_stage_gate_claim_for_sim", lambda sim_path: None)
 
     queued = module.enqueue("lane_A", "system_v4/probes/sim_probe_object.py")
     assert queued.parent.name == "lane_A"
@@ -13440,9 +13542,30 @@ def test_queue_claim_accepts_strict_wizard_admission_artifact(tmp_path, monkeypa
     repo = tmp_path / "repo"
     queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
     _write_allow_stage_gate(repo)
+    result = repo / "system_v4/probes/a2_state/sim_results/sim_probe_object_results.json"
+    result.parent.mkdir(parents=True)
+    result.write_text(
+        json.dumps(
+            {
+                "name": "sim_probe_object",
+                "classification": "canonical",
+                "tool_manifest": {"tool": {"tried": True, "used": True, "reason": "fixture"}},
+                "tool_integration_depth": {"tool": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
     artifact = repo / "receipts" / "admission.json"
     artifact.parent.mkdir(parents=True)
-    artifact.write_text("{}", encoding="utf-8")
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(result),
+                "result_sha256": __import__("hashlib").sha256(result.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
     admission = tmp_path / "admission.json"
     admission.write_text(
         json.dumps(
@@ -13458,6 +13581,7 @@ def test_queue_claim_accepts_strict_wizard_admission_artifact(tmp_path, monkeypa
     monkeypatch.setattr(module, "ROOT", repo)
     monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
     monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", True)
+    monkeypatch.setattr(module, "_stage_gate_claim_for_sim", lambda sim_path: None)
 
     queued = module.enqueue(
         "lane_A",
@@ -13611,12 +13735,12 @@ def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:
     module.QUEUE_ROOT = queue_root
     newer = lane / "a.json"
     newer.write_text(
-        '{"sim_path":"sim_probe_object.py","lane":"lane_B","priority":"normal","enqueued_at":20}\n',
+        '{"sim_path":"classical_baseline_probe_object.py","lane":"lane_B","priority":"normal","enqueued_at":20}\n',
         encoding="utf-8",
     )
     older = lane / "z.json"
     older.write_text(
-        '{"sim_path":"sim_characteristic_representation.py","lane":"lane_B","priority":"normal","enqueued_at":10}\n',
+        '{"sim_path":"classical_baseline_characteristic_representation.py","lane":"lane_B","priority":"normal","enqueued_at":10}\n',
         encoding="utf-8",
     )
 
@@ -13624,7 +13748,7 @@ def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:
 
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
-    assert payload["sim_path"] == "sim_characteristic_representation.py"
+    assert payload["sim_path"] == "classical_baseline_characteristic_representation.py"
 
 
 def test_controller_plane_snapshot_dry_mode_prints_snapshot(

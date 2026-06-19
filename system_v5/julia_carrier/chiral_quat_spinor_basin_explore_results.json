@@ -1,0 +1,129 @@
+{
+  "basin_sweep": {
+    "thresh_0.05": {
+      "candidate": 94,
+      "neg_classical": 53,
+      "neg_nonchiral": 31,
+      "neg_realvec": 8
+    },
+    "thresh_0.1": {
+      "candidate": 26,
+      "neg_classical": 23,
+      "neg_nonchiral": 11,
+      "neg_realvec": 2
+    },
+    "thresh_0.15": {
+      "candidate": 7,
+      "neg_classical": 16,
+      "neg_nonchiral": 5,
+      "neg_realvec": 1
+    },
+    "thresh_0.2": {
+      "candidate": 3,
+      "neg_classical": 14,
+      "neg_nonchiral": 2,
+      "neg_realvec": 1
+    },
+    "thresh_0.3": {
+      "candidate": 1,
+      "neg_classical": 9,
+      "neg_nonchiral": 1,
+      "neg_realvec": 1
+    }
+  },
+  "basins_exist": true,
+  "boundary_check_classical_wo_n01": "PASS",
+  "candidate": {
+    "LR_mean_separation": 0.004068,
+    "L_mean": [
+      -0.00138,
+      -0.00066,
+      -0.00103
+    ],
+    "R_mean": [
+      0.00107,
+      0.00054,
+      0.00199
+    ],
+    "num_basins_at_t010": 26,
+    "spread_L": 0.02711
+  },
+  "candidate_distinct": true,
+  "claim_ceiling": "exploration_probe — promotion_allowed: false",
+  "dynamics": "IFS on Bloch sphere: probs=[Ti=0.15, Te=0.15, Fi=0.35, Fe=0.35], noise=0.01, 400 steps",
+  "f01_check": "PASSED — finite seed set 240 trajectories",
+  "f01_finite_map": "80 seeds x 3 init-families x 4 models, 400 IFS steps",
+  "honest_threshold": 0.1,
+  "lr_sep_at_noise_level": true,
+  "models": [
+    "candidate_chiral_L_R_weyl_quaternion_spinor",
+    "neg_nonchiral_single_sector",
+    "neg_realvector_real_only_ny0",
+    "neg_classical_Ti_only_no_rotations"
+  ],
+  "n01_check": "PASSED — Rx_pi4/Rz_pi4 commutator norm=0.8195",
+  "neg_classical": {
+    "num_basins_at_t010": 23
+  },
+  "neg_nonchiral": {
+    "num_basins_at_t010": 11,
+    "spread": 0.02748
+  },
+  "neg_realvector": {
+    "num_basins_at_t010": 2
+  },
+  "negative_check_realvec_fewer": "PASS",
+  "object_id": "chiral_quat_spinor_basin_explore_v1",
+  "open_issues": [
+    "IFS with linear operators has unique stationary measure near I/2 — basin fragmentation is noise artifact",
+    "Basin count verdict flips at t=0.15 — result is threshold-sensitive",
+    "L/R mean separation at noise level — chiral signal weak in current formulation",
+    "Attractors.jl exact basin computation not yet integrated — would give basin boundaries without threshold sensitivity",
+    "Size ladder 8/16/32/64 not done — carrier is single-qubit Bloch sphere",
+    "Nonlinear dynamics (measurement feedback, kicked quantum map) needed for genuine multi-basin test"
+  ],
+  "positive_check": "PASS",
+  "promotion_allowed": false,
+  "summary": "BORDERLINE: candidate=26 > neg=23 at t=0.10, BUT verdict flips at t=0.15 (cand=7 vs neg=16). Result is threshold-sensitive and fragile. candidate_distinct=true at t=0.10 only. L/R sep=0.00407 at noise level 0.01. Admitted as exploration candidate with low confidence.",
+  "timestamp": "2026-06-03T23:03:49.501",
+  "tool_integration_depth": {
+    "Dates": "supportive",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "Statistics": "supportive"
+  },
+  "tool_manifest": {
+    "Dates": {
+      "reason": "timestamps result artifact",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "writes result artifact for JAX audit lane",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "executes finite map, clustering, and result emission; removing Julia flips verdict",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "matrix ops for density matrices and Bloch rotations; removing flips Rx/Rz ops",
+      "role": "load_bearing",
+      "tried": true,
+      "used": true
+    },
+    "Statistics": {
+      "reason": "mean/std for terminal distribution comparison",
+      "role": "supportive",
+      "tried": true,
+      "used": true
+    }
+  },
+  "verdict_flips_at_015": true
+}

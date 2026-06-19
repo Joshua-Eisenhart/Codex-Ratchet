@@ -1,0 +1,206 @@
+[REASONING-ONLY]
+ The user wants me to act as an ADVERSARIAL auditor. I need to assume the object below is circular/smuggled and try to break it. Be harsh and concrete; cite line numbers / field names from the artifact.
+
+I need to ATTACK four specific points:
+(a) Survivor-set-restriction noncommutation: genuinely emergent or hand-engineered/stipulated? Look at make_history_dependent_constraint, rule_hist/rule_hist2, seed_kill={3} injection, and whether static control that ALSO noncommutes undermines memory-is-the-engine story.
+(b) Amnesic-ablation control: genuinely prove memory is engine, or rigged? Examine make_amnesic_constraint and mixed-rule isolator.
+(c) Phi commuting-square: real homomorphism test or decorative? Look at update_lex_factory, fidelity 1.0 by construction, negative controls.
+(d) GNVW index: genuinely computed or echo? gnvw_index_of_translation, JAX leg, z3/cvc5 SMT.
+
+Then answer META questions:
+- Is EMERGENCE earned or only DEFINITION witnessed?
+- Is map<->constraint gap GENUINELY closed?
+- Where is the circularity?
+
+End with exact tagged lines:
+HARSHEST: <one sentence>
+EMERGENCE_EARNED: <yes|no>
+GAP_CLOSED: <yes|no>
+CIRCULARITY: <engineered|stipulated|emergent|mixed>
+
+I need to carefully analyze the provided artifact bundle.
+
+First, some observations:
+1. The claimed sim `finite_ring_checkerboard_qca_ordered_descending_chain_gnvw_v0` is an EMPTY STUB. No spec, no source, no results.
+2. The real artifact is a FRESH-CONTEXT AUDITOR reimplementation at `system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0`.
+3. The artifact's own on-disk verdict is "definition_witness_only" (emergence NOT earned).
+4. There is a deliberate BAD-TWIN negative fixture.
+
+I need to treat the reimplementation as the object under audit.
+
+Let me go through the four attack points.
+
+(a) Survivor-set-restriction noncommutation:
+- `make_history_dependent_constraint` (lines around 80-100): builds a constraint that kills a cell on a sublattice if neighbour_rule(nb_alive, nb_in_graveyard) fires. The rule is history-dependent via `nb_in_graveyard = (lo in H.ever_killed) or (hi in H.ever_killed)`.
+- `rule_hist`: `return (nb_alive >= 1) and nb_in_grave` (line ~215). This means if `nb_in_grave` is False, the rule is a no-op (since nb_alive >= 1 is common but nb_in_grave must be True). Wait, `nb_alive >= 1` is almost always true for a cell on a ring with 2 neighbours unless both are dead. But combined with `and nb_in_grave`, it means: kill if at least one neighbour is alive AND at least one neighbour has been killed before.
+- `rule_hist2`: `return (nb_alive == 2) or nb_in_grave` (line ~220). Kill if both neighbours alive OR a neighbour is in graveyard.
+- `seed_kill={3}` injection: In `run_all`, `seed_kill={3}` is passed. The `seeder` function injects this into the graveyard first. This is crucial because without it, the initial history is empty and the history-dependent rules might degenerate (no graveyard to read -> no kills from history part).
+- The artifact notes: "To exercise R3 honestly we PRE-SEED the graveyard via a constraint that always runs first inside each ordered sequence, so the ORDER of the two interfering constraints is what changes the H-read."
+- BUT: the `seeder` is applied inside `seeded(C)` which runs BEFORE both Ci and Cj in the sequence. Wait, let's read carefully:
+  `def seeded(C): def W(X, H): X2, H2 = seeder(X, H); return C(X2, H2); return W`
+  And `delta_restriction(seeded(Ci_hist), seeded(Cj_hist), X0)` computes `survivor_under_sequence([seeded(Ci), seeded(Cj)], X0)`.
+  So the sequence is: seeder (kills {3}), then Ci, then Cj. Or seeder, then Cj, then Ci.
+  The seeder always runs first in both orders. So the initial graveyard seed is identical in both orders. The difference arises from the order of Ci and Cj AFTER the seed.
+  Ci acts on sublattice parity 0 (even cells), Cj on parity 1 (odd cells). The rules differ. Ci_hist uses rule_hist (needs nb_alive>=1 and graveyard). Cj_hist uses rule_hist2 (nb_alive==2 OR graveyard).
+  Since they act on different sublattices, they don't directly interfere on the same cells. However, they affect the history/graveyard which the other reads? Wait, each constraint appends its killed cells to H. Since they act on different sublattices, the kills are disjoint. But the *neighbourhood* of a cell on one sublattice includes cells on the other sublattice (ring adjacency is even-odd-even-odd). So if Ci kills an even cell, that even cell goes into graveyard. Then when Cj runs, it checks its odd cells' neighbours. The odd cells are adjacent to even cells. So if an even neighbour was killed by Ci, then `nb_in_graveyard` becomes True for Cj's cells. Thus order matters: Ci then Cj gives Cj a graveyard containing Ci's kills; Cj then Ci gives Ci a graveyard containing Cj's kills. Since the rules are asymmetric (rule_hist vs rule_hist2), the survivor sets differ.
+  This seems genuinely emergent from local rules + history + topology.
+  BUT: is it hand-engineered? The rules `rule_hist` and `rule_hist2` are specifically chosen to be different and to interact through the graveyard. The graveyard read is stipulated. The noncommutation is designed into the rules.
+  Crucially: `delta_static_control_x_reactive = 3`. This is the static control (history-independent but reads current survivor set neighbourhood). The artifact explicitly states that a history-INDEPENDENT CA-style local rule still does NOT commute. So the noncommutation is NOT uniquely attributable to history/memory. There are (at least) two sources: history-ledger read and running-survivor-set read.
+  The artifact says: "So there are TWO distinct 'static control' readings with OPPOSITE answers. The order-sensitivity has (at least) two sources: (i) the history-ledger read R3, and (ii) the running-survivor-set read. Both must be ablated to attribute noncommutation to memory."
+  Wait, but the attack is: does the static control noncommute? `make_static_constraint` uses `rule_static` and `rule_static2`.
+  `rule_static(nb_alive): return nb_alive == 2`
+  `rule_static2(nb_alive): return nb_alive <= 1`
+  These are pure functions of X. Since they act on different sublattices and use different thresholds, they cause noncommutation even without history. This shows that noncommutation can arise from spatial/state dependence alone, not just history dependence. This UNDERMINES the memory-is-the-engine story unless we specifically isolate history using the mixed rules.
+  The artifact is honest about this in its self-assessment (Part E, Finding 1). It says the spec glosses this.
+  So as an adversarial auditor, I should attack: the noncommutation is NOT uniquely emergent from history; the "static control" that is history-independent ALSO noncommutes, showing the ratchet property is overdetermined and the history-dependence is sufficient but not necessary. The specific delta-static-control-x-reactive=3 proves the engine could be spatial-interference, not memory. The mixed-rule isolator attempts to fix this, but the original claim about history-dependent noncommutation is contaminated by this confounder.
+
+(b) Amnesic-ablation control:
+- `make_amnesic_constraint`: sets `nb_in_graveyard = False` (line ~130). For `rule_hist`, this makes the rule always False because `rule_hist` requires `nb_in_graveyard` to be True. So the rule becomes a NO-OP. Thus delta_amn=0 is trivial: the rule was switched off, not made to commute while active.
+- The artifact acknowledges this: `delta_amnesic_ablation` is 0 because `rule_hist` is vacuous under amnesia.
+- They introduce `rule_hist_mixed_a/b` to keep an X-reactive kill under amnesia.
+  `rule_hist_mixed_a(nb_alive, nb_in_grave): return (nb_alive == 0) or ((nb_alive >= 1) and nb_in_grave)`
+  `rule_hist_mixed_b(nb_alive, nb_in_grave): return (nb_alive == 0) or nb_in_grave`
+  Under amnesia (graveyard=False), rule A kills cells with 0 alive neighbours. Rule B kills cells with 0 alive neighbours. Wait: `rule_hist_mixed_b` with `nb_in_grave=False` returns `nb_alive == 0`. So both become the same rule! Both kill cells with no alive neighbours. Since they act on different sublattices, and the rule is identical in form (kill if isolated), do they commute?
+  Let's think: if both constraints kill isolated cells on their respective sublattices, and they act on disjoint sets of cells, does order matter? Killing cells on parity 0 vs parity 1... but killing a cell on parity 0 can change the neighbour count of a parity 1 cell (and vice versa). However, the kill condition is `nb_alive == 0`. If a cell has 0 alive neighbours initially, it's isolated. If you kill other cells, you can only reduce neighbour counts, never increase them. So if a cell doesn't have 0 alive neighbours before the other constraint runs, it won't acquire alive neighbours by the other constraint killing cells (killing removes alive neighbours). Wait, if a cell has 1 alive neighbour, and that neighbour is killed by the other constraint, then its alive neighbour count drops to 0. So it could become eligible for killing.
+  Example: cells 0-1-2-3 on a ring. Cell 1 (odd) and cell 2 (even) are alive; others dead. Cell 1 has neighbours 0 and 2; only 2 is alive -> nb_alive=1. Cell 2 has neighbours 1 and 3; only 1 is alive -> nb_alive=1. Neither is isolated. If Ci (even) runs first: it checks cell 2, nb_alive=1, doesn't kill. Then Cj (odd) checks cell 1, nb_alive=1, doesn't kill. Result: both survive.
+  If Cj runs first: cell 1, nb_alive=1, not killed. Then Ci: cell 2, nb_alive=1, not killed. Same.
+  Need a case where order matters. Let's say cells 0,1,2 alive. Cell 0 even, cell 1 odd, cell 2 even. Parity 0 acts on 0 and 2. Parity 1 acts on 1.
+  Ci (even) first: checks cell 0 (neighbours 7,1; 1 alive) -> nb_alive=1, not kill. checks cell 2 (neighbours 1,3; 1 alive) -> nb_alive=1, not kill. Cj (odd): checks cell 1 (neighbours 0,2; both alive) -> nb_alive=2, not kill. Result: all survive.
+  Cj first: checks cell 1, nb_alive=2, not kill. Ci: same as before. All survive.
+  Hmm. Let's try cells 0,1 alive. Cell 0 even, cell 1 odd. Ci first: cell 0 neighbours (7,1), 1 is alive -> nb_alive=1, not kill. Cj: cell 1 neighbours (0,2), 0 is alive -> nb_alive=1, not kill. All survive.
+  We need a case where a cell has exactly 1 neighbour that is on the other parity, and that neighbour gets killed... but under mixed amnesic, rules only kill cells with 0 alive neighbours. Since no one is killed initially (everyone has at least one neighbour if the ring isn't broken), maybe the initial state needs to have some cells already isolated.
+  Actually, with the seeder killing {3}, we start with 3 dead. Let's try N=8, seed_kill={3}. Then cell 3 is dead initially (graveyard has 3). Alive: 0,1,2,4,5,6,7.
+  Under amnesic mixed, graveyard is ignored (amnesia). So only nb_alive==0 matters.
+  For even cells (0,2,4,6):
+  - 0: neighbours 7,1; both alive -> nb=2
+  - 2: neighbours 1,3; 1 alive, 3 dead -> nb=1
+  - 4: neighbours 3,5; 3 dead, 5 alive -> nb=1
+  - 6: neighbours 5,7; both alive -> nb=2
+  For odd cells (1,3,5,7):
+  - 1: neighbours 0,2; both alive -> nb=2
+  - 3: dead (seeded)
+  - 5: neighbours 4,6; both alive -> nb=2
+  - 7: neighbours 6,0; both alive -> nb=2
+  So no cell has 0 alive neighbours. No kills happen at all. Thus delta_mixed_amnesic=0 trivially because the rule doesn't fire on this initial condition, not because order doesn't matter when it does fire.
+  Wait, but the artifact says `delta_mixed_amnesic=0`. Is it because the rule never fires (making it vacuous on this input) or because even if it fired, order wouldn't matter?
+  If we choose a different X0 or seed, could we get a non-zero delta? The artifact only tests one scenario (seed={3}, X0=all cells). It's possible that for this specific seed and X0, the mixed amnesic rule simply has no kills, making the ablation collapse a vacuous demonstration.
+  However, the artifact's `run_all` uses X0=ALL CELLS and seed_kill={3}. Under mixed amnesic, no cells have 0 alive neighbours because every cell is adjacent to at least one alive cell (the ring is fully populated except cell 3, and N=8 is large enough that removing one cell doesn't isolate anyone). So the amnesic mixed constraints do NOTHING. Therefore delta=0 is trivial: two no-op operations commute.
+  The artifact claims "mixed amnesic fully collapses" proves memory is the engine. But if the amnesic version is literally a no-op on the tested input, this is the "rigged" control where amnesia makes the rule vacuous so delta->0 trivially. Even though the mixed rule keeps an X-reactive kill "in principle", for the specific chosen seed and initial condition, that X-reactive kill is never triggered. The artifact did not test on an input where the X-reactive kill fires under amnesia.
+  This is a massive attack. The amnesic ablation is rigged by selecting an initial condition where the mixed rule's X-reactive branch is inactive. Thus it does NOT prove memory is the engine; it proves that disabling the history-read on a rule that also has a dormant X-reactive branch, on an input where the dormant branch stays dormant, yields no effect. This is a selection bias / vacuous control.
+  Wait, the artifact does note in the docstring/rule comments that `rule_hist` becomes no-op under amnesia, which is why they introduced mixed rules. But then the mixed-rule amnesic still yields delta=0. Why? Because on the chosen input, the X-reactive condition (nb_alive==0) is never met. So the mixed-rule isolator is also rigged by the input choice.
+  Unless... under the history-dependent version, the rules DO fire because the graveyard read triggers kills, which then propagate. So history makes the rule active. Under amnesia, the graveyard read is disabled, and the X-reactive branch is inactive on the initial state. Thus delta=0 is trivial: the rules do nothing.
+  The artifact's self-assessment (Part E) says: "The mixed-rule isolator gives delta_mixed_history=2, delta_mixed_amnesic=0: a NON-trivial rule still collapses to commuting when ONLY the H-read is removed." But is the rule non-trivial under amnesia? No, because under amnesia it produces zero kills. It is trivial (identity) on that input. The fact that it is non-trivial under history is because history adds kills, making later cells eligible for the X-reactive kill? Let's trace.
+  History-dependent mixed rule A: kill if nb_alive==0 OR (nb_alive>=1 and nb_in_grave). Under amnesic, grave=False, so kill if nb_alive==0. Initially, no cell has 0 alive neighbours. So Ci_mix_amn does nothing. Then Cj_mix_amn does nothing. Result: original set minus seed.
+  History-dependent mixed rule A with history: first seeder kills {3}. Ci_mix_hist (even): checks cells 0,2,4,6. None have 0 alive neighbours. But some have neighbours in graveyard (cell 2 has neighbour 3 dead; cell 4 has neighbour 3 dead). So for cell 2: nb_alive=1 (cell 1), nb_in_grave=True (cell 3). Rule: (nb_alive==0) or ((nb_alive>=1) and nb_in_grave) -> True. So cell 2 is killed. For cell 4: neighbours 3(dead),5(alive). nb_alive=1, nb_in_grave=True. Killed. Cell 0: neighbours 7,1 both alive, no grave. Not killed. Cell 6: neighbours 5,7 both alive. Not killed.
+  Then Cj_mix_hist (odd) runs. Graveyard now has {3,2,4}. Odd cells: 1,3,5,7. Cell 3 already dead. Cell 1: neighbours 0,2. 0 alive, 2 dead. nb_alive=1, nb_in_grave=True (cell 2). Rule B: (nb_alive==0) or nb_in_grave -> True. Killed. Cell 5: neighbours 4,6. 4 dead, 6 alive. nb_alive=1, nb_in_grave=True. Killed. Cell 7: neighbours 6,0 both alive. nb_alive=2, nb_in_grave=False. Not killed.
+  Result: survivors {0,6,7}? Wait, cell 7 was never killed. Let's check Cj kills {1,5}. So survivors after Ci then Cj: started with all, seed killed 3, Ci killed {2,4}, Cj killed {1,5}. Survivors: {0,6,7}.
+  Reverse order: Cj first. Seed {3} first? Actually seeder runs first in both. Then Cj (odd). Odd cells: 1,3,5,7. Cell 1: nb_alive=2 (0,2 alive), nb_in_grave=True (3 dead). Rule B: nb_alive==0 or nb_in_grave -> True. Killed. Cell 3 dead. Cell 5: nb_alive=2 (4,6 alive), nb_in_grave=True (3). Killed. Cell 7: nb_alive=2 (6,0), nb_in_grave=False. Not killed.
+  So Cj kills {1,5}. Graveyard now {3,1,5}. Then Ci (even). Even cells: 0,2,4,6. Cell 0: nb_alive=2 (7,1), but 1 is now dead. Wait, X after Cj: killed {3,1,5}. Alive: {0,2,4,6,7}. Cell 0 neighbours 7,1. 7 alive, 1 dead. nb_alive=1, nb_in_grave=True (1 dead). Rule A: (0==0)? no. (1>=1 and True) -> yes. Killed! Cell 2: neighbours 1,3. Both dead. nb_alive=0. Rule A: 0==0 -> yes. Killed. Cell 4: neighbours 3,5. Both dead. nb_alive=0. Killed. Cell 6: neighbours 5,7. 5 dead, 7 alive. nb_alive=1, nb_in_grave=True (5 dead). Killed.
+  Result after Cj then Ci: survivors {7}? Wait, Ci killed {0,2,4,6}. So survivors {7}.
+  Let's compare: Ci then Cj: survivors {0,6,7}. Cj then Ci: survivors {7}. Symdiff: {0,6}. Count = 2. Matches delta_mixed_hist=2.
+  Now mixed amnesic: seeder kills {3}. Ci_mix_amn (even): grave ignored. Kill if nb_alive==0. Alive after seed: {0,1,2,4,5,6,7}. Even cells: 0(nb=2),2(nb=1),4(nb=1),6(nb=2). None killed. Then Cj_mix_amn (odd): odd cells 1(nb=2),3(dead),5(nb=2),7(nb=2). None killed. Survivors: {0,1,2,4,5,6,7}. Symdiff with reverse order: same. delta=0.
+  So indeed, the amnesic version is the identity operation (except seed). The delta=0 is because the amnesic rule is vacuous on the chosen input, not because two active noncommuting rules become commuting when stripped of memory. The mixed rule is specifically constructed so that the X-reactive kill is `nb_alive==0`, which is impossible on a densely populated ring with only one seeded death. Thus the control is rigged by input selection.
+  This is a DEVASTATING attack. The artifact claims the clean isolator fixes the rigging, but it doesn't: it just rigs via a different path (input selection that ensures the X-reactive branch never fires). To honestly prove memory is the engine, they would need an input where the X-reactive branch fires under amnesia (so both rules do nontrivial work) but the pair commutes, and then show that adding memory makes them noncommute. Or at least show that the amnesic mixed rule does nontrivial work but commutes. They did neither.
+  However, I must be careful: is there any input in the battery where the mixed amnesic rule fires? The `run_all` fixes seed_kill={3} and X0=ALL. It does not sweep inputs for the mixed amnesic case. So yes, it's rigged by construction of the single test case.
+
+(c) Phi commuting square:
+- `update_lex_factory` (line ~188): `def U(token_set, H): return geo_constraint(token_set, H)`. It literally calls the same `geo_constraint` passed in. The docstring says "Built honestly: it does NOT call the geo constraint; it reimplements the rule on the lexical carrier." But the code DOES call `geo_constraint`. Wait, let me read carefully.
+  Lines 188-194:
+  ```
+  def update_lex_factory(geo_constraint):
+    def U(token_set, H):
+        # Reuse the SAME logic shape, on token indices treated as ring cells.
+        return geo_constraint(token_set, H)
+    return U
+  ```
+  The comment says "Reuse the SAME logic shape", but the code literally delegates to `geo_constraint`. The claim in the docstring that it does NOT call the geo constraint is FALSE based on the code shown. It directly calls `geo_constraint`. Therefore `Phi o Update_lex` and `Update_geo o Phi` are literally the same function composed two ways with a bijection that is the identity on indices. fidelity=1.0 is by construction, not an independent derivation. It is a tautology.
+  Negative controls: `fidelity_wrong` uses wrong lex control (0.78) and `fidelity_scrambled` uses scrambled phi (0.28). These prove the test CAN break, but the positive 1.0 is guaranteed by the identity map + same function pointer. The artifact's self-assessment (Part E, Finding 3) admits: "The Phi commuting square closes by construction. update_lex literally reuses the geometric constraint and Phi is the identity-on-index bijection... the positive 1.0 does NOT earn an independent lexical↔geometric map."
+  So this is a real homomorphism test in the sense that it checks self-consistency, but it's not bridging independently implemented registers. It's one register viewed through two lenses.
+  Wait, but the instructions say "Look at update_lex_factory -- does it reimplement the rule independently, or literally call the same geo_constraint (fidelity 1.0 by construction)?" The answer is: it literally calls the same geo_constraint. This is a direct hit.
+
+(d) GNVW index:
+- `gnvw_index_of_translation(perm)` (lines ~155-168): For each cell, computes displacement d = (perm[c] - c) % N, minimal signed representative. Checks uniformity. Returns that common d.
+- `shift_permutation(direction)` returns `(c + direction) % N`.
+- So for L-shift (direction=-1), perm[c]=(c-1)%N, disps are all -1, returns -1. For R-shift (+1), returns +1. For identity (0), returns 0.
+- Does it independently recompute? Yes, it computes from the permutation. But the permutation was constructed by `shift_permutation(direction)` which exactly adds direction. So the "recomputation" is essentially unpacking the direction parameter that was put in. It doesn't compute a topological index from a complex rule; it just checks that a pure translation has uniform displacement and returns it. This is a trivial algebraic identity, not a deep topological index computation. However, for a 1D translation QCA, the GNVW index *is* the shift. So it's technically correct but circular: you put in direction d, you get out d.
+- JAX leg: in the JAX code, `gnvw_index` is just `core_res["gnvw_index"]`. The JAX leg does NOT independently recompute it; it echoes core_res. The TOOL_MANIFEST says JAX reason is "vmap indicator-vector recompute of survivor symdiff counts", not GNVW. The PyTorch leg mentioned in three-engine agreement says "permutation-matrix winding". But the JAX leg itself just copies core.
+- However, the artifact's self-assessment says "GNVW is genuine but unbridged." It doesn't claim deep independence for JAX on GNVW.
+- z3/cvc5 SMT: The SMT query is:
+  `h > 0, mh > 0, ma == 0, e == 0` where these variables are asserted equal to the measured integers. This is literally checking that the measured integers satisfy inequalities. Is this a genuine structural check or a near-count-tautology? It is a near-tautology: it asserts that the counts match a pattern. The "erased flip" asserts `ma > 0` and gets UNSAT because `ma == 0` was already asserted. This is just proving that 0 is not > 0. It's arithmetic on measured constants, not a structural proof about the constraints. The SMT solver is used as a glorified calculator. The artifact's self-assessment doesn't explicitly call this out, but I should.
+  Wait, the artifact claims: "The solver searches over the relation between the three measured integers; flipping any measured value (e.g. if amnesic did NOT collapse) makes the conjunction UNSAT." But since the variables are constrained by equalities to fixed integers (e.g., `h == d_hist` where d_hist=2), the solver has no freedom. It's not "searching"; it's evaluating a ground formula. The SMT is purely propositional arithmetic on constants. This is a count-tautology exactly like the bad-twin, though perhaps honestly admitted.
+
+META questions:
+- Is EMERGENCE earned? The object's own verdict is "definition_witness_only". The artifact explicitly says emergence NOT earned. The ratchet is stipulated by the choice of rules (rule_hist, rule_hist2, seed_kill={3}) that are designed to interact via history. The survivor chain doesn't "fall out" of a generic QCA; it is hand-built. The local rules are not derived from a lower-level QCA Hamiltonian or anything; they are directly coded as Python predicates. The ring-checkerboard QCA is just the geometry substrate, but the specific kill rules are arbitrary Python functions. So emergence is NOT earned.
+- Is the map<->constraint gap closed? No. The Phi square closes by construction (same function). The lexical register is not independently implemented; it is the geometric constraint with token labels. The gap is described and tested for self-consistency, but not closed by an independent derivation.
+- Where is circularity? The circularity is in (1) hand-picking history-dependent rules that depend on graveyard reads to force noncommutation, (2) seeding the graveyard to kickstart the interaction, (3) using a mixed-rule amnesic control that is vacuous on the tested input, (4) update_lex_factory literally calling the same geo_constraint, making the bridge tautological, (5) GNVW returning the shift displacement that was input, and (6) SMT checking arithmetic identities on measured integers. The entire object is a definition witness with controls that are either rigged or trivial.
+
+Now I need to write the adversarial audit. Be harsh and concrete. Cite line numbers / field names.
+
+Let me identify specific line numbers or approximate lines in the artifact.
+
+From PART A (core source):
+- make_history_dependent_constraint: lines ~83-102
+- rule_hist: line ~215; rule_hist2: line ~220
+- seed_kill={3}: passed in run_all, line ~264, and used in seeder line ~266-269
+- delta_static_control_x_reactive=3: result field from run_all core, visible in Part C JSON
+- make_amnesic_constraint: lines ~124-139
+- rule_hist_mixed_a: line ~231; rule_hist_mixed_b: line ~234
+- update_lex_factory: lines ~188-194
+- gnvw_index_of_translation: lines ~155-168
+- shift_permutation: lines ~148-150
+
+From PART B (JAX leg):
+- `gnvw_index`: echoed as `core_res["gnvw_index"]` in main, line ~140
+- SMT block: functions `z3_memory_is_engine` and `cvc5_memory_is_engine`, lines ~100-130
+
+I need to structure the response to attack (a), (b), (c), (d) specifically, then answer meta questions, then provide the exact tagged lines.
+
+Let me draft the attacks:
+
+(a) Survivor-set noncommutation:
+- The noncommutation is hand-engineered, not emergent. `make_history_dependent_constraint` (lines 83-102) hardwires a graveyard read into the kill predicate. The rules `rule_hist` and `rule_hist2` (lines 215, 220) are deliberately asymmetric: one requires `nb_alive >= 1 and nb_in_grave`, the other `nb_alive == 2 or nb_in_grave`. The injection of `seed_kill={3}` (line 264 via seeder lines 266-269) is a hand-selected priming of the graveyard to ensure the first history-dependent step fires differentially. Without this stipulation, the initial history is empty and the rules may not exhibit the desired noncommutation. Worse, `delta_static_control_x_reactive` (Part C JSON, `core_deltas`) equals 3, proving that a history-INDEPENDENT static local rule also noncommutes. The artifact itself admits this in Part E Finding 1. Therefore memory/history is sufficient but not necessary for the observed noncommutation; the claim that history is the unique engine (R3) is undermined by the confounding spatial-interference effect. The survivor-set restriction is a decorated set intersection defined to be order-sensitive.
+
+(b) Amnesic ablation:
+- The naive amnesic ablation is rigged: `make_amnesic_constraint` (lines 124-139) forces `nb_in_graveyard = False`. For `rule_hist` (line 215) this makes the predicate permanently false, turning the constraint into a no-op. The artifact acknowledges this and introduces `rule_hist_mixed_a/b` (lines 231, 234) to preserve an X-reactive kill. BUT on the tested input (`X0 = full ring`, `seed_kill = {3}`), the X-reactive branch `nb_alive == 0` is never satisfiable: removing a single cell from an N=8 ring leaves every remaining cell with at least one alive neighbour. Thus the mixed amnesic constraints are also vacuous/identity on the chosen initial condition. The observed `delta_mixed_amnesic = 0` (Part C JSON) is therefore a trivial consequence of input selection, not a proof that stripping history from an active rule collapses noncommutation. The control is rigged by initial-condition selection that guarantees dormancy.
+
+(c) Phi commuting square:
+- `update_lex_factory` (lines 188-194) does NOT reimplement the rule independently; it literally calls `geo_constraint(token_set, H)` (line 194). The comment claims "it does NOT call the geo constraint", but the source directly contradicts this. Because `phi` is the identity-on-index bijection (line 179-181), the two paths of the square are identical object code composed with the identity. Fidelity 1.0 is mathematically guaranteed by referential transparency, not earned. While the negative controls (`fidelity_wrong_lex_control` = 0.78, `fidelity_scrambled_phi_control` = 0.28) show the test can fail in principle, the positive case is a tautology. The artifact's own Part E Finding 3 admits the square "closes by construction." It is a self-consistency check on a single implementation, not a homomorphism between independently realized registers.
+
+(d) GNVW index:
+- `gnvw_index_of_translation` (lines 155-168) computes the uniform displacement of a permutation, then returns that displacement. Since the permutation is manufactured by `shift_permutation(direction)` (lines 148-150) which literally adds `direction` modulo N, the function unpacks the same integer that was passed in. For `direction = -1` it returns -1, for `+1` returns +1. This is an algebraic identity masquerading as a topological index computation; there is no independent winding recomputation from local amplitudes or transfer matrices. The JAX leg (Part B, line ~140) does not recompute GNVW at all—it echoes `core_res["gnvw_index"]`. The SMT block (`z3_memory_is_engine`, lines ~100-110; `cvc5_memory_is_engine`, lines ~113-130) is a near-count-tautology: it asserts ground equalities `h == d_hist` etc. where `d_hist` is a concrete integer (2), then asks whether `2 > 0`. The solver has no free variables; it evaluates a ground arithmetic fact. The "erased flip" asserts `ma > 0` alongside `ma == 0`, producing unsatisfiability by pure contradiction, not by structural insight. This is the same ground-term evaluation pattern the repo's own BAD-TWIN is designed to fail.
+
+META:
+- EMERGENCE is NOT earned. The ratchet is stipulated by the manual selection of `rule_hist`, `rule_hist2`, `seed_kill={3}`, and the sublattice decomposition. The local QCA rules are arbitrary Python predicates, not derived from a lower-level dynamics. The object witnesses the definition; it does not derive it.
+- The map<->constraint gap is NOT closed. The lexical and geometric registers are the same code path; the bridge is a projection of one register onto itself.
+- CIRCULARITY is mixed: some elements are engineered (rules chosen to noncommute), some stipulated (seed_kill primes the graveyard), and the bridge is tautological.
+
+Wait, for CIRCULARITY tag options: <engineered|stipulated|emergent|mixed>. Mixed seems appropriate.
+
+HARSHEST: Need one sentence, the single harshest real defect, OR "NO DEFECT + " then strongest residual.
+There are many defects. The harshest real defect is probably that update_lex_factory literally calls the same geo_constraint, making the 1.0 fidelity a tautology and the bridge a projection of a register onto itself. Or perhaps the amnesic control rigging.
+Let me think which is most damning. The question asks for the single harshest real defect. I think the update_lex_factory literally delegating to geo_constraint while claiming independence is the most direct smoking gun of circularity. It's a literal lie in the code comment vs code body. But the amnesic rigging is also severe.
+Actually, the artifact itself admits the Phi square is by construction and the verdict is definition_witness_only. So maybe the harshest defect is the amnesic control rigging because it claims to prove memory-is-engine but the proof is vacuous on the tested input.
+But the prompt says "ASSUME the object below is circular/smuggled and try to break it." I should be harsh. The harshest defect is likely: `update_lex_factory` directly invokes the geometric constraint it claims to mirror independently, making the 1.0 fidelity an identity-tautology rather than a homomorphic bridge, while the amnesic "clean isolator" is rigged by an initial condition that renders its X-reactive branch dormant.
+But I can only have ONE sentence for HARSHEST. I need to pick one.
+I think the most concrete, verifiable, and unforgivable defect is the Phi square tautology: the lexical update literally calls the geometric constraint, so the commuting square is `f(identity(x)) == identity(f(x))` — a definitional identity, not a discovered homomorphism.
+Alternatively, the seed injection + hand-picked rules make the noncommutation a near-tautology.
+I'll go with the Phi defect because it's explicitly about the map<->constraint gap, which is central to the claim.
+
+Wait, let me re-read the prompt for HARSHEST: "NO DEFECT + " then strongest residual if no defect. But there are defects. So just the single harshest real defect.
+
+Draft: `update_lex_factory` literally calls `geo_constraint` (line 194) despite its docstring claiming an independent reimplementation, so the "homomorphic bridge" is a single function observed through two names, rendering fidelity 1.0 an unearned identity.
+
+Or maybe broader: The entire "emergence" is a definition witness built from hand-selected predicates (`rule_hist`, `rule_hist2`), a hand-injected graveyard seed (`seed_kill={3}`), a bridge that delegates to the same object code (`update_lex_factory` line 194), and an amnesic control that collapses only because the chosen initial condition (`X0=ALL`, `N=8`) ensures the X-reactive mixed branch (`nb_alive==0`) is vacuous, making `delta_mixed_amnesic=0` a triviality.
+
+But that is long. One sentence.
+
+Let's go with: `update_lex_factory` (line 194) directly calls the geometric constraint it purports to independently mirror, so the lexical↔geometric "bridge" is one function composed with the identity bijection, making fidelity 1.0 an unearned tautology rather than a closed map↔constraint gap.
+
+Actually, I want to mention the amnesic rigging too, but I must choose one. The Phi tautology is more central to the "smuggled" nature because it's a direct falsehood in the code comment vs body.
+
+Wait, is there an even harsher one? The SMT being a ground-term tautology is pretty bad, but the artifact almost admits it. The Phi one is also admitted in Part E. The amnesic rigging via input selection is NOT explicitly admitted in Part E; Part E claims the mixed-rule isolator is clean. So exposing that as rigged is a novel adversarial finding. That might be the strongest attack because it undermines the core R3 claim that memory is the engine, which the artifact thinks it has proven cleanly.
+Let me verify: does the mixed amnesic rule ever fire on ANY input in the battery? The battery in run_all is hardcoded to seed_kill={3} and X0=ALL. It doesn't sweep. So yes, it's rigged by selection.
+Thus the harshest real defect: The "clean R3 isolator" mixed-rule amnesic control is rigged by the choice of `seed_kill={3}` on a full N=8 ring, which guarantees `nb_alive==0` is never satisfied, so the amnesic constraints are identity operations and their commuting is trivial.
+
+This is very strong. Let me phrase it:
+"The mixed-rule amnesic control claims to isolate memory as the engine, but on the tested input (`seed_kill={3}`, `X0=ALL`) the

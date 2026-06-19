@@ -1,0 +1,1388 @@
+Bottom line: the artifact does **not** earn emergence. It witnesses a designed ratchet pattern. The harshest failure is that the claimed lower-level QCA emergence is mostly reintroduced through hand-selected constraint constructors and a seeded history input, while the strongest bridge and topology checks are by-construction or echo checks.
+
+No stable line numbers were provided in the pasted bundle, so I’m citing exact artifact anchors: function names, result fields, and section names.
+
+## (a) Survivor-Set Noncommutation
+
+The noncommutation is real as a computed survivor-set restriction, but not earned as emergence.
+
+The near-tautology trap is present in `make_history_dependent_constraint`, `rule_hist`, and `rule_hist2`. The rules are explicitly authored to make order matter: `rule_hist` kills only when `nb_in_graveyard` is true, and `rule_hist2` kills when `nb_alive == 2` or `nb_in_graveyard`. That is not a QCA local rule unexpectedly inducing a ratchet; it is a ratchet-shaped history gate placed into the rule.
+
+The `seed_kill={3}` injection is especially damaging. `run_all(seed_kill={3})` preloads the graveyard so the first meaningful constraint has history to read. That means the claimed engine is not only history-dependence, but a hand-seeded initial memory defect. Without that seed, the artifact itself says a “degenerate zero could masquerade as commuting,” which admits the witness depends on a prepared history state.
+
+`delta_static_control_x_reactive=3` is the strongest internal undercut. It proves history is not the only source of order sensitivity: a history-independent CA-style rule that reads the current survivor neighborhood also noncommutes. The artifact tries to rescue this by splitting “static” into X-reactive vs extensional, but that move weakens the memory-is-the-engine story. The true statement is narrower: memory can be an engine for this selected pair, not the unique source of ratchet order sensitivity.
+
+## (b) Amnesic Ablation
+
+The naive amnesic ablation is rigged. `make_amnesic_constraint` forces `nb_in_graveyard = False`; for `rule_hist`, that makes the rule effectively lose its intended trigger. So `delta_amnesic_ablation=0` partly says “the rule was switched off,” not “the same live dynamics now commute.”
+
+The mixed-rule isolator is better but still not decisive for emergence. `rule_hist_mixed_a` and `rule_hist_mixed_b` keep an X-reactive base under amnesia, and `delta_mixed_history_dependent=2` vs `delta_mixed_amnesic=0` is a cleaner local witness that the H-read carries the chosen pair’s order sensitivity. But it remains a hand-authored pair whose clauses were designed to isolate that effect. It proves a mechanism can be constructed, not that the mechanism falls out of the ring-checkerboard QCA rules.
+
+So the amnesic control rescues “history matters in this fixture.” It does not rescue “memory is the emergent engine of the QCA.”
+
+## (c) Phi Commuting Square
+
+The Phi square is mostly decorative as a bridge proof.
+
+`update_lex_factory(geo_constraint)` claims it “does NOT call the geo constraint,” but the implementation returns `geo_constraint(token_set, H)` directly. That is not an independent lexical update; it is the same geometric constraint applied to token IDs. Since `phi(token_set)` is also identity-on-index, `phi_commuting_square_fidelity=1.0` is by construction.
+
+The negative controls help only a little. `phi_square_fidelity_wrong_lex_control=0.777...` and `phi_square_fidelity_scrambled_phi_control=0.277...` show the test can fail when intentionally mismatched. They do not prove the positive bridge is independently meaningful. A test can be discriminating and still have a tautological positive case.
+
+This does not close the lexical-geometric homomorphism gap. It demonstrates that the same function agrees with itself under an identity relabeling.
+
+## (d) GNVW / JAX / SMT
+
+`gnvw_index_of_translation` is not a real general GNVW computation. It computes uniform signed displacement from `shift_permutation(direction)` and returns that displacement. For pure translations, that matches the expected index; but the direction was the input used to build the permutation. This is a sanity check for left/right/identity shifts, not a topological index computation from a nontrivial QCA.
+
+The JAX leg independently recomputes survivor symdiff counts through indicator vectors, but it does not independently recompute the GNVW index. In the result JSON, `gnvw_index` is copied from `core_res["gnvw_index"]`. That is an echo, not an independent topological leg.
+
+The SMT check is near-count-tautological. `z3_memory_is_engine` and `cvc5_memory_is_engine` assert equalities to measured integers and then assert `h > 0`, `mh > 0`, `ma == 0`, `e == 0`. The solvers are not proving a structural property of the system; they are confirming that four already-computed integers match the desired pattern. The erased flip is useful as a consistency check, but it is not load-bearing mathematics.
+
+## Meta Verdict
+
+Emergence is not earned. The artifact witnesses the definition: finite carrier, survivor-set restriction noncommutation, extensional commuting control, amnesic collapse for a selected fixture, and a trivial Phi square. It does not show a ratchet provably falling out of lower-level QCA topology and local rules.
+
+The map<->constraint gap is not closed. The survivor-set restriction move is better than map-only noncommutation, but the lexical-geometric bridge is same-function identity transport, and the GNVW index is unconnected to the survivor restriction mechanism.
+
+The circularity is mixed but real: engineered in the history-dependent rules, stipulated in the Phi bridge, and weakly computed in the survivor-set deltas. The only genuinely strong part is that the deltas are recomputed and the controls expose the intended pattern; that still stays at `definition_witness_only`.
+
+HARSHEST: The artifact claims QCA-emergent ratchet structure, but its central effects are introduced by hand-authored history gates, a seeded graveyard, an identity Phi, and a displacement-returning “GNVW” check.
+EMERGENCE_EARNED: no
+GAP_CLOSED: no
+CIRCULARITY: mixed
+
+[STDERR]
+Reading additional input from stdin...
+OpenAI Codex v0.139.0
+--------
+workdir: /Users/joshuaeisenhart/Codex-Ratchet
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: low
+reasoning summaries: none
+session id: 019ec7c3-377b-74f0-9503-bc952d4447b8
+--------
+user
+You are an ADVERSARIAL auditor. ASSUME the object below is circular/smuggled and try to break it. Be harsh and concrete; cite line numbers / field names from the artifact.
+
+The object claims to EARN ratchet-emergence: a finite order-sensitive descending chain emerging from a ring-checkerboard QCA's local rules, closing the map<->constraint gap (noncommutation AS survivor-set restrictions, not just maps) via history-dependence, with a tested lexical<->geometric homomorphic bridge.
+
+ATTACK these four points specifically:
+(a) Is the survivor-set-restriction noncommutation (delta(C_i,C_j)=|Surv(C_iC_j) symdiff Surv(C_jC_i)|) GENUINELY emergent from the QCA local neighbourhood rules + history, or hand-engineered/stipulated -- the NEAR-TAUTOLOGY trap: did they just pick constraints DESIGNED to not commute? Look hard at make_history_dependent_constraint, rule_hist/rule_hist2, the seed_kill={3} injection, and whether the "static control" that ALSO noncommutes (delta_static_control_x_reactive=3) undermines the memory-is-the-engine story.
+(b) Does the amnesic-ablation control GENUINELY prove memory is the engine, or is it rigged (e.g. amnesia makes the rule vacuous so delta->0 trivially)? Examine make_amnesic_constraint and whether the mixed-rule isolator actually fixes this.
+(c) Is the Phi commuting-square a REAL homomorphism test or decorative? Look at update_lex_factory -- does it reimplement the rule independently, or literally call the same geo_constraint (fidelity 1.0 by construction)? Do the negative controls (0.78, 0.28) rescue it?
+(d) Is the GNVW index GENUINELY computed? Look at gnvw_index_of_translation -- is it a real topological index or does it just return the shift displacement d that was put in by shift_permutation(direction)? Does the JAX leg INDEPENDENTLY recompute it or just echo core_res["gnvw_index"]? Is the z3/cvc5 SMT (h>0,mh>0,ma==0,e==0 on measured ints) a genuine structural check or a near-count-tautology?
+
+Then answer the META questions:
+- Is EMERGENCE earned (ratchet provably FALLING OUT of local QCA rules + topology), or only the DEFINITION witnessed?
+- Is the map<->constraint gap GENUINELY closed?
+- Where is the circularity, if any?
+
+End your reply with these exact tagged lines:
+HARSHEST: <one sentence, the single harshest real defect, OR "NO DEFECT + " then the strongest residual>
+EMERGENCE_EARNED: <yes|no>
+GAP_CLOSED: <yes|no>
+CIRCULARITY: <engineered|stipulated|emergent|mixed>
+
+ARTIFACT FOLLOWS:
+
+
+================================================================================
+ARTIFACT BUNDLE FOR ADVERSARIAL AUDIT
+================================================================================
+CONTEXT: The task names a sim
+  system_v7/sims/finite_ring_checkerboard_qca_ordered_descending_chain_gnvw_v0
+That directory contains ONLY an empty results/ subdir -- NO spec, NO source, NO
+results. It is an EMPTY STUB. The claim it "EARNS ratchet-emergence" therefore
+has no code behind that exact name.
+
+The REAL artifact that computes the crux quantities (survivor-set-restriction
+noncommutation, amnesic ablation, GNVW index, Phi commuting square) is a
+FRESH-CONTEXT AUDITOR reimplementation at:
+  system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0
+It re-derives every quantity the §5 spec asks for. Its own on-disk verdict is
+"definition_witness_only" (emergence NOT earned). Your job: independently attack
+whether THAT machinery genuinely earns what it claims, treating it as the object
+under audit, and whether the map<->constraint gap is genuinely closed.
+
+There is ALSO a deliberate BAD-TWIN negative fixture
+  system_v7/sims/axis0_terrain_engine_leap_v0
+designed to FAIL gates (count-tautology SMT, by-construction independence,
+prose-promotion leak). It is NOT the object under audit; mentioned so you know
+the repo distinguishes real vs decorative.
+
+================================================================================
+PART A -- THE CORE SOURCE (every scalar is recomputed here at runtime)
+================================================================================
+#!/usr/bin/env python3
+"""Independent auditor reimplementation of the survivor-set-restriction
+noncommutation crux from
+  system_v6/foundations/ratchet_definition_and_emergence_spec_DRAFT_20260614.md (§5)
+
+This file is written by a FRESH-CONTEXT auditor. It does NOT import any builder
+code. It re-derives, from scratch, every quantity the audit crux asks for:
+
+  (1) delta(C_i,C_j) = | Surv(...C_i C_j...) symmetric_difference Surv(...C_j C_i...) |
+      as a restriction of SURVIVOR SETS (not maps), for a HISTORY-DEPENDENT
+      constraint pair.  Crux question: is this genuinely NONZERO?
+
+  (2) the same delta for a STATIC (history-INDEPENDENT) predicate control.
+      Crux question: is this genuinely ZERO (set-intersection commutes,
+      replicating ratchet_s1's commuting filter case)?
+
+  (3) AMNESIC memory-ablation: take the SAME history-dependent constraints but
+      strip the history argument (C_k(x,H) -> C_k(x)).  Crux question: does the
+      noncommutation COLLAPSE to zero (proving memory/history is the engine, R3)?
+
+  (4) GNVW index of the ring-checkerboard QCA local rules: L-shift, R-shift,
+      identity.  Crux question: do the signs flip for L/R (+/-) and is it 0 for
+      identity?
+
+  (5) Phi commuting square  Phi o Update_lex  ==  Update_geo o Phi  on matched
+      inputs, reporting a fidelity (fraction of matched steps where the square
+      closes exactly).
+
+The geometric register is a RING of cells with a checkerboard (even/odd
+sublattice) update.  The lexical register is a tiny token survivor process whose
+tokens are bijective with cells; Phi is that bijection lifted to survivor sets.
+
+NO precomputed booleans.  NO hand-ranked verdicts.  Every reported scalar is the
+return value of a function defined in THIS file and recomputed at run time.
+"""
+
+import itertools
+
+
+# --------------------------------------------------------------------------
+# Geometric register: ring of N cells, each cell holds a bit (alive-token = 1).
+# A "claim token" x lives on a cell.  The carrier set S is the set of cells.
+# A survivor SET is a subset of cells that are still "alive".
+# --------------------------------------------------------------------------
+
+N = 8  # ring size (even, so checkerboard sublattices are equal)
+CELLS = tuple(range(N))
+
+
+def neighbours(c):
+    """Ring adjacency (periodic)."""
+    return ((c - 1) % N, (c + 1) % N)
+
+
+# --------------------------------------------------------------------------
+# HISTORY object H.  Append-only ledger of (step, killed_cell) receipts (R5).
+# A constraint reads H to decide admissibility (R3).
+# We represent H as a frozenset of cells that have EVER been killed, plus a
+# tuple recording append order (so we can detect history-append-order effects).
+# --------------------------------------------------------------------------
+
+class History:
+    __slots__ = ("ever_killed", "order")
+
+    def __init__(self):
+        self.ever_killed = frozenset()
+        self.order = ()
+
+    def append(self, killed):
+        new = History()
+        new.ever_killed = self.ever_killed | frozenset(killed)
+        new.order = self.order + tuple(sorted(killed))
+        return new
+
+
+# --------------------------------------------------------------------------
+# CONSTRAINTS.  A constraint C is a function (X, H) -> X' where X is the current
+# survivor set and H is the history.  It returns the RESTRICTED survivor set
+# (R2 strict contraction: X' subseteq X) and the new history.
+#
+# Each constraint is built from a LOCAL ring-checkerboard rule: it inspects each
+# alive cell's ring-neighbourhood and kills the cell if a local predicate holds.
+# --------------------------------------------------------------------------
+
+def make_history_dependent_constraint(sublattice_parity, neighbour_rule):
+    """C_k(x, H): kill an alive cell c on the given checkerboard sublattice if
+    its local neighbourhood rule fires.  The rule is HISTORY-DEPENDENT: a cell
+    survives a kill-attempt iff at least one neighbour has ALREADY been killed
+    in H (the local rule reads the graveyard).  This is the R3 engine: what
+    step k recorded changes how step k+1 evaluates."""
+
+    def C(X, H):
+        killed = set()
+        for c in sorted(X):
+            if c % 2 != sublattice_parity:
+                continue  # this constraint only acts on its sublattice
+            lo, hi = neighbours(c)
+            nb_alive = (lo in X) + (hi in X)
+            # history read: has a neighbour been killed before?
+            nb_in_graveyard = (lo in H.ever_killed) or (hi in H.ever_killed)
+            if neighbour_rule(nb_alive, nb_in_graveyard):
+                killed.add(c)
+        Xp = frozenset(X) - killed
+        Hp = H.append(killed)
+        return Xp, Hp
+
+    return C
+
+
+def make_static_constraint(sublattice_parity, neighbour_rule_static):
+    """Static predicate control: SAME shape, but the rule does NOT read H.
+    Admissibility is a pure function of the current survivor set X only.
+    This is the commuting-filter case (a la ratchet_s1)."""
+
+    def C(X, H):
+        killed = set()
+        for c in sorted(X):
+            if c % 2 != sublattice_parity:
+                continue
+            lo, hi = neighbours(c)
+            nb_alive = (lo in X) + (hi in X)
+            if neighbour_rule_static(nb_alive):
+                killed.add(c)
+        Xp = frozenset(X) - killed
+        Hp = H.append(killed)  # history still LOGGED (R5) but never READ
+        return Xp, Hp
+
+    return C
+
+
+def make_extensional_constraint(predicate):
+    """TRULY static extensional predicate control: admissibility is an absolute
+    property of the cell x ALONE (e.g. 'x is even'), independent of the current
+    survivor set X AND of history H.  This is the genuine set-intersection case
+    the spec's HOLE-3 prose invokes ('A intersect B = B intersect A').  Surv is
+    just X0 intersect {x : predicate(x)}.  Two such constraints MUST commute."""
+
+    def C(X, H):
+        killed = {c for c in X if not predicate(c)}
+        Xp = frozenset(X) - killed
+        Hp = H.append(killed)
+        return Xp, Hp
+
+    return C
+
+
+def make_amnesic_constraint(sublattice_parity, neighbour_rule):
+    """AMNESIC ablation of a history-dependent constraint: identical code path,
+    but the history read is forced to a constant (graveyard always empty).
+    This isolates whether the H-read is what makes the pair noncommute (R3)."""
+
+    def C(X, H):
+        killed = set()
+        for c in sorted(X):
+            if c % 2 != sublattice_parity:
+                continue
+            lo, hi = neighbours(c)
+            nb_alive = (lo in X) + (hi in X)
+            nb_in_graveyard = False  # AMNESIA: never reads H
+            if neighbour_rule(nb_alive, nb_in_graveyard):
+                killed.add(c)
+        Xp = frozenset(X) - killed
+        Hp = H.append(killed)
+        return Xp, Hp
+
+    return C
+
+
+# --------------------------------------------------------------------------
+# Survivor restriction under an ORDERED sequence of constraints.
+# Surv(C_a C_b ...)(X0) = apply C_a then C_b ... to (X0, empty history).
+# Returns final survivor set.
+# --------------------------------------------------------------------------
+
+def survivor_under_sequence(seq, X0):
+    X, H = frozenset(X0), History()
+    for C in seq:
+        X, H = C(X, H)
+    return X, H
+
+
+def delta_restriction(C_i, C_j, X0):
+    """delta(C_i,C_j) = | Surv(C_i then C_j)(X0)  symdiff  Surv(C_j then C_i)(X0) |
+    Symmetric difference of SURVIVOR SETS (restrictions), NOT of maps."""
+    Sij, _ = survivor_under_sequence([C_i, C_j], X0)
+    Sji, _ = survivor_under_sequence([C_j, C_i], X0)
+    sym = (Sij - Sji) | (Sji - Sij)
+    return len(sym), sorted(Sij), sorted(Sji), sorted(sym)
+
+
+# --------------------------------------------------------------------------
+# GNVW index for the ring-checkerboard QCA shift rules.
+# For a 1D QCA that is a pure translation by s sites on a single-cell algebra,
+# the GNVW index (in log-scale, base p where p = local dim) is exactly s:
+#   ind(left-shift)  = -1  (sign convention: left = negative)
+#   ind(right-shift) = +1
+#   ind(identity)    =  0
+# We COMPUTE this from the rule's permutation, not assert it: the index of a
+# translation QCA equals the net transport = (sum of signed displacements)/N
+# measured as the winding of the cell-permutation around the ring.
+# --------------------------------------------------------------------------
+
+def shift_permutation(direction):
+    """direction in {-1 (left), 0 (identity), +1 (right)}: cell c -> (c+direction)%N."""
+    return tuple((c + direction) % N for c in CELLS)
+
+
+def gnvw_index_of_translation(perm):
+    """Net signed transport of a translation permutation around the ring.
+    For perm[c] = (c + d) mod N, every cell moves by the SAME signed minimal
+    displacement d (taken in (-N/2, N/2]); the GNVW index of a translation QCA
+    is that common displacement.  We recover d cell-by-cell and require it be
+    uniform (else it is not a pure translation and the index is undefined)."""
+    disps = []
+    for c in CELLS:
+        d = (perm[c] - c) % N
+        if d > N // 2:
+            d -= N  # minimal signed representative
+        disps.append(d)
+    if len(set(disps)) != 1:
+        return None  # not a uniform translation
+    return disps[0]
+
+
+# --------------------------------------------------------------------------
+# Phi commuting square.
+# Lexical register: tokens t_0..t_{N-1}, survivor set = subset of tokens.
+# Update_lex = a history-dependent token-kill rule isomorphic, by construction
+#   of the auditor, to ONE geometric constraint C_geo (so the square SHOULD
+#   close if Phi is the obvious bijection -- we TEST that, not assume it).
+# Phi: token t_c <-> cell c (a bijection on the carriers), lifted to sets.
+# Update_geo = the geometric constraint on cells.
+# We run Update_lex then Phi, vs Phi then Update_geo, on a battery of inputs,
+# and report the fraction that match exactly = fidelity.
+# --------------------------------------------------------------------------
+
+def phi(token_set):
+    """token t_c -> cell c.  Identity-on-index bijection lifted to sets."""
+    return frozenset(token_set)  # tokens ARE indexed by cell id
+
+
+def update_lex_factory(geo_constraint):
+    """Lexical update defined to mirror a geometric constraint via the SAME
+    local rule on token indices.  Built honestly: it does NOT call the geo
+    constraint; it reimplements the rule on the lexical carrier.  If the rule
+    is faithfully mirrored, the square closes; if the auditor mismatches it,
+    the fidelity drops below 1.0 and the bridge is exposed as not-a-map."""
+
+    def U(token_set, H):
+        # Reuse the SAME logic shape, on token indices treated as ring cells.
+        return geo_constraint(token_set, H)
+
+    return U
+
+
+def commuting_square_fidelity(geo_constraint, lex_update, inputs):
+    """Fraction of inputs where  Phi(Update_lex(t)) == Update_geo(Phi(t))."""
+    hits = 0
+    total = 0
+    rows = []
+    for t in inputs:
+        H1, H2 = History(), History()
+        lex_out, _ = lex_update(frozenset(t), H1)
+        left = phi(lex_out)                       # Phi o Update_lex
+        geo_out, _ = geo_constraint(phi(frozenset(t)), H2)
+        right = geo_out                           # Update_geo o Phi
+        ok = (left == right)
+        hits += int(ok)
+        total += 1
+        rows.append((sorted(t), sorted(left), sorted(right), ok))
+    return hits / total if total else 0.0, rows
+
+
+# --------------------------------------------------------------------------
+# The neighbour rules (local checkerboard rules).
+# --------------------------------------------------------------------------
+
+# history-dependent rule: kill if exactly one neighbour alive AND a neighbour
+# already in graveyard -> the kill cascades along the ring as history builds.
+# NOTE: under amnesia (nb_in_grave forced False) this rule becomes a NO-OP, so
+# the amnesic collapse it produces is partly "rule switched off", not purely
+# "two live rules now commute".  We therefore ALSO carry rule_hist_mixed below,
+# which keeps a non-trivial X-reactive kill under amnesia, isolating the H-read
+# as the sole source of order-sensitivity.
+def rule_hist(nb_alive, nb_in_grave):
+    return (nb_alive >= 1) and nb_in_grave
+
+
+# A SECOND history-dependent rule on the other sublattice, with a different
+# trigger, so the two constraints genuinely interfere through H.
+def rule_hist2(nb_alive, nb_in_grave):
+    return (nb_alive == 2) or nb_in_grave
+
+
+# MIXED rules: an X-reactive base kill OR a history-triggered kill.  Under
+# amnesia the X-reactive base remains active (rule is NOT vacuous), so if the
+# amnesic delta drops to 0 it is because the order-sensitivity was carried by
+# the H-read, not because the rule switched off.  This is the clean R3 isolator.
+def rule_hist_mixed_a(nb_alive, nb_in_grave):
+    return (nb_alive == 0) or ((nb_alive >= 1) and nb_in_grave)
+
+
+def rule_hist_mixed_b(nb_alive, nb_in_grave):
+    return (nb_alive == 0) or nb_in_grave
+
+
+# static rule (no history): kill if both neighbours alive.  Pure function of X.
+def rule_static(nb_alive):
+    return nb_alive == 2
+
+
+def rule_static2(nb_alive):
+    return nb_alive <= 1
+
+
+def run_all(X0=None, seed_kill=None):
+    """Compute every audited quantity.  Returns a dict of pure-computed values.
+    X0: initial survivor set.  seed_kill: an initial graveyard injection so the
+    history-dependent rules have something to read on the first interfering
+    step (otherwise step-1 graveyard is empty for both orders and a degenerate
+    zero could masquerade as 'commuting')."""
+    if X0 is None:
+        X0 = frozenset(CELLS)
+
+    # Build constraints. To exercise R3 honestly we PRE-SEED the graveyard via a
+    # constraint that always runs first inside each ordered sequence, so the
+    # ORDER of the two interfering constraints is what changes the H-read.
+    def seeder(X, H):
+        killed = set(seed_kill or ())
+        return frozenset(X) - killed, H.append(killed & set(X))
+
+    Ci_hist = make_history_dependent_constraint(0, rule_hist)
+    Cj_hist = make_history_dependent_constraint(1, rule_hist2)
+
+    # Two readings of "static control":
+    #  (a) X-reactive static: history-INDEPENDENT but reads the CURRENT survivor
+    #      set's neighbourhood (a cellular-automaton-style local rule with no H).
+    #  (b) extensional static: an absolute per-cell property (pure set-intersection).
+    Ci_static = make_static_constraint(0, rule_static)
+    Cj_static = make_static_constraint(1, rule_static2)
+
+    Ci_ext = make_extensional_constraint(lambda c: c % 2 == 0)        # keep evens
+    Cj_ext = make_extensional_constraint(lambda c: c < N // 2)        # keep low half
+
+    Ci_amn = make_amnesic_constraint(0, rule_hist)
+    Cj_amn = make_amnesic_constraint(1, rule_hist2)
+
+    # Clean R3 isolator: MIXED rules keep an X-reactive kill under amnesia.
+    Ci_mix_hist = make_history_dependent_constraint(0, rule_hist_mixed_a)
+    Cj_mix_hist = make_history_dependent_constraint(1, rule_hist_mixed_b)
+    Ci_mix_amn = make_amnesic_constraint(0, rule_hist_mixed_a)
+    Cj_mix_amn = make_amnesic_constraint(1, rule_hist_mixed_b)
+
+    # Wrap each pair-member so the seeder runs first inside BOTH orders.
+    def seeded(C):
+        def W(X, H):
+            X2, H2 = seeder(X, H)
+            return C(X2, H2)
+        return W
+
+    # delta for history-dependent pair
+    d_hist, Sij_h, Sji_h, sym_h = delta_restriction(seeded(Ci_hist), seeded(Cj_hist), X0)
+    # delta for X-reactive static control (CA-style, no history)
+    d_static, Sij_s, Sji_s, sym_s = delta_restriction(seeded(Ci_static), seeded(Cj_static), X0)
+    # delta for genuinely extensional static control (pure set-intersection)
+    d_ext, Sij_e, Sji_e, sym_e = delta_restriction(seeded(Ci_ext), seeded(Cj_ext), X0)
+    # delta for amnesic ablation of the history pair (rule_hist becomes no-op)
+    d_amn, Sij_a, Sji_a, sym_a = delta_restriction(seeded(Ci_amn), seeded(Cj_amn), X0)
+    # CLEAN R3 isolation: mixed rules stay non-trivial under amnesia.
+    d_mix_hist, _, _, _ = delta_restriction(seeded(Ci_mix_hist), seeded(Cj_mix_hist), X0)
+    d_mix_amn, _, _, _ = delta_restriction(seeded(Ci_mix_amn), seeded(Cj_mix_amn), X0)
+
+    # GNVW indices
+    gnvw = {
+        "left_shift": gnvw_index_of_translation(shift_permutation(-1)),
+        "right_shift": gnvw_index_of_translation(shift_permutation(+1)),
+        "identity": gnvw_index_of_translation(shift_permutation(0)),
+    }
+
+    # Phi commuting square on a battery of inputs (all subsets of a 4-cell window
+    # plus the full set and empty set, kept tractable).
+    window = list(range(4))
+    inputs = []
+    for r in range(len(window) + 1):
+        for combo in itertools.combinations(window, r):
+            inputs.append(frozenset(combo))
+    inputs.append(frozenset(CELLS))
+    inputs.append(frozenset())
+    lex_U = update_lex_factory(seeded(Ci_hist))
+    fidelity, rows = commuting_square_fidelity(seeded(Ci_hist), lex_U, inputs)
+
+    # NEGATIVE Phi control: a WRONG lexical update (mirrors the OTHER sublattice
+    # constraint) must BREAK the square -> fidelity < 1.0.  This proves the
+    # square test has discriminating power and is not vacuously 1.0.
+    lex_U_wrong = update_lex_factory(seeded(Cj_hist))
+    fidelity_wrong, _ = commuting_square_fidelity(seeded(Ci_hist), lex_U_wrong, inputs)
+
+    # NEGATIVE Phi control 2: a scrambled bijection (rotate token<->cell map)
+    # composed with the correct update must also generally break the square.
+    def commuting_square_scrambled(geo_constraint, lex_update, inputs):
+        hits = total = 0
+        for t in inputs:
+            H1, H2 = History(), History()
+            lex_out, _ = lex_update(frozenset(t), H1)
+            left = frozenset((c + 1) % N for c in lex_out)            # scrambled Phi
+            geo_out, _ = geo_constraint(frozenset((c + 1) % N for c in t), H2)
+            hits += int(left == geo_out)
+            total += 1
+        return hits / total if total else 0.0
+    fidelity_scrambled = commuting_square_scrambled(seeded(Ci_hist), lex_U, inputs)
+
+    return {
+        "N": N,
+        "X0": sorted(X0),
+        "seed_kill": sorted(seed_kill or ()),
+        "delta_history_dependent": d_hist,
+        "delta_static_control_x_reactive": d_static,
+        "delta_static_control_extensional": d_ext,
+        "delta_amnesic_ablation": d_amn,
+        "delta_mixed_history_dependent": d_mix_hist,
+        "delta_mixed_amnesic": d_mix_amn,
+        "Sij_extensional": Sij_e, "Sji_extensional": Sji_e, "symdiff_extensional": sym_e,
+        "Sij_hist": Sij_h, "Sji_hist": Sji_h, "symdiff_hist": sym_h,
+        "Sij_static": Sij_s, "Sji_static": Sji_s, "symdiff_static": sym_s,
+        "Sij_amnesic": Sij_a, "Sji_amnesic": Sji_a, "symdiff_amnesic": sym_a,
+        "gnvw_index": gnvw,
+        "phi_commuting_square_fidelity": fidelity,
+        "phi_square_fidelity_wrong_lex_control": fidelity_wrong,
+        "phi_square_fidelity_scrambled_phi_control": fidelity_scrambled,
+        "phi_square_n_inputs": len(inputs),
+        # derived audit booleans (computed, not asserted):
+        "history_pair_noncommutes": d_hist > 0,
+        "static_control_x_reactive_commutes": d_static == 0,
+        "static_control_extensional_commutes": d_ext == 0,
+        "amnesic_collapses_noncommutation": d_amn < d_hist,
+        "amnesic_fully_collapses": d_amn == 0,
+        # CLEAN isolator: mixed rule is non-trivial under amnesia, so a drop to 0
+        # here pins the order-sensitivity ON the history read (not rule-vanishing).
+        "mixed_history_pair_noncommutes": d_mix_hist > 0,
+        "mixed_amnesic_collapses": d_mix_amn < d_mix_hist,
+        "mixed_amnesic_fully_collapses": d_mix_amn == 0,
+        "gnvw_signs_flip": (gnvw["left_shift"] is not None
+                            and gnvw["right_shift"] is not None
+                            and gnvw["left_shift"] < 0 < gnvw["right_shift"]
+                            and gnvw["identity"] == 0),
+        "phi_square_closes": abs(fidelity - 1.0) < 1e-12,
+    }
+
+
+if __name__ == "__main__":
+    import json
+    # A non-trivial seed so the first interfering step has a real H to read.
+    res = run_all(seed_kill={3})
+    print(json.dumps(res, indent=2, default=list))
+
+
+================================================================================
+PART B -- THE JAX LEG (claims independent recompute + load-bearing z3/cvc5 SMT)
+================================================================================
+#!/usr/bin/env python3
+"""JAX leg of the independent survivor-restriction noncommutation verification.
+
+Computation style UNIQUE to this leg: the survivor sets are recomputed by a
+jax.vmap'd batched indicator-vector contraction (each survivor set is a length-N
+0/1 jnp vector; constraint application is a masked update over the batch).  The
+delta(C_i,C_j) symmetric-difference count is recomputed as the L1 distance
+between the two final indicator vectors.
+
+It ALSO carries a load-bearing z3 + cvc5 structural flip on the COMPUTED delta
+values (NOT a count tautology):
+  assert (delta_hist > 0) AND (delta_extensional == 0)  -> the noncommutation is
+  carried by history; the extensional control commutes.  Erase the history read
+  (amnesic) -> assert delta_amnesic == 0 -> the flip is consistent only when
+  memory is the engine.  The solver searches over the relation between the three
+  measured integers; flipping any measured value (e.g. if amnesic did NOT
+  collapse) makes the conjunction UNSAT.
+"""
+
+import json
+import os
+import hashlib
+from datetime import datetime, timezone
+
+import jax
+import jax.numpy as jnp
+from jax import vmap
+
+import z3
+import cvc5
+from cvc5 import Kind
+
+import independent_survivor_restriction_noncommutation_verify_v0_core as CORE
+
+jax.config.update("jax_enable_x64", True)
+
+SIM_ID = "independent_survivor_restriction_noncommutation_verify_v0"
+HERE = os.path.dirname(os.path.abspath(__file__))
+N = CORE.N
+
+
+def sha256_of(path):
+    with open(path, "rb") as f:
+        return hashlib.sha256(f.read()).hexdigest()
+
+
+def set_to_vec(s):
+    v = jnp.zeros(N, dtype=jnp.int32)
+    if s:
+        v = v.at[jnp.array(sorted(s))].set(1)
+    return v
+
+
+def symdiff_count_via_vmap(set_a, set_b):
+    """Independent JAX recompute of |A symdiff B| as L1 distance of indicators,
+    via a vmap over the N cell positions."""
+    va, vb = set_to_vec(set_a), set_to_vec(set_b)
+    per_cell = vmap(lambda a, b: jnp.abs(a - b))(va, vb)
+    return int(jnp.sum(per_cell))
+
+
+def recompute_deltas():
+    """Re-derive the three survivor pairs from CORE's constraint builders, but
+    recompute the symdiff COUNT through the JAX indicator path (independent of
+    CORE's len(symdiff) computation)."""
+    X0 = frozenset(CORE.CELLS)
+    seed = {3}
+
+    def seeded(C):
+        def W(X, H):
+            killed = set(seed) & set(X)
+            X2 = frozenset(X) - killed
+            H2 = H.append(killed)
+            return C(X2, H2)
+        return W
+
+    Ci_h = seeded(CORE.make_history_dependent_constraint(0, CORE.rule_hist))
+    Cj_h = seeded(CORE.make_history_dependent_constraint(1, CORE.rule_hist2))
+    Ci_e = seeded(CORE.make_extensional_constraint(lambda c: c % 2 == 0))
+    Cj_e = seeded(CORE.make_extensional_constraint(lambda c: c < N // 2))
+    Ci_mh = seeded(CORE.make_history_dependent_constraint(0, CORE.rule_hist_mixed_a))
+    Cj_mh = seeded(CORE.make_history_dependent_constraint(1, CORE.rule_hist_mixed_b))
+    Ci_ma = seeded(CORE.make_amnesic_constraint(0, CORE.rule_hist_mixed_a))
+    Cj_ma = seeded(CORE.make_amnesic_constraint(1, CORE.rule_hist_mixed_b))
+
+    def pair_delta(Ci, Cj):
+        Sij, _ = CORE.survivor_under_sequence([Ci, Cj], X0)
+        Sji, _ = CORE.survivor_under_sequence([Cj, Ci], X0)
+        return symdiff_count_via_vmap(Sij, Sji)
+
+    return {
+        "delta_history_dependent": pair_delta(Ci_h, Cj_h),
+        "delta_static_control_extensional": pair_delta(Ci_e, Cj_e),
+        "delta_mixed_history_dependent": pair_delta(Ci_mh, Cj_mh),
+        "delta_mixed_amnesic": pair_delta(Ci_ma, Cj_ma),
+    }
+
+
+def z3_memory_is_engine(d_hist, d_mix_hist, d_mix_amn, d_ext):
+    """SAT iff the measured pattern is the memory-is-engine pattern:
+      history pair noncommutes (d_hist>0), mixed pair noncommutes (d_mix_hist>0),
+      mixed amnesic collapses (d_mix_amn==0), extensional control commutes
+      (d_ext==0).  These are the EXACT measured integers; the solver searches an
+      Int model satisfying all four relations simultaneously.  If any measured
+      value violated the pattern (e.g. amnesic did not collapse), UNSAT."""
+    s = z3.Solver()
+    h = z3.Int("d_hist"); mh = z3.Int("d_mix_hist"); ma = z3.Int("d_mix_amn"); e = z3.Int("d_ext")
+    s.add(h == d_hist, mh == d_mix_hist, ma == d_mix_amn, e == d_ext)
+    s.add(h > 0, mh > 0, ma == 0, e == 0)  # the structural pattern
+    return str(s.check())
+
+
+def cvc5_memory_is_engine(d_hist, d_mix_hist, d_mix_amn, d_ext):
+    tm = cvc5.TermManager()
+    slv = cvc5.Solver(tm)
+    slv.setLogic("QF_LIA")
+    h = tm.mkConst(tm.getIntegerSort(), "d_hist")
+    mh = tm.mkConst(tm.getIntegerSort(), "d_mix_hist")
+    ma = tm.mkConst(tm.getIntegerSort(), "d_mix_amn")
+    e = tm.mkConst(tm.getIntegerSort(), "d_ext")
+
+    def ival(n):
+        return tm.mkInteger(n)
+    z = tm.mkInteger(0)
+    conj = [
+        tm.mkTerm(Kind.EQUAL, h, ival(d_hist)),
+        tm.mkTerm(Kind.EQUAL, mh, ival(d_mix_hist)),
+        tm.mkTerm(Kind.EQUAL, ma, ival(d_mix_amn)),
+        tm.mkTerm(Kind.EQUAL, e, ival(d_ext)),
+        tm.mkTerm(Kind.GT, h, z),
+        tm.mkTerm(Kind.GT, mh, z),
+        tm.mkTerm(Kind.EQUAL, ma, z),
+        tm.mkTerm(Kind.EQUAL, e, z),
+    ]
+    slv.assertFormula(tm.mkTerm(Kind.AND, *conj))
+    return str(slv.checkSat())
+
+
+def main():
+    core_res = CORE.run_all(seed_kill={3})
+    jax_deltas = recompute_deltas()
+
+    # Cross-check: JAX-recomputed deltas must equal CORE's computed deltas.
+    parity = {
+        "delta_history_dependent": jax_deltas["delta_history_dependent"] == core_res["delta_history_dependent"],
+        "delta_static_control_extensional": jax_deltas["delta_static_control_extensional"] == core_res["delta_static_control_extensional"],
+        "delta_mixed_history_dependent": jax_deltas["delta_mixed_history_dependent"] == core_res["delta_mixed_history_dependent"],
+        "delta_mixed_amnesic": jax_deltas["delta_mixed_amnesic"] == core_res["delta_mixed_amnesic"],
+    }
+
+    d_hist = jax_deltas["delta_history_dependent"]
+    d_mh = jax_deltas["delta_mixed_history_dependent"]
+    d_ma = jax_deltas["delta_mixed_amnesic"]
+    d_e = jax_deltas["delta_static_control_extensional"]
+
+    z3_pat = z3_memory_is_engine(d_hist, d_mh, d_ma, d_e)
+    cvc5_pat = cvc5_memory_is_engine(d_hist, d_mh, d_ma, d_e)
+    # erased flip: assert amnesic did NOT collapse (d_mix_amn>0) on the SAME measured
+    # values -> must be UNSAT, confirming the pattern is data-coupled.
+    z3_erased = z3.Solver()
+    h2 = z3.Int("h"); ma2 = z3.Int("ma")
+    z3_erased.add(h2 == d_hist, ma2 == d_ma, h2 > 0, ma2 > 0)
+    z3_erased_verdict = str(z3_erased.check())
+
+    smt_flip_confirmed = (z3_pat == "sat" and cvc5_pat == "sat" and z3_erased_verdict == "unsat")
+
+    result = {
+        "schema": "codex_ratchet.engine_leg_result.v1",
+        "sim_id": SIM_ID,
+        "engine": "jax",
+        "computation_style": "vmap_batched_indicator_vector_symdiff",
+        "classification": "scratch_diagnostic",
+        "claim_ceiling": "scratch_diagnostic",
+        "promotion_allowed": False,
+        "formal_admission_allowed": False,
+        "does_not_self_upgrade": True,
+        "reads_peer_result": False,
+        "f01_ancestry": "root_axioms:53 (finitude) via spec §0",
+        "n01_ancestry": "root_axioms:51 (order as noncommutation) via spec §1.2 R4",
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "source_sha256": sha256_of(os.path.abspath(__file__)),
+        "core_sha256": sha256_of(os.path.join(HERE, f"{SIM_ID}_core.py")),
+        "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_jax_results.json",
+        "jax_recomputed_deltas": jax_deltas,
+        "core_deltas": {
+            "delta_history_dependent": core_res["delta_history_dependent"],
+            "delta_static_control_extensional": core_res["delta_static_control_extensional"],
+            "delta_static_control_x_reactive": core_res["delta_static_control_x_reactive"],
+            "delta_amnesic_ablation": core_res["delta_amnesic_ablation"],
+            "delta_mixed_history_dependent": core_res["delta_mixed_history_dependent"],
+            "delta_mixed_amnesic": core_res["delta_mixed_amnesic"],
+        },
+        "jax_core_parity": parity,
+        "jax_core_parity_all": all(parity.values()),
+        "gnvw_index": core_res["gnvw_index"],
+        "phi_commuting_square_fidelity": core_res["phi_commuting_square_fidelity"],
+        "phi_square_fidelity_wrong_lex_control": core_res["phi_square_fidelity_wrong_lex_control"],
+        "phi_square_fidelity_scrambled_phi_control": core_res["phi_square_fidelity_scrambled_phi_control"],
+        "audit_booleans": {
+            "history_pair_noncommutes": core_res["history_pair_noncommutes"],
+            "static_control_extensional_commutes": core_res["static_control_extensional_commutes"],
+            "static_control_x_reactive_commutes": core_res["static_control_x_reactive_commutes"],
+            "amnesic_fully_collapses": core_res["amnesic_fully_collapses"],
+            "mixed_history_pair_noncommutes": core_res["mixed_history_pair_noncommutes"],
+            "mixed_amnesic_fully_collapses": core_res["mixed_amnesic_fully_collapses"],
+            "gnvw_signs_flip": core_res["gnvw_signs_flip"],
+            "phi_square_closes": core_res["phi_square_closes"],
+        },
+        "smt_flip": {
+            "question": "is the measured (d_hist, d_mix_hist, d_mix_amn, d_ext) the memory-is-engine pattern (h>0, mh>0, ma==0, e==0)?",
+            "encoding": "Int equalities to the MEASURED deltas conjoined with the structural relations; NOT solver.add(n==count). Erased flip asserts ma>0 on the same h -> must be UNSAT.",
+            "z3_pattern": z3_pat,
+            "cvc5_pattern": cvc5_pat,
+            "z3_erased_amnesic_did_not_collapse": z3_erased_verdict,
+            "smt_flip_confirmed": smt_flip_confirmed,
+        },
+        "package_versions": {"jax": jax.__version__, "z3": z3.get_version_string()},
+        "packages_used": ["jax", "z3", "cvc5"],
+        "aligned_packages_load_bearing": ["jax", "z3", "cvc5"],
+        "TOOL_MANIFEST": {
+            "jax": {"tried": True, "used": True, "reason": "load-bearing vmap indicator-vector recompute of survivor symdiff counts, independent of CORE's set-len path"},
+            "z3": {"tried": True, "used": True, "reason": "load-bearing structural pattern check + erased-flip (amnesic-no-collapse -> UNSAT) on measured integers"},
+            "cvc5": {"tried": True, "used": True, "reason": "load-bearing independent second SMT confirming the same pattern"},
+        },
+        "TOOL_INTEGRATION_DEPTH": {"jax": "load_bearing", "z3": "load_bearing", "cvc5": "load_bearing"},
+    }
+
+    out = os.path.join(HERE, "results", f"{SIM_ID}_jax_results.json")
+    with open(out, "w") as f:
+        json.dump(result, f, indent=2)
+    print(f"jax leg wrote {out}")
+    print(f"  deltas hist={d_hist} mix_hist={d_mh} mix_amn={d_ma} ext={d_e}")
+    print(f"  parity_all={all(parity.values())} smt_flip_confirmed={smt_flip_confirmed} (z3 {z3_pat}/{z3_erased_verdict}, cvc5 {cvc5_pat})")
+
+
+if __name__ == "__main__":
+    main()
+
+
+================================================================================
+PART C -- JAX RESULT JSON
+================================================================================
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "independent_survivor_restriction_noncommutation_verify_v0",
+  "engine": "jax",
+  "computation_style": "vmap_batched_indicator_vector_symdiff",
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "f01_ancestry": "root_axioms:53 (finitude) via spec \u00a70",
+  "n01_ancestry": "root_axioms:51 (order as noncommutation) via spec \u00a71.2 R4",
+  "generated_at": "2026-06-14T20:06:39Z",
+  "source_sha256": "d86d2b683fd6a730cc27be648d6d4d5528f395faf23f57043a84b033e41f2289",
+  "core_sha256": "7341caa8a248314805e27b58245d4b3dafada4ab80c03ac09bcda6ac595fc98b",
+  "result_path": "system_v7/sims/independent_survivor_restriction_noncommutation_verify_v0/results/independent_survivor_restriction_noncommutation_verify_v0_jax_results.json",
+  "jax_recomputed_deltas": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0
+  },
+  "core_deltas": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_static_control_x_reactive": 3,
+    "delta_amnesic_ablation": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0
+  },
+  "jax_core_parity": {
+    "delta_history_dependent": true,
+    "delta_static_control_extensional": true,
+    "delta_mixed_history_dependent": true,
+    "delta_mixed_amnesic": true
+  },
+  "jax_core_parity_all": true,
+  "gnvw_index": {
+    "left_shift": -1,
+    "right_shift": 1,
+    "identity": 0
+  },
+  "phi_commuting_square_fidelity": 1.0,
+  "phi_square_fidelity_wrong_lex_control": 0.7777777777777778,
+  "phi_square_fidelity_scrambled_phi_control": 0.2777777777777778,
+  "audit_booleans": {
+    "history_pair_noncommutes": true,
+    "static_control_extensional_commutes": true,
+    "static_control_x_reactive_commutes": false,
+    "amnesic_fully_collapses": true,
+    "mixed_history_pair_noncommutes": true,
+    "mixed_amnesic_fully_collapses": true,
+    "gnvw_signs_flip": true,
+    "phi_square_closes": true
+  },
+  "smt_flip": {
+    "question": "is the measured (d_hist, d_mix_hist, d_mix_amn, d_ext) the memory-is-engine pattern (h>0, mh>0, ma==0, e==0)?",
+    "encoding": "Int equalities to the MEASURED deltas conjoined with the structural relations; NOT solver.add(n==count). Erased flip asserts ma>0 on the same h -> must be UNSAT.",
+    "z3_pattern": "sat",
+    "cvc5_pattern": "sat",
+    "z3_erased_amnesic_did_not_collapse": "unsat",
+    "smt_flip_confirmed": true
+  },
+  "package_versions": {
+    "jax": "0.10.1",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "jax",
+    "z3",
+    "cvc5"
+  ],
+  "aligned_packages_load_bearing": [
+    "jax",
+    "z3",
+    "cvc5"
+  ],
+  "TOOL_MANIFEST": {
+    "jax": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing vmap indicator-vector recompute of survivor symdiff counts, independent of CORE's set-len path"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing structural pattern check + erased-flip (amnesic-no-collapse -> UNSAT) on measured integers"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing independent second SMT confirming the same pattern"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "jax": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing"
+  }
+}
+
+================================================================================
+PART D -- THREE-ENGINE AGREEMENT JSON
+================================================================================
+{
+  "sim_id": "independent_survivor_restriction_noncommutation_verify_v0",
+  "engines": [
+    "jax",
+    "pytorch",
+    "julia"
+  ],
+  "agreed_values": {
+    "delta_history_dependent": 2,
+    "delta_static_control_extensional": 0,
+    "delta_mixed_history_dependent": 2,
+    "delta_mixed_amnesic": 0,
+    "delta_static_control_x_reactive": 3
+  },
+  "gnvw_index_agreed": {
+    "left_shift": -1,
+    "right_shift": 1,
+    "identity": 0
+  },
+  "mismatches": [],
+  "three_engine_agreement": true,
+  "per_leg_self_parity_ok": true,
+  "audit": {
+    "legs_exit0": true,
+    "restriction_noncommutation_real": true,
+    "static_control_extensional_commutes": true,
+    "static_control_x_reactive_noncommutes": true,
+    "amnesic_collapses_clean_isolator": true,
+    "gnvw_signs_flip": true,
+    "phi_square_fidelity": 1.0,
+    "phi_square_wrong_lex_control": 0.7777777777777778,
+    "phi_square_scrambled_phi_control": 0.2777777777777778,
+    "smt_flip_confirmed": true
+  },
+  "engine_consensus": {
+    "independent": true,
+    "note": "JAX (vmap indicator XOR), PyTorch (boolean tensor XOR + permutation-matrix winding), and Julia (native Set symdiff + modular winding) are three distinct code paths; Julia is a from-scratch reimplementation in another language. reads_peer_result=false on all three."
+  },
+  "classification": "scratch_diagnostic",
+  "claim_ceiling": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false
+}
+
+================================================================================
+PART E -- THE ON-DISK AUDIT VERDICT (the sim's OWN self-assessment)
+================================================================================
+# Independent verification — survivor-set-restriction noncommutation crux
+
+**Auditor:** fresh-context subagent. No git run. Files only under this sim dir.
+**Date:** 2026-06-14. **Ceiling:** scratch_diagnostic, promotion_allowed=false.
+
+## What was on disk (the "earning sim")
+
+The crux describes `finite_ordered_survivor_ratchet_emergence_v0` /
+`..._definition_witness_v0` from
+`system_v6/foundations/ratchet_definition_and_emergence_spec_DRAFT_20260614.md` §5.
+**That sim is NOT built anywhere in the repo.** What exists:
+- the §5 SPEC (a DRAFT, today-dated, ceiling `scratch_diagnostic`, no admission);
+- `system_v7/sims/axis0_terrain_engine_leap_v0` — an explicit **BAD-TWIN negative
+  fixture** (`build_card.md`) that deliberately carries the crux vocabulary
+  (gnvw/survivor/amnesic/update_lex/update_geo) with `axis0_earned:true` as an
+  intentionally unbacked claim, designed to FAIL gates;
+- `finite_ring_checkerboard_qca_ordered_descending_chain_gnvw_v0` — an EMPTY stub
+  (only an empty `results/` dir);
+- adjacent quotient/carrier sims, none of which compute the survivor-set-restriction
+  symdiff `delta(C_i,C_j)=|Surv(C_iC_j) symdiff Surv(C_jC_i)|`. The carrier sim
+  computes map-noncommutation `U1∘U2≠U2∘U1` on elements, not survivor-set restriction.
+
+There was therefore **no builder output to trust or distrust**. Per the task I
+re-derived the crux quantities from scratch in a new sim dir and ran all legs.
+
+## What I built and ran (3 independent engines, all exit 0)
+
+| Engine | Code path | exit |
+|---|---|---|
+| JAX | vmap indicator-vector XOR symdiff + z3/cvc5 on measured ints | 0 |
+| PyTorch | boolean-tensor XOR symdiff + permutation-matrix winding GNVW | 0 |
+| Julia | from-scratch native Set symdiff + modular winding (different language) | 0 |
+
+Three-engine agreement: **clean, zero mismatches** (`check_agreement.py` exit 0).
+`reads_peer_result=false` on all three; Julia is an independent reimplementation.
+
+## The re-derived numbers (all three engines agree)
+
+| Quantity | value | reading |
+|---|---|---|
+| `delta_history_dependent` | **2** | survivor-set-restriction noncommutation is REAL (nonzero) |
+| `delta_static_control_extensional` | **0** | pure set-intersection commutes (the ratchet_s1-style commuting-filter case) |
+| `delta_static_control_x_reactive` | **3** | FINDING: a history-INDEPENDENT CA-style local rule still does NOT commute |
+| `delta_mixed_history_dependent` | **2** | clean R3 isolator: noncommutes with H-read |
+| `delta_mixed_amnesic` | **0** | removing ONLY the H-read collapses it to 0 — memory is the engine |
+| GNVW left/right/identity | **-1 / +1 / 0** | signs flip for L/R, 0 for identity |
+| Phi square fidelity | **1.0** | BUT by construction (see below) |
+| Phi wrong-lex control | 0.78 | the square test can break — discriminating |
+| Phi scrambled-Phi control | 0.28 | the square test can break — discriminating |
+| SMT memory-is-engine flip | z3 SAT / cvc5 SAT / erased UNSAT | confirmed on measured ints |
+
+## Findings the spec glosses (held open, not collapsed)
+
+1. **"Static predicates commute" is true ONLY for extensional predicates.** The
+   spec §2.2 HOLE-3 prose says static/extensional predicates commute because
+   `A∩B=B∩A`. My extensional control (per-cell absolute property) gives delta=0,
+   confirming that. BUT a history-INDEPENDENT *CA-style local rule* that reads the
+   CURRENT survivor-set neighbourhood gives delta=3 — it does NOT commute. So
+   there are TWO distinct "static control" readings with OPPOSITE answers. The
+   order-sensitivity has (at least) two sources: (i) the history-ledger read R3,
+   and (ii) the running-survivor-set read. Both must be ablated to attribute
+   noncommutation to memory.
+
+2. **The amnesic ablation needs the MIXED-rule isolator to be clean.** The naive
+   amnesic ablation of `rule_hist` makes that rule VACUOUS (it only ever fires on
+   a history read), so delta→0 is partly "rule switched off", not "two live rules
+   now commute". The mixed-rule isolator (`rule_hist_mixed_*`, which keeps an
+   X-reactive kill under amnesia) gives delta_mixed_history=2, delta_mixed_amnesic=0:
+   a NON-trivial rule still collapses to commuting when ONLY the H-read is removed.
+   That is the clean proof that the H-read (R3 memory) is the engine.
+
+3. **The Phi commuting square closes by construction.** `update_lex` literally
+   reuses the geometric constraint and Phi is the identity-on-index bijection, so
+   `Phi∘Update_lex = Update_geo∘Phi` is a tautology (the same object projected two
+   ways agrees with itself). The negative controls prove the test is not vacuous,
+   but the positive 1.0 does NOT earn an independent lexical↔geometric map. This is
+   exactly spec fork (A) "analogy-until-Phi-built" and the §5.5 near-tautology gap.
+
+4. **GNVW is genuine but unbridged.** L/R/identity = -1/+1/0 is a real translation
+   index computed from the permutation winding, but it is an independent fact about
+   ring shifts, NOT coupled to the survivor noncommutation. It does not close the
+   map↔constraint gap either.
+
+## Verdict: definition_witness_only
+
+- The survivor-set-restriction noncommutation is **genuinely nonzero** for the
+  history-dependent pair and **genuinely zero** for the extensional control.
+- The amnesic ablation **genuinely collapses** the noncommutation (memory is the
+  engine, R3 confirmed) under the clean mixed-rule isolator.
+- The GNVW signs **genuinely flip**.
+- BUT the lexical↔geometric bridge (the Phi commuting square) **closes by
+  construction**, not by an earned lower-level derivation. The ratchet is realized
+  and its defining properties are witnessed with real controls, but EMERGENCE — the
+  ratchet provably FALLING OUT of local QCA rules + topology rather than being
+  re-instantiated from the definition — is NOT demonstrated. The map↔constraint gap
+  is described and isolated, not closed.
+
+This matches the spec's own honest ceiling (§6: "Unified emergence: NOT YET EARNED",
+fork A live). The crux machinery is real and the controls discriminate; the object
+witnesses the DEFINITION. It does not smuggle (every scalar is recomputed across
+three independent engines with firing controls) and it does not fail.
+
+
+================================================================================
+PART F -- THE CLAIM SOURCE: ratchet definition + emergence spec (§2 holes, §5 sim spec)
+================================================================================
+# Ratchet Definition and Emergence Spec — DRAFT
+
+ASSISTANT-GLOSS: status: DRAFT-FOR-OWNER-TUNING. claim_ceiling: **doctrine draft, no admission**. This is exact-wording candidate material plus a sim spec, vetted by a 14-model fleet (13 returned, 1 hard-failed) with codex2 at four reasoning efforts held as the arbiter lane. It is NOT canon, NOT a proof surface, and admits no object — not the ratchet, not the manifold, not the bridge. Ceiling: `scratch_diagnostic`, `promotion_allowed: false`, `formal_admission_allowed: false`.
+
+ASSISTANT-GLOSS: Scope. This doc names (1) a canonical ratchet definition, (2) the emergence derivation `F01 + exclusion-first + N01 => ratchet` with its honest gaps, (3) the lexical<->geometric bridge stated at the WEAKEST defensible strength, (4) the two entropies, (5) the earning-sim spec `finite_ordered_survivor_ratchet_emergence_v0`, and (6) the honest ceiling. Source axioms are cited to `system_v6/foundations/root_axioms_v0_1_DRAFT.md` (hereafter `root_axioms`). The ratchet object is downstream of the root primitive; it does not replace it.
+
+ASSISTANT-GLOSS: Anti-collapse notice. Three forks are LIVE and held open inside this doc, by design, because the evidence has not excluded any: (A) bridge status iso/homomorphism/analogy; (B) the attractor object — one object with cycles-only-in-readouts vs. three distinct regimes (strict / revivable / branching); (C) the severity of the derivation — "essentially sound, only omits memory" vs. "not sound as stated, N01 overclaims." Do not collapse these. The earning sim's job is to decide (A); the others stay open pending owner tuning.
+
+---
+
+## 0. Provenance — root axioms this object stands on
+
+The ratchet object is NOT a new root. It is a downstream construction over the existing root primitive. The three root expressions it consumes (all from `root_axioms`):
+
+- **F01 / finitude.** Finite carriers, finite probe families, finite admissibility predicates, finite composition/bracketing witnesses, no completed infinities as root furniture. Source: `root_axioms:53`.
+- **Exclusion-first.** Constraints do not create ontology. They kill inadmissible distinctions/compositions/carriers/readouts. What remains is provisional survivor structure under named constraints. Source: `root_axioms:41`; `root_axioms:39` ("Constraints eliminate what cannot persist; they do not deterministically generate what must exist"); `root_axioms:37` ("There is no 'driving.' There is only: which constraints are active, and which structures survive").
+- **N01 / noncommutation.** "One root relation appears at three levels: elements as quotient identity (`S/~_M`), **order as noncommutation (sequence matters; swapping is not free)**, and grouping as nonassociativity." Source: `root_axioms:51`; and the geometry-stack doctrine quote `root_axioms:49`: "Stacked geometries are a candidate ratcheting constraint layer when the stack is non-commutative (`A o B != B o A` on some probe state). If you can freely swap order, it is not a ratchet — just independent filters."
+- **Root primitive (above all three).** The constraint on distinguishability, formalized locally as probe-relative indistinguishability `~_M` under an active finite probe family; `a = a iff a ~ b` reads as the attack on primitive identity. Source: `root_axioms:17`, `root_axioms:31`.
+- **M(C) tuple.** `M(C) = (S, C, P, ~_P, Adm_C, composition/bracketing, local readouts, controls, receipts)`. Source: `root_axioms:65`.
+
+ASSISTANT-GLOSS: The phrase `root_axioms:49` already calls a non-commutative geometry stack a *candidate ratcheting* layer. The ratchet object below is the formalization of that owner doctrine, vetted by the fleet — it is owner-rooted, not model-invented.
+
+---
+
+## 1. THE CANONICAL RATCHET DEFINITION
+
+### 1.1 What the fleet corrected before this was writable
+
+The originally-proposed 6-property definition was (1) F01/finitude, (2) exclusion-first, (3) noncommutation, (4) irreversibility, (5) memory, (6) termination + cycle-class. The fleet — 13 working models plus codex2 at all four efforts, with codex2 NOT dissenting from the consensus — converged on the same edits:
+
+- **(4) irreversibility is NOT a primitive.** It is a *consequence* of exclusion-first + memory + a no-resurrection operator. Demote it; promote in its place an explicit **no-implicit-re-introduction** primitive. (grok-4.3, grok-build, gemini, qwen, glm, minimax, deepseek, kimi-k2.6, codex2-all.)
+- **(6) termination is a THEOREM, not an axiom.** Finitude + monotone descent ⇒ stabilizes in ≤ |X_0| strict deletions. Near-unanimous. Do not axiomatize it.
+- **(6) "cycle class" must be CUT from the survivor layer.** A strictly contracting sequence of subsets of a finite set CANNOT cycle — only fixed point or empty. Cycles may live ONLY in auxiliary readouts `H/G/E` under a declared finite quotient. (qwen, glm, kimi-k2.6, codex2-all, minimax, grok-build.)
+- **(3) noncommutation is too verbal.** Sharpen to an existential witness on the full-state update operator. (all.)
+- **(2) exclusion-first = strict contraction.** Rename for precision; separate the inclusion fact from the history-dependent mechanism. (glm, grok-build.)
+- **MISSING PRIMITIVE — state/history-dependence.** The tests must read the history. Without it the tests are static set-predicates that commute, and the whole object collapses to a commuting filter stack. This is the engine of the ratchet. (gemini, qwen, glm, deepseek, kimi-k2.6, minimax, codex2-all.)
+- **Trivalent status.** ACCEPT/PARK/REJECT cannot be encoded by a binary `X_{k+1} ⊆ X_k`; it needs a status map. (minimax, kimi both, codex2_high/xhigh.)
+- **Typed tests** so a domain-mismatch cannot masquerade as noncommutation. (codex2_xhigh, uniquely.)
+- **Probe family `M_k` and probe-relative quotient `~_k`** carried in the object — identity is through the quotient, not raw equality. (codex2_xhigh alone, repo-grounded; NO external model surfaced this.)
+
+### 1.2 The corrected primitives (the canonical 6, fleet-applied)
+
+A finite ordered survivor ratchet is a process satisfying these **six primitives** (renumbered; irreversibility and termination removed from the primitive layer and re-derived in §2):
+
+1. **R1 — Finitude (F01).** The carrier `S` is finite; each probe family `M_k` is finite; each admissibility predicate `Adm` is decidable and terminates on finite input (test well-foundedness: finite `X_k` does not guarantee finite runtime unless each `C_k` halts). Source: `root_axioms:53`. (Test-well-foundedness flagged by minimax, glm, codex2_low.)
+2. **R2 — Strict contraction / exclusion-first.** Each step deletes by construction: `X_{k+1} = { x ∈ X_k : x admissible under C_{k+1} }`, so `X_{k+1} ⊆ X_k`. Monotone descent (formally order-reversing / anti-monotone / a descending filtration — kimi-k2.6). Source: `root_axioms:41`, `root_axioms:39`.
+3. **R3 — State/history-dependence (the engine; new explicit primitive).** Admissibility reads the history (and the induced geometry): `Adm(C, x, H, G)`, not `Adm(C, x)`. The test at step `k+1` depends on what step `k` recorded. Without R3 the tests commute and there is no ratchet. (gemini "noncommutation proves C_k reads from H_k"; qwen, glm, deepseek, kimi-k2.6, minimax, codex2-all.)
+4. **R4 — Noncommuting full-state update (typed N01 witness).** ∃ typed `C_i, C_j` and an initial state `S_0` with `U_i ∘ U_j (S_0) ≠ U_j ∘ U_i (S_0)`, where the difference survives an observable quotient `~` (not inert ledger-order noise, not domain-mismatch). The family `{U_i}` generates a non-abelian submonoid of endofunctions on `(X, H, G)`. Source: `root_axioms:51`, `root_axioms:49`. (Typed: codex2_xhigh. Witness-on-maps: all. Observable-quotient guard: codex2_xhigh.)
+5. **R5 — Append-only receipt memory + no implicit re-introduction (the demoted (4)+(5), merged).** History `H` is append-only; the graveyard of deleted items is recorded. There is NO unreceipted re-entry: a deleted `x` may return ONLY via an explicitly logged replay receipt, and that return is modeled as a FRESH token opening a new run/branch/identity — not the same `x`. ("Same-x return" without a receipt VIOLATES R2; flagged by codex2_low, minimax, kimi.)
+6. **R6 — Trivalent status with a progress measure.** Each item carries status ACCEPT/PARK/REJECT (a status map, not a bare set membership). A progress measure `μ` forbids stalls: a step that filters nothing (non-strict `⊆`, idempotent stall) must either reduce `μ` via status change or be rejected as a non-step. (Trivalence: minimax, kimi, codex2_high/xhigh. `μ`: kimi-k2.6, minimax.)
+
+ASSISTANT-GLOSS: Irreversibility (old #4) and termination (old #6) are NOT in this list. They are theorems derived in §2 from R1+R2+R5 (irreversibility) and R1+R2+R6 (termination). Promoting them to primitives is the conflation the fleet flagged.
+
+### 1.3 The object `(X, H, C, π, E, G)` — corrected
+
+The ratchet object is the finite tuple, evolved over discrete steps `k`:
+
+| Component | Reading | Layer | Notes |
+|---|---|---|---|
+| `X_k` | finite survivor set ⊆ `S`, with status map `π_k : X_k -> {ACCEPT, PARK, REJECT}` | **core** | strictly contracts under R2; cannot cycle |
+| `H_k` | append-only history / receipt ledger / graveyard | **core (engine)** | read by R3; grows monotonically; the source of N01 |
+| `C_k` | the step's typed admissibility constraints `Adm(C, x, H, G)` | **core** | history-dependent (R3); typed (R4) |
+| `π_k` | status map (trivalent) — **promoted into the tuple** | **core** | was implicit; needed for ACCEPT/PARK/REJECT |
+| `M_k` | active finite probe family + probe-relative quotient `~_k` | **core (repo-native)** | identity-through-quotient (codex2_xhigh); external models omitted this |
+| `E_k` | entropy readout (see §4) | **derived readout** | NOT a core ratchet axiom |
+| `G_k` | induced geometry (carrier cells, adjacency) | **derived readout** | NOT a core ratchet axiom |
+
+ASSISTANT-GLOSS: A lexical ratchet is valid with a trivial `G` and a trivial `E` — geometry and entropy are derived readouts, not ratchet axioms (codex2-all, grok-build, kimi-k2.6, minimax). The earlier formulations had a **signature bug** (minimax): the property form used `Adm(x, H)` [2-arg] while the object form used `Adm(C, x, H, G)` [4-arg] — these were not the same object. Fixed here by giving every register a (possibly trivial) `G`, so the lexical register carries a `G^lex` and the signatures match.
+
+ASSISTANT-GLOSS: cycle-class — RESOLVED on the core layer (no cycles possible on a strictly contracting finite set), HELD-OPEN as fork (B) on the readout layer: minimax splits the whole object into THREE regimes — **strict** (no re-entry, no cycles), **revivable** (replay receipts admit a bounded revival regime where readout cycles can appear), **branching** (replay opens new branches). Do not collapse these three; collapsing loses falsifiability. Cycles, where they exist, live only in `H/G/E` under a declared finite quotient.
+
+---
+
+## 2. THE EMERGENCE DERIVATION — `F01 + exclusion-first + N01 => ratchet`
+
+### 2.1 Headline status (honest)
+
+The headline `F01 + exclusion-first + N01 => ratchet` is **NOT sound as stated**. The arbiter (codex2 all four efforts) and the fleet agree it earns only a **SKELETON**. The corrected chain, on which the fleet converges:
+
+```
+F01 + exclusion-first                       =>  finite monotone survivor DESCENT   (skeleton only)
+  + typed/full-state N01 witness (R4)       =>  ORDER-SENSITIVE survivor process
+  + append-only receipt memory + R5         =>  IRREVERSIBLE ratchet
+  + finite observable quotient / bounded (H,G,E) =>  TERMINATING ratchet (whole object)
+```
+
+ASSISTANT-GLOSS: severity fork (C) HELD OPEN — deepseek is mildest ("essentially sound, only omits memory as explicit"); minimax / kimi / codex2 are harshest ("not sound as stated; N01 alone overclaims; the headline is near-tautological as a re-description"). Do not collapse to one severity. Both readings survive the evidence.
+
+### 2.2 The three holes (stated honestly — do NOT paper over)
+
+**HOLE 1 — does exclusion-first alone give monotonicity?** YES, unanimous, uncontested. `X_{k+1} = {x ∈ X_k : ...}` ⇒ `X_{k+1} ⊆ X_k` by construction. This is definitional. Refinement (kimi-k2.6): it is formally order-reversing / anti-monotone / a descending filtration; "monotone descent" is intuition-language for a ⊥-preserving contraction.
+
+**HOLE 2 — does the chain provably TERMINATE vs. cycle?**
+- The **survivor set** provably terminates and CANNOT cycle: finite + `⊆` ⇒ stabilizes in ≤ |X_0| steps; well-founded. Unanimous.
+- BUT the **full object `(X, H, G, E)` does NOT terminate** as stated. `H` is append-only and grows forever; `G/E` can keep changing. "Survivor stabilization" ≠ "process halting" unless `H/G/E` are finite, quotiented, or the test stream is finite. (gemini "memory-leak"; kimi-k2.6, minimax, deepseek, codex2_medium/high/xhigh.) **This hole is NOT papered over: termination of the survivor set does not imply termination of the whole object.**
+- Secondary: if `⊆` is non-strict you can STALL — a test that excludes nothing. Needs the strict-progress measure `μ` (R6) or an effective-test requirement. (grok-4.3, kimi-k2.6, minimax.)
+
+**HOLE 3 — does noncommutation of the update MAPS imply noncommuting CONSTRAINTS/tests?** NO. This is the central flaw, unanimous.
+- Static/extensional predicates ("is even", "is >5") COMMUTE, because set-intersection is commutative: `A ∩ B = B ∩ A`. Map-noncommutation arises ONLY from state/history-dependence: applying `C_i` mutates `H`, which changes how `C_j` evaluates.
+- So the correct, WEAKER statement: **N01 requires noncommutativity of the HISTORY-DEPENDENT update** (the family `{U_i}` generates a non-abelian submonoid of endofunctions on `(X, H)`), NOT noncommutativity of the bare constraints. **This hole is NOT papered over: map-noncommutation ≠ constraint-noncommutation.**
+- minimax enumerates three sources of map-noncommutation: (i) bare-function noncommute, (ii) history-append order, (iii) `Adm`-wrapper via `G`; source (ii) dominates real systems. gemini's cleanest framing: "noncommutation PROVES that `C_k` reads from `H_k`" — i.e. an observed N01 witness is *evidence for R3*. codex2_xhigh adds: map-noncommutation can be a spurious artifact of domain-mismatch or geometry-recompute, so the witness must compare the SAME typed constraints on the SAME initial state and show the difference survives an observable quotient.
+
+ASSISTANT-GLOSS: near-tautology warning (kimi, minimax). The headline is close to circular as a re-description — to truly *earn* EMERGENCE you must derive the ratchet from lower-level LOCAL rules (e.g. QCA neighborhood rules + topology), not just rename the defining properties. This is exactly the gap the earning sim (§5) is built to close, and the reason §5 proposes renaming the sim away from "emergence" until the lower-level derivation exists.
+
+---
+
+## 3. THE LEXICAL <-> GEOMETRIC BRIDGE — weakest defensible claim
+
+### 3.1 Verdict: HOMOMORPHISM CANDIDATE, NOT isomorphism; currently no-stronger-than analogy until Φ is built
+
+**ZERO models claim isomorphism.** The entire fleet lands between homomorphism and analogy. Stated at the weakest defensible strength the fleet supports:
+
+> Φ is a STRUCTURE-PRESERVING MAP candidate between two realizations of one abstract ratchet signature. It is asserted as a specification, NOT yet proven as a map. Until the earning sim CONSTRUCTS Φ and verifies the commuting square `Φ ∘ Update_lex = Update_geo ∘ Φ`, the bridge is **homomorphism-if-earned / analogy-until-then**.
+
+**Why not isomorphism (unanimous):** lexical → geometric is many-to-one / forgetful. Aliasing in both directions: distinct lexical claims map to the same geometric cut; geometric cells exist with no clean lexical name. Lost information forbids a bijection. (gemini, glm, qwen, minimax, codex2_high/xhigh — all give this exact aliasing argument.)
+
+**Two wings — HELD OPEN as fork (A):**
+- **HOMOMORPHISM-if-earned** (modal; grok-4.3, grok-build, gemini, qwen, glm, codex2-all, kimi-k2.6, minimax): Φ preserves survivor partial-order, status (ACCEPT/PARK/REJECT), order-witness, history-append, projection. It does NOT preserve geometric metric/topology or lexical syntax/semantics.
+- **NOT-YET-EVEN-HOMOMORPHISM / currently ANALOGY** (skeptical wing; deepseek, minimax, grok-build, codex2_low): as written Φ is a dictionary/specification, not a proven map; no Φ is exhibited and the commuting square is unproven. minimax: it is "more than analogy only IF (i) well-defined on states, (ii) commutes with both updates, (iii) inj/surj as claimed — none shown." grok-build: "the QCA side feels like an implementation choice rather than a natural dual."
+
+ASSISTANT-GLOSS: fork (A) is LIVE and load-bearing, not decorative. It turns entirely on whether the earning sim CONSTRUCTS Φ and checks the commuting square. Do not collapse it. Deciding it is the sim's job (§5).
+
+### 3.2 The correspondence map Φ (the candidate, with shared structure)
+
+The shared abstract object both registers forget down to (notably convergent vocabulary, independently arrived at by separate models):
+
+- **Bounded meet-semilattice with path-dependent valuation** (gemini + qwen): the rigorous homomorphism condition is `Φ(A ∧ B) = Φ(A) ∩ Φ(B)` — logical conjunction (lexical) ↔ geometric intersection. gemini specifically frames it as a **Galois connection / adjunction**.
+- **Category / functor framing** (glm, kimi-k2.6, minimax): a partial-order monoid (objects = survivor sets, morphisms = admissibility maps, composition = sequential application); Φ is a **functor / natural transformation / realization-morphism** between two objects in the category of realizations, both forgetting (via a forgetful functor `U`) to the SAME abstract ratchet. kimi-k2.6: it is a "filtration with retraction"; it becomes ISO only when EARNED by proving identical automorphism groups on the fixed survivor set `X_∞` (geometric kernel = lexical kernel).
+- **Typed simulation relation** (codex2_xhigh, repo-native): until earned, Φ is a typed simulation relation; the shared signature explicitly includes the probe-relative quotient `~` and a commutation matrix.
+
+The candidate component map Φ:
+
+| Lexical register | --Φ--> | Geometric register | Preserved? |
+|---|---|---|---|
+| admissible-claim token `x` | --> | carrier cell / region | many-to-one (alias) |
+| logical conjunction `A ∧ B` | --> | geometric intersection `∩` | YES (the homomorphism condition) |
+| survivor set `X_k` | --> | live cell set | partial-order: YES |
+| status `π_k(x)` | --> | cell ACCEPT/PARK/REJECT | YES |
+| history append `H_k -> H_{k+1}` | --> | ledger append | YES |
+| sequential application `U_i ∘ U_j` | --> | geometric update composition | order-witness: YES |
+| lexical syntax / semantics | --> | (no image) | NO (forgotten) |
+| (no preimage) | <-- | geometric metric / topology | NO (not in lexical) |
+
+ASSISTANT-GLOSS: the map is `forgetful both ways` — that two-way forgetting is exactly why iso is excluded and why fork (A) survives until Φ + the commuting square are built and tested.
+
+---
+
+## 4. THE TWO ENTROPIES
+
+`E_k` is a **derived readout**, not a core ratchet axiom (§1.3). There are two distinct entropies, one per register; they are NOT automatically equal, and that inequality is itself a falsifiable prediction.
+
+- **Lexical entropy (lexical ambiguity).** A measure of ambiguity / branch-multiplicity over the surviving lexical claims — e.g. Shannon entropy of the survivor status distribution, or branch entropy of the constraint DAG (how many admissible continuations remain at each support cell). Falls as the ratchet excludes ambiguity; can SPIKE when a single survivor splits into many admissible sub-readings.
+- **Geometric entropy (geometric quotient).** A measure over the geometric quotient — e.g. Shannon of the survivor cells, or a quotient-cut entropy `S(ρ_A)` over a bipartition of the induced carrier `G_k`, the narrow cut quantity the root docs reserve for any Axis-0-adjacent reading. Source for the cut-entropy framing: `root_axioms:99` ("the narrow map from geometry/history into a bipartite density object whose cut quantities can support Axis 0").
+
+ASSISTANT-GLOSS: entropy is NOT automatically cardinality (kimi-k2.6). Conditional / branch entropy can RISE while `|X_k|` falls. The two registers will generally trace DIFFERENT `E_k` trajectories (minimax, kimi-k2.6) — a prediction the earning sim must measure, not assume away. Per `root_axioms:103`, entropy is admissible only as a derived measure over quotient / cut / refinement / branch-history structures; it is never the master organizing variable, consistent with `root_axioms:97` ("The system does not want entropy as a master variable").
+
+---
+
+## 5. THE EARNING SIM SPEC — `finite_ordered_survivor_ratchet_emergence_v0`
+
+### 5.1 Naming and ceiling
+
+ASSISTANT-GLOSS: codex2_xhigh recommends RENAMING away from "emergence" to `finite_ordered_survivor_ratchet_definition_witness_v0` — it witnesses the *definition*; it does NOT yet prove emergence from lower-level rules (the near-tautology gap, §2.2). Both names are recorded; the owner picks. Claim ceiling for whichever name is used: *"finite ordered survivor ratchet skeleton realized lexically AND geometrically with a TESTED homomorphic bridge"* — NOT "the ratchet/manifold is proven." Ceiling: `scratch_diagnostic`, `promotion_allowed: false`.
+
+### 5.2 Objects the sim must build
+
+- A lexical register: a small WORKING ratchet with a receipt-by-receipt trace (minimax, sharply — the sim must show a concrete working ratchet, not just "things that look like ratchets"). Candidate: a tiny type-checker, or a 3x3 QCA with conflicting parity/domino rules, shown to be order-sensitive.
+- A geometric register: the **ring-checkerboard QCA** as the geometric realization (the owner's pre-AI geometric substrate; ties this sim into the existing geometry program). The brickwork/checkerboard local rules supply the lower-level neighborhood dynamics whose induced survivor process is checked against the abstract ratchet signature.
+- The shared abstract schema both project to (§3.2): survivor partial-order + status + order-witness + history-append + probe-quotient `~`.
+- The map Φ, CONSTRUCTED explicitly (not asserted), plus the commuting-square test `Φ ∘ Update_lex = Update_geo ∘ Φ`.
+- Explicitly DEFINED black boxes (minimax, kimi-k2.6): `InduceGeometry` (quotient / reachable-states recompute) and `EntropyReadout` (Shannon of survivors / branch entropy of the constraint DAG / quotient-cut entropy). Note the two registers will give DIFFERENT `E_k` trajectories — a recorded, falsifiable prediction.
+
+### 5.3 Positive tests
+
+- Build a concrete order-sensitive ratchet and exhibit `U_i ∘ U_j (S_0) ≠ U_j ∘ U_i (S_0)` from IDENTICAL `S_0`, over the FULL order-witness matrix across ALL pairs (not one cherry-picked pair) — no precomputed booleans, no hand-ranked verdicts, no handpicked sequences (codex2_high adversarial-tautology check, repo-native).
+- A QUANTITATIVE noncommutation score, not binary: `δ(C_i, C_j) = | Surv(...C_i C_j...) △ Surv(...C_j C_i...) |` (symmetric difference of survivor sets) — a commutator witness (minimax, kimi).
+- Survivor stabilization in ≤ |X_0| steps (HOLE-2 survivor-layer check).
+- The commuting square holds step-by-step on matched inputs across both registers (the bridge positive test — decides fork A).
+
+### 5.4 The control-falsifiers
+
+The four originally-proposed controls are KEPT and judged good by the fleet:
+
+| Control | Mechanism | Pass means |
+|---|---|---|
+| **commuting -> filter-stack** | make all `C_k` history-INDEPENDENT (`C_k(x,H) ≡ C_k(x)`) | all permutations give identical `(X_n, H_n)` ⇒ NOT a ratchet, just commuting filters |
+| **non-finite -> no-termination** | drop F01 (unbounded carrier / test stream) | survivor set fails to stabilize ⇒ termination needed F01 |
+| **no-memory -> re-entry** | drop R5 (no receipt ledger) | deleted items re-enter ⇒ irreversibility needed memory |
+| **generation-first -> not-a-ratchet** | replace exclusion with generation (add items) | descent fails ⇒ exclusion-first is load-bearing |
+
+Fleet ADDITIONS (the stronger battery — these distinguish the claims, not just decorate):
+
+- **AMNESIC / memory-ablation** (near-unanimous; strongest single addition — qwen, glm, deepseek, codex2-all): set `C_k(x,H) ≡ C_k(x)`; ALL permutations give identical `(X_n, H_n)` ⇒ proves memory is the engine of N01 (directly tests R3 / HOLE 3).
+- **History-only noncommutation** (codex2-all, minimax): same final `X` but different `H` — DECIDE and LABEL whether that counts (weak vs. strong order-sensitivity).
+- **Inert-ledger-order reject** (codex2_high/xhigh): an order difference that does NOT affect future admissibility must be REJECTED as not-ratchet-bearing (guards against decorative noncommutation).
+- **Domain-mismatch reject** (codex2_xhigh): noncommutation from a typing mismatch is not real noncommutation — reject it.
+- **Stagnation / idempotent-stall** (kimi-k2.6, minimax): a test filtering nothing on non-strict `⊆` ⇒ requires `μ` / effective-test; otherwise a non-trivial non-empty terminal attractor must be declared.
+- **Empty/blocked-set robustness** (gemini "total annihilation", qwen, kimi-k2.6, codex2-all): drive `X_k -> ∅`; geometry-update must not divide-by-zero / null-pointer on an empty manifold; restart WITHOUT a replay receipt must LOCK (no spontaneous regeneration).
+- **Explicit-replay +control** (minimax regime taxonomy, codex2-all): a rejected item returns ONLY via a logged replay receipt that opens a NEW run/branch/identity ⇒ enters the revivable regime (fork B).
+- **Geometry-is-not-automatically-a-ratchet** (kimi-k2.6, sharp): let `InduceGeometry` GROW cells (buffer zones) as `X` shrinks; verify `G_{k+1} ⊄ G_k` ⇒ Φ must map to a geometric survivor SUBSTRUCTURE, not the whole geometry. Plus a geometry-relabel/shuffle control: same ledger + randomized adjacency must BREAK geometric claims (codex2-all).
+- **Φ-fidelity / cross-register controls** (the bridge test — minimax +Φ, kimi-k2.6 "Φ-inverse fidelity", codex2-all, deepseek): run both registers on matched inputs, project both to the abstract schema, check the commuting square; PLUS adversarial Φ controls — many-to-one lexical aliases, one-to-many geometric splits, unmapped killed cells, and a `Φ^{-1}` kernel-size measure. **Without the positive instance AND the cross-register check you earn AT MOST an analogy** (minimax).
+- **Scale sweep** `|X_0| = 4, 16, 64, 256` (minimax): termination time, noncommutation-score stability, geometry-induction doesn't blow up. **Grid sweep** over the 4 axes finite / strict / memory / commuting (kimi-k2.6).
+
+### 5.5 Tie to the ring-checkerboard QCA geometric realization
+
+ASSISTANT-GLOSS: the geometric register IS the ring-checkerboard QCA — the owner's pre-AI geometric substrate, already present in the v6 geometry program. Its brickwork/checkerboard local neighborhood rules are the lower-level rules whose induced survivor descent the sim checks against the abstract ratchet signature. This is what would let the sim address the near-tautology gap (§2.2): if the survivor ratchet provably FALLS OUT of the local QCA rules + ring topology (not just gets renamed), that is the difference between *witnessing the definition* and *earning emergence*. Until that derivation is exhibited, the sim earns the definition-witness, not emergence.
+
+---
+
+## 6. HONEST CEILING
+
+- **Doctrine: strong.** The definition is multi-model-vetted (13 working models + codex2 at 4 efforts, codex2 inside the consensus not dissenting). The corrections are convergent, not one outlier's opinion.
+- **Lexical ratchet: RUNS.** The b_kernel allow-list / derived-only accept-reject is a working lexical survivor process today (`exists`, `runs`). It is the lexical register's existence proof.
+- **Geometric pieces: EXIST.** The ring-checkerboard QCA and the v6 geometry program provide the geometric register's raw material (`exists`). `gcm_ratchet_order_matrix_v1` measured the order-witness matrix (SELF=7 / COMMUTE=2 / DIRECTIONAL=12 / NOT_COMPARABLE=28, six forced edges) but is **scratch-diagnostic only** — its `audit_verdict.md:12` reads GENUINE-WITH-CAVEATS, scratch, with a source-hash drift and two weak controls (`audit_verdict.md:21-24`). It does NOT admit the ratchet object.
+- **Unified emergence: NOT YET EARNED.** The headline derivation earns a skeleton, with HOLE 2 (whole-object termination) and HOLE 3 (map-vs-constraint noncommutation) open and unpapered. The bridge is homomorphism-if-earned / analogy-until-Φ-is-built. No Φ has been constructed; no commuting square has been verified.
+- **This document is the SPEC to earn it,** not the earning. Status ladder for the unified object: `exists` (this spec) < `runs` < `passes local rerun` < `canonical by process`. Nothing here is above `exists` for the unified emergence claim. No promotion implied. Ceiling: `scratch_diagnostic`, `promotion_allowed: false`, `formal_admission_allowed: false`.
+
+### 6.1 Forks held open (do not collapse)
+
+- **(A) Bridge:** HOMOMORPHISM-if-earned vs. NOT-YET-EVEN-HOMOMORPHISM/analogy-until-Φ-built. Decided by whether the sim constructs Φ and verifies the commuting square. The sim's job, not pre-decided here.
+- **(B) Attractor object:** ONE object with cycles-only-in-readouts vs. minimax's THREE distinct objects (strict / revivable / branching). Collapsing loses falsifiability.
+- **(C) Derivation severity:** deepseek "essentially sound, only omits memory" (mild) vs. minimax/kimi/codex2 "not sound as stated, N01 overclaims, near-tautological" (harsh).
+
+### 6.2 Fleet run record
+
+14 models dispatched in parallel; 13 returned OK, 1 hard-failed. codex2 at low/medium/high/xhigh held as the ARBITER lane (read-only, no vote per instruction) and sat inside the consensus. External fleet: grok-4.3, grok-build-0.1, gemini-3.1-pro-preview, openrouter/qwen3.7-max, openrouter/z-ai/glm-5.1, openrouter/minimax-m3, openrouter/deepseek-v4-pro, openrouter/moonshotai/kimi-k2.6, openrouter/moonshotai/kimi-k2.7-code.
+
+- **FAILED:** `openrouter/fusion` — provider HTTP 500 Internal Server Error on both the driver call and a direct probe. NOT a 404 (the slug routes; upstream errored). Owner flagged it as possibly-smartest; unreachable this run; worth a retry (transient/upstream fault).
+- **CAVEAT:** `kimi-k2.7-code` returned 39KB of RAW CHAIN-OF-THOUGHT (leaked internal scratch) and truncated mid-definition at the 9000-token cap. Substantive but reasoning-in-progress, not a finalized peer verdict; weighted accordingly.
+- **Repo-native lane:** codex2_xhigh ALONE anchored to the actual root axioms (`root_axioms:17`, `:65`) and the scratch-only status of `gcm_ratchet_order_matrix_v1` (`audit_verdict.md:10`), adding typed tests + the probe-relative quotient `~_k` + the `M_k`/`~_k` components — structure the 9 external models did not surface.
+
+ASSISTANT-GLOSS: next (owner's call, not done here): retry `openrouter/fusion` (likely transient 500). The convergent refined-definition core to adopt = "finite TYPED admissibility updates over a probe-relative quotient `~`, with monotone graveyard, append-only receipt memory, history-dependent tests, and ≥1 observable noncommuting update pair" (codex2_xhigh's clean core, absorbing the external fleet's edits + the repo-native probe quotient). No promotion implied — fleet-advisory critique, ceiling `scratch_diagnostic`.
+
+
+codex
+I’ll treat the pasted bundle as the audit target and keep this adversarial, not promotional. I’m doing a quick memory lookup only to avoid contradicting the current repo-specific claim ceilings, then I’ll answer from the artifact itself.
+exec
+/bin/zsh -lc "rg -n \"Wizard v4\\.3 packaging|strict-source-backed|definition_witness|survivor-set|map-vs-constraint|Codex-Ratchet\" /Users/joshuaeisenhart/.codex-second/memories/MEMORY.md" in /Users/joshuaeisenhart/Codex-Ratchet
+ succeeded in 0ms:
+3:applies_to: cwd=/Users/joshuaeisenhart/Codex-Ratchet and product-policy workflows; reuse_rule=safe for similar Codex/OpenAI usage-limit lookups on this machine, but verify live docs, dashboard state, and active-session status because exact limits and reset times are time-specific
+9:- rollout_summaries/2026-06-10T06-23-04-NSTJ-weekly_quota_reset_official_docs_lookup.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/09/rollout-2026-06-09T23-23-04-019eb032-df54-7821-9c5d-e267cc28c03f.jsonl, updated_at=2026-06-11T07:43:07+00:00, thread_id=019eb032-df54-7821-9c5d-e267cc28c03f, freshest product-policy lookup)
+31:# Task Group: Codex-Ratchet Wizard v4.3 packaging and broader skills/agents upgrade scout
+32:scope: Covers the `/Users/joshuaeisenhart/Codex-Ratchet` checkout where the user corrected Wizard v4.3 framing, required source-backed skills/agents upgrades beyond Wizard-only work, and accepted a strict nested Hopf/Weyl three-engine scout as the broader upgrade proof surface
+33:applies_to: cwd=/Users/joshuaeisenhart/Codex-Ratchet; reuse_rule=safe for this repo checkout's current Wizard packet order, Codex skill packaging, and strict-source-backed three-engine scout workflow, but verify live wiki packet paths, skill files, and validator outputs before reusing exact tool or ceiling claims after code changes
+39:- rollout_summaries/2026-06-07T08-55-23-7GF0-wizard_v43_and_broader_skills_agents_upgrades.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/07/rollout-2026-06-07T01-55-23-019ea14b-3d78-7130-8875-be86aa17796e.jsonl, updated_at=2026-06-09T18:47:41+00:00, thread_id=019ea14b-3d78-7130-8875-be86aa17796e, freshest Wizard v4.3 packaging and boot-order evidence)
+49:- rollout_summaries/2026-06-07T08-55-23-7GF0-wizard_v43_and_broader_skills_agents_upgrades.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/07/rollout-2026-06-07T01-55-23-019ea14b-3d78-7130-8875-be86aa17796e.jsonl, updated_at=2026-06-09T18:47:41+00:00, thread_id=019ea14b-3d78-7130-8875-be86aa17796e, freshest broader skills/agents/tool-ladder upgrade evidence)
+53:- nested Hopf/Weyl, tool_ladder_nested_hopf_weyl_julia.jl, tool_ladder_nested_hopf_weyl_jax.py, tool_ladder_nested_hopf_weyl_pytorch.py, three_engine_tool_ladder_nested_hopf_weyl_envelope_results.json, strict-source-backed, diffrax, quimb, Grassmann, QuantumOptics, torch_geometric
+67:- `diffrax`, `quimb`, `geomstats`, `e3nn`, `torch_ga`, `torch_geometric`, `QuantumOptics`, `CliffordAlgebras`, `Grassmann`, `z3`, and `cvc5` were all part of the validated tool ladder for this scout. The strict gate was `scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed <envelope.json>`, paired with `system_v5/tests/test_three_engine_sim_result_validator.py` => `5 passed`. [Task 2]
+75:- Symptom: a three-engine scout passes semantic shape but still fails strict evidence review. Cause: a load-bearing tool claim was source-token-thin; here `Grassmann` needed a real `Grassmann.` API check. Fix: back load-bearing tool declarations with concrete source-level API use before rerunning the strict-source-backed validator. [Task 2]
+77:# Task Group: Codex-Ratchet foundation-first build and max-parallel verification
+78:scope: Covers the current `/Users/joshuaeisenhart/Codex-Ratchet` foundation ladder build, the user’s push to make Wizard opt-in only, and the verified bottom-up/max-parallel workflow for building from distinguishability before carrier/geometry/physics
+79:applies_to: cwd=/Users/joshuaeisenhart/Codex-Ratchet; reuse_rule=safe for this repo checkout’s current bottom-up build discipline and response-shape expectations, but verify the live foundation docs/results if extending later rungs
+85:- rollout_summaries/2026-06-07T08-49-46-FtWZ-foundation_first_max_parallel_wizard_opt_in.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/07/rollout-2026-06-07T01-49-46-019ea146-1828-7e12-ac9d-01dd519e0135.jsonl, updated_at=2026-06-07T08:49:46+00:00, thread_id=019ea146-1828-7e12-ac9d-01dd519e0135, strongest response-shape correction thread)
+95:- rollout_summaries/2026-06-07T08-49-46-FtWZ-foundation_first_max_parallel_wizard_opt_in.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/07/rollout-2026-06-07T01-49-46-019ea146-1828-7e12-ac9d-01dd519e0135.jsonl, updated_at=2026-06-07T08:49:46+00:00, thread_id=019ea146-1828-7e12-ac9d-01dd519e0135, core foundation-ladder evidence)
+105:- rollout_summaries/2026-06-07T08-49-46-FtWZ-foundation_first_max_parallel_wizard_opt_in.md (cwd=/Users/joshuaeisenhart/Codex-Ratchet, rollout_path=/Users/joshuaeisenhart/.codex-second/sessions/2026/06/07/rollout-2026-06-07T01-49-46-019ea146-1828-7e12-ac9d-01dd519e0135.jsonl, updated_at=2026-06-07T08:49:46+00:00, thread_id=019ea146-1828-7e12-ac9d-01dd519e0135, strongest parallel build/verify lesson)
+
+codex
+Bottom line: the artifact does **not** earn emergence. It witnesses a designed ratchet pattern. The harshest failure is that the claimed lower-level QCA emergence is mostly reintroduced through hand-selected constraint constructors and a seeded history input, while the strongest bridge and topology checks are by-construction or echo checks.
+
+No stable line numbers were provided in the pasted bundle, so I’m citing exact artifact anchors: function names, result fields, and section names.
+
+## (a) Survivor-Set Noncommutation
+
+The noncommutation is real as a computed survivor-set restriction, but not earned as emergence.
+
+The near-tautology trap is present in `make_history_dependent_constraint`, `rule_hist`, and `rule_hist2`. The rules are explicitly authored to make order matter: `rule_hist` kills only when `nb_in_graveyard` is true, and `rule_hist2` kills when `nb_alive == 2` or `nb_in_graveyard`. That is not a QCA local rule unexpectedly inducing a ratchet; it is a ratchet-shaped history gate placed into the rule.
+
+The `seed_kill={3}` injection is especially damaging. `run_all(seed_kill={3})` preloads the graveyard so the first meaningful constraint has history to read. That means the claimed engine is not only history-dependence, but a hand-seeded initial memory defect. Without that seed, the artifact itself says a “degenerate zero could masquerade as commuting,” which admits the witness depends on a prepared history state.
+
+`delta_static_control_x_reactive=3` is the strongest internal undercut. It proves history is not the only source of order sensitivity: a history-independent CA-style rule that reads the current survivor neighborhood also noncommutes. The artifact tries to rescue this by splitting “static” into X-reactive vs extensional, but that move weakens the memory-is-the-engine story. The true statement is narrower: memory can be an engine for this selected pair, not the unique source of ratchet order sensitivity.
+
+## (b) Amnesic Ablation
+
+The naive amnesic ablation is rigged. `make_amnesic_constraint` forces `nb_in_graveyard = False`; for `rule_hist`, that makes the rule effectively lose its intended trigger. So `delta_amnesic_ablation=0` partly says “the rule was switched off,” not “the same live dynamics now commute.”
+
+The mixed-rule isolator is better but still not decisive for emergence. `rule_hist_mixed_a` and `rule_hist_mixed_b` keep an X-reactive base under amnesia, and `delta_mixed_history_dependent=2` vs `delta_mixed_amnesic=0` is a cleaner local witness that the H-read carries the chosen pair’s order sensitivity. But it remains a hand-authored pair whose clauses were designed to isolate that effect. It proves a mechanism can be constructed, not that the mechanism falls out of the ring-checkerboard QCA rules.
+
+So the amnesic control rescues “history matters in this fixture.” It does not rescue “memory is the emergent engine of the QCA.”
+
+## (c) Phi Commuting Square
+
+The Phi square is mostly decorative as a bridge proof.
+
+`update_lex_factory(geo_constraint)` claims it “does NOT call the geo constraint,” but the implementation returns `geo_constraint(token_set, H)` directly. That is not an independent lexical update; it is the same geometric constraint applied to token IDs. Since `phi(token_set)` is also identity-on-index, `phi_commuting_square_fidelity=1.0` is by construction.
+
+The negative controls help only a little. `phi_square_fidelity_wrong_lex_control=0.777...` and `phi_square_fidelity_scrambled_phi_control=0.277...` show the test can fail when intentionally mismatched. They do not prove the positive bridge is independently meaningful. A test can be discriminating and still have a tautological positive case.
+
+This does not close the lexical-geometric homomorphism gap. It demonstrates that the same function agrees with itself under an identity relabeling.
+
+## (d) GNVW / JAX / SMT
+
+`gnvw_index_of_translation` is not a real general GNVW computation. It computes uniform signed displacement from `shift_permutation(direction)` and returns that displacement. For pure translations, that matches the expected index; but the direction was the input used to build the permutation. This is a sanity check for left/right/identity shifts, not a topological index computation from a nontrivial QCA.
+
+The JAX leg independently recomputes survivor symdiff counts through indicator vectors, but it does not independently recompute the GNVW index. In the result JSON, `gnvw_index` is copied from `core_res["gnvw_index"]`. That is an echo, not an independent topological leg.
+
+The SMT check is near-count-tautological. `z3_memory_is_engine` and `cvc5_memory_is_engine` assert equalities to measured integers and then assert `h > 0`, `mh > 0`, `ma == 0`, `e == 0`. The solvers are not proving a structural property of the system; they are confirming that four already-computed integers match the desired pattern. The erased flip is useful as a consistency check, but it is not load-bearing mathematics.
+
+## Meta Verdict
+
+Emergence is not earned. The artifact witnesses the definition: finite carrier, survivor-set restriction noncommutation, extensional commuting control, amnesic collapse for a selected fixture, and a trivial Phi square. It does not show a ratchet provably falling out of lower-level QCA topology and local rules.
+
+The map<->constraint gap is not closed. The survivor-set restriction move is better than map-only noncommutation, but the lexical-geometric bridge is same-function identity transport, and the GNVW index is unconnected to the survivor restriction mechanism.
+
+The circularity is mixed but real: engineered in the history-dependent rules, stipulated in the Phi bridge, and weakly computed in the survivor-set deltas. The only genuinely strong part is that the deltas are recomputed and the controls expose the intended pattern; that still stays at `definition_witness_only`.
+
+HARSHEST: The artifact claims QCA-emergent ratchet structure, but its central effects are introduced by hand-authored history gates, a seeded graveyard, an identity Phi, and a displacement-returning “GNVW” check.
+EMERGENCE_EARNED: no
+GAP_CLOSED: no
+CIRCULARITY: mixed
+tokens used
+42,751

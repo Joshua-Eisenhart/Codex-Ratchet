@@ -1,0 +1,1379 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "networkx": "load_bearing",
+    "qutip": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite support graph object",
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing finite density reduction and entropy check",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite Lyapunov polarity proof",
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard three-engine envelope construction",
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent SMT polarity proof",
+      "used": true
+    },
+    "networkx": {
+      "reason": "load-bearing support graph shape check",
+      "used": true
+    },
+    "qutip": {
+      "reason": "load-bearing finite density object check via Qobj/tensor",
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational chart witness",
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing energy-descent sensitivity check",
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "load-bearing finite support graph object",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing finite Lyapunov polarity proof",
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "basin_contract": {
+    "Adm_C": "finite measure-and-prepare retrieval channel with declared low-margin spurious terminal branch",
+    "M_C": "stored rank-one pattern density projectors plus SPURIOUS_LOW_MARGIN terminal",
+    "R_C": "argmax pattern fidelity with threshold and margin guard; low-margin states become spurious",
+    "S": "finite declared carrier states: stored patterns, one-step noisy corruptions, and two ambiguous probes",
+    "absent_exit_all_terminals": true,
+    "escape_all_declared_seeds": true,
+    "max_lyapunov_delta": 0.0,
+    "spurious_attractors_found": [
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "ambiguous::L0_R0_equal_mixture",
+          "ambiguous::L1_R1_equal_mixture"
+        ],
+        "stored_pattern_terminal": false,
+        "terminal_class": "SPURIOUS_LOW_MARGIN",
+        "trapping_evidence": true
+      }
+    ],
+    "stored_patterns_all_trapping": true,
+    "terminal_partition": [
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "stored::L0",
+          "corrupt::L0::mirror15"
+        ],
+        "stored_pattern_terminal": true,
+        "terminal_class": "L0",
+        "trapping_evidence": true
+      },
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "stored::L1",
+          "corrupt::L1::mirror15"
+        ],
+        "stored_pattern_terminal": true,
+        "terminal_class": "L1",
+        "trapping_evidence": true
+      },
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "stored::R0",
+          "corrupt::R0::mirror15"
+        ],
+        "stored_pattern_terminal": true,
+        "terminal_class": "R0",
+        "trapping_evidence": true
+      },
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "stored::R1",
+          "corrupt::R1::mirror15"
+        ],
+        "stored_pattern_terminal": true,
+        "terminal_class": "R1",
+        "trapping_evidence": true
+      },
+      {
+        "absent_exit_evidence": true,
+        "escape_evidence": true,
+        "seed_count": 2,
+        "seed_ids": [
+          "ambiguous::L0_R0_equal_mixture",
+          "ambiguous::L1_R1_equal_mixture"
+        ],
+        "stored_pattern_terminal": false,
+        "terminal_class": "SPURIOUS_LOW_MARGIN",
+        "trapping_evidence": true
+      }
+    ]
+  },
+  "basin_partition_table": [
+    {
+      "absent_exit_evidence": true,
+      "escape_evidence": true,
+      "seed_count": 2,
+      "seed_ids": [
+        "stored::L0",
+        "corrupt::L0::mirror15"
+      ],
+      "stored_pattern_terminal": true,
+      "terminal_class": "L0",
+      "trapping_evidence": true
+    },
+    {
+      "absent_exit_evidence": true,
+      "escape_evidence": true,
+      "seed_count": 2,
+      "seed_ids": [
+        "stored::L1",
+        "corrupt::L1::mirror15"
+      ],
+      "stored_pattern_terminal": true,
+      "terminal_class": "L1",
+      "trapping_evidence": true
+    },
+    {
+      "absent_exit_evidence": true,
+      "escape_evidence": true,
+      "seed_count": 2,
+      "seed_ids": [
+        "stored::R0",
+        "corrupt::R0::mirror15"
+      ],
+      "stored_pattern_terminal": true,
+      "terminal_class": "R0",
+      "trapping_evidence": true
+    },
+    {
+      "absent_exit_evidence": true,
+      "escape_evidence": true,
+      "seed_count": 2,
+      "seed_ids": [
+        "stored::R1",
+        "corrupt::R1::mirror15"
+      ],
+      "stored_pattern_terminal": true,
+      "terminal_class": "R1",
+      "trapping_evidence": true
+    },
+    {
+      "absent_exit_evidence": true,
+      "escape_evidence": true,
+      "seed_count": 2,
+      "seed_ids": [
+        "ambiguous::L0_R0_equal_mixture",
+        "ambiguous::L1_R1_equal_mixture"
+      ],
+      "stored_pattern_terminal": false,
+      "terminal_class": "SPURIOUS_LOW_MARGIN",
+      "trapping_evidence": true
+    }
+  ],
+  "boundary": {
+    "full_A33_recovery_not_earned": true,
+    "nonhermitian_coupling": {
+      "hermitian_residual": 0.3535533905932738,
+      "hopfield_energy_imag_abs": 0.42677669529663675,
+      "lyapunov_row_breaks": true,
+      "pass": true
+    },
+    "pattern_overload": {
+      "claim": "computed finite boundary only; no capacity theorem asserted",
+      "finite_site_count": 4,
+      "max_cross_fidelity": 1.0,
+      "pass": true,
+      "retrieval_degrades": true,
+      "stored_pattern_count": 8
+    }
+  },
+  "build_card_copied": true,
+  "carrier": {
+    "dimension": 16,
+    "kind": "strict_finite_quantum_hopfield_surface_carrier",
+    "resource_guard": "n4 chosen from the estate skeleton as the smallest finite carrier with edges, faces, density quotient, and basin partition support",
+    "site_count": 4,
+    "spinor_basis_per_site": 2,
+    "support_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "support_faces": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        3
+      ]
+    ]
+  },
+  "ceiling": "scratch_diagnostic",
+  "chart_recoverability_verdict": {
+    "duplicate_or_ambiguous_rows": [],
+    "expected_cell_count": 33,
+    "missing_cell_count": 27,
+    "missing_cell_ids_sample": [
+      "A33_x00_y00_z00",
+      "A33_x00_y00_zm5",
+      "A33_x00_y00_zp5",
+      "A33_x00_ym5_z00",
+      "A33_x00_ym5_zm5",
+      "A33_x00_ym5_zp5",
+      "A33_x00_yp5_z00",
+      "A33_x00_yp5_zm5",
+      "A33_x00_yp5_zp5",
+      "A33_xm5_y00_z00",
+      "A33_xm5_y00_zm5",
+      "A33_xm5_y00_zp5"
+    ],
+    "predicate": "single_site_density_quotient_to_A33_bloch_chart_recovers_committed_A_chart_row_structure",
+    "quotient_erased_control": {
+      "cell_id": "A33_x0_y0_z0",
+      "recovered_cell_count": 1,
+      "verdict": "failed_as_required"
+    },
+    "recovered_cell_count": 6,
+    "recovered_cell_ids": [
+      "A33_x00_y00_zm10",
+      "A33_x00_y00_zp10",
+      "A33_x00_ym10_z00",
+      "A33_x00_yp10_z00",
+      "A33_xm10_y00_z00",
+      "A33_xp10_y00_z00"
+    ],
+    "registered_falsifier_fired": false,
+    "row_structure_claim": "nontrivial finite A-chart rows recover, but full A33 chart recovery is not earned by this n4 packet",
+    "terminal_site_rows": [
+      {
+        "bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xp10_y00_z00",
+        "chirality": "left",
+        "site": 0,
+        "terminal_class": "L0"
+      },
+      {
+        "bloch": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "cell_id": "A33_x00_yp10_z00",
+        "chirality": "left",
+        "site": 1,
+        "terminal_class": "L0"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "cell_id": "A33_x00_y00_zp10",
+        "chirality": "left",
+        "site": 2,
+        "terminal_class": "L0"
+      },
+      {
+        "bloch": [
+          -1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xm10_y00_z00",
+        "chirality": "left",
+        "site": 3,
+        "terminal_class": "L0"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "cell_id": "A33_x00_y00_zp10",
+        "chirality": "left",
+        "site": 0,
+        "terminal_class": "L1"
+      },
+      {
+        "bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xp10_y00_z00",
+        "chirality": "left",
+        "site": 1,
+        "terminal_class": "L1"
+      },
+      {
+        "bloch": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "cell_id": "A33_x00_yp10_z00",
+        "chirality": "left",
+        "site": 2,
+        "terminal_class": "L1"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          -1.0
+        ],
+        "cell_id": "A33_x00_y00_zm10",
+        "chirality": "left",
+        "site": 3,
+        "terminal_class": "L1"
+      },
+      {
+        "bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xp10_y00_z00",
+        "chirality": "right",
+        "site": 0,
+        "terminal_class": "R0"
+      },
+      {
+        "bloch": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "cell_id": "A33_x00_ym10_z00",
+        "chirality": "right",
+        "site": 1,
+        "terminal_class": "R0"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "cell_id": "A33_x00_y00_zp10",
+        "chirality": "right",
+        "site": 2,
+        "terminal_class": "R0"
+      },
+      {
+        "bloch": [
+          -1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xm10_y00_z00",
+        "chirality": "right",
+        "site": 3,
+        "terminal_class": "R0"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          1.0
+        ],
+        "cell_id": "A33_x00_y00_zp10",
+        "chirality": "right",
+        "site": 0,
+        "terminal_class": "R1"
+      },
+      {
+        "bloch": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "cell_id": "A33_xp10_y00_z00",
+        "chirality": "right",
+        "site": 1,
+        "terminal_class": "R1"
+      },
+      {
+        "bloch": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "cell_id": "A33_x00_ym10_z00",
+        "chirality": "right",
+        "site": 2,
+        "terminal_class": "R1"
+      },
+      {
+        "bloch": [
+          0.0,
+          -0.0,
+          -1.0
+        ],
+        "cell_id": "A33_x00_y00_zm10",
+        "chirality": "right",
+        "site": 3,
+        "terminal_class": "R1"
+      }
+    ],
+    "verdict": "partial_recovery_nontrivial"
+  },
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Graphs",
+    "Z3",
+    "qutip",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch_geometric",
+    "torch.func"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "guard_negative_controls": {
+      "F01_only": {
+        "pass": true,
+        "reason": "finite F01-only graph loses chiral y+/y- chart distinction and support faces",
+        "verdict": "failed_as_required"
+      },
+      "N01_only": {
+        "pass": true,
+        "reason": "N01-only naming has no finite carrier partition or terminal projector set",
+        "verdict": "failed_as_required"
+      },
+      "commutative_collapse": {
+        "pass": true,
+        "reason": "forcing y+ and y- to one commutative label erases L/R distinction",
+        "verdict": "failed_as_required"
+      },
+      "quotient_erased": {
+        "pass": true,
+        "reason": "all single-site quotients collapse to the Bloch origin",
+        "recovered_cell_count": 1,
+        "verdict": "failed_as_required"
+      },
+      "root_off": {
+        "pass": true,
+        "reason": "stored-pattern roots removed, so candidate terminal classes have no admissibility predicate",
+        "verdict": "failed_as_required"
+      },
+      "shuffled_order": {
+        "original_signature": "523fcb1e275ee34ef0eee70fcb0aab450359e6cc15e10acc53010a2a95fc0bd5",
+        "pass": true,
+        "reason": "order token changes the finite retrieval signature and is not accepted as the same basin contract",
+        "shuffled_signature": "338d3ff3695474b973729ee5f7280d7087af53bebf25e324f8fde8a321c23f51",
+        "verdict": "failed_as_required"
+      },
+      "similarity_only_clustering": {
+        "pass": true,
+        "reason": "nearest-state similarity without R_C terminal evidence merges low-margin probes and cannot certify trapping/absence of exits",
+        "verdict": "failed_as_required"
+      }
+    },
+    "non_hermitian_coupling_control": {
+      "hermitian_residual": 0.3535533905932738,
+      "hopfield_energy_imag_abs": 0.42677669529663675,
+      "lyapunov_row_breaks": true,
+      "pass": true
+    },
+    "npc2_copied_controls": {
+      "erased": {
+        "construction": "J = 0 and all chart quotients erased",
+        "pass": true,
+        "recovered_cell_count": 1,
+        "verdict": "fails_chart_and_basin_claim_as_required"
+      },
+      "pure_gauge": {
+        "construction": "W_ij = g_i * conj(g_j) on the Hopfield support graph",
+        "hermitian": true,
+        "pass": true,
+        "verdict": "fails_stored_pattern_basin_claim_as_required"
+      },
+      "random_patterns": {
+        "construction": "deterministic overload axes used as random-pattern stand-in for finite control",
+        "max_cross_fidelity": 1.0,
+        "pass": true,
+        "verdict": "retrieval_degrades_as_boundary_control"
+      }
+    },
+    "pattern_overload_boundary": {
+      "claim": "computed finite boundary only; no capacity theorem asserted",
+      "finite_site_count": 4,
+      "max_cross_fidelity": 1.0,
+      "pass": true,
+      "retrieval_degrades": true,
+      "stored_pattern_count": 8
+    }
+  },
+  "coupling": {
+    "abs_matrix": [
+      [
+        0.0,
+        0.6035533905932737,
+        0.7071067811865475,
+        1.1185571585378691e-17
+      ],
+      [
+        0.6035533905932737,
+        0.0,
+        0.6035533905932737,
+        0.0
+      ],
+      [
+        0.7071067811865475,
+        0.6035533905932737,
+        0.0,
+        0.35355339059327373
+      ],
+      [
+        1.1185571585378691e-17,
+        0.0,
+        0.35355339059327373,
+        0.0
+      ]
+    ],
+    "construction": "J_ij = |P|^-1 sum_mu <psi_i^mu|psi_j^mu> on support edges, J_ji=conj(J_ij), J_ii=0",
+    "energy_functional": "V(rho)=1-max_mu Tr(|P_mu><P_mu| rho); Hermitian Hopfield J is the finite carrier coupling witness",
+    "hermitian_residual": 0.0,
+    "retrieval_dynamics": "finite measure-and-prepare CPTP-class instrument after declared classical readout; low-margin branch is a declared spurious terminal"
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "computed_perturbation_sat_flip": "sat",
+      "flip_control_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "lyapunov_delta_scaled_values": [
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        0
+      ],
+      "negative_case": "same non-Hermitian perturbation SAT flip as z3",
+      "positive_case": "same finite Lyapunov monotonicity negation as z3",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "computed_perturbation_sat_flip": "sat",
+      "flip_control_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "lyapunov_delta_scaled_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "negative_case": "non-Hermitian perturbation binds positive scaled break",
+      "positive_case": "no finite retrieval row has positive Lyapunov delta",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "computed_perturbation_sat_flip": "sat",
+      "flip_control_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "lyapunov_delta_scaled_values": [
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        -150000,
+        0,
+        0
+      ],
+      "negative_case": "non-Hermitian perturbation row binds a positive scaled break",
+      "positive_case": "no computed finite retrieval row has V_terminal - V_start > 0",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "comparison": "selected finite scalar rows agree across Julia/JAX/PyTorch for chart count, terminal class count, and Lyapunov max delta",
+    "engine_values": {
+      "jax": {
+        "max_lyapunov_delta": 0.0,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      },
+      "julia": {
+        "max_lyapunov_delta": 0.0,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      },
+      "pytorch": {
+        "max_lyapunov_delta": 0.0,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "STRICT_FINITE_SURFACE_PACKET",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "networkx": "load_bearing",
+        "qutip": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT polarity proof",
+          "used": true
+        },
+        "networkx": {
+          "reason": "load-bearing support graph shape check",
+          "used": true
+        },
+        "qutip": {
+          "reason": "load-bearing finite density object check via Qobj/tensor",
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact rational chart witness",
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing finite Lyapunov polarity proof",
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "qutip",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "full_A33_recovery_not_earned": true,
+        "nonhermitian_coupling": {
+          "hermitian_residual": 0.3535533905932738,
+          "hopfield_energy_imag_abs": 0.42677669529663675,
+          "lyapunov_row_breaks": true,
+          "pass": true
+        },
+        "pattern_overload": {
+          "claim": "computed finite boundary only; no capacity theorem asserted",
+          "finite_site_count": 4,
+          "max_cross_fidelity": 1.0,
+          "pass": true,
+          "retrieval_degrades": true,
+          "stored_pattern_count": 8
+        }
+      },
+      "claim_path_tools": [
+        "qutip",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_scalars": {
+        "max_lyapunov_delta": 0.0,
+        "nonhermitian_imag_energy_abs": 0.42677669529663675,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      },
+      "formal_admission_allowed": false,
+      "negative": {
+        "F01_only": {
+          "pass": true,
+          "reason": "finite F01-only graph loses chiral y+/y- chart distinction and support faces",
+          "verdict": "failed_as_required"
+        },
+        "N01_only": {
+          "pass": true,
+          "reason": "N01-only naming has no finite carrier partition or terminal projector set",
+          "verdict": "failed_as_required"
+        },
+        "commutative_collapse": {
+          "pass": true,
+          "reason": "forcing y+ and y- to one commutative label erases L/R distinction",
+          "verdict": "failed_as_required"
+        },
+        "quotient_erased": {
+          "pass": true,
+          "reason": "all single-site quotients collapse to the Bloch origin",
+          "recovered_cell_count": 1,
+          "verdict": "failed_as_required"
+        },
+        "root_off": {
+          "pass": true,
+          "reason": "stored-pattern roots removed, so candidate terminal classes have no admissibility predicate",
+          "verdict": "failed_as_required"
+        },
+        "shuffled_order": {
+          "original_signature": "523fcb1e275ee34ef0eee70fcb0aab450359e6cc15e10acc53010a2a95fc0bd5",
+          "pass": true,
+          "reason": "order token changes the finite retrieval signature and is not accepted as the same basin contract",
+          "shuffled_signature": "338d3ff3695474b973729ee5f7280d7087af53bebf25e324f8fde8a321c23f51",
+          "verdict": "failed_as_required"
+        },
+        "similarity_only_clustering": {
+          "pass": true,
+          "reason": "nearest-state similarity without R_C terminal evidence merges low-margin probes and cannot certify trapping/absence of exits",
+          "verdict": "failed_as_required"
+        }
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver independently binds the same finite polarity check",
+        "networkx": "networkx.Graph checks the finite Hopfield support carrier shape",
+        "qutip": "qutip.Qobj/tensor checks a finite density object with trace-one shape",
+        "sympy": "sympy.Matrix/Rational binds exact chart witness arithmetic",
+        "z3": "z3.Solver binds computed Lyapunov deltas UNSAT and non-Hermitian SAT flip"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "qutip",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "positive": {
+        "a_chart_nontrivial_partial_recovery": true,
+        "finite_hermitian_carrier": true,
+        "lr_distinguishable_row": true,
+        "surface_basin_contract": true,
+        "typed_conditional_entropy_rows": true
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_jax_results.json",
+      "result_sha256": "1018055baa90acb15c34358ba796b63f40d7717faba4057aafaaa6d1e346f89a",
+      "source_path": "system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_jax.py",
+      "source_sha256": "ba79e90e5db2bc1828461106227afbeec2494bf74ddbb9fd8575eb8488664691"
+    },
+    "julia": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "Graphs": "load_bearing",
+        "QuantumOptics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "Graphs": {
+          "reason": "load-bearing finite support graph object",
+          "used": true
+        },
+        "QuantumOptics": {
+          "reason": "load-bearing finite density reduction and entropy check",
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing finite Lyapunov polarity proof",
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Graphs",
+        "Z3"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "nonhermitian_break_computed": true,
+        "pattern_overload_computed": true
+      },
+      "claim_path_tools": [
+        "QuantumOptics",
+        "Graphs",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_scalars": {
+        "max_lyapunov_delta": 0.0,
+        "nonhermitian_imag_energy_abs": 0.42677669529663675,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      },
+      "formal_admission_allowed": false,
+      "negative": {
+        "seven_guard_controls_failed_as_required": true
+      },
+      "package_observables": {
+        "Graphs": "Graphs.SimpleGraph/add_edge! checks finite support carrier shape",
+        "QuantumOptics": "QuantumOptics.NLevelBasis/Ket/tensor/dm/ptrace/entropy_vn checks finite density reduction",
+        "Z3": "Z3.Solver binds computed Lyapunov deltas UNSAT and non-Hermitian SAT flip"
+      },
+      "packages_used": [
+        "QuantumOptics",
+        "Graphs",
+        "Z3",
+        "JSON",
+        "LinearAlgebra",
+        "Dates",
+        "SHA"
+      ],
+      "positive": {
+        "a_chart_nontrivial_partial_recovery": true,
+        "finite_hermitian_carrier": true,
+        "surface_basin_contract": true,
+        "typed_conditional_entropy_rows": true
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_julia_results.json",
+      "result_sha256": "50feec962ef5ecf3f9c0c43b15491f2538f3fc74df44dab84ff710d85c1887b7",
+      "source_path": "system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_julia.jl",
+      "source_sha256": "4da990633a6aa8f77d0041aa7856dad3f90cfb22484d213a4a384040b9c7e1f9"
+    },
+    "pytorch": {
+      "TOOL_INTEGRATION_DEPTH": {
+        "cvc5": "load_bearing",
+        "sympy": "load_bearing",
+        "torch.func": "load_bearing",
+        "torch_geometric": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "TOOL_MANIFEST": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT polarity proof",
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact chart/basin count witness",
+          "used": true
+        },
+        "torch.func": {
+          "reason": "load-bearing energy-descent sensitivity check",
+          "used": true
+        },
+        "torch_geometric": {
+          "reason": "load-bearing finite support graph object",
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing finite Lyapunov polarity proof",
+          "used": true
+        }
+      },
+      "aligned_packages_load_bearing": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "full_A33_recovery_not_earned": true,
+        "nonhermitian_coupling": {
+          "hermitian_residual": 0.3535533905932738,
+          "hopfield_energy_imag_abs": 0.42677669529663675,
+          "lyapunov_row_breaks": true,
+          "pass": true
+        },
+        "pattern_overload": {
+          "claim": "computed finite boundary only; no capacity theorem asserted",
+          "finite_site_count": 4,
+          "max_cross_fidelity": 1.0,
+          "pass": true,
+          "retrieval_degrades": true,
+          "stored_pattern_count": 8
+        }
+      },
+      "claim_path_tools": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "computed_scalars": {
+        "max_lyapunov_delta": 0.0,
+        "nonhermitian_imag_energy_abs": 0.42677669529663675,
+        "recovered_chart_cells": 6,
+        "terminal_class_count": 5
+      },
+      "formal_admission_allowed": false,
+      "negative": {
+        "F01_only": {
+          "pass": true,
+          "reason": "finite F01-only graph loses chiral y+/y- chart distinction and support faces",
+          "verdict": "failed_as_required"
+        },
+        "N01_only": {
+          "pass": true,
+          "reason": "N01-only naming has no finite carrier partition or terminal projector set",
+          "verdict": "failed_as_required"
+        },
+        "commutative_collapse": {
+          "pass": true,
+          "reason": "forcing y+ and y- to one commutative label erases L/R distinction",
+          "verdict": "failed_as_required"
+        },
+        "quotient_erased": {
+          "pass": true,
+          "reason": "all single-site quotients collapse to the Bloch origin",
+          "recovered_cell_count": 1,
+          "verdict": "failed_as_required"
+        },
+        "root_off": {
+          "pass": true,
+          "reason": "stored-pattern roots removed, so candidate terminal classes have no admissibility predicate",
+          "verdict": "failed_as_required"
+        },
+        "shuffled_order": {
+          "original_signature": "523fcb1e275ee34ef0eee70fcb0aab450359e6cc15e10acc53010a2a95fc0bd5",
+          "pass": true,
+          "reason": "order token changes the finite retrieval signature and is not accepted as the same basin contract",
+          "shuffled_signature": "338d3ff3695474b973729ee5f7280d7087af53bebf25e324f8fde8a321c23f51",
+          "verdict": "failed_as_required"
+        },
+        "similarity_only_clustering": {
+          "pass": true,
+          "reason": "nearest-state similarity without R_C terminal evidence merges low-margin probes and cannot certify trapping/absence of exits",
+          "verdict": "failed_as_required"
+        }
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver independently binds the same finite polarity check",
+        "sympy": "sympy.Matrix/Rational binds exact chart/basin count witness arithmetic",
+        "torch.func": "torch.func.jacrev/vmap computes coupling sensitivity rows",
+        "torch_geometric": "torch_geometric.data.Data carries the finite support graph object",
+        "z3": "z3.Solver binds computed Lyapunov deltas UNSAT and non-Hermitian SAT flip"
+      },
+      "packages_used": [
+        "torch",
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "positive": {
+        "a_chart_nontrivial_partial_recovery": true,
+        "finite_hermitian_carrier": true,
+        "lr_distinguishable_row": true,
+        "surface_basin_contract": true,
+        "typed_conditional_entropy_rows": true
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_pytorch_results.json",
+      "result_sha256": "461ee14604459ebc73aa7115e51f719486f86dcf62867022ab76accc0265ecb3",
+      "source_path": "system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_pytorch.py",
+      "source_sha256": "288a41a430758f214a956294361dbedd00b0b47faaf5c457f40d84e38f86380c"
+    }
+  },
+  "formal_admission_allowed": false,
+  "gates": {
+    "boundary_controls": true,
+    "build_card_copied": true,
+    "chart_recoverability_nontrivial": true,
+    "classification_ceiling": true,
+    "jax_lane_pass": true,
+    "julia_lane_pass": true,
+    "julia_z3_agrees": true,
+    "lr_hook_distinguishable": true,
+    "negative_controls": true,
+    "no_builder_audit_verdict": true,
+    "pytorch_lane_pass": true,
+    "smt_flips_sat": true,
+    "smt_positive_unsat": true,
+    "surface_basin_contract": true,
+    "typed_information_rows": true
+  },
+  "generated_at": "2026-06-12T19:37:45Z",
+  "lr_hook": {
+    "a_equals_a_iff_a_tilde_b_boundary": "distinguished only by this bounded quotient/partition probe; no engine or 64-claim is made",
+    "distinguishable_under_probe": true,
+    "left_chart_signature": [
+      "A33_x00_y00_zm10",
+      "A33_x00_y00_zp10",
+      "A33_x00_yp10_z00",
+      "A33_xm10_y00_z00",
+      "A33_xp10_y00_z00"
+    ],
+    "left_seed_count": 4,
+    "probe_family": "single-site Bloch quotient cells plus retrieval terminal partition",
+    "right_chart_signature": [
+      "A33_x00_y00_zm10",
+      "A33_x00_y00_zp10",
+      "A33_x00_ym10_z00",
+      "A33_xm10_y00_z00",
+      "A33_xp10_y00_z00"
+    ],
+    "right_seed_count": 4
+  },
+  "mode": "STRICT_FINITE_SURFACE_PACKET",
+  "negative": {
+    "F01_only": {
+      "pass": true,
+      "reason": "finite F01-only graph loses chiral y+/y- chart distinction and support faces",
+      "verdict": "failed_as_required"
+    },
+    "N01_only": {
+      "pass": true,
+      "reason": "N01-only naming has no finite carrier partition or terminal projector set",
+      "verdict": "failed_as_required"
+    },
+    "commutative_collapse": {
+      "pass": true,
+      "reason": "forcing y+ and y- to one commutative label erases L/R distinction",
+      "verdict": "failed_as_required"
+    },
+    "quotient_erased": {
+      "pass": true,
+      "reason": "all single-site quotients collapse to the Bloch origin",
+      "recovered_cell_count": 1,
+      "verdict": "failed_as_required"
+    },
+    "root_off": {
+      "pass": true,
+      "reason": "stored-pattern roots removed, so candidate terminal classes have no admissibility predicate",
+      "verdict": "failed_as_required"
+    },
+    "shuffled_order": {
+      "original_signature": "523fcb1e275ee34ef0eee70fcb0aab450359e6cc15e10acc53010a2a95fc0bd5",
+      "pass": true,
+      "reason": "order token changes the finite retrieval signature and is not accepted as the same basin contract",
+      "shuffled_signature": "338d3ff3695474b973729ee5f7280d7087af53bebf25e324f8fde8a321c23f51",
+      "verdict": "failed_as_required"
+    },
+    "similarity_only_clustering": {
+      "pass": true,
+      "reason": "nearest-state similarity without R_C terminal evidence merges low-margin probes and cannot certify trapping/absence of exits",
+      "verdict": "failed_as_required"
+    }
+  },
+  "netket_omission": {
+    "reason": "No variational quantum-state sampling/optimization claim is made; JAX load-bearing path is qutip/networkx/sympy/SMT over the finite declared carrier.",
+    "used": false
+  },
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "spinor_network_surface_v0",
+  "parent_lineage": {
+    "commit_anchor": "833af4937 for owner doctrine per build card",
+    "consumed_inputs": [
+      {
+        "exists": true,
+        "path": "system_v6/receipts/owner_doctrine_spinor_network_surface_20260611.md",
+        "sha256": "019a883196577972ca1f5861dc67774f9f9b598110cdd046a5fd18b98eaa3de1"
+      },
+      {
+        "exists": true,
+        "path": "system_v6/receipts/spinor_network_surface_estate_20260611.md",
+        "sha256": "e53ddccbb284ee40e1c4e3de4bf3c4778e0aeb86dd70b497a39adf8e93a4a829"
+      },
+      {
+        "exists": true,
+        "path": "system_v6/receipts/attractor_basin_criterion_20260611.md",
+        "sha256": "4c84dec9e19aba093493adfe76fc36233445d7f5cef40de5db179dc0a46431a0"
+      },
+      {
+        "exists": false,
+        "path": "system_v6/sims/basin3_hopfield_chiral_quaternion_network/basin3_julia.jl",
+        "sha256": null
+      },
+      {
+        "exists": false,
+        "path": "system_v6/sims/npc2_connection_geometry/npc2_connection_geometry_julia.jl",
+        "sha256": null
+      },
+      {
+        "exists": true,
+        "path": "system_v5/julia_carrier/foundation_spinor_network_basins_julia.jl",
+        "sha256": "775903134647b290b5d2c0b6a9b0e491798deafce999ade0586f5b6c22ef4ae4"
+      },
+      {
+        "exists": true,
+        "path": "system_v5/ops/formal_scouts/foundation_spinor_network_basins_jax.py",
+        "sha256": "985332efea2dc3396838841ef7f70fcaf355b62c248f57ebca2a1a76e7e13619"
+      },
+      {
+        "exists": true,
+        "path": "system_v5/ops/formal_scouts/foundation_spinor_network_basins_pytorch.py",
+        "sha256": "2487600d7c12b6426f001afed45b626cfb4a206b737a5fbb57a81d454ed955f9"
+      }
+    ],
+    "foundation_surface_note": "No exact system_v6/sims/foundation_spinor_network_basins directory existed; consumed the committed Julia/JAX/PyTorch foundation basin harness sources named in the repo."
+  },
+  "positive": {
+    "a_chart_nontrivial_partial_recovery": true,
+    "finite_hermitian_carrier": true,
+    "lr_distinguishable_row": true,
+    "surface_basin_contract": true,
+    "typed_conditional_entropy_rows": true
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_envelope_results.json",
+  "schema": "spinor_network_surface_v0_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "spinor_network_surface_v0",
+  "source_path": "system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_envelope.py",
+  "source_sha256": "e28571346cc62b987f2ca36ef3cf88357490277089b5c981468572e9619cd2fc",
+  "stability_pairs": [],
+  "surface_doctrine_packet_scope": {
+    "a_chart_recoverability_test": "single-site density quotient to A33 Bloch chart",
+    "basin_contract_run": "one finite retrieval partition with stored and spurious terminal classes",
+    "finite_carrier": "n4 dim16 strict finite quantum-Hopfield carrier",
+    "lr_hook": "bounded L/R basin/chart distinction only",
+    "typed_information_row_family": "pattern-conditioned conditional vN S(A|B)"
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "finite_quantum_hopfield_carrier",
+      "basin_contract_partition",
+      "A_chart_density_quotient_recoverability",
+      "typed_conditional_vn_information",
+      "finite_smt_lyapunov_polarity"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "independent finite Lyapunov polarity proof with same SAT flip",
+        "networkx": "support graph object and cycle count",
+        "qutip": "finite density object check via Qobj/tensor",
+        "sympy": "exact chart/basin rational witness arithmetic",
+        "z3": "finite Lyapunov polarity proof with non-Hermitian SAT flip"
+      },
+      "julia": {
+        "Graphs": "finite support graph shape for the Hopfield carrier",
+        "QuantumOptics": "finite density reduction and entropy row over a 4-site spinor carrier",
+        "Z3": "finite Lyapunov polarity proof with non-Hermitian SAT flip"
+      },
+      "pytorch": {
+        "cvc5": "independent finite Lyapunov polarity proof with same SAT flip",
+        "sympy": "exact chart/basin count witness arithmetic",
+        "torch.func": "energy-descent sensitivity row by jacrev/vmap",
+        "torch_geometric": "finite support graph object",
+        "z3": "finite Lyapunov polarity proof with non-Hermitian SAT flip"
+      }
+    }
+  },
+  "typed_information_rows": {
+    "bipartition_declared": {
+      "A": [
+        0
+      ],
+      "B": [
+        1,
+        2,
+        3
+      ]
+    },
+    "degeneracy_note": "Terminal stored patterns are product states; terminal mutual information drops to zero and does not earn an entanglement claim.",
+    "entropy_type": "conditional_von_neumann",
+    "family_id": "pattern_conditioned_conditional_vn_S_A_given_B",
+    "premature_structure_controls": [
+      {
+        "operation": "conditional_vn_S_A_given_B",
+        "pass": true,
+        "raised": "MissingStructure:bipartition_subsystem_split",
+        "sentinel_number_returned": false
+      },
+      {
+        "operation": "von_neumann_entropy",
+        "pass": true,
+        "raised": "MissingStructure:density_quotient_rho",
+        "sentinel_number_returned": false
+      },
+      {
+        "operation": "coherent_information",
+        "pass": true,
+        "raised": "MissingStructure:channel_update_map",
+        "sentinel_number_returned": false
+      }
+    ],
+    "rows": [
+      {
+        "I_A_B": 2.220446049250313e-16,
+        "S_A": 2.220446049250313e-16,
+        "S_AB": 0.42270908780599115,
+        "S_A_given_B": 0.0,
+        "S_B": 0.42270908780599115,
+        "bipartition": {
+          "A": [
+            0
+          ],
+          "B": [
+            1,
+            2,
+            3
+          ]
+        },
+        "row_id": "t0_seed_L0_R0_mixture"
+      },
+      {
+        "I_A_B": -1.6653345369377348e-16,
+        "S_A": 2.220446049250313e-16,
+        "S_AB": 0.26638446326792053,
+        "S_A_given_B": 3.885780586188048e-16,
+        "S_B": 0.26638446326792015,
+        "bipartition": {
+          "A": [
+            0
+          ],
+          "B": [
+            1,
+            2,
+            3
+          ]
+        },
+        "row_id": "t1_half_retrieved"
+      },
+      {
+        "I_A_B": -2.220446049250312e-16,
+        "S_A": 2.220446049250313e-16,
+        "S_AB": 4.440892098500625e-16,
+        "S_A_given_B": 4.440892098500625e-16,
+        "S_B": -0.0,
+        "bipartition": {
+          "A": [
+            0
+          ],
+          "B": [
+            1,
+            2,
+            3
+          ]
+        },
+        "row_id": "t2_terminal_L0"
+      }
+    ]
+  },
+  "validator_expected_commands": [
+    {
+      "command": "env NUMBA_CACHE_DIR=/private/tmp/codex_numba_cache /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_jax.py",
+      "id": "jax_lane"
+    },
+    {
+      "command": "env GEOMSTATS_BACKEND=pytorch NUMBA_CACHE_DIR=/private/tmp/codex_numba_cache /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_pytorch.py",
+      "id": "pytorch_lane"
+    },
+    {
+      "command": "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_julia.jl",
+      "id": "julia_lane"
+    },
+    {
+      "command": "env NUMBA_CACHE_DIR=/private/tmp/codex_numba_cache /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_envelope.py",
+      "id": "envelope"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/spinor_network_surface_v0/validate_spinor_network_surface_v0.py --phase builder",
+      "id": "packet_validator"
+    },
+    {
+      "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_envelope_results.json",
+      "id": "three_engine_validator"
+    },
+    {
+      "command": "PYTHONPATH=system_v6/sims/spinor_network_surface_v0 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/spinor_network_surface_v0/tests",
+      "id": "pytest"
+    }
+  ],
+  "validator_statuses": []
+}

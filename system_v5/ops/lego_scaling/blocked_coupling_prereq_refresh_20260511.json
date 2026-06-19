@@ -1,0 +1,19 @@
+{
+  "kind": "blocked_reason",
+  "generated_at": "2026-06-07T23:50:35Z",
+  "scope": "system_v5 queue movement signal",
+  "reason": "The live queue has no lane_A, lane_B, or claimed movement during the shakedown, and broad sim-mode advancement is blocked until current guardrail regressions are repaired and live external foundation-rung workers finish or publish receipts.",
+  "blocked_candidates": [
+    {
+      "surface": "system_v4/probes/a2_state/queue",
+      "blocked_by": "idle queue with guardrail debt",
+      "recommended_next_move": "After guardrail tests are green, select one smallest admissible micro tool/function probe or refresh a queue claim with a current receipt."
+    },
+    {
+      "surface": "system_v5/ops/formal_scouts/foundation_*",
+      "blocked_by": "active external foundation-rung builders in the same checkout",
+      "recommended_next_move": "Wait for the external builder receipts or reroute only after their processes are complete; do not mutate their target files from this shakedown lane."
+    }
+  ],
+  "next_admissible_step": "Finish the shakedown guardrail repairs, rerun the affected tests, then either enqueue one smallest admissible micro tool/function probe or replace this blocked reason with the resulting queue receipt."
+}

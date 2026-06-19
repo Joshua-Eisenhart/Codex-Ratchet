@@ -1,0 +1,155 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite A/B relation graph counts",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing A/B relation SMT with flips",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "A terminal class count and B Z4xZ2 orbit order",
+      "receipt_id": "julia_Graphs_ab_relation_counts",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "A+B relation sum identity with erased and perturbed flips",
+      "receipt_id": "julia_Z3_ab_relation_sum",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "perturbed_A_flip_verdict": "sat",
+      "perturbed_B_flip_verdict": "sat",
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "family_a_terminal_class_count": 3,
+        "family_b_composite_order": 8,
+        "weld_relation_sum": 11
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_mode": "hash_pinned_a_b_weld_relation_with_three_engine_relation_checks",
+  "family_a_terminal_graph": {
+    "edge_count": 3,
+    "graph_role": "Family A G1 terminal class quotient graph",
+    "pass": true,
+    "scc_count": 3,
+    "sccs": [
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ]
+    ],
+    "terminal_class_count": 3,
+    "terminal_class_sizes": [
+      1,
+      14,
+      18
+    ]
+  },
+  "family_b_orbit_graph": {
+    "edge_count": 16,
+    "graph_role": "Family B Z4xZ2 orbit graph",
+    "orbit_order": 8,
+    "pass": true,
+    "scc_count": 1,
+    "sccs": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    ]
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T10:30:18Z",
+  "julia_relation_signature_sha256": "181cda1e117b3db8e6fc7085fa0978a7abe90fad121ae5dc4912889cb54f67b3",
+  "object_id": "manifold_ab_weld_relation_v0_julia",
+  "package_observables": {
+    "Graphs": "family_a_terminal_graph.terminal_class_count and family_b_orbit_graph.orbit_order",
+    "Z3": "crossover_proofs.julia_z3 relation sum identity and flips"
+  },
+  "package_versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "relation_values": {
+    "family_a_terminal_class_count": 3,
+    "family_b_composite_order": 8,
+    "weld_relation_product": 24,
+    "weld_relation_sum": 11
+  },
+  "result_path": "system_v6/sims/manifold_ab_weld_relation_v0/results/manifold_ab_weld_relation_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "manifold_ab_weld_relation_v0",
+  "source_backing_probe": {
+    "Graphs_edge_count": 2,
+    "Graphs_vertex_count": 3,
+    "Z3_relation_identity": "unsat",
+    "pass": true
+  },
+  "source_path": "system_v6/sims/manifold_ab_weld_relation_v0/manifold_ab_weld_relation_v0_julia.jl",
+  "source_sha256": "885ec698639719996223fba2f4eeb046e7f045edcc90afec3f53c761e1386f08",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_ab_relation_counts",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_ab_relation_sum",
+      "tool": "Z3"
+    }
+  ]
+}

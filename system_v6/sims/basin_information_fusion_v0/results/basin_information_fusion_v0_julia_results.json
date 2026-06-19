@@ -1,0 +1,771 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing transition table over graph partition rows",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing class-count accounting identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "per-transition basin information fusion table over committed G0-G5 generating sets",
+      "receipt_id": "julia_Graphs_fusion_table",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "computed class-count accounting identity with erased flip",
+      "receipt_id": "julia_Z3_accounting_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "null_transition": {
+      "all_deltas_zero": true,
+      "transition_id": "G2_to_G2_null"
+    },
+    "partition_anchors_byte_exact": {
+      "g0_anchor_byte_exact": true,
+      "parent_sweep_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_envelope_results.json",
+      "sweep_signature_sha256": "febc5d9e0a281d18f6656b445eef84b9085dd0bb48b45994b09303dd58850bde"
+    },
+    "type_mixing_control": {
+      "bad_expression": "counting_entropy_delta + distribution_entropy_delta",
+      "deliberate_cross_type_sum_flagged": true,
+      "reason": "a54224476 typed discipline separates counting entropy over classes from finite distribution entropy over class sizes"
+    }
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "fusion_signature_sha256": "f5925a331b59cbe5c375a927f714c61be9a3f9d29399d8ed94ee185e32646dca",
+  "fusion_table": [
+    {
+      "class_count_delta": {
+        "after": 3,
+        "after_minus_before": 2,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 1.0986122886681098,
+          "after_minus_before": 1.0986122886681098,
+          "before": 0.0,
+          "exact_after": "log(3)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": 0.8003410688378565,
+          "after_minus_before": 0.8003410688378565,
+          "after_sizes": [
+            1,
+            14,
+            18
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": false,
+        "reason": "no committed flux/current row is scoped to this generating-set move",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "split: baseline anchor to rotations-only active DoFs",
+      "may_basin_size_delta": {
+        "after": [
+          1,
+          14,
+          18
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 0
+      },
+      "move": "G0->G1",
+      "must_basin_size_delta": {
+        "after": [
+          1,
+          14,
+          18
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 32
+      },
+      "responsible_generator": {
+        "added": [
+          "Ne_Vortex_L",
+          "R_z"
+        ],
+        "removed": [
+          "D_z",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Se_Funnel_L"
+        ],
+        "responsible_generator": "minimal_difference_set:2_added:4_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d",
+        "before_transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G0_to_G1"
+    },
+    {
+      "class_count_delta": {
+        "after": 1,
+        "after_minus_before": -2,
+        "before": 3
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 0.0,
+          "after_minus_before": -1.0986122886681098,
+          "before": 1.0986122886681098,
+          "exact_after": "log(1)",
+          "exact_before": "log(3)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": -0.0,
+          "after_minus_before": -0.8003410688378565,
+          "after_sizes": [
+            1
+          ],
+          "before": 0.8003410688378565,
+          "before_sizes": [
+            1,
+            14,
+            18
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": false,
+        "reason": "no committed flux/current row is scoped to this generating-set move",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "re-merge: rotations-only split to full S5+S4 generating set",
+      "may_basin_size_delta": {
+        "after": [
+          33
+        ],
+        "before": [
+          1,
+          14,
+          18
+        ],
+        "length_delta_after_minus_before": -2,
+        "sum_delta_after_minus_before": 0
+      },
+      "move": "G1->G2",
+      "must_basin_size_delta": {
+        "after": [
+          1
+        ],
+        "before": [
+          1,
+          14,
+          18
+        ],
+        "length_delta_after_minus_before": -2,
+        "sum_delta_after_minus_before": -32
+      },
+      "responsible_generator": {
+        "added": [
+          "D_x",
+          "D_z",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "Se_Cannon_R",
+          "Se_Funnel_L",
+          "Si_Citadel_R",
+          "Si_Hill_L"
+        ],
+        "removed": [],
+        "responsible_generator": "minimal_difference_set:8_added:0_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6",
+        "before_transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G1_to_G2"
+    },
+    {
+      "class_count_delta": {
+        "after": 3,
+        "after_minus_before": 2,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 1.0986122886681098,
+          "after_minus_before": 1.0986122886681098,
+          "before": 0.0,
+          "exact_after": "log(3)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": 0.7356219397587946,
+          "after_minus_before": 0.7356219397587946,
+          "after_sizes": [
+            1,
+            1,
+            6
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": true,
+        "committed_row": "three_shell_chain.flux_12",
+        "current_delta": null,
+        "flux_after": "pi*(-1/2 + sqrt(3)/2)",
+        "flux_before": "0",
+        "flux_delta_after_minus_before": "pi*(-1/2 + sqrt(3)/2)",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "left-chirality subset from full generating set",
+      "may_basin_size_delta": {
+        "after": [
+          1,
+          14,
+          31
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 13
+      },
+      "move": "G2->G3L",
+      "must_basin_size_delta": {
+        "after": [
+          1,
+          1,
+          6
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 7
+      },
+      "responsible_generator": {
+        "added": [],
+        "removed": [
+          "D_x",
+          "D_z",
+          "Ne_Spiral_R",
+          "Ni_Source_R",
+          "R_x",
+          "R_z",
+          "Se_Cannon_R",
+          "Si_Citadel_R"
+        ],
+        "responsible_generator": "minimal_difference_set:0_added:8_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "0cf6136626e0523df5140c53e55f9f33463f92bb5d5f40e0aed69e9f144ec715",
+        "before_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G2_to_G3L"
+    },
+    {
+      "class_count_delta": {
+        "after": 3,
+        "after_minus_before": 2,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 1.0986122886681098,
+          "after_minus_before": 1.0986122886681098,
+          "before": 0.0,
+          "exact_after": "log(3)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": 0.7356219397587946,
+          "after_minus_before": 0.7356219397587946,
+          "after_sizes": [
+            1,
+            1,
+            6
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": true,
+        "committed_row": "three_shell_chain.flux_23",
+        "current_delta": null,
+        "flux_after": "pi/2",
+        "flux_before": "0",
+        "flux_delta_after_minus_before": "pi/2",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "right-chirality subset from full generating set",
+      "may_basin_size_delta": {
+        "after": [
+          1,
+          14,
+          31
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 13
+      },
+      "move": "G2->G3R",
+      "must_basin_size_delta": {
+        "after": [
+          1,
+          1,
+          6
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 2,
+        "sum_delta_after_minus_before": 7
+      },
+      "responsible_generator": {
+        "added": [],
+        "removed": [
+          "D_x",
+          "D_z",
+          "Ne_Vortex_L",
+          "Ni_Pit_L",
+          "R_x",
+          "R_z",
+          "Se_Funnel_L",
+          "Si_Hill_L"
+        ],
+        "responsible_generator": "minimal_difference_set:0_added:8_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "da60912ea0997361c42d7224391b3b6cd8f2066e49900ae86b993c5bb5b349c6",
+        "before_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G2_to_G3R"
+    },
+    {
+      "class_count_delta": {
+        "after": 1,
+        "after_minus_before": 0,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 0.0,
+          "after_minus_before": 0.0,
+          "before": 0.0,
+          "exact_after": "log(1)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": -0.0,
+          "after_minus_before": 0.0,
+          "after_sizes": [
+            2
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": true,
+        "committed_row": "deformation_mode_ledger.warp.relation_delta",
+        "current_delta": {
+          "edge_count_after": 1600,
+          "edge_count_before": 1664,
+          "edge_count_delta_after_minus_before": -64
+        },
+        "flux_after": null,
+        "flux_before": null,
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "conditioned-shell restriction from full generating set",
+      "may_basin_size_delta": {
+        "after": [
+          4
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 0,
+        "sum_delta_after_minus_before": -29
+      },
+      "move": "G2->G4",
+      "must_basin_size_delta": {
+        "after": [
+          2
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 0,
+        "sum_delta_after_minus_before": 1
+      },
+      "responsible_generator": {
+        "added": [],
+        "removed": [
+          "D_x",
+          "Ne_Vortex_L",
+          "R_z",
+          "Se_Cannon_R",
+          "Si_Citadel_R",
+          "Si_Hill_L"
+        ],
+        "responsible_generator": "minimal_difference_set:0_added:6_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "66d67d361dc32da8a19974be27cb5983577208f557c4b7bed7833e7848a48cf3",
+        "before_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+      },
+      "support_count_delta": {
+        "after": 4,
+        "after_minus_before": -29,
+        "before": 33
+      },
+      "transition_id": "G2_to_G4"
+    },
+    {
+      "class_count_delta": {
+        "after": 5,
+        "after_minus_before": 4,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 1.6094379124341003,
+          "after_minus_before": 1.6094379124341003,
+          "before": 0.0,
+          "exact_after": "log(5)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": 1.4750763110546947,
+          "after_minus_before": 1.4750763110546947,
+          "after_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": true,
+        "committed_row": "two_shell_flux.flux_physical",
+        "current_delta": null,
+        "flux_after": "pi/2",
+        "flux_before": "0",
+        "flux_delta_after_minus_before": "pi/2",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "single composite-word move from full generating set",
+      "may_basin_size_delta": {
+        "after": [
+          1,
+          1,
+          9,
+          9,
+          13
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 4,
+        "sum_delta_after_minus_before": 0
+      },
+      "move": "G2->G5",
+      "must_basin_size_delta": {
+        "after": [
+          1,
+          1,
+          9,
+          9,
+          13
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 4,
+        "sum_delta_after_minus_before": 32
+      },
+      "responsible_generator": {
+        "added": [
+          "Ni_Pit_L_then_R_x"
+        ],
+        "removed": [
+          "D_x",
+          "D_z",
+          "Ne_Spiral_R",
+          "Ne_Vortex_L",
+          "Ni_Pit_L",
+          "Ni_Source_R",
+          "R_x",
+          "R_z",
+          "Se_Cannon_R",
+          "Se_Funnel_L",
+          "Si_Citadel_R",
+          "Si_Hill_L"
+        ],
+        "responsible_generator": "minimal_difference_set:1_added:12_removed"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "6471f18ed67f03716176bdfed0192e89666504344dccf528da6d689f01166075",
+        "before_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G2_to_G5"
+    },
+    {
+      "class_count_delta": {
+        "after": 1,
+        "after_minus_before": 0,
+        "before": 1
+      },
+      "entropy_type_delta": {
+        "counting_entropy_log_class_count": {
+          "after": 0.0,
+          "after_minus_before": 0.0,
+          "before": 0.0,
+          "exact_after": "log(1)",
+          "exact_before": "log(1)",
+          "type": "counting_entropy",
+          "typed_parent": "manifold_entropy_ledger_v0:a54224476"
+        },
+        "per_class_size_distribution_entropy": {
+          "after": -0.0,
+          "after_minus_before": 0.0,
+          "after_sizes": [
+            1
+          ],
+          "before": -0.0,
+          "before_sizes": [
+            1
+          ],
+          "type": "finite_distribution_entropy_over_terminal_class_sizes"
+        }
+      },
+      "flux_current_delta": {
+        "applies": false,
+        "reason": "no committed flux/current row is scoped to this generating-set move",
+        "source": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_envelope_results.json"
+      },
+      "label": "null transition control",
+      "may_basin_size_delta": {
+        "after": [
+          33
+        ],
+        "before": [
+          33
+        ],
+        "length_delta_after_minus_before": 0,
+        "sum_delta_after_minus_before": 0
+      },
+      "move": "G2->G2",
+      "must_basin_size_delta": {
+        "after": [
+          1
+        ],
+        "before": [
+          1
+        ],
+        "length_delta_after_minus_before": 0,
+        "sum_delta_after_minus_before": 0
+      },
+      "responsible_generator": {
+        "added": [],
+        "removed": [],
+        "responsible_generator": "none_null_transition"
+      },
+      "source_partition_hashes": {
+        "after_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6",
+        "before_transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+      },
+      "support_count_delta": {
+        "after": 33,
+        "after_minus_before": 0,
+        "before": 33
+      },
+      "transition_id": "G2_to_G2_null"
+    }
+  ],
+  "generated_at": "2026-06-12T19:39:47Z",
+  "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+  "object_id": "basin_information_fusion_v0_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_observables": {
+    "Graphs": "fusion_table transition rows loaded from graph partition parent",
+    "Z3": "crossover_proofs.julia_z3.verdict"
+  },
+  "package_versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "parent_lineage": {
+    "parent_committed_hash_bound": {
+      "basin_generating_set_sweep_v0": "ba1bfc4d1",
+      "basin_rc_transition_graph_v0": "631f1c3db",
+      "manifold_entropy_ledger_v0": "a54224476",
+      "mct_dynamic_deformation_v0": "cdf437053"
+    }
+  },
+  "promotion_allowed": false,
+  "reads_parent_results": true,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_information_fusion_v0/results/basin_information_fusion_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "status": "deterministic_no_rng",
+    "symbolic_seed": 2026061104
+  },
+  "sim_id": "basin_information_fusion_v0",
+  "source_path": "system_v6/sims/basin_information_fusion_v0/basin_information_fusion_v0_julia.jl",
+  "source_sha256": "c8e9de7fe875d8d39069f839dfa4e14f10029d8847f4b3e96084ab1d483d7be0",
+  "source_sweep_signature_sha256": "febc5d9e0a281d18f6656b445eef84b9085dd0bb48b45994b09303dd58850bde",
+  "synthesis_row": {
+    "g2_remerge_conservation": {
+      "class_information_after": 0.0,
+      "class_information_before": 1.0986122886681098,
+      "exact_row": "log(3)=log(1)+log(3)",
+      "holds": true,
+      "identity_defect": 0.0,
+      "merged_information": 1.0986122886681098,
+      "transition_id": "G1_to_G2"
+    },
+    "null_transition_control": {
+      "all_deltas_zero": true,
+      "transition_id": "G2_to_G2_null"
+    },
+    "numeric_log3": 1.0986122886681098,
+    "owner_question_basin_level_answer": {
+      "partition_refinement_information_nats": 1.0986122886681098,
+      "promotion_allowed": false,
+      "statement": "At the basin/subbasin partition level, changing active DoFs processes information by changing the terminal-class partition. The G0->G1 move gains log(3) nats of counting partition information because the committed one-class anchor splits into three terminal classes.",
+      "transition_id": "G0_to_G1",
+      "typed_as": "counting_entropy_delta_over_basin_partition_classes"
+    }
+  },
+  "tool_calls": [
+    {
+      "input_object": "committed G0-G5 partition rows",
+      "load_bearing": true,
+      "output_object": "fusion table",
+      "qualified_api/function": "Graphs.SimpleDiGraph plus parent partition source path",
+      "receipt_id": "julia_Graphs_fusion_table",
+      "tool": "Graphs"
+    },
+    {
+      "input_object": "computed class-count transition rows",
+      "load_bearing": true,
+      "output_object": "UNSAT accounting identity and SAT erased flip",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_accounting_identity",
+      "tool": "Z3"
+    }
+  ]
+}

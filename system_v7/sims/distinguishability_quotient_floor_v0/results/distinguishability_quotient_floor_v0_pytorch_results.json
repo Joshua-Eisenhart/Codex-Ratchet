@@ -1,0 +1,135 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "distinguishability_quotient_floor_v0",
+  "engine": "pytorch",
+  "computation_style": "autograd_jacobian_over_bloch_parameters",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-16T07:02:14Z",
+  "source_sha256": "d1d7fcc22cbe302a6ef5778ce19a020b21a21519675a7b90e9222fd3e9e1197e",
+  "result_path": "system_v7/sims/distinguishability_quotient_floor_v0/results/distinguishability_quotient_floor_v0_pytorch_results.json",
+  "finite_set_size": 4,
+  "state_labels": [
+    "s0",
+    "s1",
+    "s2",
+    "s3"
+  ],
+  "probe_expectations_full": {
+    "s0": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "s1": [
+      0.5,
+      0.0,
+      0.3
+    ],
+    "s2": [
+      0.5,
+      0.0,
+      -0.3
+    ],
+    "s3": [
+      0.0,
+      0.6,
+      0.0
+    ]
+  },
+  "probe_expectations_erased": {
+    "s0": [
+      0.0,
+      0.0
+    ],
+    "s1": [
+      0.5,
+      0.0
+    ],
+    "s2": [
+      0.5,
+      0.0
+    ],
+    "s3": [
+      0.0,
+      0.6
+    ]
+  },
+  "quotient_classes_full": [
+    [
+      "s0"
+    ],
+    [
+      "s1"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "quotient_class_count_full": 4,
+  "quotient_classes_erased": [
+    [
+      "s0"
+    ],
+    [
+      "s1",
+      "s2"
+    ],
+    [
+      "s3"
+    ]
+  ],
+  "quotient_class_count_erased": 3,
+  "flip_pair": [
+    "s1",
+    "s2"
+  ],
+  "autograd_receipt": {
+    "jacobian_state": "s1",
+    "jacobian_dExp_dBloch": {
+      "X": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "Y": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "Z": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "structural_identity": "d tr(rho P)/d r_Q = delta_{P,Q}",
+    "jacobian_is_identity_selection": true,
+    "note": "autograd computes a derivative the eigendecomposition and vmap legs do not; it confirms the expectation is exactly linear in the matching Bloch component."
+  },
+  "package_versions": {
+    "torch": "2.11.0"
+  },
+  "packages_used": [
+    "torch"
+  ],
+  "aligned_packages_load_bearing": [
+    "torch"
+  ],
+  "TOOL_MANIFEST": {
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing autograd Jacobian d<P>/d(Bloch) verifying the linear-expectation structural identity"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "torch": "load_bearing"
+  }
+}

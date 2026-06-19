@@ -1,0 +1,262 @@
+{
+  "C": {
+    "hermiticity": "Probe projectors are Hermitian; rotor coefficients are real scalar plus one bivector generator.",
+    "normalization": "Each step rotor is unit norm and each SO(3) step is orthogonal.",
+    "psd": "Rank-one probe projectors are PSD.",
+    "rung_specific_constraint": "Spinor/SU(2) half-angle structure: N ordered Clifford quaternion rotors with total loop angle 2pi.",
+    "trace_equals_one": "Probe states may be represented by rank-one normalized spinor/vector projectors with trace 1."
+  },
+  "M": {
+    "explicit_probe_family": [
+      "ordered_product_spinor_SU2_loop",
+      "ordered_product_vector_SO3_loop"
+    ],
+    "finite_probe_domain": {
+      "axis": "z",
+      "loop_angle": "2pi",
+      "loop_discretizations": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    "name": "holonomy_loop_probe"
+  },
+  "S_mod_M": {
+    "definition": "Equivalence classes under the holonomy-loop probe.",
+    "drop_M_classes": 1,
+    "spinor_SU2_class": "2pi_holonomy_minus_identity",
+    "vector_SO3_class": "2pi_holonomy_plus_identity",
+    "with_M_classes": 2
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "CliffordAlgebras": "load_bearing",
+    "JSON": "supportive",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "CliffordAlgebras": {
+      "reason": "load-bearing SU(2)/spin rotor carrier: ordered quaternion rotor product for the 2pi loop",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive SO(3) control matrix residuals only",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing exact integer matrix-product proof that derives the N=2 spinor sign and erase flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "CliffordAlgebras",
+    "Z3"
+  ],
+  "all_pass": true,
+  "classification": "scratch_diagnostic",
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-08T02:05:48Z",
+  "julia_z3": {
+    "derivation": "step-product entries are sum_k step[i,k]*step[k,j] inside Z3.jl; only step matrix entries are bound",
+    "drop_spinor_step_binding_status": "sat",
+    "erase_flip_unsat_to_sat": true,
+    "solver": "Z3.jl",
+    "spinor_negated_claim_status": "unsat",
+    "vector_plus_identity_status": "sat",
+    "wrong_half_angle_not_minus_status": "sat"
+  },
+  "negative_control_flip": {
+    "drop_M_coarsens_quotient": true,
+    "drop_spinor_constraint_unsat_to_sat": true,
+    "spinor_vs_vector_holonomy_flip": true,
+    "wrong_half_angle_control_flips_to_plus_identity": true
+  },
+  "object_id": "foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia",
+  "packages_used": [
+    "CliffordAlgebras",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/results/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia_results.json",
+  "rung_id": "foundation_r4_spinor_holonomy_path_integral_variant",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_foundation_r4_spinor_holonomy_path_integral_variant_julia.jl",
+  "summary": {
+    "discretization_convergence": [
+      {
+        "N": 2,
+        "minus_identity_residual": 1.2246467991473532e-16,
+        "spinor_bivector_ij": 1.2246467991473532e-16,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -1.0,
+        "step_angle": 3.141592653589793
+      },
+      {
+        "N": 4,
+        "minus_identity_residual": 2.7755575615628914e-16,
+        "spinor_bivector_ij": 2.7755575615628914e-16,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -1.0,
+        "step_angle": 1.5707963267948966
+      },
+      {
+        "N": 8,
+        "minus_identity_residual": 1.6653345369377348e-16,
+        "spinor_bivector_ij": -1.6653345369377348e-16,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -1.0,
+        "step_angle": 0.7853981633974483
+      },
+      {
+        "N": 16,
+        "minus_identity_residual": 6.106226635438361e-16,
+        "spinor_bivector_ij": 5.551115123125783e-17,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -0.9999999999999994,
+        "step_angle": 0.39269908169872414
+      },
+      {
+        "N": 32,
+        "minus_identity_residual": 1.4016565685892601e-15,
+        "spinor_bivector_ij": 6.938893903907228e-17,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -1.0000000000000013,
+        "step_angle": 0.19634954084936207
+      },
+      {
+        "N": 64,
+        "minus_identity_residual": 8.881784197001252e-16,
+        "spinor_bivector_ij": 0.0,
+        "spinor_i": 0.0,
+        "spinor_j": 0.0,
+        "spinor_scalar": -1.0000000000000009,
+        "step_angle": 0.09817477042468103
+      }
+    ],
+    "spinor_holonomy_bivector_ij": 0.0,
+    "spinor_holonomy_scalar": -1.0000000000000009,
+    "spinor_minus_identity_residual": 8.881784197001252e-16,
+    "vector_control_convergence": [
+      {
+        "N": 2,
+        "matrix": [
+          [
+            1.0,
+            2.4492935982947064e-16
+          ],
+          [
+            -2.4492935982947064e-16,
+            1.0
+          ]
+        ],
+        "plus_identity_residual": 2.4492935982947064e-16,
+        "step_angle": 3.141592653589793,
+        "trace_half": 1.0
+      },
+      {
+        "N": 4,
+        "matrix": [
+          [
+            1.0,
+            2.4492935982947064e-16
+          ],
+          [
+            -2.4492935982947064e-16,
+            1.0
+          ]
+        ],
+        "plus_identity_residual": 2.4492935982947064e-16,
+        "step_angle": 1.5707963267948966,
+        "trace_half": 1.0
+      },
+      {
+        "N": 8,
+        "matrix": [
+          [
+            1.0,
+            6.661338147750939e-16
+          ],
+          [
+            -6.661338147750939e-16,
+            1.0
+          ]
+        ],
+        "plus_identity_residual": 6.661338147750939e-16,
+        "step_angle": 0.7853981633974483,
+        "trace_half": 1.0
+      },
+      {
+        "N": 16,
+        "matrix": [
+          [
+            0.9999999999999998,
+            -3.885780586188048e-16
+          ],
+          [
+            3.885780586188048e-16,
+            0.9999999999999998
+          ]
+        ],
+        "plus_identity_residual": 3.885780586188048e-16,
+        "step_angle": 0.39269908169872414,
+        "trace_half": 0.9999999999999998
+      },
+      {
+        "N": 32,
+        "matrix": [
+          [
+            0.9999999999999987,
+            3.0531133177191805e-16
+          ],
+          [
+            -3.0531133177191805e-16,
+            0.9999999999999987
+          ]
+        ],
+        "plus_identity_residual": 1.3322676295501878e-15,
+        "step_angle": 0.19634954084936207,
+        "trace_half": 0.9999999999999987
+      },
+      {
+        "N": 64,
+        "matrix": [
+          [
+            1.000000000000003,
+            4.163336342344337e-17
+          ],
+          [
+            -4.163336342344337e-17,
+            1.000000000000003
+          ]
+        ],
+        "plus_identity_residual": 3.1086244689504383e-15,
+        "step_angle": 0.09817477042468103,
+        "trace_half": 1.000000000000003
+      }
+    ],
+    "vector_holonomy_trace_half": 1.000000000000003,
+    "vector_plus_identity_residual": 3.1086244689504383e-15
+  }
+}

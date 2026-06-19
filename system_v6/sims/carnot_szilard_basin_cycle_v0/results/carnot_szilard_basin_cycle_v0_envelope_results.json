@@ -1,0 +1,4000 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "torch.func": "load_bearing",
+    "torch_geometric": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_INTENT_MATRIX": {
+    "claim_classes": [
+      "basin_RETURN_row_merge_count_floor",
+      "packet_local_state_plus_record_closure",
+      "Szilard_honesty_reset_charge",
+      "D_I_alternation_gap_control",
+      "misledgered_control_caught"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat cross-checks the same computed floor gate",
+        "networkx": "nx.DiGraph/nx.has_path/nx.shortest_path constructs branch merge graph and positive/erased controls",
+        "sympy": "sp.Rational/sp.log exact count-side rows for m_sample and m_full_graph",
+        "z3": "z3.Solver/z3.Int/check binds computed m/floor/reset counts and misledger flip"
+      },
+      "julia": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge! constructs branch->terminal merge carrier for computed m rows",
+        "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check binds computed m/floor/reset counts and misledger flip"
+      },
+      "pytorch": {
+        "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat cross-checks the same computed floor gate",
+        "sympy": "sp.Rational/sp.log exact count-side rows for m_sample and m_full_graph",
+        "torch.func": "torch.func.vmap vectorizes sample/full merge count comparison",
+        "torch_geometric": "torch_geometric.data.Data carries branch graph edge_index for merge rows",
+        "z3": "z3.Solver/z3.Int/check binds computed torch-derived counts and flips"
+      }
+    }
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia lane constructs finite branch/merge graph and checks branch counts",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia SMT lane binds computed branch counts and floor gates",
+      "tried": true,
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "standard result envelope builder; required to avoid hand-rolled envelope shape",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "independent SMT gate cross-checks the same computed floor counts and flips",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "JAX lane vectorizes sample/full merge count checks with x64 enabled",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "JAX/Python lane constructs branch-to-terminal graph controls",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "exact integer/rational branch-count side checks in Python lanes",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "PyTorch lane vectorizes merge count checks",
+      "tried": true,
+      "used": true
+    },
+    "torch_geometric": {
+      "reason": "PyTorch lane carries the branch graph as a Data object",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "Python SMT gate binds computed floor counts and flips under erasure/misledgering",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "alternation_rows": {
+    "commuting_control": {
+      "D_equals_I": true,
+      "E": "I + e (2A)",
+      "U": "I + u A",
+      "gap_norm": 0.0
+    },
+    "noncommuting_small_stroke": {
+      "A": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "B": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "D": [
+        [
+          1.0000030000009998,
+          0.002000001
+        ],
+        [
+          0.002000001,
+          1.000001
+        ]
+      ],
+      "I": [
+        [
+          1.000001,
+          0.002000001
+        ],
+        [
+          0.002000001,
+          1.0000030000009998
+        ]
+      ],
+      "e": 0.001,
+      "gap": [
+        [
+          2.0000009999243673e-06,
+          0.0
+        ],
+        [
+          0.0,
+          -2.0000009999243673e-06
+        ]
+      ],
+      "gap_matches_leading_order": true,
+      "gap_norm": 2.8284285388527918e-06,
+      "leading_norm": 2.82842712474619e-06,
+      "leading_order_2ue_commutator": [
+        [
+          2e-06,
+          0.0
+        ],
+        [
+          0.0,
+          -2e-06
+        ]
+      ],
+      "relative_error": 4.999621836984762e-07,
+      "u": 0.001
+    },
+    "source_anchors": {
+      "S6_committed_fields": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+      "panel7_target": "D=UEUE, I=EUEU; commuting => D=I; noncommuting leading order 2ue[A,B]",
+      "ring_order_fields": "system_v6/sims/ring_checkerboard_automaton_v0/results/ring_checkerboard_automaton_v0_envelope_results.json"
+    }
+  },
+  "basin_cycle_rows": [
+    {
+      "dof_family": "generator_family",
+      "dof_id": "G0",
+      "full_graph_merge_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "generators": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "m_full_graph": 33,
+      "m_readings_reported": [
+        "sample",
+        "full_graph"
+      ],
+      "m_sample": 9,
+      "per_phase_typed_counting_ledger": {
+        "perturb": {
+          "ln_cardinality_injected_full_graph_nats": 3.4965075614664802,
+          "ln_cardinality_injected_sample_nats": 2.1972245773362196,
+          "phase": "perturb",
+          "quantity_type": "finite_counting_entropy_nats"
+        },
+        "relax": {
+          "merge_count_full_graph": 33,
+          "merge_count_sample": 9,
+          "phase": "relax",
+          "quantity_type": "finite_counting_entropy_nats",
+          "state_loss_full_graph_nats": 3.4965075614664802,
+          "state_loss_sample_nats": 2.1972245773362196
+        },
+        "return_reset": {
+          "phase": "return",
+          "quantity_type": "finite_counting_entropy_nats",
+          "record_reset_cost_full_graph_nats": 3.4965075614664802,
+          "record_reset_cost_sample_nats": 2.1972245773362196,
+          "spatial_return": true
+        }
+      },
+      "perturbation_sizes": [
+        0,
+        1,
+        2
+      ],
+      "readings": {
+        "full_graph": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 3.4965075614664802,
+            "reset_charge_nats": 3.4965075614664802,
+            "state_loss_nats": 3.4965075614664802
+          },
+          "floor_exact": "log(33)",
+          "floor_nats": 3.4965075614664802,
+          "floor_scaled_1e6": 3496508,
+          "floor_test": {
+            "floor_exact": "log(33)",
+            "floor_nats": 3.4965075614664802,
+            "m": 33,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 3.4965075614664802,
+            "status": "pass"
+          },
+          "m": 33,
+          "over_recorded_control": {
+            "branch_count_m": 66,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 4.189654742026425,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(66)",
+            "r_nats": 4.189654742026425,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 4.189654742026425,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18:copy_0"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19:copy_1"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20:copy_0"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21:copy_1"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22:copy_0"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23:copy_1"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24:copy_0"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25:copy_1"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26:copy_0"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27:copy_1"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28:copy_0"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29:copy_1"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30:copy_0"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31:copy_1"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32:copy_0"
+              },
+              {
+                "branch": 33,
+                "syndrome": "branch_33:copy_1"
+              },
+              {
+                "branch": 34,
+                "syndrome": "branch_34:copy_0"
+              },
+              {
+                "branch": 35,
+                "syndrome": "branch_35:copy_1"
+              },
+              {
+                "branch": 36,
+                "syndrome": "branch_36:copy_0"
+              },
+              {
+                "branch": 37,
+                "syndrome": "branch_37:copy_1"
+              },
+              {
+                "branch": 38,
+                "syndrome": "branch_38:copy_0"
+              },
+              {
+                "branch": 39,
+                "syndrome": "branch_39:copy_1"
+              },
+              {
+                "branch": 40,
+                "syndrome": "branch_40:copy_0"
+              },
+              {
+                "branch": 41,
+                "syndrome": "branch_41:copy_1"
+              },
+              {
+                "branch": 42,
+                "syndrome": "branch_42:copy_0"
+              },
+              {
+                "branch": 43,
+                "syndrome": "branch_43:copy_1"
+              },
+              {
+                "branch": 44,
+                "syndrome": "branch_44:copy_0"
+              },
+              {
+                "branch": 45,
+                "syndrome": "branch_45:copy_1"
+              },
+              {
+                "branch": 46,
+                "syndrome": "branch_46:copy_0"
+              },
+              {
+                "branch": 47,
+                "syndrome": "branch_47:copy_1"
+              },
+              {
+                "branch": 48,
+                "syndrome": "branch_48:copy_0"
+              },
+              {
+                "branch": 49,
+                "syndrome": "branch_49:copy_1"
+              },
+              {
+                "branch": 50,
+                "syndrome": "branch_50:copy_0"
+              },
+              {
+                "branch": 51,
+                "syndrome": "branch_51:copy_1"
+              },
+              {
+                "branch": 52,
+                "syndrome": "branch_52:copy_0"
+              },
+              {
+                "branch": 53,
+                "syndrome": "branch_53:copy_1"
+              },
+              {
+                "branch": 54,
+                "syndrome": "branch_54:copy_0"
+              },
+              {
+                "branch": 55,
+                "syndrome": "branch_55:copy_1"
+              },
+              {
+                "branch": 56,
+                "syndrome": "branch_56:copy_0"
+              },
+              {
+                "branch": 57,
+                "syndrome": "branch_57:copy_1"
+              },
+              {
+                "branch": 58,
+                "syndrome": "branch_58:copy_0"
+              },
+              {
+                "branch": 59,
+                "syndrome": "branch_59:copy_1"
+              },
+              {
+                "branch": 60,
+                "syndrome": "branch_60:copy_0"
+              },
+              {
+                "branch": 61,
+                "syndrome": "branch_61:copy_1"
+              },
+              {
+                "branch": 62,
+                "syndrome": "branch_62:copy_0"
+              },
+              {
+                "branch": 63,
+                "syndrome": "branch_63:copy_1"
+              },
+              {
+                "branch": 64,
+                "syndrome": "branch_64:copy_0"
+              },
+              {
+                "branch": 65,
+                "syndrome": "branch_65:copy_1"
+              }
+            ]
+          },
+          "reading": "full_graph",
+          "record_erased_control": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 3.4965075614664802,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 9,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 10,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 11,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 12,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 13,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 14,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 15,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 16,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 17,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 18,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 19,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 20,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 21,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 22,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 23,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 24,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 25,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 26,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 27,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 28,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 29,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 30,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 31,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 32,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(33)",
+            "r_nats": 3.4965075614664802,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 3.4965075614664802,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32"
+              }
+            ]
+          }
+        },
+        "sample": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 2.1972245773362196,
+            "reset_charge_nats": 2.1972245773362196,
+            "state_loss_nats": 2.1972245773362196
+          },
+          "floor_exact": "log(9)",
+          "floor_nats": 2.1972245773362196,
+          "floor_scaled_1e6": 2197225,
+          "floor_test": {
+            "floor_exact": "log(9)",
+            "floor_nats": 2.1972245773362196,
+            "m": 9,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 2.1972245773362196,
+            "status": "pass"
+          },
+          "m": 9,
+          "over_recorded_control": {
+            "branch_count_m": 18,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.8903717578961645,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(18)",
+            "r_nats": 2.8903717578961645,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.8903717578961645,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              }
+            ]
+          },
+          "reading": "sample",
+          "record_erased_control": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 2.1972245773362196,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(9)",
+            "r_nats": 2.1972245773362196,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.1972245773362196,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              }
+            ]
+          }
+        }
+      },
+      "row_classification": "classical_baseline",
+      "sample_perturbed_cells": [
+        0,
+        2,
+        3,
+        5,
+        15,
+        16,
+        17,
+        30,
+        31
+      ],
+      "scrambling_caveat": "scrambling_found=false remains partly vacuous in the parent packet; not cited as discovered absence of scrambling",
+      "seed_set": [
+        0,
+        3,
+        15,
+        16,
+        17,
+        31
+      ],
+      "source_row_classification": "RETURN",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ]
+    },
+    {
+      "dof_family": "generator_family",
+      "dof_id": "G2",
+      "full_graph_merge_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "generators": [
+        "Ne_Spiral_R",
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Se_Funnel_L",
+        "Si_Citadel_R",
+        "Si_Hill_L",
+        "D_x",
+        "D_z",
+        "R_x",
+        "R_z"
+      ],
+      "m_full_graph": 33,
+      "m_readings_reported": [
+        "sample",
+        "full_graph"
+      ],
+      "m_sample": 9,
+      "per_phase_typed_counting_ledger": {
+        "perturb": {
+          "ln_cardinality_injected_full_graph_nats": 3.4965075614664802,
+          "ln_cardinality_injected_sample_nats": 2.1972245773362196,
+          "phase": "perturb",
+          "quantity_type": "finite_counting_entropy_nats"
+        },
+        "relax": {
+          "merge_count_full_graph": 33,
+          "merge_count_sample": 9,
+          "phase": "relax",
+          "quantity_type": "finite_counting_entropy_nats",
+          "state_loss_full_graph_nats": 3.4965075614664802,
+          "state_loss_sample_nats": 2.1972245773362196
+        },
+        "return_reset": {
+          "phase": "return",
+          "quantity_type": "finite_counting_entropy_nats",
+          "record_reset_cost_full_graph_nats": 3.4965075614664802,
+          "record_reset_cost_sample_nats": 2.1972245773362196,
+          "spatial_return": true
+        }
+      },
+      "perturbation_sizes": [
+        0,
+        1,
+        2
+      ],
+      "readings": {
+        "full_graph": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 3.4965075614664802,
+            "reset_charge_nats": 3.4965075614664802,
+            "state_loss_nats": 3.4965075614664802
+          },
+          "floor_exact": "log(33)",
+          "floor_nats": 3.4965075614664802,
+          "floor_scaled_1e6": 3496508,
+          "floor_test": {
+            "floor_exact": "log(33)",
+            "floor_nats": 3.4965075614664802,
+            "m": 33,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 3.4965075614664802,
+            "status": "pass"
+          },
+          "m": 33,
+          "over_recorded_control": {
+            "branch_count_m": 66,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 4.189654742026425,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(66)",
+            "r_nats": 4.189654742026425,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 4.189654742026425,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18:copy_0"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19:copy_1"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20:copy_0"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21:copy_1"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22:copy_0"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23:copy_1"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24:copy_0"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25:copy_1"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26:copy_0"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27:copy_1"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28:copy_0"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29:copy_1"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30:copy_0"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31:copy_1"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32:copy_0"
+              },
+              {
+                "branch": 33,
+                "syndrome": "branch_33:copy_1"
+              },
+              {
+                "branch": 34,
+                "syndrome": "branch_34:copy_0"
+              },
+              {
+                "branch": 35,
+                "syndrome": "branch_35:copy_1"
+              },
+              {
+                "branch": 36,
+                "syndrome": "branch_36:copy_0"
+              },
+              {
+                "branch": 37,
+                "syndrome": "branch_37:copy_1"
+              },
+              {
+                "branch": 38,
+                "syndrome": "branch_38:copy_0"
+              },
+              {
+                "branch": 39,
+                "syndrome": "branch_39:copy_1"
+              },
+              {
+                "branch": 40,
+                "syndrome": "branch_40:copy_0"
+              },
+              {
+                "branch": 41,
+                "syndrome": "branch_41:copy_1"
+              },
+              {
+                "branch": 42,
+                "syndrome": "branch_42:copy_0"
+              },
+              {
+                "branch": 43,
+                "syndrome": "branch_43:copy_1"
+              },
+              {
+                "branch": 44,
+                "syndrome": "branch_44:copy_0"
+              },
+              {
+                "branch": 45,
+                "syndrome": "branch_45:copy_1"
+              },
+              {
+                "branch": 46,
+                "syndrome": "branch_46:copy_0"
+              },
+              {
+                "branch": 47,
+                "syndrome": "branch_47:copy_1"
+              },
+              {
+                "branch": 48,
+                "syndrome": "branch_48:copy_0"
+              },
+              {
+                "branch": 49,
+                "syndrome": "branch_49:copy_1"
+              },
+              {
+                "branch": 50,
+                "syndrome": "branch_50:copy_0"
+              },
+              {
+                "branch": 51,
+                "syndrome": "branch_51:copy_1"
+              },
+              {
+                "branch": 52,
+                "syndrome": "branch_52:copy_0"
+              },
+              {
+                "branch": 53,
+                "syndrome": "branch_53:copy_1"
+              },
+              {
+                "branch": 54,
+                "syndrome": "branch_54:copy_0"
+              },
+              {
+                "branch": 55,
+                "syndrome": "branch_55:copy_1"
+              },
+              {
+                "branch": 56,
+                "syndrome": "branch_56:copy_0"
+              },
+              {
+                "branch": 57,
+                "syndrome": "branch_57:copy_1"
+              },
+              {
+                "branch": 58,
+                "syndrome": "branch_58:copy_0"
+              },
+              {
+                "branch": 59,
+                "syndrome": "branch_59:copy_1"
+              },
+              {
+                "branch": 60,
+                "syndrome": "branch_60:copy_0"
+              },
+              {
+                "branch": 61,
+                "syndrome": "branch_61:copy_1"
+              },
+              {
+                "branch": 62,
+                "syndrome": "branch_62:copy_0"
+              },
+              {
+                "branch": 63,
+                "syndrome": "branch_63:copy_1"
+              },
+              {
+                "branch": 64,
+                "syndrome": "branch_64:copy_0"
+              },
+              {
+                "branch": 65,
+                "syndrome": "branch_65:copy_1"
+              }
+            ]
+          },
+          "reading": "full_graph",
+          "record_erased_control": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 3.4965075614664802,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 9,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 10,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 11,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 12,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 13,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 14,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 15,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 16,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 17,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 18,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 19,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 20,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 21,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 22,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 23,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 24,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 25,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 26,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 27,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 28,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 29,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 30,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 31,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 32,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(33)",
+            "r_nats": 3.4965075614664802,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 3.4965075614664802,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32"
+              }
+            ]
+          }
+        },
+        "sample": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 2.1972245773362196,
+            "reset_charge_nats": 2.1972245773362196,
+            "state_loss_nats": 2.1972245773362196
+          },
+          "floor_exact": "log(9)",
+          "floor_nats": 2.1972245773362196,
+          "floor_scaled_1e6": 2197225,
+          "floor_test": {
+            "floor_exact": "log(9)",
+            "floor_nats": 2.1972245773362196,
+            "m": 9,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 2.1972245773362196,
+            "status": "pass"
+          },
+          "m": 9,
+          "over_recorded_control": {
+            "branch_count_m": 18,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.8903717578961645,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(18)",
+            "r_nats": 2.8903717578961645,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.8903717578961645,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              }
+            ]
+          },
+          "reading": "sample",
+          "record_erased_control": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 2.1972245773362196,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(9)",
+            "r_nats": 2.1972245773362196,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.1972245773362196,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              }
+            ]
+          }
+        }
+      },
+      "row_classification": "classical_baseline",
+      "sample_perturbed_cells": [
+        0,
+        3,
+        7,
+        11,
+        15,
+        16,
+        17,
+        21,
+        31
+      ],
+      "scrambling_caveat": "scrambling_found=false remains partly vacuous in the parent packet; not cited as discovered absence of scrambling",
+      "seed_set": [
+        0,
+        3,
+        15,
+        16,
+        17,
+        31
+      ],
+      "source_row_classification": "RETURN",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ]
+    },
+    {
+      "dof_family": "stage_operator_direction",
+      "dof_id": "stage_shift_Rx_to_Rz",
+      "full_graph_merge_cells": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "generators": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_z"
+      ],
+      "m_full_graph": 33,
+      "m_readings_reported": [
+        "sample",
+        "full_graph"
+      ],
+      "m_sample": 9,
+      "per_phase_typed_counting_ledger": {
+        "perturb": {
+          "ln_cardinality_injected_full_graph_nats": 3.4965075614664802,
+          "ln_cardinality_injected_sample_nats": 2.1972245773362196,
+          "phase": "perturb",
+          "quantity_type": "finite_counting_entropy_nats"
+        },
+        "relax": {
+          "merge_count_full_graph": 33,
+          "merge_count_sample": 9,
+          "phase": "relax",
+          "quantity_type": "finite_counting_entropy_nats",
+          "state_loss_full_graph_nats": 3.4965075614664802,
+          "state_loss_sample_nats": 2.1972245773362196
+        },
+        "return_reset": {
+          "phase": "return",
+          "quantity_type": "finite_counting_entropy_nats",
+          "record_reset_cost_full_graph_nats": 3.4965075614664802,
+          "record_reset_cost_sample_nats": 2.1972245773362196,
+          "spatial_return": true
+        }
+      },
+      "perturbation_sizes": [
+        0,
+        1,
+        2
+      ],
+      "readings": {
+        "full_graph": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 3.4965075614664802,
+            "reset_charge_nats": 3.4965075614664802,
+            "state_loss_nats": 3.4965075614664802
+          },
+          "floor_exact": "log(33)",
+          "floor_nats": 3.4965075614664802,
+          "floor_scaled_1e6": 3496508,
+          "floor_test": {
+            "floor_exact": "log(33)",
+            "floor_nats": 3.4965075614664802,
+            "m": 33,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 3.4965075614664802,
+            "status": "pass"
+          },
+          "m": 33,
+          "over_recorded_control": {
+            "branch_count_m": 66,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 4.189654742026425,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(66)",
+            "r_nats": 4.189654742026425,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 4.189654742026425,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18:copy_0"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19:copy_1"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20:copy_0"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21:copy_1"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22:copy_0"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23:copy_1"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24:copy_0"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25:copy_1"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26:copy_0"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27:copy_1"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28:copy_0"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29:copy_1"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30:copy_0"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31:copy_1"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32:copy_0"
+              },
+              {
+                "branch": 33,
+                "syndrome": "branch_33:copy_1"
+              },
+              {
+                "branch": 34,
+                "syndrome": "branch_34:copy_0"
+              },
+              {
+                "branch": 35,
+                "syndrome": "branch_35:copy_1"
+              },
+              {
+                "branch": 36,
+                "syndrome": "branch_36:copy_0"
+              },
+              {
+                "branch": 37,
+                "syndrome": "branch_37:copy_1"
+              },
+              {
+                "branch": 38,
+                "syndrome": "branch_38:copy_0"
+              },
+              {
+                "branch": 39,
+                "syndrome": "branch_39:copy_1"
+              },
+              {
+                "branch": 40,
+                "syndrome": "branch_40:copy_0"
+              },
+              {
+                "branch": 41,
+                "syndrome": "branch_41:copy_1"
+              },
+              {
+                "branch": 42,
+                "syndrome": "branch_42:copy_0"
+              },
+              {
+                "branch": 43,
+                "syndrome": "branch_43:copy_1"
+              },
+              {
+                "branch": 44,
+                "syndrome": "branch_44:copy_0"
+              },
+              {
+                "branch": 45,
+                "syndrome": "branch_45:copy_1"
+              },
+              {
+                "branch": 46,
+                "syndrome": "branch_46:copy_0"
+              },
+              {
+                "branch": 47,
+                "syndrome": "branch_47:copy_1"
+              },
+              {
+                "branch": 48,
+                "syndrome": "branch_48:copy_0"
+              },
+              {
+                "branch": 49,
+                "syndrome": "branch_49:copy_1"
+              },
+              {
+                "branch": 50,
+                "syndrome": "branch_50:copy_0"
+              },
+              {
+                "branch": 51,
+                "syndrome": "branch_51:copy_1"
+              },
+              {
+                "branch": 52,
+                "syndrome": "branch_52:copy_0"
+              },
+              {
+                "branch": 53,
+                "syndrome": "branch_53:copy_1"
+              },
+              {
+                "branch": 54,
+                "syndrome": "branch_54:copy_0"
+              },
+              {
+                "branch": 55,
+                "syndrome": "branch_55:copy_1"
+              },
+              {
+                "branch": 56,
+                "syndrome": "branch_56:copy_0"
+              },
+              {
+                "branch": 57,
+                "syndrome": "branch_57:copy_1"
+              },
+              {
+                "branch": 58,
+                "syndrome": "branch_58:copy_0"
+              },
+              {
+                "branch": 59,
+                "syndrome": "branch_59:copy_1"
+              },
+              {
+                "branch": 60,
+                "syndrome": "branch_60:copy_0"
+              },
+              {
+                "branch": 61,
+                "syndrome": "branch_61:copy_1"
+              },
+              {
+                "branch": 62,
+                "syndrome": "branch_62:copy_0"
+              },
+              {
+                "branch": 63,
+                "syndrome": "branch_63:copy_1"
+              },
+              {
+                "branch": 64,
+                "syndrome": "branch_64:copy_0"
+              },
+              {
+                "branch": 65,
+                "syndrome": "branch_65:copy_1"
+              }
+            ]
+          },
+          "reading": "full_graph",
+          "record_erased_control": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 3.4965075614664802,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 9,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 10,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 11,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 12,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 13,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 14,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 15,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 16,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 17,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 18,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 19,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 20,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 21,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 22,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 23,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 24,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 25,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 26,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 27,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 28,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 29,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 30,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 31,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 32,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 33,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 3.4965075614664802,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(33)",
+            "r_nats": 3.4965075614664802,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 3.4965075614664802,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17"
+              },
+              {
+                "branch": 18,
+                "syndrome": "branch_18"
+              },
+              {
+                "branch": 19,
+                "syndrome": "branch_19"
+              },
+              {
+                "branch": 20,
+                "syndrome": "branch_20"
+              },
+              {
+                "branch": 21,
+                "syndrome": "branch_21"
+              },
+              {
+                "branch": 22,
+                "syndrome": "branch_22"
+              },
+              {
+                "branch": 23,
+                "syndrome": "branch_23"
+              },
+              {
+                "branch": 24,
+                "syndrome": "branch_24"
+              },
+              {
+                "branch": 25,
+                "syndrome": "branch_25"
+              },
+              {
+                "branch": 26,
+                "syndrome": "branch_26"
+              },
+              {
+                "branch": 27,
+                "syndrome": "branch_27"
+              },
+              {
+                "branch": 28,
+                "syndrome": "branch_28"
+              },
+              {
+                "branch": 29,
+                "syndrome": "branch_29"
+              },
+              {
+                "branch": 30,
+                "syndrome": "branch_30"
+              },
+              {
+                "branch": 31,
+                "syndrome": "branch_31"
+              },
+              {
+                "branch": 32,
+                "syndrome": "branch_32"
+              }
+            ]
+          }
+        },
+        "sample": {
+          "closure_account": {
+            "closed_under_state_plus_record": true,
+            "cross_type_sum": false,
+            "dissipation_analog_nats": 0.0,
+            "ledger_defect_nats": 0.0,
+            "product_bookkeeping_convention": "packet-local finite branch table; state loss and retained syndrome record are both finite counting nats",
+            "record_retained_nats": 2.1972245773362196,
+            "reset_charge_nats": 2.1972245773362196,
+            "state_loss_nats": 2.1972245773362196
+          },
+          "floor_exact": "log(9)",
+          "floor_nats": 2.1972245773362196,
+          "floor_scaled_1e6": 2197225,
+          "floor_test": {
+            "floor_exact": "log(9)",
+            "floor_nats": 2.1972245773362196,
+            "m": 9,
+            "margin_nats": 0.0,
+            "paid_or_dissipated_nats": 2.1972245773362196,
+            "status": "pass"
+          },
+          "m": 9,
+          "over_recorded_control": {
+            "branch_count_m": 18,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.8903717578961645,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "over_recorded",
+            "r_exact": "log(18)",
+            "r_nats": 2.8903717578961645,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.8903717578961645,
+            "status": "reset_charge_recorded",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0:copy_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1:copy_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2:copy_0"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3:copy_1"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4:copy_0"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5:copy_1"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6:copy_0"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7:copy_1"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8:copy_0"
+              },
+              {
+                "branch": 9,
+                "syndrome": "branch_9:copy_1"
+              },
+              {
+                "branch": 10,
+                "syndrome": "branch_10:copy_0"
+              },
+              {
+                "branch": 11,
+                "syndrome": "branch_11:copy_1"
+              },
+              {
+                "branch": 12,
+                "syndrome": "branch_12:copy_0"
+              },
+              {
+                "branch": 13,
+                "syndrome": "branch_13:copy_1"
+              },
+              {
+                "branch": 14,
+                "syndrome": "branch_14:copy_0"
+              },
+              {
+                "branch": 15,
+                "syndrome": "branch_15:copy_1"
+              },
+              {
+                "branch": 16,
+                "syndrome": "branch_16:copy_0"
+              },
+              {
+                "branch": 17,
+                "syndrome": "branch_17:copy_1"
+              }
+            ]
+          },
+          "reading": "sample",
+          "record_erased_control": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 2.1972245773362196,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "erased",
+            "r_exact": "0",
+            "r_nats": 0.0,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 0.0,
+            "status": "floor_binds",
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 1,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 2,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 3,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 4,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 5,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 6,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 7,
+                "syndrome": "erased"
+              },
+              {
+                "branch": 8,
+                "syndrome": "erased"
+              }
+            ]
+          },
+          "record_variant": {
+            "branch_count_m": 9,
+            "dissipation_analog_nats": 0.0,
+            "full_cycle_with_reset_cost_nats": 2.1972245773362196,
+            "honesty_clause": "dissipation-free iff r=ln(m); reset then costs at least ln(m)",
+            "honesty_clause_pass": true,
+            "mode": "perfect",
+            "r_exact": "log(9)",
+            "r_nats": 2.1972245773362196,
+            "reset_charge_appears": true,
+            "reset_charge_nats": 2.1972245773362196,
+            "syndrome_table": [
+              {
+                "branch": 0,
+                "syndrome": "branch_0"
+              },
+              {
+                "branch": 1,
+                "syndrome": "branch_1"
+              },
+              {
+                "branch": 2,
+                "syndrome": "branch_2"
+              },
+              {
+                "branch": 3,
+                "syndrome": "branch_3"
+              },
+              {
+                "branch": 4,
+                "syndrome": "branch_4"
+              },
+              {
+                "branch": 5,
+                "syndrome": "branch_5"
+              },
+              {
+                "branch": 6,
+                "syndrome": "branch_6"
+              },
+              {
+                "branch": 7,
+                "syndrome": "branch_7"
+              },
+              {
+                "branch": 8,
+                "syndrome": "branch_8"
+              }
+            ]
+          }
+        }
+      },
+      "row_classification": "classical_baseline",
+      "sample_perturbed_cells": [
+        0,
+        2,
+        3,
+        5,
+        15,
+        16,
+        17,
+        30,
+        31
+      ],
+      "scrambling_caveat": "scrambling_found=false remains partly vacuous in the parent packet; not cited as discovered absence of scrambling",
+      "seed_set": [
+        0,
+        3,
+        15,
+        16,
+        17,
+        31
+      ],
+      "source_row_classification": "RETURN",
+      "terminal_class_cells": [
+        [
+          16
+        ]
+      ]
+    }
+  ],
+  "basin_landauer_floor": {
+    "row_statuses": [
+      {
+        "dof_id": "G0",
+        "full_graph": "pass",
+        "sample": "pass"
+      },
+      {
+        "dof_id": "G2",
+        "full_graph": "pass",
+        "sample": "pass"
+      },
+      {
+        "dof_id": "stage_shift_Rx_to_Rz",
+        "full_graph": "pass",
+        "sample": "pass"
+      }
+    ],
+    "target": "erased >= ln(m); perfect record may remove immediate dissipation only if reset charge is kept"
+  },
+  "build_helper_path": "scripts/build_three_engine_envelope.py",
+  "builder_gates": {
+    "all_lanes_pass": true,
+    "floor_and_closure_pass": true,
+    "no_heat_work_or_bath_gate_faked": true,
+    "packet_audit_verdict_absent": true,
+    "sample_and_full_m_scopes_both_reported": true
+  },
+  "capability_receipts": {
+    "jax": [
+      {
+        "computed_what": "branch merge counts and floor rows",
+        "receipt_id": "jax_networkx_basin_cycle_floor",
+        "status": "used",
+        "tool": "networkx"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "jax_sympy_basin_cycle_floor",
+        "status": "used",
+        "tool": "sympy"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "jax_z3_basin_cycle_floor",
+        "status": "used",
+        "tool": "z3"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "jax_cvc5_basin_cycle_floor",
+        "status": "used",
+        "tool": "cvc5"
+      }
+    ],
+    "julia": [
+      {
+        "computed_what": "branch graph m rows",
+        "receipt_id": "julia_Graphs_basin_cycle_floor",
+        "status": "used",
+        "tool": "Graphs"
+      },
+      {
+        "computed_what": "floor/reset identity and flips",
+        "receipt_id": "julia_Z3_basin_cycle_floor",
+        "status": "used",
+        "tool": "Z3"
+      }
+    ],
+    "pytorch": [
+      {
+        "computed_what": "branch merge counts and floor rows",
+        "receipt_id": "pytorch_torch_geometric_basin_cycle_floor",
+        "status": "used",
+        "tool": "torch_geometric"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "pytorch_torch.func_basin_cycle_floor",
+        "status": "used",
+        "tool": "torch.func"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "pytorch_sympy_basin_cycle_floor",
+        "status": "used",
+        "tool": "sympy"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "pytorch_z3_basin_cycle_floor",
+        "status": "used",
+        "tool": "z3"
+      },
+      {
+        "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+        "receipt_id": "pytorch_cvc5_basin_cycle_floor",
+        "status": "used",
+        "tool": "cvc5"
+      }
+    ]
+  },
+  "claim_ceiling": "basin_cycle_typed_counting_connection_packet_only",
+  "claim_path_tools": [
+    "build_three_engine_envelope",
+    "Graphs",
+    "Z3",
+    "networkx",
+    "torch.func",
+    "torch_geometric",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "closure_defect_scaled": 0,
+    "full_floor_scaled": 3496508,
+    "full_graph_m": 33,
+    "full_paid_scaled": 3496508,
+    "full_reset_scaled": 3496508,
+    "misledger_caught": 1,
+    "return_row_count": 3,
+    "sample_floor_scaled": 2197225,
+    "sample_m": 9,
+    "sample_paid_scaled": 2197225,
+    "sample_reset_scaled": 2197225
+  },
+  "controls": {
+    "commuting_control_D_I": {
+      "D_equals_I": true,
+      "E": "I + e (2A)",
+      "U": "I + u A",
+      "gap_norm": 0.0
+    },
+    "misledgered_omitted_entry": {
+      "caught_by_closure_gate": true,
+      "failure_reason": "perfect-record dissipation-free row becomes free cycle when reset charge is omitted",
+      "omitted_field": "reset_charge_nats"
+    },
+    "over_recorded": {
+      "all_reset_charges_appear": true
+    },
+    "record_erased": {
+      "all_floor_rows_bind": true
+    },
+    "shuffled_order_N01": {
+      "classical_anchor": "carnot_szilard_landauer_ledger_v1.controls.n01_order normal=sat permuted=unsat",
+      "normal_order": [
+        "readout_record",
+        "relax_merge",
+        "reset_record"
+      ],
+      "reason": "reset before packet-local record leaves no syndrome table to charge; N01 order is load-bearing",
+      "shuffled_order": [
+        "reset_record",
+        "readout_record",
+        "relax_merge"
+      ],
+      "status": "fail"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "closure_defect_scaled": 0,
+        "full_floor_scaled": 3496508,
+        "full_graph_m": 33,
+        "full_paid_scaled": 3496508,
+        "full_reset_scaled": 3496508,
+        "misledger_caught": 1,
+        "return_row_count": 3,
+        "sample_floor_scaled": 2197225,
+        "sample_m": 9,
+        "sample_paid_scaled": 2197225,
+        "sample_reset_scaled": 2197225
+      },
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "misledger_flip_verdict": "sat",
+      "polarity": "violation assertion; real rows UNSAT, erased or misledgered controls SAT",
+      "ran": true,
+      "tool": "cvc5",
+      "verdict": "unsat",
+      "violation_assertion": "any floor/record/reset/closure invariant fails"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_values": {
+        "closure_defect_scaled": 0,
+        "full_floor_scaled": 3496508,
+        "full_graph_m": 33,
+        "full_paid_scaled": 3496508,
+        "full_reset_scaled": 3496508,
+        "misledger_caught": 1,
+        "return_row_count": 3,
+        "sample_floor_scaled": 2197225,
+        "sample_m": 9,
+        "sample_paid_scaled": 2197225,
+        "sample_reset_scaled": 2197225
+      },
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "misledger_flip_verdict": "sat",
+      "polarity": "violation assertion; real rows UNSAT, erased or misledgered controls SAT",
+      "ran": true,
+      "tool": "z3",
+      "verdict": "unsat",
+      "violation_assertion": "any floor/record/reset/closure invariant fails"
+    }
+  },
+  "disallowed_claims": [
+    "physics",
+    "bridge admission",
+    "M(C) admission",
+    "Axis0 admission",
+    "engine placement",
+    "QCA/index claim",
+    "manifold admission",
+    "thermodynamic heat/work claim on basin carrier"
+  ],
+  "divergence": {
+    "basis": "sample_m*100 + full_graph_m",
+    "engine_values": {
+      "jax": 933,
+      "julia": 933,
+      "pytorch": 933
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "tolerance": 0
+  },
+  "divergence_log": [
+    "classical baseline rows remain legality anchors only; no heat/work or physics novelty claim"
+  ],
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims_carnot_szilard_basin_cycle_v0",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "branch merge counts and floor rows",
+          "receipt_id": "jax_networkx_basin_cycle_floor",
+          "status": "used",
+          "tool": "networkx"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "jax_sympy_basin_cycle_floor",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "jax_z3_basin_cycle_floor",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "jax_cvc5_basin_cycle_floor",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "all_three_full_sims_carnot_szilard_basin_cycle_v0",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "pass": true,
+        "tool_call_count": 4
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver computed m/floor count identity with violation UNSAT",
+        "networkx": "nx.DiGraph/nx.has_path branch-to-terminal carrier check",
+        "sympy": "sp.Rational and sp.log exact count-side floor rows",
+        "z3": "z3.Solver computed m/floor count identity with violation UNSAT"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_jax_results.json",
+      "result_sha256": "0d968a4d4f64cde9492ab3a100551aa5b27f0ad3dc39e066e3b8c0e0c468a3cb",
+      "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_jax.py",
+      "source_sha256": "beae6998ddedb91caba26762cf3245e9c3e9ba85fe6028601c0d5a1ed1280a51",
+      "tool_calls": [
+        {
+          "boundary_case": "commuting D/I control collapses",
+          "demotion_condition": "counts or flips diverge from envelope",
+          "gates": [
+            "all_pass",
+            "floor_test",
+            "divergence"
+          ],
+          "input_object": "RETURN row branch carrier",
+          "load_bearing": true,
+          "negative/erased_control": "erased/misledger SMT flips",
+          "output_object": "m_sample/m_full_graph/floor row",
+          "positive_case": "m_sample=9 and m_full_graph=33",
+          "qualified_api/function": "networkx",
+          "receipt_id": "jax_networkx_basin_cycle_floor",
+          "tool": "networkx"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "sympy",
+          "receipt_id": "jax_sympy_basin_cycle_floor",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "z3",
+          "receipt_id": "jax_z3_basin_cycle_floor",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "cvc5",
+          "receipt_id": "jax_cvc5_basin_cycle_floor",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "branch graph m rows",
+          "receipt_id": "julia_Graphs_basin_cycle_floor",
+          "status": "used",
+          "tool": "Graphs"
+        },
+        {
+          "computed_what": "floor/reset identity and flips",
+          "receipt_id": "julia_Z3_basin_cycle_floor",
+          "status": "used",
+          "tool": "Z3"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "all_three_full_sims_carnot_szilard_basin_cycle_v0",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "pass": true,
+        "tool_call_count": 2
+      },
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge! branch-to-terminal merge carrier",
+        "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check computed m/floor/reset identity with flips"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_julia_results.json",
+      "result_sha256": "f64efa5e36bf447a24453ca363965cb599ee0028923768e2928267bb1bed9ab9",
+      "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_julia.jl",
+      "source_sha256": "5739b86c5456a3c25c563cda1b25d00aa79000798ca08cacafe4bd5636af7f8a",
+      "tool_calls": [
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!",
+          "receipt_id": "julia_Graphs_basin_cycle_floor",
+          "tool": "Graphs"
+        },
+        {
+          "load_bearing": true,
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+          "receipt_id": "julia_Z3_basin_cycle_floor",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "capability_receipts": [
+        {
+          "computed_what": "branch merge counts and floor rows",
+          "receipt_id": "pytorch_torch_geometric_basin_cycle_floor",
+          "status": "used",
+          "tool": "torch_geometric"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "pytorch_torch.func_basin_cycle_floor",
+          "status": "used",
+          "tool": "torch.func"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "pytorch_sympy_basin_cycle_floor",
+          "status": "used",
+          "tool": "sympy"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "pytorch_z3_basin_cycle_floor",
+          "status": "used",
+          "tool": "z3"
+        },
+        {
+          "computed_what": "computed-value floor/closure identity and erased/misledger flips",
+          "receipt_id": "pytorch_cvc5_basin_cycle_floor",
+          "status": "used",
+          "tool": "cvc5"
+        }
+      ],
+      "classification": "scratch_diagnostic",
+      "engine_mode": "all_three_full_sims_carnot_szilard_basin_cycle_v0",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "pass": true,
+        "tool_call_count": 5
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver torch-derived computed m/floor count identity",
+        "sympy": "sp.Rational and sp.log exact count-side floor rows",
+        "torch.func": "torch.func.vmap vectorized sample/full merge count comparison",
+        "torch_geometric": "torch_geometric.data.Data branch graph edge_index carrier",
+        "z3": "z3.Solver torch-derived computed m/floor count identity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_pytorch_results.json",
+      "result_sha256": "084190af570cffe6effde3ea8618ac6d17f495429ebc2eedeec1b8d6a481b25d",
+      "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/carnot_szilard_basin_cycle_v0_pytorch.py",
+      "source_sha256": "595aa7e3328859cf35bf64248496ce1e1be23ee5a4b2adc1a169900711e8d677",
+      "tool_calls": [
+        {
+          "boundary_case": "commuting D/I control collapses",
+          "demotion_condition": "counts or flips diverge from envelope",
+          "gates": [
+            "all_pass",
+            "floor_test",
+            "divergence"
+          ],
+          "input_object": "RETURN row branch carrier",
+          "load_bearing": true,
+          "negative/erased_control": "erased/misledger SMT flips",
+          "output_object": "m_sample/m_full_graph/floor row",
+          "positive_case": "m_sample=9 and m_full_graph=33",
+          "qualified_api/function": "torch_geometric",
+          "receipt_id": "pytorch_torch_geometric_basin_cycle_floor",
+          "tool": "torch_geometric"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "torch.func",
+          "receipt_id": "pytorch_torch.func_basin_cycle_floor",
+          "tool": "torch.func"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "sympy",
+          "receipt_id": "pytorch_sympy_basin_cycle_floor",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "z3",
+          "receipt_id": "pytorch_z3_basin_cycle_floor",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "sample/full graph both bound",
+          "demotion_condition": "no flip or unbound values",
+          "gates": [
+            "all_pass",
+            "crossover_proofs"
+          ],
+          "input_object": "computed m/floor/reset scaled values",
+          "load_bearing": true,
+          "negative/erased_control": "erased or misledgered binding SAT",
+          "output_object": "SAT/UNSAT gate verdicts",
+          "positive_case": "real row violation assertion UNSAT",
+          "qualified_api/function": "cvc5",
+          "receipt_id": "pytorch_cvc5_basin_cycle_floor",
+          "tool": "cvc5"
+        }
+      ]
+    }
+  },
+  "envelope_built_with_helper": true,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T06:45:46Z",
+  "honest_boundaries": [
+    "heat/work variables on the basin carrier remain open; no q_hot/q_cold/work_out is faked",
+    "basin record object is packet-local; z4 is convention only",
+    "basin-Landauer floor is typed counting nats, not thermodynamic T heat",
+    "adiabatic isolation/bath-gating remains open; boundary 4 from the stroke map stays open",
+    "spatial return is not ledger closure; closure is computed with record/reset rows",
+    "no physics, bridge, M(C), Axis0 admission, engine placement, QCA/index, or manifold admission claim"
+  ],
+  "lane_comparison": {
+    "all_lanes_same": true,
+    "basis": "sample_m*100 + full_graph_m",
+    "engine_values": {
+      "jax": 933,
+      "julia": 933,
+      "pytorch": 933
+    }
+  },
+  "ledger_closure_account": {
+    "all_rows_closed": true,
+    "cross_type_sum": false,
+    "state_plus_record_convention": "packet-local finite syndrome table, following z4 convention without reusing z4 carrier"
+  },
+  "legality_anchor_report": {
+    "classical_fence": {
+      "ceiling": "classical_baseline exclusion evidence only",
+      "commit": "e10273983",
+      "path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_envelope_results.json",
+      "rows": [
+        "super_carnot_eta_3_4 unsat",
+        "below_landauer_half_paid unsat",
+        "unpaid_erasure_surplus unsat"
+      ]
+    },
+    "classical_ledger": {
+      "ceiling": "classical_baseline exclusion evidence only",
+      "commit": "d79d71a0d",
+      "path": "system_v6/sims/carnot_szilard_landauer_ledger_v1/results/carnot_szilard_landauer_ledger_v1_envelope_results.json",
+      "rows": [
+        "candidate_super_carnot_cycle entropy_production=-1/2 unsat",
+        "szilard_unpaid_erasure_variant unsat",
+        "below_landauer_half_paid unsat",
+        "misledgered_control caught"
+      ]
+    }
+  },
+  "mode": "all_three_full_sims_carnot_szilard_basin_cycle_v0",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object_id": "carnot_szilard_basin_cycle_v0",
+  "one_to_one_tool_calls": {
+    "by_engine": {
+      "jax": {
+        "pass": true,
+        "tool_call_count": 4
+      },
+      "julia": {
+        "pass": true,
+        "tool_call_count": 2
+      },
+      "pytorch": {
+        "pass": true,
+        "tool_call_count": 5
+      }
+    },
+    "pass": true
+  },
+  "parent_lineage": {
+    "basin_dof_common": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_common.py",
+    "basin_dof_envelope": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_envelope_results.json",
+    "blind_panel_7": "system_v6/receipts/cross_model_anchor_recompute_panel7_20260612.md",
+    "classical_fence_envelope": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_envelope_results.json",
+    "classical_ledger_envelope": "system_v6/sims/carnot_szilard_landauer_ledger_v1/results/carnot_szilard_landauer_ledger_v1_envelope_results.json",
+    "owner_doctrine": "system_v6/receipts/owner_doctrine_carnot_szilard_connection_20260612.md",
+    "ring_checkerboard_envelope": "system_v6/sims/ring_checkerboard_automaton_v0/results/ring_checkerboard_automaton_v0_envelope_results.json",
+    "s6_loop_gap_envelope": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+    "stroke_map": "system_v6/receipts/carnot_szilard_basin_map_20260612.md",
+    "typed_entropy_envelope": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json",
+    "z4_record_envelope": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json"
+  },
+  "promotion_allowed": false,
+  "result_integrity": {
+    "build_helper_path": "scripts/build_three_engine_envelope.py",
+    "build_helper_sha256": "199dae118fd09dec2150d7f65e388221bf4e4e3bdcd9feac0d3fbcc99ecc98dd",
+    "envelope_content_without_result_hash_sha256": "048d78adaaff93eb305622b90c62a69792a890fb2a39bea8f2f9578c66ba6903",
+    "leg_result_sha256": {
+      "jax": "0d968a4d4f64cde9492ab3a100551aa5b27f0ad3dc39e066e3b8c0e0c468a3cb",
+      "julia": "f64efa5e36bf447a24453ca363965cb599ee0028923768e2928267bb1bed9ab9",
+      "pytorch": "084190af570cffe6effde3ea8618ac6d17f495429ebc2eedeec1b8d6a481b25d"
+    }
+  },
+  "result_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/results/carnot_szilard_basin_cycle_v0_envelope_results.json",
+  "row_classification": "classical_baseline",
+  "schema": "carnot_szilard_basin_cycle_v0.envelope.v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "carnot_szilard_basin_cycle_v0",
+  "source_import_audit": {
+    "basin_dof_common": {
+      "exists": true,
+      "git_last_commit": "f41d4c311",
+      "path": "system_v6/sims/basin_dof_perturb_and_read_v0/basin_dof_perturb_and_read_v0_common.py",
+      "role": "authority_or_parent",
+      "sha256": "91105ac7e62281e1ccace2b27e81629ea73870793c87c7caf315a3bff7a81c0a"
+    },
+    "basin_dof_envelope": {
+      "commit_hint": "f41d4c311",
+      "exists": true,
+      "git_last_commit": "f41d4c311",
+      "path": "system_v6/sims/basin_dof_perturb_and_read_v0/results/basin_dof_perturb_and_read_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "4a3eb254c8320e637f285c487afcf5d74bd3e21f56fcf4036636f9087bb5e63c"
+    },
+    "blind_panel_7": {
+      "commit_hint": "1f8ddb9e1",
+      "exists": true,
+      "git_last_commit": "1f8ddb9e1",
+      "path": "system_v6/receipts/cross_model_anchor_recompute_panel7_20260612.md",
+      "role": "authority_or_parent",
+      "sha256": "07e03ad6e488850b8b90b62cbe3ded3f4beffb5cdae79d781347cb1a9e20ed60"
+    },
+    "classical_fence_envelope": {
+      "commit_hint": "e10273983",
+      "exists": true,
+      "git_last_commit": "e10273983",
+      "path": "system_v6/sims/carnot_szilard_landauer_fence_v0/results/carnot_szilard_landauer_fence_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "29b342a7506ed7927f0517155a514e5658c653d86f7ae9ef8d4d3daf880b3eef"
+    },
+    "classical_ledger_envelope": {
+      "commit_hint": "d79d71a0d",
+      "exists": true,
+      "git_last_commit": "d79d71a0d",
+      "path": "system_v6/sims/carnot_szilard_landauer_ledger_v1/results/carnot_szilard_landauer_ledger_v1_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "8dd585f59b307203c9a29097d2f4ac8d218ec09a64e37a27ea43bb937d5f54cc"
+    },
+    "owner_doctrine": {
+      "commit_hint": "24d03db89",
+      "exists": true,
+      "git_last_commit": "24d03db89",
+      "path": "system_v6/receipts/owner_doctrine_carnot_szilard_connection_20260612.md",
+      "role": "authority_or_parent",
+      "sha256": "48afd54fe15c083318d3ac499ab76d0e1ed5e77c785d3d09ce133fa8d03c87fc"
+    },
+    "ring_checkerboard_envelope": {
+      "exists": true,
+      "git_last_commit": "d5fa4641e",
+      "path": "system_v6/sims/ring_checkerboard_automaton_v0/results/ring_checkerboard_automaton_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "474460b9630731cc7492cd68a68c1c72c4ce4d7953a48368ab28e32bdbea27d4"
+    },
+    "s6_loop_gap_envelope": {
+      "exists": true,
+      "git_last_commit": "6aa75cc96",
+      "path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "5504eea079bc4f7f92b1874d83dfdb94a75e6a12d1da39cc0225305fdbbe4ae8"
+    },
+    "stroke_map": {
+      "commit_hint": "e0d6f5055",
+      "exists": true,
+      "git_last_commit": "e0d6f5055",
+      "path": "system_v6/receipts/carnot_szilard_basin_map_20260612.md",
+      "role": "authority_or_parent",
+      "sha256": "10e51e74a810917df44668024eb5a7eebfe465007e383d74dd6ca850bba4c690"
+    },
+    "typed_entropy_envelope": {
+      "exists": true,
+      "git_last_commit": "a54224476",
+      "path": "system_v6/sims/manifold_entropy_ledger_v0/results/manifold_entropy_ledger_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "3babcf8fb66f1543e1e5fd3f5b0a2c6b74a47bf4d943489319c08a2b268c8eb6"
+    },
+    "z4_record_envelope": {
+      "exists": true,
+      "git_last_commit": "7481c3fd6",
+      "path": "system_v6/sims/z4_syndrome_record_v0/results/z4_syndrome_record_v0_envelope_results.json",
+      "role": "authority_or_parent",
+      "sha256": "ab333e09e7406624f549ef0630195262b1904697803527eaf4306d6689608eb8"
+    }
+  },
+  "source_path": "system_v6/sims/carnot_szilard_basin_cycle_v0/write_envelope_spec.py",
+  "source_sha256": "70391a857989c7cebd0a17345c7906ed1ad5dc56a084864acc580b0ac123802e",
+  "stability_pairs": [
+    {
+      "hash": "b9e5f1474da73a360fcc6033c7eed4376511dab08a22042b6444bad3e6a5efb7",
+      "subtree": "basin_cycle_rows"
+    },
+    {
+      "hash": "7c7d5635f4395c3ca369285614650fb9c30713ae956f666511bfe960422db893",
+      "subtree": "controls"
+    },
+    {
+      "hash": "7d0d803ab62263ad6022b0aa46081279e329ff958127c6869c8088e55e58bbaf",
+      "subtree": "alternation_rows"
+    },
+    {
+      "hash": "ab70b75b7a54c4df3beef2b5232a46360e3a5ef126f6890a90df0bd16963e0e9",
+      "subtree": "structure_map_table"
+    }
+  ],
+  "structure_map_table": [
+    {
+      "basin_phase": "perturb/readout",
+      "boundary": "Basin has no heat bath variable yet; typed-state perturbation, not thermodynamic heat.",
+      "carnot_stroke": "hot_isothermal_expansion",
+      "committed_source_field": "trajectory_rows[].perturbation_size, perturbed_cell",
+      "computed_ledger_field": "per_phase_typed_counting_ledger.perturb.ln_cardinality_injected_*",
+      "shared_mechanic": "open/contact with distinguishable branch",
+      "szilard_phase": "measure_record_one_bit"
+    },
+    {
+      "basin_phase": "relax toward terminal class",
+      "boundary": "Basin relax is not a work extractor; this packet computes typed counting dissipation analog only.",
+      "carnot_stroke": "hot stroke positive work contribution",
+      "committed_source_field": "shortest_terminal_path(perturbed, graph), trajectory_rows[].trajectory",
+      "computed_ledger_field": "state_loss_*_nats and floor_nats",
+      "shared_mechanic": "feedback/relaxation",
+      "szilard_phase": "feedback_isothermal_expansion"
+    },
+    {
+      "basin_phase": "internal graph travel if a future ledger defines it",
+      "boundary": "Honest gap: no basin counterpart to adiabatic isolation or bath-gating is committed.",
+      "carnot_stroke": "adiabatic_expansion / adiabatic_compression",
+      "committed_source_field": "current basin result has graph trajectory only",
+      "computed_ledger_field": "no basin ledger field emitted",
+      "shared_mechanic": "isolated/no-contact stroke",
+      "szilard_phase": "no direct Szilard phase; order legality instead"
+    },
+    {
+      "basin_phase": "record reset for merged perturb states",
+      "boundary": "Packet constructs its own basin syndrome table; do not reuse Z4 record as basin record.",
+      "carnot_stroke": "cold_isothermal_compression",
+      "committed_source_field": "Z4 convention cited; basin RETURN rows only provide merge carriers",
+      "computed_ledger_field": "record_variant.reset_charge_nats",
+      "shared_mechanic": "cold rejection / cost payment",
+      "szilard_phase": "erase_record"
+    },
+    {
+      "basin_phase": "perturb -> relax -> return",
+      "boundary": "Spatial/readout return is not ledger closure; closure is computed separately here.",
+      "carnot_stroke": "energy_residual=0, entropy_production=0",
+      "committed_source_field": "returned_to_prior_terminal_class=true",
+      "computed_ledger_field": "closure_account.closed_under_state_plus_record",
+      "shared_mechanic": "closed cycle ledger",
+      "szilard_phase": "paid row net after erasure=0"
+    },
+    {
+      "basin_phase": "cycle beating ln(m) floor",
+      "boundary": "No claim beyond typed counting nats; a beating row would be the finding.",
+      "carnot_stroke": "candidate_super_carnot_cycle unsat",
+      "committed_source_field": "m_sample=9, m_full_candidate=33 from RETURN rows",
+      "computed_ledger_field": "floor_test.status",
+      "shared_mechanic": "illegal free lunch",
+      "szilard_phase": "unpaid/half-paid erasure unsat"
+    },
+    {
+      "basin_phase": "D/I alternation and shuffled order controls",
+      "boundary": "Dual-stack/ring anchors stay scratch support, not QCA, engine placement, or admission.",
+      "carnot_stroke": "D=U E U E",
+      "committed_source_field": "S6 Phi_D/Phi_I and ring alternating/paired rows",
+      "computed_ledger_field": "alternation_rows.noncommuting_small_stroke",
+      "shared_mechanic": "two loop forms/order legality",
+      "szilard_phase": "I=E U E U"
+    }
+  ],
+  "tool_calls": {
+    "jax": [
+      {
+        "boundary_case": "commuting D/I control collapses",
+        "demotion_condition": "counts or flips diverge from envelope",
+        "gates": [
+          "all_pass",
+          "floor_test",
+          "divergence"
+        ],
+        "input_object": "RETURN row branch carrier",
+        "load_bearing": true,
+        "negative/erased_control": "erased/misledger SMT flips",
+        "output_object": "m_sample/m_full_graph/floor row",
+        "positive_case": "m_sample=9 and m_full_graph=33",
+        "qualified_api/function": "networkx",
+        "receipt_id": "jax_networkx_basin_cycle_floor",
+        "tool": "networkx"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "sympy",
+        "receipt_id": "jax_sympy_basin_cycle_floor",
+        "tool": "sympy"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "z3",
+        "receipt_id": "jax_z3_basin_cycle_floor",
+        "tool": "z3"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "cvc5",
+        "receipt_id": "jax_cvc5_basin_cycle_floor",
+        "tool": "cvc5"
+      }
+    ],
+    "julia": [
+      {
+        "load_bearing": true,
+        "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!",
+        "receipt_id": "julia_Graphs_basin_cycle_floor",
+        "tool": "Graphs"
+      },
+      {
+        "load_bearing": true,
+        "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+        "receipt_id": "julia_Z3_basin_cycle_floor",
+        "tool": "Z3"
+      }
+    ],
+    "pytorch": [
+      {
+        "boundary_case": "commuting D/I control collapses",
+        "demotion_condition": "counts or flips diverge from envelope",
+        "gates": [
+          "all_pass",
+          "floor_test",
+          "divergence"
+        ],
+        "input_object": "RETURN row branch carrier",
+        "load_bearing": true,
+        "negative/erased_control": "erased/misledger SMT flips",
+        "output_object": "m_sample/m_full_graph/floor row",
+        "positive_case": "m_sample=9 and m_full_graph=33",
+        "qualified_api/function": "torch_geometric",
+        "receipt_id": "pytorch_torch_geometric_basin_cycle_floor",
+        "tool": "torch_geometric"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "torch.func",
+        "receipt_id": "pytorch_torch.func_basin_cycle_floor",
+        "tool": "torch.func"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "sympy",
+        "receipt_id": "pytorch_sympy_basin_cycle_floor",
+        "tool": "sympy"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "z3",
+        "receipt_id": "pytorch_z3_basin_cycle_floor",
+        "tool": "z3"
+      },
+      {
+        "boundary_case": "sample/full graph both bound",
+        "demotion_condition": "no flip or unbound values",
+        "gates": [
+          "all_pass",
+          "crossover_proofs"
+        ],
+        "input_object": "computed m/floor/reset scaled values",
+        "load_bearing": true,
+        "negative/erased_control": "erased or misledgered binding SAT",
+        "output_object": "SAT/UNSAT gate verdicts",
+        "positive_case": "real row violation assertion UNSAT",
+        "qualified_api/function": "cvc5",
+        "receipt_id": "pytorch_cvc5_basin_cycle_floor",
+        "tool": "cvc5"
+      }
+    ]
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "basin_RETURN_row_merge_count_floor",
+      "packet_local_state_plus_record_closure",
+      "Szilard_honesty_reset_charge",
+      "D_I_alternation_gap_control",
+      "misledgered_control_caught"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat cross-checks the same computed floor gate",
+        "networkx": "nx.DiGraph/nx.has_path/nx.shortest_path constructs branch merge graph and positive/erased controls",
+        "sympy": "sp.Rational/sp.log exact count-side rows for m_sample and m_full_graph",
+        "z3": "z3.Solver/z3.Int/check binds computed m/floor/reset counts and misledger flip"
+      },
+      "julia": {
+        "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge! constructs branch->terminal merge carrier for computed m rows",
+        "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check binds computed m/floor/reset counts and misledger flip"
+      },
+      "pytorch": {
+        "cvc5": "cvc5.Solver/mkConst/assertFormula/checkSat cross-checks the same computed floor gate",
+        "sympy": "sp.Rational/sp.log exact count-side rows for m_sample and m_full_graph",
+        "torch.func": "torch.func.vmap vectorizes sample/full merge count comparison",
+        "torch_geometric": "torch_geometric.data.Data carries branch graph edge_index for merge rows",
+        "z3": "z3.Solver/z3.Int/check binds computed torch-derived counts and flips"
+      }
+    }
+  }
+}

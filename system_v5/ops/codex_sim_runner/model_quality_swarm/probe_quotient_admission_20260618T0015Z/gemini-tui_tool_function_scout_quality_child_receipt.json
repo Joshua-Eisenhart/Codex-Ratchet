@@ -1,0 +1,71 @@
+{
+  "blocked_consumers": [
+    "sim_admission",
+    "formal_evidence",
+    "canonical_status",
+    "layer_claim",
+    "manifold_claim",
+    "axis_claim",
+    "wizard_full_claim"
+  ],
+  "child_id": "gemini-tui_tool_function_scout",
+  "claim_ceiling": "proposal-only model audit; not sim evidence, not Wizard FULL proof, not admission evidence, not promotion evidence",
+  "content": "```json\n{\n  \"diagnosis\": \"The `wizard_sim_admission.py` validator incorrectly applies stringent nonclassical load-bearing tool registration checks to simulations classified as `scratch_diagnostic` with `formal_admission_allowed=false`. These checks are inappropriate for diagnostics not intended for formal admission, leading to erroneous failure findings of `nonclassical_load_bearing_tool_missing_two_root_registry` and `nonclassical_suitable_load_bearing_tool_missing`.\",\n  \"smallest_executable_fix\": \"Modify `scripts/wizard_sim_admission.py` to conditionally skip or downgrade the severity of nonclassical load-bearing tool validation checks if the `sim_id`'s metadata indicates a `classification` of `scratch_diagnostic` and `formal_admission_allowed` is `false`. The change should ensure that `scratch_diagnostic` simulations do not fail admission solely due to the absence of load-bearing tool registrations.\",\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"scripts/codex_sim_runner.py\",\n    \"scripts/two_root_constraints.py\"\n  ],\n  \"verifier_commands\": [\n    \"python scripts/wizard_sim_admission.py --sim_id probe_quotient_fingerprint_floor_v1 --tool_target jax --result_file system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\"\n  ],\n  \"stop_condition\": \"The `wizard_sim_admission.py` script executes without reporting `nonclassical_load_bearing_tool_missing_two_root_registry` or `nonclassical_suitable_load_bearing_tool_missing` failures for `probe_quotient_fingerprint_floor_v1` when the classification is `scratch_diagnostic` and `formal_admission_allowed` is `false`.\",\n  \"one_risk\": \"The fix might inadvertently bypass other crucial, non-load-bearing related validation checks for `scratch_diagnostic` simulations that are still necessary to ensure diagnostic integrity, leading to a false sense of success for a broader range of diagnostic issues.\"\n}\n```",
+  "content_sha256": "16e0d1c57804bf965e2f9acf534527aafd2e1c338cdd360be8cea04d0917395b",
+  "created_at": "2026-06-18T07:14:00.546989+00:00",
+  "duration_ms": 16028,
+  "eligible_consumers": [
+    "proposal_synthesis",
+    "audit_synthesis",
+    "next_step_selection"
+  ],
+  "env_key_used": null,
+  "evidence_role": "scout",
+  "extraction": {
+    "content_empty": false,
+    "content_was_null": false,
+    "extraction_source": "stdout",
+    "extraction_status": "usable_content",
+    "output_text": "```json\n{\n  \"diagnosis\": \"The `wizard_sim_admission.py` validator incorrectly applies stringent nonclassical load-bearing tool registration checks to simulations classified as `scratch_diagnostic` with `formal_admission_allowed=false`. These checks are inappropriate for diagnostics not intended for formal admission, leading to erroneous failure findings of `nonclassical_load_bearing_tool_missing_two_root_registry` and `nonclassical_suitable_load_bearing_tool_missing`.\",\n  \"smallest_executable_fix\": \"Modify `scripts/wizard_sim_admission.py` to conditionally skip or downgrade the severity of nonclassical load-bearing tool validation checks if the `sim_id`'s metadata indicates a `classification` of `scratch_diagnostic` and `formal_admission_allowed` is `false`. The change should ensure that `scratch_diagnostic` simulations do not fail admission solely due to the absence of load-bearing tool registrations.\",\n  \"files_to_touch\": [\n    \"scripts/wizard_sim_admission.py\"\n  ],\n  \"files_not_to_touch\": [\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\",\n    \"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\",\n    \"scripts/codex_sim_runner.py\",\n    \"scripts/two_root_constraints.py\"\n  ],\n  \"verifier_commands\": [\n    \"python scripts/wizard_sim_admission.py --sim_id probe_quotient_fingerprint_floor_v1 --tool_target jax --result_file system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\"\n  ],\n  \"stop_condition\": \"The `wizard_sim_admission.py` script executes without reporting `nonclassical_load_bearing_tool_missing_two_root_registry` or `nonclassical_suitable_load_bearing_tool_missing` failures for `probe_quotient_fingerprint_floor_v1` when the classification is `scratch_diagnostic` and `formal_admission_allowed` is `false`.\",\n  \"one_risk\": \"The fix might inadvertently bypass other crucial, non-load-bearing related validation checks for `scratch_diagnostic` simulations that are still necessary to ensure diagnostic integrity, leading to a false sense of success for a broader range of diagnostic issues.\"\n}\n```",
+    "reasoning_present": false
+  },
+  "formal_admission_allowed": false,
+  "http_status": null,
+  "launch_surface": "gemini_tui_cli",
+  "model": "gemini-2.5-flash",
+  "model_child_schema": "codex_model_child_receipt_v1",
+  "model_outputs_are_sim_evidence": false,
+  "not_codex_native_subsubagent": true,
+  "promotion_allowed": false,
+  "prompt_sha256": "8a59105273cd10d11d71762b606a5ab173544c84568b4a860568c22912bd6254",
+  "proposal_only": true,
+  "proposed_deterministic_checks": [
+    "python_runner_rerun",
+    "three_engine_validator_when_applicable",
+    "wizard_sim_admission_validator",
+    "repo_contract_tests"
+  ],
+  "provider": "gemini_cli",
+  "raw_response_excerpt": "{\"command\": [\"gemini\", \"-m\", \"gemini-2.5-flash\", \"-p\", \"<prompt>\"], \"returncode\": 0, \"stderr_tail\": \"Warning: Basic terminal detected (TERM=dumb). Visual rendering will be limited. For the best experience, use a terminal emulator with truecolor support.\\nWarning: 256-color support not detected. Using a terminal with at least 256-color support is recommended for a better visual experience.\\nRipgrep is not available. Falling back to GrepTool.\\nBoth GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.\\n\", \"stdout\": \"```json\\n{\\n  \\\"diagnosis\\\": \\\"The `wizard_sim_admission.py` validator incorrectly applies stringent nonclassical load-bearing tool registration checks to simulations classified as `scratch_diagnostic` with `formal_admission_allowed=false`. These checks are inappropriate for diagnostics not intended for formal admission, leading to erroneous failure findings of `nonclassical_load_bearing_tool_missing_two_root_registry` and `nonclassical_suitable_load_bearing_tool_missing`.\\\",\\n  \\\"smallest_executable_fix\\\": \\\"Modify `scripts/wizard_sim_admission.py` to conditionally skip or downgrade the severity of nonclassical load-bearing tool validation checks if the `sim_id`'s metadata indicates a `classification` of `scratch_diagnostic` and `formal_admission_allowed` is `false`. The change should ensure that `scratch_diagnostic` simulations do not fail admission solely due to the absence of load-bearing tool registrations.\\\",\\n  \\\"files_to_touch\\\": [\\n    \\\"scripts/wizard_sim_admission.py\\\"\\n  ],\\n  \\\"files_not_to_touch\\\": [\\n    \\\"system_v7/sims/probe_quotient_fingerprint_floor_v1/check_agreement.py\\\",\\n    \\\"system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_three_engine_results.json\\\",\\n    \\\"scripts/codex_sim_runner.py\\\",\\n    \\\"scripts/two_root_constraints.py\\\"\\n  ],\\n  \\\"verifier_commands\\\": [\\n    \\\"python scripts/wizard_sim_admission.py --sim_id probe_quotient_fingerprint_floor_v1 --tool_target jax --resu",
+  "raw_response_path": null,
+  "returncode": 0,
+  "route": "tool_function_scout",
+  "runtime": "gemini-tui",
+  "schema": "codex_model_quality_child_receipt_v1",
+  "score": {
+    "accepted": true,
+    "components": {
+      "actionability": 16,
+      "evidence_specificity": 20,
+      "extraction_health": 9,
+      "gate_alignment": 6,
+      "novel_failure_detection": 6,
+      "overclaim_resistance": 2
+    },
+    "penalties": [],
+    "total": 59,
+    "word_count": 197
+  },
+  "status": "completed",
+  "usage": null
+}

@@ -1,0 +1,1563 @@
+{
+  "object_id": "c3_chirality_constraint_candidate_v1",
+  "generated_at": "2026-06-04T07:18:02.355",
+  "classification": "diagnostic_only_candidate_c3",
+  "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/c3_chirality_constraint_candidate.jl",
+  "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/c3_chirality_constraint_candidate_results.json",
+  "source_sha256": "4e005423b8173e596f542106daa27a4e76f085fda546b178a4e8e70ff125466d",
+  "julia_version": "1.12.6",
+  "promotion_allowed": false,
+  "claim_ceiling": "Candidate C3 probe only. Does not assert layer-completion, manifold admission, coupling, bridge, flux, Axis0, or physics.",
+  "candidate_c3_name": "C3_Z2_sector_probe_distinguishability",
+  "candidate_c3": "C3_Z2_sector_probe_distinguishability: admitted_C3 iff the finite probe family contains a balanced Hermitian involution Gamma and a nontrivial Hermitian observable O, not Gamma or a scalar identity, with Tr(P_plus O)/rank(P_plus) != Tr(P_minus O)/rank(P_minus).",
+  "candidate_c3_definition": "C3_Z2_sector_probe_distinguishability: admitted_C3 iff the finite probe family contains a balanced Hermitian involution Gamma and a nontrivial Hermitian observable O, not Gamma or a scalar identity, with Tr(P_plus O)/rank(P_plus) != Tr(P_minus O)/rank(P_minus).",
+  "nominalist_frame": {
+    "identity": "probe-relative: a~b iff all admissible probes agree",
+    "root_axiom": "a = a iff a ~ b",
+    "chirality_status": "chosen principle added as C3; F01+N01 alone still admits the nonchiral controls"
+  },
+  "finite_map": {
+    "rule": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+    "input": [
+      "finite carrier",
+      "finite probe family"
+    ],
+    "output": [
+      "admitted_C3",
+      "excluded_C3"
+    ],
+    "admitted_condition": "F01 and N01 survive, a valid balanced Gamma is present, and a nontrivial probe separates the normalized Gamma sectors",
+    "excluded_condition": "F01 or N01 fails, or the finite probe family has no valid balanced Gamma-sector distinguishing witness"
+  },
+  "domain": [
+    "nonchiral_dim4",
+    "nonchiral_dim8"
+  ],
+  "codomain_or_output": [
+    "admitted_C3",
+    "excluded_C3"
+  ],
+  "root_constraints_in_force": {
+    "F01": "finite carrier and finite probe/operator family with finite entries",
+    "N01": "at least one nonzero commutator exists in the finite probe/operator family",
+    "C3": "balanced Z2 sector probe distinguishability"
+  },
+  "carrier_realization": "Julia-native finite ComplexF64 matrices and finite density matrices; no NumPy or dense-state closure claim beyond this diagnostic object.",
+  "peps3d_embedding": "blocked_not_part_of_this_candidate_probe",
+  "spinor_state": "finite gamma5-style Z2 sector object only; no full spinor-network carrier admission claimed",
+  "quaternion_action": "not_applicable",
+  "dependency_receipts": [
+    "system_v5/julia_carrier/nonchiral_carrier_f01n01_negative_control_results.json",
+    "system_v5/julia_carrier/branch_prune_dirac_gamma5_chirality_object_results.json"
+  ],
+  "downstream_blocks": [
+    "layer_completion",
+    "manifold_admission",
+    "coupling",
+    "bridge",
+    "flux",
+    "Axis0",
+    "physics"
+  ],
+  "carrier_results": {
+    "nonchiral_dim4": {
+      "carrier": "nonchiral_dim4",
+      "dim": 4,
+      "description": "two-qubit finite carrier with noncommuting probes and no admitted Z2 grading probe",
+      "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+      "codomain_value": "excluded",
+      "f01": true,
+      "n01": true,
+      "c3": {
+        "admitted_C3": false,
+        "verdict": "excluded_C3",
+        "reason": "no_valid_balanced_hermitian_involution_in_probe_family",
+        "valid_gamma_count": 0,
+        "gamma_candidates": [
+          {
+            "probe_name": "H_nonchiral_dim4",
+            "role": "hamiltonian",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          },
+          {
+            "probe_name": "two_qubit_dephasing_probe",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          }
+        ],
+        "observable_checks": [],
+        "witness": null
+      },
+      "commutator_norm": 3.06307035505,
+      "commutator_witness_pair": [
+        "H_nonchiral_dim4",
+        "two_qubit_dephasing_probe"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "nonempty_probe_family": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "probe_names": [
+        "H_nonchiral_dim4",
+        "two_qubit_dephasing_probe"
+      ],
+      "probe_roles": [
+        "hamiltonian",
+        "observable"
+      ]
+    },
+    "nonchiral_dim8": {
+      "carrier": "nonchiral_dim8",
+      "dim": 8,
+      "description": "three-qubit finite carrier with noncommuting probes and no admitted Z2 grading probe",
+      "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+      "codomain_value": "excluded",
+      "f01": true,
+      "n01": true,
+      "c3": {
+        "admitted_C3": false,
+        "verdict": "excluded_C3",
+        "reason": "no_valid_balanced_hermitian_involution_in_probe_family",
+        "valid_gamma_count": 0,
+        "gamma_candidates": [
+          {
+            "probe_name": "H_nonchiral_dim8",
+            "role": "hamiltonian",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          },
+          {
+            "probe_name": "three_qubit_diagonal_probe",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          }
+        ],
+        "observable_checks": [],
+        "witness": null
+      },
+      "commutator_norm": 5.6786618142,
+      "commutator_witness_pair": [
+        "H_nonchiral_dim8",
+        "three_qubit_diagonal_probe"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "nonempty_probe_family": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "probe_names": [
+        "H_nonchiral_dim8",
+        "three_qubit_diagonal_probe"
+      ],
+      "probe_roles": [
+        "hamiltonian",
+        "observable"
+      ]
+    },
+    "chiral_control_dim4": {
+      "carrier": "chiral_control_dim4",
+      "dim": 4,
+      "description": "4-level control with gamma5 = diag(+1,+1,-1,-1) and opposite-sign sector observable",
+      "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+      "codomain_value": "admitted",
+      "f01": true,
+      "n01": true,
+      "c3": {
+        "admitted_C3": true,
+        "verdict": "admitted_C3",
+        "reason": "valid_z2_grading_and_sector_distinguishing_probe_observed",
+        "valid_gamma_count": 1,
+        "gamma_candidates": [
+          {
+            "probe_name": "H_opposite_sign_sector_observable",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          },
+          {
+            "probe_name": "gamma5_z2_grading",
+            "role": "z2_grading",
+            "hermitian": true,
+            "involution": true,
+            "plus_count": 2,
+            "minus_count": 2,
+            "spectrum_pm_only": true,
+            "balanced_spectrum": true,
+            "valid_z2_grading": true
+          },
+          {
+            "probe_name": "independent_noncommuting_probe",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          }
+        ],
+        "observable_checks": [
+          {
+            "observable": "H_opposite_sign_sector_observable",
+            "role": "observable",
+            "hermitian": true,
+            "not_scalar_multiple_of_gamma": true,
+            "gamma_multiple_relative_error": 0.242535625036,
+            "gamma_multiple_alpha_abs": 1,
+            "not_scalar_identity": true,
+            "identity_multiple_relative_error": 1,
+            "identity_multiple_alpha_abs": 0,
+            "sector_expectation_plus": 1,
+            "sector_expectation_minus": -1,
+            "sector_expectation_delta": 2,
+            "sector_expectations_opposed_sign": true,
+            "distinguishes_z2_sectors": true
+          },
+          {
+            "observable": "independent_noncommuting_probe",
+            "role": "observable",
+            "hermitian": true,
+            "not_scalar_multiple_of_gamma": true,
+            "gamma_multiple_relative_error": 1,
+            "gamma_multiple_alpha_abs": 0,
+            "not_scalar_identity": true,
+            "identity_multiple_relative_error": 1,
+            "identity_multiple_alpha_abs": 0,
+            "sector_expectation_plus": 0,
+            "sector_expectation_minus": 0,
+            "sector_expectation_delta": 0,
+            "sector_expectations_opposed_sign": false,
+            "distinguishes_z2_sectors": false
+          }
+        ],
+        "witness": {
+          "gamma_probe": "gamma5_z2_grading",
+          "observable_probe": "H_opposite_sign_sector_observable",
+          "sector_expectation_delta": 2
+        }
+      },
+      "commutator_norm": 1.17579760163,
+      "commutator_witness_pair": [
+        "H_opposite_sign_sector_observable",
+        "independent_noncommuting_probe"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "nonempty_probe_family": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "probe_names": [
+        "H_opposite_sign_sector_observable",
+        "gamma5_z2_grading",
+        "independent_noncommuting_probe"
+      ],
+      "probe_roles": [
+        "observable",
+        "z2_grading",
+        "observable"
+      ]
+    },
+    "wrong_structure_sector_marker_erased_dim4": {
+      "carrier": "chiral_control_sector_marker_erased_dim4",
+      "dim": 4,
+      "description": "structurally distinct 4-level control with balanced gamma5 retained but sector readout erased",
+      "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+      "codomain_value": "excluded",
+      "f01": true,
+      "n01": true,
+      "c3": {
+        "admitted_C3": false,
+        "verdict": "excluded_C3",
+        "reason": "valid_z2_grading_seen_but_no_nontrivial_sector_distinguishing_observable",
+        "valid_gamma_count": 1,
+        "gamma_candidates": [
+          {
+            "probe_name": "H_same_sign_sector_observable",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          },
+          {
+            "probe_name": "gamma5_z2_grading",
+            "role": "z2_grading",
+            "hermitian": true,
+            "involution": true,
+            "plus_count": 2,
+            "minus_count": 2,
+            "spectrum_pm_only": true,
+            "balanced_spectrum": true,
+            "valid_z2_grading": true
+          },
+          {
+            "probe_name": "independent_noncommuting_probe",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          }
+        ],
+        "observable_checks": [
+          {
+            "observable": "H_same_sign_sector_observable",
+            "role": "observable",
+            "hermitian": true,
+            "not_scalar_multiple_of_gamma": true,
+            "gamma_multiple_relative_error": 1,
+            "gamma_multiple_alpha_abs": 0,
+            "not_scalar_identity": true,
+            "identity_multiple_relative_error": 0.242535625036,
+            "identity_multiple_alpha_abs": 1,
+            "sector_expectation_plus": 1,
+            "sector_expectation_minus": 1,
+            "sector_expectation_delta": 0,
+            "sector_expectations_opposed_sign": false,
+            "distinguishes_z2_sectors": false
+          },
+          {
+            "observable": "independent_noncommuting_probe",
+            "role": "observable",
+            "hermitian": true,
+            "not_scalar_multiple_of_gamma": true,
+            "gamma_multiple_relative_error": 1,
+            "gamma_multiple_alpha_abs": 0,
+            "not_scalar_identity": true,
+            "identity_multiple_relative_error": 1,
+            "identity_multiple_alpha_abs": 0,
+            "sector_expectation_plus": 0,
+            "sector_expectation_minus": 0,
+            "sector_expectation_delta": 0,
+            "sector_expectations_opposed_sign": false,
+            "distinguishes_z2_sectors": false
+          }
+        ],
+        "witness": null
+      },
+      "commutator_norm": 1,
+      "commutator_witness_pair": [
+        "H_same_sign_sector_observable",
+        "independent_noncommuting_probe"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "nonempty_probe_family": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "probe_names": [
+        "H_same_sign_sector_observable",
+        "gamma5_z2_grading",
+        "independent_noncommuting_probe"
+      ],
+      "probe_roles": [
+        "observable",
+        "z2_grading",
+        "observable"
+      ]
+    },
+    "wrong_structure_gamma_erased_dim4": {
+      "carrier": "chiral_control_gamma_erased_dim4",
+      "dim": 4,
+      "description": "structurally distinct 4-level control with no admitted Z2 grading probe",
+      "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+      "codomain_value": "excluded",
+      "f01": true,
+      "n01": true,
+      "c3": {
+        "admitted_C3": false,
+        "verdict": "excluded_C3",
+        "reason": "no_valid_balanced_hermitian_involution_in_probe_family",
+        "valid_gamma_count": 0,
+        "gamma_candidates": [
+          {
+            "probe_name": "H_same_sign_sector_observable",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          },
+          {
+            "probe_name": "independent_noncommuting_probe",
+            "role": "observable",
+            "hermitian": true,
+            "involution": false,
+            "plus_count": 0,
+            "minus_count": 0,
+            "spectrum_pm_only": false,
+            "balanced_spectrum": false,
+            "valid_z2_grading": false
+          }
+        ],
+        "observable_checks": [],
+        "witness": null
+      },
+      "commutator_norm": 1,
+      "commutator_witness_pair": [
+        "H_same_sign_sector_observable",
+        "independent_noncommuting_probe"
+      ],
+      "f01_detail": {
+        "finite_dim": true,
+        "nonempty_probe_family": true,
+        "finite_operator_shapes": true,
+        "finite_numeric_entries": true
+      },
+      "probe_names": [
+        "H_same_sign_sector_observable",
+        "independent_noncommuting_probe"
+      ],
+      "probe_roles": [
+        "observable",
+        "observable"
+      ]
+    }
+  },
+  "domain_checks": {
+    "nonchiral_dim4": {
+      "f01": true,
+      "n01": true,
+      "excluded_c3": true
+    },
+    "nonchiral_dim8": {
+      "f01": true,
+      "n01": true,
+      "excluded_c3": true
+    }
+  },
+  "positive_check": {
+    "chiral_control_dim4_survives_f01_n01_c3": true,
+    "verdict": "admitted"
+  },
+  "negative_check": {
+    "nonchiral_dim4_excluded_c3": true,
+    "nonchiral_dim8_excluded_c3": true
+  },
+  "wrong_structure_control": {
+    "structural_difference": {
+      "compared_probe": "sector_observable",
+      "not_scalar_multiple": true,
+      "relative_error_to_best_scalar_multiple": 1,
+      "best_scalar_alpha_abs": 0,
+      "chiral_sector_trace": 0,
+      "erased_sector_trace": 4
+    },
+    "distinguishing_element_removed": true,
+    "is_scalar_multiple_of_positive": false,
+    "chiral_control_verdict": "admitted",
+    "sector_marker_erased_verdict": "excluded",
+    "gamma_erased_verdict": "excluded",
+    "verdict_changed": true,
+    "passes": true
+  },
+  "size_ladder": {
+    "N8": {
+      "density_check": {
+        "N": 8,
+        "density_f01": true,
+        "density_matrix_shape": [
+          8,
+          8
+        ],
+        "finite_entries": true,
+        "hermitian_error": 0,
+        "trace_error": 0,
+        "min_eigenvalue": 0.000290965693495,
+        "positive_semidefinite": true
+      },
+      "c3_positive_density_carrier": {
+        "carrier": "density_chiral_ladder_N8",
+        "dim": 8,
+        "description": "finite density carrier with explicit balanced Z2 grading probe and sector-distinguishing observable",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "admitted",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": true,
+          "verdict": "admitted_C3",
+          "reason": "valid_z2_grading_and_sector_distinguishing_probe_observed",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N8",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 4,
+              "minus_count": 4,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "sector_observable_N8",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N8",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 1,
+              "minus_count": 1,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "sector_observable_N8",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 0.0262975841519,
+              "gamma_multiple_alpha_abs": 1.0625,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 2.77555756156e-17,
+              "sector_expectation_plus": 1.0625,
+              "sector_expectation_minus": -1.0625,
+              "sector_expectation_delta": 2.125,
+              "sector_expectations_opposed_sign": true,
+              "distinguishes_z2_sectors": true
+            },
+            {
+              "observable": "shift_noncommuting_probe_N8",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": {
+            "gamma_probe": "gamma_z2_grading_N8",
+            "observable_probe": "sector_observable_N8",
+            "sector_expectation_delta": 2.125
+          }
+        },
+        "commutator_norm": 3.00645139658,
+        "commutator_witness_pair": [
+          "sector_observable_N8",
+          "shift_noncommuting_probe_N8"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N8",
+          "sector_observable_N8",
+          "shift_noncommuting_probe_N8"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "c3_erased_density_control": {
+        "carrier": "density_erased_ladder_N8",
+        "dim": 8,
+        "description": "finite density carrier with balanced Z2 grading probe and sector readout erased",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "excluded",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": false,
+          "verdict": "excluded_C3",
+          "reason": "valid_z2_grading_seen_but_no_nontrivial_sector_distinguishing_observable",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N8",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 4,
+              "minus_count": 4,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "same_sector_observable_N8",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N8",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 1,
+              "minus_count": 1,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "same_sector_observable_N8",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 2.77555756156e-17,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 0.0262975841519,
+              "identity_multiple_alpha_abs": 1.0625,
+              "sector_expectation_plus": 1.0625,
+              "sector_expectation_minus": 1.0625,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            },
+            {
+              "observable": "shift_noncommuting_probe_N8",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": null
+        },
+        "commutator_norm": 2.82842712475,
+        "commutator_witness_pair": [
+          "gamma_z2_grading_N8",
+          "shift_noncommuting_probe_N8"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N8",
+          "same_sector_observable_N8",
+          "shift_noncommuting_probe_N8"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "density_f01": true,
+      "positive_f01_n01_c3": true,
+      "erased_control_excluded": true
+    },
+    "N16": {
+      "density_check": {
+        "N": 16,
+        "density_f01": true,
+        "density_matrix_shape": [
+          16,
+          16
+        ],
+        "finite_entries": true,
+        "hermitian_error": 0,
+        "trace_error": 0,
+        "min_eigenvalue": 2.90155344491e-05,
+        "positive_semidefinite": true
+      },
+      "c3_positive_density_carrier": {
+        "carrier": "density_chiral_ladder_N16",
+        "dim": 16,
+        "description": "finite density carrier with explicit balanced Z2 grading probe and sector-distinguishing observable",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "admitted",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": true,
+          "verdict": "admitted_C3",
+          "reason": "valid_z2_grading_and_sector_distinguishing_probe_observed",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N16",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 8,
+              "minus_count": 8,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "sector_observable_N16",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N16",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "sector_observable_N16",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 0.0271058693014,
+              "gamma_multiple_alpha_abs": 1.05625,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 1.05625,
+              "sector_expectation_minus": -1.05625,
+              "sector_expectation_delta": 2.1125,
+              "sector_expectations_opposed_sign": true,
+              "distinguishes_z2_sectors": true
+            },
+            {
+              "observable": "shift_noncommuting_probe_N16",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": {
+            "gamma_probe": "gamma_z2_grading_N16",
+            "observable_probe": "sector_observable_N16",
+            "sector_expectation_delta": 2.1125
+          }
+        },
+        "commutator_norm": 2.98825827197,
+        "commutator_witness_pair": [
+          "sector_observable_N16",
+          "shift_noncommuting_probe_N16"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N16",
+          "sector_observable_N16",
+          "shift_noncommuting_probe_N16"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "c3_erased_density_control": {
+        "carrier": "density_erased_ladder_N16",
+        "dim": 16,
+        "description": "finite density carrier with balanced Z2 grading probe and sector readout erased",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "excluded",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": false,
+          "verdict": "excluded_C3",
+          "reason": "valid_z2_grading_seen_but_no_nontrivial_sector_distinguishing_observable",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N16",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 8,
+              "minus_count": 8,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "same_sector_observable_N16",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N16",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "same_sector_observable_N16",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 0.0271058693014,
+              "identity_multiple_alpha_abs": 1.05625,
+              "sector_expectation_plus": 1.05625,
+              "sector_expectation_minus": 1.05625,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            },
+            {
+              "observable": "shift_noncommuting_probe_N16",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": null
+        },
+        "commutator_norm": 2.82842712475,
+        "commutator_witness_pair": [
+          "gamma_z2_grading_N16",
+          "shift_noncommuting_probe_N16"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N16",
+          "same_sector_observable_N16",
+          "shift_noncommuting_probe_N16"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "density_f01": true,
+      "positive_f01_n01_c3": true,
+      "erased_control_excluded": true
+    },
+    "N32": {
+      "density_check": {
+        "N": 32,
+        "density_f01": true,
+        "density_matrix_shape": [
+          32,
+          32
+        ],
+        "finite_entries": true,
+        "hermitian_error": 0,
+        "trace_error": 2.22044604925e-16,
+        "min_eigenvalue": 2.70100624813e-05,
+        "positive_semidefinite": true
+      },
+      "c3_positive_density_carrier": {
+        "carrier": "density_chiral_ladder_N32",
+        "dim": 32,
+        "description": "finite density carrier with explicit balanced Z2 grading probe and sector-distinguishing observable",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "admitted",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": true,
+          "verdict": "admitted_C3",
+          "reason": "valid_z2_grading_and_sector_distinguishing_probe_observed",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N32",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 16,
+              "minus_count": 16,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "sector_observable_N32",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N32",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 1,
+              "minus_count": 1,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "sector_observable_N32",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 0.0273474665813,
+              "gamma_multiple_alpha_abs": 1.053125,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 5.55111512313e-17,
+              "sector_expectation_plus": 1.053125,
+              "sector_expectation_minus": -1.053125,
+              "sector_expectation_delta": 2.10625,
+              "sector_expectations_opposed_sign": true,
+              "distinguishes_z2_sectors": true
+            },
+            {
+              "observable": "shift_noncommuting_probe_N32",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": {
+            "gamma_probe": "gamma_z2_grading_N32",
+            "observable_probe": "sector_observable_N32",
+            "sector_expectation_delta": 2.10625
+          }
+        },
+        "commutator_norm": 2.97908070972,
+        "commutator_witness_pair": [
+          "sector_observable_N32",
+          "shift_noncommuting_probe_N32"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N32",
+          "sector_observable_N32",
+          "shift_noncommuting_probe_N32"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "c3_erased_density_control": {
+        "carrier": "density_erased_ladder_N32",
+        "dim": 32,
+        "description": "finite density carrier with balanced Z2 grading probe and sector readout erased",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "excluded",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": false,
+          "verdict": "excluded_C3",
+          "reason": "valid_z2_grading_seen_but_no_nontrivial_sector_distinguishing_observable",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N32",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 16,
+              "minus_count": 16,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "same_sector_observable_N32",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N32",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 1,
+              "minus_count": 1,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "same_sector_observable_N32",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 5.55111512313e-17,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 0.0273474665813,
+              "identity_multiple_alpha_abs": 1.053125,
+              "sector_expectation_plus": 1.053125,
+              "sector_expectation_minus": 1.053125,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            },
+            {
+              "observable": "shift_noncommuting_probe_N32",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": null
+        },
+        "commutator_norm": 2.82842712475,
+        "commutator_witness_pair": [
+          "gamma_z2_grading_N32",
+          "shift_noncommuting_probe_N32"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N32",
+          "same_sector_observable_N32",
+          "shift_noncommuting_probe_N32"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "density_f01": true,
+      "positive_f01_n01_c3": true,
+      "erased_control_excluded": true
+    },
+    "N64": {
+      "density_check": {
+        "N": 64,
+        "density_f01": true,
+        "density_matrix_shape": [
+          64,
+          64
+        ],
+        "finite_entries": true,
+        "hermitian_error": 0,
+        "trace_error": 2.22044604925e-16,
+        "min_eigenvalue": 8.3171915187e-07,
+        "positive_semidefinite": true
+      },
+      "c3_positive_density_carrier": {
+        "carrier": "density_chiral_ladder_N64",
+        "dim": 64,
+        "description": "finite density carrier with explicit balanced Z2 grading probe and sector-distinguishing observable",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "admitted",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": true,
+          "verdict": "admitted_C3",
+          "reason": "valid_z2_grading_and_sector_distinguishing_probe_observed",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N64",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 32,
+              "minus_count": 32,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "sector_observable_N64",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N64",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "sector_observable_N64",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 0.0274282880367,
+              "gamma_multiple_alpha_abs": 1.0515625,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 1.0515625,
+              "sector_expectation_minus": -1.0515625,
+              "sector_expectation_delta": 2.103125,
+              "sector_expectations_opposed_sign": true,
+              "distinguishes_z2_sectors": true
+            },
+            {
+              "observable": "shift_noncommuting_probe_N64",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": {
+            "gamma_probe": "gamma_z2_grading_N64",
+            "observable_probe": "sector_observable_N64",
+            "sector_expectation_delta": 2.103125
+          }
+        },
+        "commutator_norm": 2.9744714604,
+        "commutator_witness_pair": [
+          "sector_observable_N64",
+          "shift_noncommuting_probe_N64"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N64",
+          "sector_observable_N64",
+          "shift_noncommuting_probe_N64"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "c3_erased_density_control": {
+        "carrier": "density_erased_ladder_N64",
+        "dim": 64,
+        "description": "finite density carrier with balanced Z2 grading probe and sector readout erased",
+        "finite_map": "(carrier, probe_family) -> {admitted_C3, excluded_C3}",
+        "codomain_value": "excluded",
+        "f01": true,
+        "n01": true,
+        "c3": {
+          "admitted_C3": false,
+          "verdict": "excluded_C3",
+          "reason": "valid_z2_grading_seen_but_no_nontrivial_sector_distinguishing_observable",
+          "valid_gamma_count": 1,
+          "gamma_candidates": [
+            {
+              "probe_name": "rho_trace_probe",
+              "role": "density_carrier",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "gamma_z2_grading_N64",
+              "role": "z2_grading",
+              "hermitian": true,
+              "involution": true,
+              "plus_count": 32,
+              "minus_count": 32,
+              "spectrum_pm_only": true,
+              "balanced_spectrum": true,
+              "valid_z2_grading": true
+            },
+            {
+              "probe_name": "same_sector_observable_N64",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            },
+            {
+              "probe_name": "shift_noncommuting_probe_N64",
+              "role": "observable",
+              "hermitian": true,
+              "involution": false,
+              "plus_count": 0,
+              "minus_count": 0,
+              "spectrum_pm_only": false,
+              "balanced_spectrum": false,
+              "valid_z2_grading": false
+            }
+          ],
+          "observable_checks": [
+            {
+              "observable": "same_sector_observable_N64",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 0.0274282880367,
+              "identity_multiple_alpha_abs": 1.0515625,
+              "sector_expectation_plus": 1.0515625,
+              "sector_expectation_minus": 1.0515625,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            },
+            {
+              "observable": "shift_noncommuting_probe_N64",
+              "role": "observable",
+              "hermitian": true,
+              "not_scalar_multiple_of_gamma": true,
+              "gamma_multiple_relative_error": 1,
+              "gamma_multiple_alpha_abs": 0,
+              "not_scalar_identity": true,
+              "identity_multiple_relative_error": 1,
+              "identity_multiple_alpha_abs": 0,
+              "sector_expectation_plus": 0,
+              "sector_expectation_minus": 0,
+              "sector_expectation_delta": 0,
+              "sector_expectations_opposed_sign": false,
+              "distinguishes_z2_sectors": false
+            }
+          ],
+          "witness": null
+        },
+        "commutator_norm": 2.82842712475,
+        "commutator_witness_pair": [
+          "gamma_z2_grading_N64",
+          "shift_noncommuting_probe_N64"
+        ],
+        "f01_detail": {
+          "finite_dim": true,
+          "nonempty_probe_family": true,
+          "finite_operator_shapes": true,
+          "finite_numeric_entries": true
+        },
+        "probe_names": [
+          "rho_trace_probe",
+          "gamma_z2_grading_N64",
+          "same_sector_observable_N64",
+          "shift_noncommuting_probe_N64"
+        ],
+        "probe_roles": [
+          "density_carrier",
+          "z2_grading",
+          "observable",
+          "observable"
+        ]
+      },
+      "density_f01": true,
+      "positive_f01_n01_c3": true,
+      "erased_control_excluded": true
+    }
+  },
+  "checks": {
+    "positive_chiral_control_survives_F01_N01_C3": true,
+    "negative_nonchiral_dim4_dim8_excluded_under_C3_while_F01_N01_survive": true,
+    "wrong_structure_erasure_changes_verdict": true,
+    "size_ladder_N8_N16_N32_N64_pass": true
+  },
+  "load_bearing_flip": true,
+  "load_bearing_flip_explanation": "The chiral control is admitted with a valid Gamma and sector-distinguishing observable; the structurally distinct erased controls keep F01+N01 but are excluded_C3 after the distinguishing element is absent or sector-equal.",
+  "decorative_if_no_flip": false,
+  "tool_manifest": {
+    "julia_stdlib_LinearAlgebra": "load-bearing for commutator norms, Hermitian/involution checks, eigenspace counts, sector projectors, traces, and density PSD checks",
+    "julia_stdlib_Random": "load-bearing fixed-seed density carrier ladder",
+    "julia_stdlib_Dates": "supportive timestamp only",
+    "julia_stdlib_Printf": "supportive JSON float and string formatting",
+    "julia_stdlib_SHA": "supportive source-hash receipt guard"
+  },
+  "tool_integration_depth": {
+    "LinearAlgebra": "load_bearing",
+    "Random": "load_bearing",
+    "Dates": "supportive",
+    "Printf": "supportive",
+    "SHA": "supportive"
+  },
+  "all_pass": true
+}

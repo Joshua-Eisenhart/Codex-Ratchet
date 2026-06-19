@@ -1,0 +1,932 @@
+{
+  "claim_path_tools": [
+    "Graphs",
+    "Z3",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch.func",
+    "torch_geometric"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "divergence_derived_in_solver": true,
+      "edge_current_terms_in_solver": true,
+      "erased_flip_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "proof_row": {
+        "actual": 8,
+        "erased_expected": 7,
+        "expected": 8
+      },
+      "ran": true,
+      "solver": "cvc5:family_c_conditioned_edge_total",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "divergence_derived_in_solver": true,
+      "edge_current_terms_in_solver": true,
+      "erased_flip_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "proof_row": {
+        "actual": 2,
+        "erased_expected": 1,
+        "expected": 2
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "divergence_derived_in_solver": true,
+      "edge_current_terms_in_solver": true,
+      "erased_flip_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "proof_row": {
+        "actual": 8,
+        "erased_expected": 7,
+        "expected": 8
+      },
+      "ran": true,
+      "solver": "z3:family_c_conditioned_edge_total",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "boolean all_pass agreement plus packet-local validator; all three lanes source-backed but only scratch diagnostic",
+    "engine_values": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "pytorch": 1.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "tolerance": 0.0
+  },
+  "expected_lanes": [
+    "julia",
+    "jax",
+    "pytorch"
+  ],
+  "extra_fields": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "Graphs": "load_bearing",
+      "Z3": "load_bearing",
+      "cvc5": "load_bearing",
+      "networkx": "load_bearing",
+      "sympy": "load_bearing",
+      "torch.func": "load_bearing",
+      "torch_geometric": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_MANIFEST": {
+      "Graphs": {
+        "reason": "Julia finite rung graph and count identity",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "Julia count identity and erased flip",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "independent SMT cross-check for computed row identity",
+        "tried": true,
+        "used": true
+      },
+      "networkx": {
+        "reason": "JAX-slot rung graph over committed packet hashes",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "exact C^8 floor / C^16 support relation",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "PyTorch batched perturbation detector for current rows",
+        "tried": true,
+        "used": true
+      },
+      "torch_geometric": {
+        "reason": "PyTorch graph carrier over terrain edges",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "computed row identity UNSAT and erased SAT flips",
+        "tried": true,
+        "used": true
+      }
+    },
+    "all_pass": true,
+    "allowed_claims": [
+      "scratch_diagnostic Family C integration evidence over committed n3/n4 terrain packets",
+      "Family C state-object lineage and row classification instantiated from the unified-run mechanism",
+      "control-sensitive flux/current continuity on the same Family C trajectory"
+    ],
+    "behavior_class_growth_claimed": false,
+    "boundary_stress_context": {
+      "allowed_claims": [
+        "scratch diagnostic 6Q/7Q/8Q scaling facts listed in claim",
+        "finite overbuild boundary at 8Q under this directive",
+        "exact negative control that 6Q/7Q/8Q do not move the 3Q minimum-floor claim"
+      ],
+      "commit": "b27d22317",
+      "must_not_claim_fences": [
+        "new minimum",
+        "carrier admission",
+        "formal admission",
+        "final M(C)",
+        "QIT-engine admission",
+        "physics claim",
+        "bridge or axis-level claim",
+        "ladder beyond 8Q"
+      ],
+      "path": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json",
+      "run_in_this_packet": false,
+      "run_role": "BOUNDARY_STRESS_CONTEXT_ONLY",
+      "rungs_cited": [
+        "6",
+        "7",
+        "8"
+      ],
+      "sha256": "b7d77b8342ff12dc7b6fcdb6fc359717bc63e8d7e60633758f9d14288e87e379",
+      "sim_id": "geo_s1_scaling_stress_678q_exact_v0"
+    },
+    "carried_boundaries": {
+      "G3": "no committed bare-current parent-row comparison; this packet carries the terrain packets' recomputed zero-terrain network boundary",
+      "G4": "carrier reconstructed, not copied; committed site spinors and carrier hashes are consumed through the terrain packets",
+      "NO_GROWTH": "NO behavior-class-growth claims beyond the committed n3/n4 saturation signal",
+      "NO_N5": "NO n=5 behavior continuation is claimed or run in this packet"
+    },
+    "ceiling": "scratch_diagnostic",
+    "disallowed_claims": [
+      "weld/manifold/axis/bridge admission",
+      "A+B weld relation",
+      "cross-family weld controls",
+      "flux-carrying L/R asymmetric engine object",
+      "n=5 behavior continuation",
+      "behavior-class-growth beyond committed n3/n4 saturation signal",
+      "formal admission or promotion"
+    ],
+    "engine_scope_notes": {
+      "jax": "uses package-backed graph/exact/SMT probes plus common Family C object builder",
+      "julia": "independently recomputes finite n3/n4 rung graph and live-rung count identity with Graphs/Z3",
+      "pytorch": "uses torch.func/torch_geometric/SMT probes plus common Family C object builder"
+    },
+    "family": "Family_C_qubit_ladder_flux",
+    "file_disjoint_packet": true,
+    "floor_anchor": {
+      "all_pass": true,
+      "allowed_role": "exact C^8 floor anchor for the Family C state object",
+      "classification": "scratch_diagnostic",
+      "commit": "6ed5e961e",
+      "dimension": 8,
+      "engine_lanes": [
+        "jax",
+        "julia",
+        "pytorch"
+      ],
+      "engine_mode": "all_three_full_sims",
+      "hilbert_dim": 8,
+      "path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json",
+      "sha256": "b305e6e456ea04d8e7ef14b6db87a3b57ba104a05fa6c84f4f34af7d0ebd2eb4",
+      "sim_id": "geo_s1_three_qubit_floor_exact_v0"
+    },
+    "integrated_state_object": {
+      "floor_anchor": {
+        "all_pass": true,
+        "allowed_role": "exact C^8 floor anchor for the Family C state object",
+        "classification": "scratch_diagnostic",
+        "commit": "6ed5e961e",
+        "dimension": 8,
+        "engine_lanes": [
+          "jax",
+          "julia",
+          "pytorch"
+        ],
+        "engine_mode": "all_three_full_sims",
+        "hilbert_dim": 8,
+        "path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json",
+        "sha256": "b305e6e456ea04d8e7ef14b6db87a3b57ba104a05fa6c84f4f34af7d0ebd2eb4",
+        "sim_id": "geo_s1_three_qubit_floor_exact_v0"
+      },
+      "n3": {
+        "carrier_dimension": 8,
+        "carrier_source_kind": "reconstructed_from_committed_stage_site_spinors",
+        "carrier_state_vector_sha256": "74ee8ad09564848f19e89be7ca16427cb06c8bf66c431bb0fb07d5a9a702f23b",
+        "conditioned_continuity_pass": true,
+        "conditioned_current_committed": 0.242675773674,
+        "conditioned_edge_count": 3,
+        "conditioned_signed_transport_flux": -0.222173886214,
+        "conditioned_total_abs_current": 0.242675773674,
+        "conditioning_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)",
+        "continuity_pass": true,
+        "network_observables_altered": [
+          "edge_current_distribution",
+          "total_abs_current",
+          "total_signed_transport_flux"
+        ],
+        "network_observables_survive": [
+          "carrier_dimension_8",
+          "support_edge_count_3",
+          "continuity_identity",
+          "density_quotient_row"
+        ],
+        "parent_state_vector_row_copied": false,
+        "rung": "n3",
+        "signed_transport_flux": -0.692808577381,
+        "site_count": 3,
+        "source_commit": "1b36e4a3c",
+        "source_path": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json",
+        "source_sha256": "3fbfdfab998ede6eb678dc987c3544e0f4fc52ef783cf4644e71315e713c2368",
+        "terrain_edge_count": 3,
+        "total_abs_current": 0.735575785391,
+        "weight_sum": 1.0
+      },
+      "n4": {
+        "carrier_dimension": 16,
+        "carrier_source_kind": "reconstructed_from_committed_stage_site_spinors",
+        "carrier_state_vector_sha256": "00f7a6cd956d09d9372ffc356da4d0c3ec76bb13f641596e3108c5a1f8526b76",
+        "conditioned_continuity_pass": true,
+        "conditioned_current_committed": 0.260547429214,
+        "conditioned_edge_count": 5,
+        "conditioned_signed_transport_flux": -0.246503665249,
+        "conditioned_total_abs_current": 0.260547429214,
+        "conditioning_rule": "w_i=sin(2*eta_i)/sum_j sin(2*eta_j)",
+        "continuity_pass": true,
+        "network_observables_altered": [
+          "edge_current_distribution",
+          "total_abs_current",
+          "total_signed_transport_flux"
+        ],
+        "network_observables_survive": [
+          "carrier_dimension_16",
+          "support_edge_count_5",
+          "support_face_count_2",
+          "continuity_identity",
+          "density_quotient_row"
+        ],
+        "parent_state_vector_row_copied": false,
+        "rung": "n4",
+        "signed_transport_flux": -1.086614377305,
+        "site_count": 4,
+        "source_commit": "c36a80f6b",
+        "source_path": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json",
+        "source_sha256": "f1d25d55da33fe821459f7193616218613240b9e8e12754ebee4f086a32a90b3",
+        "terrain_edge_count": 5,
+        "total_abs_current": 1.100562920308,
+        "weight_sum": 1.0
+      },
+      "source_lock_sha256": "1b6b29cbc8c26fdb9fd870881b2a2912b660dfb2d257ad0633be70908002dcc1",
+      "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain"
+    },
+    "integration_controls": {
+      "decoupled_leaf": {
+        "claim": "remove a terminal k-leaf incident edge set from the same committed conditioned network rows",
+        "demotes_if_not_firing": true,
+        "fires": true,
+        "moved_rows": [
+          "flux_continuity_same_trajectory",
+          "conditioned_network_coupling.edge_rows"
+        ],
+        "moves_named_rows": true,
+        "per_rung": {
+          "n3": {
+            "conditioned_current": 0.242675773674,
+            "decoupled_edge_count": 1,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          },
+          "n4": {
+            "conditioned_current": 0.260547429214,
+            "decoupled_edge_count": 2,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          }
+        }
+      },
+      "scrambled_coupling": {
+        "demotes_if_not_firing": true,
+        "fires": true,
+        "moved_rows": [
+          "total_signed_transport_flux",
+          "edge_coupling_order"
+        ],
+        "moves_named_rows": true,
+        "per_rung": {
+          "n3": {
+            "conditioned_current": 0.242675773674,
+            "decoupled_edge_count": 1,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          },
+          "n4": {
+            "conditioned_current": 0.260547429214,
+            "decoupled_edge_count": 2,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          }
+        }
+      },
+      "zero_terrain_network": {
+        "carried_boundary": "no committed bare-current parent-row comparison; this packet carries the terrain packets' recomputed zero-terrain network boundary",
+        "demotes_if_not_firing": true,
+        "fires": true,
+        "moved_rows": [
+          "conditioned_total_abs_current",
+          "terrain_dependent_network_coupling.edge_rows.current_src_to_dst"
+        ],
+        "moves_named_rows": true,
+        "per_rung": {
+          "n3": {
+            "conditioned_current": 0.242675773674,
+            "decoupled_edge_count": 1,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          },
+          "n4": {
+            "conditioned_current": 0.260547429214,
+            "decoupled_edge_count": 2,
+            "decoupled_leaf": "q2",
+            "scrambled_flux_changed": true,
+            "z_dot_decoupled_pass": true,
+            "zero_current": 0.0
+          }
+        }
+      }
+    },
+    "live_rungs": [
+      "n3",
+      "n4"
+    ],
+    "n5_behavior_continuation_claimed": false,
+    "no_builder_audit_verdict": true,
+    "out_of_scope": [
+      "A+B weld relation",
+      "cross-family weld controls",
+      "flux-carrying L/R asymmetric engine object",
+      "other weld feedstock inventory gap rows"
+    ],
+    "packet_audit_verdict_absent": true,
+    "raw_stage_lifted_rows_used": false,
+    "shell_support_consumption": "through terrain_spinor_flux_nest_n3_v0 and terrain_spinor_flux_nest_n4_v0 only",
+    "source_import_audit": {
+      "parent_hash_pins": {
+        "geo_s1_scaling_stress_678q_exact_v0": {
+          "commit_hint": "b27d22317",
+          "git_last_commit": "2f284e2f651673d3b156c30404dc99bdc8175805",
+          "path": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json",
+          "sha256": "b7d77b8342ff12dc7b6fcdb6fc359717bc63e8d7e60633758f9d14288e87e379"
+        },
+        "geo_s1_three_qubit_floor_exact_v0": {
+          "commit_hint": "6ed5e961e",
+          "git_last_commit": "7367b25ddbe77e40ea7127caf3c95f646b657082",
+          "path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json",
+          "sha256": "b305e6e456ea04d8e7ef14b6db87a3b57ba104a05fa6c84f4f34af7d0ebd2eb4"
+        },
+        "manifold_unified_run_v0": {
+          "commit_hint": "6903e0388",
+          "git_last_commit": "6903e0388e4b49479d63b73ae831fb66b8b35c8e",
+          "path": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+          "sha256": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741"
+        },
+        "terrain_spinor_flux_nest_n3_v0": {
+          "commit_hint": "1b36e4a3c",
+          "git_last_commit": "1b36e4a3c61ff3ef960f921ed39607e00540e81a",
+          "path": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json",
+          "sha256": "3fbfdfab998ede6eb678dc987c3544e0f4fc52ef783cf4644e71315e713c2368"
+        },
+        "terrain_spinor_flux_nest_n4_v0": {
+          "commit_hint": "c36a80f6b",
+          "git_last_commit": "c36a80f6bace7393315e8021fe0fa71517ed3e6f",
+          "path": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json",
+          "sha256": "f1d25d55da33fe821459f7193616218613240b9e8e12754ebee4f086a32a90b3"
+        }
+      },
+      "raw_parent_computation_imported": false,
+      "unified_run_mechanism_instantiated": true,
+      "unified_run_template_not_cited_as_completed_family_c": true
+    },
+    "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+    "surviving_mechanics": {
+      "conditioned_total_abs_current": {
+        "per_rung": {
+          "n3": {
+            "committed": 0.242675773674,
+            "recomputed": 0.242675773674
+          },
+          "n4": {
+            "committed": 0.260547429214,
+            "recomputed": 0.260547429214
+          }
+        },
+        "recomputed_in_run": true
+      },
+      "flux_continuity_same_trajectory": {
+        "per_rung": {
+          "n3": {
+            "identity": "network_population_flow - local_population_flow + edge_divergence_out_minus_in == 0",
+            "max_abs_residual": 0.0,
+            "pass": true,
+            "proof_row": {
+              "derived_edge_divergence_scaled": -160465274253,
+              "edge_divergence_scaled": -160465274253,
+              "edge_formula_rows": [
+                {
+                  "coupling_strength_scaled": 251559530197,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -88939724837,
+                  "dst": "q1",
+                  "edge_id": "e01",
+                  "population_src_minus_dst_scaled": -353553390593,
+                  "rounding_residual_scaled2": 131519236821,
+                  "src": "q0"
+                },
+                {
+                  "coupling_strength_scaled": 232526406501,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -82210499421,
+                  "dst": "q2",
+                  "edge_id": "e12",
+                  "population_src_minus_dst_scaled": -353553390593,
+                  "rounding_residual_scaled2": -165252554907,
+                  "src": "q1"
+                },
+                {
+                  "coupling_strength_scaled": 101152402040,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -71525549416,
+                  "dst": "q2",
+                  "edge_id": "e02",
+                  "population_src_minus_dst_scaled": -707106781187,
+                  "rounding_residual_scaled2": -162267578520,
+                  "src": "q0"
+                }
+              ],
+              "erased_control": "subtract one scaled unit from the derived site balance target before asserting the negated identity",
+              "identity_target_scaled": 524957644820,
+              "local_population_flow_scaled": 364492370567,
+              "network_population_flow_scaled": 524957644820,
+              "site_balance_rows": [
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": -160465274253,
+                  "edge_divergence_scaled": -160465274253,
+                  "identity_target_scaled": 524957644820,
+                  "incoming_edge_ids": [],
+                  "local_population_flow_scaled": 364492370567,
+                  "network_population_flow_scaled": 524957644820,
+                  "outgoing_edge_ids": [
+                    "e01",
+                    "e02"
+                  ],
+                  "site_id": "q0"
+                },
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": 6729225416,
+                  "edge_divergence_scaled": 6729225416,
+                  "identity_target_scaled": 35535747665,
+                  "incoming_edge_ids": [
+                    "e01"
+                  ],
+                  "local_population_flow_scaled": 42264973081,
+                  "network_population_flow_scaled": 35535747665,
+                  "outgoing_edge_ids": [
+                    "e12"
+                  ],
+                  "site_id": "q1"
+                },
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": 153736048837,
+                  "edge_divergence_scaled": 153736048837,
+                  "identity_target_scaled": -548114268477,
+                  "incoming_edge_ids": [
+                    "e12",
+                    "e02"
+                  ],
+                  "local_population_flow_scaled": -394378219640,
+                  "network_population_flow_scaled": -548114268477,
+                  "outgoing_edge_ids": [],
+                  "site_id": "q2"
+                }
+              ],
+              "site_id": "q0",
+              "solver_derivation": "edge currents are bound by scaled current formulas, site divergence is derived from edge-current variables, and population balance is asserted in solver space"
+            },
+            "scale": 1000000000000
+          },
+          "n4": {
+            "identity": "network_population_flow - local_population_flow + edge_divergence_out_minus_in == 0",
+            "max_abs_residual": 0.0,
+            "pass": true,
+            "proof_row": {
+              "derived_edge_divergence_scaled": -186649833015,
+              "edge_divergence_scaled": -186649833015,
+              "edge_formula_rows": [
+                {
+                  "coupling_strength_scaled": 175091546663,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -43772886666,
+                  "dst": "q1",
+                  "edge_id": "e01",
+                  "population_src_minus_dst_scaled": -250000000000,
+                  "rounding_residual_scaled2": -250000000000,
+                  "src": "q0"
+                },
+                {
+                  "coupling_strength_scaled": 97485607852,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -30124709533,
+                  "dst": "q2",
+                  "edge_id": "e12",
+                  "population_src_minus_dst_scaled": -309016994375,
+                  "rounding_residual_scaled2": 244939832500,
+                  "src": "q1"
+                },
+                {
+                  "coupling_strength_scaled": 175091546663,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -43772886666,
+                  "dst": "q3",
+                  "edge_id": "e23",
+                  "population_src_minus_dst_scaled": -250000000000,
+                  "rounding_residual_scaled2": -250000000000,
+                  "src": "q2"
+                },
+                {
+                  "coupling_strength_scaled": 60249419067,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -48742803926,
+                  "dst": "q3",
+                  "edge_id": "e03",
+                  "population_src_minus_dst_scaled": -809016994375,
+                  "rounding_residual_scaled2": 424156748125,
+                  "src": "q0"
+                },
+                {
+                  "coupling_strength_scaled": 168392273169,
+                  "current_formula": "current_src_to_dst_scaled*SCALE == coupling_strength_scaled*population_src_minus_dst_scaled + rounding_residual_scaled2",
+                  "current_src_to_dst_scaled": -94134142423,
+                  "dst": "q2",
+                  "edge_id": "e02",
+                  "population_src_minus_dst_scaled": -559016994375,
+                  "rounding_residual_scaled2": -91663575625,
+                  "src": "q0"
+                }
+              ],
+              "erased_control": "subtract one scaled unit from the derived site balance target before asserting the negated identity",
+              "identity_target_scaled": 578128225492,
+              "local_population_flow_scaled": 391478392477,
+              "network_population_flow_scaled": 578128225492,
+              "site_balance_rows": [
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": -186649833015,
+                  "edge_divergence_scaled": -186649833015,
+                  "identity_target_scaled": 578128225492,
+                  "incoming_edge_ids": [],
+                  "local_population_flow_scaled": 391478392477,
+                  "network_population_flow_scaled": 578128225492,
+                  "outgoing_edge_ids": [
+                    "e01",
+                    "e03",
+                    "e02"
+                  ],
+                  "site_id": "q0"
+                },
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": 13648177133,
+                  "edge_divergence_scaled": 13648177133,
+                  "identity_target_scaled": 140073477,
+                  "incoming_edge_ids": [
+                    "e01"
+                  ],
+                  "local_population_flow_scaled": 13788250610,
+                  "network_population_flow_scaled": 140073477,
+                  "outgoing_edge_ids": [
+                    "e12"
+                  ],
+                  "site_id": "q1"
+                },
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": 80485965290,
+                  "edge_divergence_scaled": 80485965290,
+                  "identity_target_scaled": -94274215901,
+                  "incoming_edge_ids": [
+                    "e12",
+                    "e02"
+                  ],
+                  "local_population_flow_scaled": -13788250611,
+                  "network_population_flow_scaled": -94274215901,
+                  "outgoing_edge_ids": [
+                    "e23"
+                  ],
+                  "site_id": "q2"
+                },
+                {
+                  "balance_residual_scaled": 0,
+                  "derived_divergence_matches_row": true,
+                  "derived_edge_divergence_scaled": 92515690592,
+                  "edge_divergence_scaled": 92515690592,
+                  "identity_target_scaled": -483994083069,
+                  "incoming_edge_ids": [
+                    "e23",
+                    "e03"
+                  ],
+                  "local_population_flow_scaled": -391478392477,
+                  "network_population_flow_scaled": -483994083069,
+                  "outgoing_edge_ids": [],
+                  "site_id": "q3"
+                }
+              ],
+              "site_id": "q0",
+              "solver_derivation": "edge currents are bound by scaled current formulas, site divergence is derived from edge-current variables, and population balance is asserted in solver space"
+            },
+            "scale": 1000000000000
+          }
+        },
+        "same_trajectory_scope": "Family C state object uses n3 then n4 terrain packets as committed rung rows; no n5 continuation",
+        "survives_composition": true
+      }
+    },
+    "tool_intent": {
+      "claim_classes": [
+        "family_c_integrated_state_object",
+        "committed_terrain_packet_composition",
+        "unified_run_lineage_classification",
+        "control_sensitive_flux_current_rows"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "cvc5": "independent computed edge-count identity with erased flip",
+          "networkx": "finite rung graph and source-hash lineage connectivity",
+          "sympy": "exact C^8 floor and C^16 support dimension relation",
+          "z3": "computed edge-count identity with erased flip"
+        },
+        "julia": {
+          "Graphs": "finite n3/n4 rung transition graph and live/boundary context count",
+          "Z3": "computed live-rung count and edge-count identities with erased flips"
+        },
+        "pytorch": {
+          "cvc5": "independent computed node/edge identity with erased flip",
+          "sympy": "exact C^8/C^16 relation labels from torch-side rows",
+          "torch.func": "batched current-row perturbation detector over committed n3/n4 scalars",
+          "torch_geometric": "finite graph carrier for n3/n4 terrain edges",
+          "z3": "computed node/edge identity with erased flip"
+        }
+      }
+    },
+    "trajectory_artifact": {
+      "artifact_file_sha256": "fe13af42ebba8841a3f64cecd9a0722492a1f11888592549b1bd9f3528bf5614",
+      "content_sha256": "a3262bfdaf541f024030e442c1dd4527e278b4aeae3f2cd164ee999ad20b5c1c",
+      "path": "system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_trajectory_artifact.json",
+      "payload": {
+        "content_sha256": "a3262bfdaf541f024030e442c1dd4527e278b4aeae3f2cd164ee999ad20b5c1c",
+        "generated_at": "2026-06-12T09:33:09Z",
+        "schema": "codex_ratchet.unified_trajectory_artifact.v1",
+        "sim_id": "manifold_family_c_integrated_v0",
+        "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+        "step_rows": [
+          {
+            "row_family": "Family_C",
+            "row_id": "floor_C8_anchor",
+            "row_payload_sha256": "ec8ce49323c2a6ffd2068ee783b1eeb06ed48c20380f6227d199ce114aa022ae",
+            "row_step_class": "INVARIANT",
+            "row_step_class_why": "floor and saturation boundaries are invariant context",
+            "row_step_lineage_id": "b9777b2f49a794376f5826cb7b489ddf9665ad9e607681ee9ad34f3178fddad1",
+            "sha_verified": true,
+            "source": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json",
+            "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+            "trajectory_step_id": "manifold_family_c_integrated_v0:step:0000"
+          },
+          {
+            "row_family": "Family_C",
+            "row_id": "n3_terrain_flux_current",
+            "row_payload_sha256": "23e4382fd983e2401d625b8ab56657aa887e2ce351af9ca45e84ac57280965cd",
+            "row_step_class": "STEP_DEPENDENT",
+            "row_step_class_why": "terrain flux/current rows change across n3 and n4 live rungs",
+            "row_step_lineage_id": "83ee1e0281aaec47c110c28660ec9dc113dcd94218f8afcf76391e58d1aac105",
+            "sha_verified": true,
+            "source": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json",
+            "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+            "trajectory_step_id": "manifold_family_c_integrated_v0:step:0001"
+          },
+          {
+            "row_family": "Family_C",
+            "row_id": "n4_terrain_flux_current",
+            "row_payload_sha256": "c0ea0685903ea4eede73164a1eaff57a8e40d73c06659c38e97427f345b76031",
+            "row_step_class": "STEP_DEPENDENT",
+            "row_step_class_why": "terrain flux/current rows change across n3 and n4 live rungs",
+            "row_step_lineage_id": "4941fb279699bd28517bce8d0434e511da713989dc0475f8d0d05d81f16a40a0",
+            "sha_verified": true,
+            "source": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json",
+            "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+            "trajectory_step_id": "manifold_family_c_integrated_v0:step:0002"
+          },
+          {
+            "row_family": "Family_C",
+            "row_id": "n4_saturation_boundary",
+            "row_payload_sha256": "85f9ffa00dd6922cb93d6da3c92ada6c9462009593b58e2b2dbdaa126750af32",
+            "row_step_class": "INVARIANT",
+            "row_step_class_why": "floor and saturation boundaries are invariant context",
+            "row_step_lineage_id": "5dc96322282b91947cb05aa3ea0e6035fdb8c4386713780d797733cd6b3eab93",
+            "sha_verified": true,
+            "source": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json",
+            "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+            "trajectory_step_id": "manifold_family_c_integrated_v0:step:0003"
+          }
+        ],
+        "template_source": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+        "template_source_sha256": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741"
+      },
+      "sha_path": "system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_trajectory_artifact.sha256",
+      "sha_verified": true,
+      "sidecar_file_sha256": "fe13af42ebba8841a3f64cecd9a0722492a1f11888592549b1bd9f3528bf5614"
+    },
+    "unified_run_consistency_matrix": {
+      "rows": [
+        {
+          "row_id": "floor_C8_anchor",
+          "row_step_class": "INVARIANT",
+          "source": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json"
+        },
+        {
+          "row_id": "n3_terrain_flux_current",
+          "row_step_class": "STEP_DEPENDENT",
+          "source": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json"
+        },
+        {
+          "row_id": "n4_terrain_flux_current",
+          "row_step_class": "STEP_DEPENDENT",
+          "source": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json"
+        },
+        {
+          "row_id": "n4_saturation_boundary",
+          "row_step_class": "INVARIANT",
+          "source": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json"
+        }
+      ],
+      "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain",
+      "template_consumption": "instantiated_on_family_c_state_object_not_cited_as_completed_C_integration",
+      "template_source": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+      "template_source_sha256": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741",
+      "unified_template_mode": "RATCHETED"
+    },
+    "validator_expected_commands": [
+      "/opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_julia.jl",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_jax.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_pytorch.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_family_c_integrated_v0/write_envelope_spec.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/build_three_engine_envelope.py system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_envelope_spec.json > system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/manifold_family_c_integrated_v0/validate_manifold_family_c_integrated_v0.py",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_envelope_results.json",
+      "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/manifold_family_c_integrated_v0/tests"
+    ]
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "engine_mode": "all_three_full_sims",
+      "package_observables": {
+        "cvc5": "source_backing_probe.cvc5_edge_identity computed total edge identity",
+        "networkx": "source_backing_probe.networkx_node_count/edge_count over n3->n4 terrain spine",
+        "sympy": "source_backing_probe.sympy_C16_over_C8_minus_2 exact support relation",
+        "z3": "source_backing_probe.z3_edge_identity computed total edge identity"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "networkx",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_jax_results.json",
+      "source_path": "system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_jax.py",
+      "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Graphs",
+        "Z3"
+      ],
+      "engine_mode": "all_three_full_sims",
+      "package_observables": {
+        "Graphs": "source_backing_probe.Graphs_node_count/edge_count/path_exists_n3_to_n4",
+        "Z3": "source_backing_probe.Z3_live_rung_identity and erased flip"
+      },
+      "packages_used": [
+        "Graphs",
+        "Z3",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_julia_results.json",
+      "source_path": "system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_julia.jl",
+      "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "engine_mode": "all_three_full_sims",
+      "package_observables": {
+        "cvc5": "source_backing_probe.cvc5_node_edge_identity computed graph identity",
+        "sympy": "source_backing_probe.sympy_C16_over_C8_minus_2 exact support relation",
+        "torch.func": "source_backing_probe.torch_func_batched_shape and current delta row",
+        "torch_geometric": "source_backing_probe.torch_geometric_num_nodes/edge_count finite graph carrier",
+        "z3": "source_backing_probe.z3_node_edge_identity computed graph identity"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "torch_geometric",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json"
+      ],
+      "result_all_pass": true,
+      "result_path": "system_v6/sims/manifold_family_c_integrated_v0/results/manifold_family_c_integrated_v0_pytorch_results.json",
+      "source_path": "system_v6/sims/manifold_family_c_integrated_v0/manifold_family_c_integrated_v0_pytorch.py",
+      "state_object_id": "manifold_family_c_integrated_v0:C8_floor_plus_n3_n4_terrain"
+    }
+  },
+  "mode": "all_three_full_sims",
+  "parent_lineage": {
+    "geo_s1_scaling_stress_678q_exact_v0": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json",
+    "geo_s1_three_qubit_floor_exact_v0": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json",
+    "manifold_unified_run_v0": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json",
+    "terrain_spinor_flux_nest_n3_v0": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json",
+    "terrain_spinor_flux_nest_n4_v0": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json"
+  },
+  "promotion_allowed": false,
+  "sim_id": "manifold_family_c_integrated_v0",
+  "stability_pairs": [
+    {
+      "hash": "3fbfdfab998ede6eb678dc987c3544e0f4fc52ef783cf4644e71315e713c2368",
+      "subtree": "system_v6/sims/terrain_spinor_flux_nest_n3_v0/results/terrain_spinor_flux_nest_n3_v0_envelope_results.json"
+    },
+    {
+      "hash": "f1d25d55da33fe821459f7193616218613240b9e8e12754ebee4f086a32a90b3",
+      "subtree": "system_v6/sims/terrain_spinor_flux_nest_n4_v0/results/terrain_spinor_flux_nest_n4_v0_envelope_results.json"
+    },
+    {
+      "hash": "b305e6e456ea04d8e7ef14b6db87a3b57ba104a05fa6c84f4f34af7d0ebd2eb4",
+      "subtree": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_envelope_results.json"
+    },
+    {
+      "hash": "b7d77b8342ff12dc7b6fcdb6fc359717bc63e8d7e60633758f9d14288e87e379",
+      "subtree": "system_v6/sims/geo_s1_scaling_stress_678q_exact_v0/results/geo_s1_scaling_stress_678q_exact_v0_envelope_results.json"
+    },
+    {
+      "hash": "d72af8c7f28ce952bd1f3aec714f3309e6b4f862e458cbaf4236034be947b741",
+      "subtree": "system_v6/sims/manifold_unified_run_v0/results/manifold_unified_run_v0_envelope_results.json"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
 """Run a bounded Wizard external child matrix.
 
 This helper is intentionally receipt-first. A Codex parent calls it for one
-route. It launches Claude child fanout for Opus, Sonnet, and Haiku, attempts a
-bounded Gemini direct-API read-only child, and writes one parent-readable matrix
+route. It launches Claude child fanout for Sonnet and optional Haiku, attempts
+bounded Grok and Gemini direct-API read-only children, and writes one parent-readable matrix
 receipt. It must not shell out through the Gemini CLI; API keys are already
 available in the shell environment and the CLI path can hang on auth/trust.
 """
@@ -20,6 +20,7 @@ import ssl
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -403,7 +404,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cwd", default=str(REPO_ROOT))
     parser.add_argument("--out-dir", default="/tmp/wizard_v4_2_child_matrix")
     parser.add_argument("--sonnet-count", type=int, default=0, help="Sonnet child count. Defaults to the full formal route obligation, or 6 for generic routes.")
-    parser.add_argument("--opus-count", type=int, default=0, help="Opus child count. Defaults to one; with --full-model-council, defaults to the full formal route obligation.")
+    parser.add_argument("--opus-count", type=int, default=0, help="Opus child count. Defaults to zero; use only for an explicit exception.")
     parser.add_argument("--haiku-count", type=int, default=1, help="Haiku child count. Set 0 for long Sonnet-first loops.")
     parser.add_argument("--full-model-council", action="store_true", help="For each parent route, ask each Claude model family to cover the full active formal child obligation.")
     parser.add_argument("--only-children", default="", help="Comma-separated formal child ids to run for a narrow repair.")
@@ -442,8 +443,12 @@ def load_receipt(path: Path) -> dict[str, Any]:
 def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeout: float) -> Any:
     body = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(url, data=body, headers=headers, method="POST")
-    with urllib.request.urlopen(request, timeout=timeout, context=ssl_context()) as response:
-        return json.loads(response.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(request, timeout=timeout, context=ssl_context()) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"HTTP {exc.code} {exc.reason}: {detail[:1200]}") from exc
 
 
 def gemini_api_key() -> str:
@@ -1429,7 +1434,7 @@ def run_one_gemini_child(args: argparse.Namespace, out_dir: Path, child_id: str,
                 {"Content-Type": "application/json", "x-goog-api-key": key},
                 {
                     "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {"temperature": 0, "thinkingConfig": {"thinkingBudget": 0}},
+                    "generationConfig": {"temperature": 0},
                 },
                 args.gemini_timeout_sec,
             )
@@ -1796,7 +1801,7 @@ def main() -> int:
     ]
     full_role_count = len(roles) if active_formal_children else 6
     sonnet_count = args.sonnet_count if args.sonnet_count > 0 else full_role_count
-    opus_count = args.opus_count if args.opus_count > 0 else (full_role_count if args.full_model_council else 1)
+    opus_count = args.opus_count if args.opus_count > 0 else 0
     haiku_count = full_role_count if args.full_model_council and args.haiku_count > 0 else args.haiku_count
     group_specs: list[dict[str, Any]] = []
     if args.rescore_existing:
@@ -1843,14 +1848,15 @@ def main() -> int:
                 "budget": args.sonnet_budget,
                 "roles": role_specs["sonnet"]["roles"],
             },
-            {
+        ]
+        if opus_count > 0:
+            group_specs.append({
                 "model": "opus",
                 "count": role_specs["opus"]["count"],
                 "timeout_sec": args.opus_timeout_sec,
                 "budget": args.opus_budget,
                 "roles": role_specs["opus"]["roles"],
-            },
-        ]
+            })
         if haiku_count > 0:
             group_specs.append(
                 {
@@ -1932,6 +1938,8 @@ def main() -> int:
             return "skipped"
         if args.codex_local_children and model in {"sonnet", "opus", "haiku"}:
             return "skipped"
+        if model == "opus" and opus_count <= 0:
+            return "disabled"
         if model == "haiku" and args.haiku_count <= 0:
             return "disabled"
         return "completed" if completed_for(model) else "blocked"

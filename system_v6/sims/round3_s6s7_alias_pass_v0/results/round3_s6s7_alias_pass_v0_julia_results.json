@@ -1,0 +1,965 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph construction and degree/cycle rows",
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive result serialization",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hash",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side finite first-teeth row witness polarity",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "heavy_local_not_run": [
+      "S67.R3.1_mobius_reflection_shifted",
+      "S67.R3.2_klein_double_twist",
+      "S67.R3.3_shear_torus",
+      "S67.R3.4_cycle_with_one_chord",
+      "S67.R3.5_ladder_prism_graph"
+    ],
+    "phase": "light-symbolic phase 1 only",
+    "pytorch_omitted": "no PyTorch tensor/autograd/message-passing claim path is scoped"
+  },
+  "build_gates": {
+    "anchor_classifies_as_itself": true,
+    "deliberate_alias_classifies_alias": true,
+    "far_candidate_dies_first_teeth": true,
+    "graphs_rows_built": true,
+    "heavy_local_rows_queued": true,
+    "julia_z3_flip_control_sat": true,
+    "julia_z3_positive_unsat": true
+  },
+  "candidate_verdicts": [
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "preserve/move/cross/leave",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": [
+          8,
+          16,
+          32
+        ],
+        "cover_signature": {
+          "kind": "untwisted_torus_cover",
+          "orbit_size_multiset_N8": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "relation": "(a,b)~(a+N/2,b)",
+          "z4_well_defined": true
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "control",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "none; anchor",
+      "finite_representative": "untwisted torus cover, cycle graph, Z4 lens shift",
+      "id": "S67.R3.0_committed_torus_ring",
+      "row": "anchor",
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "not-run-heavy-local",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": "not-run-heavy-local",
+        "cover_signature": {
+          "kind": "mobius_reflection_shifted",
+          "orbit_size_multiset_N8": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "relation": "(a,b)~(a+N/2,-b+c)",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "closest known twist family",
+      "cost": "heavy-local",
+      "expected_teeth_row": "lens quotient commensurability",
+      "finite_representative": "cover relation (a,b)~(a+N/2,-b+c) for c in {0,N/4,N/2}",
+      "id": "S67.R3.1_mobius_reflection_shifted",
+      "row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness": {
+        "anchor": "light-symbolic anchor canonical tuple completed",
+        "candidate": "S67.R3.1_mobius_reflection_shifted cost=heavy-local; queued for lens quotient commensurability",
+        "field": "registry_cost_guard"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "not-run-heavy-local",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": "not-run-heavy-local",
+        "cover_signature": {
+          "kind": "klein_double_twist",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "two-direction orientation reversal",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "close cover-neighbor",
+      "cost": "heavy-local",
+      "expected_teeth_row": "cover-orbit well-definedness then lens row",
+      "finite_representative": "two-direction orientation reversal on the rectangular chart with the same Z4 shift",
+      "id": "S67.R3.2_klein_double_twist",
+      "row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness": {
+        "anchor": "light-symbolic anchor canonical tuple completed",
+        "candidate": "S67.R3.2_klein_double_twist cost=heavy-local; queued for cover-orbit well-definedness then lens row",
+        "field": "registry_cost_guard"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "not-run-heavy-local",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": "not-run-heavy-local",
+        "cover_signature": {
+          "kind": "shear_torus",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "(a,b)->(a+N/2,b+a mod N)",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "near untwisted but altered lens action",
+      "cost": "heavy-local",
+      "expected_teeth_row": "lens descent and S6 leakage taxonomy",
+      "finite_representative": "untwisted cover plus shear (a,b)->(a+N/2,b+a mod N) on representatives",
+      "id": "S67.R3.3_shear_torus",
+      "row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness": {
+        "anchor": "light-symbolic anchor canonical tuple completed",
+        "candidate": "S67.R3.3_shear_torus cost=heavy-local; queued for lens descent and S6 leakage taxonomy",
+        "field": "registry_cost_guard"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "not-run-heavy-local",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": "not-run-heavy-local",
+        "cover_signature": {
+          "kind": "support_graph_only",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "same untwisted cover pending heavy graph/cost row",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 5,
+          "degree_sequence": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "edge_count": 12,
+          "node_count": 8
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "close support graph neighbor",
+      "cost": "heavy-local",
+      "expected_teeth_row": "bounded word cost and cycle holonomy",
+      "finite_representative": "ring graph plus one antipodal chord at each N",
+      "id": "S67.R3.4_cycle_with_one_chord",
+      "row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness": {
+        "anchor": "light-symbolic anchor canonical tuple completed",
+        "candidate": "S67.R3.4_cycle_with_one_chord cost=heavy-local; queued for bounded word cost and cycle holonomy",
+        "field": "registry_cost_guard"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "not-run-heavy-local",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": "not-run-heavy-local",
+        "cover_signature": {
+          "kind": "support_graph_only",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "same untwisted cover pending heavy graph/cost row",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 9,
+          "degree_sequence": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "edge_count": 24,
+          "node_count": 16
+        }
+      },
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "graph topology neighbor between ring and complete",
+      "cost": "heavy-local",
+      "expected_teeth_row": "locality cost plus leakage class row",
+      "finite_representative": "two-ring ladder/prism local graph with degree 3",
+      "id": "S67.R3.5_ladder_prism_graph",
+      "row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness": {
+        "anchor": "light-symbolic anchor canonical tuple completed",
+        "candidate": "S67.R3.5_ladder_prism_graph cost=heavy-local; queued for locality cost plus leakage class row",
+        "field": "registry_cost_guard"
+      }
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "preserve/move/cross/leave",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": [
+          8,
+          16,
+          32
+        ],
+        "cover_signature": {
+          "kind": "untwisted_torus_cover",
+          "orbit_size_multiset_N8": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "relation": "(a,b)~(a+N/2,b)",
+          "z4_well_defined": true
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "id": "control.anchor_self",
+      "row": "anchor",
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "preserve/move/cross/leave",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": [
+          8,
+          16,
+          32
+        ],
+        "cover_signature": {
+          "kind": "untwisted_torus_cover",
+          "orbit_size_multiset_N8": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "relation": "(a,b)~(a+N/2,b)",
+          "z4_well_defined": true
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 8,
+          "node_count": 8
+        }
+      },
+      "id": "control.alias_reparameterized_committed",
+      "row": "graph_edge_set_and_canonical_tuple_equal",
+      "verdict": "alias",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "preserve/move/cross/leave",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": [
+          8,
+          16,
+          32
+        ],
+        "cover_signature": {
+          "kind": "support_graph_only",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "same untwisted cover pending heavy graph/cost row",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 0,
+          "degree_sequence": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 7,
+          "node_count": 8
+        }
+      },
+      "id": "control.round2_path_far_graph",
+      "row": "closed-cycle graph row",
+      "verdict": "excluded-by-closed-cycle-graph-row",
+      "witness": {
+        "anchor": 8,
+        "candidate": 7,
+        "field": "light_graph_invariants.edge_count"
+      }
+    }
+  ],
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "SMT binds the finite N=8 first-teeth row only; heavy S6/S7 rows remain queued",
+      "claim": "computed path graph degree witnesses cannot satisfy the closed cycle degree-2 row",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "all path degrees equal 2",
+      "negative/erased_control": "closing the path into the anchor cycle makes the degree-2 row SAT",
+      "positive_case": "far path graph has degree endpoints 1, so the closed-cycle row is UNSAT",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "witness_values": {
+        "cycle_degrees": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "path_degrees": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      }
+    }
+  },
+  "engine_role_note": "Julia Graphs rebuilds finite graph rows; Z3.jl binds the far path closed-cycle witness polarity.",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T00:57:21Z",
+  "negative": {
+    "far_candidate_control": {
+      "canonical_tuple": {
+        "S6_leakage_class_signature": "preserve/move/cross/leave",
+        "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+        "cost_profile_N_8_16_32": [
+          8,
+          16,
+          32
+        ],
+        "cover_signature": {
+          "kind": "support_graph_only",
+          "orbit_size_multiset_N8": "queued-heavy-local",
+          "relation": "same untwisted cover pending heavy graph/cost row",
+          "z4_well_defined": "queued-heavy-local"
+        },
+        "light_graph_invariants": {
+          "connected_components": 1,
+          "cycle_rank": 0,
+          "degree_sequence": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "edge_count": 7,
+          "node_count": 8
+        }
+      },
+      "id": "control.round2_path_far_graph",
+      "row": "closed-cycle graph row",
+      "verdict": "excluded-by-closed-cycle-graph-row",
+      "witness": {
+        "anchor": 8,
+        "candidate": 7,
+        "field": "light_graph_invariants.edge_count"
+      }
+    },
+    "heavy_local_label_guard": "not-run heavy-local rows are open + queued-heavy-local"
+  },
+  "package_observables": {
+    "Graphs": "Graphs.SimpleGraph/add_edge!/degree/ne/nv compute finite support graph rows for anchor, alias, and far-control witnesses",
+    "Z3": "Z3.Solver/check proves finite far path degree-row UNSAT under cycle constraints and SAT after closing-edge flip"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "phase2_queue": {
+    "heavy_local_queued_by_registry_cost_class": [
+      "S67.R3.1_mobius_reflection_shifted",
+      "S67.R3.2_klein_double_twist",
+      "S67.R3.3_shear_torus",
+      "S67.R3.4_cycle_with_one_chord",
+      "S67.R3.5_ladder_prism_graph"
+    ],
+    "known_cosurvivor_classes": [],
+    "light_symbolic_non_alias_representatives_remaining": []
+  },
+  "positive": {
+    "anchor_and_alias_control": [
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "preserve/move/cross/leave",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": [
+            8,
+            16,
+            32
+          ],
+          "cover_signature": {
+            "kind": "untwisted_torus_cover",
+            "orbit_size_multiset_N8": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "relation": "(a,b)~(a+N/2,b)",
+            "z4_well_defined": true
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "id": "control.anchor_self",
+        "row": "anchor",
+        "verdict": "anchor",
+        "witness": {
+          "anchor": "equal",
+          "candidate": "equal",
+          "field": "canonical_tuple"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "preserve/move/cross/leave",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": [
+            8,
+            16,
+            32
+          ],
+          "cover_signature": {
+            "kind": "untwisted_torus_cover",
+            "orbit_size_multiset_N8": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "relation": "(a,b)~(a+N/2,b)",
+            "z4_well_defined": true
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "id": "control.alias_reparameterized_committed",
+        "row": "graph_edge_set_and_canonical_tuple_equal",
+        "verdict": "alias",
+        "witness": {
+          "anchor": "equal",
+          "candidate": "equal",
+          "field": "canonical_tuple"
+        }
+      }
+    ],
+    "graphs_reference_rows": [
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "preserve/move/cross/leave",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": [
+            8,
+            16,
+            32
+          ],
+          "cover_signature": {
+            "kind": "untwisted_torus_cover",
+            "orbit_size_multiset_N8": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "relation": "(a,b)~(a+N/2,b)",
+            "z4_well_defined": true
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "control",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "none; anchor",
+        "finite_representative": "untwisted torus cover, cycle graph, Z4 lens shift",
+        "id": "S67.R3.0_committed_torus_ring",
+        "row": "anchor",
+        "verdict": "anchor",
+        "witness": {
+          "anchor": "equal",
+          "candidate": "equal",
+          "field": "canonical_tuple"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "not-run-heavy-local",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": "not-run-heavy-local",
+          "cover_signature": {
+            "kind": "mobius_reflection_shifted",
+            "orbit_size_multiset_N8": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "relation": "(a,b)~(a+N/2,-b+c)",
+            "z4_well_defined": "queued-heavy-local"
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "closest known twist family",
+        "cost": "heavy-local",
+        "expected_teeth_row": "lens quotient commensurability",
+        "finite_representative": "cover relation (a,b)~(a+N/2,-b+c) for c in {0,N/4,N/2}",
+        "id": "S67.R3.1_mobius_reflection_shifted",
+        "row": "heavy_local_cost_guard_not_run_in_phase_1",
+        "verdict": "open + queued-heavy-local",
+        "witness": {
+          "anchor": "light-symbolic anchor canonical tuple completed",
+          "candidate": "S67.R3.1_mobius_reflection_shifted cost=heavy-local; queued for lens quotient commensurability",
+          "field": "registry_cost_guard"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "not-run-heavy-local",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": "not-run-heavy-local",
+          "cover_signature": {
+            "kind": "klein_double_twist",
+            "orbit_size_multiset_N8": "queued-heavy-local",
+            "relation": "two-direction orientation reversal",
+            "z4_well_defined": "queued-heavy-local"
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "close cover-neighbor",
+        "cost": "heavy-local",
+        "expected_teeth_row": "cover-orbit well-definedness then lens row",
+        "finite_representative": "two-direction orientation reversal on the rectangular chart with the same Z4 shift",
+        "id": "S67.R3.2_klein_double_twist",
+        "row": "heavy_local_cost_guard_not_run_in_phase_1",
+        "verdict": "open + queued-heavy-local",
+        "witness": {
+          "anchor": "light-symbolic anchor canonical tuple completed",
+          "candidate": "S67.R3.2_klein_double_twist cost=heavy-local; queued for cover-orbit well-definedness then lens row",
+          "field": "registry_cost_guard"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "not-run-heavy-local",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": "not-run-heavy-local",
+          "cover_signature": {
+            "kind": "shear_torus",
+            "orbit_size_multiset_N8": "queued-heavy-local",
+            "relation": "(a,b)->(a+N/2,b+a mod N)",
+            "z4_well_defined": "queued-heavy-local"
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 1,
+            "degree_sequence": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "edge_count": 8,
+            "node_count": 8
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "near untwisted but altered lens action",
+        "cost": "heavy-local",
+        "expected_teeth_row": "lens descent and S6 leakage taxonomy",
+        "finite_representative": "untwisted cover plus shear (a,b)->(a+N/2,b+a mod N) on representatives",
+        "id": "S67.R3.3_shear_torus",
+        "row": "heavy_local_cost_guard_not_run_in_phase_1",
+        "verdict": "open + queued-heavy-local",
+        "witness": {
+          "anchor": "light-symbolic anchor canonical tuple completed",
+          "candidate": "S67.R3.3_shear_torus cost=heavy-local; queued for lens descent and S6 leakage taxonomy",
+          "field": "registry_cost_guard"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "not-run-heavy-local",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": "not-run-heavy-local",
+          "cover_signature": {
+            "kind": "support_graph_only",
+            "orbit_size_multiset_N8": "queued-heavy-local",
+            "relation": "same untwisted cover pending heavy graph/cost row",
+            "z4_well_defined": "queued-heavy-local"
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 5,
+            "degree_sequence": [
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "edge_count": 12,
+            "node_count": 8
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "close support graph neighbor",
+        "cost": "heavy-local",
+        "expected_teeth_row": "bounded word cost and cycle holonomy",
+        "finite_representative": "ring graph plus one antipodal chord at each N",
+        "id": "S67.R3.4_cycle_with_one_chord",
+        "row": "heavy_local_cost_guard_not_run_in_phase_1",
+        "verdict": "open + queued-heavy-local",
+        "witness": {
+          "anchor": "light-symbolic anchor canonical tuple completed",
+          "candidate": "S67.R3.4_cycle_with_one_chord cost=heavy-local; queued for bounded word cost and cycle holonomy",
+          "field": "registry_cost_guard"
+        }
+      },
+      {
+        "canonical_tuple": {
+          "S6_leakage_class_signature": "not-run-heavy-local",
+          "canonicalizer": "graph_isomorphism_class_under_dihedral_lens_preserving_maps, cover_equivalence_relation_classes, Z4_action_well_defined_boolean, orbit_size_multiset, cost_profile[N=8,16,32], S6_leakage_class_signature",
+          "cost_profile_N_8_16_32": "not-run-heavy-local",
+          "cover_signature": {
+            "kind": "support_graph_only",
+            "orbit_size_multiset_N8": "queued-heavy-local",
+            "relation": "same untwisted cover pending heavy graph/cost row",
+            "z4_well_defined": "queued-heavy-local"
+          },
+          "light_graph_invariants": {
+            "connected_components": 1,
+            "cycle_rank": 9,
+            "degree_sequence": [
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "edge_count": 24,
+            "node_count": 16
+          }
+        },
+        "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+        "closeness": "graph topology neighbor between ring and complete",
+        "cost": "heavy-local",
+        "expected_teeth_row": "locality cost plus leakage class row",
+        "finite_representative": "two-ring ladder/prism local graph with degree 3",
+        "id": "S67.R3.5_ladder_prism_graph",
+        "row": "heavy_local_cost_guard_not_run_in_phase_1",
+        "verdict": "open + queued-heavy-local",
+        "witness": {
+          "anchor": "light-symbolic anchor canonical tuple completed",
+          "candidate": "S67.R3.5_ladder_prism_graph cost=heavy-local; queued for locality cost plus leakage class row",
+          "field": "registry_cost_guard"
+        }
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/round3_s6s7_alias_pass_v0/results/round3_s6s7_alias_pass_v0_julia_results.json",
+  "role_id": "julia_graphs_reference_lane",
+  "schema": "round3_s6s7_alias_pass_v0_julia_lane_v1",
+  "sim_id": "round3_s6s7_alias_pass_v0",
+  "source_path": "system_v6/sims/round3_s6s7_alias_pass_v0/round3_s6s7_alias_pass_v0_julia.jl",
+  "source_sha256": "afe2dbcfd7dbd56c8f226d28af83ef6d2388f8088fb90385ce3b0d64c5308793",
+  "tool_calls": [
+    {
+      "boundary_case": "heavy-local R3 rows remain queued",
+      "demotion_condition": "Graphs rows missing or disagreed with Python exact lane",
+      "input_object": "finite N=8 support graph rows",
+      "negative/erased_control": "path far-control has endpoint degree 1 and cycle rank 0",
+      "output_object": "degree, edge, node, and cycle-rank witnesses",
+      "positive_case": "cycle anchor has degree sequence all 2 and cycle rank 1",
+      "qualified_api": "Graphs.SimpleGraph/add_edge!/degree/ne/nv",
+      "tool": "Graphs"
+    }
+  ]
+}

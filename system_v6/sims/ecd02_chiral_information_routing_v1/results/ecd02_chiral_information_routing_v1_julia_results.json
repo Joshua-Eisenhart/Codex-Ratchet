@@ -1,0 +1,73 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Z3": {
+      "reason": "load-bearing Julia SMT proof for ECD.02 death boundary",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "capability_discriminator_only",
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "baseline_abs_current_milli": 5000,
+      "claim": "Z3.jl proves the searched classical baseline is not weaker than the QIT current witness",
+      "load_bearing": true,
+      "qit_abs_current_milli": 1000,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_values": {
+    "L_directed_current": -1.0,
+    "R_directed_current": 1.0,
+    "ecd02_dies": 1,
+    "qit_abs_directed_current": 1.0,
+    "registry_contract_pass": 0,
+    "scrambled_directed_current": 0.0,
+    "strongest_szilard_abs_directed_current": 5.0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T09:25:33Z",
+  "package_observables": {
+    "Z3": "Z3.Solver proves the strongest Szilard baseline is not weaker than QIT"
+  },
+  "package_versions": {
+    "Z3": "package",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/ecd02_chiral_information_routing_v1/results/ecd02_chiral_information_routing_v1_julia_results.json",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "ecd02_chiral_information_routing_v1",
+  "source_path": "system_v6/sims/ecd02_chiral_information_routing_v1/ecd02_chiral_information_routing_v1_julia.jl",
+  "source_sha256": "696f5e297e607e99834dcfc307eba69c21c5e4ada8bb375b957a860b021a77dc",
+  "tool_calls": [
+    {
+      "boundary_case": "equal-current death boundary",
+      "demotion_condition": "demote if Z3 no longer binds current rows",
+      "input_object": "finite qit/current and strongest-baseline current rows",
+      "negative/erased_control": "scrambled current zero in Python discovery rows",
+      "output_object": "UNSAT baseline-weaker-than-QIT condition",
+      "positive_case": "baseline_abs_current >= qit_abs_current",
+      "qualified_api/function": "Z3.Solver",
+      "tool": "Z3"
+    }
+  ]
+}

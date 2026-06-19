@@ -1,0 +1,983 @@
+{
+  "F01_load_bearing": true,
+  "M": {
+    "all_probe_families_are_finite": true,
+    "coarse": [
+      "Z"
+    ],
+    "empty": [],
+    "enlarged_approx_informationally_complete": [
+      "Z",
+      "X",
+      "Y"
+    ]
+  },
+  "N01_load_bearing": true,
+  "S": {
+    "candidate_descriptions": {
+      "ensemble_x_mixed": "50/50 ensemble over pure_x_plus and pure_x_minus",
+      "ensemble_z_mixed": "50/50 ensemble over pure_z0 and pure_z1",
+      "pure_x_minus": "finite superposition pure state",
+      "pure_x_plus": "finite superposition pure state",
+      "pure_y_minus": "finite phase-offset pure state",
+      "pure_y_plus": "finite phase-offset pure state",
+      "pure_z0": "one pure state",
+      "pure_z1": "orthogonal pure state"
+    },
+    "candidate_ids": [
+      "pure_z0",
+      "pure_z1",
+      "pure_x_plus",
+      "pure_x_minus",
+      "pure_y_plus",
+      "pure_y_minus",
+      "ensemble_z_mixed",
+      "ensemble_x_mixed"
+    ],
+    "definition": "finite set of candidate configurations represented by 2x2 density matrices",
+    "size": 8
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null,
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization and JAX peer comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing mirror for finite density matrices, finite POVM statistics, quotient classes, and order-gap controls",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, norms, projectors, and sequential probe statistics",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror and not used for compute",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: explicit user fence requires JAX plus Julia mirror",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON"
+  ],
+  "all_pass": true,
+  "backend": "julia",
+  "blocked_consumers": [
+    "all promotion, formal admission, geometry, carrier, physics, or canonical consumers"
+  ],
+  "boundary": {
+    "claim_ceiling": "rungs 0-3 finite distinguishability structure built bottom-up from F01+N01+(a=a iff a~b) grounded in owner docs; density matrix = quotient S/~_M; the FOUNDATION of the model; NOT geometry, NOT carrier, NOT physics, NOT canonical.",
+    "classification_is_scratch_diagnostic": true,
+    "formal_admission_allowed_false": true,
+    "promotion_allowed_false": true
+  },
+  "claim_ceiling": "rungs 0-3 finite distinguishability structure built bottom-up from F01+N01+(a=a iff a~b) grounded in owner docs; density matrix = quotient S/~_M; the FOUNDATION of the model; NOT geometry, NOT carrier, NOT physics, NOT canonical.",
+  "classification": "scratch_diagnostic",
+  "commuting_control_now_empirical": true,
+  "commuting_order_gap": 0.0,
+  "controls": {
+    "F01_load_bearing": {
+      "coarse_class_count": 3,
+      "enlarged_class_count": 7,
+      "interpretation": "finite M bounds identity resolution; enlarging finite M refines the quotient",
+      "pass": true,
+      "resolution_change": 4.0
+    },
+    "N01_load_bearing": {
+      "X_then_Z_joint_distribution": [
+        {
+          "first_outcome": "X_0",
+          "first_probe": "X",
+          "probability": 0.25,
+          "second_outcome": "Z_0",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "X_0",
+          "first_probe": "X",
+          "probability": 0.25,
+          "second_outcome": "Z_1",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "X_1",
+          "first_probe": "X",
+          "probability": 0.25,
+          "second_outcome": "Z_0",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "X_1",
+          "first_probe": "X",
+          "probability": 0.25,
+          "second_outcome": "Z_1",
+          "second_probe": "Z"
+        }
+      ],
+      "X_then_Z_joint_stats": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "Z_relabel_then_Z_joint_distribution": [
+        {
+          "first_outcome": "Z_relabel_0",
+          "first_probe": "Z_relabel",
+          "probability": 0.0,
+          "second_outcome": "Z_0",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "Z_relabel_0",
+          "first_probe": "Z_relabel",
+          "probability": 0.0,
+          "second_outcome": "Z_1",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "Z_relabel_1",
+          "first_probe": "Z_relabel",
+          "probability": 1.0,
+          "second_outcome": "Z_0",
+          "second_probe": "Z"
+        },
+        {
+          "first_outcome": "Z_relabel_1",
+          "first_probe": "Z_relabel",
+          "probability": 0.0,
+          "second_outcome": "Z_1",
+          "second_probe": "Z"
+        }
+      ],
+      "Z_then_X_joint_distribution": [
+        {
+          "first_outcome": "Z_0",
+          "first_probe": "Z",
+          "probability": 0.5,
+          "second_outcome": "X_0",
+          "second_probe": "X"
+        },
+        {
+          "first_outcome": "Z_0",
+          "first_probe": "Z",
+          "probability": 0.5,
+          "second_outcome": "X_1",
+          "second_probe": "X"
+        },
+        {
+          "first_outcome": "Z_1",
+          "first_probe": "Z",
+          "probability": 0.0,
+          "second_outcome": "X_0",
+          "second_probe": "X"
+        },
+        {
+          "first_outcome": "Z_1",
+          "first_probe": "Z",
+          "probability": 0.0,
+          "second_outcome": "X_1",
+          "second_probe": "X"
+        }
+      ],
+      "Z_then_X_joint_stats": [
+        0.5,
+        0.5,
+        0.0,
+        0.0
+      ],
+      "Z_then_Z_relabel_joint_distribution": [
+        {
+          "first_outcome": "Z_0",
+          "first_probe": "Z",
+          "probability": 0.0,
+          "second_outcome": "Z_relabel_0",
+          "second_probe": "Z_relabel"
+        },
+        {
+          "first_outcome": "Z_0",
+          "first_probe": "Z",
+          "probability": 1.0,
+          "second_outcome": "Z_relabel_1",
+          "second_probe": "Z_relabel"
+        },
+        {
+          "first_outcome": "Z_1",
+          "first_probe": "Z",
+          "probability": 0.0,
+          "second_outcome": "Z_relabel_0",
+          "second_probe": "Z_relabel"
+        },
+        {
+          "first_outcome": "Z_1",
+          "first_probe": "Z",
+          "probability": 0.0,
+          "second_outcome": "Z_relabel_1",
+          "second_probe": "Z_relabel"
+        }
+      ],
+      "commuting_control_now_empirical": true,
+      "commuting_order_gap": 0.0,
+      "commuting_probe_order": "Z_then_Z_relabel vs Z_relabel_then_Z",
+      "commuting_projector_commutator_max_norm": 0.0,
+      "commuting_raw_order_gap": 2.0,
+      "n01_gate_not_tautological": true,
+      "noncommuting_order_gap": 1.0,
+      "noncommuting_probe_order": "Z_then_X vs X_then_Z",
+      "noncommuting_projector_commutator_max_norm": 0.707106781186547,
+      "pass": true
+    },
+    "density_is_equivalence_class": {
+      "negative_control": {
+        "actual_density_witness_pass": false,
+        "expected_density_witness_pass": false,
+        "pass": true,
+        "witness": {
+          "density_is_equivalence_class": false,
+          "left_id": "pure_z0",
+          "probe_rows": [
+            {
+              "left_stats": [
+                1.0,
+                0.0
+              ],
+              "max_gap": 0.5,
+              "probe": "Z",
+              "right_stats": [
+                0.5,
+                0.5
+              ],
+              "separates": true
+            },
+            {
+              "left_stats": [
+                0.5,
+                0.5
+              ],
+              "max_gap": 0.5,
+              "probe": "X",
+              "right_stats": [
+                1.0,
+                0.0
+              ],
+              "separates": true
+            },
+            {
+              "left_stats": [
+                0.5,
+                0.5
+              ],
+              "max_gap": 0.0,
+              "probe": "Y",
+              "right_stats": [
+                0.5,
+                0.5
+              ],
+              "separates": false
+            }
+          ],
+          "right_id": "pure_x_plus",
+          "same_density_frobenius_gap": 1.0,
+          "separating_probes": [
+            "Z",
+            "X"
+          ],
+          "tested_probe_max_gap": 0.5
+        }
+      },
+      "pass": true,
+      "witness": {
+        "density_is_equivalence_class": true,
+        "ensemble_A": [
+          [
+            "pure_z0",
+            0.5
+          ],
+          [
+            "pure_z1",
+            0.5
+          ]
+        ],
+        "ensemble_B": [
+          [
+            "pure_x_plus",
+            0.5
+          ],
+          [
+            "pure_x_minus",
+            0.5
+          ]
+        ],
+        "no_povm_separates_reason": "Born statistics depend only on rho via Tr(E rho); identical rho gives identical statistics for every finite effect E.",
+        "probe_rows": [
+          {
+            "left_stats": [
+              0.5,
+              0.5
+            ],
+            "max_gap": 0.0,
+            "probe": "Z",
+            "right_stats": [
+              0.5,
+              0.5
+            ],
+            "separates": false
+          },
+          {
+            "left_stats": [
+              0.5,
+              0.5
+            ],
+            "max_gap": 0.0,
+            "probe": "X",
+            "right_stats": [
+              0.5,
+              0.5
+            ],
+            "separates": false
+          },
+          {
+            "left_stats": [
+              0.5,
+              0.5
+            ],
+            "max_gap": 0.0,
+            "probe": "Y",
+            "right_stats": [
+              0.5,
+              0.5
+            ],
+            "separates": false
+          }
+        ],
+        "same_density_frobenius_gap": 0.0,
+        "separating_probes": [],
+        "tested_probe_max_gap": 0.0
+      }
+    },
+    "empty_probe_collapses_identity": {
+      "class_count": 1,
+      "pass": true
+    }
+  },
+  "criteria_checked": [
+    "finite quotient S/~_M built",
+    "F01 finite-probe resolution control refines quotient",
+    "N01 sequential noncommuting probe order gap with commuting control",
+    "N01 commuting control uses distinct commuting probes, not duplicate calls",
+    "empty probe family collapses identity",
+    "two distinct pure-state ensembles realize the same density class",
+    "density witness negative control separates non-equal pure states",
+    "JAX/Julia shared scalar, boolean, and string parity"
+  ],
+  "density_is_equivalence_class": true,
+  "density_matrix_as_equivalence_class": {
+    "density_is_equivalence_class": true,
+    "ensemble_A": [
+      [
+        "pure_z0",
+        0.5
+      ],
+      [
+        "pure_z1",
+        0.5
+      ]
+    ],
+    "ensemble_B": [
+      [
+        "pure_x_plus",
+        0.5
+      ],
+      [
+        "pure_x_minus",
+        0.5
+      ]
+    ],
+    "no_povm_separates_reason": "Born statistics depend only on rho via Tr(E rho); identical rho gives identical statistics for every finite effect E.",
+    "probe_rows": [
+      {
+        "left_stats": [
+          0.5,
+          0.5
+        ],
+        "max_gap": 0.0,
+        "probe": "Z",
+        "right_stats": [
+          0.5,
+          0.5
+        ],
+        "separates": false
+      },
+      {
+        "left_stats": [
+          0.5,
+          0.5
+        ],
+        "max_gap": 0.0,
+        "probe": "X",
+        "right_stats": [
+          0.5,
+          0.5
+        ],
+        "separates": false
+      },
+      {
+        "left_stats": [
+          0.5,
+          0.5
+        ],
+        "max_gap": 0.0,
+        "probe": "Y",
+        "right_stats": [
+          0.5,
+          0.5
+        ],
+        "separates": false
+      }
+    ],
+    "same_density_frobenius_gap": 0.0,
+    "separating_probes": [],
+    "tested_probe_max_gap": 0.0
+  },
+  "density_negative_control_separates": true,
+  "eligible_consumers": [],
+  "empty_probe_collapses_identity": true,
+  "f01_resolution_change": 4.0,
+  "finite_quotient_built": true,
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T06:52:53Z",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "commutative_order_control_kills_N01_gap": true,
+    "density_witness_not_always_true": true,
+    "distinct_ensemble_decomposition_not_identity_split": true,
+    "over_resolved_identity_under_larger_finite_M": true
+  },
+  "identity_rule_operationalization": "a's identity is its class in S/~_M; empty M collapses all candidates to one no-contrast class",
+  "indistinguishability_relation": "a ~_M b iff every probe in M returns identical outcome statistics on a and b",
+  "jax_enable_x64": null,
+  "n01_gate_not_tautological": true,
+  "n01_order_gap": 1.0,
+  "name": "foundation_rung0to3_distinguishability",
+  "nearby_variants": {
+    "coarse_probe_family": "Z only",
+    "commuting_order_control": "Z with relabeled diagonal Z",
+    "density_negative_control_pair": "pure_z0 vs pure_x_plus",
+    "empty_probe_family": "no probes",
+    "enlarged_probe_family": "Z, X, Y"
+  },
+  "negative": {
+    "commuting_probe_order_control": "distinct commuting sequential probes Z and relabeled diagonal Z have near-zero label-aligned order gap",
+    "density_witness_negative_control": "pure_z0 and pure_x_plus do not share rho and are separated by finite probes; the density-equivalence witness must fail",
+    "empty_probe_no_identity_control": "with no contrast, quotient has one class over all candidates"
+  },
+  "numpy_compute_used": false,
+  "numpy_imported": false,
+  "object_id": "foundation_rung0to3_distinguishability",
+  "owner_doc_grounding": [
+    "OWNER_THESIS_AND_COSMOLOGY.md:13-32",
+    "OWNER_THESIS_AND_COSMOLOGY.md:485-492",
+    "NOMINALISM_IN_THIS_SYSTEM.md:199-223",
+    "CONSTRAINT_SURFACE_AND_PROCESS.md:16-26"
+  ],
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "commuting_projector_commutator_max_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 7.0,
+        "julia": 7.0,
+        "key": "enlarged_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.707106781186547,
+        "julia": 0.707106781186547,
+        "key": "noncommuting_projector_commutator_max_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "commuting_order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "M_enlarged_probe_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "coarse_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "commuting_raw_order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.5,
+        "julia": 0.5,
+        "key": "density_negative_control_probe_max_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "S_size"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "f01_resolution_change"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "density_tested_probe_max_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "density_negative_control_rho_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "empty_class_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "n01_order_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "density_same_rho_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "M_coarse_probe_count"
+      }
+    ],
+    "parity_max_diff": 0.0,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_rung0to3_distinguishability_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_1e_12": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/foundation_rung0to3_distinguishability_results.json",
+  "positive": {
+    "F01_load_bearing": {
+      "pass": true
+    },
+    "N01_load_bearing": {
+      "pass": true
+    },
+    "density_is_equivalence_class": {
+      "pass": true
+    },
+    "density_negative_control_separates": {
+      "pass": true
+    },
+    "empty_probe_collapses_identity": {
+      "pass": true
+    },
+    "finite_quotient_built": {
+      "pass": true
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "quotient_S_mod_M_coarse": {
+    "class_count": 3,
+    "classes": [
+      {
+        "class_id": "M_Z_q0",
+        "members": [
+          "pure_z1"
+        ],
+        "signature": [
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "class_id": "M_Z_q1",
+        "members": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "M_Z_q2",
+        "members": [
+          "pure_z0"
+        ],
+        "signature": [
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      }
+    ],
+    "name": "M_Z",
+    "partition_member_ids": [
+      "ensemble_x_mixed",
+      "ensemble_z_mixed",
+      "pure_x_minus",
+      "pure_x_plus",
+      "pure_y_minus",
+      "pure_y_plus",
+      "pure_z0",
+      "pure_z1"
+    ],
+    "probe_names": [
+      "Z"
+    ]
+  },
+  "quotient_S_mod_M_empty": {
+    "class_count": 1,
+    "classes": [
+      {
+        "class_id": "M_empty_q0",
+        "members": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed",
+          "pure_x_minus",
+          "pure_x_plus",
+          "pure_y_minus",
+          "pure_y_plus",
+          "pure_z0",
+          "pure_z1"
+        ],
+        "signature": []
+      }
+    ],
+    "name": "M_empty",
+    "partition_member_ids": [
+      "ensemble_x_mixed",
+      "ensemble_z_mixed",
+      "pure_x_minus",
+      "pure_x_plus",
+      "pure_y_minus",
+      "pure_y_plus",
+      "pure_z0",
+      "pure_z1"
+    ],
+    "probe_names": []
+  },
+  "quotient_S_mod_M_enlarged": {
+    "class_count": 7,
+    "classes": [
+      {
+        "class_id": "M_ZXY_q0",
+        "members": [
+          "pure_z1"
+        ],
+        "signature": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q1",
+        "members": [
+          "pure_x_minus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q2",
+        "members": [
+          "pure_y_minus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q3",
+        "members": [
+          "ensemble_x_mixed",
+          "ensemble_z_mixed"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q4",
+        "members": [
+          "pure_y_plus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q5",
+        "members": [
+          "pure_x_plus"
+        ],
+        "signature": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "class_id": "M_ZXY_q6",
+        "members": [
+          "pure_z0"
+        ],
+        "signature": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ]
+      }
+    ],
+    "name": "M_ZXY",
+    "partition_member_ids": [
+      "ensemble_x_mixed",
+      "ensemble_z_mixed",
+      "pure_x_minus",
+      "pure_x_plus",
+      "pure_y_minus",
+      "pure_y_plus",
+      "pure_z0",
+      "pure_z1"
+    ],
+    "probe_names": [
+      "Z",
+      "X",
+      "Y"
+    ]
+  },
+  "required_tools": [
+    "JAX peer",
+    "Julia",
+    "LinearAlgebra"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_rung0to3_distinguishability_julia_results.json",
+  "result_summary": {
+    "F01_load_bearing": true,
+    "N01_load_bearing": true,
+    "all_pass": true,
+    "commuting_control_now_empirical": true,
+    "density_is_equivalence_class": true,
+    "density_negative_control_separates": true,
+    "empty_probe_collapses_identity": true,
+    "finite_quotient_built": true,
+    "n01_gate_not_tautological": true,
+    "parity_with_jax": true
+  },
+  "root_constraints_in_force": [
+    "F01",
+    "N01",
+    "a=a iff a~b"
+  ],
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "shared_booleans": {
+    "F01_load_bearing": true,
+    "N01_load_bearing": true,
+    "classification_is_scratch_diagnostic": true,
+    "commuting_control_now_empirical": true,
+    "density_is_equivalence_class": true,
+    "density_negative_control_separates": true,
+    "empty_probe_collapses_identity": true,
+    "finite_quotient_built": true,
+    "formal_admission_false": true,
+    "n01_gate_not_tautological": true,
+    "promotion_false": true
+  },
+  "shared_scalars": {
+    "M_coarse_probe_count": 1.0,
+    "M_enlarged_probe_count": 3.0,
+    "S_size": 8.0,
+    "coarse_class_count": 3.0,
+    "commuting_order_gap": 0.0,
+    "commuting_projector_commutator_max_norm": 0.0,
+    "commuting_raw_order_gap": 2.0,
+    "density_negative_control_probe_max_gap": 0.5,
+    "density_negative_control_rho_gap": 1.0,
+    "density_same_rho_gap": 0.0,
+    "density_tested_probe_max_gap": 0.0,
+    "empty_class_count": 1.0,
+    "enlarged_class_count": 7.0,
+    "f01_resolution_change": 4.0,
+    "n01_order_gap": 1.0,
+    "noncommuting_projector_commutator_max_norm": 0.707106781186547
+  },
+  "shared_strings": {
+    "claim_ceiling": "rungs 0-3 finite distinguishability structure built bottom-up from F01+N01+(a=a iff a~b) grounded in owner docs; density matrix = quotient S/~_M; the FOUNDATION of the model; NOT geometry, NOT carrier, NOT physics, NOT canonical.",
+    "object_id": "foundation_rung0to3_distinguishability"
+  },
+  "sim_class": "constraint_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "foundation_rung0to3_distinguishability",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/foundation_rung0to3_distinguishability.jl",
+  "stop_condition_fired": false,
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "numpy": null,
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "supportive result serialization and JAX peer comparison",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing mirror for finite density matrices, finite POVM statistics, quotient classes, and order-gap controls",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing matrix traces, norms, projectors, and sequential probe statistics",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not part of the Julia mirror and not used for compute",
+      "tried": false,
+      "used": false
+    },
+    "pytorch": {
+      "reason": "not used: explicit user fence requires JAX plus Julia mirror",
+      "tried": false,
+      "used": false
+    }
+  },
+  "topology_surfaces_used": [],
+  "why_not_v4_probes": "Built on the SIM_TEMPLATE result shape but emitted as a v5 scratch diagnostic mirror receipt; no promotion claim."
+}

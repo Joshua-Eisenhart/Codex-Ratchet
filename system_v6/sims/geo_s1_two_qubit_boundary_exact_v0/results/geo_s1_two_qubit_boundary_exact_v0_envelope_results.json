@@ -1,0 +1,3281 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "hashlib": {
+      "reason": "supportive source hashing and pin equality checks",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive envelope assembly from independently regenerated lane receipts",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic result path binding",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "scratch diagnostic two-qubit boundary/control facts listed in claim",
+    "exact negative controls for three-qubit minimum objects not defined or impossible at 2Q"
+  ],
+  "blind_audit_expected_values": {
+    "Bell_concurrence": "1",
+    "Bell_entropy": "log(2)",
+    "Cl6_in_M4C": "impossible",
+    "GHZ_W_three_tangle_at_2Q": "not_defined_by_arity",
+    "gamma5_split": {
+      "-1": 2,
+      "1": 2
+    },
+    "max_anticommuting_family": 5,
+    "product_concurrence": "0",
+    "product_entropy": "0"
+  },
+  "builder_self_check_is_evidence": false,
+  "canon_runtime": {
+    "artifact_path": null,
+    "artifact_sha256": null,
+    "bracket_convention": "Jordan-Wigner Cl(4), gamma5=-gamma1 gamma2 gamma3 gamma4; M4(C) matrix multiplication is associative",
+    "consumer_policy": "independent engine recomputation; no peer-result reads",
+    "proof_pass": true,
+    "proof_tag": "two_qubit_boundary_exact_cl4_z3",
+    "receipt_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/results/geo_s1_two_qubit_boundary_exact_v0_julia_results.json",
+    "semantic_owner": "julia",
+    "source_sha256": "90d0e131c6199d798dcd905431882db202a6ae42c4bcbc8be3964df74ee93500",
+    "table_version": "geo_s1_two_qubit_boundary_exact_v0"
+  },
+  "claim": "The two-qubit carrier (C^2)^{tensor 2} ~= C^4 is a scratch diagnostic boundary/control rung: it supports CP3, Bell/concurrence, Cl4 chirality split 2+2, and max anticommuting family 5; it does not support Cl6, seven anticommuting generators, GHZ/W/3-tangle, or a three-slot floor.",
+  "claim_path_tools": [
+    "CliffordAlgebras",
+    "Symbolics",
+    "Z3",
+    "cvc5",
+    "rustworkx",
+    "sympy",
+    "torch",
+    "z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "load_bearing": true,
+      "proofs": {
+        "P1_assert_some_bad": "unsat",
+        "P1_corrupted_control": "sat",
+        "P2_five_boundary_control": "sat",
+        "P2_no_six_family": "unsat",
+        "P3_bell_zero": "unsat",
+        "P3_corrupted_label_control": "sat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "load_bearing": true,
+      "proofs": {
+        "corrupted_gamma_control_z3": "sat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "pytorch_cvc5": {
+      "load_bearing": true,
+      "proofs": {
+        "corrupted_gamma_control_cvc5": "sat",
+        "corrupted_gamma_control_z3": "sat",
+        "cvc5_assert_some_bad": "unsat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "pytorch_z3": {
+      "load_bearing": true,
+      "proofs": {
+        "corrupted_gamma_control_cvc5": "sat",
+        "corrupted_gamma_control_z3": "sat",
+        "cvc5_assert_some_bad": "unsat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "load_bearing": true,
+      "proofs": {
+        "P1_assert_some_bad": "unsat",
+        "P1_corrupted_control": "sat",
+        "P2_five_boundary_control": "sat",
+        "P2_no_six_family": "unsat",
+        "P3_bell_zero": "unsat",
+        "P3_corrupted_label_control": "sat"
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "comparison": {
+      "exact_match": true,
+      "rows": [
+        {
+          "exact_match": true,
+          "key": "bell_concurrence_squared",
+          "values": {
+            "jax": 1,
+            "julia": 1,
+            "pytorch": 1
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "gamma5_negative_dim",
+          "values": {
+            "jax": 2,
+            "julia": 2,
+            "pytorch": 2
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "gamma5_positive_dim",
+          "values": {
+            "jax": 2,
+            "julia": 2,
+            "pytorch": 2
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "gamma_count",
+          "values": {
+            "jax": 4,
+            "julia": 4,
+            "pytorch": 4
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "hilbert_dim",
+          "values": {
+            "jax": 4,
+            "julia": 4,
+            "pytorch": 4
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "max_anticommuting_family",
+          "values": {
+            "jax": 5,
+            "julia": 5,
+            "pytorch": 5
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "mixed_density_real_dim",
+          "values": {
+            "jax": 15,
+            "julia": 15,
+            "pytorch": 15
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "operator_basis_count",
+          "values": {
+            "jax": 16,
+            "julia": 16,
+            "pytorch": 16
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "product_concurrence_squared",
+          "values": {
+            "jax": 0,
+            "julia": 0,
+            "pytorch": 0
+          }
+        },
+        {
+          "exact_match": true,
+          "key": "three_site_floor_available",
+          "values": {
+            "jax": 0,
+            "julia": 0,
+            "pytorch": 0
+          }
+        }
+      ]
+    },
+    "engine_values": {
+      "jax": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      },
+      "julia": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      },
+      "pytorch": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_local",
+      "jax_local",
+      "pytorch_local",
+      "controller_comparison"
+    ],
+    "lanes": [
+      "julia",
+      "jax",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "claim_path_tools": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx",
+        "python_stdlib"
+      ],
+      "pin_sha256": "9b757e1b7e0fd4b84024862be37ca7813fee6ec06c685303849855a61419aad3",
+      "promotion_allowed": false,
+      "proof_pass": {
+        "P1_anticommutation_table": true,
+        "P2_max_family_bound": true,
+        "P3_concurrence_controls": true
+      },
+      "ran": true,
+      "reads_peer_result": false,
+      "receipt_pass": {
+        "F01_finitude_receipt": true,
+        "N01_noncommutation_receipt": true,
+        "T01_bracketing_receipt": true,
+        "Y1_carrier_quotient": true,
+        "Y2_schmidt_bell_product": true,
+        "Y3_concurrence": true,
+        "Y4_Cl4_exact_floor": true,
+        "Y5_max_anticommuting_family": true,
+        "Y6_2Q_fails_3Q_minimum_claims": true,
+        "Y7_classification_table": true
+      },
+      "result_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/results/geo_s1_two_qubit_boundary_exact_v0_jax_results.json",
+      "role_id": "jax_rich_mirror_sim_builder",
+      "shared_scalars": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      },
+      "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_jax.py",
+      "source_sha256": "2b199746cb600e875af6fb28a6f2c531049d822e1cd1ed42c09427453a49ee94",
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "python_stdlib": "supportive",
+        "rustworkx": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT polarity checks matching z3",
+          "tried": true,
+          "used": true
+        },
+        "python_stdlib": {
+          "reason": "supportive deterministic paths, hashing, timestamps, and JSON serialization",
+          "tried": true,
+          "used": true
+        },
+        "rustworkx": {
+          "reason": "load-bearing exact graph clique search for the two-qubit max-anticommuting family and extension-negative scan; hand matrix scan retained as mirror",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact CAS for phase erasure, reduced densities, concurrence, and Cl(4) Pauli-string algebra",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing UNSAT/SAT polarity checks for anticommutation, max-family bound, and concurrence controls",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Symbolics",
+        "CliffordAlgebras",
+        "Z3"
+      ],
+      "claim_path_tools": [
+        "Symbolics",
+        "CliffordAlgebras",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Symbolics",
+        "CliffordAlgebras",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "pin_sha256": "9b757e1b7e0fd4b84024862be37ca7813fee6ec06c685303849855a61419aad3",
+      "promotion_allowed": false,
+      "proof_pass": {
+        "P1_anticommutation_table": true,
+        "P2_max_family_bound": true,
+        "P3_concurrence_controls": true
+      },
+      "ran": true,
+      "reads_peer_result": false,
+      "receipt_pass": {
+        "F01_finitude_receipt": true,
+        "N01_noncommutation_receipt": true,
+        "T01_bracketing_receipt": true,
+        "Y1_carrier_quotient": true,
+        "Y2_schmidt_bell_product": true,
+        "Y3_concurrence": true,
+        "Y4_Cl4_exact_floor": true,
+        "Y5_max_anticommuting_family": true,
+        "Y6_2Q_fails_3Q_minimum_claims": true,
+        "Y7_classification_table": true
+      },
+      "result_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/results/geo_s1_two_qubit_boundary_exact_v0_julia_results.json",
+      "role_id": "julia_authoritative_sim_builder",
+      "shared_scalars": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      },
+      "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_julia.jl",
+      "source_sha256": "90d0e131c6199d798dcd905431882db202a6ae42c4bcbc8be3964df74ee93500",
+      "tool_integration_depth": {
+        "CliffordAlgebras": "load_bearing",
+        "LinearAlgebra/JSON/Dates/SHA": "supportive",
+        "Symbolics": "load_bearing",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "CliffordAlgebras": {
+          "reason": "load-bearing Cl(4,0) package receipt backing the exact anticommutation table, algebra dimension, and chirality split; hand gamma table retained as mirror",
+          "tried": true,
+          "used": true
+        },
+        "LinearAlgebra/JSON/Dates/SHA": {
+          "reason": "supportive exact matrix operations, serialization, timestamps, and hashing",
+          "tried": true,
+          "used": true
+        },
+        "Symbolics": {
+          "reason": "load-bearing symbolic concurrence and phase-erasure receipts",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia-side SMT polarity checks over exact integer matrix deltas",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch",
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "claim_path_tools": [
+        "torch",
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "torch",
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "pin_sha256": "9b757e1b7e0fd4b84024862be37ca7813fee6ec06c685303849855a61419aad3",
+      "promotion_allowed": false,
+      "proof_pass": {
+        "P1_anticommutation_table": true,
+        "P2_max_family_bound": true,
+        "P3_concurrence_controls": true
+      },
+      "ran": true,
+      "reads_peer_result": false,
+      "receipt_pass": {
+        "F01_finitude_receipt": true,
+        "N01_noncommutation_receipt": true,
+        "T01_bracketing_receipt": true,
+        "Y1_carrier_quotient": true,
+        "Y2_schmidt_bell_product": true,
+        "Y3_concurrence": true,
+        "Y4_Cl4_exact_floor": true,
+        "Y5_max_anticommuting_family": true,
+        "Y6_2Q_fails_3Q_minimum_claims": true,
+        "Y7_classification_table": true
+      },
+      "result_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/results/geo_s1_two_qubit_boundary_exact_v0_pytorch_results.json",
+      "role_id": "pytorch_exact_integer_tensor_mirror",
+      "shared_scalars": {
+        "bell_concurrence_squared": 1,
+        "gamma5_negative_dim": 2,
+        "gamma5_positive_dim": 2,
+        "gamma_count": 4,
+        "hilbert_dim": 4,
+        "max_anticommuting_family": 5,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "product_concurrence_squared": 0,
+        "three_site_floor_available": 0
+      },
+      "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_pytorch.py",
+      "source_sha256": "948192812b6236da70ac77a5fdf95125f2a654b8c907b07b9d4187cde735cf56",
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "rustworkx": "load_bearing",
+        "sympy": "load_bearing",
+        "torch": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent SMT polarity checks over torch-derived deltas",
+          "tried": true,
+          "used": true
+        },
+        "rustworkx": {
+          "reason": "load-bearing exact graph clique search for the two-qubit max-anticommuting family and extension-negative scan; hand tensor scan retained as mirror",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact symbolic concurrence and reduced-density mirror values",
+          "tried": true,
+          "used": true
+        },
+        "torch": {
+          "reason": "load-bearing exact integer tensor matrix multiplication over real/imag Gaussian-integer pairs",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing exact integer SMT polarity checks over torch-derived deltas",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx",
+        "python_stdlib"
+      ],
+      "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "role": "sympy plus z3/cvc5 exact sidecar"
+    },
+    "julia": {
+      "packages": [
+        "Symbolics",
+        "CliffordAlgebras",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "Dates",
+        "SHA"
+      ],
+      "project": "system_v5/julia_carrier",
+      "role": "canon exact Symbolics/CliffordAlgebras/Z3 receipt"
+    },
+    "pytorch": {
+      "packages": [
+        "torch",
+        "sympy",
+        "z3",
+        "cvc5",
+        "rustworkx"
+      ],
+      "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+      "role": "exact integer tensor anticommutation mirror"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "gate_pass": {
+    "F01_exact_finitude": {
+      "details": {
+        "active_probe_family_count": {
+          "named_states": 2,
+          "nonidentity_pauli_strings_for_clique_search": 15,
+          "pauli_strings_including_identity": 16,
+          "root_order_witnesses": 4
+        },
+        "computational_basis_count": 4,
+        "finite_enumeration_bounds": {
+          "basis_labels": 4,
+          "ordered_pauli_triples_for_associator_control": 4096,
+          "pair_checks_for_anticommuting_graph": 105,
+          "pauli_string_vertices": 15
+        },
+        "hilbert_dim": 4,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "pass": true,
+        "phase_quotient": "CP^3",
+        "proof_objects": "finite variables plus finite matrix-entry constraints and finite Pauli generator-relation set",
+        "pure_sphere": "S^7 subset C^4",
+        "quotient_or_relation_table": "finite where claimed: basis dictionary, Pauli-string multiplication table, anticommuting graph",
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "gate": "F01_exact_finitude",
+      "pass": true
+    },
+    "N01_noncommutation_not_collapsed": {
+      "details": {
+        "O1_commuting_control": {
+          "A": "X tensor I",
+          "AB_minus_BA_zero": true,
+          "B": "X tensor I",
+          "order_gap": "0",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O2_general_noncommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "B": "Z tensor I",
+          "commutator_matrix": [
+            [
+              "0",
+              "0",
+              "-2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "-2"
+            ],
+            [
+              "2",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "2",
+              "0",
+              "0"
+            ]
+          ],
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O3_noncommuting_but_not_anticommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "AB_plus_BA_nonzero": true,
+          "B": "(X + Z) tensor I",
+          "note": "This is the root-order witness required by the corrected directive; it is not a Clifford anticommutation row.",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O4_anticommuting_Clifford_witness": {
+          "A": "X tensor I",
+          "AB_nonzero": true,
+          "AB_plus_BA_zero": true,
+          "B": "Z tensor I",
+          "note": "Anticommutation is kept as a Clifford special case, separate from O2/O3 root noncommutation.",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O5_order_gap_receipt_on_state_probe": {
+          "A_B_state_minus_B_A_state_sparse": {
+            "2": "2"
+          },
+          "gap_nonzero": true,
+          "probe_state": "|00>",
+          "squared_norm": "4",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O6_Clifford_family_capacity_row_kept_separate": {
+          "Clifford_capacity_row": "max pairwise anticommuting Hermitian-unitary family in M4(C) is 5",
+          "not_collapsed": true,
+          "root_order_row": "noncommutation rows O2/O3",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "gate": "N01_noncommutation_not_collapsed",
+      "pass": true
+    },
+    "T01_associator_boundary": {
+      "details": {
+        "algebra_level_nonassociativity_statement": "Qubit matrix multiplication in M4(C) is associative; this packet must not fake algebra-level nonassociativity.",
+        "anti_associativity_boundary": "anti-associativity is an exotic negative-control branch only unless separately defined",
+        "matrix_associator_control": {
+          "failures": 0,
+          "formula": "(AB)C - A(BC)",
+          "ordered_pauli_string_triples_checked": 4096,
+          "representative_A_B_C": [
+            "X tensor I",
+            "Z tensor I",
+            "I tensor X"
+          ],
+          "representative_zero": true,
+          "strength_label": "finite_exhaustive_enumeration"
+        },
+        "octonion_lane_boundary_statement": "True algebra-level nonassociativity belongs to an octonion/nonassociative extension lane, where [a,b,c]=(ab)c-a(bc) can be nonzero and alternativity is the honest control.",
+        "pass": true,
+        "schedule_or_channel_associator_test": {
+          "reason": "This packet scopes algebraic carrier/control facts; channel or measurement schedule bracketing requires a named channel family.",
+          "status": "not_scoped",
+          "strength_label": "open_with_reason"
+        },
+        "strength_label": "finite_exhaustive_enumeration"
+      },
+      "gate": "T01_associator_boundary",
+      "pass": true
+    },
+    "Y1_nonconflation": {
+      "details": {
+        "basis_dictionary": {
+          "|00>": 0,
+          "|01>": 1,
+          "|10>": 2,
+          "|11>": 3
+        },
+        "carrier": "(C^2)^{tensor 2} ~= C^4",
+        "global_phase_quotient": "S^7/S^1 = CP^3",
+        "mixed_state_domain": {
+          "positivity_constraint": "rho is positive semidefinite; this is a cone constraint, not another dimension count",
+          "real_affine_dimension": 15,
+          "space": "D(C^4)",
+          "strength_label": "exact_integer_combinatorial",
+          "trace_constraint": "Tr(rho)=1 is one real affine constraint on Hermitian 4x4 matrices"
+        },
+        "non_conflation_fields": {
+          "2Q_global_phase_quotient": "S^7/S^1 = CP^3",
+          "2Q_mixed_state_domain": "D(C^4), real affine dimension 15",
+          "C4_pure_state_sphere": "S^7 subset C^4",
+          "CP3_equals_S4": false,
+          "S7_over_S1_equals_S7_over_S3": false,
+          "conflation_control_fired": true,
+          "quaternionic_Hopf_fibration": "S^3 -> S^7 -> S^4",
+          "strength_label": "symbolic_identity"
+        },
+        "normalized_states": "S^7 subset C^4 by sum_{k=0}^3 |psi_k|^2 = 1",
+        "pass": true,
+        "phase_erasure_symbolic_proof": {
+          "all_4x4_density_entries_covered_by_same_component_formula": true,
+          "imag_delta_factor": "c**2*u*y - c**2*v*x + s**2*u*y - s**2*v*x - u*y + v*x",
+          "pass": true,
+          "phase_unit_constraint": "c^2 + s^2 = 1",
+          "real_delta_factor": "c**2*u*x + c**2*v*y + s**2*u*x + s**2*v*y - u*x - v*y",
+          "strength_label": "symbolic_identity"
+        },
+        "rank_1_density_quotient": "rho = psi psi^dagger",
+        "strength_label": "symbolic_identity"
+      },
+      "gate": "Y1_nonconflation",
+      "pass": true
+    },
+    "Y2_Y3_entanglement_exact": {
+      "details": {
+        "Y2": {
+          "Bell_state": {
+            "entropy": "log(2)",
+            "rho_A": [
+              [
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1/2"
+              ]
+            ],
+            "rho_B": [
+              [
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1/2"
+              ]
+            ],
+            "state": "(|00>+|11>)/sqrt(2)",
+            "strength_label": "symbolic_identity"
+          },
+          "biseparable_status": {
+            "reason": "Biseparable versus genuinely multipartite entangled is a >=3-party classification; at 2Q use product/separable versus entangled.",
+            "status": "not_defined_by_arity",
+            "strength_label": "symbolic_identity"
+          },
+          "generic_schmidt_receipt": {
+            "coefficient_matrix": "M = [[a,b],[c,d]]",
+            "normalization": "Tr(M M^dagger)=|a|^2+|b|^2+|c|^2+|d|^2=1",
+            "reduced_density_A": "[[|a|^2+|b|^2, a*conj(c)+b*conj(d)], [conj(a)*c+conj(b)*d, |c|^2+|d|^2]]",
+            "schmidt_coefficients": "sqrt(lambda_plus), sqrt(lambda_minus)",
+            "schmidt_eigenvalues": "lambda_pm = (1 +/- sqrt(1 - 4|ad-bc|^2))/2",
+            "strength_label": "symbolic_identity"
+          },
+          "pass": true,
+          "product_state": {
+            "entropy": "0",
+            "rho_A": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "rho_B": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0"
+              ]
+            ],
+            "state": "|00>",
+            "strength_label": "symbolic_identity"
+          },
+          "strength_label": "symbolic_identity"
+        },
+        "Y3": {
+          "Bell_concurrence": "1",
+          "Bell_concurrence_squared": 1,
+          "pass": true,
+          "product_concurrence": "0",
+          "product_concurrence_squared": 0,
+          "solver_proof_control": {
+            "cvc5_bell_zero_assertion": "unsat",
+            "cvc5_corrupted_bell_label_detected": "sat",
+            "cvc5_corrupted_product_label_detected": "sat",
+            "cvc5_product_nonzero_assertion": "unsat",
+            "pass": true,
+            "strength_label": "exact_integer_combinatorial",
+            "z3_bell_zero_assertion": "unsat",
+            "z3_corrupted_bell_label_detected": "sat",
+            "z3_corrupted_product_label_detected": "sat",
+            "z3_product_nonzero_assertion": "unsat"
+          },
+          "strength_label": "symbolic_identity",
+          "symbolic_route": {
+            "C_squared_real_variables": "4*re(ai*di)**2 - 8*re(ai*di)*re(ar*dr) - 8*re(ai*di)*re(bi*ci) + 8*re(ai*di)*re(br*cr) + 8*re(ai*di)*im(ai*dr) + 8*re(ai*di)*im(ar*di) - 8*re(ai*di)*im(bi*cr) - 8*re(ai*di)*im(br*ci) + 4*re(ai*dr)**2 + 8*re(ai*dr)*re(ar*di) - 8*re(ai*dr)*re(bi*cr) - 8*re(ai*dr)*re(br*ci) - 8*re(ai*dr)*im(ai*di) + 8*re(ai*dr)*im(ar*dr) + 8*re(ai*dr)*im(bi*ci) - 8*re(ai*dr)*im(br*cr) + 4*re(ar*di)**2 - 8*re(ar*di)*re(bi*cr) - 8*re(ar*di)*re(br*ci) - 8*re(ar*di)*im(ai*di) + 8*re(ar*di)*im(ar*dr) + 8*re(ar*di)*im(bi*ci) - 8*re(ar*di)*im(br*cr) + 4*re(ar*dr)**2 + 8*re(ar*dr)*re(bi*ci) - 8*re(ar*dr)*re(br*cr) - 8*re(ar*dr)*im(ai*dr) - 8*re(ar*dr)*im(ar*di) + 8*re(ar*dr)*im(bi*cr) + 8*re(ar*dr)*im(br*ci) + 4*re(bi*ci)**2 - 8*re(bi*ci)*re(br*cr) - 8*re(bi*ci)*im(ai*dr) - 8*re(bi*ci)*im(ar*di) + 8*re(bi*ci)*im(bi*cr) + 8*re(bi*ci)*im(br*ci) + 4*re(bi*cr)**2 + 8*re(bi*cr)*re(br*ci) + 8*re(bi*cr)*im(ai*di) - 8*re(bi*cr)*im(ar*dr) - 8*re(bi*cr)*im(bi*ci) + 8*re(bi*cr)*im(br*cr) + 4*re(br*ci)**2 + 8*re(br*ci)*im(ai*di) - 8*re(br*ci)*im(ar*dr) - 8*re(br*ci)*im(bi*ci) + 8*re(br*ci)*im(br*cr) + 4*re(br*cr)**2 + 8*re(br*cr)*im(ai*dr) + 8*re(br*cr)*im(ar*di) - 8*re(br*cr)*im(bi*cr) - 8*re(br*cr)*im(br*ci) + 4*im(ai*di)**2 - 8*im(ai*di)*im(ar*dr) - 8*im(ai*di)*im(bi*ci) + 8*im(ai*di)*im(br*cr) + 4*im(ai*dr)**2 + 8*im(ai*dr)*im(ar*di) - 8*im(ai*dr)*im(bi*cr) - 8*im(ai*dr)*im(br*ci) + 4*im(ar*di)**2 - 8*im(ar*di)*im(bi*cr) - 8*im(ar*di)*im(br*ci) + 4*im(ar*dr)**2 + 8*im(ar*dr)*im(bi*ci) - 8*im(ar*dr)*im(br*cr) + 4*im(bi*ci)**2 - 8*im(bi*ci)*im(br*cr) + 4*im(bi*cr)**2 + 8*im(bi*cr)*im(br*ci) + 4*im(br*ci)**2 + 4*im(br*cr)**2",
+            "determinant_imag_part": "re(ai*dr) + re(ar*di) - re(bi*cr) - re(br*ci) - im(ai*di) + im(ar*dr) + im(bi*ci) - im(br*cr)",
+            "determinant_real_part": "-re(ai*di) + re(ar*dr) + re(bi*ci) - re(br*cr) - im(ai*dr) - im(ar*di) + im(bi*cr) + im(br*ci)",
+            "formula": "C = 2|ad-bc|",
+            "strength_label": "symbolic_identity"
+          }
+        }
+      },
+      "gate": "Y2_Y3_entanglement_exact",
+      "pass": true
+    },
+    "Y4_Y5_clifford_exact": {
+      "details": {
+        "Y4": {
+          "all_16_pairs_exact": true,
+          "anticommutation_pairs_checked": 16,
+          "convention": [
+            "gamma_1 = X tensor I",
+            "gamma_2 = Y tensor I",
+            "gamma_3 = Z tensor X",
+            "gamma_4 = Z tensor Y",
+            "gamma_5 = - gamma_1 gamma_2 gamma_3 gamma_4 = Z tensor Z"
+          ],
+          "corrupted_gamma_sign_control": {
+            "cvc5": "sat",
+            "fired": true,
+            "strength_label": "exact_integer_combinatorial",
+            "z3": "sat"
+          },
+          "gamma5": [
+            [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "-1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "-1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "gamma5_eigenspace_split": {
+            "-1": 2,
+            "1": 2
+          },
+          "gamma5_squared_identity": true,
+          "gamma5_trace": "0",
+          "gamma_matrices": {
+            "gamma_1": [
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            ],
+            "gamma_2": [
+              [
+                "0",
+                "0",
+                "-I",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "-I"
+              ],
+              [
+                "I",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "I",
+                "0",
+                "0"
+              ]
+            ],
+            "gamma_3": [
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "-1"
+              ],
+              [
+                "0",
+                "0",
+                "-1",
+                "0"
+              ]
+            ],
+            "gamma_4": [
+              [
+                "0",
+                "-I",
+                "0",
+                "0"
+              ],
+              [
+                "I",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "I"
+              ],
+              [
+                "0",
+                "0",
+                "-I",
+                "0"
+              ]
+            ]
+          },
+          "pass": true,
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "Y5": {
+          "attempted_6_member_extension_negative_control": {
+            "reason": "Cl_6(C) minimum complex representation dimension is 8 > 4",
+            "status": "fails",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          "constructed_five_member_family": [
+            "XI",
+            "YI",
+            "ZX",
+            "ZY",
+            "ZZ"
+          ],
+          "constructed_pairwise_anticommuting": true,
+          "pass": true,
+          "proofs": {
+            "cvc5_5_member_boundary_control": "sat",
+            "cvc5_no_6_member_family_by_representation_bound": "unsat",
+            "finite_pauli_string_exhaustive_enumeration": {
+              "candidate_pair_checks": 105,
+              "example_clique": [
+                "XI",
+                "YI",
+                "ZX",
+                "ZY",
+                "ZZ"
+              ],
+              "graph_edges": 60,
+              "graph_nodes": 15,
+              "graph_tool": "rustworkx.PyGraph",
+              "hand_matrix_scan_mirror_max_clique_size": 5,
+              "load_bearing_route": "exact anticommutation graph clique search",
+              "max_clique_size": 5,
+              "recursive_nodes_visited": 35,
+              "size_6_clique_exists": false,
+              "strength_label": "finite_exhaustive_enumeration",
+              "vertices_checked": 15
+            },
+            "pass": true,
+            "z3_5_member_boundary_control": "sat",
+            "z3_no_6_member_family_by_representation_bound": "unsat"
+          },
+          "strength_label": "representation_theorem_with_constructive_receipt",
+          "upper_bound_theorem": "m pairwise anticommuting Hermitian-unitary matrices give a Cl_m(C) representation; minimal complex dimension is 2^floor(m/2); 2^floor(m/2) <= 4 implies m <= 5."
+        }
+      },
+      "gate": "Y4_Y5_clifford_exact",
+      "pass": true
+    },
+    "Y6_negative_boundary_exact": {
+      "details": {
+        "Cl6_in_M4C": {
+          "reason": "Cl_6(C) needs minimum complex representation dimension 8, but the 2Q carrier is C^4.",
+          "status": "impossible",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "GHZ_object": {
+          "reason": "GHZ is a three-or-more party state family; do not encode as numeric zero at 2Q.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        },
+        "W_object": {
+          "reason": "W is a three-or-more party state family; do not encode as numeric zero at 2Q.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        },
+        "pass": true,
+        "seven_anticommuting_family_in_M4C": {
+          "reason": "m=7 also implies minimum dimension 2^floor(7/2)=8 > 4.",
+          "status": "impossible",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "three_site_schedule_floor": {
+          "reason": "2Q supplies two tensor slots only; no three-slot floor exists.",
+          "status": "not_available",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "three_tangle": {
+          "reason": "3-tangle is a 3Q invariant; at 2Q the defined invariant is concurrence.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        }
+      },
+      "gate": "Y6_negative_boundary_exact",
+      "pass": true
+    },
+    "ceiling_exact": {
+      "details": {
+        "jax": "scratch_diagnostic",
+        "julia": "scratch_diagnostic",
+        "pytorch": "scratch_diagnostic"
+      },
+      "gate": "ceiling_exact",
+      "pass": true
+    },
+    "cross_engine_shared_scalars_match": {
+      "details": {
+        "comparison": {
+          "exact_match": true,
+          "rows": [
+            {
+              "exact_match": true,
+              "key": "bell_concurrence_squared",
+              "values": {
+                "jax": 1,
+                "julia": 1,
+                "pytorch": 1
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "gamma5_negative_dim",
+              "values": {
+                "jax": 2,
+                "julia": 2,
+                "pytorch": 2
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "gamma5_positive_dim",
+              "values": {
+                "jax": 2,
+                "julia": 2,
+                "pytorch": 2
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "gamma_count",
+              "values": {
+                "jax": 4,
+                "julia": 4,
+                "pytorch": 4
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "hilbert_dim",
+              "values": {
+                "jax": 4,
+                "julia": 4,
+                "pytorch": 4
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "max_anticommuting_family",
+              "values": {
+                "jax": 5,
+                "julia": 5,
+                "pytorch": 5
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "mixed_density_real_dim",
+              "values": {
+                "jax": 15,
+                "julia": 15,
+                "pytorch": 15
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "operator_basis_count",
+              "values": {
+                "jax": 16,
+                "julia": 16,
+                "pytorch": 16
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "product_concurrence_squared",
+              "values": {
+                "jax": 0,
+                "julia": 0,
+                "pytorch": 0
+              }
+            },
+            {
+              "exact_match": true,
+              "key": "three_site_floor_available",
+              "values": {
+                "jax": 0,
+                "julia": 0,
+                "pytorch": 0
+              }
+            }
+          ]
+        },
+        "engine_values": {
+          "jax": {
+            "bell_concurrence_squared": 1,
+            "gamma5_negative_dim": 2,
+            "gamma5_positive_dim": 2,
+            "gamma_count": 4,
+            "hilbert_dim": 4,
+            "max_anticommuting_family": 5,
+            "mixed_density_real_dim": 15,
+            "operator_basis_count": 16,
+            "product_concurrence_squared": 0,
+            "three_site_floor_available": 0
+          },
+          "julia": {
+            "bell_concurrence_squared": 1,
+            "gamma5_negative_dim": 2,
+            "gamma5_positive_dim": 2,
+            "gamma_count": 4,
+            "hilbert_dim": 4,
+            "max_anticommuting_family": 5,
+            "mixed_density_real_dim": 15,
+            "operator_basis_count": 16,
+            "product_concurrence_squared": 0,
+            "three_site_floor_available": 0
+          },
+          "pytorch": {
+            "bell_concurrence_squared": 1,
+            "gamma5_negative_dim": 2,
+            "gamma5_positive_dim": 2,
+            "gamma_count": 4,
+            "hilbert_dim": 4,
+            "max_anticommuting_family": 5,
+            "mixed_density_real_dim": 15,
+            "operator_basis_count": 16,
+            "product_concurrence_squared": 0,
+            "three_site_floor_available": 0
+          }
+        },
+        "julia_authoritative": true,
+        "max_divergence": 0
+      },
+      "gate": "cross_engine_shared_scalars_match",
+      "pass": true
+    },
+    "exact_strength_no_bare_float_rows": {
+      "details": {
+        "jax": {
+          "allowed_strengths": [
+            "closed_form_integral",
+            "diagnostic_float_nonclaim",
+            "exact_integer_combinatorial",
+            "finite_exhaustive_enumeration",
+            "measure_theorem",
+            "open_with_reason",
+            "representation_theorem_with_constructive_receipt",
+            "rigorous_interval_bound",
+            "statistical_redundant_by_exact_route",
+            "symbolic_identity"
+          ],
+          "bare_float_claim_rows": [],
+          "invalid_strength_rows": [],
+          "pass": true,
+          "rows": [
+            {
+              "bare_float_claim": false,
+              "claim": "F01_finitude_receipt",
+              "claim_bearing": true,
+              "row_id": "F01",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "integer_and_symbolic_counts"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "commuting control",
+              "claim_bearing": true,
+              "row_id": "N01.O1",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "exact_integer_matrix"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "general noncommuting witness",
+              "claim_bearing": true,
+              "row_id": "N01.O2",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "exact_integer_matrix"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "noncommuting but not anticommuting witness",
+              "claim_bearing": true,
+              "row_id": "N01.O3",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "exact_integer_matrix"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "Clifford anticommuting witness",
+              "claim_bearing": true,
+              "row_id": "N01.O4",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "exact_integer_matrix"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "state order gap",
+              "claim_bearing": true,
+              "row_id": "N01.O5",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "integer_norm_squared"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "Clifford capacity separated",
+              "claim_bearing": true,
+              "row_id": "N01.O6",
+              "strength_label": "representation_theorem_with_constructive_receipt",
+              "value_kind": "theorem_plus_constructive_family"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "matrix associator control",
+              "claim_bearing": true,
+              "row_id": "T01.matrix",
+              "strength_label": "finite_exhaustive_enumeration",
+              "value_kind": "finite_exact_integer_matrices"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "schedule associator",
+              "claim_bearing": false,
+              "row_id": "T01.schedule",
+              "strength_label": "open_with_reason",
+              "value_kind": "not_scoped"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "carrier and quotient",
+              "claim_bearing": true,
+              "row_id": "Y1",
+              "strength_label": "symbolic_identity",
+              "value_kind": "symbolic_and_integer_dimension"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "Schmidt/Bell/product",
+              "claim_bearing": true,
+              "row_id": "Y2",
+              "strength_label": "symbolic_identity",
+              "value_kind": "symbolic_closed_form"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "concurrence",
+              "claim_bearing": true,
+              "row_id": "Y3",
+              "strength_label": "symbolic_identity",
+              "value_kind": "symbolic_and_smt_integer"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "Cl(4) floor",
+              "claim_bearing": true,
+              "row_id": "Y4",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "Gaussian_integer_matrices"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "max anticommuting family",
+              "claim_bearing": true,
+              "row_id": "Y5",
+              "strength_label": "representation_theorem_with_constructive_receipt",
+              "value_kind": "theorem_plus_finite_enumeration"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "2Q cannot carry 3Q minimum claims",
+              "claim_bearing": true,
+              "row_id": "Y6",
+              "strength_label": "representation_theorem_with_constructive_receipt",
+              "value_kind": "negative_theorem_rows"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "anticommutation SMT",
+              "claim_bearing": true,
+              "row_id": "P1",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "z3_cvc5_integer_entries"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "max-family proof/control",
+              "claim_bearing": true,
+              "row_id": "P2",
+              "strength_label": "representation_theorem_with_constructive_receipt",
+              "value_kind": "z3_cvc5_dimension_bound"
+            },
+            {
+              "bare_float_claim": false,
+              "claim": "concurrence SMT controls",
+              "claim_bearing": true,
+              "row_id": "P3",
+              "strength_label": "exact_integer_combinatorial",
+              "value_kind": "z3_cvc5_integer_values"
+            }
+          ],
+          "strength_label": "exact_integer_combinatorial",
+          "zero_claim_bearing_bare_float_rows": true
+        },
+        "julia": {
+          "bare_float_claim_rows": [],
+          "invalid_strength_rows": [],
+          "pass": true,
+          "rows": [
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "F01",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "N01",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "T01.matrix",
+              "strength_label": "finite_exhaustive_enumeration"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": false,
+              "row_id": "T01.schedule",
+              "strength_label": "open_with_reason"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y1",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y2",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y3",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y4",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y5",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y6",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P1",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P2",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P3",
+              "strength_label": "exact_integer_combinatorial"
+            }
+          ],
+          "strength_label": "exact_integer_combinatorial",
+          "zero_claim_bearing_bare_float_rows": true
+        },
+        "pytorch": {
+          "bare_float_claim_rows": [],
+          "invalid_strength_rows": [],
+          "pass": true,
+          "rows": [
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "F01",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "N01",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "T01.matrix",
+              "strength_label": "finite_exhaustive_enumeration"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": false,
+              "row_id": "T01.schedule",
+              "strength_label": "open_with_reason"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y1",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y2",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y3",
+              "strength_label": "symbolic_identity"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y4",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y5",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "Y6",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P1",
+              "strength_label": "exact_integer_combinatorial"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P2",
+              "strength_label": "representation_theorem_with_constructive_receipt"
+            },
+            {
+              "bare_float_claim": false,
+              "claim_bearing": true,
+              "row_id": "P3",
+              "strength_label": "exact_integer_combinatorial"
+            }
+          ],
+          "strength_label": "exact_integer_combinatorial",
+          "zero_claim_bearing_bare_float_rows": true
+        }
+      },
+      "gate": "exact_strength_no_bare_float_rows",
+      "pass": true
+    },
+    "legs_exit_0_by_receipt": {
+      "details": {
+        "jax": true,
+        "julia": true,
+        "pytorch": true
+      },
+      "gate": "legs_exit_0_by_receipt",
+      "pass": true
+    },
+    "pin_identical": {
+      "details": [
+        "9b757e1b7e0fd4b84024862be37ca7813fee6ec06c685303849855a61419aad3"
+      ],
+      "gate": "pin_identical",
+      "pass": true
+    },
+    "proofs_flip": {
+      "details": {
+        "P1_anticommutation_table": {
+          "corrupted_gamma_control_cvc5": "sat",
+          "corrupted_gamma_control_z3": "sat",
+          "cvc5_assert_some_bad": "unsat",
+          "pass": true,
+          "z3_assert_some_bad": "unsat"
+        },
+        "P2_max_family_bound": {
+          "cvc5_5_member_boundary_control": "sat",
+          "cvc5_no_6_member_family_by_representation_bound": "unsat",
+          "finite_pauli_string_exhaustive_enumeration": {
+            "candidate_pair_checks": 105,
+            "example_clique": [
+              "XI",
+              "YI",
+              "ZX",
+              "ZY",
+              "ZZ"
+            ],
+            "graph_edges": 60,
+            "graph_nodes": 15,
+            "graph_tool": "rustworkx.PyGraph",
+            "hand_matrix_scan_mirror_max_clique_size": 5,
+            "load_bearing_route": "exact anticommutation graph clique search",
+            "max_clique_size": 5,
+            "recursive_nodes_visited": 35,
+            "size_6_clique_exists": false,
+            "strength_label": "finite_exhaustive_enumeration",
+            "vertices_checked": 15
+          },
+          "pass": true,
+          "z3_5_member_boundary_control": "sat",
+          "z3_no_6_member_family_by_representation_bound": "unsat"
+        },
+        "P3_concurrence_controls": {
+          "cvc5_bell_zero_assertion": "unsat",
+          "cvc5_corrupted_bell_label_detected": "sat",
+          "cvc5_corrupted_product_label_detected": "sat",
+          "cvc5_product_nonzero_assertion": "unsat",
+          "pass": true,
+          "strength_label": "exact_integer_combinatorial",
+          "z3_bell_zero_assertion": "unsat",
+          "z3_corrupted_bell_label_detected": "sat",
+          "z3_corrupted_product_label_detected": "sat",
+          "z3_product_nonzero_assertion": "unsat"
+        }
+      },
+      "gate": "proofs_flip",
+      "pass": true
+    },
+    "root_receipts_present_all_engines": {
+      "details": {
+        "F01_finitude_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "N01_noncommutation_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "T01_bracketing_receipt": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y1_carrier_quotient": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y2_schmidt_bell_product": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y3_concurrence": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y4_Cl4_exact_floor": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y5_max_anticommuting_family": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y6_2Q_fails_3Q_minimum_claims": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        },
+        "Y7_classification_table": {
+          "jax": true,
+          "julia": true,
+          "pytorch": true
+        }
+      },
+      "gate": "root_receipts_present_all_engines",
+      "pass": true
+    },
+    "source_backing_declared": {
+      "details": {
+        "jax": {
+          "aligned_packages_load_bearing": [
+            "sympy",
+            "z3",
+            "cvc5",
+            "rustworkx"
+          ],
+          "packages_used": [
+            "sympy",
+            "z3",
+            "cvc5",
+            "rustworkx",
+            "python_stdlib"
+          ],
+          "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_jax.py"
+        },
+        "julia": {
+          "aligned_packages_load_bearing": [
+            "Symbolics",
+            "CliffordAlgebras",
+            "Z3"
+          ],
+          "packages_used": [
+            "Symbolics",
+            "CliffordAlgebras",
+            "Z3",
+            "LinearAlgebra",
+            "JSON",
+            "Dates",
+            "SHA"
+          ],
+          "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_julia.jl"
+        },
+        "pytorch": {
+          "aligned_packages_load_bearing": [
+            "torch",
+            "sympy",
+            "z3",
+            "cvc5",
+            "rustworkx"
+          ],
+          "packages_used": [
+            "torch",
+            "sympy",
+            "z3",
+            "cvc5",
+            "rustworkx"
+          ],
+          "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_pytorch.py"
+        }
+      },
+      "gate": "source_backing_declared",
+      "pass": true
+    }
+  },
+  "generated_at": "2026-06-10T19:18:11Z",
+  "must_not_claim_fences": [
+    "carrier admission",
+    "formal admission",
+    "final M(C)",
+    "QIT-engine admission",
+    "physics claim",
+    "bridge claim"
+  ],
+  "object_id": "geo_s1_two_qubit_boundary_exact_v0",
+  "pin_sha256": "9b757e1b7e0fd4b84024862be37ca7813fee6ec06c685303849855a61419aad3",
+  "pin_spec": "geo_s1_two_qubit_boundary_exact_v0|two_spinor_C2x2_to_C4|S7_to_CP3_density_quotient|Cl4_Jordan_Wigner_gamma5_minus_product|root_noncommutation_not_anticommutation|matrix_associator_zero|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "proofs": {
+    "jax": {
+      "P1_anticommutation_table": {
+        "corrupted_gamma_control_cvc5": "sat",
+        "corrupted_gamma_control_z3": "sat",
+        "cvc5_assert_some_bad": "unsat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "P2_max_family_bound": {
+        "cvc5_5_member_boundary_control": "sat",
+        "cvc5_no_6_member_family_by_representation_bound": "unsat",
+        "finite_pauli_string_exhaustive_enumeration": {
+          "candidate_pair_checks": 105,
+          "example_clique": [
+            "XI",
+            "YI",
+            "ZX",
+            "ZY",
+            "ZZ"
+          ],
+          "graph_edges": 60,
+          "graph_nodes": 15,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_matrix_scan_mirror_max_clique_size": 5,
+          "load_bearing_route": "exact anticommutation graph clique search",
+          "max_clique_size": 5,
+          "recursive_nodes_visited": 35,
+          "size_6_clique_exists": false,
+          "strength_label": "finite_exhaustive_enumeration",
+          "vertices_checked": 15
+        },
+        "pass": true,
+        "z3_5_member_boundary_control": "sat",
+        "z3_no_6_member_family_by_representation_bound": "unsat"
+      },
+      "P3_concurrence_controls": {
+        "cvc5_bell_zero_assertion": "unsat",
+        "cvc5_corrupted_bell_label_detected": "sat",
+        "cvc5_corrupted_product_label_detected": "sat",
+        "cvc5_product_nonzero_assertion": "unsat",
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial",
+        "z3_bell_zero_assertion": "unsat",
+        "z3_corrupted_bell_label_detected": "sat",
+        "z3_corrupted_product_label_detected": "sat",
+        "z3_product_nonzero_assertion": "unsat"
+      }
+    },
+    "julia": {
+      "P1_anticommutation_table": {
+        "corrupted_gamma_control_z3": "sat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "P2_max_family_bound": {
+        "finite_pauli_string_exhaustive_enumeration": {
+          "example_clique": [
+            "XX",
+            "XY",
+            "XZ",
+            "YI",
+            "ZI"
+          ],
+          "max_clique_size": 5,
+          "size_6_clique_exists": false,
+          "vertices_checked": 15
+        },
+        "pass": true,
+        "z3_5_member_boundary_control": "sat",
+        "z3_no_6_member_family_by_representation_bound": "unsat"
+      },
+      "P3_concurrence_controls": {
+        "pass": true,
+        "z3_bell_zero_assertion": "unsat",
+        "z3_corrupted_bell_label_detected": "sat",
+        "z3_corrupted_product_label_detected": "sat",
+        "z3_product_nonzero_assertion": "unsat"
+      }
+    },
+    "pytorch": {
+      "P1_anticommutation_table": {
+        "corrupted_gamma_control_cvc5": "sat",
+        "corrupted_gamma_control_z3": "sat",
+        "cvc5_assert_some_bad": "unsat",
+        "pass": true,
+        "z3_assert_some_bad": "unsat"
+      },
+      "P2_max_family_bound": {
+        "cvc5_5_member_boundary_control": "sat",
+        "cvc5_no_6_member_family_by_representation_bound": "unsat",
+        "finite_pauli_string_exhaustive_enumeration": {
+          "candidate_pair_checks": 105,
+          "example_clique": [
+            "XI",
+            "YI",
+            "ZX",
+            "ZY",
+            "ZZ"
+          ],
+          "graph_edges": 60,
+          "graph_nodes": 15,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_tensor_scan_mirror_max_clique_size": 5,
+          "load_bearing_route": "exact anticommutation graph clique search",
+          "max_clique_size": 5,
+          "recursive_nodes_visited": 35,
+          "size_6_clique_exists": false
+        },
+        "pass": true,
+        "z3_5_member_boundary_control": "sat",
+        "z3_no_6_member_family_by_representation_bound": "unsat"
+      },
+      "P3_concurrence_controls": {
+        "cvc5_bell_zero_assertion": "unsat",
+        "cvc5_corrupted_bell_label_detected": "sat",
+        "cvc5_corrupted_product_label_detected": "sat",
+        "cvc5_product_nonzero_assertion": "unsat",
+        "pass": true,
+        "z3_bell_zero_assertion": "unsat",
+        "z3_corrupted_bell_label_detected": "sat",
+        "z3_corrupted_product_label_detected": "sat",
+        "z3_product_nonzero_assertion": "unsat"
+      }
+    }
+  },
+  "receipts": {
+    "jax": {
+      "F01_finitude_receipt": {
+        "active_probe_family_count": {
+          "named_states": 2,
+          "nonidentity_pauli_strings_for_clique_search": 15,
+          "pauli_strings_including_identity": 16,
+          "root_order_witnesses": 4
+        },
+        "computational_basis_count": 4,
+        "finite_enumeration_bounds": {
+          "basis_labels": 4,
+          "ordered_pauli_triples_for_associator_control": 4096,
+          "pair_checks_for_anticommuting_graph": 105,
+          "pauli_string_vertices": 15
+        },
+        "hilbert_dim": 4,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "pass": true,
+        "phase_quotient": "CP^3",
+        "proof_objects": "finite variables plus finite matrix-entry constraints and finite Pauli generator-relation set",
+        "pure_sphere": "S^7 subset C^4",
+        "quotient_or_relation_table": "finite where claimed: basis dictionary, Pauli-string multiplication table, anticommuting graph",
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "N01_noncommutation_receipt": {
+        "O1_commuting_control": {
+          "A": "X tensor I",
+          "AB_minus_BA_zero": true,
+          "B": "X tensor I",
+          "order_gap": "0",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O2_general_noncommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "B": "Z tensor I",
+          "commutator_matrix": [
+            [
+              "0",
+              "0",
+              "-2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "-2"
+            ],
+            [
+              "2",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "2",
+              "0",
+              "0"
+            ]
+          ],
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O3_noncommuting_but_not_anticommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "AB_plus_BA_nonzero": true,
+          "B": "(X + Z) tensor I",
+          "note": "This is the root-order witness required by the corrected directive; it is not a Clifford anticommutation row.",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O4_anticommuting_Clifford_witness": {
+          "A": "X tensor I",
+          "AB_nonzero": true,
+          "AB_plus_BA_zero": true,
+          "B": "Z tensor I",
+          "note": "Anticommutation is kept as a Clifford special case, separate from O2/O3 root noncommutation.",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O5_order_gap_receipt_on_state_probe": {
+          "A_B_state_minus_B_A_state_sparse": {
+            "2": "2"
+          },
+          "gap_nonzero": true,
+          "probe_state": "|00>",
+          "squared_norm": "4",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "O6_Clifford_family_capacity_row_kept_separate": {
+          "Clifford_capacity_row": "max pairwise anticommuting Hermitian-unitary family in M4(C) is 5",
+          "not_collapsed": true,
+          "root_order_row": "noncommutation rows O2/O3",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "T01_bracketing_receipt": {
+        "algebra_level_nonassociativity_statement": "Qubit matrix multiplication in M4(C) is associative; this packet must not fake algebra-level nonassociativity.",
+        "anti_associativity_boundary": "anti-associativity is an exotic negative-control branch only unless separately defined",
+        "matrix_associator_control": {
+          "failures": 0,
+          "formula": "(AB)C - A(BC)",
+          "ordered_pauli_string_triples_checked": 4096,
+          "representative_A_B_C": [
+            "X tensor I",
+            "Z tensor I",
+            "I tensor X"
+          ],
+          "representative_zero": true,
+          "strength_label": "finite_exhaustive_enumeration"
+        },
+        "octonion_lane_boundary_statement": "True algebra-level nonassociativity belongs to an octonion/nonassociative extension lane, where [a,b,c]=(ab)c-a(bc) can be nonzero and alternativity is the honest control.",
+        "pass": true,
+        "schedule_or_channel_associator_test": {
+          "reason": "This packet scopes algebraic carrier/control facts; channel or measurement schedule bracketing requires a named channel family.",
+          "status": "not_scoped",
+          "strength_label": "open_with_reason"
+        },
+        "strength_label": "finite_exhaustive_enumeration"
+      },
+      "Y1_carrier_quotient": {
+        "basis_dictionary": {
+          "|00>": 0,
+          "|01>": 1,
+          "|10>": 2,
+          "|11>": 3
+        },
+        "carrier": "(C^2)^{tensor 2} ~= C^4",
+        "global_phase_quotient": "S^7/S^1 = CP^3",
+        "mixed_state_domain": {
+          "positivity_constraint": "rho is positive semidefinite; this is a cone constraint, not another dimension count",
+          "real_affine_dimension": 15,
+          "space": "D(C^4)",
+          "strength_label": "exact_integer_combinatorial",
+          "trace_constraint": "Tr(rho)=1 is one real affine constraint on Hermitian 4x4 matrices"
+        },
+        "non_conflation_fields": {
+          "2Q_global_phase_quotient": "S^7/S^1 = CP^3",
+          "2Q_mixed_state_domain": "D(C^4), real affine dimension 15",
+          "C4_pure_state_sphere": "S^7 subset C^4",
+          "CP3_equals_S4": false,
+          "S7_over_S1_equals_S7_over_S3": false,
+          "conflation_control_fired": true,
+          "quaternionic_Hopf_fibration": "S^3 -> S^7 -> S^4",
+          "strength_label": "symbolic_identity"
+        },
+        "normalized_states": "S^7 subset C^4 by sum_{k=0}^3 |psi_k|^2 = 1",
+        "pass": true,
+        "phase_erasure_symbolic_proof": {
+          "all_4x4_density_entries_covered_by_same_component_formula": true,
+          "imag_delta_factor": "c**2*u*y - c**2*v*x + s**2*u*y - s**2*v*x - u*y + v*x",
+          "pass": true,
+          "phase_unit_constraint": "c^2 + s^2 = 1",
+          "real_delta_factor": "c**2*u*x + c**2*v*y + s**2*u*x + s**2*v*y - u*x - v*y",
+          "strength_label": "symbolic_identity"
+        },
+        "rank_1_density_quotient": "rho = psi psi^dagger",
+        "strength_label": "symbolic_identity"
+      },
+      "Y2_schmidt_bell_product": {
+        "Bell_state": {
+          "entropy": "log(2)",
+          "rho_A": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          "state": "(|00>+|11>)/sqrt(2)",
+          "strength_label": "symbolic_identity"
+        },
+        "biseparable_status": {
+          "reason": "Biseparable versus genuinely multipartite entangled is a >=3-party classification; at 2Q use product/separable versus entangled.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        },
+        "generic_schmidt_receipt": {
+          "coefficient_matrix": "M = [[a,b],[c,d]]",
+          "normalization": "Tr(M M^dagger)=|a|^2+|b|^2+|c|^2+|d|^2=1",
+          "reduced_density_A": "[[|a|^2+|b|^2, a*conj(c)+b*conj(d)], [conj(a)*c+conj(b)*d, |c|^2+|d|^2]]",
+          "schmidt_coefficients": "sqrt(lambda_plus), sqrt(lambda_minus)",
+          "schmidt_eigenvalues": "lambda_pm = (1 +/- sqrt(1 - 4|ad-bc|^2))/2",
+          "strength_label": "symbolic_identity"
+        },
+        "pass": true,
+        "product_state": {
+          "entropy": "0",
+          "rho_A": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "state": "|00>",
+          "strength_label": "symbolic_identity"
+        },
+        "strength_label": "symbolic_identity"
+      },
+      "Y3_concurrence": {
+        "Bell_concurrence": "1",
+        "Bell_concurrence_squared": 1,
+        "pass": true,
+        "product_concurrence": "0",
+        "product_concurrence_squared": 0,
+        "solver_proof_control": {
+          "cvc5_bell_zero_assertion": "unsat",
+          "cvc5_corrupted_bell_label_detected": "sat",
+          "cvc5_corrupted_product_label_detected": "sat",
+          "cvc5_product_nonzero_assertion": "unsat",
+          "pass": true,
+          "strength_label": "exact_integer_combinatorial",
+          "z3_bell_zero_assertion": "unsat",
+          "z3_corrupted_bell_label_detected": "sat",
+          "z3_corrupted_product_label_detected": "sat",
+          "z3_product_nonzero_assertion": "unsat"
+        },
+        "strength_label": "symbolic_identity",
+        "symbolic_route": {
+          "C_squared_real_variables": "4*re(ai*di)**2 - 8*re(ai*di)*re(ar*dr) - 8*re(ai*di)*re(bi*ci) + 8*re(ai*di)*re(br*cr) + 8*re(ai*di)*im(ai*dr) + 8*re(ai*di)*im(ar*di) - 8*re(ai*di)*im(bi*cr) - 8*re(ai*di)*im(br*ci) + 4*re(ai*dr)**2 + 8*re(ai*dr)*re(ar*di) - 8*re(ai*dr)*re(bi*cr) - 8*re(ai*dr)*re(br*ci) - 8*re(ai*dr)*im(ai*di) + 8*re(ai*dr)*im(ar*dr) + 8*re(ai*dr)*im(bi*ci) - 8*re(ai*dr)*im(br*cr) + 4*re(ar*di)**2 - 8*re(ar*di)*re(bi*cr) - 8*re(ar*di)*re(br*ci) - 8*re(ar*di)*im(ai*di) + 8*re(ar*di)*im(ar*dr) + 8*re(ar*di)*im(bi*ci) - 8*re(ar*di)*im(br*cr) + 4*re(ar*dr)**2 + 8*re(ar*dr)*re(bi*ci) - 8*re(ar*dr)*re(br*cr) - 8*re(ar*dr)*im(ai*dr) - 8*re(ar*dr)*im(ar*di) + 8*re(ar*dr)*im(bi*cr) + 8*re(ar*dr)*im(br*ci) + 4*re(bi*ci)**2 - 8*re(bi*ci)*re(br*cr) - 8*re(bi*ci)*im(ai*dr) - 8*re(bi*ci)*im(ar*di) + 8*re(bi*ci)*im(bi*cr) + 8*re(bi*ci)*im(br*ci) + 4*re(bi*cr)**2 + 8*re(bi*cr)*re(br*ci) + 8*re(bi*cr)*im(ai*di) - 8*re(bi*cr)*im(ar*dr) - 8*re(bi*cr)*im(bi*ci) + 8*re(bi*cr)*im(br*cr) + 4*re(br*ci)**2 + 8*re(br*ci)*im(ai*di) - 8*re(br*ci)*im(ar*dr) - 8*re(br*ci)*im(bi*ci) + 8*re(br*ci)*im(br*cr) + 4*re(br*cr)**2 + 8*re(br*cr)*im(ai*dr) + 8*re(br*cr)*im(ar*di) - 8*re(br*cr)*im(bi*cr) - 8*re(br*cr)*im(br*ci) + 4*im(ai*di)**2 - 8*im(ai*di)*im(ar*dr) - 8*im(ai*di)*im(bi*ci) + 8*im(ai*di)*im(br*cr) + 4*im(ai*dr)**2 + 8*im(ai*dr)*im(ar*di) - 8*im(ai*dr)*im(bi*cr) - 8*im(ai*dr)*im(br*ci) + 4*im(ar*di)**2 - 8*im(ar*di)*im(bi*cr) - 8*im(ar*di)*im(br*ci) + 4*im(ar*dr)**2 + 8*im(ar*dr)*im(bi*ci) - 8*im(ar*dr)*im(br*cr) + 4*im(bi*ci)**2 - 8*im(bi*ci)*im(br*cr) + 4*im(bi*cr)**2 + 8*im(bi*cr)*im(br*ci) + 4*im(br*ci)**2 + 4*im(br*cr)**2",
+          "determinant_imag_part": "re(ai*dr) + re(ar*di) - re(bi*cr) - re(br*ci) - im(ai*di) + im(ar*dr) + im(bi*ci) - im(br*cr)",
+          "determinant_real_part": "-re(ai*di) + re(ar*dr) + re(bi*ci) - re(br*cr) - im(ai*dr) - im(ar*di) + im(bi*cr) + im(br*ci)",
+          "formula": "C = 2|ad-bc|",
+          "strength_label": "symbolic_identity"
+        }
+      },
+      "Y4_Cl4_exact_floor": {
+        "all_16_pairs_exact": true,
+        "anticommutation_pairs_checked": 16,
+        "convention": [
+          "gamma_1 = X tensor I",
+          "gamma_2 = Y tensor I",
+          "gamma_3 = Z tensor X",
+          "gamma_4 = Z tensor Y",
+          "gamma_5 = - gamma_1 gamma_2 gamma_3 gamma_4 = Z tensor Z"
+        ],
+        "corrupted_gamma_sign_control": {
+          "cvc5": "sat",
+          "fired": true,
+          "strength_label": "exact_integer_combinatorial",
+          "z3": "sat"
+        },
+        "gamma5": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "gamma5_eigenspace_split": {
+          "-1": 2,
+          "1": 2
+        },
+        "gamma5_squared_identity": true,
+        "gamma5_trace": "0",
+        "gamma_matrices": {
+          "gamma_1": [
+            [
+              "0",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0"
+            ]
+          ],
+          "gamma_2": [
+            [
+              "0",
+              "0",
+              "-I",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "-I"
+            ],
+            [
+              "I",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "I",
+              "0",
+              "0"
+            ]
+          ],
+          "gamma_3": [
+            [
+              "0",
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "-1"
+            ],
+            [
+              "0",
+              "0",
+              "-1",
+              "0"
+            ]
+          ],
+          "gamma_4": [
+            [
+              "0",
+              "-I",
+              "0",
+              "0"
+            ],
+            [
+              "I",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "I"
+            ],
+            [
+              "0",
+              "0",
+              "-I",
+              "0"
+            ]
+          ]
+        },
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "Y5_max_anticommuting_family": {
+        "attempted_6_member_extension_negative_control": {
+          "reason": "Cl_6(C) minimum complex representation dimension is 8 > 4",
+          "status": "fails",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "constructed_five_member_family": [
+          "XI",
+          "YI",
+          "ZX",
+          "ZY",
+          "ZZ"
+        ],
+        "constructed_pairwise_anticommuting": true,
+        "pass": true,
+        "proofs": {
+          "cvc5_5_member_boundary_control": "sat",
+          "cvc5_no_6_member_family_by_representation_bound": "unsat",
+          "finite_pauli_string_exhaustive_enumeration": {
+            "candidate_pair_checks": 105,
+            "example_clique": [
+              "XI",
+              "YI",
+              "ZX",
+              "ZY",
+              "ZZ"
+            ],
+            "graph_edges": 60,
+            "graph_nodes": 15,
+            "graph_tool": "rustworkx.PyGraph",
+            "hand_matrix_scan_mirror_max_clique_size": 5,
+            "load_bearing_route": "exact anticommutation graph clique search",
+            "max_clique_size": 5,
+            "recursive_nodes_visited": 35,
+            "size_6_clique_exists": false,
+            "strength_label": "finite_exhaustive_enumeration",
+            "vertices_checked": 15
+          },
+          "pass": true,
+          "z3_5_member_boundary_control": "sat",
+          "z3_no_6_member_family_by_representation_bound": "unsat"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "upper_bound_theorem": "m pairwise anticommuting Hermitian-unitary matrices give a Cl_m(C) representation; minimal complex dimension is 2^floor(m/2); 2^floor(m/2) <= 4 implies m <= 5."
+      },
+      "Y6_2Q_fails_3Q_minimum_claims": {
+        "Cl6_in_M4C": {
+          "reason": "Cl_6(C) needs minimum complex representation dimension 8, but the 2Q carrier is C^4.",
+          "status": "impossible",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "GHZ_object": {
+          "reason": "GHZ is a three-or-more party state family; do not encode as numeric zero at 2Q.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        },
+        "W_object": {
+          "reason": "W is a three-or-more party state family; do not encode as numeric zero at 2Q.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        },
+        "pass": true,
+        "seven_anticommuting_family_in_M4C": {
+          "reason": "m=7 also implies minimum dimension 2^floor(7/2)=8 > 4.",
+          "status": "impossible",
+          "strength_label": "representation_theorem_with_constructive_receipt"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "three_site_schedule_floor": {
+          "reason": "2Q supplies two tensor slots only; no three-slot floor exists.",
+          "status": "not_available",
+          "strength_label": "exact_integer_combinatorial"
+        },
+        "three_tangle": {
+          "reason": "3-tangle is a 3Q invariant; at 2Q the defined invariant is concurrence.",
+          "status": "not_defined_by_arity",
+          "strength_label": "symbolic_identity"
+        }
+      },
+      "Y7_classification_table": {
+        "allowed_strengths": [
+          "closed_form_integral",
+          "diagnostic_float_nonclaim",
+          "exact_integer_combinatorial",
+          "finite_exhaustive_enumeration",
+          "measure_theorem",
+          "open_with_reason",
+          "representation_theorem_with_constructive_receipt",
+          "rigorous_interval_bound",
+          "statistical_redundant_by_exact_route",
+          "symbolic_identity"
+        ],
+        "bare_float_claim_rows": [],
+        "invalid_strength_rows": [],
+        "pass": true,
+        "rows": [
+          {
+            "bare_float_claim": false,
+            "claim": "F01_finitude_receipt",
+            "claim_bearing": true,
+            "row_id": "F01",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "integer_and_symbolic_counts"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "commuting control",
+            "claim_bearing": true,
+            "row_id": "N01.O1",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "exact_integer_matrix"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "general noncommuting witness",
+            "claim_bearing": true,
+            "row_id": "N01.O2",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "exact_integer_matrix"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "noncommuting but not anticommuting witness",
+            "claim_bearing": true,
+            "row_id": "N01.O3",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "exact_integer_matrix"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "Clifford anticommuting witness",
+            "claim_bearing": true,
+            "row_id": "N01.O4",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "exact_integer_matrix"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "state order gap",
+            "claim_bearing": true,
+            "row_id": "N01.O5",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "integer_norm_squared"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "Clifford capacity separated",
+            "claim_bearing": true,
+            "row_id": "N01.O6",
+            "strength_label": "representation_theorem_with_constructive_receipt",
+            "value_kind": "theorem_plus_constructive_family"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "matrix associator control",
+            "claim_bearing": true,
+            "row_id": "T01.matrix",
+            "strength_label": "finite_exhaustive_enumeration",
+            "value_kind": "finite_exact_integer_matrices"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "schedule associator",
+            "claim_bearing": false,
+            "row_id": "T01.schedule",
+            "strength_label": "open_with_reason",
+            "value_kind": "not_scoped"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "carrier and quotient",
+            "claim_bearing": true,
+            "row_id": "Y1",
+            "strength_label": "symbolic_identity",
+            "value_kind": "symbolic_and_integer_dimension"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "Schmidt/Bell/product",
+            "claim_bearing": true,
+            "row_id": "Y2",
+            "strength_label": "symbolic_identity",
+            "value_kind": "symbolic_closed_form"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "concurrence",
+            "claim_bearing": true,
+            "row_id": "Y3",
+            "strength_label": "symbolic_identity",
+            "value_kind": "symbolic_and_smt_integer"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "Cl(4) floor",
+            "claim_bearing": true,
+            "row_id": "Y4",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "Gaussian_integer_matrices"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "max anticommuting family",
+            "claim_bearing": true,
+            "row_id": "Y5",
+            "strength_label": "representation_theorem_with_constructive_receipt",
+            "value_kind": "theorem_plus_finite_enumeration"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "2Q cannot carry 3Q minimum claims",
+            "claim_bearing": true,
+            "row_id": "Y6",
+            "strength_label": "representation_theorem_with_constructive_receipt",
+            "value_kind": "negative_theorem_rows"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "anticommutation SMT",
+            "claim_bearing": true,
+            "row_id": "P1",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "z3_cvc5_integer_entries"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "max-family proof/control",
+            "claim_bearing": true,
+            "row_id": "P2",
+            "strength_label": "representation_theorem_with_constructive_receipt",
+            "value_kind": "z3_cvc5_dimension_bound"
+          },
+          {
+            "bare_float_claim": false,
+            "claim": "concurrence SMT controls",
+            "claim_bearing": true,
+            "row_id": "P3",
+            "strength_label": "exact_integer_combinatorial",
+            "value_kind": "z3_cvc5_integer_values"
+          }
+        ],
+        "strength_label": "exact_integer_combinatorial",
+        "zero_claim_bearing_bare_float_rows": true
+      }
+    },
+    "julia": {
+      "F01_finitude_receipt": {
+        "active_probe_family_count": "finite/named",
+        "computational_basis_count": 4,
+        "finite_enumeration_bounds": {
+          "nonidentity_pauli_strings": 15,
+          "ordered_associator_triples": 4096,
+          "pauli_strings": 16
+        },
+        "hilbert_dim": 4,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "pass": true,
+        "phase_quotient": "CP^3",
+        "proof_objects": "finite exact Gaussian-integer matrices plus finite Z3 constraints",
+        "pure_sphere": "S^7 subset C^4",
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "N01_noncommutation_receipt": {
+        "O1_commuting_control": {
+          "AB_minus_BA_zero": true,
+          "order_gap": "0"
+        },
+        "O2_general_noncommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "B": "Z tensor I"
+        },
+        "O3_noncommuting_but_not_anticommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "AB_plus_BA_nonzero": true,
+          "B": "(X + Z) tensor I"
+        },
+        "O4_anticommuting_Clifford_witness": {
+          "AB_nonzero": true,
+          "AB_plus_BA_zero": true
+        },
+        "O5_order_gap_receipt_on_state_probe": {
+          "gap_nonzero": true,
+          "probe_state": "|00>",
+          "squared_norm": "4"
+        },
+        "O6_Clifford_family_capacity_row_kept_separate": {
+          "Clifford_capacity_row": "max pairwise anticommuting family is 5",
+          "not_collapsed": true
+        },
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "T01_bracketing_receipt": {
+        "boundary": "M4(C) matrix multiplication is associative; octonion/nonassociative extension is separate.",
+        "matrix_associator_control": {
+          "failures": 0,
+          "ordered_pauli_string_triples_checked": 4096
+        },
+        "pass": true,
+        "schedule_or_channel_associator_test": {
+          "status": "not_scoped",
+          "strength_label": "open_with_reason"
+        },
+        "strength_label": "finite_exhaustive_enumeration"
+      },
+      "Y1_carrier_quotient": {
+        "basis_dictionary": {
+          "|00>": 0,
+          "|01>": 1,
+          "|10>": 2,
+          "|11>": 3
+        },
+        "global_phase_quotient": "S^7/S^1 = CP^3",
+        "mixed_state_domain": {
+          "positivity_constraint": "rho >= 0",
+          "real_affine_dimension": 15,
+          "space": "D(C^4)",
+          "trace_constraint": "Tr(rho)=1"
+        },
+        "non_conflation_fields": {
+          "2Q_global_phase_quotient": "S^7/S^1 = CP^3",
+          "2Q_mixed_state_domain": "D(C^4), real affine dimension 15",
+          "C4_pure_state_sphere": "S^7 subset C^4",
+          "CP3_equals_S4": false,
+          "S7_over_S1_equals_S7_over_S3": false,
+          "quaternionic_Hopf_fibration": "S^3 -> S^7 -> S^4"
+        },
+        "normalized_states": "S^7 subset C^4",
+        "pass": true,
+        "phase_erasure_symbolic_proof": {
+          "imag_delta_factor": "-u*y + v*x + (c^2)*u*y - (c^2)*v*x + (s^2)*u*y - (s^2)*v*x",
+          "pass": true,
+          "phase_unit_constraint": "c^2+s^2=1",
+          "real_delta_factor": "-u*x - v*y + (c^2)*u*x + (c^2)*v*y + (s^2)*u*x + (s^2)*v*y",
+          "strength_label": "symbolic_identity"
+        },
+        "strength_label": "symbolic_identity"
+      },
+      "Y2_schmidt_bell_product": {
+        "Bell_state": {
+          "entropy": "log(2)",
+          "rho_A": [
+            [
+              "1//2",
+              "0"
+            ],
+            [
+              "0",
+              "1//2"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1//2",
+              "0"
+            ],
+            [
+              "0",
+              "1//2"
+            ]
+          ]
+        },
+        "biseparable_status": "not_defined_by_arity",
+        "generic_schmidt_eigenvalues": "lambda_pm=(1 +/- sqrt(1-4|ad-bc|^2))/2",
+        "pass": true,
+        "product_state": {
+          "entropy": "0",
+          "rho_A": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "rho_B": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "strength_label": "symbolic_identity"
+      },
+      "Y3_concurrence": {
+        "Bell_concurrence": "1",
+        "Bell_concurrence_squared": 1,
+        "pass": true,
+        "product_concurrence": "0",
+        "product_concurrence_squared": 0,
+        "solver_proof_control": {
+          "pass": true,
+          "z3_bell_zero_assertion": "unsat",
+          "z3_corrupted_bell_label_detected": "sat",
+          "z3_corrupted_product_label_detected": "sat",
+          "z3_product_nonzero_assertion": "unsat"
+        },
+        "strength_label": "symbolic_identity",
+        "symbolic_route": {
+          "C_squared_real_variables": "4(ai^2)*(di^2) + 4(ai^2)*(dr^2) - 8ai*bi*ci*di - 8ai*bi*cr*dr - 8ai*br*ci*dr + 8ai*br*cr*di + 4(ar^2)*(di^2) + 4(ar^2)*(dr^2) + 8ar*bi*ci*dr - 8ar*bi*cr*di - 8ar*br*ci*di - 8ar*br*cr*dr + 4(bi^2)*(ci^2) + 4(bi^2)*(cr^2) + 4(br^2)*(ci^2) + 4(br^2)*(cr^2)",
+          "determinant_imag_part": "ai*dr + ar*di - bi*cr - br*ci",
+          "determinant_real_part": "-ai*di + ar*dr + bi*ci - br*cr",
+          "formula": "C = 2|ad-bc|",
+          "strength_label": "symbolic_identity"
+        }
+      },
+      "Y4_Cl4_exact_floor": {
+        "CliffordAlgebras_receipt": {
+          "constructed_with": "CliffordAlgebra(4,0)",
+          "dimension": 16,
+          "e1_square": "+1 \u2208 Cl(4, 0, 0)"
+        },
+        "all_16_pairs_exact": true,
+        "convention": [
+          "gamma_1=XI",
+          "gamma_2=YI",
+          "gamma_3=ZX",
+          "gamma_4=ZY",
+          "gamma_5=-gamma_1 gamma_2 gamma_3 gamma_4=ZZ"
+        ],
+        "corrupted_gamma_sign_control": {
+          "fired": true,
+          "z3": "sat"
+        },
+        "gamma5": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "gamma5_eigenspace_split": {
+          "-1": 2,
+          "1": 2
+        },
+        "gamma5_squared_identity": true,
+        "gamma5_trace": "0",
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "Y5_max_anticommuting_family": {
+        "constructed_five_member_family": [
+          "XI",
+          "YI",
+          "ZX",
+          "ZY",
+          "ZZ"
+        ],
+        "pass": true,
+        "proofs": {
+          "finite_pauli_string_exhaustive_enumeration": {
+            "example_clique": [
+              "XX",
+              "XY",
+              "XZ",
+              "YI",
+              "ZI"
+            ],
+            "max_clique_size": 5,
+            "size_6_clique_exists": false,
+            "vertices_checked": 15
+          },
+          "pass": true,
+          "z3_5_member_boundary_control": "sat",
+          "z3_no_6_member_family_by_representation_bound": "unsat"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "upper_bound_theorem": "m pairwise anticommuting generators imply a Cl_m(C) representation, so 2^floor(m/2) <= 4 and m <= 5."
+      },
+      "Y6_2Q_fails_3Q_minimum_claims": {
+        "Cl6_in_M4C": {
+          "reason": "minimum Cl_6(C) representation dimension is 8 > 4",
+          "status": "impossible"
+        },
+        "GHZ_object": {
+          "status": "not_defined_by_arity"
+        },
+        "W_object": {
+          "status": "not_defined_by_arity"
+        },
+        "pass": true,
+        "seven_anticommuting_family_in_M4C": {
+          "reason": "minimum dimension is 8 > 4",
+          "status": "impossible"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "three_site_schedule_floor": {
+          "slot_count": 2,
+          "status": "not_available"
+        },
+        "three_tangle": {
+          "status": "not_defined_by_arity"
+        }
+      },
+      "Y7_classification_table": {
+        "bare_float_claim_rows": [],
+        "invalid_strength_rows": [],
+        "pass": true,
+        "rows": [
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "F01",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "N01",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "T01.matrix",
+            "strength_label": "finite_exhaustive_enumeration"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": false,
+            "row_id": "T01.schedule",
+            "strength_label": "open_with_reason"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y1",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y2",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y3",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y4",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y5",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y6",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P1",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P2",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P3",
+            "strength_label": "exact_integer_combinatorial"
+          }
+        ],
+        "strength_label": "exact_integer_combinatorial",
+        "zero_claim_bearing_bare_float_rows": true
+      }
+    },
+    "pytorch": {
+      "F01_finitude_receipt": {
+        "active_probe_family_count": "finite/named: 15 nonidentity Pauli strings plus named Bell/product states",
+        "computational_basis_count": 4,
+        "finite_enumeration_bounds": {
+          "ordered_associator_triples": 4096,
+          "pauli_strings": 16
+        },
+        "hilbert_dim": 4,
+        "mixed_density_real_dim": 15,
+        "operator_basis_count": 16,
+        "pass": true,
+        "phase_quotient": "CP^3",
+        "proof_objects": "finite integer tensor matrices plus finite SMT integer constraints",
+        "pure_sphere": "S^7 subset C^4",
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "N01_noncommutation_receipt": {
+        "O1_commuting_control": {
+          "AB_minus_BA_zero": true,
+          "order_gap": "0"
+        },
+        "O2_general_noncommuting_witness": {
+          "AB_minus_BA_nonzero": true
+        },
+        "O3_noncommuting_but_not_anticommuting_witness": {
+          "A": "X tensor I",
+          "AB_minus_BA_nonzero": true,
+          "AB_plus_BA_nonzero": true,
+          "B": "(X + Z) tensor I"
+        },
+        "O4_anticommuting_Clifford_witness": {
+          "AB_nonzero": true,
+          "AB_plus_BA_zero": true
+        },
+        "O5_order_gap_receipt_on_state_probe": {
+          "gap_nonzero": true,
+          "probe_state": "|00>",
+          "squared_norm": "4"
+        },
+        "O6_Clifford_family_capacity_row_kept_separate": {
+          "Clifford_capacity_row": "max pairwise anticommuting Hermitian-unitary family in M4(C) is 5",
+          "not_collapsed": true
+        },
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "T01_bracketing_receipt": {
+        "boundary": "M4(C) matrix multiplication is associative; octonion/nonassociative extension is a separate lane.",
+        "matrix_associator_control": {
+          "failures": 0,
+          "ordered_pauli_string_triples_checked": 4096
+        },
+        "pass": true,
+        "schedule_or_channel_associator_test": {
+          "status": "not_scoped",
+          "strength_label": "open_with_reason"
+        },
+        "strength_label": "finite_exhaustive_enumeration"
+      },
+      "Y1_carrier_quotient": {
+        "basis_dictionary": {
+          "|00>": 0,
+          "|01>": 1,
+          "|10>": 2,
+          "|11>": 3
+        },
+        "global_phase_quotient": "S^7/S^1 = CP^3",
+        "mixed_state_domain": {
+          "positivity_constraint": "rho >= 0",
+          "real_affine_dimension": 15,
+          "space": "D(C^4)",
+          "trace_constraint": "Tr(rho)=1"
+        },
+        "non_conflation_fields": {
+          "2Q_global_phase_quotient": "S^7/S^1 = CP^3",
+          "2Q_mixed_state_domain": "D(C^4), real affine dimension 15",
+          "C4_pure_state_sphere": "S^7 subset C^4",
+          "CP3_equals_S4": false,
+          "S7_over_S1_equals_S7_over_S3": false,
+          "quaternionic_Hopf_fibration": "S^3 -> S^7 -> S^4"
+        },
+        "normalized_states": "S^7 subset C^4",
+        "pass": true,
+        "rank_1_density_phase_erasure": "rho=(e^{i theta}psi)(e^{i theta}psi)^dagger=psi psi^dagger",
+        "strength_label": "symbolic_identity"
+      },
+      "Y2_schmidt_bell_product": {
+        "Bell_entropy": "log(2)",
+        "biseparable_status": "not_defined_by_arity",
+        "generic_schmidt_eigenvalues": "lambda_pm=(1 +/- sqrt(1-4|ad-bc|^2))/2",
+        "pass": true,
+        "product_entropy": "0",
+        "strength_label": "symbolic_identity"
+      },
+      "Y3_concurrence": {
+        "Bell_concurrence_squared": 1,
+        "C_squared_real_variables": "4*re(ai*di)**2 - 8*re(ai*di)*re(ar*dr) - 8*re(ai*di)*re(bi*ci) + 8*re(ai*di)*re(br*cr) + 8*re(ai*di)*im(ai*dr) + 8*re(ai*di)*im(ar*di) - 8*re(ai*di)*im(bi*cr) - 8*re(ai*di)*im(br*ci) + 4*re(ai*dr)**2 + 8*re(ai*dr)*re(ar*di) - 8*re(ai*dr)*re(bi*cr) - 8*re(ai*dr)*re(br*ci) - 8*re(ai*dr)*im(ai*di) + 8*re(ai*dr)*im(ar*dr) + 8*re(ai*dr)*im(bi*ci) - 8*re(ai*dr)*im(br*cr) + 4*re(ar*di)**2 - 8*re(ar*di)*re(bi*cr) - 8*re(ar*di)*re(br*ci) - 8*re(ar*di)*im(ai*di) + 8*re(ar*di)*im(ar*dr) + 8*re(ar*di)*im(bi*ci) - 8*re(ar*di)*im(br*cr) + 4*re(ar*dr)**2 + 8*re(ar*dr)*re(bi*ci) - 8*re(ar*dr)*re(br*cr) - 8*re(ar*dr)*im(ai*dr) - 8*re(ar*dr)*im(ar*di) + 8*re(ar*dr)*im(bi*cr) + 8*re(ar*dr)*im(br*ci) + 4*re(bi*ci)**2 - 8*re(bi*ci)*re(br*cr) - 8*re(bi*ci)*im(ai*dr) - 8*re(bi*ci)*im(ar*di) + 8*re(bi*ci)*im(bi*cr) + 8*re(bi*ci)*im(br*ci) + 4*re(bi*cr)**2 + 8*re(bi*cr)*re(br*ci) + 8*re(bi*cr)*im(ai*di) - 8*re(bi*cr)*im(ar*dr) - 8*re(bi*cr)*im(bi*ci) + 8*re(bi*cr)*im(br*cr) + 4*re(br*ci)**2 + 8*re(br*ci)*im(ai*di) - 8*re(br*ci)*im(ar*dr) - 8*re(br*ci)*im(bi*ci) + 8*re(br*ci)*im(br*cr) + 4*re(br*cr)**2 + 8*re(br*cr)*im(ai*dr) + 8*re(br*cr)*im(ar*di) - 8*re(br*cr)*im(bi*cr) - 8*re(br*cr)*im(br*ci) + 4*im(ai*di)**2 - 8*im(ai*di)*im(ar*dr) - 8*im(ai*di)*im(bi*ci) + 8*im(ai*di)*im(br*cr) + 4*im(ai*dr)**2 + 8*im(ai*dr)*im(ar*di) - 8*im(ai*dr)*im(bi*cr) - 8*im(ai*dr)*im(br*ci) + 4*im(ar*di)**2 - 8*im(ar*di)*im(bi*cr) - 8*im(ar*di)*im(br*ci) + 4*im(ar*dr)**2 + 8*im(ar*dr)*im(bi*ci) - 8*im(ar*dr)*im(br*cr) + 4*im(bi*ci)**2 - 8*im(bi*ci)*im(br*cr) + 4*im(bi*cr)**2 + 8*im(bi*cr)*im(br*ci) + 4*im(br*ci)**2 + 4*im(br*cr)**2",
+        "formula": "C=2|ad-bc|",
+        "pass": true,
+        "product_concurrence_squared": 0,
+        "solver_proof_control": {
+          "cvc5_bell_zero_assertion": "unsat",
+          "cvc5_corrupted_bell_label_detected": "sat",
+          "cvc5_corrupted_product_label_detected": "sat",
+          "cvc5_product_nonzero_assertion": "unsat",
+          "pass": true,
+          "z3_bell_zero_assertion": "unsat",
+          "z3_corrupted_bell_label_detected": "sat",
+          "z3_corrupted_product_label_detected": "sat",
+          "z3_product_nonzero_assertion": "unsat"
+        },
+        "strength_label": "symbolic_identity"
+      },
+      "Y4_Cl4_exact_floor": {
+        "all_16_pairs_exact": true,
+        "corrupted_gamma_sign_control": {
+          "cvc5": "sat",
+          "fired": true,
+          "z3": "sat"
+        },
+        "gamma5": [
+          [
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "gamma5_eigenspace_split": {
+          "-1": 2,
+          "1": 2
+        },
+        "gamma5_squared_identity": true,
+        "gamma5_trace": "0",
+        "pass": true,
+        "strength_label": "exact_integer_combinatorial"
+      },
+      "Y5_max_anticommuting_family": {
+        "constructed_five_member_family": [
+          "XI",
+          "YI",
+          "ZX",
+          "ZY",
+          "ZZ"
+        ],
+        "pass": true,
+        "proofs": {
+          "cvc5_5_member_boundary_control": "sat",
+          "cvc5_no_6_member_family_by_representation_bound": "unsat",
+          "finite_pauli_string_exhaustive_enumeration": {
+            "candidate_pair_checks": 105,
+            "example_clique": [
+              "XI",
+              "YI",
+              "ZX",
+              "ZY",
+              "ZZ"
+            ],
+            "graph_edges": 60,
+            "graph_nodes": 15,
+            "graph_tool": "rustworkx.PyGraph",
+            "hand_tensor_scan_mirror_max_clique_size": 5,
+            "load_bearing_route": "exact anticommutation graph clique search",
+            "max_clique_size": 5,
+            "recursive_nodes_visited": 35,
+            "size_6_clique_exists": false
+          },
+          "pass": true,
+          "z3_5_member_boundary_control": "sat",
+          "z3_no_6_member_family_by_representation_bound": "unsat"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt"
+      },
+      "Y6_2Q_fails_3Q_minimum_claims": {
+        "Cl6_in_M4C": {
+          "reason": "minimum Cl_6(C) representation dimension is 8 > 4",
+          "status": "impossible"
+        },
+        "GHZ_object": {
+          "status": "not_defined_by_arity"
+        },
+        "W_object": {
+          "status": "not_defined_by_arity"
+        },
+        "pass": true,
+        "seven_anticommuting_family_in_M4C": {
+          "reason": "minimum dimension is 8 > 4",
+          "status": "impossible"
+        },
+        "strength_label": "representation_theorem_with_constructive_receipt",
+        "three_site_schedule_floor": {
+          "slot_count": 2,
+          "status": "not_available"
+        },
+        "three_tangle": {
+          "status": "not_defined_by_arity"
+        }
+      },
+      "Y7_classification_table": {
+        "bare_float_claim_rows": [],
+        "invalid_strength_rows": [],
+        "pass": true,
+        "rows": [
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "F01",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "N01",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "T01.matrix",
+            "strength_label": "finite_exhaustive_enumeration"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": false,
+            "row_id": "T01.schedule",
+            "strength_label": "open_with_reason"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y1",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y2",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y3",
+            "strength_label": "symbolic_identity"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y4",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y5",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "Y6",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P1",
+            "strength_label": "exact_integer_combinatorial"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P2",
+            "strength_label": "representation_theorem_with_constructive_receipt"
+          },
+          {
+            "bare_float_claim": false,
+            "claim_bearing": true,
+            "row_id": "P3",
+            "strength_label": "exact_integer_combinatorial"
+          }
+        ],
+        "strength_label": "exact_integer_combinatorial",
+        "zero_claim_bearing_bare_float_rows": true
+      }
+    }
+  },
+  "result_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/results/geo_s1_two_qubit_boundary_exact_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "geo_s1_two_qubit_boundary_exact_v0",
+  "source_path": "system_v6/sims/geo_s1_two_qubit_boundary_exact_v0/geo_s1_two_qubit_boundary_exact_v0_envelope.py",
+  "source_sha256": "8fbe075b753fcbbe2e0770cd290aff153ac40ff3c3c5ad2b1d9a4b206fe3906a"
+}

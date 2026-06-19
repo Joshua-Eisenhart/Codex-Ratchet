@@ -6,6 +6,11 @@ review_by: 2026-08-11
 
 Allowed current unknowns:
 
+<!-- 2026-06-10: four capability probes for aligned packages (DifferentialEquations/diffrax/Manifolds/Symbolics) added as named audit debt — same class as existing capability rows; backs load-bearing claims per the capability-probe criterion -->
+- `system_v4/probes/sim_differentialequations_capability.py`
+- `system_v4/probes/sim_diffrax_capability.py`
+- `system_v4/probes/sim_manifolds_capability.py`
+- `system_v4/probes/sim_symbolics_capability.py`
 - `system_v4/probes/sim_carnot_asymmetric_direction_graveyard.py`
 - `system_v4/probes/sim_carnot_entropy_family_open_split.py`
 - `system_v4/probes/sim_carnot_forward_cold_leg_dominance_successor.py`
@@ -24,7 +29,8 @@ Allowed current unknowns:
 - `system_v4/probes/sim_hopf_projection_phase_quotient_base_angle_survivor_classes.py`
 - `system_v4/probes/sim_hopf_spinor_density_terrain_loop_dependent_generator_variant_graveyard.py`
 - `system_v4/probes/sim_inventory_unlinked_result_audit.py`
-- `system_v4/probes/sim_measurement_record_reset_parameter_sweep.py` - owner reason: audit-classified Szilard reset-parameter successor remains runner-taxonomy unknown until taxonomy rules learn this audit/successor pattern.
+- `system_v4/probes/sim_measurement_record_reset_parameter_sweep.py`
+  - owner reason: audit-classified Szilard reset-parameter successor remains runner-taxonomy unknown until taxonomy rules learn this audit/successor pattern.
 - `system_v4/probes/sim_nested_torus_phase_offset_distance_collision_survivor_classes.py`
 - `system_v4/probes/sim_prime_qit_sidecar_probe.py`
 - `system_v4/probes/sim_qiskit_hopf_fiber_base_density_readout.py`

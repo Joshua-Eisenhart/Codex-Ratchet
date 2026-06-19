@@ -1,0 +1,122 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "Julia finite carrier graph and Axis-4 stability counts",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "Julia SMT computed-value identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+      "receipt_id": "julia_Graphs_axis4_composition_candidate",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip",
+      "receipt_id": "julia_Z3_axis4_composition_candidate",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "changed_edge_count": 76,
+    "commuting_neutral_count": 33,
+    "edge_count": 198,
+    "graph_edges_collapsed": 119,
+    "graph_nodes": 33,
+    "negative": 14,
+    "neutral": 5,
+    "nonneutral": 28,
+    "positive": 14,
+    "stable_edge_count": 122,
+    "state_count": 33
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "bound_values": {
+        "changed_edge_count": 76,
+        "commuting_neutral_count": 33,
+        "edge_count": 198,
+        "graph_edges_collapsed": 119,
+        "graph_nodes": 33,
+        "negative": 14,
+        "neutral": 5,
+        "nonneutral": 28,
+        "positive": 14,
+        "stable_edge_count": 122,
+        "state_count": 33
+      },
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_mode": "three_engine_axis4_composition_candidate_on_family_a_33_cell_carrier",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T08:24:09Z",
+  "object_id": "discrete_axis4_composition_v0_julia",
+  "package_observables": {
+    "Graphs": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+    "Z3": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip"
+  },
+  "packages_used": [
+    "Graphs",
+    "JSON",
+    "LinearAlgebra",
+    "SHA",
+    "Z3"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis4_composition_v0/results/discrete_axis4_composition_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis4_composition_v0",
+  "source_backing_probe": {
+    "Graphs_collapsed_edge_count": 119,
+    "Graphs_node_count": 33,
+    "Z3_axis4_erased_flip": "sat",
+    "Z3_axis4_identity": "unsat",
+    "edge_row_count": 198,
+    "pass": true
+  },
+  "source_path": "system_v6/sims/discrete_axis4_composition_v0/discrete_axis4_composition_v0_julia.jl",
+  "source_sha256": "f4903d4b59d0d8f1e2aa23cdeec86ad4c30a104415962cab8f328f67c79b2e7b",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph over the 33-cell carrier with six generator rows per cell",
+      "receipt_id": "julia_Graphs_axis4_composition_candidate",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver computed positive/negative/neutral Axis-4 identity with erased flip",
+      "receipt_id": "julia_Z3_axis4_composition_candidate",
+      "tool": "Z3"
+    }
+  ]
+}

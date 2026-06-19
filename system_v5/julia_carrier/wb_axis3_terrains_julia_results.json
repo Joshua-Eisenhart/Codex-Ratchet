@@ -1,0 +1,781 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "durable result receipt",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "eigvals/norm/tr for computed Choi PSD, trace distance, purity, superoperator, and commutator checks",
+      "used": true
+    }
+  },
+  "all_choi_psd": true,
+  "all_kraus_complete": true,
+  "all_pass": false,
+  "all_pass_reason": "finite map checks passed, but the requested |0><0| positive control is false for Ni and Si because |0><0| is their fixed/eigen state.",
+  "allowed_claims": [
+    "four explicit CP channel finite maps",
+    "F01 finite size ladder",
+    "N01 Se/Ni order-sensitive channel commutator",
+    "candidate Axis 3 engine-family partition observable"
+  ],
+  "axes": [
+    "Axis1_channel_polarity",
+    "Axis2_chart_lens",
+    "Axis3_engine_family"
+  ],
+  "axis3_split": {
+    "axis3_direction_note": "The supplied Kraus maps do not support a clean purity-sign expansion/compression split: all four mean purity deltas are negative on the finite ladder. Axis 3 remains an observable candidate partition, not a direction-admitted result.",
+    "axis3_direction_pass": false,
+    "axis3_distinct_by_observed_gap": true,
+    "declared_type1_expansion": [
+      "Se",
+      "Ne"
+    ],
+    "declared_type2_compression": [
+      "Ni",
+      "Si"
+    ],
+    "mean_entropy_delta_by_terrain": {
+      "Ne": 0.4343602354978366,
+      "Ni": 0.2586396050056155,
+      "Se": 0.4336390733302751,
+      "Si": 0.44607305488617427
+    },
+    "mean_purity_delta_by_terrain": {
+      "Ne": -0.27798134301942967,
+      "Ni": -0.14937680220626343,
+      "Se": -0.27941661503096205,
+      "Si": -0.28478334674280387
+    },
+    "type1_mean_purity_delta": -0.27869897902519586,
+    "type2_mean_purity_delta": -0.21708007447453365,
+    "type_partition_observable_gap": 0.06161890455066221
+  },
+  "blocked_consumers": [
+    "layer_completion",
+    "manifold_admission",
+    "bridge",
+    "coupling",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "physics"
+  ],
+  "blocked_downstream": [
+    "layer_completion",
+    "manifold_admission",
+    "bridge",
+    "coupling",
+    "flux",
+    "Xi",
+    "Phi0",
+    "Axis0",
+    "physics"
+  ],
+  "boundary_checks": {
+    "gamma_1_complete_damping_dist_to_ground": 0.0,
+    "gamma_1_complete_damping_pass": true,
+    "identity_choi": {
+      "eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "hermiticity_residual": 0.0,
+      "min_eigenvalue": 0.0,
+      "psd": true,
+      "rank_tol_1e-10": 1,
+      "trace": 2.0
+    },
+    "identity_choi_rank_one_pass": true,
+    "p_1_identity_pass": true,
+    "p_1_identity_trace_dists": {
+      "Ne": 0.0,
+      "Se": 0.0,
+      "Si": 0.0
+    }
+  },
+  "carrier_realization": "Julia ComplexF64 2-component spinor-derived density matrices; no NumPy bridge",
+  "choi_hermiticity_residual_by_terrain": {
+    "Ne": 0.0,
+    "Ni": 0.0,
+    "Se": 0.0,
+    "Si": 0.0
+  },
+  "choi_min_eigenvalue_by_terrain": {
+    "Ne": 6.547277701480238e-18,
+    "Ni": 0.0,
+    "Se": 1.1068924754467302e-18,
+    "Si": 0.0
+  },
+  "choi_psd_by_terrain": {
+    "Ne": true,
+    "Ni": true,
+    "Se": true,
+    "Si": true
+  },
+  "claim_ceiling": "candidate finite-map probe; not layer-complete; not manifold admission",
+  "classification": "tool_lego_fit_probe",
+  "codomain_or_output": "post-channel density matrices plus trace distance, purity/entropy change, Choi PSD, Kraus TP, and order-sensitive channel commutator invariants",
+  "dependency_receipts": [],
+  "domain": "2x2 spinor density matrices rho, deterministic pseudo-Haar qubit samples at n=8,16,32,64",
+  "eligible_consumers": [],
+  "engine": "julia_truth_lane",
+  "erased_structure_control": {
+    "axis3_distinct": false,
+    "control": "all terrains replaced by flat identity channel",
+    "finite_map_verdict_if_erased": false,
+    "n01_channel_commutator_norm": 0.0,
+    "sample_trace_dist_from_flat": 0.0,
+    "terrain_structure_present": false
+  },
+  "fail_rule": "fail if Choi PSD/TP, F01 ladder, N01 order sensitivity, wrong/erased controls, or sensitive-state controls fail; all_pass remains false if requested pure-zero controls fail.",
+  "finite_map": {
+    "codomain_or_output": "post-channel density matrices plus trace distance, purity/entropy change, Choi PSD, Kraus TP, and order-sensitive channel commutator invariants",
+    "domain": "2x2 spinor density matrices rho, deterministic pseudo-Haar qubit samples at n=8,16,32,64"
+  },
+  "finite_map_checks_pass": true,
+  "flat_control_max_trace_dist_by_n": {
+    "n=16": 0.0,
+    "n=32": 0.0,
+    "n=64": 0.0,
+    "n=8": 0.0
+  },
+  "generated_at": "2026-06-04T07:31:52.143",
+  "julia_version": "1.12.6",
+  "kraus_completeness_errors": {
+    "Ne": 3.1401849173675503e-16,
+    "Ni": 0.0,
+    "Se": 3.1401849173675503e-16,
+    "Si": 3.1401849173675503e-16
+  },
+  "n01_channel_commutator_norm": 0.18000000000000002,
+  "n01_kraus_pair_commutator_norms": [
+    0.0,
+    0.0,
+    0.12652259940069738,
+    0.42426406871192857
+  ],
+  "n01_satisfied": true,
+  "n01_witness_state": {
+    "order_sensitive": true,
+    "state": "|+><+|",
+    "trace_distance_Se_after_Ni_vs_Ni_after_Se": 0.09000000000000002
+  },
+  "object_id": "wb_axis3_terrains",
+  "pairwise_superoperator_distances": {
+    "Ne-Ni": 0.630358569152977,
+    "Ne-Si": 0.8485281374238574,
+    "Ni-Si": 0.7492289086423983,
+    "Se-Ne": 0.8485281374238574,
+    "Se-Ni": 0.630358569152977,
+    "Se-Si": 0.8485281374238574
+  },
+  "parameters": {
+    "gamma": 0.3,
+    "p": 0.7
+  },
+  "pass_rule": "finite_map_checks_pass requires CP/TP channels, nonzero trace distance on the finite ladder, distinct superoperators, Se/Ni channel order sensitivity, boundary checks, wrong-structure controls, sensitive-state controls, and erased-structure verdict flip. all_pass additionally requires the requested |0><0| controls.",
+  "peps3d_embedding": {
+    "reason": "This object is a 2x2 CP-channel finite-map probe only. It does not provide a PEPS3D carrier anchor and cannot be cited for manifold/layer promotion.",
+    "status": "blocked_not_claimed"
+  },
+  "positive_control_pass_by_terrain": {
+    "Ne": true,
+    "Ni": true,
+    "Se": true,
+    "Si": true
+  },
+  "positive_controls": {
+    "control_note": "|0><0| is a fixed point for Ni amplitude damping and Si z-dephasing, so the requested pure-zero control cannot honestly pass for all four terrains.",
+    "requested_pure_zero": {
+      "Ne": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_requested_state": true,
+        "output_purity": 0.5800000000000002,
+        "purity_decreased_on_requested_state": true,
+        "purity_delta": -0.4199999999999998,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 0.30000000000000004
+      },
+      "Ni": {
+        "entropy_delta": 0.0,
+        "input_purity": 1.0,
+        "nontrivial_on_requested_state": false,
+        "output_purity": 1.0,
+        "purity_decreased_on_requested_state": false,
+        "purity_delta": 0.0,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 0.0
+      },
+      "Se": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_requested_state": true,
+        "output_purity": 0.5800000000000002,
+        "purity_decreased_on_requested_state": true,
+        "purity_delta": -0.4199999999999998,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 0.30000000000000004
+      },
+      "Si": {
+        "entropy_delta": 0.0,
+        "input_purity": 1.0,
+        "nontrivial_on_requested_state": false,
+        "output_purity": 1.0000000000000004,
+        "purity_decreased_on_requested_state": false,
+        "purity_delta": 4.440892098500626e-16,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 1.1102230246251565e-16
+      }
+    },
+    "requested_pure_zero_control_pass": false,
+    "requested_pure_zero_nontrivial_pass": false,
+    "requested_pure_zero_purity_direction_pass": false,
+    "sensitive_state_control_pass": true,
+    "sensitive_state_controls": {
+      "Ne": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_sensitive_state": true,
+        "output_purity": 0.5800000000000002,
+        "purity_decreased_on_sensitive_state": true,
+        "purity_delta": -0.4199999999999998,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 0.30000000000000004
+      },
+      "Ni": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_sensitive_state": true,
+        "output_purity": 0.5800000000000001,
+        "purity_decreased_on_sensitive_state": true,
+        "purity_delta": -0.41999999999999993,
+        "state": "|1><1|",
+        "trace_dist_from_flat": 0.29999999999999993
+      },
+      "Se": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_sensitive_state": true,
+        "output_purity": 0.5800000000000002,
+        "purity_decreased_on_sensitive_state": true,
+        "purity_delta": -0.4199999999999998,
+        "state": "|0><0|",
+        "trace_dist_from_flat": 0.30000000000000004
+      },
+      "Si": {
+        "entropy_delta": 0.6108643020548934,
+        "input_purity": 1.0,
+        "nontrivial_on_sensitive_state": true,
+        "output_purity": 0.5800000000000002,
+        "purity_decreased_on_sensitive_state": true,
+        "purity_delta": -0.4199999999999998,
+        "state": "|+><+|",
+        "trace_dist_from_flat": 0.30000000000000004
+      }
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "requested |0><0| positive control is false for Ni and Si",
+    "Axis 3 direction criterion is not admitted by purity signs",
+    "no PEPS3D carrier anchor",
+    "promotion_allowed=false"
+  ],
+  "promotion_status": "audit_further",
+  "quaternion_action": "not_applicable",
+  "requested_pure_zero_control_pass": false,
+  "rng_seed": "deterministic Park-Miller LCG seeds 7919 + 101*n + 1009*terrain_index + 9176*sample_index",
+  "root_constraints_in_force": {
+    "F01": {
+      "satisfied": true,
+      "witness": "explicit finite size ladder n=8,16,32,64"
+    },
+    "N01": {
+      "channel_commutator_norm": 0.18000000000000002,
+      "kraus_pair_commutator_norms": [
+        0.0,
+        0.0,
+        0.12652259940069738,
+        0.42426406871192857
+      ],
+      "satisfied": true
+    }
+  },
+  "run_command": "/opt/homebrew/bin/julia --project=system_v5/julia_carrier system_v5/julia_carrier/wb_axis3_terrains_julia.jl",
+  "run_completed": true,
+  "size_ladder": {
+    "n=16": {
+      "Ne": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            6.547277701480238e-18,
+            1.039199132487229e-16,
+            0.6000000000000004,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 6.547277701480238e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29996958431237264,
+        "mean_entropy_delta": 0.41902681287675997,
+        "mean_output_purity": 0.7316364901545362,
+        "mean_purity_delta": -0.26836350984546387,
+        "mean_trace_dist": 0.22564371288937984,
+        "min_trace_dist": 0.05506846431704378,
+        "n_states": 16,
+        "terrain": "Ne"
+      },
+      "Ni": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.697988155309063e-17,
+            0.29999999999999993,
+            1.7
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0
+        },
+        "kraus_completeness_err": 0.0,
+        "max_trace_dist": 0.2907294627947806,
+        "mean_entropy_delta": 0.2620255944312456,
+        "mean_output_purity": 0.8486610615194332,
+        "mean_purity_delta": -0.15133893848056684,
+        "mean_trace_dist": 0.17848316749151732,
+        "min_trace_dist": 0.05997193204901316,
+        "n_states": 16,
+        "terrain": "Ni"
+      },
+      "Se": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            1.1068924754467302e-18,
+            9.363213895923328e-17,
+            0.6000000000000003,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 1.1068924754467302e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29986090324331127,
+        "mean_entropy_delta": 0.42442406559314466,
+        "mean_output_purity": 0.7263164177205292,
+        "mean_purity_delta": -0.27368358227947065,
+        "mean_trace_dist": 0.2258459759886801,
+        "min_trace_dist": 0.005824334486810573,
+        "n_states": 16,
+        "terrain": "Se"
+      },
+      "Si": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.6653345369377343e-16,
+            0.6000000000000002,
+            1.4
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29992299476548545,
+        "mean_entropy_delta": 0.4526044098719756,
+        "mean_output_purity": 0.7091578804448277,
+        "mean_purity_delta": -0.29084211955517214,
+        "mean_trace_dist": 0.2403886336312793,
+        "min_trace_dist": 0.0694471598112198,
+        "n_states": 16,
+        "terrain": "Si"
+      }
+    },
+    "n=32": {
+      "Ne": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            6.547277701480238e-18,
+            1.039199132487229e-16,
+            0.6000000000000004,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 6.547277701480238e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29998868380804256,
+        "mean_entropy_delta": 0.43776347874770294,
+        "mean_output_purity": 0.7216180501010548,
+        "mean_purity_delta": -0.2783819498989451,
+        "mean_trace_dist": 0.23503610955499163,
+        "min_trace_dist": 0.0670830804606812,
+        "n_states": 32,
+        "terrain": "Ne"
+      },
+      "Ni": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.697988155309063e-17,
+            0.29999999999999993,
+            1.7
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0
+        },
+        "kraus_completeness_err": 0.0,
+        "max_trace_dist": 0.2920176632390497,
+        "mean_entropy_delta": 0.2456012789802614,
+        "mean_output_purity": 0.8587459172158043,
+        "mean_purity_delta": -0.14125408278419577,
+        "mean_trace_dist": 0.16826368538386394,
+        "min_trace_dist": 0.0012933265469655896,
+        "n_states": 32,
+        "terrain": "Ni"
+      },
+      "Se": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            1.1068924754467302e-18,
+            9.363213895923328e-17,
+            0.6000000000000003,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 1.1068924754467302e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29999987232927194,
+        "mean_entropy_delta": 0.43927188080751745,
+        "mean_output_purity": 0.720326067500803,
+        "mean_purity_delta": -0.2796739324991973,
+        "mean_trace_dist": 0.23547846578836912,
+        "min_trace_dist": 0.06062641272097667,
+        "n_states": 32,
+        "terrain": "Se"
+      },
+      "Si": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.6653345369377343e-16,
+            0.6000000000000002,
+            1.4
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.2999971835268211,
+        "mean_entropy_delta": 0.43849011735970556,
+        "mean_output_purity": 0.7207257907800811,
+        "mean_purity_delta": -0.27927420921991886,
+        "mean_trace_dist": 0.23516755677570367,
+        "min_trace_dist": 0.05522532450390873,
+        "n_states": 32,
+        "terrain": "Si"
+      }
+    },
+    "n=64": {
+      "Ne": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            6.547277701480238e-18,
+            1.039199132487229e-16,
+            0.6000000000000004,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 6.547277701480238e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29996168482648733,
+        "mean_entropy_delta": 0.4380709333556723,
+        "mean_output_purity": 0.7213663158324041,
+        "mean_purity_delta": -0.27863368416759615,
+        "mean_trace_dist": 0.23505583286352044,
+        "min_trace_dist": 0.05305827093568169,
+        "n_states": 64,
+        "terrain": "Ne"
+      },
+      "Ni": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.697988155309063e-17,
+            0.29999999999999993,
+            1.7
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0
+        },
+        "kraus_completeness_err": 0.0,
+        "max_trace_dist": 0.29785447364356754,
+        "mean_entropy_delta": 0.2433002119118993,
+        "mean_output_purity": 0.8601107881834508,
+        "mean_purity_delta": -0.13988921181654915,
+        "mean_trace_dist": 0.16834073393481386,
+        "min_trace_dist": 0.016641286259336335,
+        "n_states": 64,
+        "terrain": "Ni"
+      },
+      "Se": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            1.1068924754467302e-18,
+            9.363213895923328e-17,
+            0.6000000000000003,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 1.1068924754467302e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29998241798289205,
+        "mean_entropy_delta": 0.43849786597392204,
+        "mean_output_purity": 0.7210105895313789,
+        "mean_purity_delta": -0.27898941046862114,
+        "mean_trace_dist": 0.23531847050297205,
+        "min_trace_dist": 0.0641404481332252,
+        "n_states": 64,
+        "terrain": "Se"
+      },
+      "Si": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.6653345369377343e-16,
+            0.6000000000000002,
+            1.4
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29996248817126975,
+        "mean_entropy_delta": 0.4422214819437969,
+        "mean_output_purity": 0.7180938664014211,
+        "mean_purity_delta": -0.281906133598579,
+        "mean_trace_dist": 0.23668189586098576,
+        "min_trace_dist": 0.03901567066652188,
+        "n_states": 64,
+        "terrain": "Si"
+      }
+    },
+    "n=8": {
+      "Ne": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            6.547277701480238e-18,
+            1.039199132487229e-16,
+            0.6000000000000004,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 6.547277701480238e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.29841612172646786,
+        "mean_entropy_delta": 0.4425797170112111,
+        "mean_output_purity": 0.7134537718342865,
+        "mean_purity_delta": -0.2865462281657134,
+        "mean_trace_dist": 0.23510855067410014,
+        "min_trace_dist": 0.10205060641468948,
+        "n_states": 8,
+        "terrain": "Ne"
+      },
+      "Ni": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.697988155309063e-17,
+            0.29999999999999993,
+            1.7
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0
+        },
+        "kraus_completeness_err": 0.0,
+        "max_trace_dist": 0.27807172009890313,
+        "mean_entropy_delta": 0.2836313346990557,
+        "mean_output_purity": 0.834975024256258,
+        "mean_purity_delta": -0.16502497574374198,
+        "mean_trace_dist": 0.18673276812417788,
+        "min_trace_dist": 0.05372039096955581,
+        "n_states": 8,
+        "terrain": "Ni"
+      },
+      "Se": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            1.1068924754467302e-18,
+            9.363213895923328e-17,
+            0.6000000000000003,
+            1.4000000000000004
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 1.1068924754467302e-18,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.2999996615706968,
+        "mean_entropy_delta": 0.43236248094651625,
+        "mean_output_purity": 0.7146804651234411,
+        "mean_purity_delta": -0.28531953487655914,
+        "mean_trace_dist": 0.22607874478622972,
+        "min_trace_dist": 0.0296806364496279,
+        "n_states": 8,
+        "terrain": "Se"
+      },
+      "Si": {
+        "all_trace_dists_positive": true,
+        "choi": {
+          "eigenvalues": [
+            0.0,
+            1.6653345369377343e-16,
+            0.6000000000000002,
+            1.4
+          ],
+          "hermiticity_residual": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "rank_tol_1e-10": 2,
+          "trace": 2.0000000000000004
+        },
+        "kraus_completeness_err": 3.1401849173675503e-16,
+        "max_trace_dist": 0.2999719758691137,
+        "mean_entropy_delta": 0.45097621036921903,
+        "mean_output_purity": 0.7128890754024544,
+        "mean_purity_delta": -0.2871109245975455,
+        "mean_trace_dist": 0.2413359118231738,
+        "min_trace_dist": 0.14581154718819517,
+        "n_states": 8,
+        "terrain": "Si"
+      }
+    }
+  },
+  "source_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/julia_carrier/wb_axis3_terrains_julia.jl",
+  "source_sha256": "40b5ee3f8eaec520dcba4a877fd9cbc5424b1509b61b9014e68c50223c9eb6bd",
+  "spinor_state": "2-component ComplexF64 spinors psi with rho = psi * psi'",
+  "terrain_channels_distinct": true,
+  "terrains": {
+    "Ne": {
+      "axis1": "expansive",
+      "axis2": "closed_direct",
+      "axis3": "Type1_expansion",
+      "kraus": "sqrt(p) I, sqrt(1-p) sigma_y"
+    },
+    "Ni": {
+      "axis1": "compressive",
+      "axis2": "open_conj",
+      "axis3": "Type2_compression",
+      "kraus": "amplitude damping gamma=0.3"
+    },
+    "Se": {
+      "axis1": "expansive",
+      "axis2": "open_direct",
+      "axis3": "Type1_expansion",
+      "kraus": "sqrt(p) I, sqrt(1-p) sigma_x"
+    },
+    "Si": {
+      "axis1": "compressive",
+      "axis2": "closed_conj",
+      "axis3": "Type2_compression",
+      "kraus": "sqrt(p) I, sqrt(1-p) sigma_z"
+    }
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "LinearAlgebra": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": {
+      "reason": "supportive result writer",
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing channel invariant computation",
+      "used": true
+    }
+  },
+  "wrong_structure_control": {
+    "independent_mean_Se_vs_wrong_trace_dist": 0.16423425811680623,
+    "independent_min_Se_vs_wrong_trace_dist": 0.03386531774437984,
+    "independent_wrong_kraus": "Se with (sigma_x + sigma_z)/sqrt(2) replacing sigma_x; CP/TP and not one of Se/Ne/Ni/Si.",
+    "independent_wrong_structure_distinct": true,
+    "requested_mean_Se_vs_wrong_trace_dist": 0.23226231523507096,
+    "requested_min_Se_vs_wrong_trace_dist": 0.04789279164817625,
+    "requested_wrong_kraus": "Se with sigma_z replacing sigma_x; this equals the Si axis under the provided terrain table, so it is reported separately.",
+    "requested_wrong_structure_distinct": true,
+    "wrong_structure_distinct": true
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "_BAD_TWIN_FIXTURE": "NEGATIVE FIXTURE — this sim is designed to fail gates. Do NOT promote.",
+  "_intended_failures": [
+    "GATE-FIREWALL: engine_consensus.independent=true without independent_recompute or lane_evidence",
+    "GATE-FIREWALL: axis0_terrain_engine_survived=true is an unfenced dynamic key with no audit/control backing",
+    "GATE-FIREWALL: 'earned' in axis0_earned_claim_string without local fence",
+    "GATE-2: count-tautology z3/cvc5 crossover_proofs both tagged load_bearing (SAT count equality)"
+  ],
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "axis0_terrain_engine_leap_v0",
+  "classification": "scratch_diagnostic",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "claim_ceiling": "scratch_diagnostic",
+  "claim_path_tools": [],
+  "axis0_terrain_engine_survived": true,
+  "axis0_earned_claim_string": "axis0 terrain engine has earned admission as the dominant attractor",
+  "engines": {
+    "julia": {
+      "ran": true,
+      "source_path": "system_v7/sims/axis0_terrain_engine_leap_v0/axis0_terrain_engine_leap_v0_julia.jl",
+      "reads_peer_result": false,
+      "packages_used": ["Z3"],
+      "aligned_packages_load_bearing": ["Z3"],
+      "package_observables": {
+        "Z3": "Z3.Solver count equality over terrain_engine candidates"
+      }
+    },
+    "jax": {
+      "ran": true,
+      "source_path": "system_v7/sims/axis0_terrain_engine_leap_v0/axis0_terrain_engine_leap_v0_jax.py",
+      "reads_peer_result": true,
+      "packages_used": ["jax", "z3", "networkx"],
+      "aligned_packages_load_bearing": ["z3"],
+      "package_observables": {
+        "z3": "z3.Solver SAT count equality (count tautology)"
+      }
+    },
+    "pytorch": {
+      "ran": true,
+      "source_path": "system_v7/sims/axis0_terrain_engine_leap_v0/axis0_terrain_engine_leap_v0_pytorch.py",
+      "reads_peer_result": true,
+      "packages_used": ["torch", "cvc5"],
+      "aligned_packages_load_bearing": ["cvc5"],
+      "package_observables": {
+        "cvc5": "cvc5.Solver SAT count equality (count tautology)"
+      }
+    }
+  },
+  "engine_consensus": {
+    "independent": true,
+    "max_divergence": 0.0,
+    "engine_values": {
+      "julia": 16,
+      "jax": 16,
+      "pytorch": 16
+    }
+  },
+  "divergence": {
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "engine_values": {
+      "julia": 16,
+      "jax": 16,
+      "pytorch": 16
+    }
+  },
+  "crossover_proofs": {
+    "z3": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat",
+      "claim": "computed terrain_engine_survivor_count and quotient_terrain_count equal the pinned expected counts and are nonempty",
+      "input_object": {
+        "terrain_engine_survivor_count": 16,
+        "quotient_terrain_count": 8
+      }
+    },
+    "cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "verdict": "sat",
+      "claim": "computed terrain_engine_survivor_count matches expected pinned finite count (trivial count equality assertion)",
+      "input_object": {
+        "terrain_engine_survivor_count": 16,
+        "expected_terrain_engine_survivor_count": 16
+      }
+    }
+  },
+  "generated_at": "2026-06-13T00:00:00Z"
+}

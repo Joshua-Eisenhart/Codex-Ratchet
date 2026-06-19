@@ -1,0 +1,75 @@
+{
+  "spec_id": "finite_ring_block_partition_reversible_qca_gnvw_index_v0.spec.v1",
+  "description": "Pure-DATA spec for a small finite-ring block-partition reversible QCA GNVW-index diagnostic. The engines compute the support-algebra transport index from conjugated local operator support near the oriented cut 3|4; this spec names the ring, alphabet, checkerboard partitions, rule families, and expected controls, but does not ship a computed support rank or result JSON.",
+  "sim_id": "finite_ring_block_partition_reversible_qca_gnvw_index_v0",
+  "ring": {
+    "N": 8,
+    "local_dimension_d": 2,
+    "oriented_cut": {"left_cell": 3, "right_cell": 4},
+    "cells": [0, 1, 2, 3, 4, 5, 6, 7]
+  },
+  "checkerboard_block_partition": {
+    "even_bonds": [[0, 1], [2, 3], [4, 5], [6, 7]],
+    "odd_bonds": [[1, 2], [3, 4], [5, 6], [7, 0]],
+    "ordered_step": "U = U_odd o U_even"
+  },
+  "operator_probe": {
+    "single_cell_generators": ["X", "Z"],
+    "support_algebra_index": "For the cut 3|4, conjugate Pauli generators near the cut by U. For one-step controls use A_3 and A_4. For shift-by-k tests use the k-cell collar A_{3-k+1..3} and A_{4..4+k-1}, so additive transport across the cut cannot saturate at one crossed cell. The k-step shift diagnostic is oriented-local-cut flow: right_shift counts left-collar support crossing 3|4 to the right, and left_shift counts right-collar support crossing 3|4 to the left. The opposite ring cut is not subtracted into this local diagnostic. For non-shift controls, restrict left-source images to the right side and right-source images to the left side. Let r_R and r_L be the GF(2) ranks of those restricted Pauli vectors. The overlap algebra dimensions are 2^r_R and 2^r_L, and ind(U)=0.5*log(2^r_R/2^r_L). For qubits this equals 0.5*(r_R-r_L)*log(2).",
+    "not_shift_echo": "The engines compute r_R and r_L from conjugated operator-support vectors on the periodic N=8 ring, not from a stored shift parameter or lifted open line.",
+    "same_operator_as_reversibility": "The index and reversibility paths both consume N=8, even_bonds, odd_bonds, and the same shift_schedules. There is no POSITIONS=0..8 lifted support space."
+  },
+  "chiral_shift_block_circuit": {
+    "gate": "SWAP",
+    "right_shift_schedule": [[7, 0], [6, 7], [5, 6], [4, 5], [3, 4], [2, 3], [1, 2]],
+    "left_shift_schedule": [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 0]],
+    "schedule_note": "Each schedule is an adjacent-SWAP block circuit on true periodic ring bonds. Right and left chirality are produced by different ordered SWAP schedules, not by a sign flag."
+  },
+  "shift_by_k_tests": {
+    "k_values": [1, 2, 3],
+    "right_shift_expected_units_log_d": {"1": 1, "2": 2, "3": 3},
+    "left_shift_expected_units_log_d": {"1": -1, "2": -2, "3": -3}
+  },
+  "rules": {
+    "left_shift": {
+      "kind": "cyclic_shift_qca",
+      "orientation": "left",
+      "prediction": {"index_units_log_d": -1, "chirality": "left", "nonzero": true}
+    },
+    "right_shift": {
+      "kind": "cyclic_shift_qca",
+      "orientation": "right",
+      "prediction": {"index_units_log_d": 1, "chirality": "right", "nonzero": true}
+    },
+    "identity": {
+      "kind": "identity_qca",
+      "prediction": {"index_units_log_d": 0, "chirality": "none", "nonzero": false}
+    },
+    "finite_depth_local_circuit": {
+      "kind": "checkerboard_cz_brickwork",
+      "block_gate": "CZ",
+      "layers": ["even", "odd"],
+      "prediction": {"index_units_log_d": 0, "chirality": "none", "nonzero": false}
+    },
+    "non_shift_partitioned": {
+      "kind": "checkerboard_cnot_brickwork",
+      "block_gate": "CNOT control-left-target-right on the periodic checkerboard bonds",
+      "layers": ["even", "odd"],
+      "prediction": {"index_units_log_d": 0, "chirality": "none", "nonzero": false}
+    }
+  },
+  "ancestry": {
+    "concept_source": "~/wiki/concepts/ring-checkerboard-gradient.md",
+    "concept_summary": "A finite ring of cells carries an even/odd checkerboard block structure. Reversible local block updates move information around the ring; the GNVW index is used here as the chirality probe for net transport around the ring."
+  },
+  "lineage": {
+    "F01": "simultaneous-distinguishability surface -- the QCA step acts on the whole finite ring at once, and the GNVW index is the probe-relative invariant of net operator transport across the local cut.",
+    "N01": "order/persistence -- U = U_odd o U_even is an ordered composition. The chirality, observed as the sign of the support-algebra index, is an order/orientation invariant of the ordered block sweep.",
+    "root_axiom": "a = a iff a ~ b -- two QCAs are the same chirality class iff they are indistinguishable under the GNVW support-algebra index probe."
+  },
+  "required_ceilings": {
+    "classification": "scratch_diagnostic",
+    "promotion_allowed": false,
+    "formal_admission_allowed": false
+  }
+}

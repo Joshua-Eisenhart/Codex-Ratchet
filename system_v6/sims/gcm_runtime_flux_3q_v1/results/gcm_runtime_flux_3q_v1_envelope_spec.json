@@ -1,0 +1,705 @@
+{
+  "claim_path_tools": [
+    "torch.func",
+    "sympy",
+    "Z3",
+    "julia_gf4_stdlib",
+    "z3",
+    "cvc5",
+    "gcm_substrate_check"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "claim": "independent cvc5 encoding of the same L/R generator non-identity gate",
+      "erased_control_verdict": "sat",
+      "input_object": {
+        "R_not_reflection_of_L": 1,
+        "R_not_reverse_of_L": 1,
+        "distinct_committed_generator_assignments": 1,
+        "left_generator_id": "engine64_Type1-L_32slot_local_update",
+        "max_abs_R_minus_reflect_L": 0.864549516754901,
+        "right_generator_id": "engine64_Type2-R_32slot_local_update"
+      },
+      "load_bearing": true,
+      "polarity": "negated_violation_unsat_real_erasure_sat",
+      "proof_flips_under_erasure": true,
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "claim": "independent L/R generator non-identity is structurally required for this doctrine repair packet",
+      "erased_control_verdict": "sat",
+      "input_object": {
+        "R_not_reflection_of_L": 1,
+        "R_not_reverse_of_L": 1,
+        "distinct_committed_generator_assignments": 1,
+        "left_generator_id": "engine64_Type1-L_32slot_local_update",
+        "max_abs_R_minus_reflect_L": 0.864549516754901,
+        "right_generator_id": "engine64_Type2-R_32slot_local_update"
+      },
+      "load_bearing": true,
+      "polarity": "negated_violation_unsat_real_erasure_sat",
+      "proof_flips_under_erasure": true,
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "engine_values": {
+      "jax": {
+        "doctrine_outcome": "independent_opposition_not_clean",
+        "jax_scope": "vector sign/readout guard",
+        "left_j_chi": -2,
+        "left_j_cut_sign": 1,
+        "left_j_ent_sign": 1,
+        "right_j_chi": 2,
+        "right_j_cut_sign": 1,
+        "right_j_ent_sign": 1
+      },
+      "julia": {
+        "doctrine_outcome": "independent_opposition_not_clean",
+        "julia_scope": "finite-sign guard only",
+        "left_j_chi": -2,
+        "left_j_cut_sign": 1,
+        "left_j_ent_sign": 1,
+        "right_j_chi": 2,
+        "right_j_cut_sign": 1,
+        "right_j_ent_sign": 1
+      },
+      "pytorch": {
+        "doctrine_outcome": "independent_opposition_not_clean",
+        "left_j_chi": -2,
+        "left_j_cut_sign": 1,
+        "left_j_ent_sign": 1,
+        "pytorch_scope": "main density-current recomputation plus torch.func receipt",
+        "right_j_chi": 2,
+        "right_j_cut_sign": 1,
+        "right_j_ent_sign": 1
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0,
+    "scope": "scoped sign/readout parity over the common packet; packet-local PyTorch/common result is the density-current recomputation"
+  },
+  "extra_fields": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "builder_audit_boundary": "load_bearing",
+      "cvc5": "load_bearing",
+      "gcm_substrate_check": "load_bearing",
+      "jax": "supportive",
+      "julia_gf4_stdlib": "supportive",
+      "python_stdlib": "load_bearing",
+      "sympy": "load_bearing",
+      "torch": "load_bearing",
+      "torch.func": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "TOOL_MANIFEST": {
+      "builder_audit_boundary": {
+        "reason": "G.2a builder/audit boundary from birth; builder writes builder_self_assessment.md, not audit_verdict.md",
+        "tried": true,
+        "used": true
+      },
+      "cvc5": {
+        "reason": "independent load-bearing UNSAT flip for the same generator non-identity gate",
+        "tried": true,
+        "used": true
+      },
+      "gcm_substrate_check": {
+        "reason": "load-bearing 1Q/2Q/3Q lineage check plus lineage-free/carve-erasure negative",
+        "tried": true,
+        "used": true
+      },
+      "jax": {
+        "reason": "scoped parity lane for sign/readout vectors; not the claim-bearing density recomputation",
+        "tried": true,
+        "used": true
+      },
+      "julia_gf4_stdlib": {
+        "reason": "supportive Julia finite-sign arithmetic receipt; not the Julia load-bearing observable",
+        "tried": true,
+        "used": true
+      },
+      "python_stdlib": {
+        "reason": "source locks, JSON, SHA-256, deterministic result writing, and process orchestration",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "exact sign/finite-count guards in the JAX lane and envelope checks",
+        "tried": true,
+        "used": true
+      },
+      "torch": {
+        "reason": "load-bearing 8x8 density-matrix evolution, partial traces, spectra, partial transpose, and current deltas",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "load-bearing PyTorch lane batched scalar parity over the accepted current vector",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load-bearing UNSAT flip for independent L/R generator non-identity with erased-control SAT",
+        "tried": true,
+        "used": true
+      }
+    },
+    "all_pass": true,
+    "claim_ceiling": "scratch_diagnostic; doctrine-repair runtime/QIT flux test on the audited 3Q attachment surface; carrier-and-pins-relative; independent Type1-L and Type2-R generator pins; not admitted invariants",
+    "controls": {
+      "carve_erasure": {
+        "control": "remove GCM lineage and 3Q IDs before running scripts/gcm_substrate_check.py",
+        "error_codes": [
+          "GCM_OBJECT_ID_MISMATCH",
+          "GCM3Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM3Q_LINEAGE_2Q_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "substrate_check_ok": false
+      },
+      "product_survivor_controls": {
+        "all_selected_product_controls_zero": true,
+        "control": "selected product-control subset under an identity product-local no-current baseline",
+        "full_product_lift_boundary": {
+          "all_product_lift_zero_claimed": false,
+          "boundary": "The control claim is the named no-current product baseline only; full product-lift zero-current under engine dynamics is not claimed.",
+          "max_abs_product_current": 0.0,
+          "nonzero_count_under_entangling_update": 0,
+          "product_lift_rows_scanned": 544,
+          "zero_current_product_rows": 544
+        },
+        "selected_product_control_count": 8,
+        "selected_product_controls": [
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_5197eacabb43ac19561c19c5",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 0
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_1759626f85ddf4e3bf164789",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 1
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_00b8579b0bec7a9ead311b08",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 2
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_460a4812968f1e49e52eb209",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 3
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_e284017fc41d387d7823313c",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 4
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_afa286f67d1c8884842f45bc",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 5
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_3dbb64bca91cfcd1f6c31693",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 6
+          },
+          {
+            "family": "2q_survivor_product_lift",
+            "gcm_3q_survivor_id": "gcm3qsurv_daf9ab2ae1ce4794507aea2d",
+            "max_abs_current": 0.0,
+            "per_cut": {
+              "A|BC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "B|AC": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              },
+              "C|AB": {
+                "delta_log_negativity": 0.0,
+                "delta_mutual_I": 0.0,
+                "delta_negativity": 0.0
+              }
+            },
+            "raw_3q_survivor_id": 7
+          }
+        ]
+      },
+      "scramble_pair": {
+        "control": "same scramble perturbation is composed separately with each independent generator",
+        "left_J_cut_net_delta_mutual_I": 0.309903879953025,
+        "left_J_ent_net_delta_negativity": 0.160088826919896,
+        "left_current_changed_or_vanished": true,
+        "left_row_id": "scrambled_engine_L_flux_IN_left_3q",
+        "right_J_cut_net_delta_mutual_I": 1.817048950154995,
+        "right_J_ent_net_delta_negativity": 0.595036844753913,
+        "right_current_changed_or_vanished": true,
+        "right_row_id": "scrambled_engine_R_flux_OUT_right_3q"
+      },
+      "static_no_evolution": {
+        "all_currents_zero": true,
+        "row_id": "static_no_evolution_3q"
+      },
+      "time_reversal": {
+        "J_chi_flips_sign": true,
+        "J_cut_flips_sign": true,
+        "J_ent_flips_sign": true,
+        "forward_row_id": "engine_R_flux_OUT_right_3q",
+        "reverse_row_id": "time_reverse_of_R_flux_OUT_right_3q"
+      }
+    },
+    "coordinates": {
+      "layer": "24_runtime_flux",
+      "nesting": "integrated-onto-the-carve",
+      "qubit_depth": "3Q"
+    },
+    "current_definitions": {
+      "J_chi": {
+        "definition": "Use the committed open-chain 2Q QCA chirality seed as orientation: L=-2 and R=+2 log2-qubits per step, attached here only as a 3Q-survivor row current label/control.",
+        "observable": "GNVW signed log2 transport seed lifted from committed 2Q runner",
+        "source": "gcm_qca_runner_2q_v0"
+      },
+      "J_cut": {
+        "cuts": [
+          "A|BC",
+          "B|AC",
+          "C|AB"
+        ],
+        "definition": "For each step and cut X|YZ, J_cut(X|YZ)=I_after(X:YZ)-I_before(X:YZ), with I=S_left+S_right-S_ABC in nats. The net row value sums the three 3Q cuts.",
+        "observable": "delta mutual information across each 3Q bipartition"
+      },
+      "J_ent": {
+        "cuts": [
+          "A|BC",
+          "B|AC",
+          "C|AB"
+        ],
+        "definition": "For each step and cut X|YZ, J_ent tracks negativity_after-negativity_before and log_negativity_after-log_negativity_before. The net row value sums the three 3Q cuts.",
+        "observable": "delta negativity and log-negativity across each 3Q bipartition"
+      }
+    },
+    "declared_surface": "layer 24 (runtime flux) | integrated | 3Q",
+    "flux_in_left_out_right_doctrine_test": {
+      "J_chi_L_negative_R_positive": true,
+      "J_cut_LR_opposite_signs": false,
+      "J_ent_LR_opposite_signs": false,
+      "claim_tested": "flux-in-left / flux-out-right sign doctrine for this runtime/QIT/chirality realization",
+      "left": {
+        "J_chi_signed_log2": -2,
+        "J_cut_net_delta_mutual_I": 0.398385516067546,
+        "J_ent_net_delta_negativity": 0.113040677029362
+      },
+      "non_tautological_by_construction": true,
+      "opposition_forced_by_reflection_or_reversal": false,
+      "outcome": "independent_opposition_not_clean",
+      "right": {
+        "J_chi_signed_log2": 2,
+        "J_cut_net_delta_mutual_I": 0.925568602579871,
+        "J_ent_net_delta_negativity": 0.085911157808355
+      }
+    },
+    "generator_independence": {
+      "R_not_reflection_of_L": true,
+      "R_not_reverse_of_L": true,
+      "distinct_committed_generator_assignments": true,
+      "left_generator_id": "engine64_Type1-L_32slot_local_update",
+      "left_schedule_sha256": "c1f7397837c0f9826015cf4a475a5c61311d55baa4f923bdd889673935af5a6c",
+      "left_unitary_sha256": "43a09b738ea5c02c14e7e660412d715d1aee02ebe558d199a357a0bc4f16e2c8",
+      "max_abs_R_minus_reflect_L": 0.864549516754901,
+      "max_abs_R_minus_reverse_L": 0.297293215054724,
+      "right_generator_id": "engine64_Type2-R_32slot_local_update",
+      "right_schedule_sha256": "9c7382fc3a5c2ebb5c358eca98dfed6dc386c5b9337e55f2e8bd7be8cc006848",
+      "right_unitary_sha256": "9d1c7c69d2dbf86c1406a71278b5b1faa4b72aa05eb9562c866b1f6dce913b9e",
+      "source_locks": {
+        "engine_64_stage_full_run_audit": {
+          "exists": true,
+          "git_last_commit": "23cfa5536",
+          "path": "system_v6/sims/engine_64_stage_full_run_v0/audit_verdict.md",
+          "role": "independent_engine64_audit",
+          "sha256": "721299fa3d52adc72e665e95b99fb02c6985a1a2660add87beb1e3c0ecf23e5f"
+        },
+        "engine_64_stage_full_run_common": {
+          "exists": true,
+          "git_last_commit": "23cfa5536",
+          "path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0_common.py",
+          "role": "committed_Type1_L_Type2_R_schedule_source",
+          "sha256": "cba273d8a29a71a216aac238a636dcc44b503a017aeae9543af8acd15c9b5f05"
+        }
+      }
+    },
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true,
+    "schema": "gcm_runtime_flux_3q_v1_envelope_v1",
+    "source_locks": {
+      "builder_audit_boundary": {
+        "exists": true,
+        "git_last_commit": "aed311e85",
+        "path": "scripts/builder_audit_boundary.py",
+        "role": "builder_audit_boundary",
+        "sha256": "ed25d7cef8fda4a1f0e84d71d280b39c32682e14dafd833ccce8766c60d5f67b"
+      },
+      "engine_64_stage_full_run_audit": {
+        "exists": true,
+        "git_last_commit": "23cfa5536",
+        "path": "system_v6/sims/engine_64_stage_full_run_v0/audit_verdict.md",
+        "role": "independent_engine64_audit",
+        "sha256": "721299fa3d52adc72e665e95b99fb02c6985a1a2660add87beb1e3c0ecf23e5f"
+      },
+      "engine_64_stage_full_run_common": {
+        "exists": true,
+        "git_last_commit": "23cfa5536",
+        "path": "system_v6/sims/engine_64_stage_full_run_v0/engine_64_stage_full_run_v0_common.py",
+        "role": "committed_Type1_L_Type2_R_schedule_source",
+        "sha256": "cba273d8a29a71a216aac238a636dcc44b503a017aeae9543af8acd15c9b5f05"
+      },
+      "hermes_flux_split": {
+        "exists": true,
+        "git_last_commit": "ab6305a87",
+        "path": "system_v6/receipts/hermes_architecture_corrections_20260612.md",
+        "role": "hermes_flux_split",
+        "sha256": "3f925e0854563925dcf201062047189ad1445ac8e195a416254c4a07ad0f120e"
+      },
+      "nesting_law": {
+        "exists": true,
+        "git_last_commit": "afe7aa57b",
+        "path": "system_v6/receipts/nesting_law_final_object_spec_20260612.md",
+        "role": "nesting_law",
+        "sha256": "91ace9d944a004cf1fa24654145bcdc18c1f49cdbe75be10dcc780ddb7875953"
+      },
+      "qca_2q_audit": {
+        "exists": true,
+        "git_last_commit": "81a982ea1",
+        "path": "system_v6/sims/gcm_qca_runner_2q_v0/audit_verdict.md",
+        "role": "qca_2q_audit",
+        "sha256": "7722eff711770935066651d4dac428e0fa9079efc11cd53d366781e426c39eea"
+      },
+      "qca_2q_result": {
+        "exists": true,
+        "git_last_commit": "81a982ea1",
+        "path": "system_v6/sims/gcm_qca_runner_2q_v0/results/gcm_qca_runner_2q_v0_results.json",
+        "role": "qca_2q_result",
+        "sha256": "c7b4aafeda7d0f9a4f9a4342044d708c602addca98304a885fdc0ca61d8097ee"
+      },
+      "qubit_ladder_climb_ledger": {
+        "exists": true,
+        "git_last_commit": "16837555a",
+        "path": "system_v6/receipts/qubit_ladder_climb_ledger_20260612.md",
+        "role": "qubit_ladder_climb_ledger",
+        "sha256": "b38a64d2877148c8e9d080cdad7406a9dd199de4909a01bcc2cafbb2698d8c04"
+      },
+      "substrate_check_helper": {
+        "exists": true,
+        "git_last_commit": "e7a56e517",
+        "path": "scripts/gcm_substrate_check.py",
+        "role": "substrate_check_helper",
+        "sha256": "d233406be16253baff3e1b87f592c1e7de28eca5e62ace07385937fe97839a11"
+      },
+      "three_q_carve_result": {
+        "exists": true,
+        "git_last_commit": "5544ad21c",
+        "path": "system_v6/sims/gcm_constraint_carve_3q_v1/results/gcm_constraint_carve_3q_v1_results.json",
+        "role": "three_q_carve_result",
+        "sha256": "05b11d6e81dea29be8142088a193a6d73f11d4bc3db49eb461bdf302a3204d02"
+      },
+      "three_q_freeze_audit": {
+        "exists": true,
+        "git_last_commit": "dd8e96be7",
+        "path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/audit_verdict.md",
+        "role": "three_q_freeze_audit",
+        "sha256": "fb9d50af0d7abc0348fe96f5abb825783c5b46ce52431dec9e3848ebfb67352f"
+      },
+      "three_q_freeze_registry": {
+        "exists": true,
+        "git_last_commit": "e7a56e517",
+        "path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json",
+        "role": "three_q_freeze_registry",
+        "sha256": "c1f614254fda476b7cdf85c3c424866061898051226086fb1008e2a3396e9f06"
+      },
+      "three_q_freeze_result": {
+        "exists": true,
+        "git_last_commit": "e7a56e517",
+        "path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_results.json",
+        "role": "three_q_freeze_result",
+        "sha256": "dea036f04f39fe134ca9d2fdb267be710638486f3dd617897f04713507e1064d"
+      },
+      "two_q_freeze_audit": {
+        "exists": true,
+        "git_last_commit": "8326405e6",
+        "path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/audit_verdict.md",
+        "role": "two_q_freeze_audit",
+        "sha256": "1970739ca89727701b58302c98c4d5f752521a19d24a6fe41114b58403cd7d55"
+      },
+      "two_q_freeze_result": {
+        "exists": true,
+        "git_last_commit": "8326405e6",
+        "path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_results.json",
+        "role": "two_q_freeze_result",
+        "sha256": "e214df7f8e55d948a1989b2c61a966aa00d785e76b34c7976bc8fbc4a284707c"
+      }
+    },
+    "substrate_enforcement": {
+      "helper": "scripts/gcm_substrate_check.py",
+      "lineage_free_negative": {
+        "error_codes": [
+          "GCM_OBJECT_ID_MISMATCH",
+          "GCM3Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM3Q_LINEAGE_2Q_REGISTRY_BODY_SHA256_MISMATCH",
+          "GCM_LINEAGE_CONSUMPTION_MISSING"
+        ],
+        "errors": [
+          "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+          "lineage 3Q registry_body_sha256 mismatch: registry=623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0 cited=None",
+          "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+          "lineage 2Q registry_body_sha256 mismatch for 3Q packet: expected=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=None",
+          "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+        ],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": false,
+        "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+        "registry_path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json"
+      },
+      "negative_failed_as_required": true,
+      "positive_payload_ok": {
+        "error_codes": [],
+        "errors": [],
+        "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+        "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+        "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+        "ok": true,
+        "registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+        "registry_path": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_registry.json"
+      }
+    },
+    "tool_intent": {
+      "claim_classes": [
+        "runtime_qit_flux_on_3q_cut_surface",
+        "J_cut_delta_mutual_information",
+        "J_ent_delta_negativity",
+        "independent_l_r_generator_doctrine_test",
+        "R_not_reverse_or_reflection_of_L",
+        "3q_floor_necessity_row",
+        "lineage_free_negative_red"
+      ],
+      "engine_tool_intent": {
+        "jax": {
+          "sympy": "sp.Rational exact sign and cut-count guard over the exported runtime-current scalars"
+        },
+        "julia": {
+          "Z3": "Z3.Solver chirality sign binding with erased-control SAT flip"
+        },
+        "pytorch": {
+          "sympy": "sp.Rational exact sign cancellation guard over the accepted PyTorch current vector"
+        }
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "lanes": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy"
+      ],
+      "package_observables": {
+        "sympy": "sp.Rational guard for 3Q/2Q cut counts and chirality sign cancellation"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "sympy"
+      ],
+      "result_path": "system_v6/sims/gcm_runtime_flux_3q_v1/results/gcm_runtime_flux_3q_v1_jax_results.json",
+      "source_path": "system_v6/sims/gcm_runtime_flux_3q_v1/gcm_runtime_flux_3q_v1_jax.py"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Z3"
+      ],
+      "package_observables": {
+        "Z3": "Z3.Solver chirality sign binding with erased-control SAT flip"
+      },
+      "packages_used": [
+        "JSON",
+        "SHA",
+        "Z3",
+        "julia_gf4_stdlib"
+      ],
+      "result_path": "system_v6/sims/gcm_runtime_flux_3q_v1/results/gcm_runtime_flux_3q_v1_julia_results.json",
+      "source_path": "system_v6/sims/gcm_runtime_flux_3q_v1/gcm_runtime_flux_3q_v1_julia.jl"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "sympy"
+      ],
+      "package_observables": {
+        "sympy": "sp.Rational guard for 3Q/2Q cut counts and L/R chirality cancellation"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "sympy"
+      ],
+      "result_path": "system_v6/sims/gcm_runtime_flux_3q_v1/results/gcm_runtime_flux_3q_v1_pytorch_results.json",
+      "source_path": "system_v6/sims/gcm_runtime_flux_3q_v1/gcm_runtime_flux_3q_v1_pytorch.py"
+    }
+  },
+  "mode": "three_engine_scoped_runtime_flux_sign_parity",
+  "parent_lineage": {
+    "gcm_3q_object_id": "gcm3qobj_492a4d00823507fd9ae8a1b3e4d0acb5",
+    "gcm_3q_registry_body_sha256": "623785e4ec0f41bd8cd040c44ceefbc5f1bd3c14d3257487a82afc0a89439fb0",
+    "three_q_freeze_result": "system_v6/sims/gcm_3q_freeze_and_cuts_v0/results/gcm_3q_freeze_and_cuts_v0_results.json"
+  },
+  "promotion_allowed": false,
+  "sim_id": "gcm_runtime_flux_3q_v1",
+  "stability_pairs": [
+    [
+      "main_result",
+      "3fd3195e5c547837c87abf23079bb94d0cce6899ad0ad464f42bd378c1a70d02"
+    ],
+    [
+      "three_q_freeze_result",
+      "dea036f04f39fe134ca9d2fdb267be710638486f3dd617897f04713507e1064d"
+    ],
+    [
+      "three_q_carve_result",
+      "05b11d6e81dea29be8142088a193a6d73f11d4bc3db49eb461bdf302a3204d02"
+    ]
+  ]
+}

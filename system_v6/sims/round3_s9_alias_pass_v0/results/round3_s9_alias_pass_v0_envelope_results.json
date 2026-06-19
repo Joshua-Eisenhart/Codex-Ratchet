@@ -1,0 +1,1269 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing",
+    "build_three_engine_envelope": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_INTENT_MATRIX_decision": {
+    "engine_mode": "julia_canon_plus_jax_diagnostic",
+    "jax": "Python exact symbolic lane using SymPy, z3, and cvc5",
+    "julia": "Symbolics exact f/F reference plus Z3.jl finite rational witness polarity",
+    "pytorch": "omitted honestly: no PyTorch tensor/autograd/message-passing claim path is scoped; exact connection comparison is symbolic/SMT"
+  },
+  "TOOL_MANIFEST": {
+    "Symbolics": {
+      "reason": "load-bearing exact connection form and derivative construction",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side finite rational nonzero-witness polarity",
+      "used": true
+    },
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard controller envelope construction",
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent finite rational nonzero-witness polarity",
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive source and tuple hashes",
+      "used": true
+    },
+    "json": {
+      "reason": "supportive controller serialization",
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact canonical forms, derivatives, leaf holonomies, and annular fluxes",
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing finite rational nonzero-witness polarity",
+      "used": true
+    }
+  },
+  "alias_classes": [
+    {
+      "members": [
+        "S9.R3.0_committed_hopf",
+        "control.anchor_self",
+        "control.alias_reparameterized_committed"
+      ],
+      "representative": "S9.R3.0_committed_hopf",
+      "selection_rule": "registry anchor is the representative for the exact f/F/holonomy/annular-flux alias class"
+    }
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "S9.R3.0 anchor self-classification under exact f/F/holonomy/annular-flux canonical tuple",
+    "deliberate reparameterized connection control is an exact alias",
+    "round-2 flat far-connection control dies on the curvature-density first teeth row",
+    "S9.R3.1-R3.4 are excluded by registry-named light-symbolic teeth with exact witnesses",
+    "S9.R3.5 remains open + queued-heavy-local by registry cost class"
+  ],
+  "boundary": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "heavy_local_open_queued": [
+      "S9.R3.5_path_ordered_loop_neighbor"
+    ],
+    "no_numeric_closeness": true,
+    "path_ordered_transport_loops": "not run; queued-heavy-local",
+    "pin_relative_separations": "excluded under pinned S2/S9 holonomy convention and reopenable if convention changes",
+    "promotion_allowed": false,
+    "pytorch_omission": "honest omission; generic validator must be run without --require-pytorch",
+    "resource_phase": "light-symbolic phase 1 only"
+  },
+  "build_gates": {
+    "anchor_self_classifies": true,
+    "build_card_copied": true,
+    "classification_ceiling": true,
+    "deliberate_alias_control_pass": true,
+    "far_connection_control_dies": true,
+    "flip_controls_fire": true,
+    "generic_validator_expected_without_require_pytorch": true,
+    "heavy_local_queue_preserved": true,
+    "jax_lane_pass": true,
+    "julia_jax_verdicts_match": true,
+    "julia_lane_pass": true,
+    "light_symbolic_exclusions_complete": true,
+    "no_cosurvivor_without_prior_receipt": true,
+    "pytorch_honestly_omitted": true,
+    "registry_commit_bound": true,
+    "registry_read_in_full": true,
+    "s9_provenance_quoted": true,
+    "z3_cvc5_agree": true
+  },
+  "candidate_verdict_table": [
+    {
+      "anchor_value": "equal",
+      "candidate": "S9.R3.0_committed_hopf",
+      "candidate_value": "equal",
+      "citation_status": "anchor row; no co-survivor citation required",
+      "closeness": "control",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "none; anchor",
+      "finite_representative": "f=cos(2eta)",
+      "registry_or_control_row": "anchor",
+      "verdict": "anchor",
+      "witness_field": "canonical_tuple"
+    },
+    {
+      "anchor_value": "-2*sin(2*eta)",
+      "candidate": "S9.R3.1_c1_small_density_bump",
+      "candidate_value": "(cos(2*eta) - 10)*sin(2*eta)/5",
+      "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+      "closeness": "closest same-c1 density neighbor",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "curvature density before holonomy",
+      "finite_representative": "f=cos(2eta)+epsilon*sin(2eta)^2, epsilon in {1/20,-1/20}",
+      "registry_or_control_row": "curvature density before holonomy",
+      "verdict": "excluded-by-curvature-density-before-holonomy",
+      "witness_field": "F_curvature_form_coefficient"
+    },
+    {
+      "anchor_value": "1",
+      "candidate": "S9.R3.2_one_leaf_match_pi6",
+      "candidate_value": "21/20",
+      "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+      "closeness": "matches holonomy at pi/6 only",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "expanded holonomy spectrum",
+      "finite_representative": "f=cos(2eta)+epsilon*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+      "registry_or_control_row": "expanded holonomy spectrum",
+      "verdict": "excluded-by-expanded-holonomy-spectrum",
+      "witness_field": "leaf_holonomy_vector.0"
+    },
+    {
+      "anchor_value": "1",
+      "candidate": "S9.R3.3_one_leaf_match_pi4",
+      "candidate_value": "11/10",
+      "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+      "closeness": "matches holonomy at pi/4 only",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "expanded holonomy spectrum",
+      "finite_representative": "f=cos(2eta)+epsilon*cos(2eta), epsilon in {1/10,-1/10}",
+      "registry_or_control_row": "expanded holonomy spectrum",
+      "verdict": "excluded-by-expanded-holonomy-spectrum",
+      "witness_field": "leaf_holonomy_vector.0"
+    },
+    {
+      "anchor_value": "-1/2",
+      "candidate": "S9.R3.4_two_leaf_match_pi6_pi4",
+      "candidate_value": "-11/20",
+      "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+      "closeness": "very close leaf-anchor neighbor",
+      "cost": "light-symbolic",
+      "expected_teeth_row": "annular flux plus off-anchor holonomy",
+      "finite_representative": "f=cos(2eta)+epsilon*cos(2eta)*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+      "registry_or_control_row": "annular flux plus off-anchor holonomy",
+      "verdict": "excluded-by-annular-flux-plus-off-anchor-holonomy",
+      "witness_field": "annular_flux_vector.0->pi/6"
+    },
+    {
+      "anchor_value": "ordinary one-form local anchor; no path-ordered loop signature scoped",
+      "candidate": "S9.R3.5_path_ordered_loop_neighbor",
+      "candidate_value": "S9.R3.5_path_ordered_loop_neighbor cost=heavy-local; queued for path-ordered holonomy commutator",
+      "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+      "closeness": "closest heavy transport neighbor",
+      "cost": "heavy-local",
+      "expected_teeth_row": "path-ordered holonomy commutator",
+      "finite_representative": "same local c1 row plus two named quaternionic loop families from the committed transport closure",
+      "registry_or_control_row": "heavy_local_cost_guard_not_run_in_phase_1",
+      "verdict": "open + queued-heavy-local",
+      "witness_field": "path_ordered_loop_signature"
+    }
+  ],
+  "claim": "S9 round-3 light-symbolic phase-1 alias pass over the registry's finite connection/transport candidate table.",
+  "claim_path_tools": [
+    "Symbolics",
+    "sympy",
+    "Z3",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "canonical_tuple": {
+        "F_curvature_form_coefficient": "-2*sin(2*eta)",
+        "annular_flux_vector": {
+          "0->pi/6": "-1/2",
+          "pi/3->pi/2": "-1/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+        "f_simplified": "cos(2*eta)",
+        "leaf_holonomy_vector": {
+          "0": "1",
+          "pi/2": "-1",
+          "pi/3": "-1/2",
+          "pi/4": "0",
+          "pi/6": "1/2"
+        },
+        "path_ordered_loop_signature": "not-scoped-light-symbolic",
+        "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+        "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+      },
+      "id": "control.anchor_self",
+      "row": "anchor",
+      "verdict": "anchor",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_curvature_form_coefficient": "-2*sin(2*eta)",
+        "annular_flux_vector": {
+          "0->pi/6": "-1/2",
+          "pi/3->pi/2": "-1/2",
+          "pi/4->pi/3": "-1/2",
+          "pi/6->pi/4": "-1/2"
+        },
+        "c1": "1",
+        "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+        "f_simplified": "cos(2*eta)",
+        "leaf_holonomy_vector": {
+          "0": "1",
+          "pi/2": "-1",
+          "pi/3": "-1/2",
+          "pi/4": "0",
+          "pi/6": "1/2"
+        },
+        "path_ordered_loop_signature": "not-scoped-light-symbolic",
+        "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+        "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+      },
+      "id": "control.alias_reparameterized_committed",
+      "row": "gauge-reparameterization alias check",
+      "verdict": "alias",
+      "witness": {
+        "anchor": "equal",
+        "candidate": "equal",
+        "field": "canonical_tuple"
+      }
+    },
+    {
+      "canonical_tuple": {
+        "F_curvature_form_coefficient": "0",
+        "annular_flux_vector": {
+          "0->pi/6": "0",
+          "pi/3->pi/2": "0",
+          "pi/4->pi/3": "0",
+          "pi/6->pi/4": "0"
+        },
+        "c1": "0",
+        "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+        "f_simplified": "0",
+        "leaf_holonomy_vector": {
+          "0": "0",
+          "pi/2": "0",
+          "pi/3": "0",
+          "pi/4": "0",
+          "pi/6": "0"
+        },
+        "path_ordered_loop_signature": "not-scoped-light-symbolic",
+        "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+        "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+      },
+      "id": "control.round2_flat_far_connection",
+      "row": "curvature density first teeth row",
+      "verdict": "excluded-by-curvature-density-row",
+      "witness": {
+        "anchor": "-2*sin(2*eta)",
+        "candidate": "0",
+        "field": "F_curvature_form_coefficient"
+      }
+    }
+  ],
+  "counts": {
+    "control_exclusions": 1,
+    "exact_alias_classes": 1,
+    "known_cosurvivor_classes": 0,
+    "light_symbolic_exclusions": 4,
+    "non_alias_representatives_queued_heavy_local": 1,
+    "raw_registry_candidates": 6,
+    "raw_symbolic_variants": 9
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "SMT binds a finite rational nonzero witness only; path-ordered loops remain queued-heavy-local",
+      "claim": "computed exact rational off-anchor holonomy witness cannot equal the pinned anchor value",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "anchor_leaf0_scaled_by_20 == candidate_leaf0_scaled_by_20",
+      "negative/erased_control": "deliberate reparameterized alias has equal scaled leaf value and is SAT",
+      "positive_case": "off-anchor holonomy differs by exact rational 1/20, so alias equality is UNSAT",
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat",
+      "witness_values": {
+        "anchor_leaf0": "1",
+        "candidate": "S9.R3.2_one_leaf_match_pi6 epsilon=1/10",
+        "candidate_leaf0": "21/20",
+        "leaf": "0",
+        "scaled_difference": "1"
+      }
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "SMT binds a finite rational nonzero witness only; path-ordered loops remain queued-heavy-local",
+      "claim": "computed exact rational off-anchor holonomy witness cannot equal the pinned anchor value",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "anchor_leaf0_scaled_by_20 == candidate_leaf0_scaled_by_20",
+      "negative/erased_control": "deliberate reparameterized alias has equal scaled leaf value",
+      "positive_case": "off-anchor holonomy differs by exact rational 1/20, so alias equality is UNSAT",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "witness_values": {
+        "anchor_leaf0": "1",
+        "candidate": "S9.R3.2_one_leaf_match_pi6 epsilon=1/10",
+        "candidate_leaf0": "21/20",
+        "leaf": "0",
+        "scaled_difference": "1"
+      }
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "SMT binds a finite rational nonzero witness only; path-ordered loops remain queued-heavy-local",
+      "claim": "computed exact rational off-anchor holonomy witness cannot equal the pinned anchor value",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "anchor_leaf0_scaled_by_20 == candidate_leaf0_scaled_by_20",
+      "negative/erased_control": "deliberate reparameterized alias has equal scaled leaf value and is SAT",
+      "positive_case": "off-anchor holonomy differs by exact rational 1/20, so alias equality is UNSAT",
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat",
+      "witness_values": {
+        "anchor_leaf0": "1",
+        "candidate": "S9.R3.2_one_leaf_match_pi6 epsilon=1/10",
+        "candidate_leaf0": "21/20",
+        "leaf": "0",
+        "scaled_difference": "1"
+      }
+    }
+  },
+  "disallowed_claims": [
+    "path-ordered transport loop execution or commutator evidence",
+    "known co-survivor status for any S9 R3 non-anchor row",
+    "global S9 connection uniqueness",
+    "numeric closeness or tolerance as alias evidence",
+    "PyTorch tensor, graph, autograd, or message-passing evidence",
+    "promotion beyond scratch_diagnostic"
+  ],
+  "divergence": {
+    "engine_values": {
+      "jax": "cf0e3c8a888348ece8b5efb0d4530bb7ac71f9f185a0d76ff48a7e09c8f0aa12",
+      "julia": "cf0e3c8a888348ece8b5efb0d4530bb7ac71f9f185a0d76ff48a7e09c8f0aa12"
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "observable": "candidate_verdict_table",
+    "verdicts_match": true
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "omitted_lanes": {
+      "pytorch": "No PyTorch tensor/autograd/message-passing claim path is scoped; exact connection/curvature/holonomy rows use Julia Symbolics, SymPy, and SMT."
+    },
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "heavy_local_not_run": [
+          "S9.R3.5_path_ordered_loop_neighbor"
+        ],
+        "no_numeric_closeness": true,
+        "path_ordered_transport_loops": "queued-heavy-local, not run",
+        "phase": "light-symbolic phase 1 only",
+        "pin_relative_separations": "excluded under pinned S2/S9 holonomy convention and reopenable if convention changes",
+        "pytorch_omitted": "no PyTorch tensor/autograd/message-passing claim path is scoped; exact connection comparison is carried by SymPy, Julia Symbolics, and SMT"
+      },
+      "claim_path_tools": [
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "negative": {
+        "far_candidate_control": {
+          "canonical_tuple": {
+            "F_curvature_form_coefficient": "0",
+            "annular_flux_vector": {
+              "0->pi/6": "0",
+              "pi/3->pi/2": "0",
+              "pi/4->pi/3": "0",
+              "pi/6->pi/4": "0"
+            },
+            "c1": "0",
+            "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+            "f_simplified": "0",
+            "leaf_holonomy_vector": {
+              "0": "0",
+              "pi/2": "0",
+              "pi/3": "0",
+              "pi/4": "0",
+              "pi/6": "0"
+            },
+            "path_ordered_loop_signature": "not-scoped-light-symbolic",
+            "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+            "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+          },
+          "id": "control.round2_flat_far_connection",
+          "row": "curvature density first teeth row",
+          "verdict": "excluded-by-curvature-density-row",
+          "witness": {
+            "anchor": "-2*sin(2*eta)",
+            "candidate": "0",
+            "field": "F_curvature_form_coefficient"
+          }
+        },
+        "heavy_local_label_guard": "not-run heavy-local rows without cited prior co-survivor receipts are open + queued-heavy-local, never co-survivor-open",
+        "light_symbolic_exclusions": [
+          "S9.R3.1_c1_small_density_bump",
+          "S9.R3.2_one_leaf_match_pi6",
+          "S9.R3.3_one_leaf_match_pi4",
+          "S9.R3.4_two_leaf_match_pi6_pi4"
+        ]
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver independently proves the same finite rational witness polarity",
+        "sympy": "SymPy exact simplification/differentiation/substitution computes f, F=df/deta, c1, leaf holonomy, and annular flux canonical rows",
+        "z3": "z3.Solver proves exact rational off-anchor holonomy equality is UNSAT and the reparameterized alias flip is SAT"
+      },
+      "packages_used": [
+        "sympy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib"
+      ],
+      "positive": {
+        "alias_classes": [
+          {
+            "members": [
+              "S9.R3.0_committed_hopf",
+              "control.anchor_self",
+              "control.alias_reparameterized_committed"
+            ],
+            "representative": "S9.R3.0_committed_hopf",
+            "selection_rule": "registry anchor is the representative for the exact f/F/holonomy/annular-flux alias class"
+          }
+        ],
+        "anchor_canonical_tuple": {
+          "F_curvature_form_coefficient": "-2*sin(2*eta)",
+          "annular_flux_vector": {
+            "0->pi/6": "-1/2",
+            "pi/3->pi/2": "-1/2",
+            "pi/4->pi/3": "-1/2",
+            "pi/6->pi/4": "-1/2"
+          },
+          "c1": "1",
+          "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+          "f_simplified": "cos(2*eta)",
+          "leaf_holonomy_vector": {
+            "0": "1",
+            "pi/2": "-1",
+            "pi/3": "-1/2",
+            "pi/4": "0",
+            "pi/6": "1/2"
+          },
+          "path_ordered_loop_signature": "not-scoped-light-symbolic",
+          "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+          "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+        },
+        "s9_registry_provenance_table": [
+          {
+            "closeness": "control",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "none; anchor",
+            "finite_representative": "f=cos(2eta)",
+            "id": "S9.R3.0_committed_hopf"
+          },
+          {
+            "closeness": "closest same-c1 density neighbor",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "curvature density before holonomy",
+            "finite_representative": "f=cos(2eta)+epsilon*sin(2eta)^2, epsilon in {1/20,-1/20}",
+            "id": "S9.R3.1_c1_small_density_bump"
+          },
+          {
+            "closeness": "matches holonomy at pi/6 only",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "expanded holonomy spectrum",
+            "finite_representative": "f=cos(2eta)+epsilon*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.2_one_leaf_match_pi6"
+          },
+          {
+            "closeness": "matches holonomy at pi/4 only",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "expanded holonomy spectrum",
+            "finite_representative": "f=cos(2eta)+epsilon*cos(2eta), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.3_one_leaf_match_pi4"
+          },
+          {
+            "closeness": "very close leaf-anchor neighbor",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "annular flux plus off-anchor holonomy",
+            "finite_representative": "f=cos(2eta)+epsilon*cos(2eta)*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.4_two_leaf_match_pi6_pi4"
+          },
+          {
+            "closeness": "closest heavy transport neighbor",
+            "cost": "heavy-local",
+            "expected_teeth_row": "path-ordered holonomy commutator",
+            "finite_representative": "same local c1 row plus two named quaternionic loop families from the committed transport closure",
+            "id": "S9.R3.5_path_ordered_loop_neighbor"
+          }
+        ]
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/round3_s9_alias_pass_v0/results/round3_s9_alias_pass_v0_jax_results.json",
+      "result_sha256": "54466a3bff235e195a5b5cef33e7ef0a8a30c4bdde09f216dd6343e9152c8278",
+      "role_id": "python_sympy_smt_connection_diagnostic_lane",
+      "source_path": "system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_jax.py",
+      "source_sha256": "ceb3adff0ed62e5f3a4569f5a1278266162e07347bf2e66e364bd4471a69614a",
+      "tool_calls": [
+        {
+          "boundary_case": "path-ordered loop signatures are not computed in this light-symbolic phase",
+          "demotion_condition": "float/tolerance comparisons or path-ordered loop claims appear in the light pass",
+          "input_object": "finite S9 registry functions f(eta) over exact leaves 0,pi/6,pi/4,pi/3,pi/2",
+          "negative/erased_control": "flat round-2 far control has F=0 and fails the curvature-density row",
+          "output_object": "canonical f, F=df/deta, c1, leaf holonomy vector, and annular flux vector",
+          "positive_case": "1 - 2*sin(eta)^2 canonicalizes to the committed cos(2eta) anchor",
+          "qualified_api": "sympy.simplify/trigsimp/radsimp/diff/subs",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "SMT checks finite rational nonzero witnesses only",
+          "demotion_condition": "solver only asserts a precomputed boolean instead of binding witness values",
+          "input_object": "scaled exact leaf-holonomy witness anchor=20, candidate=21",
+          "negative/erased_control": "reparameterized anchor has equal scaled leaf value",
+          "output_object": "UNSAT for false alias equality; SAT after alias flip control",
+          "positive_case": "S9.R3.2 epsilon=1/10 differs from anchor at eta=0 by 1/20",
+          "qualified_api": "z3.Solver/check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "SMT checks finite rational nonzero witnesses only",
+          "demotion_condition": "cvc5 witness values disagree with SymPy canonical rows",
+          "input_object": "same scaled exact leaf-holonomy witness as z3",
+          "negative/erased_control": "reparameterized anchor has equal scaled leaf value",
+          "output_object": "independent UNSAT/SAT polarity",
+          "positive_case": "S9.R3.2 epsilon=1/10 differs from anchor at eta=0 by 1/20",
+          "qualified_api": "cvc5.Solver/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Symbolics",
+        "Z3"
+      ],
+      "all_pass": true,
+      "boundary": {
+        "heavy_local_not_run": [
+          "S9.R3.5_path_ordered_loop_neighbor"
+        ],
+        "path_ordered_transport_loops": "queued-heavy-local, not run",
+        "phase": "light-symbolic phase 1 only",
+        "pytorch_omitted": "no PyTorch tensor/autograd/message-passing claim path is scoped"
+      },
+      "claim_path_tools": [
+        "Symbolics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "negative": {
+        "far_candidate_control": {
+          "canonical_tuple": {
+            "F_curvature_form_coefficient": "0",
+            "annular_flux_vector": {
+              "0->pi/6": "0//1",
+              "pi/3->pi/2": "0//1",
+              "pi/4->pi/3": "0//1",
+              "pi/6->pi/4": "0//1"
+            },
+            "c1": "0//1",
+            "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+            "f_simplified": "0",
+            "leaf_holonomy_vector": {
+              "0": "0",
+              "pi/2": "0",
+              "pi/3": "0",
+              "pi/4": "0",
+              "pi/6": "0"
+            },
+            "path_ordered_loop_signature": "not-scoped-light-symbolic",
+            "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+            "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+          },
+          "id": "control.round2_flat_far_connection",
+          "row": "curvature density first teeth row",
+          "verdict": "excluded-by-curvature-density-row",
+          "witness": {
+            "anchor": "-2sin(2eta)",
+            "candidate": "0",
+            "field": "F_curvature_form_coefficient"
+          }
+        },
+        "heavy_local_label_guard": "not-run heavy-local rows are open + queued-heavy-local"
+      },
+      "package_observables": {
+        "Symbolics": "Symbolics.simplify/Differential/expand_derivatives computes exact f and F rows before hand-entered exact leaf substitutions",
+        "Z3": "Z3.Solver/check proves finite rational off-anchor holonomy equality UNSAT and alias flip SAT"
+      },
+      "packages_used": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "positive": {
+        "anchor_and_alias_control": [
+          {
+            "canonical_tuple": {
+              "F_curvature_form_coefficient": "-2sin(2eta)",
+              "annular_flux_vector": {
+                "0->pi/6": "-1//2",
+                "pi/3->pi/2": "-1//2",
+                "pi/4->pi/3": "-1//2",
+                "pi/6->pi/4": "-1//2"
+              },
+              "c1": "1//1",
+              "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+              "f_simplified": "cos(2eta)",
+              "leaf_holonomy_vector": {
+                "0": "1",
+                "pi/2": "-1",
+                "pi/3": "-1/2",
+                "pi/4": "0",
+                "pi/6": "1/2"
+              },
+              "path_ordered_loop_signature": "not-scoped-light-symbolic",
+              "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+              "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+            },
+            "id": "control.anchor_self",
+            "row": "anchor",
+            "verdict": "anchor",
+            "witness": {
+              "anchor": "equal",
+              "candidate": "equal",
+              "field": "canonical_tuple"
+            }
+          },
+          {
+            "canonical_tuple": {
+              "F_curvature_form_coefficient": "(-2//1)*sin(2eta)",
+              "annular_flux_vector": {
+                "0->pi/6": "-1//2",
+                "pi/3->pi/2": "-1//2",
+                "pi/4->pi/3": "-1//2",
+                "pi/6->pi/4": "-1//2"
+              },
+              "c1": "1//1",
+              "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+              "f_simplified": "1-2*sin(eta)^2",
+              "leaf_holonomy_vector": {
+                "0": "1",
+                "pi/2": "-1",
+                "pi/3": "-1/2",
+                "pi/4": "0",
+                "pi/6": "1/2"
+              },
+              "path_ordered_loop_signature": "not-scoped-light-symbolic",
+              "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+              "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+            },
+            "id": "control.alias_reparameterized_committed",
+            "row": "gauge-reparameterization alias check",
+            "verdict": "alias",
+            "witness": {
+              "anchor": "cos(2eta)",
+              "candidate": "1-2*sin(eta)^2",
+              "field": "f_simplified"
+            }
+          }
+        ],
+        "symbolics_reference_rows": [
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-2sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-1//2",
+                    "pi/3->pi/2": "-1//2",
+                    "pi/4->pi/3": "-1//2",
+                    "pi/6->pi/4": "-1//2"
+                  },
+                  "c1": "1//1",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)",
+                  "leaf_holonomy_vector": {
+                    "0": "1",
+                    "pi/2": "-1",
+                    "pi/3": "-1/2",
+                    "pi/4": "0",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "anchor"
+              }
+            ],
+            "citation_status": "anchor row; no co-survivor citation required",
+            "closeness": "control",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "none; anchor",
+            "finite_representative": "f=cos(2eta)",
+            "id": "S9.R3.0_committed_hopf",
+            "row": "anchor",
+            "verdict": "anchor",
+            "witness": {
+              "anchor": "equal",
+              "candidate": "equal",
+              "field": "canonical_tuple"
+            }
+          },
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-2sin(2eta) + (1//10)*sin(4eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-39//80",
+                    "pi/3->pi/2": "-41//80",
+                    "pi/4->pi/3": "-43//80",
+                    "pi/6->pi/4": "-37//80"
+                  },
+                  "c1": "1//1",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)+1/20*sin(2eta)^2",
+                  "leaf_holonomy_vector": {
+                    "0": "1",
+                    "pi/2": "-1",
+                    "pi/3": "-39/80",
+                    "pi/4": "1/20",
+                    "pi/6": "41/80"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=1/20"
+              },
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-2sin(2eta) - (1//10)*sin(4eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-41//80",
+                    "pi/3->pi/2": "-39//80",
+                    "pi/4->pi/3": "-37//80",
+                    "pi/6->pi/4": "-43//80"
+                  },
+                  "c1": "1//1",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)-1/20*sin(2eta)^2",
+                  "leaf_holonomy_vector": {
+                    "0": "1",
+                    "pi/2": "-1",
+                    "pi/3": "-41/80",
+                    "pi/4": "-1/20",
+                    "pi/6": "39/80"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=-1/20"
+              }
+            ],
+            "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+            "closeness": "closest same-c1 density neighbor",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "curvature density before holonomy",
+            "finite_representative": "f=cos(2eta)+epsilon*sin(2eta)^2, epsilon in {1/20,-1/20}",
+            "id": "S9.R3.1_c1_small_density_bump",
+            "row": "curvature density before holonomy",
+            "verdict": "excluded-by-curvature-density-before-holonomy",
+            "witness": {
+              "anchor": "-2sin(2eta)",
+              "candidate": "-2sin(2eta) + (1//10)*sin(4eta)",
+              "field": "F_curvature_form_coefficient"
+            }
+          },
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "(-11//5)*sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-11//20",
+                    "pi/3->pi/2": "-11//20",
+                    "pi/4->pi/3": "-11//20",
+                    "pi/6->pi/4": "-11//20"
+                  },
+                  "c1": "11//10",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)+1/10*(cos(2eta)-1/2)",
+                  "leaf_holonomy_vector": {
+                    "0": "21/20",
+                    "pi/2": "-23/20",
+                    "pi/3": "-3/5",
+                    "pi/4": "-1/20",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=1/10"
+              },
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "(-9//5)*sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-9//20",
+                    "pi/3->pi/2": "-9//20",
+                    "pi/4->pi/3": "-9//20",
+                    "pi/6->pi/4": "-9//20"
+                  },
+                  "c1": "9//10",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)-1/10*(cos(2eta)-1/2)",
+                  "leaf_holonomy_vector": {
+                    "0": "19/20",
+                    "pi/2": "-17/20",
+                    "pi/3": "-2/5",
+                    "pi/4": "1/20",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=-1/10"
+              }
+            ],
+            "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+            "closeness": "matches holonomy at pi/6 only",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "expanded holonomy spectrum",
+            "finite_representative": "f=cos(2eta)+epsilon*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.2_one_leaf_match_pi6",
+            "row": "expanded holonomy spectrum",
+            "verdict": "excluded-by-expanded-holonomy-spectrum",
+            "witness": {
+              "anchor": "1",
+              "candidate": "21/20",
+              "field": "leaf_holonomy_vector.0"
+            }
+          },
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "(-11//5)*sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-11//20",
+                    "pi/3->pi/2": "-11//20",
+                    "pi/4->pi/3": "-11//20",
+                    "pi/6->pi/4": "-11//20"
+                  },
+                  "c1": "11//10",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)+1/10*cos(2eta)",
+                  "leaf_holonomy_vector": {
+                    "0": "11/10",
+                    "pi/2": "-11/10",
+                    "pi/3": "-11/20",
+                    "pi/4": "0",
+                    "pi/6": "11/20"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=1/10"
+              },
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "(-9//5)*sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-9//20",
+                    "pi/3->pi/2": "-9//20",
+                    "pi/4->pi/3": "-9//20",
+                    "pi/6->pi/4": "-9//20"
+                  },
+                  "c1": "9//10",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)-1/10*cos(2eta)",
+                  "leaf_holonomy_vector": {
+                    "0": "9/10",
+                    "pi/2": "-9/10",
+                    "pi/3": "-9/20",
+                    "pi/4": "0",
+                    "pi/6": "9/20"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=-1/10"
+              }
+            ],
+            "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+            "closeness": "matches holonomy at pi/4 only",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "expanded holonomy spectrum",
+            "finite_representative": "f=cos(2eta)+epsilon*cos(2eta), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.3_one_leaf_match_pi4",
+            "row": "expanded holonomy spectrum",
+            "verdict": "excluded-by-expanded-holonomy-spectrum",
+            "witness": {
+              "anchor": "1",
+              "candidate": "11/10",
+              "field": "leaf_holonomy_vector.0"
+            }
+          },
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-(19//10)*sin(2eta) - (1//5)*sin(4eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-11//20",
+                    "pi/3->pi/2": "-21//80",
+                    "pi/4->pi/3": "-47//80",
+                    "pi/6->pi/4": "-1//2"
+                  },
+                  "c1": "19//20",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)+1/10*cos(2eta)*(cos(2eta)-1/2)",
+                  "leaf_holonomy_vector": {
+                    "0": "21/20",
+                    "pi/2": "-17/20",
+                    "pi/3": "-47/80",
+                    "pi/4": "0",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=1/10"
+              },
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-(21//10)*sin(2eta) + (1//5)*sin(4eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-9//20",
+                    "pi/3->pi/2": "-59//80",
+                    "pi/4->pi/3": "-33//80",
+                    "pi/6->pi/4": "-1//2"
+                  },
+                  "c1": "21//20",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)-1/10*cos(2eta)*(cos(2eta)-1/2)",
+                  "leaf_holonomy_vector": {
+                    "0": "19/20",
+                    "pi/2": "-23/20",
+                    "pi/3": "-33/80",
+                    "pi/4": "0",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "not-scoped-light-symbolic",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "epsilon=-1/10"
+              }
+            ],
+            "citation_status": "not a known co-survivor label; exact light-symbolic teeth row supplied a separating witness",
+            "closeness": "very close leaf-anchor neighbor",
+            "cost": "light-symbolic",
+            "expected_teeth_row": "annular flux plus off-anchor holonomy",
+            "finite_representative": "f=cos(2eta)+epsilon*cos(2eta)*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+            "id": "S9.R3.4_two_leaf_match_pi6_pi4",
+            "row": "annular flux plus off-anchor holonomy",
+            "verdict": "excluded-by-annular-flux-plus-off-anchor-holonomy",
+            "witness": {
+              "anchor": "-1//2",
+              "candidate": "-11//20",
+              "field": "annular_flux_vector.0->pi/6"
+            }
+          },
+          {
+            "canonical_forms": [
+              {
+                "canonical_tuple": {
+                  "F_curvature_form_coefficient": "-2sin(2eta)",
+                  "annular_flux_vector": {
+                    "0->pi/6": "-1//2",
+                    "pi/3->pi/2": "-1//2",
+                    "pi/4->pi/3": "-1//2",
+                    "pi/6->pi/4": "-1//2"
+                  },
+                  "c1": "1//1",
+                  "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+                  "f_simplified": "cos(2eta)",
+                  "leaf_holonomy_vector": {
+                    "0": "1",
+                    "pi/2": "-1",
+                    "pi/3": "-1/2",
+                    "pi/4": "0",
+                    "pi/6": "1/2"
+                  },
+                  "path_ordered_loop_signature": "queued-heavy-local",
+                  "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+                  "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+                },
+                "variant": "local-c1-anchor-plus-heavy-loop-family"
+              }
+            ],
+            "citation_status": "no prior co-survivor receipt cited; S4 audit standard forces open + queued-heavy-local",
+            "closeness": "closest heavy transport neighbor",
+            "cost": "heavy-local",
+            "expected_teeth_row": "path-ordered holonomy commutator",
+            "finite_representative": "same local c1 row plus two named quaternionic loop families from the committed transport closure",
+            "id": "S9.R3.5_path_ordered_loop_neighbor",
+            "row": "heavy_local_cost_guard_not_run_in_phase_1",
+            "verdict": "open + queued-heavy-local",
+            "witness": {
+              "anchor": "ordinary one-form local anchor; no path-ordered loop signature scoped",
+              "candidate": "S9.R3.5_path_ordered_loop_neighbor cost=heavy-local; queued for path-ordered holonomy commutator",
+              "field": "path_ordered_loop_signature"
+            }
+          }
+        ]
+      },
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/round3_s9_alias_pass_v0/results/round3_s9_alias_pass_v0_julia_results.json",
+      "result_sha256": "1fe7b6a2aed7fd77787bf9038e8501b0008445acba5492b6765f93a5632beab0",
+      "role_id": "julia_symbolics_z3_connection_reference_lane",
+      "source_path": "system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_julia.jl",
+      "source_sha256": "23b1dcc359bf701e85a4d499331c693c15c5d7026aa7111af43127b100a9d24d",
+      "tool_calls": [
+        {
+          "boundary_case": "path-ordered loops remain queued",
+          "demotion_condition": "Symbolics lane disagrees with Python exact verdict table",
+          "input_object": "finite S9 registry functions f(eta)",
+          "negative/erased_control": "flat far-control has F=0 and fails the curvature-density row",
+          "output_object": "exact f and F rows mirrored against Python SymPy verdicts",
+          "positive_case": "reparameterized anchor preserves exact leaf and c1 rows",
+          "qualified_api": "Symbolics.simplify/Differential/expand_derivatives",
+          "tool": "Symbolics"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T01:10:04Z",
+  "julia_jax_verdict_match_hash": "f1ef2ee3dfe9966ae58913bc30ae8c8515b12911f9d11e9dbdb3d17a0b0a1e7a",
+  "mode": "julia_canon_plus_jax_diagnostic",
+  "negative": {
+    "far_candidate_control": {
+      "canonical_tuple": {
+        "F_curvature_form_coefficient": "0",
+        "annular_flux_vector": {
+          "0->pi/6": "0",
+          "pi/3->pi/2": "0",
+          "pi/4->pi/3": "0",
+          "pi/6->pi/4": "0"
+        },
+        "c1": "0",
+        "canonicalizer": "f_simplified, F=f'(eta), c1, leaf_holonomy_vector[0,pi/6,pi/4,pi/3,pi/2], annular_flux_vector, validity_class, path_ordered_loop_signature_when_scoped",
+        "f_simplified": "0",
+        "leaf_holonomy_vector": {
+          "0": "0",
+          "pi/2": "0",
+          "pi/3": "0",
+          "pi/4": "0",
+          "pi/6": "0"
+        },
+        "path_ordered_loop_signature": "not-scoped-light-symbolic",
+        "s2_s9_convention_pin": "pinned_phi_holonomy_convention; pin-relative separations are reopenable, not intrinsic kills",
+        "validity_class": "ordinary_one_form_A=dphi+f(eta)dchi_on_pinned_S9_chart"
+      },
+      "id": "control.round2_flat_far_connection",
+      "row": "curvature density first teeth row",
+      "verdict": "excluded-by-curvature-density-row",
+      "witness": {
+        "anchor": "-2*sin(2*eta)",
+        "candidate": "0",
+        "field": "F_curvature_form_coefficient"
+      }
+    },
+    "light_symbolic_exclusions": [
+      "S9.R3.1_c1_small_density_bump",
+      "S9.R3.2_one_leaf_match_pi6",
+      "S9.R3.3_one_leaf_match_pi4",
+      "S9.R3.4_two_leaf_match_pi6_pi4"
+    ],
+    "no_cosurvivor_without_citation": "not-run heavy-local rows without cited prior co-survivor receipts are open + queued-heavy-local, never co-survivor-open"
+  },
+  "object_id": "round3_s9_alias_pass_v0",
+  "parent_lineage": {
+    "geo_s9_alternative_connections_v0": {
+      "allowed_use": "round-2 topology-vs-geometry and far flat/half/random lessons only; not an R3 count source",
+      "commit": "9de3f3633"
+    },
+    "round3_discriminator_registry_20260611": {
+      "allowed_use": "S9 finite space, alias canonicalizer, candidate table, resource guard, and stop rule",
+      "commit": "de44219ed",
+      "path": "system_v6/receipts/round3_discriminator_registry_20260611.md",
+      "sha256": "aedae4224bf2f3fea6aa1b73981f0035589dbce352e9370bfe34dec402e491b3"
+    },
+    "round3_s3_alias_pass_v0_audit": {
+      "allowed_use": "known co-survivor labels require prior receipt citation",
+      "path": "system_v6/sims/round3_s3_alias_pass_v0/audit_verdict.md"
+    },
+    "round3_s4_audit_standard": {
+      "allowed_use": "not-run heavy-local rows without prior co-survivor receipt are open + queued-heavy-local",
+      "commit": "fe09e11cb"
+    }
+  },
+  "phase2_queue": {
+    "heavy_local_queued_by_registry_cost_class": [
+      "S9.R3.5_path_ordered_loop_neighbor"
+    ],
+    "known_cosurvivor_classes": [],
+    "light_symbolic_non_alias_representatives_remaining": [],
+    "queued_with_verdict": {
+      "S9.R3.5_path_ordered_loop_neighbor": "open + queued-heavy-local"
+    }
+  },
+  "positive": {
+    "alias_classes": [
+      {
+        "members": [
+          "S9.R3.0_committed_hopf",
+          "control.anchor_self",
+          "control.alias_reparameterized_committed"
+        ],
+        "representative": "S9.R3.0_committed_hopf",
+        "selection_rule": "registry anchor is the representative for the exact f/F/holonomy/annular-flux alias class"
+      }
+    ],
+    "anchor": "S9.R3.0_committed_hopf classified as anchor",
+    "deliberate_alias": "control.alias_reparameterized_committed classified as alias",
+    "s9_registry_provenance_table": [
+      {
+        "closeness": "control",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "none; anchor",
+        "finite_representative": "f=cos(2eta)",
+        "id": "S9.R3.0_committed_hopf"
+      },
+      {
+        "closeness": "closest same-c1 density neighbor",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "curvature density before holonomy",
+        "finite_representative": "f=cos(2eta)+epsilon*sin(2eta)^2, epsilon in {1/20,-1/20}",
+        "id": "S9.R3.1_c1_small_density_bump"
+      },
+      {
+        "closeness": "matches holonomy at pi/6 only",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "expanded holonomy spectrum",
+        "finite_representative": "f=cos(2eta)+epsilon*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+        "id": "S9.R3.2_one_leaf_match_pi6"
+      },
+      {
+        "closeness": "matches holonomy at pi/4 only",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "expanded holonomy spectrum",
+        "finite_representative": "f=cos(2eta)+epsilon*cos(2eta), epsilon in {1/10,-1/10}",
+        "id": "S9.R3.3_one_leaf_match_pi4"
+      },
+      {
+        "closeness": "very close leaf-anchor neighbor",
+        "cost": "light-symbolic",
+        "expected_teeth_row": "annular flux plus off-anchor holonomy",
+        "finite_representative": "f=cos(2eta)+epsilon*cos(2eta)*(cos(2eta)-1/2), epsilon in {1/10,-1/10}",
+        "id": "S9.R3.4_two_leaf_match_pi6_pi4"
+      },
+      {
+        "closeness": "closest heavy transport neighbor",
+        "cost": "heavy-local",
+        "expected_teeth_row": "path-ordered holonomy commutator",
+        "finite_representative": "same local c1 row plus two named quaternionic loop families from the committed transport closure",
+        "id": "S9.R3.5_path_ordered_loop_neighbor"
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "registry_binding": {
+    "commit": "de44219ed",
+    "commit_blob_sha256": "aedae4224bf2f3fea6aa1b73981f0035589dbce352e9370bfe34dec402e491b3",
+    "lineage_note": "S9 table, canonicalizer, cost class, resource guard, and stop rule copied from registry.",
+    "path": "system_v6/receipts/round3_discriminator_registry_20260611.md",
+    "quoted_provenance_path": "system_v6/sims/round3_s9_alias_pass_v0/provenance.md",
+    "read_in_full": true,
+    "working_tree_sha256": "aedae4224bf2f3fea6aa1b73981f0035589dbce352e9370bfe34dec402e491b3"
+  },
+  "result_path": "system_v6/sims/round3_s9_alias_pass_v0/results/round3_s9_alias_pass_v0_envelope_results.json",
+  "schema": "round3_s9_alias_pass_v0_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "round3_s9_alias_pass_v0",
+  "source_path": "system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_envelope.py",
+  "source_sha256": "6e8dc9f1a00feac77ea7874de0bc5e88de43dd0d90046581b1a5a6359909d1f3",
+  "stability_pairs": [
+    {
+      "hash": "63b12321d83f9f2344981683c545a358c94ce3107d1b2da067e4431984679c63",
+      "subtree": "candidate_verdict_table"
+    },
+    {
+      "hash": "b3273ebc71e57417109a827c69a27243caac7edfb7966da8c80da2190739f671",
+      "subtree": "phase2_queue"
+    }
+  ],
+  "validator_expected_commands": [
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_jax.py",
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_alias_pass_v0/round3_s9_alias_pass_v0_envelope.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py system_v6/sims/round3_s9_alias_pass_v0/results/round3_s9_alias_pass_v0_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/round3_s9_alias_pass_v0/validate_round3_s9_alias_pass_v0.py"
+  ]
+}

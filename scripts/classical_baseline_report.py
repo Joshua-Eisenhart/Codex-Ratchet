@@ -19,10 +19,8 @@ import re
 import sys
 from pathlib import Path
 
-RESULTS_GLOB = (
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/"
-    "system_v4/probes/a2_state/sim_results/*_classical*_results.json"
-)
+ROOT = Path(__file__).resolve().parents[1]
+RESULTS_GLOB = str(ROOT / "system_v4/probes/a2_state/sim_results/*_classical*_results.json")
 
 INNATE_PAT = re.compile(r"(misses|breaks|not_preserved)", re.IGNORECASE)
 

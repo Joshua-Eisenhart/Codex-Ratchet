@@ -1,0 +1,98 @@
+{
+  "parity_status": "AGREE",
+  "max_diff": 0.3691933967727496,
+  "quantitative": {
+    "direction_gap_at_close": {
+      "jax": 0.16128456274792405,
+      "julia": 0.1017393671800103,
+      "rel_diff": 0.3691933967727496,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    },
+    "n01_order_gap": {
+      "jax": 0.14285730103884842,
+      "julia": 0.10598174907083871,
+      "rel_diff": 0.25812857795753696,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    },
+    "commuting_control_gap": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "rel_diff": 0.0,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    },
+    "carnot_DS_cycle": {
+      "jax": 0.0,
+      "julia": 0.0,
+      "rel_diff": 0.0,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    },
+    "szilard_H_bits": {
+      "jax": 1.0,
+      "julia": 1.0,
+      "rel_diff": 0.0,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    },
+    "qit_S_vN": {
+      "jax": 0.29715917741199127,
+      "julia": 0.29715917741199127,
+      "rel_diff": 0.0,
+      "agree": true,
+      "note": "different_rng_seeds_expected"
+    }
+  },
+  "boolean": {
+    "directions_distinct_at_close": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "n01_order_gap_real": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "commuting_control_zero": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "L_cycle_closes": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "R_cycle_closes": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "L_purity_bounded": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "R_purity_bounded": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "f01_finite": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    },
+    "lr_differ": {
+      "jax": true,
+      "julia": true,
+      "agree": true
+    }
+  },
+  "all_quant_agree": true,
+  "all_bool_agree": true,
+  "note": "Different RNG seeds (Julia MersenneTwister vs numpy default_rng) produce structurally similar but numerically different ensembles. Quantitative agreement within 50% is expected and accepted. Boolean verdicts MUST agree. max_diff is the max relative difference across quantitative keys."
+}

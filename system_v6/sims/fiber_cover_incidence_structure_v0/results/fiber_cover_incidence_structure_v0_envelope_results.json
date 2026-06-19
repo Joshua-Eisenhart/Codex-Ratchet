@@ -1,0 +1,135 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "fiber_augmented_cover_v1_common": "load_bearing",
+    "python_stdlib": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "G.2a post-audit-idempotent builder/audit boundary gate from birth",
+      "tried": true,
+      "used": true
+    },
+    "fiber_augmented_cover_v1_common": {
+      "reason": "load-bearing source of committed 33-cell carrier, 198 transition rows, |F|=3, and seam shifts",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "load-bearing deterministic cycle enumeration, sparse boundary composition, hashing, and JSON serialization",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "base_chain_sha256": "f576c12cfcc59afcbf1f9ce90e7b3f4565f5f57b63fa8c425bbc47ff4815a4d6",
+  "betti_computed": false,
+  "betti_lane_status": "blocked_until_source_side_exhaustive_2_cell_incidence_is_admitted",
+  "boundary_matrix_hashes": {
+    "base": {
+      "d1": "66ffea234639cbbdb5be2ff83bdf4e8498ffe02eeb0abe75e394d5dea4674921",
+      "d2": "e08c9411810fbd9b05e2710fb7071f3d944bf3fca124a16c71baa03613690a77"
+    },
+    "total": {
+      "d1": "50834fad1cc2616c863504ae16b25ab78fd6d9d2950c077ea3c32350a98f251c",
+      "d2": "9bb653e7f1b08e291202e9a62ea7304dddbf58da71ce401ee8fc4d38654b6dd6",
+      "d3": "6d085e0cb5cf0c379dd75defd177701042f2a7133ea45e7080c6bc80f77f7678"
+    }
+  },
+  "builder_gates": {
+    "boundary_helper_path": "system_v6/sims/fiber_cover_incidence_structure_v0/fiber_cover_incidence_structure_v0_boundary.py",
+    "derivation_introduced_count_must_be_zero": true,
+    "file_disjoint_packet": true,
+    "g2a_boundary_from_birth": true,
+    "no_betti_computation": true,
+    "shared_boundary_helper": "scripts/builder_audit_boundary.py"
+  },
+  "claim_ceiling": "scratch_diagnostic_committed_incidence_structure_plumbing_only_no_betti",
+  "classification": "scratch_diagnostic",
+  "derivation_honesty": {
+    "base_2_cell_count": 12,
+    "derivation_incomplete": true,
+    "derivation_incomplete_reasons": [
+      "no committed exhaustive 2-cell incidence table was found in fiber_augmented_cover_v1",
+      "coordinate-square and pole-cap mesh rules are not emitted because the committed generator adjacency did not supply those perimeter rows",
+      "packet emits all simple committed directed non-self 4-cycles and blocks Betti consumption pending independent source-side 2-cell incidence admission"
+    ],
+    "derivation_introduced_count": 0,
+    "exhaustive_as_base_s2_cell_structure": false,
+    "exhaustive_for_declared_cycle_rule": true,
+    "face_derivation_rule": "all simple committed directed non-self 4-cycles",
+    "face_source": "committed generator-labelled carrier adjacency rows from fiber_augmented_cover_v1"
+  },
+  "envelope_result_path": "system_v6/sims/fiber_cover_incidence_structure_v0/results/fiber_cover_incidence_structure_v0_envelope_results.json",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T11:57:36Z",
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/fiber_cover_incidence_structure_v0/results/fiber_cover_incidence_structure_v0_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "base_2_cell_count": 12,
+    "base_d_squared_zero": true,
+    "base_euler_characteristic": -153,
+    "betti_computed": false,
+    "betti_lane_status": "blocked",
+    "derivation_incomplete": true,
+    "derivation_introduced_count": 0,
+    "total_d_squared_zero": true,
+    "total_euler_characteristic": 0
+  },
+  "schema": "fiber_cover_incidence_structure_v0.envelope.v0",
+  "sim_id": "fiber_cover_incidence_structure_v0",
+  "source_cover": {
+    "base_edge_count": 198,
+    "base_lift_edge_count": 594,
+    "base_state_count": 33,
+    "commit": "80860aa4f",
+    "cover_edge_count": 693,
+    "cover_sha256": "618678a9cfb00ec88a722faa7fe5f2111145e5a9385bab8e6987b1949e53f696",
+    "cover_state_count": 99,
+    "directed_winding": 1,
+    "fiber_cycle_edge_count": 99,
+    "fiber_phase_count": 3,
+    "seam_lifted_shift_steps": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "seam_loop_cell_ids": [
+      20,
+      17,
+      12,
+      15
+    ],
+    "seam_loop_edge_pairs": [
+      [
+        20,
+        17
+      ],
+      [
+        17,
+        12
+      ],
+      [
+        12,
+        15
+      ],
+      [
+        15,
+        20
+      ]
+    ],
+    "seam_projection_edge_ids": [
+      125,
+      107,
+      77,
+      95
+    ],
+    "source_sim_id": "fiber_augmented_cover_v1",
+    "witness_sha256": "93e5f890a72ddd02acca9008c7293531405be6886120534ef2af54a12f818f15"
+  },
+  "total_chain_sha256": "543c01b1298fa9168b2bb54a7765d2b91ec427e9d063f994f26e4b1766fab38e"
+}

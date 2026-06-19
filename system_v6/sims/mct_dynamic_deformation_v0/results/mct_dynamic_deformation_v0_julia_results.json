@@ -1,0 +1,336 @@
+{
+  "M_C_t_object": {
+    "definition": "M(C,t)=the admissible set under active finite constraint family C(t), quotient by active probe equivalence ~_P",
+    "finite_representation": {
+      "probe_row_table_source": "system_v6/sims/mct_dynamic_admissibility_packet_v0/results/mct_dynamic_admissibility_packet_v0_jax_results.json",
+      "support_size": 384,
+      "support_table_hash": "5727f366d2e4081549095d62741e25179aa6e561042617ba70970173b74bc2a8"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "JSON/Dates/SHA": "supportive",
+    "LinearAlgebra": "supportive",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite relation graph construction and weak-component/degree checks for WARP rows",
+      "tried": true,
+      "used": true
+    },
+    "JSON/Dates/SHA": {
+      "reason": "supportive JSON, timestamp, and hashing machinery",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "supportive Laplacian eigenvalue computation over Graphs-derived adjacency",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia SMT mirror for pure-addition monotonicity",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": {
+    "Graphs": {
+      "api_smoke": "SimpleDiGraph(384) edges=1664",
+      "role": "load_bearing",
+      "version": "1.14.0"
+    },
+    "Z3": {
+      "monotonicity_smoke": "unsat",
+      "release_smoke": "sat",
+      "role": "load_bearing",
+      "version": "1.0.4"
+    },
+    "julia": {
+      "load_path": "@:@stdlib",
+      "project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "source_path": "system_v6/sims/mct_dynamic_deformation_v0/mct_dynamic_deformation_v0_julia.jl"
+    }
+  },
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "constraint_release_expands": {
+      "active_count": 206,
+      "fired": true,
+      "released_N01_count": 256
+    },
+    "pure_addition_never_expands": {
+      "fired": true,
+      "julia_z3": "unsat"
+    },
+    "shape_invariant_control_changes_under_warp": {
+      "after_hash": "322301e95dc5d53d1b34625df62a39e29500c2497f76db348f8ec8585ca59a8c",
+      "before_hash": "9e3ea7e92790dc8c0492277439621184c61344d212c88d7c02bea3b2d60353e5",
+      "fired": true
+    }
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "computed_rows_bound": 384,
+      "erased_release_control_verdict": "sat",
+      "load_bearing": true,
+      "negative/erased_control": "constraint release expansion is SAT",
+      "positive_case": "pure addition expansion is UNSAT",
+      "ran": true,
+      "release_rows_bound": 384,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "deformation_mode_ledger": {
+    "compression": [
+      {
+        "H_Q_after": 2.772588722239781,
+        "H_Q_before": 3.178053830347946,
+        "adm_after": 256,
+        "adm_before": 384,
+        "entropy_delta_after_minus_before": -0.40546510810816505,
+        "excluded_count": 128,
+        "mode": "COMPRESSION",
+        "operation": "ADD_F01",
+        "t": "t0_to_t1"
+      },
+      {
+        "H_Q_after": 2.6886198827846433,
+        "H_Q_before": 2.772588722239781,
+        "adm_after": 206,
+        "adm_before": 256,
+        "entropy_delta_after_minus_before": -0.08396883945513789,
+        "excluded_count": 50,
+        "mode": "COMPRESSION",
+        "operation": "ADD_N01",
+        "t": "t1_to_t2"
+      }
+    ],
+    "expansion": [
+      {
+        "adm_after": 256,
+        "adm_before": 206,
+        "expansion_count": 50,
+        "mode": "EXPANSION",
+        "operation": "RELEASE_N01",
+        "t": "release_control_N01"
+      },
+      {
+        "adm_after": 384,
+        "adm_before": 206,
+        "expansion_count": 178,
+        "k_leaf_full_measure_anchor": "continuum_all_eta_in_[0,pi/2]; union of all shells equals S3 a.e.",
+        "mode": "EXPANSION",
+        "operation": "RELEASE_F01_AND_N01",
+        "t": "release_all_to_FREE"
+      }
+    ],
+    "warp": {
+      "adm_after": 206,
+      "adm_before": 206,
+      "mode": "WARP",
+      "operation": "RELATION_WARP_DELTA",
+      "shape_changed": true,
+      "shape_invariant_after": {
+        "degree_sum": 2560,
+        "edge_count": 1600,
+        "kind_counts": {
+          "base_chi": 384,
+          "chirality_pair": 384,
+          "fiber_phi": 384,
+          "shell_nested": 384,
+          "warp_long_shell_jump": 64
+        },
+        "laplacian_eigenvalues_bottom8": [
+          -0.0,
+          0.585786438,
+          0.585786438,
+          0.585786438,
+          0.585786438,
+          1.171572875,
+          1.171572875,
+          1.171572875
+        ],
+        "laplacian_eigenvalues_top8": [
+          11.828427125,
+          11.828427125,
+          12.414213562,
+          12.414213562,
+          12.414213562,
+          12.414213562,
+          12.414213562,
+          13.0
+        ],
+        "node_count": 384,
+        "spectrum_sha256": "322301e95dc5d53d1b34625df62a39e29500c2497f76db348f8ec8585ca59a8c",
+        "weak_components": 1
+      },
+      "shape_invariant_before": {
+        "degree_sum": 2432,
+        "edge_count": 1664,
+        "kind_counts": {
+          "base_chi": 384,
+          "chirality_pair": 384,
+          "fiber_phi": 384,
+          "shell_nested": 512
+        },
+        "laplacian_eigenvalues_bottom8": [
+          0.0,
+          0.585786438,
+          0.585786438,
+          0.585786438,
+          0.585786438,
+          1.0,
+          1.171572875,
+          1.171572875
+        ],
+        "laplacian_eigenvalues_top8": [
+          11.828427125,
+          11.828427125,
+          11.828427125,
+          12.414213562,
+          12.414213562,
+          12.414213562,
+          12.414213562,
+          13.0
+        ],
+        "node_count": 384,
+        "spectrum_sha256": "9e3ea7e92790dc8c0492277439621184c61344d212c88d7c02bea3b2d60353e5",
+        "weak_components": 1
+      },
+      "support_after": 384,
+      "support_before": 384,
+      "t": "t2_to_t3"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T07:59:23Z",
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "parent_lineage": {
+    "geo_union_rule_k_leaves_v0": {
+      "path": "system_v6/sims/geo_union_rule_k_leaves_v0/results/geo_union_rule_k_leaves_v0_envelope_results.json",
+      "sha256": "5f76eca08e321825ad046529c3188cfafe91e06a4b2345a8932167f876df073f"
+    },
+    "mct_dynamic_admissibility_packet_v0_envelope_result": {
+      "path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/results/mct_dynamic_admissibility_packet_v0_envelope_results.json",
+      "sha256": "f783edb0b8214a2cf91f4aa788b0223f7656a7993e40cea000b22bb565ec56a9"
+    },
+    "mct_dynamic_admissibility_packet_v0_jax_carrier_result": {
+      "path": "system_v6/sims/mct_dynamic_admissibility_packet_v0/results/mct_dynamic_admissibility_packet_v0_jax_results.json",
+      "sha256": "5d905f985b73d72fe5f74e67714b3d21999917543b441b4b2d7e0f0173aa2858"
+    },
+    "ratchet_s2_three_shell_chain_v0": {
+      "path": "system_v6/sims/ratchet_s2_three_shell_chain_v0/results/ratchet_s2_three_shell_chain_v0_envelope_results.json",
+      "sha256": "83c1984b490e445ca2bfc1b895a40786ce4e7998e3f0e18ff0e7e680368a2dc1"
+    }
+  },
+  "promotion_allowed": false,
+  "reads_parent_results": true,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/mct_dynamic_deformation_v0/results/mct_dynamic_deformation_v0_julia_results.json",
+  "rigidity_rows": {
+    "monotonicity_pure_addition_excludes_expansion": {
+      "julia_z3": {
+        "computed_rows_bound": 384,
+        "erased_release_control_verdict": "sat",
+        "load_bearing": true,
+        "negative/erased_control": "constraint release expansion is SAT",
+        "positive_case": "pure addition expansion is UNSAT",
+        "ran": true,
+        "release_rows_bound": 384,
+        "solver": "Z3.jl",
+        "verdict": "unsat"
+      },
+      "status": "STRUCTURALLY_EXCLUDED"
+    },
+    "open_rows": [
+      "continuum deformations outside committed finite support remain open",
+      "topology-changing operations outside this support remain open"
+    ],
+    "pinned_shape_invariants": {
+      "c1_abs": {
+        "c1_abs": "1",
+        "computed_changed_under_committed_deformations": false,
+        "curvature_formula": "F=-2*sin(2*eta) d_eta ^ d_chi",
+        "full_chart_chi_period": "2*pi",
+        "integral_F": "-4*pi"
+      },
+      "chain_additivity_defect": "0",
+      "changed_by_available_deformations": false,
+      "cover_factor": 2
+    }
+  },
+  "runtime_preflight": {
+    "julia_project": "system_v5/julia_carrier",
+    "load_path": "@:@stdlib"
+  },
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "smt_seed": 2026061106,
+    "status": "deterministic_no_rng"
+  },
+  "sim_id": "mct_dynamic_deformation_v0",
+  "source_path": "system_v6/sims/mct_dynamic_deformation_v0/mct_dynamic_deformation_v0_julia.jl",
+  "source_sha256": "a7a1e70d3b1901223657692ba87f675735fe554fe98e49d2551e31c4271b50a0",
+  "tool_calls": [
+    {
+      "boundary_case": "edge count and component count both recorded",
+      "demotion_condition": "demote WARP if graph API is not used",
+      "gates": [
+        "warp",
+        "all_pass"
+      ],
+      "input_object": "computed relation edges before/after warp",
+      "load_bearing": true,
+      "negative/erased_control": "identity update would preserve spectrum hash",
+      "output_object": "graph component and degree receipts",
+      "positive_case": "warp changes graph shape at constant support",
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.weakly_connected_components",
+      "tool": "Graphs"
+    },
+    {
+      "boundary_case": "all 384 rows bound",
+      "demotion_condition": "demote if Julia Z3 mirror is absent",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "computed finite membership rows",
+      "load_bearing": true,
+      "negative/erased_control": "constraint release expansion is SAT",
+      "output_object": "UNSAT pure-addition expansion and SAT release control",
+      "positive_case": "pure addition expansion is UNSAT",
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "values": {
+    "adm_active": 206.0,
+    "adm_f01": 256.0,
+    "adm_free": 384.0,
+    "c1_abs": 1.0,
+    "chain_additivity_defect_zero": 1.0,
+    "cover_factor": 2.0,
+    "q_with_phase": 192.0,
+    "q_without_phase": 24.0,
+    "release_N01_gain": 50.0,
+    "support_size": 384.0,
+    "warp_edge_count_after": 1600.0,
+    "warp_edge_count_before": 1664.0
+  }
+}

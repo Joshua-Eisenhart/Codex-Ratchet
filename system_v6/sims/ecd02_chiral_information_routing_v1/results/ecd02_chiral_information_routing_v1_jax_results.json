@@ -1,0 +1,602 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent death-condition SMT proof",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "supportive vectorized current check",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact nonnegative difference check",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing death-condition SMT proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "all_pass": true,
+  "claim_ceiling": "capability_discriminator_only",
+  "classification": "scratch_diagnostic",
+  "core": {
+    "all_pass": true,
+    "authority_inputs": {
+      "alt_view_chiral_diode": {
+        "path": "system_v6/receipts/altviews_capability_and_surface_miss_20260612.md",
+        "role": "advisory: two-bit chiral diode and equal-temperature flux finite tests"
+      },
+      "capability_registry_ECD_02": {
+        "path": "system_v6/receipts/engine_capability_differentiators_20260612.md",
+        "role": "authority: Szilard must fail computed and QIT must pass computed, or ECD.02 dies"
+      },
+      "panel9_altviews": {
+        "path": "system_v6/receipts/panel9_blind_altviews_wave_targets_20260612.md",
+        "role": "advisory blind alt-view discipline; no assignment or promotion"
+      },
+      "qca_v3_realized_unitaries": {
+        "path": "system_v6/sims/ring_checkerboard_qca_v3/ring_checkerboard_qca_v3_common.py",
+        "role": "source of realized finite unitaries only; signed_log2_index is not consumed by this packet"
+      },
+      "v0_death_audit": {
+        "path": "system_v6/sims/ecd02_chiral_information_routing_v0/audit_verdict.md",
+        "role": "authority: names endpoint-index readback, missing joint-state test, missing equal-temperature flux, missing fair Szilard baseline"
+      }
+    },
+    "build_gates": {
+      "equal_temperature_flux_test_computed": true,
+      "fair_strongest_szilard_baseline_computed": true,
+      "mirror_control_computed": true,
+      "no_identity_leak_check": true,
+      "real_mi_rows_computed": true,
+      "registry_contract_pass_or_candidate_dies": true,
+      "scrambled_schedule_control_computed": true,
+      "two_bit_joint_state_test_computed": true,
+      "verdict_recorded_either_way": true
+    },
+    "claim_ceiling": "capability_discriminator_only",
+    "classification": "scratch_diagnostic",
+    "controls": {
+      "honest_death_if_no_separation": true,
+      "mirror_control_flips_computed_flux_sign": true,
+      "no_identity_leak_check": true,
+      "no_signed_index_consumed": true,
+      "scrambled_schedule_control_kills_signal": true,
+      "strongest_szilard_baseline_searched": true
+    },
+    "crossover_proofs": {
+      "cvc5": {
+        "baseline_abs_current_milli": 5000,
+        "claim": "cvc5 independently proves the same baseline-not-weaker condition.",
+        "load_bearing": true,
+        "qit_abs_current_milli": 1000,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "z3": {
+        "baseline_abs_current_milli": 5000,
+        "claim": "Negated death condition baseline_abs_current < qit_abs_current is UNSAT after computed baseline search.",
+        "load_bearing": true,
+        "qit_abs_current_milli": 1000,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      }
+    },
+    "discovery": {
+      "computed_flux_by_engine": {
+        "L_engine": -1.0,
+        "R_engine": 1.0,
+        "scrambled_schedule_control": 0.0
+      },
+      "distribution_rows": {
+        "L_engine": {
+          "left_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": -1.0,
+              "information_center_label": -1.0,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "left",
+            "input_labels": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 2.0000000000000058,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 0.3021930419884463,
+              "readout_entropy_delta_bits": 5.773159728050814e-15
+            },
+            "left_readout_label": -1,
+            "memory_input_label": 5,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "-1": 0.3021930419884463,
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0,
+                "4": 0.0
+              },
+              "I_source_left_readout_bits": 0.3021930419884463,
+              "I_source_right_readout_bits": 0.0,
+              "total_site_mi_bits": 0.3021930419884463
+            },
+            "output_labels": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "right_readout_label": 4,
+            "rule_id": "engine_L_flux_IN_left_O1",
+            "source_input_label": 0
+          },
+          "right_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": -1.0,
+              "information_center_label": 4.0,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "right",
+            "input_labels": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 2.0000000000000058,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 0.30219304198844654,
+              "readout_entropy_delta_bits": 5.773159728050814e-15
+            },
+            "left_readout_label": -1,
+            "memory_input_label": 0,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "-1": 0.0,
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0,
+                "4": 0.30219304198844654
+              },
+              "I_source_left_readout_bits": 0.0,
+              "I_source_right_readout_bits": 0.30219304198844654,
+              "total_site_mi_bits": 0.30219304198844654
+            },
+            "output_labels": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "right_readout_label": 4,
+            "rule_id": "engine_L_flux_IN_left_O1",
+            "source_input_label": 5
+          }
+        },
+        "R_engine": {
+          "left_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": 1.0,
+              "information_center_label": 0.0,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "left",
+            "input_labels": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 2.0,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 0.3021930419884483,
+              "readout_entropy_delta_bits": 0.0
+            },
+            "left_readout_label": 0,
+            "memory_input_label": 4,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "0": 0.3021930419884483,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0,
+                "4": 0.0,
+                "5": 0.0
+              },
+              "I_source_left_readout_bits": 0.3021930419884483,
+              "I_source_right_readout_bits": 0.0,
+              "total_site_mi_bits": 0.3021930419884483
+            },
+            "output_labels": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "right_readout_label": 5,
+            "rule_id": "engine_R_flux_OUT_right_O1",
+            "source_input_label": -1
+          },
+          "right_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": 1.0,
+              "information_center_label": 5.0,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "right",
+            "input_labels": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 2.0,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 0.3021930419884487,
+              "readout_entropy_delta_bits": 0.0
+            },
+            "left_readout_label": 0,
+            "memory_input_label": -1,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0,
+                "4": 0.0,
+                "5": 0.3021930419884487
+              },
+              "I_source_left_readout_bits": 0.0,
+              "I_source_right_readout_bits": 0.3021930419884487,
+              "total_site_mi_bits": 0.3021930419884487
+            },
+            "output_labels": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "right_readout_label": 5,
+            "rule_id": "engine_R_flux_OUT_right_O1",
+            "source_input_label": 4
+          }
+        },
+        "scrambled_schedule_control": {
+          "left_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": 0.0,
+              "information_center_label": null,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "left",
+            "input_labels": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 1.9999999999999998,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 6.406853007629833e-16,
+              "readout_entropy_delta_bits": -2.220446049250313e-16
+            },
+            "left_readout_label": 0,
+            "memory_input_label": 4,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "0": 3.2034265038149167e-16,
+                "1": 3.2034265038149167e-16,
+                "2": 3.2034265038149167e-16,
+                "3": 3.2034265038149167e-16,
+                "4": 3.2034265038149167e-16
+              },
+              "I_source_left_readout_bits": 3.2034265038149167e-16,
+              "I_source_right_readout_bits": 3.2034265038149167e-16,
+              "total_site_mi_bits": 1.6017132519074583e-15
+            },
+            "output_labels": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "right_readout_label": 4,
+            "rule_id": "calibration_nonshifting_onsite",
+            "source_input_label": 0
+          },
+          "right_injection": {
+            "equal_temperature_flux": {
+              "directed_information_current_labels_per_run": 0.0,
+              "information_center_label": null,
+              "method": "center of source mutual information over output labels minus source input label; computed from projective dynamics",
+              "thermal_gradient": 0.0
+            },
+            "injection_end": "right",
+            "input_labels": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "joint_state_test": {
+              "final_projective_left_right_readout_entropy_bits": 1.9999999999999998,
+              "initial_source_memory_entropy_bits": 2.0,
+              "joint_state_shape": "P(source_bit, left_projective_readout, right_projective_readout)",
+              "posterior_entropy_reduction_proxy_bits": 6.406853007629833e-16,
+              "readout_entropy_delta_bits": -2.220446049250313e-16
+            },
+            "left_readout_label": 0,
+            "memory_input_label": 0,
+            "mutual_information": {
+              "I_source_each_output_label_bits": {
+                "0": 3.2034265038149167e-16,
+                "1": 3.2034265038149167e-16,
+                "2": 3.2034265038149167e-16,
+                "3": 3.2034265038149167e-16,
+                "4": 3.2034265038149167e-16
+              },
+              "I_source_left_readout_bits": 3.2034265038149167e-16,
+              "I_source_right_readout_bits": 3.2034265038149167e-16,
+              "total_site_mi_bits": 1.6017132519074583e-15
+            },
+            "output_labels": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "right_readout_label": 4,
+            "rule_id": "calibration_nonshifting_onsite",
+            "source_input_label": 4
+          }
+        }
+      },
+      "mutual_information_rows": {
+        "L_engine": {
+          "left_injection": {
+            "I_source_left_readout_bits": 0.3021930419884463,
+            "I_source_right_readout_bits": 0.0
+          },
+          "right_injection": {
+            "I_source_left_readout_bits": 0.0,
+            "I_source_right_readout_bits": 0.30219304198844654
+          }
+        },
+        "R_engine": {
+          "left_injection": {
+            "I_source_left_readout_bits": 0.3021930419884483,
+            "I_source_right_readout_bits": 0.0
+          },
+          "right_injection": {
+            "I_source_left_readout_bits": 0.0,
+            "I_source_right_readout_bits": 0.3021930419884487
+          }
+        },
+        "scrambled_schedule_control": {
+          "left_injection": {
+            "I_source_left_readout_bits": 3.2034265038149167e-16,
+            "I_source_right_readout_bits": 3.2034265038149167e-16
+          },
+          "right_injection": {
+            "I_source_left_readout_bits": 3.2034265038149167e-16,
+            "I_source_right_readout_bits": 3.2034265038149167e-16
+          }
+        }
+      },
+      "qit_abs_directed_current": 1.0,
+      "qit_min_signal_mi_bits": 0.3021930419884463
+    },
+    "discovery_design": {
+      "forbidden_witness_sources": [
+        "signed_index",
+        "rule_id",
+        "engine_side",
+        "chirality_label",
+        "endpoint_arrival_indicator"
+      ],
+      "mi_conditioning_fields": [
+        "source_bit",
+        "projective_readout_bit"
+      ],
+      "witness_source": "realized QCA v3 unitary dynamics and computed distributions"
+    },
+    "engine_values": {
+      "L_directed_current": -1.0,
+      "R_directed_current": 1.0,
+      "ecd02_dies": 1,
+      "qit_abs_directed_current": 1.0,
+      "registry_contract_pass": 0,
+      "scrambled_directed_current": 0.0,
+      "strongest_szilard_abs_directed_current": 5.0
+    },
+    "formal_admission_allowed": false,
+    "promotion_allowed": false,
+    "sim_id": "ecd02_chiral_information_routing_v1",
+    "strongest_szilard_baseline": {
+      "best_negative_current_policy": {
+        "I_source_target_readout_bits": 1.0,
+        "directed_information_current_labels_per_run": -5.0,
+        "policy": "deterministic copy source bit to chosen target readout; remaining alphabet unconstrained",
+        "source_label": 5,
+        "target_label": 0
+      },
+      "best_positive_current_policy": {
+        "I_source_target_readout_bits": 1.0,
+        "directed_information_current_labels_per_run": 5.0,
+        "policy": "deterministic copy source bit to chosen target readout; remaining alphabet unconstrained",
+        "source_label": 0,
+        "target_label": 5
+      },
+      "no_chirality_symmetric_baseline": {
+        "computed_asymmetry": 0.0,
+        "passes_capability": false,
+        "policy_family": "mirror_symmetric_no_external_orientation",
+        "role": "weaker no-chirality Szilard row; retained but not accepted as strongest fair baseline"
+      },
+      "policy_space": "all deterministic classical endpoint-copy policies over the same six-label alphabet",
+      "same_alphabet_size": 6,
+      "same_step_budget": 1,
+      "searched_policy_count": 36,
+      "strongest_abs_directed_current": 5.0,
+      "strongest_target_readout_mi_bits": 1.0
+    },
+    "sympy_row": {
+      "all_pass": true,
+      "difference": "4.00000000000000",
+      "formula": "baseline_abs_current - qit_abs_current >= 0"
+    },
+    "verdict": {
+      "ecd02_status": "DIES",
+      "qit_engine_pass_computed": true,
+      "reason": "Strongest same-alphabet classical endpoint policy matches or exceeds the computed QIT directed-current witness.",
+      "registry_contract_pass": false,
+      "strongest_szilard_baseline_fail_computed": false
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "baseline_abs_current_milli": 5000,
+      "claim": "cvc5 independently proves the same baseline-not-weaker condition.",
+      "load_bearing": true,
+      "qit_abs_current_milli": 1000,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "baseline_abs_current_milli": 5000,
+      "claim": "Negated death condition baseline_abs_current < qit_abs_current is UNSAT after computed baseline search.",
+      "load_bearing": true,
+      "qit_abs_current_milli": 1000,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_values": {
+    "L_directed_current": -1.0,
+    "R_directed_current": 1.0,
+    "ecd02_dies": 1,
+    "qit_abs_directed_current": 1.0,
+    "registry_contract_pass": 0,
+    "scrambled_directed_current": 0.0,
+    "strongest_szilard_abs_directed_current": 5.0
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T09:25:32Z",
+  "jax_current_check": {
+    "abs_values": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "all_pass": true,
+    "mirror_sum": 0.0,
+    "scrambled_abs": 0.0,
+    "values": [
+      1.0,
+      -1.0,
+      0.0
+    ]
+  },
+  "package_observables": {
+    "cvc5": "cvc5.Solver independently proves the same death condition",
+    "sympy": "sp.symbols/sp.simplify checks exact baseline-minus-QIT nonnegative row",
+    "z3": "z3.Solver proves strongest baseline is not weaker than the QIT current witness"
+  },
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "sympy": "1.14.0",
+    "z3": "4.16.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "z3",
+    "cvc5",
+    "sympy"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/ecd02_chiral_information_routing_v1/results/ecd02_chiral_information_routing_v1_jax_results.json",
+  "routing_signature_sha256": "7400d07158de6c5ecf676f890e16a30ecad29f16e3c598810601cba7ededc0bc",
+  "schema_version": "three_engine_leg_result_v1",
+  "sim_id": "ecd02_chiral_information_routing_v1",
+  "source_backed_solver_smoke": {
+    "cvc5": "unsat",
+    "z3": "unsat"
+  },
+  "source_path": "system_v6/sims/ecd02_chiral_information_routing_v1/ecd02_chiral_information_routing_v1_jax.py",
+  "source_sha256": "95eab8c1dccad0b45c45d7953bc75c96d050910b6ce9f080b702b3eff6498c69",
+  "tool_calls": [
+    {
+      "boundary_case": "equal-current death boundary",
+      "demotion_condition": "demote if proof no longer binds computed baseline-search values",
+      "input_object": "computed qit and strongest-szilard directed-current integers",
+      "negative/erased_control": "scrambled schedule has zero computed current",
+      "output_object": "UNSAT baseline-weaker-than-QIT condition",
+      "positive_case": "baseline_abs_current >= qit_abs_current",
+      "qualified_api/function": "z3.Solver",
+      "tool": "z3"
+    }
+  ]
+}

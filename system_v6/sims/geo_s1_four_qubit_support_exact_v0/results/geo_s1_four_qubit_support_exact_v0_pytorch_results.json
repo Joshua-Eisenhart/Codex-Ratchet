@@ -1,0 +1,341 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "torch": "load_bearing",
+    "torch.func": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "supportive result serialization, hashing, and deterministic paths",
+      "tried": true,
+      "used": true
+    },
+    "rustworkx": {
+      "reason": "load-bearing exact graph extension scan for the constructed 9-family; hand tensor/label scan retained as mirror",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact integer sidecar for carrier, Clifford algebra dimension, and chirality split scalar pins",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "load-bearing exact int64 Gaussian-integer tensor arithmetic for the Cl(8) anticommutation table and graph-state stabilizers",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive vmap check that all gamma_i squares equal identity in the exact integer-pair tensor representation",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch",
+    "sympy",
+    "rustworkx"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "torch",
+    "sympy",
+    "rustworkx"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "10_anticommuting_family_impossible": {
+      "finite_extension_scan": {
+        "candidate_vertices": 255,
+        "extension_candidates_that_anticommute_with_all_9": [],
+        "family_size": 9,
+        "graph_edges": 1080,
+        "graph_nodes": 255,
+        "graph_tool": "rustworkx.PyGraph",
+        "hand_label_scan_mirror_candidates": [],
+        "load_bearing_route": "exact graph extension scan",
+        "pair_tests": 2214,
+        "pass": true,
+        "size_10_extension_exists": false
+      },
+      "fired": true
+    },
+    "corrupted_gamma_sign": {
+      "all_64_pairs_pass_after_corruption": false,
+      "delta_nonzero_entries": 30,
+      "fired": true
+    },
+    "triality_prose_only_overclaim": {
+      "fired": true,
+      "full_triality_automorphism_claimed": false
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:22:30.174543+00:00",
+  "non_conflation": {
+    "CP15_vs_Spin8_triality_merged": false,
+    "present": true
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy",
+    "rustworkx"
+  ],
+  "pin_sha256": "acd40027098ca7074723cbb63c21dc9598637363e0a821372830f71b5a6f42ab",
+  "pin_spec": "geo_s1_four_qubit_support_exact_v0|four_spinor_C2x4_to_C16|S31_to_CP15_density_quotient|Cl8_Jordan_Wigner_gamma9_product|root_noncommutation_not_anticommutation|matrix_associator_zero|triality_pressure_only|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "receipts": {
+    "F01_finitude_receipt": {
+      "computational_basis_count": 16,
+      "hilbert_dim": 16,
+      "mixed_density_real_dim": 255,
+      "operator_basis_count": 256,
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial"
+    },
+    "Z2_entanglement_controls": {
+      "cluster_stabilizer_receipt": {
+        "pass": true,
+        "representation": "unnormalized integer sign vector for linear cluster CZ_AB CZ_BC CZ_CD |+>^4",
+        "stabilizers": {
+          "K_A": {
+            "delta_nonzero_entries": 0,
+            "exact_delta_zero": true,
+            "label": "XZII"
+          },
+          "K_B": {
+            "delta_nonzero_entries": 0,
+            "exact_delta_zero": true,
+            "label": "ZXZI"
+          },
+          "K_C": {
+            "delta_nonzero_entries": 0,
+            "exact_delta_zero": true,
+            "label": "IZXZ"
+          },
+          "K_D": {
+            "delta_nonzero_entries": 0,
+            "exact_delta_zero": true,
+            "label": "IIZX"
+          }
+        }
+      },
+      "named_entropy_rows_mirrored_from_exact_lane": {
+        "Bell_AB_tensor_Bell_CD_AB_entropy": "0",
+        "Bell_AB_tensor_Bell_CD_AC_entropy": "log(4)",
+        "GHZ4_one_qubit_entropy": "log(2)",
+        "product_all_entropy": "0"
+      },
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial"
+    },
+    "Z3_Cl8_exact_floor": {
+      "all_64_pairs_exact": true,
+      "all_delta_entries_zero": true,
+      "anticommutation_pairs_checked": 64,
+      "convention": [
+        "gamma_1 = XIII",
+        "gamma_2 = YIII",
+        "gamma_3 = ZXII",
+        "gamma_4 = ZYII",
+        "gamma_5 = ZZXI",
+        "gamma_6 = ZZYI",
+        "gamma_7 = ZZZX",
+        "gamma_8 = ZZZY",
+        "gamma_9 = gamma_1...gamma_8"
+      ],
+      "corrupted_gamma_control": {
+        "all_64_pairs_pass_after_corruption": false,
+        "delta_nonzero_entries": 30,
+        "fired": true
+      },
+      "gamma9_diagonal_pairs": [
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gamma9_eigenspace_split": {
+        "minus_one": 8,
+        "plus_one": 8
+      },
+      "gamma9_squared_identity": true,
+      "pass": true,
+      "representation": "Gaussian integers as torch.int64 tensor[...,2] = [real, imag]",
+      "torch_func_square_identity_pass": true
+    },
+    "Z4_max_anticommuting_family": {
+      "attempted_10_member_extension_negative_control": {
+        "finite_extension_scan": {
+          "candidate_vertices": 255,
+          "extension_candidates_that_anticommute_with_all_9": [],
+          "family_size": 9,
+          "graph_edges": 1080,
+          "graph_nodes": 255,
+          "graph_tool": "rustworkx.PyGraph",
+          "hand_label_scan_mirror_candidates": [],
+          "load_bearing_route": "exact graph extension scan",
+          "pair_tests": 2214,
+          "pass": true,
+          "size_10_extension_exists": false
+        },
+        "fired": true
+      },
+      "constructed_family_size": 9,
+      "finite_extension_scan": {
+        "candidate_vertices": 255,
+        "extension_candidates_that_anticommute_with_all_9": [],
+        "family_size": 9,
+        "graph_edges": 1080,
+        "graph_nodes": 255,
+        "graph_tool": "rustworkx.PyGraph",
+        "hand_label_scan_mirror_candidates": [],
+        "load_bearing_route": "exact graph extension scan",
+        "pair_tests": 2214,
+        "pass": true,
+        "size_10_extension_exists": false
+      },
+      "pairwise_anticommutation_exact": true,
+      "pass": true,
+      "strength_label": "finite_exhaustive_enumeration"
+    },
+    "Z5_Spin8_triality_pressure": {
+      "full_triality_automorphism_claimed": false,
+      "invariant_dimensions": {
+        "8c_negative_spinor_label": 8,
+        "8s_positive_spinor_label": 8,
+        "8v_vector_like_label": 8
+      },
+      "pass": true,
+      "triality_pressure_open": {
+        "missing_condition": "explicit automorphism permuting 8v, 8s, and 8c while preserving form",
+        "status": "open-with-reason"
+      }
+    },
+    "Z7_classification_table": {
+      "bare_float_rows": [],
+      "classification_table": [
+        {
+          "achieved_strength": "exact_integer_combinatorial",
+          "bare_float": false,
+          "claim": "Z3 PyTorch exact anticommutation tensor route"
+        },
+        {
+          "achieved_strength": "finite_exhaustive_enumeration",
+          "bare_float": false,
+          "claim": "Z4 finite extension scan"
+        },
+        {
+          "achieved_strength": "exact_integer_combinatorial",
+          "bare_float": false,
+          "claim": "Z2 cluster stabilizer mirror"
+        }
+      ],
+      "pass": true
+    },
+    "sympy_dimension_sidecar": {
+      "algebra_delta": "0",
+      "cl8_algebra_dim": "256",
+      "dimension_delta": "0",
+      "gamma9_split": {
+        "minus_one": "8",
+        "plus_one": "8"
+      },
+      "hilbert_dim": "16",
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial",
+      "tool": "sympy"
+    }
+  },
+  "result_path": "system_v6/sims/geo_s1_four_qubit_support_exact_v0/results/geo_s1_four_qubit_support_exact_v0_pytorch_results.json",
+  "role_id": "pytorch_graph_network_sim_builder",
+  "schema_version": "geo_s1_four_qubit_support_exact_v0_leg_v1",
+  "shared_scalars": {
+    "exact_failure_count": 0,
+    "hilbert_dim": 16,
+    "max_anticommuting_family": 9,
+    "mixed_density_real_dim": 255
+  },
+  "sim_id": "geo_s1_four_qubit_support_exact_v0",
+  "source_path": "system_v6/sims/geo_s1_four_qubit_support_exact_v0/geo_s1_four_qubit_support_exact_v0_pytorch.py",
+  "source_sha256": "576a9658ee6d3f2011549c54d5fe8045d8c8bbaea206b82c94a4e566e4fc1565",
+  "tool_calls": [
+    {
+      "boundary_case": "cluster stabilizers use unnormalized exact integer sign vector",
+      "demotion_condition": "passing torch.func capability probe required before this can gate claim metadata",
+      "gates": [],
+      "input_object": "stacked Cl8 gamma tensors over exact Gaussian integer pairs",
+      "negative_or_erased_control": "corrupted gamma table has nonzero deltas",
+      "output_object": "batched gamma_i^2 - I deltas",
+      "positive_case": "all eight square deltas are zero",
+      "qualified_api/function": "torch.func.vmap",
+      "role": "supportive",
+      "tool": "torch.func"
+    }
+  ]
+}

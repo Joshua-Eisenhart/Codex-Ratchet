@@ -1,0 +1,157 @@
+{
+  "object_id": "geomratchet_jax_v1",
+  "classification": "tool_lego_fit_probe",
+  "promotion_allowed": false,
+  "f01_in_force": true,
+  "n01_in_force": true,
+  "claim_ceiling": "carrier-level invariants and finite maps only. NOT asserting layer-completion, manifold-admission, coupling, bridge, rho_AB, Xi, Phi0, Axis0, flux, or physics.",
+  "compute_engine": "jax.numpy+jax.random",
+  "x64_enabled": true,
+  "rungs": [
+    {
+      "rung": "G1",
+      "description": "S^3 = SU(2) = unit quaternions; minimal spinor carrier (dim=2)",
+      "f01_finite": true,
+      "n01_witness": "SU(2) group multiplication is non-Abelian",
+      "domain": "finite sample N=20 unit quaternions",
+      "codomain": "{rho_L, rho_R in Herm(2), chern_number_L, chern_number_R in Z}",
+      "positive_control": {
+        "su2_det_max_error": 3.3307077557426216e-16,
+        "su2_unitary_max_error": 4.711405675436516e-16,
+        "pass": true
+      },
+      "negative_control": {
+        "non_unit_q_det_error": 3.0,
+        "non_unit_fails_su2": true,
+        "pass": true
+      },
+      "boundary_control": {
+        "pass": true
+      },
+      "chern_number": {
+        "L_raw": -0.998632033054343,
+        "R_raw": 0.9986320330543391,
+        "L_rounded": -1,
+        "R_rounded": 1,
+        "opposite_sign": true,
+        "magnitude_ok": true,
+        "method": "FHS lattice Chern on S^2 discretization"
+      },
+      "gamma5_split": {
+        "tr_L": 0.07938308897552025,
+        "tr_R": 0.9206169110244796,
+        "pass": true
+      },
+      "ratchet_claim": "S^3 is the minimal finite carrier admitting SU(2) spinors and L/R density matrices. Opposite-sign Chern numbers survive probe. dim=2 is a CHOICE.",
+      "all_pass": true
+    },
+    {
+      "rung": "G2",
+      "description": "Cl(4)/Spin(4) dim=4 (2 qubits) \u2014 decomposable Weyl sectors (fake/reducible chirality)",
+      "f01_finite": true,
+      "n01_witness": "Clifford anticommutators; spin(4) generators noncommutative",
+      "domain": "4x4 gamma matrices generating Cl(4)",
+      "codomain": "{P_L, P_R in Herm(4), JL_1..3, JR_1..3 in su(2) generators, [JLi,JRj]=0}",
+      "weyl_sector_dims": {
+        "dim_L": 2,
+        "dim_R": 2
+      },
+      "projector_check": {
+        "PL_idempotent_err": 0.0,
+        "PR_idempotent_err": 0.0,
+        "PL_PR_orthogonal_err": 0.0,
+        "PL_PR_sum_to_I_err": 0.0,
+        "pass": true
+      },
+      "decomposability": {
+        "max_comm_JL_JR": 0.0,
+        "su2L_structure": true,
+        "su2R_structure": true,
+        "decomposable_Spin4_isoSU2xSU2": true,
+        "interpretation": "JL and JR commute \u2192 Spin(4)\u2245SU(2)_L\u00d7SU(2)_R \u2192 chirality is REDUCIBLE at dim4"
+      },
+      "wrong_structure_control": {
+        "random_K1K2_comm": 37.073137670758996,
+        "random_K2K3_comm": 32.949463843376876,
+        "random_gens_not_product_form": true
+      },
+      "ratchet_claim": "G2 restricts G1: the 4D Weyl split is DECOMPOSABLE (Spin(4)\u2245SU(2)\u00d7SU(2)). Chirality is fake/reducible at dim=4.",
+      "all_pass": true
+    },
+    {
+      "rung": "G3",
+      "description": "Cl(6)/Spin(6) dim=8 (3 qubits) \u2014 Weyl sectors irreducible (genuine chirality first here)",
+      "f01_finite": true,
+      "n01_witness": "Clifford anticommutators {gamma_i,gamma_j}=2*delta_ij; max_err < 1e-12",
+      "domain": "8x8 gamma matrices generating Cl(6)",
+      "codomain": "{P_L, P_R in Herm(8), irreducibility_certificate in {true,false}}",
+      "clifford_anticommutator_max_err": 0.0,
+      "clifford_ok": true,
+      "gamma7_sq_err": 0.0,
+      "gamma7_anticomm_max_err": 0.0,
+      "gamma7_ok": true,
+      "weyl_sector_dims": {
+        "dim_L": 4,
+        "dim_R": 4
+      },
+      "irreducibility": {
+        "commutant_dim_L": 1,
+        "commutant_dim_R": 1,
+        "irreducible_L": true,
+        "irreducible_R": true,
+        "interpretation": "commutant_dim=1 \u2194 Schur: only scalars commute \u2194 Spin(6)\u2245SU(4) acts IRREDUCIBLY"
+      },
+      "wrong_structure_control": {
+        "G2_L_sector_commutant_dim": 2,
+        "G2_L_reducible": true
+      },
+      "ratchet_claim": "G3 restricts G2: at dim=8/Spin(6)\u2245SU(4), each Weyl sector is an IRREDUCIBLE representation. Genuine chirality first appears here.",
+      "all_pass": true
+    },
+    {
+      "rung": "G4",
+      "description": "Nested-shell quaternion-spinor torus: alpha_inner=0.0 alpha_outer=1.0472",
+      "f01_finite": true,
+      "n01_witness": "Quaternion fiber over T^2; SU(2) non-Abelian structure on each shell",
+      "domain": "finite grid (N_theta=8 x N_phi=8) x 2 shells",
+      "codomain": "{rho_L on Sigma_inner, rho_L on Sigma_outer, trace_distance, gauss_linking_number}",
+      "inter_shell_distinguishability": {
+        "mean_trace_distance": 0.2563561681124319,
+        "max_trace_distance": 0.49999999999999994,
+        "min_trace_distance": 8.203578021122308e-18,
+        "shells_distinguishable_f01": true
+      },
+      "gauss_linking_number": {
+        "computed": -1.000000000000011,
+        "rounded": -1.0,
+        "nontrivial": true,
+        "geometry": "C1=(cos t, sin t, 0), C2=(1+0.5*cos s, 0, 0.5*sin s): Hopf-like, C2 threads C1 disk at s=pi",
+        "wrong_structure_control_coplanar": 0.0,
+        "ctrl_unlinked": true
+      },
+      "nesting_constraint": {
+        "alpha_inner": 0.0,
+        "alpha_outer": 1.0471975511965976,
+        "shells_distinct": true
+      },
+      "boundary_control": {
+        "same_shell_max_dist": 0.0,
+        "same_shell_zero_dist": true
+      },
+      "ratchet_claim": "G4 restricts G3: nesting adds a further constraint surface. Inter-shell distinguishability (F01 trace distance > 0) and Gauss linking number (|L|=1 for Hopf-like linked core curves) are well-defined finite invariants.",
+      "all_pass": true
+    }
+  ],
+  "ratchet_summary": {
+    "G1_all_pass": true,
+    "G2_all_pass": true,
+    "G3_all_pass": true,
+    "G4_all_pass": true,
+    "all_rungs_pass": true,
+    "chirality_first_at_dim8": true,
+    "g2_decomposable": true,
+    "g4_nesting_survives": true,
+    "g4_nesting_constraint": true,
+    "ratchet_each_restricts_prior": true
+  }
+}

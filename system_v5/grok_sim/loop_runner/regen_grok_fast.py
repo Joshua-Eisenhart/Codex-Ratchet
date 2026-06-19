@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""regen_grok_fast.py — Grok regen using grok-code-fast-1 (faster, smaller prompt)."""
+"""regen_grok_fast.py — Grok regen using the current Grok build model."""
 import re
 import subprocess
 import sys
@@ -52,7 +52,7 @@ def main():
     t0 = time.time()
     try:
         resp = client.chat.completions.create(
-            model="grok-code-fast-1",
+            model="grok-build-0.1",
             messages=[{"role": "user", "content": prompt}],
             timeout=600,
         )
@@ -60,7 +60,7 @@ def main():
         print(f"FAIL: {type(e).__name__}: {str(e)[:200]}")
         return
     text = resp.choices[0].message.content
-    print(f"Grok-code-fast in {time.time()-t0:.1f}s ({len(text)} chars)")
+    print(f"Grok build in {time.time()-t0:.1f}s ({len(text)} chars)")
     m = re.search(r"```python\s*\n(.*?)```", text, re.DOTALL)
     if not m:
         m = re.search(r"```\s*\n(.*?)```", text, re.DOTALL)

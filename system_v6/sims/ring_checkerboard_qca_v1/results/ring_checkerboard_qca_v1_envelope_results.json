@@ -1,0 +1,2614 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "build_three_engine_envelope": "load_bearing",
+    "jax": {
+      "cvc5": "load_bearing",
+      "jax": "supportive",
+      "jax.numpy": "supportive",
+      "qutip": "load_bearing",
+      "sympy": "load_bearing",
+      "z3": "load_bearing"
+    },
+    "julia": {
+      "Graphs": "load_bearing",
+      "JSON3": "supportive",
+      "LinearAlgebra": "supportive",
+      "QuantumClifford": "load_bearing",
+      "QuantumOptics": "load_bearing",
+      "SHA": "supportive",
+      "Z3": "load_bearing"
+    },
+    "pytorch": {
+      "cvc5": "load_bearing",
+      "sympy": "load_bearing",
+      "torch": "supportive",
+      "torch.func": "load_bearing",
+      "torch_geometric": "load_bearing",
+      "z3": "load_bearing"
+    }
+  },
+  "TOOL_INTENT_MATRIX": {
+    "build_three_engine_envelope": "standard helper constructs the envelope; process/load-bearing, not mathematical evidence",
+    "jax": {
+      "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed index calibration proof",
+      "qutip": "qutip.Qobj/qutip.tensor verify local unitary gates and dephase-Z CPTP Kraus completeness",
+      "sympy": "sp.Rational exact overlap-rank ratio arithmetic for standard index rows",
+      "z3": "z3.Solver binds computed signed index calibration and proves the negated calibration contract UNSAT"
+    },
+    "julia": {
+      "Graphs": "Graphs.SimpleDiGraph/add_edge!/strongly_connected_components compute matched locality terminal counts",
+      "QuantumClifford": "QuantumClifford S\"X\" stabilizer token verifies Clifford/stabilizer package path is live",
+      "QuantumOptics": "QuantumOptics.SpinBasis/spinup/dm/entropy_vn verify one-qubit density and entropy row",
+      "Z3": "Z3.Solver/IntVar/add/check binds computed signed index rows"
+    },
+    "pytorch": {
+      "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed L/R index proof",
+      "sympy": "sp.Rational exact index-ratio inverse check",
+      "torch.func": "torch.func.jacrev verifies zero gradient of the signed-index calibration penalty",
+      "torch_geometric": "torch_geometric.data.Data carries local ring incidence and gates degree equality",
+      "z3": "z3.Solver binds computed L/R indices and proves non-opposite relation UNSAT"
+    }
+  },
+  "TOOL_MANIFEST": {
+    "build_three_engine_envelope": {
+      "reason": "load-bearing standard envelope construction",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "cvc5": {
+        "reason": "load-bearing independent computed index proof",
+        "tried": true,
+        "used": true
+      },
+      "jax": {
+        "reason": "supportive x64 vector carrier for computed index rows",
+        "tried": true,
+        "used": true
+      },
+      "jax.numpy": {
+        "reason": "supportive integer vector checks over signed indices",
+        "tried": true,
+        "used": true
+      },
+      "qutip": {
+        "reason": "load-bearing local unitary/CPTP gate checks",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "load-bearing exact rational rank-ratio check",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load-bearing computed index calibration proof",
+        "tried": true,
+        "used": true
+      }
+    },
+    "julia": {
+      "Graphs": {
+        "reason": "load-bearing locality-vs-global terminal/orbit computation",
+        "tried": true,
+        "used": true
+      },
+      "JSON3": {
+        "reason": "supportive result emission",
+        "tried": true,
+        "used": true
+      },
+      "LinearAlgebra": {
+        "reason": "supportive local gate unitarity check",
+        "tried": true,
+        "used": true
+      },
+      "QuantumClifford": {
+        "reason": "load-bearing stabilizer package liveness for QCA Clifford row",
+        "tried": true,
+        "used": true
+      },
+      "QuantumOptics": {
+        "reason": "load-bearing one-qubit density and entropy check",
+        "tried": true,
+        "used": true
+      },
+      "SHA": {
+        "reason": "supportive source hashing",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "load-bearing index calibration/opposite-sign proof",
+        "tried": true,
+        "used": true
+      }
+    },
+    "pytorch": {
+      "cvc5": {
+        "reason": "load-bearing independent L/R opposite-index proof",
+        "tried": true,
+        "used": true
+      },
+      "sympy": {
+        "reason": "load-bearing exact rational index-ratio check",
+        "tried": true,
+        "used": true
+      },
+      "torch": {
+        "reason": "supportive tensor carrier for signed index rows",
+        "tried": true,
+        "used": true
+      },
+      "torch.func": {
+        "reason": "load-bearing differentiable zero-gradient calibration check",
+        "tried": true,
+        "used": true
+      },
+      "torch_geometric": {
+        "reason": "load-bearing local ring incidence carrier",
+        "tried": true,
+        "used": true
+      },
+      "z3": {
+        "reason": "load-bearing L/R opposite-index proof",
+        "tried": true,
+        "used": true
+      }
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "same owner-shaped support as ring_checkerboard_automaton_v0",
+    "qubit local systems and local unitary/CPTP gate controls",
+    "standard-math signed log2 index for partitioned QCA wire-flow rows",
+    "computed L/R opposite index signs and index-zero no-distinction control",
+    "bounded matched-state locality-vs-global coupling comparison",
+    "typed information flux rows in qubits and nats per step"
+  ],
+  "boundary_section": {
+    "claim_ceiling": "scratch diagnostic; no promotion, no canonical QCA classification, no v4 coupling admission",
+    "finite_depth_circuit_boundary": "nonzero shift index is represented as a locality-preserving QCA wire flow, not as a finite-depth circuit claim",
+    "full_binary_configuration_enumerated": false,
+    "resource_guard": "primary_n=4 support cells, matched-state locality comparison only"
+  },
+  "build_gates": {
+    "L_R_opposite_indices": true,
+    "build_card_copied": true,
+    "classical_limit_reproduces_v0": true,
+    "classification_scratch": true,
+    "cvc5_flip_sat": true,
+    "cvc5_unsat": true,
+    "engine_lanes_pass": true,
+    "engine_values_agree": true,
+    "falsifier_branch_reachable": true,
+    "formal_admission_blocked": true,
+    "gauge_invariance_pass": true,
+    "index0_no_LR_distinction": true,
+    "index_calibrations_pass": true,
+    "julia_z3_unsat": true,
+    "locality_comparison_differs": true,
+    "no_builder_audit_verdict": true,
+    "order_shuffle_changes": true,
+    "promotion_blocked": true,
+    "z3_flip_sat": true,
+    "z3_unsat": true
+  },
+  "builder_gates": {
+    "file_boundary": "system_v6/sims/ring_checkerboard_qca_v1",
+    "file_disjoint_packet": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true
+  },
+  "claim": "finite partitioned QCA/index diagnostic on the committed ring-checkerboard support",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "QuantumClifford",
+    "Graphs",
+    "Z3",
+    "qutip",
+    "sympy",
+    "z3",
+    "cvc5",
+    "torch_geometric",
+    "torch.func"
+  ],
+  "classical_limit": {
+    "alternating_period_2_present": true,
+    "alternating_period_histogram": {
+      "2": 576
+    },
+    "paired_period_4_present": true,
+    "paired_period_histogram": {
+      "4": 576
+    },
+    "phase_structure_reproduced": true,
+    "source": "ring_checkerboard_automaton_v0.build_packet()",
+    "v0_verdict": "PASS_DISTINGUISHABLE_CLASSICAL_FLOOR"
+  },
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "cvc5": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "same-sign R mutation reaches a SAT/UNSAT flip",
+      "positive_case": "actual computed index table satisfies the contract",
+      "proof_row": "cvc5 mirror of computed index calibration and L/R sign contract",
+      "ran": true,
+      "tautological_flip_guard": "cvc5 binds integer variables to computed table entries first",
+      "verdict": "unsat"
+    },
+    "jax_cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "jax_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": "Z3.jl binds computed signed index rows and checks the negated calibration/opposite-sign contract",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "pytorch_cvc5": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "pytorch_z3": {
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "computed_perturbation_flip_verdict": "sat",
+      "load_bearing": true,
+      "negative_control": "mutating R to the same left-flow sign makes the opposite-sign equality satisfiable only by contradiction, so the failure branch is reachable",
+      "positive_case": "actual right/left/zero calibration and L/R opposite signs satisfy the contract",
+      "proof_row": "bind computed signed indices and assert that calibration/opposite-sign contract can fail",
+      "ran": true,
+      "tautological_flip_guard": "solver variables are bound to computed index table entries before the contract query",
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "canonical QCA admission",
+    "full all-cells binary QCA state-space enumeration",
+    "v4 coupling-law admission",
+    "owner-source status for GNVW/index terminology",
+    "physics/cosmology/consciousness claim"
+  ],
+  "divergence": {
+    "comparison": "integer index and matched-locality terminal-count rows agree across all three engine files",
+    "engine_values": {
+      "jax": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      },
+      "julia": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      },
+      "pytorch": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_comparison": {
+    "engine_values": {
+      "jax": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      },
+      "julia": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      },
+      "pytorch": {
+        "L_engine_index": -1,
+        "R_engine_index": 1,
+        "global_terminal_count": 160,
+        "left_shift_index": -1,
+        "local_terminal_count": 1600,
+        "right_shift_index": 1,
+        "zero_index": 0
+      }
+    },
+    "engine_values_agree": true,
+    "leg_all_pass": {
+      "jax": true,
+      "julia": true,
+      "pytorch": true
+    }
+  },
+  "engine_contract": {
+    "classification": "scratch_diagnostic",
+    "formal_admission_allowed": false,
+    "lanes": [
+      "jax",
+      "julia",
+      "pytorch"
+    ],
+    "mode": "all_three_full_sims",
+    "omitted_lanes": {},
+    "promotion_allowed": false
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "qutip",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "claim_path_tools": [
+        "qutip",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "calls": [
+          {
+            "output_object": {
+              "H_unitarity_gap": 4.440892098500626e-16,
+              "SWAP_unitarity_gap": 0.0,
+              "dephase_z_cptp_gap": 0.0,
+              "load_bearing_pass": true,
+              "qutip_objects": [
+                "qutip.Qobj(H)",
+                "qutip.Qobj(SWAP)",
+                "qutip.tensor(I,I)",
+                "dephase Kraus Qobj"
+              ]
+            },
+            "qualified_api/function": "qutip.Qobj/qutip.tensor",
+            "tool": "qutip"
+          },
+          {
+            "output_object": true,
+            "qualified_api/function": "sp.Rational/sp.simplify",
+            "tool": "sympy"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "z3",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "z3.Solver/z3.Int/check",
+            "tool": "z3"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "cvc5",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+            "tool": "cvc5"
+          }
+        ],
+        "pass": true
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed index calibration proof",
+        "qutip": "qutip.Qobj/qutip.tensor verify local unitary gates and dephase-Z CPTP Kraus completeness",
+        "sympy": "sp.Rational exact overlap-rank ratio arithmetic for standard index rows",
+        "z3": "z3.Solver binds computed signed index calibration and proves the negated calibration contract UNSAT"
+      },
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "qutip",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_jax_results.json",
+      "result_sha256": "375e3fddeaccda46c0be1fdad3614808707be2c726a6861e6edf6ac2f7c23ad1",
+      "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_jax.py",
+      "source_sha256": "f8f95599627f277d0bd274833db7312eda5de49912a4a45890425679c69a4f67",
+      "tool_calls": [
+        {
+          "output_object": {
+            "H_unitarity_gap": 4.440892098500626e-16,
+            "SWAP_unitarity_gap": 0.0,
+            "dephase_z_cptp_gap": 0.0,
+            "load_bearing_pass": true,
+            "qutip_objects": [
+              "qutip.Qobj(H)",
+              "qutip.Qobj(SWAP)",
+              "qutip.tensor(I,I)",
+              "dephase Kraus Qobj"
+            ]
+          },
+          "qualified_api/function": "qutip.Qobj/qutip.tensor",
+          "tool": "qutip"
+        },
+        {
+          "output_object": true,
+          "qualified_api/function": "sp.Rational/sp.simplify",
+          "tool": "sympy"
+        },
+        {
+          "output_object": {
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat"
+          },
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "tool": "z3"
+        },
+        {
+          "output_object": {
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat"
+          },
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "QuantumClifford",
+        "Graphs",
+        "Z3"
+      ],
+      "claim_path_tools": [
+        "QuantumOptics",
+        "QuantumClifford",
+        "Graphs",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "calls": [
+          {
+            "output_object": {
+              "QuantumClifford_stabilizer_text": "+ X",
+              "QuantumOptics_entropy_vn_ground_state": 0,
+              "QuantumOptics_trace_dm": 1,
+              "hadamard_unitary_gap": 2.220446049250313e-16,
+              "load_bearing_pass": true
+            },
+            "qualified_api/function": "QuantumOptics.SpinBasis/dm/entropy_vn",
+            "tool": "QuantumOptics"
+          },
+          {
+            "output_object": "+ X",
+            "qualified_api/function": "S\"X\"",
+            "tool": "QuantumClifford"
+          },
+          {
+            "output_object": {
+              "global": {
+                "edge_count": 6400,
+                "kind": "global_v3_style",
+                "period_histogram": {
+                  "40": 6400
+                },
+                "scc_count": 160,
+                "state_count": 6400,
+                "terminal_class_count": 160,
+                "terminal_sizes": [
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40
+                ]
+              },
+              "local": {
+                "edge_count": 6400,
+                "kind": "local_brickwork",
+                "period_histogram": {
+                  "4": 6400
+                },
+                "scc_count": 1600,
+                "state_count": 6400,
+                "terminal_class_count": 1600,
+                "terminal_sizes": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              }
+            },
+            "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.strongly_connected_components",
+            "tool": "Graphs"
+          },
+          {
+            "output_object": {
+              "computed_perturbation_flip_verdict": "sat",
+              "load_bearing": true,
+              "proof_row": "Z3.jl binds computed signed index rows and checks the negated calibration/opposite-sign contract",
+              "ran": true,
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3"
+          }
+        ],
+        "pass": true
+      },
+      "package_observables": {
+        "Graphs": "Graphs.SimpleDiGraph/add_edge!/strongly_connected_components compute matched locality terminal counts",
+        "QuantumClifford": "QuantumClifford S\"X\" stabilizer token verifies Clifford/stabilizer package path is live",
+        "QuantumOptics": "QuantumOptics.SpinBasis/spinup/dm/entropy_vn verify one-qubit density and entropy row",
+        "Z3": "Z3.Solver/IntVar/add/check binds computed signed index rows"
+      },
+      "packages_used": [
+        "QuantumOptics",
+        "QuantumClifford",
+        "Graphs",
+        "Z3",
+        "JSON3",
+        "SHA",
+        "LinearAlgebra",
+        "Dates"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_julia_results.json",
+      "result_sha256": "503571b43564d62eaee19a4de63aa52f906a2d119215857812fb11c0987ffab2",
+      "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_julia.jl",
+      "source_sha256": "0b22577a6c130b9b26c3ad8bd4fea05c4e1c519604e700c8c7ea5d34629602c7",
+      "tool_calls": [
+        {
+          "output_object": {
+            "QuantumClifford_stabilizer_text": "+ X",
+            "QuantumOptics_entropy_vn_ground_state": 0,
+            "QuantumOptics_trace_dm": 1,
+            "hadamard_unitary_gap": 2.220446049250313e-16,
+            "load_bearing_pass": true
+          },
+          "qualified_api/function": "QuantumOptics.SpinBasis/dm/entropy_vn",
+          "tool": "QuantumOptics"
+        },
+        {
+          "output_object": "+ X",
+          "qualified_api/function": "S\"X\"",
+          "tool": "QuantumClifford"
+        },
+        {
+          "output_object": {
+            "global": {
+              "edge_count": 6400,
+              "kind": "global_v3_style",
+              "period_histogram": {
+                "40": 6400
+              },
+              "scc_count": 160,
+              "state_count": 6400,
+              "terminal_class_count": 160,
+              "terminal_sizes": [
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40,
+                40
+              ]
+            },
+            "local": {
+              "edge_count": 6400,
+              "kind": "local_brickwork",
+              "period_histogram": {
+                "4": 6400
+              },
+              "scc_count": 1600,
+              "state_count": 6400,
+              "terminal_class_count": 1600,
+              "terminal_sizes": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            }
+          },
+          "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.strongly_connected_components",
+          "tool": "Graphs"
+        },
+        {
+          "output_object": {
+            "computed_perturbation_flip_verdict": "sat",
+            "load_bearing": true,
+            "proof_row": "Z3.jl binds computed signed index rows and checks the negated calibration/opposite-sign contract",
+            "ran": true,
+            "verdict": "unsat"
+          },
+          "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+          "tool": "Z3"
+        }
+      ]
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "claim_path_tools": [
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "one_to_one_tool_calls": {
+        "calls": [
+          {
+            "output_object": {
+              "edge_count": 8,
+              "in_degree": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "load_bearing_pass": true,
+              "num_nodes": 4,
+              "out_degree": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "role": "torch_geometric.data.Data carrier for local ring-neighbor and opposite-neighbor edge incidence"
+            },
+            "qualified_api/function": "torch_geometric.data.Data",
+            "tool": "torch_geometric"
+          },
+          {
+            "output_object": {
+              "gradient": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "load_bearing_pass": true,
+              "max_abs_gradient": 0.0,
+              "target": [
+                1.0,
+                -1.0,
+                0.0,
+                -1.0,
+                1.0
+              ],
+              "values": [
+                1.0,
+                -1.0,
+                0.0,
+                -1.0,
+                1.0
+              ]
+            },
+            "qualified_api/function": "torch.func.jacrev",
+            "tool": "torch.func"
+          },
+          {
+            "output_object": true,
+            "qualified_api/function": "sp.Rational/sp.simplify",
+            "tool": "sympy"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "z3",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "z3.Solver/z3.Int/check",
+            "tool": "z3"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "cvc5",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+            "tool": "cvc5"
+          }
+        ],
+        "pass": true
+      },
+      "package_observables": {
+        "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed L/R index proof",
+        "sympy": "sp.Rational exact index-ratio inverse check",
+        "torch.func": "torch.func.jacrev verifies zero gradient of the signed-index calibration penalty",
+        "torch_geometric": "torch_geometric.data.Data carries local ring incidence and gates degree equality",
+        "z3": "z3.Solver binds computed L/R indices and proves non-opposite relation UNSAT"
+      },
+      "packages_used": [
+        "torch",
+        "torch_geometric",
+        "torch.func",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_pytorch_results.json",
+      "result_sha256": "b98d11106b6fb05688d253b1173c9febeb79d5bdf6825f8437d338022f11877d",
+      "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_pytorch.py",
+      "source_sha256": "4f2e4675adf13aee41b4509472f785cea0ea5f98e41f3944dccacae3403e7ecf",
+      "tool_calls": [
+        {
+          "output_object": {
+            "edge_count": 8,
+            "in_degree": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "load_bearing_pass": true,
+            "num_nodes": 4,
+            "out_degree": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "role": "torch_geometric.data.Data carrier for local ring-neighbor and opposite-neighbor edge incidence"
+          },
+          "qualified_api/function": "torch_geometric.data.Data",
+          "tool": "torch_geometric"
+        },
+        {
+          "output_object": {
+            "gradient": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "load_bearing_pass": true,
+            "max_abs_gradient": 0.0,
+            "target": [
+              1.0,
+              -1.0,
+              0.0,
+              -1.0,
+              1.0
+            ],
+            "values": [
+              1.0,
+              -1.0,
+              0.0,
+              -1.0,
+              1.0
+            ]
+          },
+          "qualified_api/function": "torch.func.jacrev",
+          "tool": "torch.func"
+        },
+        {
+          "output_object": true,
+          "qualified_api/function": "sp.Rational/sp.simplify",
+          "tool": "sympy"
+        },
+        {
+          "output_object": {
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat"
+          },
+          "qualified_api/function": "z3.Solver/z3.Int/check",
+          "tool": "z3"
+        },
+        {
+          "output_object": {
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat"
+          },
+          "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+          "tool": "cvc5"
+        }
+      ]
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T04:22:49Z",
+  "index_controls": {
+    "L_R_realization": {
+      "L_signed_index": -1,
+      "R_signed_index": 1,
+      "expectation_2_status": "earned",
+      "opposite_signs": true
+    },
+    "all_pass": true,
+    "calibration": {
+      "left_shift_minus_one": true,
+      "onsite_zero": true,
+      "right_shift_plus_one": true
+    },
+    "falsifier_branch": {
+      "expectation_2_status": "killed_as_expected",
+      "mutated_L_signed_index": -1,
+      "mutated_R_signed_index": -1,
+      "name": "force_R_engine_to_left_shift",
+      "opposite_signs": false,
+      "reachable": true
+    },
+    "gauge_local_basis_invariance": {
+      "base_rule": "calibration_right_shift",
+      "gauge_rule": "gauge_reparameterized_right_shift",
+      "same_index": true,
+      "same_ratio": true
+    },
+    "index0_control": {
+      "L_control_index": 0,
+      "R_control_index": 0,
+      "alignment_killed": false,
+      "lr_distinction_detected": false,
+      "probe_family": [
+        "signed_log2_index",
+        "standard_index_ratio",
+        "information_flux_qubits_per_step"
+      ]
+    }
+  },
+  "index_table": [
+    {
+      "basis_reparameterization": null,
+      "engine_side": null,
+      "family": "calibration",
+      "information_flux_qubits_per_step": 1,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "2/1",
+        "right_support_algebra_rank": 2
+      },
+      "phase_form": "partitioned full right shift across each ring cut",
+      "rule_id": "calibration_right_shift",
+      "signed_log2_index": 1,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "2/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 1
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": null,
+      "family": "calibration",
+      "information_flux_qubits_per_step": -1,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 2,
+        "rank_ratio_exact": "1/2",
+        "right_support_algebra_rank": 1
+      },
+      "phase_form": "partitioned full left shift across each ring cut",
+      "rule_id": "calibration_left_shift",
+      "signed_log2_index": -1,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "1/2",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 1,
+        "right_crossing_qubit_wires": 0
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": null,
+      "family": "calibration",
+      "information_flux_qubits_per_step": 0,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "1/1",
+        "right_support_algebra_rank": 1
+      },
+      "phase_form": "onsite H/S/dephase control with no crossing wire",
+      "rule_id": "calibration_nonshifting_onsite",
+      "signed_log2_index": 0,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "1/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 0
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": "L_Type1_flux_IN_left",
+      "family": "L_R_realization",
+      "information_flux_qubits_per_step": -1,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 2,
+        "rank_ratio_exact": "1/2",
+        "right_support_algebra_rank": 1
+      },
+      "phase_form": "even phase then odd phase, left-moving partitioned QCA wire",
+      "rule_id": "engine_L_flux_in_left",
+      "signed_log2_index": -1,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "1/2",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 1,
+        "right_crossing_qubit_wires": 0
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": "R_Type2_flux_OUT_right",
+      "family": "L_R_realization",
+      "information_flux_qubits_per_step": 1,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "2/1",
+        "right_support_algebra_rank": 2
+      },
+      "phase_form": "even phase then odd phase, right-moving partitioned QCA wire",
+      "rule_id": "engine_R_flux_out_right",
+      "signed_log2_index": 1,
+      "stage_order": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "standard_index_ratio": "2/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 1
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": "L_control",
+      "family": "index0_control",
+      "information_flux_qubits_per_step": 0,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "1/1",
+        "right_support_algebra_rank": 1
+      },
+      "phase_form": "non-chiral onsite channel with L label retained only as metadata",
+      "rule_id": "engine_L_index0_control",
+      "signed_log2_index": 0,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "1/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 0
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": "R_control",
+      "family": "index0_control",
+      "information_flux_qubits_per_step": 0,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "1/1",
+        "right_support_algebra_rank": 1
+      },
+      "phase_form": "non-chiral onsite channel with R label retained only as metadata",
+      "rule_id": "engine_R_index0_control",
+      "signed_log2_index": 0,
+      "stage_order": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "standard_index_ratio": "1/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 0
+      }
+    },
+    {
+      "basis_reparameterization": "H_on_every_cell * shift_right * H_on_every_cell",
+      "engine_side": null,
+      "family": "gauge_invariance_control",
+      "information_flux_qubits_per_step": 1,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 1,
+        "rank_ratio_exact": "2/1",
+        "right_support_algebra_rank": 2
+      },
+      "phase_form": "right shift conjugated by onsite H basis changes before/after",
+      "rule_id": "gauge_reparameterized_right_shift",
+      "signed_log2_index": 1,
+      "stage_order": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "standard_index_ratio": "2/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 0,
+        "right_crossing_qubit_wires": 1
+      }
+    },
+    {
+      "basis_reparameterization": null,
+      "engine_side": null,
+      "family": "paired_block_form",
+      "information_flux_qubits_per_step": 0,
+      "local_dimension": 2,
+      "overlap_rank_data": {
+        "left_support_algebra_rank": 2,
+        "rank_ratio_exact": "1/1",
+        "right_support_algebra_rank": 2
+      },
+      "phase_form": "paired two-cell block swaps one wire each way; net index zero",
+      "rule_id": "paired_block_index0",
+      "signed_log2_index": 0,
+      "stage_order": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "standard_index_ratio": "1/1",
+      "standard_math_alignment_note": "For this partitioned 1D QCA row, the multiplicative GNVW index is dim(right-moving support algebra)/dim(left-moving support algebra); the reported signed index is log_2 of that ratio because all live cells are qubits.",
+      "wire_flow": {
+        "left_crossing_qubit_wires": 1,
+        "right_crossing_qubit_wires": 1
+      }
+    }
+  ],
+  "local_quantum_gates": {
+    "cptp_channel_control": {
+      "dephase_z_kraus": [
+        "|0><0|",
+        "|1><1|"
+      ],
+      "dephase_z_kraus_count": 2,
+      "purpose": "classical-limit channel control; not used to inflate the QCA index",
+      "trace_preserving_symbolic": true
+    },
+    "single_qubit": {
+      "H": {
+        "determinant_abs_squared": "1",
+        "dimension": 2,
+        "gate_id": "H",
+        "rank": 2,
+        "unitary": true
+      },
+      "S": {
+        "determinant_abs_squared": "1",
+        "dimension": 2,
+        "gate_id": "S",
+        "rank": 2,
+        "unitary": true
+      }
+    },
+    "two_qubit": {
+      "CNOT": {
+        "determinant_abs_squared": "1",
+        "dimension": 4,
+        "gate_id": "CNOT",
+        "rank": 4,
+        "unitary": true
+      },
+      "SWAP": {
+        "determinant_abs_squared": "1",
+        "dimension": 4,
+        "gate_id": "SWAP",
+        "rank": 4,
+        "unitary": true
+      }
+    }
+  },
+  "locality_comparison": {
+    "claim_ceiling": "bounded matched-state functional-graph comparison; not a v4 coupling admission",
+    "expectation_3_status": "survived",
+    "global_v3_style": {
+      "sample_states": [
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 0,
+            "R_stage": "Se"
+          },
+          "state_id": 0
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 1,
+            "R_stage": "Se"
+          },
+          "state_id": 1
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 2,
+            "R_stage": "Se"
+          },
+          "state_id": 2
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 3,
+            "R_stage": "Se"
+          },
+          "state_id": 3
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 4,
+            "R_stage": "Se"
+          },
+          "state_id": 4
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 5,
+            "R_stage": "Se"
+          },
+          "state_id": 5
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 6,
+            "R_stage": "Se"
+          },
+          "state_id": 6
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 7,
+            "R_stage": "Se"
+          },
+          "state_id": 7
+        }
+      ],
+      "signature": {
+        "edge_count": 6400,
+        "kind": "global_v3_style",
+        "period_histogram": {
+          "40": 6400
+        },
+        "scc_count": 160,
+        "state_count": 6400,
+        "terminal_class_count": 160,
+        "terminal_sizes": [
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ]
+      },
+      "signature_sha256": "da2335d521f4526d74b6613964ceb0e9e36dee8641527f5d7b48e477928a263d"
+    },
+    "local_brickwork": {
+      "sample_states": [
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 0,
+            "R_stage": "Se"
+          },
+          "state_id": 0
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 1,
+            "R_stage": "Se"
+          },
+          "state_id": 1
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 2,
+            "R_stage": "Se"
+          },
+          "state_id": 2
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 3,
+            "R_stage": "Se"
+          },
+          "state_id": 3
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 4,
+            "R_stage": "Se"
+          },
+          "state_id": 4
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 5,
+            "R_stage": "Se"
+          },
+          "state_id": 5
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 6,
+            "R_stage": "Se"
+          },
+          "state_id": 6
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 7,
+            "R_stage": "Se"
+          },
+          "state_id": 7
+        }
+      ],
+      "signature": {
+        "edge_count": 6400,
+        "kind": "local_brickwork",
+        "period_histogram": {
+          "4": 6400
+        },
+        "scc_count": 1600,
+        "state_count": 6400,
+        "terminal_class_count": 1600,
+        "terminal_sizes": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "signature_sha256": "0c920ea7d234a1567af363a923845a9cf4fe0985d2ab626ab6c23831834370b3"
+    },
+    "matched_state_count": 6400,
+    "order_shuffle_changes_local_structure": true,
+    "order_shuffle_control": {
+      "sample_states": [
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 0,
+            "R_stage": "Se"
+          },
+          "state_id": 0
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 1,
+            "R_stage": "Se"
+          },
+          "state_id": 1
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 2,
+            "R_stage": "Se"
+          },
+          "state_id": 2
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 3,
+            "R_stage": "Se"
+          },
+          "state_id": 3
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 4,
+            "R_stage": "Se"
+          },
+          "state_id": 4
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 5,
+            "R_stage": "Se"
+          },
+          "state_id": 5
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 6,
+            "R_stage": "Se"
+          },
+          "state_id": 6
+        },
+        {
+          "state": {
+            "L_cell": 0,
+            "L_stage": "Se",
+            "R_cell": 7,
+            "R_stage": "Se"
+          },
+          "state_id": 7
+        }
+      ],
+      "signature": {
+        "edge_count": 6400,
+        "kind": "order_shuffle_control",
+        "period_histogram": {
+          "4": 6400
+        },
+        "scc_count": 1600,
+        "state_count": 6400,
+        "terminal_class_count": 1600,
+        "terminal_sizes": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "signature_sha256": "8b2317089df5a8bdeb1089914a3cbf22ed02c335029c040cd7c8129acaf47b5b"
+    },
+    "terminal_or_orbit_structure_differs": true
+  },
+  "mode": "all_three_full_sims",
+  "negative_section": {
+    "falsifier_branch": {
+      "expectation_2_status": "killed_as_expected",
+      "mutated_L_signed_index": -1,
+      "mutated_R_signed_index": -1,
+      "name": "force_R_engine_to_left_shift",
+      "opposite_signs": false,
+      "reachable": true
+    },
+    "index0_control": {
+      "L_control_index": 0,
+      "R_control_index": 0,
+      "alignment_killed": false,
+      "lr_distinction_detected": false,
+      "probe_family": [
+        "signed_log2_index",
+        "standard_index_ratio",
+        "information_flux_qubits_per_step"
+      ]
+    },
+    "order_shuffle_control": {
+      "changed": true,
+      "control_signature": {
+        "edge_count": 6400,
+        "kind": "order_shuffle_control",
+        "period_histogram": {
+          "4": 6400
+        },
+        "scc_count": 1600,
+        "state_count": 6400,
+        "terminal_class_count": 1600,
+        "terminal_sizes": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "object": {
+    "index_definition": "signed_log2_index = log2(dim(right support algebra)/dim(left support algebra))",
+    "index_definition_status": "standard_math_alignment_not_owner_source",
+    "kind": "finite ring-checkerboard partitioned QCA diagnostic",
+    "qubits_on_cells": true,
+    "raw_standard_index_ratio_retained": true,
+    "same_support_as_v0": true,
+    "support_source": "ring_checkerboard_automaton_v0.support_cells"
+  },
+  "object_id": "ring_checkerboard_qca_v1",
+  "one_to_one_tool_calls": {
+    "by_engine": {
+      "jax": {
+        "calls": [
+          {
+            "output_object": {
+              "H_unitarity_gap": 4.440892098500626e-16,
+              "SWAP_unitarity_gap": 0.0,
+              "dephase_z_cptp_gap": 0.0,
+              "load_bearing_pass": true,
+              "qutip_objects": [
+                "qutip.Qobj(H)",
+                "qutip.Qobj(SWAP)",
+                "qutip.tensor(I,I)",
+                "dephase Kraus Qobj"
+              ]
+            },
+            "qualified_api/function": "qutip.Qobj/qutip.tensor",
+            "tool": "qutip"
+          },
+          {
+            "output_object": true,
+            "qualified_api/function": "sp.Rational/sp.simplify",
+            "tool": "sympy"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "z3",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "z3.Solver/z3.Int/check",
+            "tool": "z3"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "cvc5",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+            "tool": "cvc5"
+          }
+        ],
+        "pass": true
+      },
+      "julia": {
+        "calls": [
+          {
+            "output_object": {
+              "QuantumClifford_stabilizer_text": "+ X",
+              "QuantumOptics_entropy_vn_ground_state": 0,
+              "QuantumOptics_trace_dm": 1,
+              "hadamard_unitary_gap": 2.220446049250313e-16,
+              "load_bearing_pass": true
+            },
+            "qualified_api/function": "QuantumOptics.SpinBasis/dm/entropy_vn",
+            "tool": "QuantumOptics"
+          },
+          {
+            "output_object": "+ X",
+            "qualified_api/function": "S\"X\"",
+            "tool": "QuantumClifford"
+          },
+          {
+            "output_object": {
+              "global": {
+                "edge_count": 6400,
+                "kind": "global_v3_style",
+                "period_histogram": {
+                  "40": 6400
+                },
+                "scc_count": 160,
+                "state_count": 6400,
+                "terminal_class_count": 160,
+                "terminal_sizes": [
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40,
+                  40
+                ]
+              },
+              "local": {
+                "edge_count": 6400,
+                "kind": "local_brickwork",
+                "period_histogram": {
+                  "4": 6400
+                },
+                "scc_count": 1600,
+                "state_count": 6400,
+                "terminal_class_count": 1600,
+                "terminal_sizes": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              }
+            },
+            "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.strongly_connected_components",
+            "tool": "Graphs"
+          },
+          {
+            "output_object": {
+              "computed_perturbation_flip_verdict": "sat",
+              "load_bearing": true,
+              "proof_row": "Z3.jl binds computed signed index rows and checks the negated calibration/opposite-sign contract",
+              "ran": true,
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3"
+          }
+        ],
+        "pass": true
+      },
+      "pytorch": {
+        "calls": [
+          {
+            "output_object": {
+              "edge_count": 8,
+              "in_degree": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "load_bearing_pass": true,
+              "num_nodes": 4,
+              "out_degree": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "role": "torch_geometric.data.Data carrier for local ring-neighbor and opposite-neighbor edge incidence"
+            },
+            "qualified_api/function": "torch_geometric.data.Data",
+            "tool": "torch_geometric"
+          },
+          {
+            "output_object": {
+              "gradient": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "load_bearing_pass": true,
+              "max_abs_gradient": 0.0,
+              "target": [
+                1.0,
+                -1.0,
+                0.0,
+                -1.0,
+                1.0
+              ],
+              "values": [
+                1.0,
+                -1.0,
+                0.0,
+                -1.0,
+                1.0
+              ]
+            },
+            "qualified_api/function": "torch.func.jacrev",
+            "tool": "torch.func"
+          },
+          {
+            "output_object": true,
+            "qualified_api/function": "sp.Rational/sp.simplify",
+            "tool": "sympy"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "z3",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "z3.Solver/z3.Int/check",
+            "tool": "z3"
+          },
+          {
+            "output_object": {
+              "load_bearing": true,
+              "ran": true,
+              "solver": "cvc5",
+              "verdict": "unsat"
+            },
+            "qualified_api/function": "cvc5.Solver/mkConst/mkTerm/checkSat",
+            "tool": "cvc5"
+          }
+        ],
+        "pass": true
+      }
+    },
+    "pass": true
+  },
+  "parent_lineage": {
+    "authority_order_read": [
+      "owner doctrine cellular automata ring checkerboard",
+      "committed ring_checkerboard_automaton_v0 classical floor",
+      "coupling-law O1 flux row"
+    ],
+    "consumed_inputs": [
+      {
+        "id": "owner_doctrine",
+        "path": "system_v6/receipts/owner_doctrine_cellular_automata_ring_checkerboard_20260611.md",
+        "sha256": "ec82829d01d7746d94e6a3f0324997c1de52a0079dd517369e4fddaff3de51bf"
+      },
+      {
+        "id": "classical_v0_envelope",
+        "path": "system_v6/sims/ring_checkerboard_automaton_v0/results/ring_checkerboard_automaton_v0_envelope_results.json",
+        "sha256": "198175c822e8fa71129b507959ac1bc6a6ad332dfe48b8f170d44435053be3e1"
+      },
+      {
+        "id": "classical_v0_common",
+        "path": "system_v6/sims/ring_checkerboard_automaton_v0/ring_checkerboard_automaton_v0_common.py",
+        "sha256": "62f19f0c370695255c4795e5615efcef986d1f6b6ed4662687473763e5a3ab9e"
+      },
+      {
+        "id": "coupling_law_family_table",
+        "path": "system_v6/receipts/coupling_law_family_table_20260611.md",
+        "sha256": "96f0174be92f2192d8c7adaaff46d74aab6b6e2250b85d12614e882e6d8822ee"
+      }
+    ],
+    "git_commits_referenced": {
+      "b6a6d2ae9": "coupling-law O1 flux IN-left/OUT-right row",
+      "b7191aac6": "CA/ring-checkerboard doctrine with v0 adjudication and v1 QCA/index gate open",
+      "fe06d49bd": "committed classical ring_checkerboard_automaton_v0 floor"
+    }
+  },
+  "positive_section": {
+    "expectation_2_LR_opposite_indices": {
+      "L_signed_index": -1,
+      "R_signed_index": 1,
+      "expectation_2_status": "earned",
+      "opposite_signs": true
+    },
+    "expectation_3_locality_changes_coupling": "survived",
+    "index_calibrations": {
+      "left_shift_minus_one": true,
+      "onsite_zero": true,
+      "right_shift_plus_one": true
+    }
+  },
+  "promotion_allowed": false,
+  "result_integrity": {
+    "build_helper_path": "scripts/build_three_engine_envelope.py",
+    "build_helper_sha256": "199dae118fd09dec2150d7f65e388221bf4e4e3bdcd9feac0d3fbcc99ecc98dd",
+    "index_table_hash": "32e74e81eb989c96f8925924b995fe5bf171a14b9c2c35665a0c35bd16763b52",
+    "leg_result_sha256": {
+      "jax": "375e3fddeaccda46c0be1fdad3614808707be2c726a6861e6edf6ac2f7c23ad1",
+      "julia": "503571b43564d62eaee19a4de63aa52f906a2d119215857812fb11c0987ffab2",
+      "pytorch": "b98d11106b6fb05688d253b1173c9febeb79d5bdf6825f8437d338022f11877d"
+    },
+    "locality_comparison_hash": "1cd900b7ec3fe12a9d723b8a6d568bfd3afc5f9ca20433215b88e77d465cb8f3"
+  },
+  "result_path": "system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_envelope_results.json",
+  "runtime_versions": {
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.6"
+  },
+  "schema": "ring_checkerboard_qca_v1_envelope_v1",
+  "schema_version": "three_engine_sim_result_v1",
+  "sim_id": "ring_checkerboard_qca_v1",
+  "source_path": "system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_envelope.py",
+  "source_sha256": "6eefe6dd191626ea186eed172b64af44a1b9758643816eb424808c2de3714765",
+  "stability_pairs": [
+    {
+      "hash": "32e74e81eb989c96f8925924b995fe5bf171a14b9c2c35665a0c35bd16763b52",
+      "subtree": "index_table"
+    },
+    {
+      "hash": "0b79067d9ba42a9436268fc0a701c2f571dd43a274f1b32dee503f4a62e1f7d2",
+      "subtree": "index_controls"
+    },
+    {
+      "hash": "1cd900b7ec3fe12a9d723b8a6d568bfd3afc5f9ca20433215b88e77d465cb8f3",
+      "subtree": "locality_comparison"
+    },
+    {
+      "hash": "3e6a556ab362b66ede3d253eb26d8c196364e735a0c3f118b412c8f68dc2705f",
+      "subtree": "classical_limit"
+    }
+  ],
+  "support": {
+    "attached_ring_count": 4,
+    "base_ring_steps": 4,
+    "cell_sample": [
+      {
+        "anchor": -1,
+        "cell_id": 0,
+        "kappa": 0,
+        "label": "base:s00",
+        "layer": 0,
+        "ring_label": "base",
+        "step": 0
+      },
+      {
+        "anchor": -1,
+        "cell_id": 1,
+        "kappa": 1,
+        "label": "base:s01",
+        "layer": 0,
+        "ring_label": "base",
+        "step": 1
+      },
+      {
+        "anchor": -1,
+        "cell_id": 2,
+        "kappa": 0,
+        "label": "base:s02",
+        "layer": 0,
+        "ring_label": "base",
+        "step": 2
+      },
+      {
+        "anchor": -1,
+        "cell_id": 3,
+        "kappa": 1,
+        "label": "base:s03",
+        "layer": 0,
+        "ring_label": "base",
+        "step": 3
+      },
+      {
+        "anchor": 0,
+        "cell_id": 4,
+        "kappa": 1,
+        "label": "attached:a00:s00",
+        "layer": 1,
+        "ring_label": "attached:a00",
+        "step": 0
+      },
+      {
+        "anchor": 0,
+        "cell_id": 5,
+        "kappa": 0,
+        "label": "attached:a00:s01",
+        "layer": 1,
+        "ring_label": "attached:a00",
+        "step": 1
+      },
+      {
+        "anchor": 0,
+        "cell_id": 6,
+        "kappa": 1,
+        "label": "attached:a00:s02",
+        "layer": 1,
+        "ring_label": "attached:a00",
+        "step": 2
+      },
+      {
+        "anchor": 0,
+        "cell_id": 7,
+        "kappa": 0,
+        "label": "attached:a00:s03",
+        "layer": 1,
+        "ring_label": "attached:a00",
+        "step": 3
+      },
+      {
+        "anchor": 1,
+        "cell_id": 8,
+        "kappa": 1,
+        "label": "attached:a01:s00",
+        "layer": 1,
+        "ring_label": "attached:a01",
+        "step": 0
+      },
+      {
+        "anchor": 1,
+        "cell_id": 9,
+        "kappa": 0,
+        "label": "attached:a01:s01",
+        "layer": 1,
+        "ring_label": "attached:a01",
+        "step": 1
+      },
+      {
+        "anchor": 1,
+        "cell_id": 10,
+        "kappa": 1,
+        "label": "attached:a01:s02",
+        "layer": 1,
+        "ring_label": "attached:a01",
+        "step": 2
+      },
+      {
+        "anchor": 1,
+        "cell_id": 11,
+        "kappa": 0,
+        "label": "attached:a01:s03",
+        "layer": 1,
+        "ring_label": "attached:a01",
+        "step": 3
+      }
+    ],
+    "kappa_rule": "kappa(v)=(ring_layer + step) mod 2, inherited from v0",
+    "n": 4,
+    "qubit_local_dimension": 2,
+    "ring_count": 5,
+    "rings": {
+      "attached:a00": [
+        {
+          "anchor": 0,
+          "cell_id": 4,
+          "kappa": 1,
+          "label": "attached:a00:s00",
+          "layer": 1,
+          "step": 0
+        },
+        {
+          "anchor": 0,
+          "cell_id": 5,
+          "kappa": 0,
+          "label": "attached:a00:s01",
+          "layer": 1,
+          "step": 1
+        },
+        {
+          "anchor": 0,
+          "cell_id": 6,
+          "kappa": 1,
+          "label": "attached:a00:s02",
+          "layer": 1,
+          "step": 2
+        },
+        {
+          "anchor": 0,
+          "cell_id": 7,
+          "kappa": 0,
+          "label": "attached:a00:s03",
+          "layer": 1,
+          "step": 3
+        }
+      ],
+      "attached:a01": [
+        {
+          "anchor": 1,
+          "cell_id": 8,
+          "kappa": 1,
+          "label": "attached:a01:s00",
+          "layer": 1,
+          "step": 0
+        },
+        {
+          "anchor": 1,
+          "cell_id": 9,
+          "kappa": 0,
+          "label": "attached:a01:s01",
+          "layer": 1,
+          "step": 1
+        },
+        {
+          "anchor": 1,
+          "cell_id": 10,
+          "kappa": 1,
+          "label": "attached:a01:s02",
+          "layer": 1,
+          "step": 2
+        },
+        {
+          "anchor": 1,
+          "cell_id": 11,
+          "kappa": 0,
+          "label": "attached:a01:s03",
+          "layer": 1,
+          "step": 3
+        }
+      ],
+      "attached:a02": [
+        {
+          "anchor": 2,
+          "cell_id": 12,
+          "kappa": 1,
+          "label": "attached:a02:s00",
+          "layer": 1,
+          "step": 0
+        },
+        {
+          "anchor": 2,
+          "cell_id": 13,
+          "kappa": 0,
+          "label": "attached:a02:s01",
+          "layer": 1,
+          "step": 1
+        },
+        {
+          "anchor": 2,
+          "cell_id": 14,
+          "kappa": 1,
+          "label": "attached:a02:s02",
+          "layer": 1,
+          "step": 2
+        },
+        {
+          "anchor": 2,
+          "cell_id": 15,
+          "kappa": 0,
+          "label": "attached:a02:s03",
+          "layer": 1,
+          "step": 3
+        }
+      ],
+      "attached:a03": [
+        {
+          "anchor": 3,
+          "cell_id": 16,
+          "kappa": 1,
+          "label": "attached:a03:s00",
+          "layer": 1,
+          "step": 0
+        },
+        {
+          "anchor": 3,
+          "cell_id": 17,
+          "kappa": 0,
+          "label": "attached:a03:s01",
+          "layer": 1,
+          "step": 1
+        },
+        {
+          "anchor": 3,
+          "cell_id": 18,
+          "kappa": 1,
+          "label": "attached:a03:s02",
+          "layer": 1,
+          "step": 2
+        },
+        {
+          "anchor": 3,
+          "cell_id": 19,
+          "kappa": 0,
+          "label": "attached:a03:s03",
+          "layer": 1,
+          "step": 3
+        }
+      ],
+      "base": [
+        {
+          "anchor": -1,
+          "cell_id": 0,
+          "kappa": 0,
+          "label": "base:s00",
+          "layer": 0,
+          "step": 0
+        },
+        {
+          "anchor": -1,
+          "cell_id": 1,
+          "kappa": 1,
+          "label": "base:s01",
+          "layer": 0,
+          "step": 1
+        },
+        {
+          "anchor": -1,
+          "cell_id": 2,
+          "kappa": 0,
+          "label": "base:s02",
+          "layer": 0,
+          "step": 2
+        },
+        {
+          "anchor": -1,
+          "cell_id": 3,
+          "kappa": 1,
+          "label": "base:s03",
+          "layer": 0,
+          "step": 3
+        }
+      ]
+    },
+    "source": "ring_checkerboard_automaton_v0.support_cells",
+    "support_cell_count": 20
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "partitioned_QCA_local_channel_form",
+      "standard_math_GNVW_signed_index_alignment",
+      "L_R_opposite_information_flux",
+      "index_zero_control",
+      "locality_changes_coupling_comparison",
+      "typed_information_flux",
+      "smt_index_calibration_binding"
+    ],
+    "engine_tool_intent": {
+      "jax": {
+        "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed index calibration proof",
+        "qutip": "qutip.Qobj/qutip.tensor verify local unitary gates and dephase-Z CPTP Kraus completeness",
+        "sympy": "sp.Rational exact overlap-rank ratio arithmetic for standard index rows",
+        "z3": "z3.Solver binds computed signed index calibration and proves the negated calibration contract UNSAT"
+      },
+      "julia": {
+        "Graphs": "Graphs.SimpleDiGraph/add_edge!/strongly_connected_components compute matched locality terminal counts",
+        "QuantumClifford": "QuantumClifford S\"X\" stabilizer token verifies Clifford/stabilizer package path is live",
+        "QuantumOptics": "QuantumOptics.SpinBasis/spinup/dm/entropy_vn verify one-qubit density and entropy row",
+        "Z3": "Z3.Solver/IntVar/add/check binds computed signed index rows"
+      },
+      "pytorch": {
+        "cvc5": "cvc5.Solver/mkTerm/checkSat mirrors the computed L/R index proof",
+        "sympy": "sp.Rational exact index-ratio inverse check",
+        "torch.func": "torch.func.jacrev verifies zero gradient of the signed-index calibration penalty",
+        "torch_geometric": "torch_geometric.data.Data carries local ring incidence and gates degree equality",
+        "z3": "z3.Solver binds computed L/R indices and proves non-opposite relation UNSAT"
+      }
+    }
+  },
+  "typed_information_flux_rows": [
+    {
+      "counting_entropy_bits_per_cut": 1,
+      "information_flux_qubits_per_step": 1,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "calibration_right_shift",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+      "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+    },
+    {
+      "counting_entropy_bits_per_cut": 1,
+      "information_flux_qubits_per_step": -1,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "calibration_left_shift",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "-1*log(2)",
+      "von_neumann_entropy_flux_nats_float": -0.6931471805599453
+    },
+    {
+      "counting_entropy_bits_per_cut": 0,
+      "information_flux_qubits_per_step": 0,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "calibration_nonshifting_onsite",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "0",
+      "von_neumann_entropy_flux_nats_float": 0.0
+    },
+    {
+      "counting_entropy_bits_per_cut": 1,
+      "information_flux_qubits_per_step": -1,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "engine_L_flux_in_left",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "-1*log(2)",
+      "von_neumann_entropy_flux_nats_float": -0.6931471805599453
+    },
+    {
+      "counting_entropy_bits_per_cut": 1,
+      "information_flux_qubits_per_step": 1,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "engine_R_flux_out_right",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+      "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+    },
+    {
+      "counting_entropy_bits_per_cut": 0,
+      "information_flux_qubits_per_step": 0,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "engine_L_index0_control",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "0",
+      "von_neumann_entropy_flux_nats_float": 0.0
+    },
+    {
+      "counting_entropy_bits_per_cut": 0,
+      "information_flux_qubits_per_step": 0,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "engine_R_index0_control",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "0",
+      "von_neumann_entropy_flux_nats_float": 0.0
+    },
+    {
+      "counting_entropy_bits_per_cut": 1,
+      "information_flux_qubits_per_step": 1,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "gauge_reparameterized_right_shift",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "1*log(2)",
+      "von_neumann_entropy_flux_nats_float": 0.6931471805599453
+    },
+    {
+      "counting_entropy_bits_per_cut": 0,
+      "information_flux_qubits_per_step": 0,
+      "operational_meaning": "net qubit support algebra transported across one oriented cut per step",
+      "rule_id": "paired_block_index0",
+      "typed_label": "qca_signed_information_flux",
+      "von_neumann_entropy_flux_nats_exact": "0",
+      "von_neumann_entropy_flux_nats_float": 0.0
+    }
+  ],
+  "validator_expected_commands": [
+    "JULIA_LOAD_PATH=@:@stdlib /opt/homebrew/bin/julia --startup-file=no --project=/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_julia.jl",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_jax.py",
+    "env NUMBA_CACHE_DIR=/private/tmp/codex_numba_cache /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_pytorch.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ring_checkerboard_qca_v1/ring_checkerboard_qca_v1_envelope.py",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/validate_three_engine_sim_result.py --require-pytorch --strict-source-backed --require-tool-intent system_v6/sims/ring_checkerboard_qca_v1/results/ring_checkerboard_qca_v1_envelope_results.json",
+    "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 system_v6/sims/ring_checkerboard_qca_v1/validate_ring_checkerboard_qca_v1.py --phase builder",
+    "PYTHONPATH=system_v6/sims/ring_checkerboard_qca_v1 /Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 -m pytest -q system_v6/sims/ring_checkerboard_qca_v1/tests"
+  ]
+}

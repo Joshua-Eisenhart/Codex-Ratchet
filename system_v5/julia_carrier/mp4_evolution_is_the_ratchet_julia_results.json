@@ -1,0 +1,755 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
+    "numpy": "None",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite matrix/vector computation for the mirror",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source alignment for the four canonical terrain strategy rows and QIT ratchet strategy order",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing peer backend written by the Python driver",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "load-bearing independent Julia mirror for finite x64-equivalent constraint-survival logits, controls, and parity rows",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used",
+      "tried": false,
+      "used": false
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing gate from real owner carrier receipts; erasing the gate changes survivor selection to no-selection",
+      "tried": true,
+      "used": true
+    }
+  },
+  "actual_tools_used": [
+    "julia",
+    "owner_julia_carrier",
+    "canonical_qit_engine_specs.py",
+    "Julia LinearAlgebra"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "finite population/candidate carrier under constraints is selected by a constraint-survival ratchet operator",
+    "the same finite operator shape is used on canonical QIT terrain rows and population rows",
+    "the four canonical terrain strategy patterns map to WinWin, WinLose, LoseWin, LoseLose",
+    "the finite perception readout tracks viability better than truth on this carrier",
+    "JAX and Julia agree on keyed finite readouts within 1e-9"
+  ],
+  "artifacts_emitted": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_evolution_is_the_ratchet_julia_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/results/mp4_evolution_is_the_ratchet_results.json"
+  ],
+  "backend": "julia",
+  "blocked_consumers": [
+    "biology_admission",
+    "physics_admission",
+    "natural_selection_derivation",
+    "hoffman_derivation",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "blocked_consumers_expanded": [
+    "biology_admission",
+    "physics_admission",
+    "natural_selection_derivation",
+    "hoffman_derivation",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream_admission": {
+      "blocked_consumers": [
+        "biology_admission",
+        "physics_admission",
+        "natural_selection_derivation",
+        "hoffman_derivation",
+        "M_C",
+        "Axis0",
+        "bridge",
+        "formal_admission",
+        "promotion"
+      ],
+      "claim_ceiling": "Finite structural unification witness in the owner's entropic-monist frame: a population/candidate carrier under constraints is selected by the same finite constraint-survival ratchet operator used on the QIT terrain carrier. This is not a proof or derivation of biology, evolution, physics, natural selection, Hoffman, M(C), Axis0, bridge, or any physics admission.",
+      "pass": true
+    },
+    "classification_fence": {
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    },
+    "no_numpy_compute": {
+      "pass": true,
+      "reason": "Julia mirror uses Julia LinearAlgebra only; JAX peer uses jax.numpy as jnp."
+    }
+  },
+  "branch_status_before_run": "scratch diagnostic only",
+  "bridge_layer": "none",
+  "canonical_qit_engine_specs": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/canonical_qit_engine_specs.py",
+    "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+    "strategy_rows": [
+      {
+        "axis": "x",
+        "engine_type": 0,
+        "inner_result": "win",
+        "inner_sign": -1,
+        "outer_result": "LOSE",
+        "outer_sign": 1,
+        "pattern": "LOSEwin",
+        "perception": "Se",
+        "rate": 0.18,
+        "realization": "Funnel",
+        "strategy": "LoseWin",
+        "terrain_strength_component": 0.245
+      },
+      {
+        "axis": "y",
+        "engine_type": 0,
+        "inner_result": "lose",
+        "inner_sign": 1,
+        "outer_result": "WIN",
+        "outer_sign": -1,
+        "pattern": "WINlose",
+        "perception": "Ne",
+        "rate": 0.13,
+        "realization": "Vortex",
+        "strategy": "WinLose",
+        "terrain_strength_component": 0.15500000000000003
+      },
+      {
+        "axis": "z",
+        "engine_type": 0,
+        "inner_result": "lose",
+        "inner_sign": 1,
+        "outer_result": "LOSE",
+        "outer_sign": -1,
+        "pattern": "loseLOSE",
+        "perception": "Ni",
+        "rate": 0.28,
+        "realization": "Pit",
+        "strategy": "LoseLose",
+        "terrain_strength_component": 0.285
+      },
+      {
+        "axis": "z",
+        "engine_type": 0,
+        "inner_result": "win",
+        "inner_sign": -1,
+        "outer_result": "WIN",
+        "outer_sign": 1,
+        "pattern": "winWIN",
+        "perception": "Si",
+        "rate": 0.2,
+        "realization": "Hill",
+        "strategy": "WinWin",
+        "terrain_strength_component": 0.37500000000000006
+      },
+      {
+        "axis": "x",
+        "engine_type": 1,
+        "inner_result": "lose",
+        "inner_sign": -1,
+        "outer_result": "WIN",
+        "outer_sign": 1,
+        "pattern": "loseWIN",
+        "perception": "Se",
+        "rate": 0.18,
+        "realization": "Cannon",
+        "strategy": "LoseWin",
+        "terrain_strength_component": 0.245
+      },
+      {
+        "axis": "y",
+        "engine_type": 1,
+        "inner_result": "win",
+        "inner_sign": 1,
+        "outer_result": "LOSE",
+        "outer_sign": -1,
+        "pattern": "winLOSE",
+        "perception": "Ne",
+        "rate": 0.15,
+        "realization": "Spiral",
+        "strategy": "WinLose",
+        "terrain_strength_component": 0.175
+      },
+      {
+        "axis": "x",
+        "engine_type": 1,
+        "inner_result": "lose",
+        "inner_sign": 1,
+        "outer_result": "LOSE",
+        "outer_sign": -1,
+        "pattern": "LOSElose",
+        "perception": "Ni",
+        "rate": 0.27,
+        "realization": "Source",
+        "strategy": "LoseLose",
+        "terrain_strength_component": 0.21500000000000002
+      },
+      {
+        "axis": "z",
+        "engine_type": 1,
+        "inner_result": "win",
+        "inner_sign": -1,
+        "outer_result": "WIN",
+        "outer_sign": 1,
+        "pattern": "WINwin",
+        "perception": "Si",
+        "rate": 0.21,
+        "realization": "Citadel",
+        "strategy": "WinWin",
+        "terrain_strength_component": 0.385
+      }
+    ],
+    "strategy_strengths": {
+      "LoseLose": 0.25,
+      "LoseWin": 0.245,
+      "WinLose": 0.165,
+      "WinWin": 0.38
+    }
+  },
+  "carrier_layer": "owner Julia carrier receipts plus canonical QIT terrain strategy rows",
+  "claim_ceiling": "Finite structural unification witness in the owner's entropic-monist frame: a population/candidate carrier under constraints is selected by the same finite constraint-survival ratchet operator used on the QIT terrain carrier. This is not a proof or derivation of biology, evolution, physics, natural selection, Hoffman, M(C), Axis0, bridge, or any physics admission.",
+  "classification": "scratch_diagnostic",
+  "codomain_or_output": "finite survivor probabilities, selected strategy, controls, parity rows, and claim fence",
+  "cut_layer": "none",
+  "domain": "four finite candidate rows keyed by WinWin, WinLose, LoseWin, LoseLose",
+  "elapsed_seconds": 1.6251518726348877,
+  "eligible_consumers": [],
+  "fail_rule": "any owner carrier gate row, four-strategy map, no-constraint control, random-fitness control, claim fence, or parity row fails",
+  "finite_map": "softmax(gate * constraint_survival_logits(candidate_carrier, canonical_qit_terrain_strengths))",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T04:27:49Z",
+  "generated_at_unix": 1.780806469913668e9,
+  "geometry_layer": "density/Hopf/golden-Weyl/division-algebra/G2 owner-carrier gate; no downstream admission",
+  "graph_surfaces_used": [],
+  "graveyard_companions": {
+    "biology_or_natural_selection_derivation_not_obtained": {
+      "derived": false,
+      "pass": true,
+      "reason": "This finite carrier cannot derive biological evolution or natural selection; it only witnesses a structural constraint-survival operator."
+    },
+    "no_constraint_control_no_selection": {
+      "derived": false,
+      "pass": true,
+      "reason": "With the constraint operator removed, the population carrier is not selected.",
+      "selection_gap": 0.0
+    },
+    "physics_admission_not_obtained": {
+      "derived": false,
+      "pass": true,
+      "reason": "The result is not physics admission and does not derive the named physics problem."
+    },
+    "random_fitness_control_no_fitness_beats_truth_signal": {
+      "derived": false,
+      "pass": true,
+      "perception_random_fitness_corr": -0.8547695597330103,
+      "random_fitness_signal": -0.22723146496794155,
+      "reason": "A deterministic random fitness vector does not reproduce the viability-tracking signal."
+    }
+  },
+  "law_or_candidate_tested": "EVOLUTION = THE RATCHET as a finite structural constraint-survival witness, not admitted biology",
+  "name": "mp4_evolution_is_the_ratchet",
+  "nearby_variants": {
+    "passed": 3,
+    "rows": {
+      "no_constraint": true,
+      "owner_erased": true,
+      "random_fitness": true
+    },
+    "total": 3
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp4_evolution_is_the_ratchet",
+  "owner_carrier": {
+    "checks": {
+      "all_owner_receipts_fenced_no_promotion": {
+        "pass": true,
+        "source": "owner receipt metadata"
+      },
+      "canonical_qit_engine_specs_available": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/canonical_qit_engine_specs.py"
+      },
+      "clifford_torus_nested_hopf_foliation": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation_julia_results.json"
+      },
+      "density_matrix_spinor_lift_hopf_fiber": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift_julia_results.json"
+      },
+      "division_ladder_hurwitz_property_losses": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_julia_results.json"
+      },
+      "golden_weyl_linking_load_bearing": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json"
+      },
+      "octonion_g2_derivation_automorphism": {
+        "pass": true,
+        "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_julia_results.json"
+      },
+      "owner_jax_carrier_live_functions": {
+        "live_density_residual": 0.0,
+        "live_division_o_assoc": 2.0,
+        "live_g2_constraint_cols": 64.0,
+        "live_hopf_s3_residual": 0.0,
+        "pass": true,
+        "source": "Julia mirror of owner carrier live-function anchors"
+      }
+    },
+    "erased_gate_numeric": 0.0,
+    "gate_numeric": 1.0,
+    "owner_carrier_load_bearing": true,
+    "owner_julia_carrier": "load_bearing",
+    "receipts": {
+      "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation_julia_results.json",
+      "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift_julia_results.json",
+      "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder_julia_results.json",
+      "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+      "golden_weyl_ledger": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_ledger.json",
+      "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism_julia_results.json"
+    },
+    "result_hashes": {
+      "clifford_torus_nested_hopf_foliation": "b997e0b4a071190312333dc13903db60351aa10c43b82fb705085232349c4e74",
+      "density_matrix_spinor_lift": "95f1bc01dfddb8d0b90a59e230c871872249fc1e198dd3cb6960c251aaafd8d0",
+      "division_algebra_ratchet_ladder": "b7707f01d268010231c1a791a39d8988a4058f4103301240fe18f988511bd4e0",
+      "golden_weyl": "2193864486f0e5d9198ed589c7e44f2ee49b0457b23676a2d25a51b40415488d",
+      "golden_weyl_ledger": "11cc23aec40214c65492f06d52ad68fb364913a8dbf657a2516ed5e2ed14c120",
+      "octonion_G2_automorphism": "0076abf08cf436bcf9099a905ec1a3b7d071a61188beac361cc1d34b8ea42e4d"
+    },
+    "signature_scalar": 8.867622875518846,
+    "signature_terms": {
+      "density_fiber_dim": 1.0,
+      "division_O_associator_max": 2.0,
+      "division_S_zero_signed_count_scaled": 0.65625,
+      "g2_derivation_dim_scaled": 1.0,
+      "golden_weyl_linking": 0.9999999998157145,
+      "hopf_metric_det_min": 0.08637287570313155,
+      "live_density_residual_complement": 1.0,
+      "live_division_o_assoc_scaled": 0.125,
+      "live_g2_constraint_cols_scaled": 1.0,
+      "live_hopf_s3_residual_complement": 1.0
+    },
+    "source_hashes": {
+      "canonical_qit_engine_specs": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+      "clifford_torus_nested_hopf_foliation": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af",
+      "clifford_torus_nested_hopf_foliation_jax": "a55594e5dbc0629d0b8419beed97811925f113c299c0b8b0a86f5912f9472a02",
+      "density_matrix_spinor_lift": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424",
+      "density_matrix_spinor_lift_jax": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a",
+      "division_algebra_ratchet_ladder": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878",
+      "division_algebra_ratchet_ladder_jax": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24",
+      "golden_weyl": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070",
+      "golden_weyl_jax_snapshot": "2bad22d3ab60ece229a59e36bc75d247ea2ff5acea834868eb1c276cb4d590ab",
+      "octonion_G2_automorphism": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347",
+      "octonion_G2_automorphism_jax": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a"
+    },
+    "sources": {
+      "canonical_qit_engine_specs": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/canonical_qit_engine_specs.py",
+      "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "clifford_torus_nested_hopf_foliation_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+      "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "density_matrix_spinor_lift_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+      "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "division_algebra_ratchet_ladder_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+      "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "golden_weyl_jax_snapshot": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+      "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "octonion_G2_automorphism_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py"
+    }
+  },
+  "owner_julia_carrier": "load_bearing",
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "parity_max_diff": 1.1102230246251565e-16,
+    "parity_max_diff_key": "perception_truth_corr",
+    "pass": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/results/mp4_evolution_is_the_ratchet_results.json",
+    "scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 0.245,
+        "julia": 0.245,
+        "key": "terrain_strength_LoseWin"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "qit_row_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.9963526599490642,
+        "julia": 0.9963526599490642,
+        "key": "perception_fitness_corr"
+      },
+      {
+        "abs_diff": 5.551115123125783e-17,
+        "jax": 0.20872885869629976,
+        "julia": 0.2087288586962998,
+        "key": "physics_selection_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "owner_erased_selection_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.404575840531797,
+        "julia": 0.404575840531797,
+        "key": "population_selected_probability"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.165,
+        "julia": 0.165,
+        "key": "terrain_strength_WinLose"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 3.0,
+        "julia": 3.0,
+        "key": "random_fitness_argmax_index"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "population_fitness_argmax_index"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": -0.6275380947650686,
+        "julia": -0.6275380947650687,
+        "key": "perception_truth_corr"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.38,
+        "julia": 0.38,
+        "key": "terrain_strength_WinWin"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.329271391965378,
+        "julia": 0.329271391965378,
+        "key": "population_selection_gap"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "owner_gate_numeric"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.25,
+        "julia": 0.25,
+        "key": "terrain_strength_LoseLose"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.867622875518846,
+        "julia": 8.867622875518846,
+        "key": "owner_signature_scalar"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "population_truth_argmax_index"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.8547695597330103,
+        "julia": -0.8547695597330103,
+        "key": "perception_random_fitness_corr"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "strategy_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.6238907547141328,
+        "julia": 1.6238907547141328,
+        "key": "fitness_beats_truth_signal"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "no_constraint_selection_gap"
+      },
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": -0.22723146496794167,
+        "julia": -0.22723146496794155,
+        "key": "random_fitness_signal"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "population_selected_index"
+      }
+    ],
+    "status": "compared",
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "pass_rule": "local positive/control/boundary checks pass and keyed JAX-Julia parity is within 1e-9",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/results/mp4_evolution_is_the_ratchet_results.json",
+  "population_carrier": {
+    "columns": [
+      "truth_score",
+      "viability_score",
+      "perception_signal",
+      "constraint_cost"
+    ],
+    "rows": [
+      [
+        0.62,
+        0.92,
+        0.36,
+        0.88
+      ],
+      [
+        0.96,
+        0.72,
+        0.81,
+        0.18
+      ],
+      [
+        0.93,
+        0.68,
+        0.83,
+        0.21
+      ],
+      [
+        0.08,
+        0.15,
+        0.24,
+        0.54
+      ]
+    ],
+    "strategy_order": [
+      "WinWin",
+      "WinLose",
+      "LoseWin",
+      "LoseLose"
+    ]
+  },
+  "positive": {
+    "fitness_beats_truth_signal": {
+      "fitness_argmax_strategy": "WinWin",
+      "pass": true,
+      "perception_fitness_corr": 0.9963526599490642,
+      "perception_truth_corr": -0.6275380947650687,
+      "selected_strategy": "WinWin",
+      "truth_argmax_strategy": "WinLose"
+    },
+    "four_strategy_structure_from_canonical_qit_terrains": {
+      "pass": true,
+      "qit_counts_by_strategy": {
+        "LoseLose": 2,
+        "LoseWin": 2,
+        "WinLose": 2,
+        "WinWin": 2
+      },
+      "strategies": [
+        "WinWin",
+        "WinLose",
+        "LoseWin",
+        "LoseLose"
+      ]
+    },
+    "owner_real_carrier_gate_load_bearing": {
+      "owner_julia_carrier": "load_bearing",
+      "pass": true,
+      "reason": "The finite ratchet logits are multiplied by the owner carrier gate; erasing that gate changes the result to uniform no-selection.",
+      "signature_scalar": 8.867622875518846
+    },
+    "same_finite_ratchet_operator_selects_population_survivor": {
+      "operator": "finite_constraint_survival_softmax_v1",
+      "pass": true,
+      "physics_selection_gap": 0.2087288586962998,
+      "selected_strategy": "WinWin",
+      "selection_gap": 0.329271391965378
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "biology_admission",
+    "physics_admission",
+    "natural_selection_derivation",
+    "hoffman_derivation",
+    "M_C",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "promotion"
+  ],
+  "promotion_status": "diagnostic_only",
+  "proof_surfaces_used": [],
+  "required_artifacts": [
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_evolution_is_the_ratchet_julia_results.json",
+    "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/../ops/formal_scouts/results/mp4_evolution_is_the_ratchet_results.json"
+  ],
+  "required_tools": [
+    "jax",
+    "jax.numpy",
+    "julia",
+    "owner_julia_carrier",
+    "canonical_qit_engine_specs.py"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp4_evolution_is_the_ratchet_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "claim_ceiling": "scratch_diagnostic_no_promotion_no_formal_admission_no_physics_or_biology_admission",
+    "fitness_argmax_strategy": "WinWin",
+    "fitness_beats_truth": true,
+    "four_strategies": true,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_max_diff": 1.1102230246251565e-16,
+    "same_ratchet_as_physics": true,
+    "selected_strategy": "WinWin",
+    "selection_load_bearing": true,
+    "truth_argmax_strategy": "WinLose"
+  },
+  "root_constraints_in_force": {
+    "F01": "finite four-row population carrier, finite QIT terrain strategy carrier, finite owner receipt gate, finite controls",
+    "N01": "constraint/order selection is load-bearing; no-constraint and owner-erased controls change the finite result"
+  },
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "shared_booleans": {
+    "biology_derivation_derived": false,
+    "claim_fence_ok": true,
+    "fitness_beats_truth": true,
+    "four_strategies": true,
+    "no_constraint_no_selection": true,
+    "owner_carrier_load_bearing": true,
+    "owner_erased_flips_selection": true,
+    "physics_admission_derived": false,
+    "random_fitness_no_fitness_beats_truth_signal": true,
+    "same_ratchet_as_physics": true,
+    "selection_load_bearing": true
+  },
+  "shared_scalars": {
+    "fitness_beats_truth_signal": 1.6238907547141328,
+    "no_constraint_selection_gap": 0.0,
+    "owner_erased_selection_gap": 0.0,
+    "owner_gate_numeric": 1.0,
+    "owner_signature_scalar": 8.867622875518846,
+    "perception_fitness_corr": 0.9963526599490642,
+    "perception_random_fitness_corr": -0.8547695597330103,
+    "perception_truth_corr": -0.6275380947650687,
+    "physics_selection_gap": 0.2087288586962998,
+    "population_fitness_argmax_index": 0.0,
+    "population_selected_index": 0.0,
+    "population_selected_probability": 0.404575840531797,
+    "population_selection_gap": 0.329271391965378,
+    "population_truth_argmax_index": 1.0,
+    "qit_row_count": 8.0,
+    "random_fitness_argmax_index": 3.0,
+    "random_fitness_signal": -0.22723146496794155,
+    "strategy_count": 4.0,
+    "terrain_strength_LoseLose": 0.25,
+    "terrain_strength_LoseWin": 0.245,
+    "terrain_strength_WinLose": 0.165,
+    "terrain_strength_WinWin": 0.38
+  },
+  "sim_class": "finite_formal_scout_evolution_ratchet_carrier_probe",
+  "sim_execution_kind": "nonclassical",
+  "sim_id": "mp4_evolution_is_the_ratchet",
+  "source_alignment_category": "mp4_evolution_is_the_ratchet",
+  "tier": "finite MP4 structural unification scout",
+  "tool_integration_depth": {
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py": "load_bearing",
+    "jax": "load_bearing",
+    "julia": "load_bearing",
+    "numpy": "None",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing finite matrix/vector computation for the mirror",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "load-bearing source alignment for the four canonical terrain strategy rows and QIT ratchet strategy order",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing peer backend written by the Python driver",
+      "tried": true,
+      "used": true
+    },
+    "julia": {
+      "reason": "load-bearing independent Julia mirror for finite x64-equivalent constraint-survival logits, controls, and parity rows",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "not used",
+      "tried": false,
+      "used": false
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing gate from real owner carrier receipts; erasing the gate changes survivor selection to no-selection",
+      "tried": true,
+      "used": true
+    }
+  },
+  "topology_surfaces_used": [
+    "golden_weyl linking receipt",
+    "clifford_torus_nested_hopf_foliation receipt"
+  ],
+  "version": "1.0",
+  "why_not_v4_probes": {
+    "no_constraint_selection_gap": 0.0,
+    "owner_erased_selection_gap": 0.0,
+    "random_fitness_signal": -0.22723146496794155,
+    "real_selection_gap": 0.329271391965378,
+    "reason": "A no-constraint, owner-erased, or random-fitness probe cannot support the structural ratchet witness."
+  },
+  "witness_trace_id": "mp4_evolution_constraint_survival_ratchet_owner_carrier_gate"
+}

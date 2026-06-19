@@ -1,0 +1,120 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph rebuild and order metadata",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing computed-value SMT identity and erased flip",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "33-cell directed graph carrier and SCC/order metadata",
+      "receipt_id": "julia_Graphs_axis0_carrier",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "stability/nonzero/independence identity with erased flip",
+      "receipt_id": "julia_Z3_axis0_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_ceiling": "axis_readout_candidate_only",
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_values": {
+    "changed_edge_count": 35,
+    "edge_count": 198,
+    "graphs_collapsed_edge_count": 116,
+    "graphs_scc_count": 2,
+    "nonzero_gradient_edges": 90,
+    "polarity_counts": {
+      "axis0_minus_homeostatic_response": 17,
+      "axis0_plus_allo_response": 15,
+      "neutral_no_polarity": 1
+    },
+    "readout_signature_sha256": "30fc12d231595c6e25124dfc1b109755926e7f085d84acdd89223a1492d89038",
+    "stable_edge_count": 163,
+    "state_count": 33
+  },
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "axis3_not_recoverable": 1,
+        "axis6_not_recoverable": 1,
+        "changed_edge_count": 35,
+        "edge_count": 198,
+        "nonzero_gradient_edges": 90,
+        "stable_edge_count": 163
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "engine_mode": "three_engine_exact_axis0_readout_candidate_on_family_a_33_cell_carrier",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T05:30:38Z",
+  "object_id": "discrete_axis0_field_v0_julia",
+  "package_observables": {
+    "Graphs": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components rebuilt carrier order metadata",
+    "Z3": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check computed stability/independence identity"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "Dates",
+    "SHA"
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/discrete_axis0_field_v0/results/discrete_axis0_field_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "discrete_axis0_field_v0",
+  "source_backing_probe": {
+    "Graphs_edge_count": 2,
+    "Graphs_vertex_count": 33,
+    "Z3_erased_flip_verdict": "sat",
+    "Z3_identity_verdict": "unsat",
+    "pass": true
+  },
+  "source_path": "system_v6/sims/discrete_axis0_field_v0/discrete_axis0_field_v0_julia.jl",
+  "source_sha256": "ab679dc813fbf84e119c5c2ef3a5716b6883c0f903545473b1f53073f7a4c104",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_axis0_carrier",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_axis0_identity",
+      "tool": "Z3"
+    }
+  ]
+}

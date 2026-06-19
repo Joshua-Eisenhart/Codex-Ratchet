@@ -1,0 +1,299 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "SHA": "supportive",
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": {
+      "reason": "supportive result serialization",
+      "used": true
+    },
+    "SHA": {
+      "reason": "supportive source hash",
+      "used": true
+    },
+    "Symbolics": {
+      "reason": "load-bearing Julia reference symbolic expansion and derivative rows",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side finite rational witness polarity",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Z3"
+  ],
+  "all_pass": true,
+  "boundary": {
+    "heavy_local_not_authorized": [
+      "S2.R3.5_boundary_conditioning_variant"
+    ],
+    "phase": "light-symbolic phase 1 only",
+    "pytorch_omitted": "no graph/network/autograd/tensor claim path exists"
+  },
+  "build_gates": {
+    "anchor_classifies_as_itself": true,
+    "julia_z3_flip_control_sat": true,
+    "julia_z3_positive_unsat": true,
+    "r3_1_excluded_by_pin": true,
+    "r3_2_excluded_by_leaf_spectrum": true,
+    "r3_3_excluded_by_curvature_stokes": true,
+    "r3_4_excluded_by_expanded_vector": true,
+    "symbolics_rows_built": true
+  },
+  "candidate_verdicts": [
+    {
+      "id": "S2.R3.0_committed",
+      "symbolics_derivative_dx": "1",
+      "symbolics_expanded": "x",
+      "symbolics_form": "x",
+      "verdict": "anchor"
+    },
+    {
+      "id": "S2.R3.1_large_gauge_chi_shift__plus_1_2",
+      "symbolics_derivative_dx": "1",
+      "symbolics_expanded": "(1//2) + x",
+      "symbolics_form": "x + 1//2",
+      "verdict": "excluded-by-lifted-holonomy-convention-pin"
+    },
+    {
+      "id": "S2.R3.1_large_gauge_chi_shift__minus_1_2",
+      "symbolics_derivative_dx": "1",
+      "symbolics_expanded": "-(1//2) + x",
+      "symbolics_form": "x - 1//2",
+      "verdict": "excluded-by-lifted-holonomy-convention-pin"
+    },
+    {
+      "id": "S2.R3.2_same_curvature_shifted_holonomy__plus_1_4",
+      "symbolics_derivative_dx": "1",
+      "symbolics_expanded": "(1//4) + x",
+      "symbolics_form": "x + 1//4",
+      "verdict": "excluded-by-leaf-holonomy-spectrum"
+    },
+    {
+      "id": "S2.R3.2_same_curvature_shifted_holonomy__minus_1_4",
+      "symbolics_derivative_dx": "1",
+      "symbolics_expanded": "-(1//4) + x",
+      "symbolics_form": "x - 1//4",
+      "verdict": "excluded-by-leaf-holonomy-spectrum"
+    },
+    {
+      "id": "S2.R3.3_endpoint_chern_preserving_bump__plus_1_10",
+      "symbolics_derivative_dx": "1 - (1//5)*x",
+      "symbolics_expanded": "(1//10) + x - (1//10)*(x^2)",
+      "symbolics_form": "x + (1//10)*(1 - x^2)",
+      "verdict": "excluded-by-curvature-density-and-annular-Stokes"
+    },
+    {
+      "id": "S2.R3.3_endpoint_chern_preserving_bump__minus_1_10",
+      "symbolics_derivative_dx": "1 + (1//5)*x",
+      "symbolics_expanded": "-(1//10) + x + (1//10)*(x^2)",
+      "symbolics_form": "x - (1//10)*(1 - x^2)",
+      "verdict": "excluded-by-curvature-density-and-annular-Stokes"
+    },
+    {
+      "id": "S2.R3.4_two_leaf_holonomy_match__plus_1_5",
+      "symbolics_derivative_dx": "(9//10) + (2//5)*x",
+      "symbolics_expanded": "(9//10)*x + (1//5)*(x^2)",
+      "symbolics_form": "x + (1//5)*x*(x - 1//2)",
+      "verdict": "excluded-by-expanded-leaf-holonomy-vector"
+    },
+    {
+      "id": "S2.R3.4_two_leaf_holonomy_match__minus_1_5",
+      "symbolics_derivative_dx": "(11//10) - (2//5)*x",
+      "symbolics_expanded": "(11//10)*x - (1//5)*(x^2)",
+      "symbolics_form": "x - (1//5)*x*(x - 1//2)",
+      "verdict": "excluded-by-expanded-leaf-holonomy-vector"
+    }
+  ],
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "control_verdicts": [
+    {
+      "id": "control.anchor_self",
+      "symbolics_form": "x",
+      "verdict": "anchor"
+    },
+    {
+      "id": "control.alias_reparameterized_committed",
+      "symbolics_form": "2*cos(eta)^2-1 -> x",
+      "verdict": "alias"
+    },
+    {
+      "id": "control.wrong_sign_non_alias",
+      "symbolics_form": "-x",
+      "verdict": "excluded-by-first-teeth-row-curvature-density"
+    }
+  ],
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "claim": "computed rational witness rows are all nonzero",
+      "flip_control_verdict": "sat",
+      "load_bearing": true,
+      "negated_assertion": "at least one required nonzero witness is zero",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat",
+      "witness_values": {
+        "R3_1_minus_holonomy_pi4_scaled_by_2": 1,
+        "R3_1_plus_holonomy_pi4_scaled_by_2": -1,
+        "R3_2_minus_holonomy_pi4_scaled_by_4": 1,
+        "R3_2_plus_holonomy_pi4_scaled_by_4": -1,
+        "R3_3_minus_curvature_delta_x0_scaled_by_5": 1,
+        "R3_3_plus_curvature_delta_x0_scaled_by_5": -1,
+        "R3_4_minus_holonomy_pi3_scaled_by_10": 1,
+        "R3_4_plus_holonomy_pi3_scaled_by_10": -1,
+        "wrong_sign_curvature_delta_scaled_by_2": -2
+      }
+    }
+  },
+  "engine_role_note": "Julia Symbolics reference rebuilds the canonical polynomial rows; Z3.jl binds the rational finite witness polarity.",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T00:18:41Z",
+  "negative": {
+    "excluded_candidate_count": 8,
+    "wrong_sign_control": {
+      "id": "control.wrong_sign_non_alias",
+      "symbolics_form": "-x",
+      "verdict": "excluded-by-first-teeth-row-curvature-density"
+    }
+  },
+  "package_observables": {
+    "Z3": "Z3.Solver/check proves finite rational nonzero witness rows UNSAT under negation and SAT under erased flip"
+  },
+  "packages_used": [
+    "Symbolics",
+    "Z3",
+    "JSON",
+    "SHA",
+    "Dates"
+  ],
+  "positive": {
+    "anchor_and_alias_control": [
+      {
+        "id": "control.anchor_self",
+        "symbolics_form": "x",
+        "verdict": "anchor"
+      },
+      {
+        "id": "control.alias_reparameterized_committed",
+        "symbolics_form": "2*cos(eta)^2-1 -> x",
+        "verdict": "alias"
+      }
+    ],
+    "symbolics_reference_rows": [
+      {
+        "id": "S2.R3.0_committed",
+        "symbolics_derivative_dx": "1",
+        "symbolics_expanded": "x",
+        "symbolics_form": "x",
+        "verdict": "anchor"
+      },
+      {
+        "id": "S2.R3.1_large_gauge_chi_shift__plus_1_2",
+        "symbolics_derivative_dx": "1",
+        "symbolics_expanded": "(1//2) + x",
+        "symbolics_form": "x + 1//2",
+        "verdict": "excluded-by-lifted-holonomy-convention-pin"
+      },
+      {
+        "id": "S2.R3.1_large_gauge_chi_shift__minus_1_2",
+        "symbolics_derivative_dx": "1",
+        "symbolics_expanded": "-(1//2) + x",
+        "symbolics_form": "x - 1//2",
+        "verdict": "excluded-by-lifted-holonomy-convention-pin"
+      },
+      {
+        "id": "S2.R3.2_same_curvature_shifted_holonomy__plus_1_4",
+        "symbolics_derivative_dx": "1",
+        "symbolics_expanded": "(1//4) + x",
+        "symbolics_form": "x + 1//4",
+        "verdict": "excluded-by-leaf-holonomy-spectrum"
+      },
+      {
+        "id": "S2.R3.2_same_curvature_shifted_holonomy__minus_1_4",
+        "symbolics_derivative_dx": "1",
+        "symbolics_expanded": "-(1//4) + x",
+        "symbolics_form": "x - 1//4",
+        "verdict": "excluded-by-leaf-holonomy-spectrum"
+      },
+      {
+        "id": "S2.R3.3_endpoint_chern_preserving_bump__plus_1_10",
+        "symbolics_derivative_dx": "1 - (1//5)*x",
+        "symbolics_expanded": "(1//10) + x - (1//10)*(x^2)",
+        "symbolics_form": "x + (1//10)*(1 - x^2)",
+        "verdict": "excluded-by-curvature-density-and-annular-Stokes"
+      },
+      {
+        "id": "S2.R3.3_endpoint_chern_preserving_bump__minus_1_10",
+        "symbolics_derivative_dx": "1 + (1//5)*x",
+        "symbolics_expanded": "-(1//10) + x + (1//10)*(x^2)",
+        "symbolics_form": "x - (1//10)*(1 - x^2)",
+        "verdict": "excluded-by-curvature-density-and-annular-Stokes"
+      },
+      {
+        "id": "S2.R3.4_two_leaf_holonomy_match__plus_1_5",
+        "symbolics_derivative_dx": "(9//10) + (2//5)*x",
+        "symbolics_expanded": "(9//10)*x + (1//5)*(x^2)",
+        "symbolics_form": "x + (1//5)*x*(x - 1//2)",
+        "verdict": "excluded-by-expanded-leaf-holonomy-vector"
+      },
+      {
+        "id": "S2.R3.4_two_leaf_holonomy_match__minus_1_5",
+        "symbolics_derivative_dx": "(11//10) - (2//5)*x",
+        "symbolics_expanded": "(11//10)*x - (1//5)*(x^2)",
+        "symbolics_form": "x - (1//5)*x*(x - 1//2)",
+        "verdict": "excluded-by-expanded-leaf-holonomy-vector"
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/round3_s2_alias_pass_v0/results/round3_s2_alias_pass_v0_julia_results.json",
+  "role_id": "julia_authoritative_sim_builder",
+  "schema": "round3_s2_alias_pass_v0_julia_lane_v1",
+  "sim_id": "round3_s2_alias_pass_v0",
+  "source_path": "system_v6/sims/round3_s2_alias_pass_v0/round3_s2_alias_pass_v0_julia.jl",
+  "source_sha256": "546523782008d6baba28f322aa1d5eb3f5adf753e7d5d935af65046b6fdb8bcc",
+  "tool_calls": [
+    {
+      "boundary_case": "heavy-local S2.R3.5 recorded as queued, not run",
+      "demotion_condition": "Symbolics cannot produce reference rows",
+      "gates": [
+        "all_pass",
+        "alias",
+        "exclusion"
+      ],
+      "input_object": "S2 registry candidate polynomial forms over x=cos(2eta)",
+      "negative/erased_control": "wrong-sign control maps to -x",
+      "output_object": "expanded forms and curvature-density derivative rows",
+      "positive_case": "anchor row remains x and alias control maps to x",
+      "qualified_api": "Symbolics.expand/Symbolics.derivative/Symbolics.expand_derivatives",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "surds remain CAS tuple evidence; SMT binds only rational witness rows",
+      "demotion_condition": "wrong polarity or precomputed boolean assertion",
+      "gates": [
+        "proof",
+        "all_pass"
+      ],
+      "input_object": "finite rational witness rows derived from canonical tuples",
+      "negative/erased_control": "mutating a witness to zero makes the erased assertion SAT",
+      "output_object": "UNSAT positive nonzero proof and SAT flip control",
+      "positive_case": "all registry non-alias light-symbolic candidates have a bound nonzero witness",
+      "qualified_api": "Z3.Solver/check",
+      "tool": "Z3"
+    }
+  ]
+}

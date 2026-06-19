@@ -1,0 +1,4794 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "numpy": "supportive",
+    "python_stdlib": "supportive",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "QuantumOptics": {
+      "reason": "load-bearing Julia carrier check for the 2pi spinor sign and density erasure",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia finite sign identity and erased-flip control",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent Python finite sign identity and erased-flip control",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "supportive dense statevector replay, overlap readout, and density quotient hashes",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "supportive envelope, runtime preflight, hashing, and JSON",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing Python finite sign identity and erased-flip control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "n=8 loop-local spinor-lift readout over committed statevector evolution",
+    "16 lift-analog 720-vs-360 separation table",
+    "density quotient erasure back to committed readout groups",
+    "phase-randomized control kills lift separation",
+    "parent anti-collapse groups checked for lift splitting"
+  ],
+  "claim": "Scratch diagnostic: phase-sensitive spinor-lift readouts separate the second 360 traversal from the first for the committed 16 readout strategies, while density quotient erasure collapses back to the e2d9d5407 repeat classes.",
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Z3",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "component_results": {
+    "jax": {
+      "all_pass": true,
+      "path": "system_v6/sims/engine_readout_spinor_lift_v0/results/engine_readout_spinor_lift_v0_jax_results.json",
+      "sha256": "1bf0876ad3c0d3445a2d401bfb06bc773afc55b3eb39c16783650da41972a9a6"
+    },
+    "julia": {
+      "all_pass": true,
+      "path": "system_v6/sims/engine_readout_spinor_lift_v0/results/engine_readout_spinor_lift_v0_julia_results.json",
+      "sha256": "8b9cd4f1c5fe297d4a765b62b88261b383755a60d7b6ae2fd4de1334fbfffc59"
+    }
+  },
+  "controls": {
+    "phase_randomized": {
+      "kills_separation": true,
+      "phase_randomized_failures": [],
+      "readout": "replace <ref|psi> with |<ref|psi>|^2, erasing global sign"
+    },
+    "quotient_erasure": {
+      "all_density_sha256_repeat": true,
+      "byte_consistent_parent_groups_sha256": "b2bb268ac1b77ce750efc002cf816ed20c7f7a2a2825407fb98cafaad5364587",
+      "collapses_to_committed_repeat_result": true,
+      "density_repeat_failures": [],
+      "lift_density_unique_readouts_double_720": 4,
+      "parent_double_groups_sha256": "b2bb268ac1b77ce750efc002cf816ed20c7f7a2a2825407fb98cafaad5364587",
+      "parent_groups_reused_exactly": true,
+      "parent_unique_readouts_double_720": 4,
+      "quotient_groups_from_lift_shape": [
+        {
+          "count": 4,
+          "signature_sha256": "5cd8f8e58fc695e5fe506d21a31fd112a0f219585a039a42952667535ef1ff55",
+          "strategies": [
+            "type1_inner_inductive_slot_Se",
+            "type1_inner_inductive_slot_Si",
+            "type1_inner_inductive_slot_Ni",
+            "type1_inner_inductive_slot_Ne"
+          ]
+        },
+        {
+          "count": 4,
+          "signature_sha256": "c56683e666789a5b601b1e1e8b1db64d624b38dcc761a5d74786a127125b4546",
+          "strategies": [
+            "type1_outer_deductive_slot_Se",
+            "type1_outer_deductive_slot_Ne",
+            "type1_outer_deductive_slot_Ni",
+            "type1_outer_deductive_slot_Si"
+          ]
+        },
+        {
+          "count": 4,
+          "signature_sha256": "cb1c81adedcb4b1e7b92f2f183b4ae300b261d1a8e378fec378f26adb4110409",
+          "strategies": [
+            "type2_inner_deductive_slot_Se",
+            "type2_inner_deductive_slot_Ne",
+            "type2_inner_deductive_slot_Ni",
+            "type2_inner_deductive_slot_Si"
+          ]
+        },
+        {
+          "count": 4,
+          "signature_sha256": "1d335d99d1f4a8a8c81c72cf907bfe5c7630ecc4adb8d57df5377e16e99b453c",
+          "strategies": [
+            "type2_outer_inductive_slot_Se",
+            "type2_outer_inductive_slot_Si",
+            "type2_outer_inductive_slot_Ni",
+            "type2_outer_inductive_slot_Ne"
+          ]
+        }
+      ]
+    },
+    "reference_state_independence": {
+      "all_references_separate_all_rows": true,
+      "dependence_characterization": "The sign law is reference-independent for any non-orthogonal reference; the three deterministic references all have nonzero overlap on every scoped row.",
+      "minimum_lift_gap_by_reference": {
+        "basis_zero": 1.801990465923,
+        "seeded_complex": 0.088912328063,
+        "word_mean": 1.900024615586
+      },
+      "references": [
+        "basis_zero",
+        "seeded_complex",
+        "word_mean"
+      ]
+    },
+    "shuffled_word": {
+      "copied_parent_control": true,
+      "failure_count": 4,
+      "role": "word-order control inherited from committed density parent; lift packet does not reclassify shuffled-word rows"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "control_verdict": "sat",
+      "identity": "all 16 computed lift rows bind second_traversal_sign = - first_traversal_sign",
+      "load_bearing": true,
+      "negative_or_erased_control": "density-erased/projective signs bind second_traversal_sign = first_traversal_sign",
+      "positive_case": "assert a row violates the lift sign flip",
+      "ran": true,
+      "tool_call_index": 2,
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "control_verdict": "sat",
+      "identity": "Julia Z3.jl binds all 16 rows to second_traversal_sign = -first_traversal_sign",
+      "load_bearing": true,
+      "negative_or_erased_control": "density-erased/projective signs repeat",
+      "positive_case": "assert a computed lift row violates the sign flip",
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "control_verdict": "sat",
+      "identity": "all 16 computed lift rows bind second_traversal_sign = - first_traversal_sign",
+      "load_bearing": true,
+      "negative_or_erased_control": "density-erased/projective signs bind second_traversal_sign = first_traversal_sign",
+      "positive_case": "assert a row violates the lift sign flip",
+      "ran": true,
+      "tool_call_index": 1,
+      "verdict": "unsat"
+    }
+  },
+  "disallowed_claims": [
+    "strategy promotion",
+    "engine admission",
+    "formal admission",
+    "claim beyond n=8 loop-local statevector readout",
+    "splitting parent slot-copy groups"
+  ],
+  "distinguishability": {
+    "anti_collapse_group_rows": [
+      {
+        "finding": "still_indistinguishable",
+        "lift_splits_parent_group": false,
+        "lift_unique_signature_count": 1,
+        "parent_readout": [
+          "LOSE",
+          "WIN",
+          "LOSE",
+          "WIN"
+        ],
+        "parent_strategies": [
+          "type1_outer_deductive_slot_Se",
+          "type1_outer_deductive_slot_Ne",
+          "type1_outer_deductive_slot_Ni",
+          "type1_outer_deductive_slot_Si"
+        ]
+      },
+      {
+        "finding": "still_indistinguishable",
+        "lift_splits_parent_group": false,
+        "lift_unique_signature_count": 1,
+        "parent_readout": [
+          "WIN",
+          "WIN",
+          "LOSE",
+          "LOSE"
+        ],
+        "parent_strategies": [
+          "type2_outer_inductive_slot_Se",
+          "type2_outer_inductive_slot_Si",
+          "type2_outer_inductive_slot_Ni",
+          "type2_outer_inductive_slot_Ne"
+        ]
+      },
+      {
+        "finding": "still_indistinguishable",
+        "lift_splits_parent_group": false,
+        "lift_unique_signature_count": 1,
+        "parent_readout": [
+          "lose",
+          "win",
+          "lose",
+          "win"
+        ],
+        "parent_strategies": [
+          "type2_inner_deductive_slot_Se",
+          "type2_inner_deductive_slot_Ne",
+          "type2_inner_deductive_slot_Ni",
+          "type2_inner_deductive_slot_Si"
+        ]
+      },
+      {
+        "finding": "still_indistinguishable",
+        "lift_splits_parent_group": false,
+        "lift_unique_signature_count": 1,
+        "parent_readout": [
+          "win",
+          "win",
+          "lose",
+          "lose"
+        ],
+        "parent_strategies": [
+          "type1_inner_inductive_slot_Se",
+          "type1_inner_inductive_slot_Si",
+          "type1_inner_inductive_slot_Ni",
+          "type1_inner_inductive_slot_Ne"
+        ]
+      }
+    ],
+    "closure_answer": "lift phase readouts separate 360 from the second traversal for each strategy, but they do not split the committed four slot-copy groups because the slot label does not alter the base path readout",
+    "indistinguishable_groups_lift": [
+      {
+        "count": 4,
+        "signature_sha256": "c8a4c18c4ff3edb72248b4616f99c5865939625ceb3a854a5910741130a21a6d",
+        "strategies": [
+          "type1_inner_inductive_slot_Se",
+          "type1_inner_inductive_slot_Si",
+          "type1_inner_inductive_slot_Ni",
+          "type1_inner_inductive_slot_Ne"
+        ]
+      },
+      {
+        "count": 4,
+        "signature_sha256": "68d128e908112c51ad4b7ba62e446e26343910cb0995c459a30ee23cc2629b1b",
+        "strategies": [
+          "type1_outer_deductive_slot_Se",
+          "type1_outer_deductive_slot_Ne",
+          "type1_outer_deductive_slot_Ni",
+          "type1_outer_deductive_slot_Si"
+        ]
+      },
+      {
+        "count": 4,
+        "signature_sha256": "ad27771ada4e8163df01cc3541a7b592857a4139b734a7ef75138881898e148a",
+        "strategies": [
+          "type2_inner_deductive_slot_Se",
+          "type2_inner_deductive_slot_Ne",
+          "type2_inner_deductive_slot_Ni",
+          "type2_inner_deductive_slot_Si"
+        ]
+      },
+      {
+        "count": 4,
+        "signature_sha256": "78794716864a1cb19d582270379ed3001a669691738025121d4b762ce601f399",
+        "strategies": [
+          "type2_outer_inductive_slot_Se",
+          "type2_outer_inductive_slot_Si",
+          "type2_outer_inductive_slot_Ni",
+          "type2_outer_inductive_slot_Ne"
+        ]
+      }
+    ],
+    "parent_groups_split_count": 0,
+    "separated_matrix_lift": [
+      [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "strategy_order": [
+      "type1_outer_deductive_slot_Se",
+      "type1_outer_deductive_slot_Ne",
+      "type1_outer_deductive_slot_Ni",
+      "type1_outer_deductive_slot_Si",
+      "type1_inner_inductive_slot_Se",
+      "type1_inner_inductive_slot_Si",
+      "type1_inner_inductive_slot_Ni",
+      "type1_inner_inductive_slot_Ne",
+      "type2_outer_inductive_slot_Se",
+      "type2_outer_inductive_slot_Si",
+      "type2_outer_inductive_slot_Ni",
+      "type2_outer_inductive_slot_Ne",
+      "type2_inner_deductive_slot_Se",
+      "type2_inner_deductive_slot_Ne",
+      "type2_inner_deductive_slot_Ni",
+      "type2_inner_deductive_slot_Si"
+    ],
+    "unique_lift_readout_count": 4
+  },
+  "divergence": {
+    "comparison": {
+      "interpretation": "Julia independently verifies the spinor sign and finite sign identity; Python/JAX-labeled lane carries the full n=8 overlap table and quotient control.",
+      "rows": [
+        {
+          "key": "strategy_count",
+          "max_abs_diff": 0.0,
+          "values": {
+            "jax": 16.0,
+            "julia": 16.0
+          }
+        },
+        {
+          "key": "lift_separated_count",
+          "max_abs_diff": 0.0,
+          "values": {
+            "jax": 16.0,
+            "julia": 16.0
+          }
+        },
+        {
+          "key": "lift_still_repeating_count",
+          "max_abs_diff": 0.0,
+          "values": {
+            "jax": 0.0,
+            "julia": 0.0
+          }
+        },
+        {
+          "key": "parent_groups_split_by_lift",
+          "max_abs_diff": 0.0,
+          "values": {
+            "jax": 0.0,
+            "julia": 0.0
+          }
+        }
+      ],
+      "same_answer": true
+    },
+    "engine_values": {
+      "jax": {
+        "lift_separated_count": 16.0,
+        "lift_still_repeating_count": 0.0,
+        "parent_groups_split_by_lift": 0.0,
+        "strategy_count": 16.0
+      },
+      "julia": {
+        "lift_separated_count": 16.0,
+        "lift_still_repeating_count": 0.0,
+        "parent_groups_split_by_lift": 0.0,
+        "strategy_count": 16.0
+      }
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "divergence_log": [
+    "Density/classical quotient baseline repeats by parent hash; lift phase-sensitive overlap diverges by global sign.",
+    "Phase-randomized intensity baseline kills that divergence.",
+    "Parent slot-copy anti-collapse groups remain unresolved because stage_slot does not alter the committed base path readout."
+  ],
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "julia_sign_mirror",
+      "python_dense_overlap",
+      "controller_comparison"
+    ],
+    "interpreter": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "lane_note": "No PyTorch lane is scoped because there is no graph/network/autograd claim path.",
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "reads_peer_result": false,
+    "schema_mode_field": "FIELD"
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "gate_pass": {
+        "all_lift_analogs_separate_720_from_360": true,
+        "anti_collapse_groups_honest": true,
+        "ceiling_preserved": true,
+        "dense_n8_statevectors_replayed": true,
+        "erased_flip_controls_sat": true,
+        "mode_declared_field": true,
+        "no_lift_analog_still_repeats_720_vs_360": true,
+        "parent_density_packet_all_pass": true,
+        "parents_present": true,
+        "phase_randomized_control_kills": true,
+        "quotient_erasure_collapses_to_parent": true,
+        "reference_state_independence_checked": true,
+        "strategy_count_16": true,
+        "terrain_spinor_packet_all_pass": true,
+        "z3_cvc5_sign_identity_unsat": true
+      },
+      "mode": "FIELD",
+      "packages_used": [
+        "numpy",
+        "z3",
+        "cvc5",
+        "python_stdlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/engine_readout_spinor_lift_v0/results/engine_readout_spinor_lift_v0_jax_results.json",
+      "result_sha256": "1bf0876ad3c0d3445a2d401bfb06bc773afc55b3eb39c16783650da41972a9a6",
+      "role": "python_dense_overlap_z3_cvc5_primary",
+      "source_path": "system_v6/sims/engine_readout_spinor_lift_v0/engine_readout_spinor_lift_v0_jax.py",
+      "source_sha256": "528ceb257a80c4589298b5a11d5b656e37bd1fb50d1eb27213ad1611d1d19272",
+      "tool_calls": [
+        {
+          "boundary_case": "three deterministic references over all 16 strategy rows",
+          "demotion_condition": "reference overlap zeroes out all scoped rows or density quotient fails to repeat",
+          "gates": [
+            "all_lift_analogs_separate_720_from_360",
+            "quotient_erasure_collapses_to_parent"
+          ],
+          "input_object": "n=8 loop-local word states plus lift sheet sign [1,-1]",
+          "negative_or_erased_control": "intensity-only phase-randomized readout repeats",
+          "one_to_one_row": "lift_overlap_and_density_quotient_rows",
+          "output_object": "phase-sensitive overlap rows and density quotient hashes",
+          "positive_case": "second traversal overlap equals negative first traversal overlap",
+          "qualified_api": "numpy.vdot and dense statevector ndarray evolution",
+          "tool": "numpy"
+        },
+        {
+          "boundary_case": "all 16 strategies",
+          "demotion_condition": "lift violation SAT or erased control UNSAT",
+          "gates": [
+            "z3_cvc5_sign_identity_unsat",
+            "erased_flip_controls_sat"
+          ],
+          "input_object": "computed 16-row lift sign table and erased sign table",
+          "negative_or_erased_control": "density-erased/projective rows have second_traversal_sign = first_traversal_sign",
+          "one_to_one_row": "computed_separation_identity_with_erased_flip",
+          "output_object": "UNSAT lift-sign violation query plus SAT erased-flip control",
+          "positive_case": "all rows have second_traversal_sign = -first_traversal_sign",
+          "qualified_api": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "all 16 strategies",
+          "demotion_condition": "lift violation SAT or erased control UNSAT",
+          "gates": [
+            "z3_cvc5_sign_identity_unsat",
+            "erased_flip_controls_sat"
+          ],
+          "input_object": "computed 16-row lift sign table and erased sign table",
+          "negative_or_erased_control": "density-erased/projective rows have second_traversal_sign = first_traversal_sign",
+          "one_to_one_row": "computed_separation_identity_with_erased_flip",
+          "output_object": "UNSAT lift-sign violation query plus SAT erased-flip control",
+          "positive_case": "all rows have second_traversal_sign = -first_traversal_sign",
+          "qualified_api": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "values": {
+        "lift_separated_count": 16,
+        "lift_still_repeating_count": 0,
+        "lift_unique_readouts": 4,
+        "parent_groups_split_by_lift": 0,
+        "parent_unique_readouts_360": 4,
+        "parent_unique_readouts_double_720": 4,
+        "state_count_double_720_lift": 16,
+        "state_count_word": 8,
+        "strategy_count": 16
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "gate_pass": {
+        "erased_flip_control_sat": true,
+        "julia_z3_sign_identity_unsat": true,
+        "mode_declared_field": true,
+        "parent_density_packet_all_pass": true,
+        "quantumoptics_sign_row_pass": true,
+        "strategy_count_16": true,
+        "terrain_spinor_packet_all_pass": true
+      },
+      "mode": "FIELD",
+      "packages_used": [
+        "QuantumOptics",
+        "Z3",
+        "JSON",
+        "LinearAlgebra",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/engine_readout_spinor_lift_v0/results/engine_readout_spinor_lift_v0_julia_results.json",
+      "result_sha256": "8b9cd4f1c5fe297d4a765b62b88261b383755a60d7b6ae2fd4de1334fbfffc59",
+      "role": "julia_quantumoptics_z3_sign_mirror",
+      "source_path": "system_v6/sims/engine_readout_spinor_lift_v0/engine_readout_spinor_lift_v0_julia.jl",
+      "source_sha256": "ecfc7edf9c4675bcbf4a68f1e7eb1f76089ed39ba57e86f3e254aaced34823cb",
+      "tool_calls": [
+        {
+          "one_to_one_row": "two_pi_spinor_sign_and_density_erasure",
+          "tool": "QuantumOptics"
+        },
+        {
+          "one_to_one_row": "computed_separation_identity_with_erased_flip",
+          "tool": "Z3.jl"
+        }
+      ],
+      "values": {
+        "lift_separated_count": 16,
+        "lift_still_repeating_count": 0,
+        "parent_groups_split_by_lift": 0,
+        "strategy_count": 16,
+        "two_pi_density_gap_norm": 6.049187461416408e-16,
+        "two_pi_spinor_distance_to_negative": 5.227113575845965e-16
+      }
+    }
+  },
+  "formal_admission_allowed": false,
+  "gate_pass": {
+    "all_lift_analogs_separate": true,
+    "anti_collapse_groups_honest": true,
+    "ceiling_exact": true,
+    "engine_value_divergence_zero": true,
+    "erased_flip_controls_sat": true,
+    "legs_all_pass": true,
+    "mode_declared_field": true,
+    "no_720_vs_360_lift_repeats": true,
+    "no_peer_result_reads": true,
+    "phase_randomized_control_pass": true,
+    "quotient_erasure_control_pass": true,
+    "reference_independence_pass": true,
+    "runtime_preflight_ok": true,
+    "source_hashes_fresh": true,
+    "strategy_count_16": true,
+    "z3_cvc5_julia_z3_clean": true
+  },
+  "generated_at": "2026-06-11T07:06:06Z",
+  "lifted_states": {
+    "density_quotient_rule": "rho(psi_i) == rho(-psi_i); density SHA rows are equal for paired first/second traversals",
+    "double_720_lift_rule": "steps 1..8 use psi_i; steps 9..16 use -psi_i on the spinor lift",
+    "n": 8,
+    "single_360_trace": [
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "density_sha256": "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "loop": "D",
+        "norm": 1.0,
+        "seat": 0,
+        "signed_operator": "Ti_up",
+        "stage": "Se",
+        "state_sha256": "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "step": 1
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "density_sha256": "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "loop": "D",
+        "norm": 1.0,
+        "seat": 1,
+        "signed_operator": "Fe_up",
+        "stage": "Ne",
+        "state_sha256": "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "step": 2
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "density_sha256": "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "loop": "D",
+        "norm": 1.0,
+        "seat": 2,
+        "signed_operator": "Ti_down",
+        "stage": "Ni",
+        "state_sha256": "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "step": 3
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "density_sha256": "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "loop": "D",
+        "norm": 1.0,
+        "seat": 3,
+        "signed_operator": "Fe_down",
+        "stage": "Si",
+        "state_sha256": "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75",
+        "step": 4
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "density_sha256": "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "loop": "I",
+        "norm": 1.0,
+        "seat": 4,
+        "signed_operator": "Te_up",
+        "stage": "Se",
+        "state_sha256": "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "step": 5
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1
+        ],
+        "density_sha256": "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "loop": "I",
+        "norm": 1.0,
+        "seat": 5,
+        "signed_operator": "Fi_up",
+        "stage": "Si",
+        "state_sha256": "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "step": 6
+      },
+      {
+        "bond_ranks": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ],
+        "density_sha256": "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "loop": "I",
+        "norm": 1.0,
+        "seat": 6,
+        "signed_operator": "Te_down",
+        "stage": "Ni",
+        "state_sha256": "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "step": 7
+      },
+      {
+        "bond_ranks": [
+          2,
+          2,
+          2,
+          4,
+          4,
+          4,
+          2
+        ],
+        "density_sha256": "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e",
+        "loop": "I",
+        "norm": 1.0,
+        "seat": 7,
+        "signed_operator": "Fi_down",
+        "stage": "Ne",
+        "state_sha256": "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40",
+        "step": 8
+      }
+    ],
+    "statevector_dimension": 256
+  },
+  "limits": [
+    "Scratch diagnostic only; promotion_allowed=false and formal_admission_allowed=false.",
+    "Lift separation is phase-sensitive and disappears under density/projective erasure.",
+    "The committed parent slot-copy groups remain unresolved by this lift readout."
+  ],
+  "mode": "FIELD",
+  "object_id": "engine_readout_spinor_lift_v0",
+  "parent_lineage": {
+    "consumed_inputs": {
+      "automaton_parent": {
+        "path": "system_v6/foundations/two_engine_readout_automaton_20260609.md",
+        "role": "16 strategy readout grammar",
+        "sha256": "ca99877dfd1cae2d098225ae06bfbec8384de5f4079b3bd4de075e100f08abed"
+      },
+      "committed_density_readout_parent": {
+        "commit": "e2d9d5407",
+        "path": "system_v6/sims/engine_readout_strategy_fidelity_v0/results/engine_readout_strategy_fidelity_v0_envelope_results.json",
+        "role": "committed density-level 16-strategy repeat result and named anti-collapse groups",
+        "sha256": "5c8d4861307e04b2855dcfe6c15abea0b8ae0843e9e8663570af008d59d19ee3"
+      },
+      "cost_discriminator_parent": {
+        "path": "system_v6/sims/engine_stage_word_cost_discriminator_v0/engine_stage_word_cost_discriminator_v0_jax.py",
+        "role": "loop-local n=8 stage-word and gate replay convention",
+        "sha256": "9b90d491194b9506fc4ec5d05d9992543196f77cef7bd71c59df921cbeb704a4"
+      },
+      "terrain_weyl_spinor_lr_parent": {
+        "path": "system_v6/sims/terrain_weyl_spinor_lr_v0/results/terrain_weyl_spinor_lr_v0_envelope_results.json",
+        "role": "committed spinor-lift sign and density-erasure precedent",
+        "sha256": "cee57b9d4a47b78b6bbf2c0265751f6227dfc362dd7248fcbcedf3b1bccd41bb"
+      }
+    },
+    "controller": "main_codex_thread",
+    "external_workers": [],
+    "honest_route_note": "Builder-only packet; no audit_verdict.md and no subagent receipt is claimed.",
+    "native_subagents": []
+  },
+  "pin_sha256": "b833eadfc0e1e7e76b3eb41f5954f2c1d478d15b2522417a899b83c64cc76781",
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/engine_readout_spinor_lift_v0/results/engine_readout_spinor_lift_v0_envelope_results.json",
+  "runtime_preflight": {
+    "command": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3 scripts/codex_runtime_env_doctor.py --json",
+    "julia": "/opt/homebrew/bin/julia",
+    "julia_active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "ok": true,
+    "python": "/Users/joshuaeisenhart/.local/share/sim-stack/bin/python3",
+    "returncode": 0,
+    "stderr_head": "",
+    "summary": {
+      "failures": [],
+      "install_state": "stable_observed",
+      "ok": true,
+      "warnings": []
+    }
+  },
+  "schema_version": "three_engine_sim_result_v1",
+  "separation_table": {
+    "answer": "all 16 lift analogs separate 720 from 360 under phase-sensitive overlap readout",
+    "rows": [
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_outer_deductive_slot_Se"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_outer_deductive_slot_Ne"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_outer_deductive_slot_Ni"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_outer_deductive_slot_Si"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_inner_inductive_slot_Se"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_inner_inductive_slot_Si"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_inner_inductive_slot_Ni"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type1_inner_inductive_slot_Ne"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_outer_inductive_slot_Se"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_outer_inductive_slot_Si"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_outer_inductive_slot_Ni"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 1.958243875513,
+          "seeded_complex": 0.115466234534,
+          "word_mean": 1.984446738804
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 1.801990465923,
+          "seeded_complex": 0.088912328063,
+          "word_mean": 1.900024615586
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_outer_inductive_slot_Ne"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_inner_deductive_slot_Se"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_inner_deductive_slot_Ne"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_inner_deductive_slot_Ni"
+      },
+      {
+        "density_quotient_repeats": true,
+        "max_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "min_abs_lift_gap_by_reference": {
+          "basis_zero": 2.0,
+          "seeded_complex": 0.122809784507,
+          "word_mean": 1.975389004117
+        },
+        "phase_randomized_repeats": true,
+        "separates_720_from_360": true,
+        "strategy_id": "type2_inner_deductive_slot_Si"
+      }
+    ],
+    "separated_count": 16,
+    "separated_strategy_ids": [
+      "type1_outer_deductive_slot_Se",
+      "type1_outer_deductive_slot_Ne",
+      "type1_outer_deductive_slot_Ni",
+      "type1_outer_deductive_slot_Si",
+      "type1_inner_inductive_slot_Se",
+      "type1_inner_inductive_slot_Si",
+      "type1_inner_inductive_slot_Ni",
+      "type1_inner_inductive_slot_Ne",
+      "type2_outer_inductive_slot_Se",
+      "type2_outer_inductive_slot_Si",
+      "type2_outer_inductive_slot_Ni",
+      "type2_outer_inductive_slot_Ne",
+      "type2_inner_deductive_slot_Se",
+      "type2_inner_deductive_slot_Ne",
+      "type2_inner_deductive_slot_Ni",
+      "type2_inner_deductive_slot_Si"
+    ],
+    "still_repeating_count": 0,
+    "still_repeating_strategy_ids": []
+  },
+  "sim_id": "engine_readout_spinor_lift_v0",
+  "source_path": "system_v6/sims/engine_readout_spinor_lift_v0/engine_readout_spinor_lift_v0_envelope.py",
+  "source_refs": {
+    "automaton": "system_v6/foundations/two_engine_readout_automaton_20260609.md",
+    "cost_discriminator": "system_v6/sims/engine_stage_word_cost_discriminator_v0/engine_stage_word_cost_discriminator_v0_jax.py",
+    "density_readout": "system_v6/sims/engine_readout_strategy_fidelity_v0/results/engine_readout_strategy_fidelity_v0_envelope_results.json",
+    "terrain_weyl_spinor_lr": "system_v6/sims/terrain_weyl_spinor_lr_v0/results/terrain_weyl_spinor_lr_v0_envelope_results.json"
+  },
+  "source_sha256": "33b97a6255cd9ea92387e5fea7f0e977bfd95454a57ef31a69409519a8027451",
+  "strategy_rows": [
+    {
+      "base_strategy": "type1_outer_deductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_readout_720": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Se",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type1_outer_deductive_slot_Se"
+    },
+    {
+      "base_strategy": "type1_outer_deductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_readout_720": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ne",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type1_outer_deductive_slot_Ne"
+    },
+    {
+      "base_strategy": "type1_outer_deductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_readout_720": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ni",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type1_outer_deductive_slot_Ni"
+    },
+    {
+      "base_strategy": "type1_outer_deductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_readout_720": [
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN",
+        "LOSE",
+        "WIN"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Si",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type1_outer_deductive_slot_Si"
+    },
+    {
+      "base_strategy": "type1_inner_inductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_readout_720": [
+        "win",
+        "win",
+        "lose",
+        "lose",
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Se",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type1_inner_inductive_slot_Se"
+    },
+    {
+      "base_strategy": "type1_inner_inductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_readout_720": [
+        "win",
+        "win",
+        "lose",
+        "lose",
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Si",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type1_inner_inductive_slot_Si"
+    },
+    {
+      "base_strategy": "type1_inner_inductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_readout_720": [
+        "win",
+        "win",
+        "lose",
+        "lose",
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ni",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type1_inner_inductive_slot_Ni"
+    },
+    {
+      "base_strategy": "type1_inner_inductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_readout_720": [
+        "win",
+        "win",
+        "lose",
+        "lose",
+        "win",
+        "win",
+        "lose",
+        "lose"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type1",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ne",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type1_inner_inductive_slot_Ne"
+    },
+    {
+      "base_strategy": "type2_outer_inductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_readout_720": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE",
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Se",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type2_outer_inductive_slot_Se"
+    },
+    {
+      "base_strategy": "type2_outer_inductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_readout_720": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE",
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Si",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type2_outer_inductive_slot_Si"
+    },
+    {
+      "base_strategy": "type2_outer_inductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_readout_720": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE",
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ni",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type2_outer_inductive_slot_Ni"
+    },
+    {
+      "base_strategy": "type2_outer_inductive",
+      "component": "outer",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_readout_720": [
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE",
+        "WIN",
+        "WIN",
+        "LOSE",
+        "LOSE"
+      ],
+      "density_sha256_360": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "density_sha256_720_second_half": [
+        "ec73b249a8a1c7a30d5f8d2e6bb50f41422be9536975120d0fc4abff74879a0a",
+        "b3313a5146a8f4669b74160c42bc0aac42f7fcd1cbfa571faeb0a3eb0b712c17",
+        "bdd0e7c2c355b0d87ef569dae1507ae4523bf87650a6157089a562c60ef02504",
+        "876c7dcfbb85e56f0cdf0e4f8361dcb8def59593950f1aa6344728667bb2388e"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "outer",
+      "order_family": "inductive",
+      "path": [
+        "Se",
+        "Si",
+        "Ni",
+        "Ne"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 1.958243875513,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.801990465923,
+          "overlap_360": [
+            [
+              0.979121937756,
+              -0.0
+            ],
+            [
+              0.943589592642,
+              -0.0
+            ],
+            [
+              0.935384383404,
+              -0.0
+            ],
+            [
+              0.900995232962,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979121937756,
+              0.0
+            ],
+            [
+              -0.943589592642,
+              0.0
+            ],
+            [
+              -0.935384383404,
+              0.0
+            ],
+            [
+              -0.900995232962,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.115466234534,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.088912328063,
+          "overlap_360": [
+            [
+              -0.049606435994,
+              0.029534968043
+            ],
+            [
+              -0.036168419253,
+              0.028194659313
+            ],
+            [
+              -0.0427879448,
+              0.012064091353
+            ],
+            [
+              -0.052110026377,
+              -0.000726689429
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.049606435994,
+              -0.029534968043
+            ],
+            [
+              0.036168419253,
+              -0.028194659313
+            ],
+            [
+              0.0427879448,
+              -0.012064091353
+            ],
+            [
+              0.052110026377,
+              0.000726689429
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.984446738804,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.900024615586,
+          "overlap_360": [
+            [
+              0.977176322028,
+              0.172144272209
+            ],
+            [
+              0.963288230685,
+              0.165897154813
+            ],
+            [
+              0.962491145243,
+              0.164454556381
+            ],
+            [
+              0.936712418173,
+              0.158408429697
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.977176322028,
+              -0.172144272209
+            ],
+            [
+              -0.963288230685,
+              -0.165897154813
+            ],
+            [
+              -0.962491145243,
+              -0.164454556381
+            ],
+            [
+              -0.936712418173,
+              -0.158408429697
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ne",
+      "state_indices_360": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "state_indices_720_second_half": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "state_sha256_360": [
+        "813d3e51c6913483761edb65a901170de4c1c905032c0f5b70333e38d737a40a",
+        "1bbf677efb8b6529d865c50d53228dc078e921b09108571a406836ae4619b8f3",
+        "1afae90a45cec656d85f8b1bfbf695564ea603cb99449e037cb112b3d80be56c",
+        "536205a20b907a0192adbfe9696597ef910f096adf415e29c80dbaaab7429d40"
+      ],
+      "state_sha256_720_second_half": [
+        "bf543c81ed25e9a348e8636e226ca4fcefc5d8e40c1d6d4bcce11bc7a5948eb1",
+        "b5667814ef82706558e4e030e6c9776fbd9d7045e922280f66a67b333639c3f0",
+        "5c1cb80bab9580460662d5107aec3b5214251c04a2f13f9b212c67122988db8e",
+        "1f03e95fb80db631eeef2a1fbf7dc508dc225bb5ac571f458aaa9442ef5d1fae"
+      ],
+      "strategy_id": "type2_outer_inductive_slot_Ne"
+    },
+    {
+      "base_strategy": "type2_inner_deductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_readout_720": [
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Se",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type2_inner_deductive_slot_Se"
+    },
+    {
+      "base_strategy": "type2_inner_deductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_readout_720": [
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ne",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type2_inner_deductive_slot_Ne"
+    },
+    {
+      "base_strategy": "type2_inner_deductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_readout_720": [
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Ni",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type2_inner_deductive_slot_Ni"
+    },
+    {
+      "base_strategy": "type2_inner_deductive",
+      "component": "inner",
+      "density_quotient_repeats": true,
+      "density_readout_360": [
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_readout_720": [
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win",
+        "lose",
+        "win"
+      ],
+      "density_sha256_360": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "density_sha256_720_second_half": [
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "104e41ff869df10659d87098346173b34d95481321e51218a22ba8748a7c870b",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb",
+        "f188a3f0f0d1230939a8c33854405173e158e06bc901eae54d2342423e3d02bb"
+      ],
+      "engine_type": "Type2",
+      "honest_group_note": "stage_slot is the committed 16-row expansion label; it does not change this base path readout",
+      "lift_readout_construction": "same stage-word density labels plus phase-sensitive overlaps <psi_ref|psi(t)>; the second 360 traversal is the spinor-lift sheet -psi(t)",
+      "lift_sheet_signs": [
+        1,
+        -1
+      ],
+      "loop": "inner",
+      "order_family": "deductive",
+      "path": [
+        "Se",
+        "Ne",
+        "Ni",
+        "Si"
+      ],
+      "phase_randomized_repeats": true,
+      "reference_overlap_rows": [
+        {
+          "max_abs_lift_gap": 2.0,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 2.0,
+          "overlap_360": [
+            [
+              0.952333569886,
+              -0.305058636443
+            ],
+            [
+              0.761611551762,
+              -0.648033829536
+            ],
+            [
+              0.922996564363,
+              -0.384808188808
+            ],
+            [
+              1.0,
+              -0.0
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.952333569886,
+              0.305058636443
+            ],
+            [
+              -0.761611551762,
+              0.648033829536
+            ],
+            [
+              -0.922996564363,
+              0.384808188808
+            ],
+            [
+              -1.0,
+              0.0
+            ]
+          ],
+          "reference": "basis_zero",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 0.122809784507,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 0.122809784507,
+          "overlap_360": [
+            [
+              -0.042425817552,
+              0.044391562235
+            ],
+            [
+              -0.022076647179,
+              0.057299061441
+            ],
+            [
+              -0.038503905772,
+              0.047833147847
+            ],
+            [
+              -0.05394555973,
+              0.029333212884
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              0.042425817552,
+              -0.044391562235
+            ],
+            [
+              0.022076647179,
+              -0.057299061441
+            ],
+            [
+              0.038503905772,
+              -0.047833147847
+            ],
+            [
+              0.05394555973,
+              -0.029333212884
+            ]
+          ],
+          "reference": "seeded_complex",
+          "separates": true
+        },
+        {
+          "max_abs_lift_gap": 1.975389004117,
+          "max_abs_phase_erased_intensity_gap": 0.0,
+          "max_abs_sign_identity_residual": 0.0,
+          "min_abs_lift_gap": 1.975389004117,
+          "overlap_360": [
+            [
+              0.979226424475,
+              -0.129058277559
+            ],
+            [
+              0.854159943486,
+              -0.495934693625
+            ],
+            [
+              0.964734349636,
+              -0.211726389546
+            ],
+            [
+              0.971920538721,
+              0.175814947629
+            ]
+          ],
+          "overlap_720_second_half": [
+            [
+              -0.979226424475,
+              0.129058277559
+            ],
+            [
+              -0.854159943486,
+              0.495934693625
+            ],
+            [
+              -0.964734349636,
+              0.211726389546
+            ],
+            [
+              -0.971920538721,
+              -0.175814947629
+            ]
+          ],
+          "reference": "word_mean",
+          "separates": true
+        }
+      ],
+      "separates_720_from_360": true,
+      "stage_slot": "Si",
+      "state_indices_360": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state_indices_720_second_half": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "state_sha256_360": [
+        "c3c209521c8533814447a9f65e41d6a40968d599a30abc9db2ba0b28e419fd81",
+        "abf00a70ffea7066c05688b9b608053ce96f42a8da95be75dd8b7e1a779be70b",
+        "26ba419d4d6bda10accd4dbd8b8a1b70946ea835e7371de1418fca11ad91fa65",
+        "63237e48b6e1701291d0b1b73f3d020bfaba9fca4435b1877101db53330efc75"
+      ],
+      "state_sha256_720_second_half": [
+        "868c74e83c6a5e1f5b2223a7723d43706b2b8acb9cf96e266757a4a3405a803a",
+        "f1e4391c149fb3d5b4ca6e5b1dbacc294ee1ec93a1ba819ff7e40b10a9cf4f46",
+        "2aa9e8c99a9ab3e94764ab65c360db3de0f556234b836650fdc108abc6b3adfa",
+        "35b8f56a0ea9692ec21549ab09c6d5be42a4086a411a62b280d86313ada42336"
+      ],
+      "strategy_id": "type2_inner_deductive_slot_Si"
+    }
+  ],
+  "tool_calls": [
+    {
+      "one_to_one_row": "two_pi_spinor_sign_and_density_erasure",
+      "tool": "QuantumOptics"
+    },
+    {
+      "one_to_one_row": "computed_separation_identity_with_erased_flip",
+      "tool": "Z3.jl"
+    },
+    {
+      "boundary_case": "three deterministic references over all 16 strategy rows",
+      "demotion_condition": "reference overlap zeroes out all scoped rows or density quotient fails to repeat",
+      "gates": [
+        "all_lift_analogs_separate_720_from_360",
+        "quotient_erasure_collapses_to_parent"
+      ],
+      "input_object": "n=8 loop-local word states plus lift sheet sign [1,-1]",
+      "negative_or_erased_control": "intensity-only phase-randomized readout repeats",
+      "one_to_one_row": "lift_overlap_and_density_quotient_rows",
+      "output_object": "phase-sensitive overlap rows and density quotient hashes",
+      "positive_case": "second traversal overlap equals negative first traversal overlap",
+      "qualified_api": "numpy.vdot and dense statevector ndarray evolution",
+      "tool": "numpy"
+    },
+    {
+      "boundary_case": "all 16 strategies",
+      "demotion_condition": "lift violation SAT or erased control UNSAT",
+      "gates": [
+        "z3_cvc5_sign_identity_unsat",
+        "erased_flip_controls_sat"
+      ],
+      "input_object": "computed 16-row lift sign table and erased sign table",
+      "negative_or_erased_control": "density-erased/projective rows have second_traversal_sign = first_traversal_sign",
+      "one_to_one_row": "computed_separation_identity_with_erased_flip",
+      "output_object": "UNSAT lift-sign violation query plus SAT erased-flip control",
+      "positive_case": "all rows have second_traversal_sign = -first_traversal_sign",
+      "qualified_api": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "all 16 strategies",
+      "demotion_condition": "lift violation SAT or erased control UNSAT",
+      "gates": [
+        "z3_cvc5_sign_identity_unsat",
+        "erased_flip_controls_sat"
+      ],
+      "input_object": "computed 16-row lift sign table and erased sign table",
+      "negative_or_erased_control": "density-erased/projective rows have second_traversal_sign = first_traversal_sign",
+      "one_to_one_row": "computed_separation_identity_with_erased_flip",
+      "output_object": "UNSAT lift-sign violation query plus SAT erased-flip control",
+      "positive_case": "all rows have second_traversal_sign = -first_traversal_sign",
+      "qualified_api": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "values": {
+    "lift_separated_count": 16,
+    "lift_still_repeating_count": 0,
+    "lift_unique_readouts": 4,
+    "parent_groups_split_by_lift": 0,
+    "parent_unique_readouts_360": 4,
+    "parent_unique_readouts_double_720": 4,
+    "state_count_double_720_lift": 16,
+    "state_count_word": 8,
+    "strategy_count": 16
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite support graph object",
+      "used": true
+    },
+    "QuantumOptics": {
+      "reason": "load-bearing finite density reduction and entropy check",
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing finite Lyapunov polarity proof",
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "QuantumOptics",
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "basin_partition_table": [
+    {
+      "seed_count": 2,
+      "stored_pattern_terminal": true,
+      "terminal_class": "L0"
+    },
+    {
+      "seed_count": 2,
+      "stored_pattern_terminal": true,
+      "terminal_class": "L1"
+    },
+    {
+      "seed_count": 2,
+      "stored_pattern_terminal": true,
+      "terminal_class": "R0"
+    },
+    {
+      "seed_count": 2,
+      "stored_pattern_terminal": true,
+      "terminal_class": "R1"
+    },
+    {
+      "seed_count": 2,
+      "stored_pattern_terminal": false,
+      "terminal_class": "SPURIOUS_LOW_MARGIN"
+    }
+  ],
+  "boundary": {
+    "nonhermitian_break_computed": true,
+    "pattern_overload_computed": true
+  },
+  "chart_recoverability_verdict": {
+    "expected_cell_count": 33,
+    "recovered_cell_count": 6,
+    "registered_falsifier_fired": false,
+    "verdict": "partial_recovery_nontrivial"
+  },
+  "claim_path_tools": [
+    "QuantumOptics",
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "computed_scalars": {
+    "max_lyapunov_delta": 0.0,
+    "nonhermitian_imag_energy_abs": 0.42677669529663675,
+    "recovered_chart_cells": 6,
+    "terminal_class_count": 5
+  },
+  "core_digest": "julia_reference_scalars_match_python_common_v1",
+  "crossover_proofs": {
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "computed_perturbation_sat_flip": "sat",
+      "flip_control_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "lyapunov_delta_scaled_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "negative_case": "non-Hermitian perturbation binds positive scaled break",
+      "positive_case": "no finite retrieval row has positive Lyapunov delta",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "gates": {
+    "finite_surface_scalars_match_packet": true,
+    "graphs_shape": true,
+    "julia_z3_flip_sat": true,
+    "julia_z3_positive_unsat": true,
+    "quantumoptics_trace_one": true
+  },
+  "negative": {
+    "seven_guard_controls_failed_as_required": true
+  },
+  "package_observables": {
+    "Graphs": "Graphs.SimpleGraph/add_edge! checks finite support carrier shape",
+    "QuantumOptics": "QuantumOptics.NLevelBasis/Ket/tensor/dm/ptrace/entropy_vn checks finite density reduction",
+    "Z3": "Z3.Solver binds computed Lyapunov deltas UNSAT and non-Hermitian SAT flip"
+  },
+  "packages_used": [
+    "QuantumOptics",
+    "Graphs",
+    "Z3",
+    "JSON",
+    "LinearAlgebra",
+    "Dates",
+    "SHA"
+  ],
+  "positive": {
+    "a_chart_nontrivial_partial_recovery": true,
+    "finite_hermitian_carrier": true,
+    "surface_basin_contract": true,
+    "typed_conditional_entropy_rows": true
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/spinor_network_surface_v0/results/spinor_network_surface_v0_julia_results.json",
+  "schema": "spinor_network_surface_v0_julia_lane_v1",
+  "sim_id": "spinor_network_surface_v0",
+  "source_path": "system_v6/sims/spinor_network_surface_v0/spinor_network_surface_v0_julia.jl",
+  "source_sha256": "4da990633a6aa8f77d0041aa7856dad3f90cfb22484d213a4a384040b9c7e1f9",
+  "tool_observables": {
+    "Graphs": {
+      "connected": true,
+      "edge_count": 5,
+      "node_count": 4,
+      "object": "Graphs.SimpleGraph/add_edge! support carrier"
+    },
+    "QuantumOptics": {
+      "density_shape": [
+        16,
+        16
+      ],
+      "object": "QuantumOptics.NLevelBasis/Ket/tensor/dm/ptrace/entropy_vn",
+      "single_site_entropy": 0.0,
+      "trace": 1.0
+    },
+    "Z3": {
+      "asserted_precomputed_boolean": false,
+      "computed_perturbation_sat_flip": "sat",
+      "flip_control_verdict": "sat",
+      "formula_terms_bound": true,
+      "load_bearing": true,
+      "lyapunov_delta_scaled_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "negative_case": "non-Hermitian perturbation binds positive scaled break",
+      "positive_case": "no finite retrieval row has positive Lyapunov delta",
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    }
+  },
+  "typed_information_rows": {
+    "bipartition_declared": {
+      "A": [
+        0
+      ],
+      "B": [
+        1,
+        2,
+        3
+      ]
+    },
+    "family_id": "pattern_conditioned_conditional_vn_S_A_given_B",
+    "row_count": 3
+  }
+}

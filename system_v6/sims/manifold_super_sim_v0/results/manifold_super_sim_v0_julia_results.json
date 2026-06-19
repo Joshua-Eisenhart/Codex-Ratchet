@@ -1,0 +1,225 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Graphs": "load_bearing",
+    "Z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Graphs": {
+      "reason": "load-bearing finite graph construction and SCC partition",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing partition identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "Graphs",
+    "Z3"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "G0/G1 finite graph partitions from pinned generators",
+      "receipt_id": "julia_Graphs_super_finite_partition",
+      "status": "used",
+      "tool": "Graphs"
+    },
+    {
+      "computed_what": "computed partition identity with erased flip",
+      "receipt_id": "julia_Z3_super_partition_identity",
+      "status": "used",
+      "tool": "Z3"
+    }
+  ],
+  "claim_path_tools": [
+    "Graphs",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "crossover_proofs": {
+    "julia_z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "bound_rows": [
+          {
+            "may_basin_sizes": [
+              33
+            ],
+            "must_basin_sizes": [
+              1
+            ],
+            "partition_signature": {
+              "class_sizes": [
+                1,
+                32
+              ],
+              "scc_count": 2,
+              "state_count": 33,
+              "terminal_sizes": [
+                1
+              ]
+            },
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1,
+            "terminal_class_sizes": [
+              1
+            ]
+          },
+          {
+            "may_basin_sizes": [
+              1,
+              14,
+              18
+            ],
+            "must_basin_sizes": [
+              1,
+              14,
+              18
+            ],
+            "partition_signature": {
+              "class_sizes": [
+                1,
+                14,
+                18
+              ],
+              "scc_count": 3,
+              "state_count": 33,
+              "terminal_sizes": [
+                1,
+                14,
+                18
+              ]
+            },
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3,
+            "terminal_class_sizes": [
+              1,
+              14,
+              18
+            ]
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "julia",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-12T02:41:50Z",
+  "object_id": "manifold_super_sim_v0_julia",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_observables": {
+    "Graphs": "partition_rows.G0/G1 terminal_class_sizes from Graphs SCCs",
+    "Z3": "crossover_proofs.julia_z3 partition identity"
+  },
+  "package_versions": {
+    "Graphs": "1.14.0",
+    "Z3": "1.0.4",
+    "julia": "1.12.6"
+  },
+  "packages_used": [
+    "Graphs",
+    "Z3",
+    "LinearAlgebra",
+    "JSON",
+    "Dates",
+    "SHA"
+  ],
+  "partition_rows": {
+    "G0": {
+      "may_basin_sizes": [
+        33
+      ],
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "set_id": "G0",
+      "state_count": 33,
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ]
+    },
+    "G1": {
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "partition_signature": {
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "set_id": "G1",
+      "state_count": 33,
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/manifold_super_sim_v0/results/manifold_super_sim_v0_julia_results.json",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "manifold_super_sim_v0",
+  "source_backing_probe": {
+    "Graphs_vertex_count": 3,
+    "Z3_component_identity": "unsat"
+  },
+  "source_path": "system_v6/sims/manifold_super_sim_v0/manifold_super_sim_v0_julia.jl",
+  "source_sha256": "a0a64e0054a2aac8b005bae67e3d7dd2290f0d9cf8ecf4cb089ed0bda5210aba",
+  "super_julia_signature_sha256": "4073a18ff8a0f662331684efc673945fb86a3fe0c37125f8f384cf0437456fed",
+  "tool_calls": [
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Graphs.SimpleDiGraph/Graphs.add_edge!/Graphs.strongly_connected_components",
+      "receipt_id": "julia_Graphs_super_finite_partition",
+      "tool": "Graphs"
+    },
+    {
+      "load_bearing": true,
+      "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+      "receipt_id": "julia_Z3_super_partition_identity",
+      "tool": "Z3"
+    }
+  ]
+}

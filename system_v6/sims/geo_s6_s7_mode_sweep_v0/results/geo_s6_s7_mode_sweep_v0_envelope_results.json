@@ -1,0 +1,3433 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Symbolics": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Symbolics": {
+      "reason": "load-bearing Julia mirror for S6 narrowing arithmetic and S7 lens-order commensurability",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia can-fail controls",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent solver for the same S6 identity",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive parent lineage and byte-exact no-op hashing",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive structured receipt serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive file-disjoint path binding",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact symbolic-label row selection for eta-band and order rows",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing S6 narrowing identity and erased-exclusion control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "build_gates": {
+    "classification_ceiling": true,
+    "erased_flip_controls_fail": true,
+    "file_disjoint_packet": true,
+    "julia_symbolics_z3_mirror": true,
+    "mode_declarations_present": true,
+    "order_rows_computed": true,
+    "parent_lineage_hash_bound": true,
+    "s6_noop_control_byte_exact": true,
+    "s6_quotient_descent_split": true,
+    "s6_restricted_narrows": true,
+    "s7_lens_commensurability": true,
+    "s7_noop_control_byte_exact": true,
+    "s7_restricted_cover_honored": true,
+    "s7_restricted_reruns": true,
+    "smt_agreement": true
+  },
+  "builder_hardening_addendum": {
+    "computed_descent_not_by_construction": "S6 class descent is computed from phase dependence and projected-shell class witnesses; S7 quotient admission is computed from N mod lens_order.",
+    "honest_mode_label": "julia_canon_plus_jax_diagnostic with engines.jax carrying the Python-exact sidecar lane record; PyTorch omitted because no graph/network/autograd claim path is scoped.",
+    "status": "closed_caveat_machinery_replicated_from_committed_mode_sweeps",
+    "two_pipeline_order_rows": "S6 and S7 both emit restrict-then-quotient and quotient-then-restrict row lists and counts."
+  },
+  "canon_runtime": {
+    "consumer_policy": "read committed S6/S7 parent envelopes as hash-bound inputs; do not mutate active lanes",
+    "proof_pass": true,
+    "proof_tag": "mode_sweep_s6_s7_restricted_quotiented_z3_cvc5",
+    "receipt_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_envelope_results.json",
+    "semantic_owner": "julia_for_arithmetic_mirror; Python for parent-bound row recomputation"
+  },
+  "capability_receipts": {
+    "julia_symbolics_z3_mirror": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_julia_results.json",
+    "template_geo_s2_s5": "system_v6/sims/geo_s2_s5_mode_sweep_v0/results/geo_s2_s5_mode_sweep_v0_envelope_results.json",
+    "template_geo_s3_s4": "system_v6/sims/geo_s3_s4_mode_sweep_v0/results/geo_s3_s4_mode_sweep_v0_envelope_results.json",
+    "toolset_expansion_receipt": "system_v6/receipts/toolset_expansion_20260610.md"
+  },
+  "claim": "Hash-bound S6/S7 geometry mode sweep over committed stacked-flow and finite-grid parents, recomputed for RESTRICTED and QUOTIENTED modes only.",
+  "claim_path_tools": [
+    "Symbolics",
+    "Z3",
+    "sympy",
+    "z3",
+    "cvc5",
+    "hashlib",
+    "json",
+    "pathlib"
+  ],
+  "classification": "scratch_diagnostic",
+  "cross_mode_comparison_table": {
+    "S6.leakage_classes": {
+      "FREE": {
+        "cross_shell": 10,
+        "leave_foliation": 25,
+        "projected_shell_preserve_but_Hopf_leave": 5
+      },
+      "QUOTIENTED": {
+        "descended": [
+          "projected_shell_preserve_but_Hopf_leave"
+        ],
+        "excluded": [
+          "cross_shell",
+          "leave_foliation"
+        ]
+      },
+      "RESTRICTED": {
+        "cross_shell": 4,
+        "leave_foliation": 10,
+        "projected_shell_preserve_but_Hopf_leave": 2
+      }
+    },
+    "S7.grid_support": {
+      "FREE": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "QUOTIENTED": {
+        "admitted": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "failed": [
+          2,
+          3,
+          5,
+          6,
+          10
+        ]
+      },
+      "RESTRICTED": [
+        8,
+        16,
+        32
+      ]
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "bound_raw_values": {
+        "after": 16,
+        "before": 40,
+        "excluded": 24
+      },
+      "claim": "same S6 shell-band narrowing identity as z3",
+      "derived_expression": "before - after - excluded",
+      "erased_flip_control_can_fail": true,
+      "erased_flip_control_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "bound_raw_values": {
+        "after": 16,
+        "before": 40,
+        "excluded": 24
+      },
+      "claim": "S6 restricted shell-band narrowing identity before-after-excluded=0",
+      "derived_expression": "before - after - excluded",
+      "erased_flip_control_can_fail": true,
+      "erased_flip_control_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "divergence": {
+    "basis": "Julia Symbolics/Z3 arithmetic mirror and the standard JAX-lane Python-exact sidecar agree on S6 count identity and S7 lens commensurability.",
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0
+  },
+  "engine_contract": {
+    "audit_order": [
+      "combined_envelope",
+      "s6_restricted",
+      "s6_quotiented",
+      "s7_restricted",
+      "s7_quotiented",
+      "order_control"
+    ],
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_canon_plus_jax_diagnostic",
+    "omitted_lanes": {
+      "pytorch": "omitted: no graph/network/autograd claim path in this S6/S7 mode-sweep diagnostic"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "sympy",
+        "z3-solver",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "role_id": "jax_slot_python_exact_parent_bound_mode_sweep",
+      "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0.py",
+      "source_sha256": "407160fdc8104eab8f0f0e7c7dff2f20c21275ba2d5d3a238df2f7e7dd3f9f43"
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "Symbolics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_julia_results.json",
+      "result_sha256": "c70a87c385204fd62bb589935ba9b92bfdc495a44d9315f2032eee0ca580e22b",
+      "role_id": "julia_symbolics_z3_mode_mirror",
+      "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0_julia.jl",
+      "source_sha256": "08da51c55e816b255667c229cd748fd345882ba24daf16fb614b309f7d7719cc"
+    }
+  },
+  "foreign_runtime_manifest": {
+    "forbidden_exchange": [
+      ".numpy",
+      "np.asarray",
+      "csv-as-proof",
+      "pickle",
+      "hidden_host_copy"
+    ],
+    "jax": {
+      "packages": [
+        "sympy",
+        "z3-solver",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "role": "standard JAX-lane envelope slot for Python-exact mode-sweep sidecar; no JAX array proof is claimed"
+    },
+    "julia": {
+      "packages": [
+        "Symbolics",
+        "Z3",
+        "JSON",
+        "SHA"
+      ],
+      "project": "system_v5/julia_carrier",
+      "role": "Symbolics/Z3 arithmetic mirror"
+    },
+    "pytorch": {
+      "packages": [],
+      "role": "omitted: no graph/network/autograd claim path"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T06:54:15Z",
+  "julia_symbolics_sidecar": {
+    "TOOL_INTEGRATION_DEPTH": {
+      "JSON": "supportive",
+      "SHA": "supportive",
+      "Symbolics": "load_bearing",
+      "Z3": "load_bearing"
+    },
+    "TOOL_MANIFEST": {
+      "JSON": {
+        "reason": "supportive receipt serialization",
+        "tried": true,
+        "used": true
+      },
+      "SHA": {
+        "reason": "supportive source hashing",
+        "tried": true,
+        "used": true
+      },
+      "Symbolics": {
+        "reason": "load-bearing mirror of S6 narrowing arithmetic and S7 lens-order commensurability",
+        "tried": true,
+        "used": true
+      },
+      "Z3": {
+        "reason": "load-bearing can-fail controls for erased S6 exclusions and incommensurate S7 lens quotient",
+        "tried": true,
+        "used": true
+      }
+    },
+    "aligned_packages_load_bearing": [
+      "Symbolics",
+      "Z3"
+    ],
+    "all_pass": true,
+    "classification": "scratch_diagnostic",
+    "engine": "julia",
+    "formal_admission_allowed": false,
+    "generated_at": "2026-06-11T06:54:13Z",
+    "julia_project": "system_v5/julia_carrier",
+    "packages_used": [
+      "Symbolics",
+      "Z3",
+      "JSON",
+      "SHA"
+    ],
+    "promotion_allowed": false,
+    "ran": true,
+    "reads_peer_result": false,
+    "result_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_julia_results.json",
+    "sim_id": "geo_s6_s7_mode_sweep_v0",
+    "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0_julia.jl",
+    "source_sha256": "08da51c55e816b255667c229cd748fd345882ba24daf16fb614b309f7d7719cc",
+    "symbolics_mode_receipt": {
+      "pass": true,
+      "s6_bound_identity_value": "0",
+      "s6_bound_values": {
+        "after": 16,
+        "before": 40,
+        "excluded": 24
+      },
+      "s6_count_identity_expression": "-after + before - excluded",
+      "s7_commensurate_sample_N8_mod4": "0",
+      "s7_incommensurate_sample_N6_mod4": "2"
+    },
+    "tool_calls": [
+      {
+        "boundary_case": "integer arithmetic mirror only",
+        "demotion_condition": "demote if arithmetic is replaced by literal statuses",
+        "gates": [
+          "julia_symbolics_z3_mirror"
+        ],
+        "input_object": "S6 before/after/excluded counts and S7 N mod lens_order samples",
+        "negative/erased_control": "N=6 mod 4 is nonzero",
+        "output_object": "computed count identity and commensurability rows",
+        "positive_case": "40-16-24=0 and N=8 mod 4 equals 0",
+        "qualified_api/function": "Symbolics.@variables / Symbolics.substitute / Symbolics.simplify",
+        "tool": "Symbolics"
+      },
+      {
+        "boundary_case": "QF integer arithmetic only",
+        "demotion_condition": "demote if can-fail controls are removed",
+        "gates": [
+          "julia_symbolics_z3_mirror"
+        ],
+        "input_object": "S6 count identity and S7 incommensurate quotient branch",
+        "negative/erased_control": "erasing excluded rows or forcing N=6=4q fails",
+        "output_object": "unsat identity violation, unsat erased exclusion, unsat N=6 lens quotient",
+        "positive_case": "valid S6 identity has no counterexample",
+        "qualified_api/function": "Z3.Solver / Z3.add / Z3.check",
+        "tool": "Z3"
+      }
+    ],
+    "z3_controls": {
+      "pass": true,
+      "s6_erased_excluded_control_verdict": "unsat",
+      "s6_identity_violation_verdict": "unsat",
+      "s7_N6_commensurate_control_verdict": "unsat"
+    }
+  },
+  "mode_program": {
+    "declared_modes": [
+      "FREE",
+      "RESTRICTED",
+      "QUOTIENTED"
+    ],
+    "excluded_modes": {
+      "RATCHETED": "out_of_scope; no sequential mode-4 stage induction in this packet"
+    },
+    "executed_modes": [
+      "RESTRICTED",
+      "QUOTIENTED"
+    ]
+  },
+  "mode_rows": {
+    "S6": {
+      "FREE_anchor": {
+        "anchor_path": "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json",
+        "anchor_sha256": "5504eea079bc4f7f92b1874d83dfdb94a75e6a12d1da39cc0225305fdbbe4ae8",
+        "mode": "FREE"
+      },
+      "QUOTIENTED": {
+        "class_level_well_definedness": {
+          "cross_shell": {
+            "class_family": "cross",
+            "descends": false,
+            "mode": "QUOTIENTED",
+            "reason": "the committed cross-shell definition depends on phase-varying finite-time z samples before the lens quotient",
+            "status": "excluded_needs_pre_quotient_phase_samples",
+            "witness": {
+              "eta": "pi/12",
+              "finite_time_z_range": 0.9970320596669555,
+              "phase_dependent": true,
+              "terrain_id": "Ne_Spiral_R",
+              "z_dot_at_chi0": "-sqrt(6)*sin(pi/28)/3"
+            }
+          },
+          "leave_foliation": {
+            "class_family": "leave",
+            "descends": false,
+            "mode": "QUOTIENTED",
+            "reason": "the committed leave-foliation class is a lifted/Hopf-foliation failure label, not a class function of the downstairs lens quotient alone",
+            "status": "excluded_needs_lift_or_foliation_data",
+            "witness": {
+              "eta": "pi/12",
+              "finite_time_z_range": 0.21897867752893524,
+              "phase_dependent": true,
+              "terrain_id": "Ni_Pit_L",
+              "z_dot_at_chi0": "-1/2 - sqrt(3)/4 + sqrt(6)*sin(pi/28)/15"
+            }
+          },
+          "move": {
+            "class_family": "move",
+            "descends": null,
+            "mode": "QUOTIENTED",
+            "observed_in_committed_parent": false,
+            "reason": "no committed S6 leakage row has a standalone move class; no descendant is fabricated",
+            "status": "not_observed_in_geo_s6_stacked_flows_hopf_v0"
+          },
+          "projected_shell_preserve_but_Hopf_leave": {
+            "class_family": "preserve",
+            "descends": true,
+            "mode": "QUOTIENTED",
+            "reason": "the committed class has phase_dependent=false and finite_time_z_range=0 on all observed rows; the Hopf-lift departure is not used as downstairs data",
+            "status": "descends_as_projected_shell_preservation",
+            "witness": {
+              "eta": "pi/12",
+              "finite_time_z_range": 0.0,
+              "phase_dependent": false,
+              "terrain_id": "Si_Hill_L",
+              "z_dot_at_chi0": "0"
+            }
+          }
+        },
+        "descended_classes": [
+          "projected_shell_preserve_but_Hopf_leave"
+        ],
+        "excluded_classes": [
+          "cross_shell",
+          "leave_foliation"
+        ],
+        "mode": "QUOTIENTED",
+        "pass": true,
+        "quotient": {
+          "id": "Q_S6_lens_quotient_downstairs_shell_class",
+          "lens_order": 4,
+          "statement": "lens quotient erases pre-quotient Hopf phase/lift data; only class predicates well-defined on downstairs projected shell data descend"
+        },
+        "taxonomy_rows": {
+          "cross": "observed but excluded",
+          "leave": "observed but excluded",
+          "move": "not observed",
+          "preserve": "observed via projected_shell_preserve_but_Hopf_leave"
+        }
+      },
+      "RESTRICTED": {
+        "constraint": {
+          "eta_max": "pi/4",
+          "eta_min": "pi/6",
+          "id": "C_S6_shell_band_pi6_pi4",
+          "included": [
+            "pi/4",
+            "pi/6"
+          ],
+          "statement": "retain committed S6 stacked terrain/operator/Hopf rows only for eta in {pi/6, pi/4}"
+        },
+        "everything_excluded_control": {
+          "admissible_set_empty": true,
+          "after_eta_row_count": 0,
+          "constraint": "C_EMPTY: eta is not in the committed shell set",
+          "pass": true,
+          "row_policy": "report empty admissible set; no zero-valued leakage row is fabricated"
+        },
+        "excluded_rows": [
+          {
+            "classification": "cross_shell",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.9970320596669555,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Spiral_R",
+            "z_dot_at_chi0": "-sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.7269101841182113,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Spiral_R",
+            "z_dot_at_chi0": "-sqrt(2)*sin(pi/28)",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.9970320596669555,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Spiral_R",
+            "z_dot_at_chi0": "-sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.9970320596669555,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Vortex_L",
+            "z_dot_at_chi0": "sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.7269101841182113,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Vortex_L",
+            "z_dot_at_chi0": "sqrt(2)*sin(pi/28)",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.9970320596669555,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Vortex_L",
+            "z_dot_at_chi0": "sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.21897867752893524,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Pit_L",
+            "z_dot_at_chi0": "-1/2 - sqrt(3)/4 + sqrt(6)*sin(pi/28)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.37928219525435714,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Pit_L",
+            "z_dot_at_chi0": "-1/4 + sqrt(2)*sin(pi/28)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.21897867752893518,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Pit_L",
+            "z_dot_at_chi0": "-1/2 + sqrt(6)*sin(pi/28)/15 + sqrt(3)/4",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.2189786775289353,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Source_R",
+            "z_dot_at_chi0": "-sqrt(3)/4 - sqrt(6)*sin(pi/28)/15 + 1/2",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.37928219525435714,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Source_R",
+            "z_dot_at_chi0": "-sqrt(2)*sin(pi/28)/5 + 3/4",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.21897867752893535,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Source_R",
+            "z_dot_at_chi0": "-sqrt(6)*sin(pi/28)/15 + sqrt(3)/4 + 1/2",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.14286807354333148,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Cannon_R",
+            "z_dot_at_chi0": "-sqrt(3)*(sqrt(2)*sin(pi/28) + 6)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.24745476215653692,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Cannon_R",
+            "z_dot_at_chi0": "-sqrt(2)*sin(pi/28)/5 + 2/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.14286807354333142,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Cannon_R",
+            "z_dot_at_chi0": "-sqrt(3)*(-6 + sqrt(2)*sin(pi/28))/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.14286807354333136,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Funnel_L",
+            "z_dot_at_chi0": "sqrt(3)*(-6 + sqrt(2)*sin(pi/28))/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.24745476215653694,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Funnel_L",
+            "z_dot_at_chi0": "sqrt(2)*sin(pi/28)/5 + 2/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.14286807354333136,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Funnel_L",
+            "z_dot_at_chi0": "sqrt(3)*(sqrt(2)*sin(pi/28) + 6)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.26103492114345683,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Si_Citadel_R",
+            "z_dot_at_chi0": "-sqrt(3)/5 + sin(2*pi/7)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.4521257459702026,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Si_Citadel_R",
+            "z_dot_at_chi0": "1/5 + sqrt(3)*sin(2*pi/7)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.26103492114345683,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Si_Citadel_R",
+            "z_dot_at_chi0": "sin(2*pi/7)/5 + sqrt(3)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "projected_shell_preserve_but_Hopf_leave",
+            "eta": "pi/12",
+            "finite_time_coherent_shell_map": true,
+            "finite_time_z_range": 0.0,
+            "phase_dependent": false,
+            "pure_preserving": false,
+            "terrain_id": "Si_Hill_L",
+            "z_dot_at_chi0": "0",
+            "z_dot_zero": true
+          },
+          {
+            "classification": "projected_shell_preserve_but_Hopf_leave",
+            "eta": "pi/3",
+            "finite_time_coherent_shell_map": true,
+            "finite_time_z_range": 0.0,
+            "phase_dependent": false,
+            "pure_preserving": false,
+            "terrain_id": "Si_Hill_L",
+            "z_dot_at_chi0": "0",
+            "z_dot_zero": true
+          },
+          {
+            "classification": "projected_shell_preserve_but_Hopf_leave",
+            "eta": "5*pi/12",
+            "finite_time_coherent_shell_map": true,
+            "finite_time_z_range": 0.0,
+            "phase_dependent": false,
+            "pure_preserving": false,
+            "terrain_id": "Si_Hill_L",
+            "z_dot_at_chi0": "0",
+            "z_dot_zero": true
+          }
+        ],
+        "mode": "RESTRICTED",
+        "narrowing_signature": {
+          "after_class_counts": {
+            "cross_shell": 4,
+            "leave_foliation": 10,
+            "projected_shell_preserve_but_Hopf_leave": 2
+          },
+          "after_eta_row_count": 16,
+          "before_class_counts": {
+            "cross_shell": 10,
+            "leave_foliation": 25,
+            "projected_shell_preserve_but_Hopf_leave": 5
+          },
+          "before_eta_row_count": 40,
+          "excluded_class_counts": {
+            "cross_shell": 6,
+            "leave_foliation": 15,
+            "projected_shell_preserve_but_Hopf_leave": 3
+          },
+          "excluded_eta_labels": [
+            "5*pi/12",
+            "pi/12",
+            "pi/3"
+          ],
+          "excluded_eta_row_count": 24,
+          "pass": true,
+          "surviving_classes": [
+            "cross_shell",
+            "leave_foliation",
+            "projected_shell_preserve_but_Hopf_leave"
+          ]
+        },
+        "nothing_excluded_control": {
+          "byte_exact_equal": true,
+          "constraint": "C_ALL: eta in {pi/12, pi/6, pi/4, pi/3, 5*pi/12}; committed S6 shell rows retained byte-exact by canonical JSON hash",
+          "free_shell_rows_sha256": "65cd20af8ad2d2deb85d60c2437d9772f2f75feaf9049d08f4b5fdbfb65da178",
+          "restricted_noop_shell_rows_sha256": "65cd20af8ad2d2deb85d60c2437d9772f2f75feaf9049d08f4b5fdbfb65da178"
+        },
+        "pass": true,
+        "restricted_rows": [
+          {
+            "classification": "cross_shell",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.7269101841182113,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Spiral_R",
+            "z_dot_at_chi0": "-sqrt(2)*sin(pi/28)",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.994064119333911,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Spiral_R",
+            "z_dot_at_chi0": "-2*sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.7269101841182113,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Vortex_L",
+            "z_dot_at_chi0": "sqrt(2)*sin(pi/28)",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "cross_shell",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 1.994064119333911,
+            "phase_dependent": true,
+            "pure_preserving": true,
+            "terrain_id": "Ne_Vortex_L",
+            "z_dot_at_chi0": "2*sqrt(6)*sin(pi/28)/3",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.37928219525435714,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Pit_L",
+            "z_dot_at_chi0": "-3/4 + sqrt(2)*sin(pi/28)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.4379573550578706,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Pit_L",
+            "z_dot_at_chi0": "-1/2 + 2*sqrt(6)*sin(pi/28)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.3792821952543571,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Source_R",
+            "z_dot_at_chi0": "-sqrt(2)*sin(pi/28)/5 + 1/4",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.4379573550578707,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Ni_Source_R",
+            "z_dot_at_chi0": "-2*sqrt(6)*sin(pi/28)/15 + 1/2",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.2474547621565369,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Cannon_R",
+            "z_dot_at_chi0": "-2/5 - sqrt(2)*sin(pi/28)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.28573614708666284,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Cannon_R",
+            "z_dot_at_chi0": "-2*sqrt(6)*sin(pi/28)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.24745476215653694,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Funnel_L",
+            "z_dot_at_chi0": "-2/5 + sqrt(2)*sin(pi/28)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.28573614708666284,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Se_Funnel_L",
+            "z_dot_at_chi0": "2*sqrt(6)*sin(pi/28)/15",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.4521257459702026,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Si_Citadel_R",
+            "z_dot_at_chi0": "-1/5 + sqrt(3)*sin(2*pi/7)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "leave_foliation",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": false,
+            "finite_time_z_range": 0.5220698422869138,
+            "phase_dependent": true,
+            "pure_preserving": false,
+            "terrain_id": "Si_Citadel_R",
+            "z_dot_at_chi0": "2*sin(2*pi/7)/5",
+            "z_dot_zero": false
+          },
+          {
+            "classification": "projected_shell_preserve_but_Hopf_leave",
+            "eta": "pi/6",
+            "finite_time_coherent_shell_map": true,
+            "finite_time_z_range": 0.0,
+            "phase_dependent": false,
+            "pure_preserving": false,
+            "terrain_id": "Si_Hill_L",
+            "z_dot_at_chi0": "0",
+            "z_dot_zero": true
+          },
+          {
+            "classification": "projected_shell_preserve_but_Hopf_leave",
+            "eta": "pi/4",
+            "finite_time_coherent_shell_map": true,
+            "finite_time_z_range": 0.0,
+            "phase_dependent": false,
+            "pure_preserving": false,
+            "terrain_id": "Si_Hill_L",
+            "z_dot_at_chi0": "0",
+            "z_dot_zero": true
+          }
+        ]
+      }
+    },
+    "S7": {
+      "FREE_anchor": {
+        "anchor_path": "system_v6/sims/geo_s7_discrete_refinement_v0/results/geo_s7_discrete_refinement_v0_envelope_results.json",
+        "anchor_sha256": "1f0d55d6a36292cb669921ea13f104898ca8ef342b686ebbf769c44c550c1803",
+        "mode": "FREE"
+      },
+      "QUOTIENTED": {
+        "admitted_N_values": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "failed_N_values": [
+          2,
+          3,
+          5,
+          6,
+          10
+        ],
+        "grid_quotient_admissibility_rows": [
+          {
+            "N": 2,
+            "admits_lens_quotient": false,
+            "computed_mod": 2,
+            "failure_kind": "incommensurate_with_lens_order",
+            "lens_order": 4,
+            "reason": "N=2 is not divisible by lens_order=4; the N/4 grid shift is not integral"
+          },
+          {
+            "N": 3,
+            "admits_lens_quotient": false,
+            "computed_mod": 3,
+            "failure_kind": "incommensurate_with_lens_order",
+            "lens_order": 4,
+            "reason": "N=3 is not divisible by lens_order=4; the N/4 grid shift is not integral"
+          },
+          {
+            "N": 5,
+            "admits_lens_quotient": false,
+            "computed_mod": 1,
+            "failure_kind": "incommensurate_with_lens_order",
+            "lens_order": 4,
+            "reason": "N=5 is not divisible by lens_order=4; the N/4 grid shift is not integral"
+          },
+          {
+            "N": 6,
+            "admits_lens_quotient": false,
+            "computed_mod": 2,
+            "failure_kind": "incommensurate_with_lens_order",
+            "lens_order": 4,
+            "reason": "N=6 is not divisible by lens_order=4; the N/4 grid shift is not integral"
+          },
+          {
+            "N": 8,
+            "admits_lens_quotient": true,
+            "all_orbits_size_lens_order": true,
+            "chart_point_count": 64,
+            "computed_mod": 0,
+            "lens_order": 4,
+            "orbit_count": 16,
+            "orbit_size_max": 4,
+            "orbit_size_min": 4,
+            "shift": [
+              2,
+              2
+            ]
+          },
+          {
+            "N": 10,
+            "admits_lens_quotient": false,
+            "computed_mod": 2,
+            "failure_kind": "incommensurate_with_lens_order",
+            "lens_order": 4,
+            "reason": "N=10 is not divisible by lens_order=4; the N/4 grid shift is not integral"
+          },
+          {
+            "N": 16,
+            "admits_lens_quotient": true,
+            "all_orbits_size_lens_order": true,
+            "chart_point_count": 256,
+            "computed_mod": 0,
+            "lens_order": 4,
+            "orbit_count": 64,
+            "orbit_size_max": 4,
+            "orbit_size_min": 4,
+            "shift": [
+              4,
+              4
+            ]
+          },
+          {
+            "N": 32,
+            "admits_lens_quotient": true,
+            "all_orbits_size_lens_order": true,
+            "chart_point_count": 1024,
+            "computed_mod": 0,
+            "lens_order": 4,
+            "orbit_count": 256,
+            "orbit_size_max": 4,
+            "orbit_size_min": 4,
+            "shift": [
+              8,
+              8
+            ]
+          },
+          {
+            "N": 64,
+            "admits_lens_quotient": true,
+            "all_orbits_size_lens_order": true,
+            "chart_point_count": 4096,
+            "computed_mod": 0,
+            "lens_order": 4,
+            "orbit_count": 1024,
+            "orbit_size_max": 4,
+            "orbit_size_min": 4,
+            "shift": [
+              16,
+              16
+            ]
+          }
+        ],
+        "lens_order": 4,
+        "mode": "QUOTIENTED",
+        "pass": true,
+        "quotient": {
+          "id": "Q_S7_lens_order_4_grid_quotient",
+          "lens_order": 4,
+          "statement": "finite grids admit the lens quotient only when N is commensurate with lens order 4"
+        }
+      },
+      "RESTRICTED": {
+        "constraint": {
+          "id": "C_S7_subgrid_N_8_16_32",
+          "kept_N_values": [
+            8,
+            16,
+            32
+          ],
+          "statement": "rerun finite T_eta^{N,N} support and convergence rows only at N in {8,16,32}"
+        },
+        "everything_excluded_control": {
+          "admissible_set_empty": true,
+          "after_grid_count": 0,
+          "constraint": "C_EMPTY: no N values retained",
+          "pass": true,
+          "row_policy": "report empty admissible set; no convergence rows are fabricated"
+        },
+        "mode": "RESTRICTED",
+        "nothing_excluded_control": {
+          "byte_exact_equal": true,
+          "constraint": "C_ALL: retain all committed S7 N values and curve rows",
+          "free_rows_sha256": "2a9d5420a3aee9b34be519a6aa88280f6a712d3f93eb0a7b630594a2dcef67e5",
+          "restricted_noop_rows_sha256": "2a9d5420a3aee9b34be519a6aa88280f6a712d3f93eb0a7b630594a2dcef67e5"
+        },
+        "pass": true,
+        "reduced_grid_reruns": {
+          "area_rows": [
+            {
+              "N": 8,
+              "abs_error": 1.1650630448753425,
+              "area_estimate": 8.704541356214014,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 3.3306690738754696e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.11804556672471582
+            },
+            {
+              "N": 16,
+              "abs_error": 0.3003539015247654,
+              "area_estimate": 9.56925049956459,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 3.3306690738754696e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.9556727159647593,
+              "rel_error": 0.030432212814083395
+            },
+            {
+              "N": 32,
+              "abs_error": 0.07566424762309154,
+              "area_estimate": 9.793940153466265,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 1.6653345369377348e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.9889797307728299,
+              "rel_error": 0.007666391128578579
+            },
+            {
+              "N": 8,
+              "abs_error": 1.5589665164358397,
+              "area_estimate": 12.398761882841917,
+              "area_target": 13.957728399277757,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 4.440892098500626e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.11169199398639312
+            },
+            {
+              "N": 16,
+              "abs_error": 0.3991630742386505,
+              "area_estimate": 13.558565325039106,
+              "area_target": 13.957728399277757,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 4.718447854656915e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.9655397709024391,
+              "rel_error": 0.02859799695337998
+            },
+            {
+              "N": 32,
+              "abs_error": 0.10037302181826746,
+              "area_estimate": 13.85735537745949,
+              "area_target": 13.957728399277757,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 2.2898349882893854e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.9916067111194726,
+              "rel_error": 0.00719121471252165
+            },
+            {
+              "N": 8,
+              "abs_error": 1.7348823145069883,
+              "area_estimate": 15.359773958785178,
+              "area_target": 17.094656273292166,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 5.551115123125783e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.10148682060472204
+            },
+            {
+              "N": 16,
+              "abs_error": 0.4381640701898313,
+              "area_estimate": 16.656492203102335,
+              "area_target": 17.094656273292166,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 6.106226635438361e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.9852947089874393,
+              "rel_error": 0.025631639688151953
+            },
+            {
+              "N": 32,
+              "abs_error": 0.10977034733200597,
+              "area_estimate": 16.98488592596016,
+              "area_target": 17.094656273292166,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 2.8449465006019636e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.996982800561494,
+              "rel_error": 0.0064213252128096695
+            },
+            {
+              "N": 8,
+              "abs_error": 1.1961423855918767,
+              "area_estimate": 18.54306641658684,
+              "area_target": 19.739208802178716,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 5.551115123125783e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.06059728115646927
+            },
+            {
+              "N": 16,
+              "abs_error": 0.2664883768216946,
+              "area_estimate": 19.47272042535702,
+              "area_target": 19.739208802178716,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 6.661338147750939e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 2.16624461955178,
+              "rel_error": 0.013500458883249713
+            },
+            {
+              "N": 32,
+              "abs_error": 0.06424401097633492,
+              "area_estimate": 19.67496479120238,
+              "area_target": 19.739208802178716,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 3.2612801348363973e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 2.0524387364217866,
+              "rel_error": 0.003254639617026797
+            },
+            {
+              "N": 8,
+              "abs_error": 0.8988972444242798,
+              "area_estimate": 17.99355351771645,
+              "area_target": 17.09465627329217,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 4.440892098500626e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.0525835225963959
+            },
+            {
+              "N": 16,
+              "abs_error": 0.37658652040522256,
+              "area_estimate": 17.471242793697392,
+              "area_target": 17.09465627329217,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 5.828670879282072e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.2551748456390788,
+              "rel_error": 0.022029487717374136
+            },
+            {
+              "N": 32,
+              "abs_error": 0.10574107245311737,
+              "area_estimate": 17.200397345745287,
+              "area_target": 17.09465627329217,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 2.7755575615628914e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.8324454967428099,
+              "rel_error": 0.006185621445827016
+            },
+            {
+              "N": 8,
+              "abs_error": 2.714443865681826,
+              "area_estimate": 16.672172264959585,
+              "area_target": 13.957728399277759,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 4.440892098500626e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.19447604853969536
+            },
+            {
+              "N": 16,
+              "abs_error": 0.9807366937322257,
+              "area_estimate": 14.938465093009984,
+              "area_target": 13.957728399277759,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 5.412337245047638e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.4687188878423598,
+              "rel_error": 0.07026477845656989
+            },
+            {
+              "N": 32,
+              "abs_error": 0.270597588395205,
+              "area_estimate": 14.228325987672964,
+              "area_target": 13.957728399277759,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 2.463307335887066e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.857716874624574,
+              "rel_error": 0.019386936086907024
+            },
+            {
+              "N": 8,
+              "abs_error": 5.227467634171694,
+              "area_estimate": 15.09707203526105,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 64,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 5.551115123125783e-16,
+              "physical_cell_count": 32,
+              "rate_between_N_doublings": null,
+              "rel_error": 0.5296532081462872
+            },
+            {
+              "N": 16,
+              "abs_error": 1.9511931026796727,
+              "area_estimate": 11.820797503769029,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 256,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 4.163336342344337e-16,
+              "physical_cell_count": 128,
+              "rate_between_N_doublings": 1.4217556609688407,
+              "rel_error": 0.19769719467827
+            },
+            {
+              "N": 32,
+              "abs_error": 0.5554536053828674,
+              "area_estimate": 10.425058006472224,
+              "area_target": 9.869604401089356,
+              "chart_cell_count": 1024,
+              "cover_compatible_cell_representatives": true,
+              "estimator": "R4 embedded chord-mesh triangles over quotient-cell representatives",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "exactness_label": "discrete_geometric_estimator_not_exact_formula",
+              "max_partner_cell_area_abs_diff": 1.8735013540549517e-16,
+              "physical_cell_count": 512,
+              "rate_between_N_doublings": 1.8126182437031295,
+              "rel_error": 0.056279216755796134
+            }
+          ],
+          "area_rows_count": 21,
+          "cover_honored_all_rows": true,
+          "excluded_N_values": [
+            2,
+            4,
+            64
+          ],
+          "flux_stokes_rows": [
+            {
+              "N": 8,
+              "abs_error": 4.45568277710473e-05,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.9985597113720583,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/8",
+              "rate_between_N_doublings": null,
+              "rel_error": 4.4623086157748514e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.2126023491770317,
+              "stokes_residual": -0.2126023491770317,
+              "target_Phi_ij": -0.9985151545442873
+            },
+            {
+              "N": 16,
+              "abs_error": 1.1138945990363247e-05,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.9985262934902777,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/8",
+              "rate_between_N_doublings": 2.000033797661098,
+              "rel_error": 1.1155510198988372e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.04656828005695712,
+              "stokes_residual": -0.04656828005695712,
+              "target_Phi_ij": -0.9985151545442873
+            },
+            {
+              "N": 32,
+              "abs_error": 2.78472018866438e-06,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.998517939264476,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/8",
+              "rate_between_N_doublings": 2.000008449228932,
+              "rel_error": 2.788861216568415e-06,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.011212420598367578,
+              "stokes_residual": -0.011212420598367578,
+              "target_Phi_ij": -0.9985151545442873
+            },
+            {
+              "N": 8,
+              "abs_error": 5.806758848447835e-05,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.301348352157057,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->pi/6",
+              "rate_between_N_doublings": null,
+              "rel_error": 4.4623086157697685e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.08669155480040769,
+              "stokes_residual": -0.08669155480040769,
+              "target_Phi_ij": -1.3012902845685725
+            },
+            {
+              "N": 16,
+              "abs_error": 1.4516557041099887e-05,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.3013048011256136,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->pi/6",
+              "rate_between_N_doublings": 2.0000337976842304,
+              "rel_error": 1.1155510198796789e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.010031910022519464,
+              "stokes_residual": -0.010031910022519464,
+              "target_Phi_ij": -1.3012902845685725
+            },
+            {
+              "N": 32,
+              "abs_error": 3.629118005665788e-06,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.3012939136865782,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->pi/6",
+              "rate_between_N_doublings": 2.0000084493889214,
+              "rel_error": 2.7888612162112462e-06,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.0019199175774717858,
+              "stokes_residual": -0.0019199175774717858,
+              "target_Phi_ij": -1.3012902845685725
+            },
+            {
+              "N": 8,
+              "abs_error": 0.000560802789802306,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.1421534563795954,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->pi/4",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.00017850907219352433,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.5670274156268529,
+              "stokes_residual": 0.5670274156268529,
+              "target_Phi_ij": -3.141592653589793
+            },
+            {
+              "N": 16,
+              "abs_error": 0.00014018755965405916,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.141732841149447,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->pi/4",
+              "rate_between_N_doublings": 2.000135197059202,
+              "rel_error": 4.4623086157866936e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.12578029370045662,
+              "stokes_residual": 0.12578029370045662,
+              "target_Phi_ij": -3.141592653589793
+            },
+            {
+              "N": 32,
+              "abs_error": 3.504606888782291e-05,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.141627699658681,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->pi/4",
+              "rate_between_N_doublings": 2.0000337976799503,
+              "rel_error": 1.1155510198872198e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.030538430276434436,
+              "stokes_residual": 0.030538430276434436,
+              "target_Phi_ij": -3.141592653589793
+            },
+            {
+              "N": 8,
+              "abs_error": 0.000560802789802306,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/4",
+              "eta_j_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.1421534563795945,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/4->pi/3",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.00017850907219352436,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.5670274156268533,
+              "stokes_residual": 0.5670274156268533,
+              "target_Phi_ij": -3.1415926535897922
+            },
+            {
+              "N": 16,
+              "abs_error": 0.00014018755965317098,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/4",
+              "eta_j_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.1417328411494454,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/4->pi/3",
+              "rate_between_N_doublings": 2.0001351970683423,
+              "rel_error": 4.462308615758424e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.1257802937004575,
+              "stokes_residual": 0.1257802937004575,
+              "target_Phi_ij": -3.1415926535897922
+            },
+            {
+              "N": 32,
+              "abs_error": 3.504606888737882e-05,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/4",
+              "eta_j_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -3.1416276996586796,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/4->pi/3",
+              "rate_between_N_doublings": 2.000033797689091,
+              "rel_error": 1.1155510198730844e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.03053843027643488,
+              "stokes_residual": 0.03053843027643488,
+              "target_Phi_ij": -3.1415926535897922
+            },
+            {
+              "N": 8,
+              "abs_error": 5.8067588484700394e-05,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/3",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.3013483521570584,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/3->3*pi/8",
+              "rate_between_N_doublings": null,
+              "rel_error": 4.462308615786828e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.08669155480040769,
+              "stokes_residual": -0.08669155480040769,
+              "target_Phi_ij": -1.3012902845685737
+            },
+            {
+              "N": 16,
+              "abs_error": 1.4516557041543976e-05,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/3",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.3013048011256152,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/3->3*pi/8",
+              "rate_between_N_doublings": 2.0000337976456124,
+              "rel_error": 1.1155510199138048e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.01003191002252013,
+              "stokes_residual": -0.01003191002252013,
+              "target_Phi_ij": -1.3012902845685737
+            },
+            {
+              "N": 32,
+              "abs_error": 3.629118006109877e-06,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/3",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -1.3012939136865798,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/3->3*pi/8",
+              "rate_between_N_doublings": 2.0000084492565158,
+              "rel_error": 2.7888612165525124e-06,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.001919917577472452,
+              "stokes_residual": -0.001919917577472452,
+              "target_Phi_ij": -1.3012902845685737
+            },
+            {
+              "N": 8,
+              "abs_error": 4.4556827770714236e-05,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "3*pi/8",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.9985597113720588,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "3*pi/8->5*pi/12",
+              "rate_between_N_doublings": null,
+              "rel_error": 4.462308615741491e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.21260234917703213,
+              "stokes_residual": -0.21260234917703213,
+              "target_Phi_ij": -0.9985151545442881
+            },
+            {
+              "N": 16,
+              "abs_error": 1.113894599003018e-05,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "3*pi/8",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.9985262934902781,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "3*pi/8->5*pi/12",
+              "rate_between_N_doublings": 2.0000337976934515,
+              "rel_error": 1.11555101986548e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.04656828005695668,
+              "stokes_residual": -0.04656828005695668,
+              "target_Phi_ij": -0.9985151545442881
+            },
+            {
+              "N": 32,
+              "abs_error": 2.7847201881092687e-06,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "3*pi/8",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -0.9985179392644762,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "3*pi/8->5*pi/12",
+              "rate_between_N_doublings": 2.0000084494733836,
+              "rel_error": 2.788861216012476e-06,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.011212420598366912,
+              "stokes_residual": -0.011212420598366912,
+              "target_Phi_ij": -0.9985151545442881
+            },
+            {
+              "N": 8,
+              "abs_error": 0.003886812658052463,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -5.4452849053607055,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/4",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.0007143040431585014,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.2645101261974183,
+              "stokes_residual": 0.2645101261974183,
+              "target_Phi_ij": -5.441398092702653
+            },
+            {
+              "N": 16,
+              "abs_error": 0.0009713389249652593,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -5.442369431627618,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/4",
+              "rate_between_N_doublings": 2.000540890594588,
+              "rel_error": 0.00017850907219376248,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.06837460775870063,
+              "stokes_residual": 0.06837460775870063,
+              "target_Phi_ij": -5.441398092702653
+            },
+            {
+              "N": 32,
+              "abs_error": 0.0002428119759114722,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/12",
+              "eta_j_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -5.4416409046785645,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/12->pi/4",
+              "rate_between_N_doublings": 2.000135197051924,
+              "rel_error": 4.4623086158151586e-05,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.017204740031766086,
+              "stokes_residual": 0.017204740031766086,
+              "target_Phi_ij": -5.441398092702653
+            },
+            {
+              "N": 8,
+              "abs_error": 0.01428999168504852,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.90005586800178,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->3*pi/8",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.00160818908397482,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.9476194707244154,
+              "stokes_residual": 0.9476194707244154,
+              "target_Phi_ij": -8.885765876316732
+            },
+            {
+              "N": 16,
+              "abs_error": 0.0035694846156264504,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.889335360932359,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->3*pi/8",
+              "rate_between_N_doublings": 2.0012173878423196,
+              "rel_error": 0.0004017081549650337,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.2282366909736364,
+              "stokes_residual": 0.2282366909736364,
+              "target_Phi_ij": -8.885765876316732
+            },
+            {
+              "N": 32,
+              "abs_error": 0.0008921830017438737,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/8",
+              "eta_j_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.886658059318476,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/8->3*pi/8",
+              "rate_between_N_doublings": 2.000304217378063,
+              "rel_error": 0.00010040586418350416,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.05642219276996663,
+              "stokes_residual": 0.05642219276996663,
+              "target_Phi_ij": -8.885765876316732
+            },
+            {
+              "N": 8,
+              "abs_error": 0.013803072026044916,
+              "chi_cells": 8,
+              "eta_cells": 8,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.596793818318492,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->5*pi/12",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.0016081890839748792,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 64,
+              "stokes_abs_residual": 0.8221820852460819,
+              "stokes_residual": 0.8221820852460819,
+              "target_Phi_ij": -8.582990746292447
+            },
+            {
+              "N": 16,
+              "abs_error": 0.003447857376777108,
+              "chi_cells": 16,
+              "eta_cells": 16,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.586438603669224,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->5*pi/12",
+              "rate_between_N_doublings": 2.001217387841531,
+              "rel_error": 0.00040170815496526807,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 256,
+              "stokes_abs_residual": 0.19181857056699947,
+              "stokes_residual": 0.19181857056699947,
+              "target_Phi_ij": -8.582990746292447
+            },
+            {
+              "N": 32,
+              "abs_error": 0.0008617826031613873,
+              "chi_cells": 32,
+              "eta_cells": 32,
+              "eta_i_label": "pi/6",
+              "eta_j_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "flux_estimate": -8.583852528895608,
+              "normalization": "physical S2 strip over chi in [0,2*pi]; double-covered chart value is a negative control",
+              "pair_label": "pi/6->5*pi/12",
+              "rate_between_N_doublings": 2.0003042173774404,
+              "rel_error": 0.00010040586418360609,
+              "route": "midpoint plaquette strip sum over eta-chi cells",
+              "sampled_cells": 1024,
+              "stokes_abs_residual": 0.047159245749838874,
+              "stokes_residual": 0.047159245749838874,
+              "target_Phi_ij": -8.582990746292447
+            }
+          ],
+          "flux_stokes_rows_count": 27,
+          "holonomy_rows": [
+            {
+              "N": 8,
+              "abs_error": 0.2683969388554708,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -5.709795031558125,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.7137243789447656,
+              "neighbor_overlap_imag": 0.6123724356957945,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.04932499594459232,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 5.709795031558125,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.069345946683665,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -5.510744039386319,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.34442150246164493,
+              "neighbor_overlap_imag": 0.3314135740355918,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 1.9524847536297982,
+              "rel_error": 0.012744141395694502,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 5.510744039386319,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.01744755200767667,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.2617993877991494,
+              "eta_label": "pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -5.458845644710331,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.17058892639719783,
+              "neighbor_overlap_imag": 0.16895317489845363,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 1.9907869263496576,
+              "rel_error": 0.003206446525402216,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 5.458845644710331,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 0.480954731204732,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -4.923837669363098,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.6154797086703873,
+              "neighbor_overlap_imag": 0.5,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.10825284795914386,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 4.923837669363098,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.11590308779463232,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -4.558786025952998,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.2849241266220624,
+              "neighbor_overlap_imag": 0.2705980500730985,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.0529821079709647,
+              "rel_error": 0.026087360258624254,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 4.558786025952998,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.02865718788585614,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.39269908169872414,
+              "eta_label": "pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -4.471540126044222,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.13973562893888195,
+              "neighbor_overlap_imag": 0.1379496896414715,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.0159500511651856,
+              "rel_error": 0.006450133457204012,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 4.471540126044222,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 0.5675882184166547,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -3.7091808720064487,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.4636476090008061,
+              "neighbor_overlap_imag": 0.3535533905932738,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.18066894120346585,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 3.7091808720064487,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.141592653589794,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.12592048126011024,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -3.2675131348499042,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.20421957092811902,
+              "neighbor_overlap_imag": 0.19134171618254495,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.172331683437378,
+              "rel_error": 0.04008173405811383,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 3.2675131348499042,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.141592653589794,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.030573476345321815,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.5235987755982988,
+              "eta_label": "pi/6",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -3.172166129935116,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 0.09913019156047237,
+              "neighbor_overlap_imag": 0.09754516100806415,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.042160452110851,
+              "rel_error": 0.0097318397757222,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 3.172166129935116,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.141592653589794,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 1.0512458091458323e-16,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -4.898587196589412e-16,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 6.123233995736765e-17,
+              "neighbor_overlap_imag": 4.329780281177466e-17,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": null,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 4.898587196589412e-16,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.8473413874435795e-16,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 2.1078111914548786e-17,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -4.0581225065890674e-16,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 2.536326566618167e-17,
+              "neighbor_overlap_imag": 2.3432602026631493e-17,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.318282501564154,
+              "rel_error": null,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 4.0581225065890674e-16,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.8473413874435795e-16,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 5.0216916913549284e-18,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 0.7853981633974483,
+              "eta_label": "pi/4",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": -3.897558304357129e-16,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": 1.2179869701116028e-17,
+              "neighbor_overlap_imag": 1.1945836920083893e-17,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.0695002807874183,
+              "rel_error": null,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": 3.897558304357129e-16,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": -3.8473413874435795e-16,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 0.5675882184166552,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 3.7091808720064474,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.4636476090008059,
+              "neighbor_overlap_imag": -0.3535533905932736,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.1806689412034661,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -3.7091808720064474,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 3.1415926535897922,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.12592048126011024,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 3.2675131348499025,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.2042195709281189,
+              "neighbor_overlap_imag": -0.19134171618254484,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.172331683437379,
+              "rel_error": 0.04008173405811385,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -3.2675131348499025,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 3.1415926535897922,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.030573476345321815,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.0471975511965976,
+              "eta_label": "pi/3",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 3.172166129935114,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.09913019156047231,
+              "neighbor_overlap_imag": -0.0975451610080641,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.042160452110851,
+              "rel_error": 0.009731839775722206,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -3.172166129935114,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 3.1415926535897922,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 0.480954731204732,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 4.923837669363098,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.6154797086703873,
+              "neighbor_overlap_imag": -0.4999999999999999,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.10825284795914386,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -4.923837669363098,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.11590308779463143,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 4.5587860259529975,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.28492412662206235,
+              "neighbor_overlap_imag": -0.27059805007309845,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.052982107970976,
+              "rel_error": 0.026087360258624053,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -4.5587860259529975,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.02865718788585525,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.1780972450961724,
+              "eta_label": "3*pi/8",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 4.471540126044221,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.13973562893888192,
+              "neighbor_overlap_imag": -0.13794968964147147,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 2.0159500511652193,
+              "rel_error": 0.0064501334572038115,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -4.471540126044221,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 4.442882938158366,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 8,
+              "abs_error": 0.2683969388554708,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 5.709795031558125,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.7137243789447656,
+              "neighbor_overlap_imag": -0.6123724356957945,
+              "neighbor_overlap_real": 0.7071067811865476,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": null,
+              "rel_error": 0.04932499594459232,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -5.709795031558125,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 16,
+              "abs_error": 0.069345946683665,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 5.510744039386319,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.34442150246164493,
+              "neighbor_overlap_imag": -0.3314135740355918,
+              "neighbor_overlap_real": 0.9238795325112867,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 1.9524847536297982,
+              "rel_error": 0.012744141395694502,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -5.510744039386319,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            },
+            {
+              "N": 32,
+              "abs_error": 0.01744755200767667,
+              "base_loop_count": 2,
+              "branch_note": "principal_arg_unwrapped_near_delta_zero",
+              "closed_form_edge_sum_label": "not_used_for_estimate",
+              "eta": 1.3089969389957472,
+              "eta_label": "5*pi/12",
+              "evidence_level": "discrete-convergence",
+              "holonomy_estimate": 5.458845644710331,
+              "lifted_or_mod_2pi": "lifted_real",
+              "neighbor_overlap_arg": -0.17058892639719783,
+              "neighbor_overlap_imag": -0.16895317489845363,
+              "neighbor_overlap_real": 0.9807852804032304,
+              "phase_unwrapping": "lifted -N*Arg(<psi_j,psi_j+1>) with branch stress rows retained",
+              "rate_between_N_doublings": 1.9907869263496576,
+              "rel_error": 0.003206446525402216,
+              "round_trip_pass": true,
+              "round_trip_residual": 0.0,
+              "round_trip_reverse_estimate": -5.458845644710331,
+              "s2_convention_pin": {
+                "base_loop_count": {
+                  "lifted_torus_chart_cycle": "chi: 0 -> 2*pi traverses the base twice",
+                  "one_base_loop": "chi: 0 -> pi because base_angle = 2*chi"
+                },
+                "berry_formula": {
+                  "lifted_torus_chart_cycle": "-2*pi*(1 - cos(2*eta))",
+                  "one_base_loop": "-Omega/2 = -pi*(1 - cos(2*eta))"
+                },
+                "holonomy_quantity": {
+                  "discrete_route": "primary Wilson/overlap-product sampled loop; central-secant connection emitted as comparison, not formula-copy",
+                  "distinguished_from": [
+                    "endpoint_global_spinor_phase",
+                    "Berry_phase"
+                  ],
+                  "primary_reported": "accumulated_phi",
+                  "round_trip_gate": "forward lifted loop plus reversed loop must cancel at the same N and eta",
+                  "target_lifted_cycle": "h(eta) = -2*pi*cos(2*eta)"
+                },
+                "orientation_and_c1_sign": {
+                  "displayed_curvature": "F = -2*sin(2*eta) d eta wedge d chi",
+                  "stokes_sign": "h(eta_j) - h(eta_i) + Phi_ij = 0",
+                  "strip_flux_target": "Phi_ij = int_eta_i^eta_j int_0^(2*pi) F"
+                },
+                "phase_domain": {
+                  "mod_reconciliation": "mod_2pi representatives are support-only and never compared as the lifted target",
+                  "primary": "lifted_real"
+                }
+              },
+              "target_h": 5.441398092702654,
+              "transport_route": "Wilson/overlap-product sampled spinor loop"
+            }
+          ],
+          "holonomy_rows_count": 21,
+          "kept_N_values": [
+            8,
+            16,
+            32
+          ],
+          "parity_cover_rows": [
+            {
+              "N": 8,
+              "chart_point_count": 64,
+              "every_class_size_2": true,
+              "evidence_level": "physical-quotient-level",
+              "expected_physical_point_count": 32,
+              "n2_imbalance_note": "balanced for this even N",
+              "parity_class_counts": {
+                "0": 16,
+                "1": 16
+              },
+              "parity_class_invariant_under_cover": true,
+              "physical_point_count": 32,
+              "quotient_class_table_sha256": "a3c0f850fdb40ba3730901b299b543906ae80f761ed2b3898ff39d4fd8e98c89",
+              "representative_policy": "lexicographically smaller chart point in the cover pair",
+              "two_times_physical_equals_chart": true
+            },
+            {
+              "N": 16,
+              "chart_point_count": 256,
+              "every_class_size_2": true,
+              "evidence_level": "physical-quotient-level",
+              "expected_physical_point_count": 128,
+              "n2_imbalance_note": "balanced for this even N",
+              "parity_class_counts": {
+                "0": 64,
+                "1": 64
+              },
+              "parity_class_invariant_under_cover": true,
+              "physical_point_count": 128,
+              "quotient_class_table_sha256": "551ffb53aa6f49576fa05a26dcc54ed398c2fdf0ae84c861953b60b63246bddb",
+              "representative_policy": "lexicographically smaller chart point in the cover pair",
+              "two_times_physical_equals_chart": true
+            },
+            {
+              "N": 32,
+              "chart_point_count": 1024,
+              "every_class_size_2": true,
+              "evidence_level": "physical-quotient-level",
+              "expected_physical_point_count": 512,
+              "n2_imbalance_note": "balanced for this even N",
+              "parity_class_counts": {
+                "0": 256,
+                "1": 256
+              },
+              "parity_class_invariant_under_cover": true,
+              "physical_point_count": 512,
+              "quotient_class_table_sha256": "8bbeeacffe5c54384ec857e8faeccdf76191d2085c69a226781abe0846216578",
+              "representative_policy": "lexicographically smaller chart point in the cover pair",
+              "two_times_physical_equals_chart": true
+            }
+          ],
+          "pass": true
+        }
+      }
+    }
+  },
+  "object_id": "geo_s6_s7_mode_sweep_v0",
+  "order_control_rows": {
+    "S6": {
+      "N01_order_gap": 0,
+      "computed_gap_expression": "abs(len(descended rows after eta restriction)-len(eta-restricted rows after quotient descent))",
+      "constraint": "eta shell-band restriction and lens-descended projected-shell class",
+      "finding": "commuting on the descended projected-shell preserve class; excluded cross/leave classes remain excluded in both orders",
+      "mode": "ORDER_CONTROL",
+      "pass": true,
+      "quotient_then_restrict_count": 2,
+      "quotient_then_restrict_rows": [
+        {
+          "classification": "projected_shell_preserve_but_Hopf_leave",
+          "eta": "pi/6",
+          "finite_time_coherent_shell_map": true,
+          "finite_time_z_range": 0.0,
+          "phase_dependent": false,
+          "pure_preserving": false,
+          "terrain_id": "Si_Hill_L",
+          "z_dot_at_chi0": "0",
+          "z_dot_zero": true
+        },
+        {
+          "classification": "projected_shell_preserve_but_Hopf_leave",
+          "eta": "pi/4",
+          "finite_time_coherent_shell_map": true,
+          "finite_time_z_range": 0.0,
+          "phase_dependent": false,
+          "pure_preserving": false,
+          "terrain_id": "Si_Hill_L",
+          "z_dot_at_chi0": "0",
+          "z_dot_zero": true
+        }
+      ],
+      "restrict_then_quotient_count": 2,
+      "restrict_then_quotient_rows": [
+        {
+          "classification": "projected_shell_preserve_but_Hopf_leave",
+          "eta": "pi/6",
+          "finite_time_coherent_shell_map": true,
+          "finite_time_z_range": 0.0,
+          "phase_dependent": false,
+          "pure_preserving": false,
+          "terrain_id": "Si_Hill_L",
+          "z_dot_at_chi0": "0",
+          "z_dot_zero": true
+        },
+        {
+          "classification": "projected_shell_preserve_but_Hopf_leave",
+          "eta": "pi/4",
+          "finite_time_coherent_shell_map": true,
+          "finite_time_z_range": 0.0,
+          "phase_dependent": false,
+          "pure_preserving": false,
+          "terrain_id": "Si_Hill_L",
+          "z_dot_at_chi0": "0",
+          "z_dot_zero": true
+        }
+      ],
+      "stage": "S6"
+    },
+    "S7": {
+      "N01_order_gap": 0,
+      "computed_gap_expression": "abs(len(restricted Ns divisible by 4)-len(divisible Ns retained by restriction))",
+      "constraint": "subgrid N in {8,16,32} and lens_order=4 commensurability",
+      "finding": "commuting for the selected subgrid because every retained N is divisible by lens_order=4",
+      "mode": "ORDER_CONTROL",
+      "pass": true,
+      "quotient_then_restrict_count": 3,
+      "quotient_then_restrict_rows": [
+        8,
+        16,
+        32
+      ],
+      "restrict_then_quotient_count": 3,
+      "restrict_then_quotient_rows": [
+        8,
+        16,
+        32
+      ],
+      "stage": "S7"
+    }
+  },
+  "parent_lineage": {
+    "system_v6/receipts/geometry_sim_program_canonical_20260610.md": "5aa9eec7c0a621e4cdbea55af1ccb6225574f351ba410c14b0972da404db4c8c",
+    "system_v6/receipts/toolset_expansion_20260610.md": "63213bf62b520454d85b39640c8199b93089e6bbad259536cf2fde48a039df8d",
+    "system_v6/sims/geo_s2_s5_mode_sweep_v0/results/geo_s2_s5_mode_sweep_v0_envelope_results.json": "cc96d5fe18487938724ce82d2711ec29dee91add9d74e36462ba475eb4baecc0",
+    "system_v6/sims/geo_s3_s4_mode_sweep_v0/results/geo_s3_s4_mode_sweep_v0_envelope_results.json": "55c098fd6a6d1ddaa0e5257f9429a41a56d1cdd17e5fd4f2998ea2f76ae4e889",
+    "system_v6/sims/geo_s6_stacked_flows_hopf_v0/results/geo_s6_stacked_flows_hopf_v0_envelope_results.json": "5504eea079bc4f7f92b1874d83dfdb94a75e6a12d1da39cc0225305fdbbe4ae8",
+    "system_v6/sims/geo_s7_discrete_refinement_v0/results/geo_s7_discrete_refinement_v0_envelope_results.json": "1f0d55d6a36292cb669921ea13f104898ca8ef342b686ebbf769c44c550c1803"
+  },
+  "promotion_allowed": false,
+  "result_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/results/geo_s6_s7_mode_sweep_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seeds": {
+    "global_seed": 20260611
+  },
+  "shape_only_repair_receipt": {
+    "computed_rows_preserved": true,
+    "kind": "shape_only_repair",
+    "preserved_subtree_hash_pairs": [
+      {
+        "after_hash": "eed73d29b20f82fea8311e3a78f722b290fdcffb37958ee767597561e87f240c",
+        "before_hash": "eed73d29b20f82fea8311e3a78f722b290fdcffb37958ee767597561e87f240c",
+        "hash_equal": true,
+        "subtree": "mode_rows"
+      },
+      {
+        "after_hash": "aaf6d1ec45bee979905bd55a85c96e91bbc9f19482385cd2e98c50ca82a88068",
+        "before_hash": "aaf6d1ec45bee979905bd55a85c96e91bbc9f19482385cd2e98c50ca82a88068",
+        "hash_equal": true,
+        "subtree": "cross_mode_comparison_table"
+      },
+      {
+        "after_hash": "157c270de0ca6a43d9c69ad04c820745df45ebc207c2cabc3fd3e80eaced3d3b",
+        "before_hash": "157c270de0ca6a43d9c69ad04c820745df45ebc207c2cabc3fd3e80eaced3d3b",
+        "hash_equal": true,
+        "subtree": "order_control_rows"
+      }
+    ],
+    "scope": "renamed diagnostic Python lane to the standard engines.jax object expected by validate_three_engine_sim_result.py",
+    "template_shape_source": "system_v6/sims/geo_s3_s4_mode_sweep_v0/results/geo_s3_s4_mode_sweep_v0_envelope_results.json",
+    "template_shape_source_sha256": "55c098fd6a6d1ddaa0e5257f9429a41a56d1cdd17e5fd4f2998ea2f76ae4e889"
+  },
+  "sim_id": "geo_s6_s7_mode_sweep_v0",
+  "source_path": "system_v6/sims/geo_s6_s7_mode_sweep_v0/geo_s6_s7_mode_sweep_v0.py",
+  "source_sha256": "407160fdc8104eab8f0f0e7c7dff2f20c21275ba2d5d3a238df2f7e7dd3f9f43",
+  "tool_calls": [
+    {
+      "boundary_case": "integer arithmetic only",
+      "demotion_condition": "demote if Julia mirror is absent",
+      "gates": [
+        "julia_symbolics_z3_mirror"
+      ],
+      "input_object": "S6 counts and S7 lens-order arithmetic",
+      "negative/erased_control": "N=6 mod 4 nonzero",
+      "output_object": "Julia mirror rows",
+      "positive_case": "S6 40-16-24=0 and N=8 mod 4=0",
+      "qualified_api/function": "Symbolics.@variables / Symbolics.simplify",
+      "tool": "Symbolics"
+    },
+    {
+      "boundary_case": "integer arithmetic only",
+      "demotion_condition": "demote if controls do not fail",
+      "gates": [
+        "julia_symbolics_z3_mirror"
+      ],
+      "input_object": "Julia S6 erased exclusion and S7 N=6 control",
+      "negative/erased_control": "excluded=0 and N=6=4q both fail",
+      "output_object": "unsat can-fail controls",
+      "positive_case": "valid S6 identity has no counterexample",
+      "qualified_api/function": "Z3.Solver.check",
+      "tool": "Z3"
+    },
+    {
+      "boundary_case": "committed eta labels only",
+      "demotion_condition": "demote if labels become assertions without recomputed counts",
+      "gates": [
+        "s6_restricted_narrows",
+        "order_rows_computed"
+      ],
+      "input_object": "S6 eta labels and class labels",
+      "negative/erased_control": "empty/no-op controls emitted separately",
+      "output_object": "restricted shell-band row set and N01 rows",
+      "positive_case": "pi/6 and pi/4 retained",
+      "qualified_api/function": "exact row parsing via parent symbolic labels",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "integer count identity only",
+      "demotion_condition": "demote if solver binds only a precomputed boolean",
+      "gates": [
+        "smt_agreement",
+        "erased_flip_controls_fail"
+      ],
+      "input_object": "S6 before/after/excluded counts",
+      "negative/erased_control": "excluded erased to 0 fails",
+      "output_object": "unsat contradiction for identity violation",
+      "positive_case": "40-16-24=0",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "QF_LIA integer identity only",
+      "demotion_condition": "demote if cvc5 disagrees with z3",
+      "gates": [
+        "smt_agreement",
+        "erased_flip_controls_fail"
+      ],
+      "input_object": "same S6 count identity",
+      "negative/erased_control": "excluded erased to 0 fails",
+      "output_object": "independent unsat",
+      "positive_case": "agrees with z3",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "canonical JSON hash only",
+      "demotion_condition": "demote if parent lineage hashes are absent",
+      "gates": [
+        "parent_lineage_hash_bound",
+        "byte_exact_controls"
+      ],
+      "input_object": "parent result files and no-op row payloads",
+      "negative/erased_control": "not used as mathematical proof",
+      "output_object": "parent_lineage and byte-exact controls",
+      "positive_case": "no-op controls hash equal",
+      "qualified_api/function": "hashlib.sha256",
+      "tool": "hashlib"
+    },
+    {
+      "boundary_case": "serialization only",
+      "demotion_condition": "demote if unstructured text replaces rows",
+      "gates": [
+        "structured_payload"
+      ],
+      "input_object": "parent envelopes and result payload",
+      "negative/erased_control": "not a proof engine",
+      "output_object": "mode sweep envelope",
+      "positive_case": "structured rows preserved",
+      "qualified_api/function": "json.loads / json.dumps",
+      "tool": "json"
+    },
+    {
+      "boundary_case": "path binding only",
+      "demotion_condition": "demote if paths are not explicit",
+      "gates": [
+        "file_disjoint_packet"
+      ],
+      "input_object": "file-disjoint packet paths",
+      "negative/erased_control": "active lanes are not touched",
+      "output_object": "new packet-local result files",
+      "positive_case": "writes remain under geo_s6_s7_mode_sweep_v0",
+      "qualified_api/function": "Path.read_text / Path.write_text",
+      "tool": "pathlib"
+    }
+  ],
+  "versions": {
+    "cvc5": "1.3.3",
+    "python": "3.13.6",
+    "z3": "4.16.0.0"
+  }
+}

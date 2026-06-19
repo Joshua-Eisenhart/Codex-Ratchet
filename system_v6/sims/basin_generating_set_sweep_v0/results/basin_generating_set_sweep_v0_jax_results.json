@@ -1,0 +1,3209 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "cvc5": "load_bearing",
+    "jax.scipy.linalg": "supportive",
+    "networkx": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "cvc5": {
+      "reason": "load-bearing independent partition identity proof",
+      "tried": true,
+      "used": true
+    },
+    "jax.scipy.linalg": {
+      "reason": "supportive terrain matrix exponentials",
+      "tried": true,
+      "used": true
+    },
+    "networkx": {
+      "reason": "supportive SCC/reachability graph partition mirror",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact rational parent-row parsing guard",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing partition identity proof",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "all_pass": true,
+  "capability_receipts": [
+    {
+      "computed_what": "G0-G5 finite graph partitions, terminal classes, may/must basin sizes, and Morse rows",
+      "receipt_id": "jax_networkx_generating_set_sweep",
+      "status": "used",
+      "tool": "networkx"
+    },
+    {
+      "computed_what": "computed partition identity check with erased terminal-count flip",
+      "receipt_id": "jax_z3_partition_identity",
+      "status": "used",
+      "tool": "z3"
+    },
+    {
+      "computed_what": "computed partition identity check with erased terminal-count flip",
+      "receipt_id": "jax_cvc5_partition_identity",
+      "status": "used",
+      "tool": "cvc5"
+    }
+  ],
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "G0": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 11,
+          "class_sizes": [
+            1,
+            4,
+            4,
+            116
+          ],
+          "scc_count": 4,
+          "state_count": 125,
+          "terminal_sizes": [
+            1
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 10,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 20,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 18,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    },
+    "G1": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            14,
+            18
+          ],
+          "scc_count": 3,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 51,
+          "class_sizes": [
+            1,
+            8,
+            12,
+            14,
+            18,
+            72
+          ],
+          "scc_count": 6,
+          "state_count": 125,
+          "terminal_sizes": [
+            1,
+            14,
+            18
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 12,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 24,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 12,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    },
+    "G2": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 3,
+          "class_sizes": [
+            1,
+            32
+          ],
+          "scc_count": 2,
+          "state_count": 33,
+          "terminal_sizes": [
+            1
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 11,
+          "class_sizes": [
+            1,
+            8,
+            116
+          ],
+          "scc_count": 3,
+          "state_count": 125,
+          "terminal_sizes": [
+            1
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 16,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 32,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 34,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    },
+    "G3L": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 22,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "scc_count": 8,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 111,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            6,
+            6,
+            8,
+            8,
+            19,
+            30
+          ],
+          "scc_count": 39,
+          "state_count": 125,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 8,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 16,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 13,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    },
+    "G3R": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 22,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "scc_count": 8,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 111,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            6,
+            6,
+            6,
+            8,
+            8,
+            12,
+            19,
+            30
+          ],
+          "scc_count": 38,
+          "state_count": 125,
+          "terminal_sizes": [
+            1,
+            1,
+            6
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 8,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 16,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 13,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    },
+    "G4": {
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 4,
+          "class_sizes": [
+            1,
+            1,
+            2
+          ],
+          "scc_count": 3,
+          "state_count": 4,
+          "terminal_sizes": [
+            2
+          ]
+        },
+        "computed": true,
+        "fired": false,
+        "partition_changed": false,
+        "variant_signature": {
+          "boundary_count": 4,
+          "class_sizes": [
+            1,
+            1,
+            2
+          ],
+          "scc_count": 3,
+          "state_count": 4,
+          "terminal_sizes": [
+            2
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": true,
+            "escaping_edge_count": 0,
+            "size": 0
+          },
+          "mid": {
+            "closed_under_R_C": true,
+            "escaping_edge_count": 0,
+            "size": 4
+          },
+          "outer": {
+            "closed_under_R_C": true,
+            "escaping_edge_count": 0,
+            "size": 0
+          }
+        },
+        "computed": true,
+        "fired": false
+      }
+    },
+    "G5": {
+      "commutative_collapse_contrast": {
+        "computed": true,
+        "diagonal_partition_changed": true,
+        "diagonal_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "scc_count": 33,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "reversed_partition_changed": false,
+        "reversed_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "scc_count": 31,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ]
+        },
+        "reversed_transition_hash_changed": true,
+        "reversed_word": [
+          "R_x",
+          "Ni_Pit_L"
+        ],
+        "word": [
+          "Ni_Pit_L",
+          "R_x"
+        ]
+      },
+      "root_off_contrast": {
+        "base_signature": {
+          "boundary_count": 33,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+          ],
+          "scc_count": 31,
+          "state_count": 33,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            1,
+            3
+          ]
+        },
+        "computed": true,
+        "fired": true,
+        "partition_changed": true,
+        "variant_signature": {
+          "boundary_count": 125,
+          "class_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3,
+            4,
+            4
+          ],
+          "scc_count": 117,
+          "state_count": 125,
+          "terminal_sizes": [
+            1,
+            1,
+            1,
+            3,
+            4,
+            4
+          ]
+        }
+      },
+      "similarity_cluster_contrast": {
+        "basin_language_allowed": false,
+        "clusters": {
+          "inner": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 2,
+            "size": 7
+          },
+          "mid": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 4,
+            "size": 20
+          },
+          "outer": {
+            "closed_under_R_C": false,
+            "escaping_edge_count": 1,
+            "size": 6
+          }
+        },
+        "computed": true,
+        "fired": true
+      }
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+        "erased_flip": "G5 expected terminal count decremented by one",
+        "partition_identity_inputs": [
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 3,
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G2",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3L",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3R",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 3,
+            "set_id": "G4",
+            "state_count": 4,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 5,
+            "scc_count": 31,
+            "set_id": "G5",
+            "state_count": 33,
+            "terminal_class_count": 5
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    },
+    "z3": {
+      "erased_flip_verdict": "sat",
+      "load_bearing": true,
+      "proof_row": {
+        "asserted_precomputed_boolean": false,
+        "encoding": "computed terminal-class counts per generating set are bound as QF_LIA constants; assert existence of a count mismatch",
+        "erased_flip": "G5 expected terminal count decremented by one",
+        "partition_identity_inputs": [
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G0",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 3,
+            "set_id": "G1",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 2,
+            "set_id": "G2",
+            "state_count": 33,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3L",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 3,
+            "scc_count": 8,
+            "set_id": "G3R",
+            "state_count": 33,
+            "terminal_class_count": 3
+          },
+          {
+            "expected_terminal_class_count": 1,
+            "scc_count": 3,
+            "set_id": "G4",
+            "state_count": 4,
+            "terminal_class_count": 1
+          },
+          {
+            "expected_terminal_class_count": 5,
+            "scc_count": 31,
+            "set_id": "G5",
+            "state_count": 33,
+            "terminal_class_count": 5
+          }
+        ]
+      },
+      "ran": true,
+      "verdict": "unsat"
+    }
+  },
+  "engine": "jax",
+  "engine_dof_reading": {
+    "generating_set_is_dof_choice": true,
+    "statement": "The same 33-cell carrier yields different basin landscapes as active generator/DoF rows change.",
+    "terminal_count_by_set": {
+      "G0": 1,
+      "G1": 3,
+      "G2": 1,
+      "G3L": 3,
+      "G3R": 3,
+      "G4": 1,
+      "G5": 5
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T22:07:05Z",
+  "object_id": "basin_generating_set_sweep_v0_jax",
+  "one_to_one_tool_calls": {
+    "pass": true
+  },
+  "package_versions": {
+    "cvc5": "1.3.3",
+    "jax": "0.10.1",
+    "networkx": "3.6.1",
+    "sympy": "1.14.0",
+    "z3-solver": "4.16.0.0"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "jax.scipy.linalg",
+    "networkx",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "parent_lineage": {
+    "builder_output_only": true,
+    "consumed_inputs": [
+      {
+        "commit_hint": "631f1c3db",
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "id": "basin_rc_transition_graph_v0_envelope",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/results/basin_rc_transition_graph_v0_envelope_results.json",
+        "sha256": "58f7cdce5974881bf86f68a9a94a7b967ca8cea6b69ffa3b1e3aea981ae9a0a8"
+      },
+      {
+        "commit_hint": "committed source inventory",
+        "git_last_commit": "631f1c3db2d56a24f24a6bbd3b92ad6428860771",
+        "id": "basin_rc_transition_graph_v0_common",
+        "path": "system_v6/sims/basin_rc_transition_graph_v0/basin_rc_transition_graph_v0_common.py",
+        "sha256": "5cbfa68172d9edc73ef47c00ec1d1f29c46187616a80cc330b7eec762d17315b"
+      },
+      {
+        "commit_hint": "000f48e71",
+        "git_last_commit": "000f48e716d28fa84984e6aad6cb35c115745616",
+        "id": "basin_contract",
+        "path": "system_v6/receipts/attractor_basin_criterion_20260611.md",
+        "sha256": "4c84dec9e19aba093493adfe76fc36233445d7f5cef40de5db179dc0a46431a0"
+      },
+      {
+        "commit_hint": "committed source inventory",
+        "git_last_commit": "6aa75cc96d3e5ff45fb090f25a5c2aa12892842f",
+        "id": "geo_s5_terrain_flows_v0_envelope",
+        "path": "system_v6/sims/geo_s5_terrain_flows_v0/results/geo_s5_terrain_flows_v0_envelope_results.json",
+        "sha256": "8c5474786973f067e55c0200392c1a27cbe8bf5d71cfd632b507d066b6cc9b1e"
+      },
+      {
+        "commit_hint": "committed source inventory",
+        "git_last_commit": "307b8ddf1693633ffb1ba9fd49dad7b71a6abc61",
+        "id": "geo_s4_operator_stage_v0_envelope",
+        "path": "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json",
+        "sha256": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661"
+      }
+    ],
+    "parent_committed_hash_bound": {
+      "basin_contract": "000f48e71",
+      "basin_rc_transition_graph_v0": "631f1c3db",
+      "s4_s5_generator_inventory": "committed"
+    }
+  },
+  "partition_fate_table": [
+    {
+      "baseline_anchor_byte_exact": true,
+      "earns_sub_basin_term": false,
+      "fate": "anchor",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "committed baseline anchor",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "escape_transition_fraction": 0.010416666667,
+          "internal_transition_fraction": 0.989583333333,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 1,
+            "src_class": 0
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": true,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 3,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G0",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ],
+      "transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "R_x",
+        "R_z",
+        "Ne_Spiral_R",
+        "Ne_Vortex_L"
+      ],
+      "label": "rotations only",
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 2,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G1",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ],
+      "transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "survives",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Se_Funnel_L",
+        "Si_Citadel_R",
+        "Si_Hill_L",
+        "D_x",
+        "D_z",
+        "R_x",
+        "R_z"
+      ],
+      "label": "full S5 plus S4 set",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "escape_transition_fraction": 0.005208333333,
+          "internal_transition_fraction": 0.994791666667,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 1,
+            "src_class": 0
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": true,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 3,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G2",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ],
+      "transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Se_Funnel_L",
+        "Si_Hill_L"
+      ],
+      "label": "L chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 2,
+            "src_class": 0
+          },
+          {
+            "dst_class": 0,
+            "src_class": 3
+          },
+          {
+            "dst_class": 2,
+            "src_class": 3
+          },
+          {
+            "dst_class": 3,
+            "src_class": 4
+          },
+          {
+            "dst_class": 6,
+            "src_class": 4
+          },
+          {
+            "dst_class": 3,
+            "src_class": 6
+          },
+          {
+            "dst_class": 5,
+            "src_class": 6
+          },
+          {
+            "dst_class": 6,
+            "src_class": 7
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 2,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 7,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 22,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3L",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          1
+        ],
+        [
+          2,
+          4,
+          5,
+          11,
+          12,
+          15
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ],
+      "transition_graph_sha256": "0cf6136626e0523df5140c53e55f9f33463f92bb5d5f40e0aed69e9f144ec715"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Si_Citadel_R"
+      ],
+      "label": "R chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 2,
+            "src_class": 0
+          },
+          {
+            "dst_class": 3,
+            "src_class": 0
+          },
+          {
+            "dst_class": 2,
+            "src_class": 1
+          },
+          {
+            "dst_class": 3,
+            "src_class": 2
+          },
+          {
+            "dst_class": 5,
+            "src_class": 2
+          },
+          {
+            "dst_class": 4,
+            "src_class": 3
+          },
+          {
+            "dst_class": 6,
+            "src_class": 3
+          },
+          {
+            "dst_class": 6,
+            "src_class": 4
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 7,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 22,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3R",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ],
+        [
+          17,
+          20,
+          21,
+          27,
+          28,
+          30
+        ],
+        [
+          31
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ],
+      "transition_graph_sha256": "da60912ea0997361c42d7224391b3b6cd8f2066e49900ae86b993c5bb5b349c6"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "shrinks",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "conditioned shell baseline",
+      "may_basin_sizes": [
+        4
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 0,
+            "src_class": 1
+          },
+          {
+            "dst_class": 1,
+            "src_class": 2
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        2
+      ],
+      "partition_signature": {
+        "boundary_count": 4,
+        "class_sizes": [
+          1,
+          1,
+          2
+        ],
+        "scc_count": 3,
+        "state_count": 4,
+        "terminal_sizes": [
+          2
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G4",
+      "state_count": 4,
+      "terminal_cells": [
+        [
+          3,
+          9
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        2
+      ],
+      "transition_graph_sha256": "66d67d361dc32da8a19974be27cb5983577208f557c4b7bed7833e7848a48cf3"
+    },
+    {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ni_Pit_L_then_R_x"
+      ],
+      "label": "single composite generator",
+      "may_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 7,
+            "src_class": 1
+          },
+          {
+            "dst_class": 4,
+            "src_class": 2
+          },
+          {
+            "dst_class": 4,
+            "src_class": 3
+          },
+          {
+            "dst_class": 8,
+            "src_class": 4
+          },
+          {
+            "dst_class": 5,
+            "src_class": 6
+          },
+          {
+            "dst_class": 9,
+            "src_class": 7
+          },
+          {
+            "dst_class": 6,
+            "src_class": 8
+          },
+          {
+            "dst_class": 3,
+            "src_class": 9
+          },
+          {
+            "dst_class": 14,
+            "src_class": 10
+          },
+          {
+            "dst_class": 19,
+            "src_class": 11
+          },
+          {
+            "dst_class": 19,
+            "src_class": 12
+          },
+          {
+            "dst_class": 15,
+            "src_class": 13
+          },
+          {
+            "dst_class": 22,
+            "src_class": 14
+          },
+          {
+            "dst_class": 20,
+            "src_class": 15
+          },
+          {
+            "dst_class": 16,
+            "src_class": 17
+          },
+          {
+            "dst_class": 12,
+            "src_class": 18
+          },
+          {
+            "dst_class": 21,
+            "src_class": 19
+          },
+          {
+            "dst_class": 17,
+            "src_class": 20
+          },
+          {
+            "dst_class": 17,
+            "src_class": 21
+          },
+          {
+            "dst_class": 18,
+            "src_class": 22
+          },
+          {
+            "dst_class": 28,
+            "src_class": 23
+          },
+          {
+            "dst_class": 28,
+            "src_class": 24
+          },
+          {
+            "dst_class": 26,
+            "src_class": 25
+          },
+          {
+            "dst_class": 27,
+            "src_class": 26
+          },
+          {
+            "dst_class": 29,
+            "src_class": 28
+          },
+          {
+            "dst_class": 27,
+            "src_class": 29
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 7,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 8,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 9,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 10,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 11,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 12,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 13,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 14,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 15,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 16,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 17,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 18,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 19,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 20,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 21,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 22,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 23,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 24,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 25,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 26,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 27,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 28,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 29,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 30,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ],
+        "scc_count": 31,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      "scc_count": 31,
+      "set_id": "G5",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          0
+        ],
+        [
+          5
+        ],
+        [
+          16
+        ],
+        [
+          27,
+          28,
+          30
+        ],
+        [
+          32
+        ]
+      ],
+      "terminal_class_count": 5,
+      "terminal_class_sizes": [
+        1,
+        1,
+        1,
+        1,
+        3
+      ],
+      "transition_graph_sha256": "6471f18ed67f03716176bdfed0192e89666504344dccf528da6d689f01166075"
+    }
+  ],
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/basin_generating_set_sweep_v0/results/basin_generating_set_sweep_v0_jax_results.json",
+  "result_stability_sha256": "1c6ff7ff619629b0ec703e4fd561ecabe29695519c198cdfed8b73277a09957c",
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "seed_ledger": {
+    "deterministic_tie_break": "cell_id_ascending",
+    "rng": "none"
+  },
+  "sim_id": "basin_generating_set_sweep_v0",
+  "source_backing_probe": {
+    "cvc5_check": "sat",
+    "jax_expm_shape": [
+      2,
+      2
+    ],
+    "networkx_edge_count": 1,
+    "sympy_half": "1",
+    "z3_check": "sat"
+  },
+  "source_path": "system_v6/sims/basin_generating_set_sweep_v0/basin_generating_set_sweep_v0_jax.py",
+  "source_sha256": "87016a5873f52f45fe35a1f29c36382d43b42c9c80ff8a78a92e191b8559d765",
+  "sub_basin_answer": {
+    "any_second_terminal_class": true,
+    "first_split_set": "G1",
+    "honest_unitary_result_sets": [
+      "G0",
+      "G2",
+      "G4"
+    ],
+    "statement": "A second terminal closed communicating class appears in G1, G3L, G3R, and G5; these rows earn the first computed sub-basin structure at the stated scratch ceiling."
+  },
+  "sweep": {
+    "G0": {
+      "baseline_anchor_byte_exact": true,
+      "earns_sub_basin_term": false,
+      "fate": "anchor",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "committed baseline anchor",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "escape_transition_fraction": 0.010416666667,
+          "internal_transition_fraction": 0.989583333333,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 1,
+            "src_class": 0
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": true,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 3,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G0",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ],
+      "transition_graph_sha256": "bd0cd3b551bbb3f323eb596695da8d91429f010780c1c137af4a253bd73438f0"
+    },
+    "G1": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "R_x",
+        "R_z",
+        "Ne_Spiral_R",
+        "Ne_Vortex_L"
+      ],
+      "label": "rotations only",
+      "may_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 2,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        14,
+        18
+      ],
+      "partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          14,
+          18
+        ],
+        "scc_count": 3,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          14,
+          18
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G1",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          0,
+          1,
+          3,
+          7,
+          9,
+          10,
+          14,
+          18,
+          22,
+          23,
+          25,
+          29,
+          31,
+          32
+        ],
+        [
+          2,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          24,
+          26,
+          27,
+          28,
+          30
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        14,
+        18
+      ],
+      "transition_graph_sha256": "38388af4497894e6e88f11de6f9ec633235f26753d2c657ff8f360b3ce15871d"
+    },
+    "G2": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "survives",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Se_Funnel_L",
+        "Si_Citadel_R",
+        "Si_Hill_L",
+        "D_x",
+        "D_z",
+        "R_x",
+        "R_z"
+      ],
+      "label": "full S5 plus S4 set",
+      "may_basin_sizes": [
+        33
+      ],
+      "metastable_classes": [
+        {
+          "class_id": 0,
+          "escape_transition_fraction": 0.005208333333,
+          "internal_transition_fraction": 0.994791666667,
+          "size": 32
+        }
+      ],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 1,
+            "src_class": 0
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": true,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1
+      ],
+      "partition_signature": {
+        "boundary_count": 3,
+        "class_sizes": [
+          1,
+          32
+        ],
+        "scc_count": 2,
+        "state_count": 33,
+        "terminal_sizes": [
+          1
+        ]
+      },
+      "scc_count": 2,
+      "set_id": "G2",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        1
+      ],
+      "transition_graph_sha256": "4f65028611cf7547c27a94f6fe64c1ac9f63ded528789a6aacf5fa308271f9e6"
+    },
+    "G3L": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Vortex_L",
+        "Ni_Pit_L",
+        "Se_Funnel_L",
+        "Si_Hill_L"
+      ],
+      "label": "L chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 2,
+            "src_class": 0
+          },
+          {
+            "dst_class": 0,
+            "src_class": 3
+          },
+          {
+            "dst_class": 2,
+            "src_class": 3
+          },
+          {
+            "dst_class": 3,
+            "src_class": 4
+          },
+          {
+            "dst_class": 6,
+            "src_class": 4
+          },
+          {
+            "dst_class": 3,
+            "src_class": 6
+          },
+          {
+            "dst_class": 5,
+            "src_class": 6
+          },
+          {
+            "dst_class": 6,
+            "src_class": 7
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 2,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 7,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 22,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3L",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          1
+        ],
+        [
+          2,
+          4,
+          5,
+          11,
+          12,
+          15
+        ],
+        [
+          16
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ],
+      "transition_graph_sha256": "0cf6136626e0523df5140c53e55f9f33463f92bb5d5f40e0aed69e9f144ec715"
+    },
+    "G3R": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ne_Spiral_R",
+        "Ni_Source_R",
+        "Se_Cannon_R",
+        "Si_Citadel_R"
+      ],
+      "label": "R chirality terrain subset",
+      "may_basin_sizes": [
+        1,
+        14,
+        31
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 2,
+            "src_class": 0
+          },
+          {
+            "dst_class": 3,
+            "src_class": 0
+          },
+          {
+            "dst_class": 2,
+            "src_class": 1
+          },
+          {
+            "dst_class": 3,
+            "src_class": 2
+          },
+          {
+            "dst_class": 5,
+            "src_class": 2
+          },
+          {
+            "dst_class": 4,
+            "src_class": 3
+          },
+          {
+            "dst_class": 6,
+            "src_class": 3
+          },
+          {
+            "dst_class": 6,
+            "src_class": 4
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 7,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        6
+      ],
+      "partition_signature": {
+        "boundary_count": 22,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "scc_count": 8,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          6
+        ]
+      },
+      "scc_count": 8,
+      "set_id": "G3R",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          16
+        ],
+        [
+          17,
+          20,
+          21,
+          27,
+          28,
+          30
+        ],
+        [
+          31
+        ]
+      ],
+      "terminal_class_count": 3,
+      "terminal_class_sizes": [
+        1,
+        1,
+        6
+      ],
+      "transition_graph_sha256": "da60912ea0997361c42d7224391b3b6cd8f2066e49900ae86b993c5bb5b349c6"
+    },
+    "G4": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": false,
+      "fate": "shrinks",
+      "generator_names": [
+        "Se_Funnel_L",
+        "Ni_Pit_L",
+        "Ni_Source_R",
+        "Ne_Spiral_R",
+        "D_z",
+        "R_x"
+      ],
+      "label": "conditioned shell baseline",
+      "may_basin_sizes": [
+        4
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 0,
+            "src_class": 1
+          },
+          {
+            "dst_class": 1,
+            "src_class": 2
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        2
+      ],
+      "partition_signature": {
+        "boundary_count": 4,
+        "class_sizes": [
+          1,
+          1,
+          2
+        ],
+        "scc_count": 3,
+        "state_count": 4,
+        "terminal_sizes": [
+          2
+        ]
+      },
+      "scc_count": 3,
+      "set_id": "G4",
+      "state_count": 4,
+      "terminal_cells": [
+        [
+          3,
+          9
+        ]
+      ],
+      "terminal_class_count": 1,
+      "terminal_class_sizes": [
+        2
+      ],
+      "transition_graph_sha256": "66d67d361dc32da8a19974be27cb5983577208f557c4b7bed7833e7848a48cf3"
+    },
+    "G5": {
+      "baseline_anchor_byte_exact": null,
+      "earns_sub_basin_term": true,
+      "fate": "SPLITS",
+      "generator_names": [
+        "Ni_Pit_L_then_R_x"
+      ],
+      "label": "single composite generator",
+      "may_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "metastable_classes": [],
+      "morse_ordering": {
+        "edges": [
+          {
+            "dst_class": 7,
+            "src_class": 1
+          },
+          {
+            "dst_class": 4,
+            "src_class": 2
+          },
+          {
+            "dst_class": 4,
+            "src_class": 3
+          },
+          {
+            "dst_class": 8,
+            "src_class": 4
+          },
+          {
+            "dst_class": 5,
+            "src_class": 6
+          },
+          {
+            "dst_class": 9,
+            "src_class": 7
+          },
+          {
+            "dst_class": 6,
+            "src_class": 8
+          },
+          {
+            "dst_class": 3,
+            "src_class": 9
+          },
+          {
+            "dst_class": 14,
+            "src_class": 10
+          },
+          {
+            "dst_class": 19,
+            "src_class": 11
+          },
+          {
+            "dst_class": 19,
+            "src_class": 12
+          },
+          {
+            "dst_class": 15,
+            "src_class": 13
+          },
+          {
+            "dst_class": 22,
+            "src_class": 14
+          },
+          {
+            "dst_class": 20,
+            "src_class": 15
+          },
+          {
+            "dst_class": 16,
+            "src_class": 17
+          },
+          {
+            "dst_class": 12,
+            "src_class": 18
+          },
+          {
+            "dst_class": 21,
+            "src_class": 19
+          },
+          {
+            "dst_class": 17,
+            "src_class": 20
+          },
+          {
+            "dst_class": 17,
+            "src_class": 21
+          },
+          {
+            "dst_class": 18,
+            "src_class": 22
+          },
+          {
+            "dst_class": 28,
+            "src_class": 23
+          },
+          {
+            "dst_class": 28,
+            "src_class": 24
+          },
+          {
+            "dst_class": 26,
+            "src_class": 25
+          },
+          {
+            "dst_class": 27,
+            "src_class": 26
+          },
+          {
+            "dst_class": 29,
+            "src_class": 28
+          },
+          {
+            "dst_class": 27,
+            "src_class": 29
+          }
+        ],
+        "nodes": [
+          {
+            "class_id": 0,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 1,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 2,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 3,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 4,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 5,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 6,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 7,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 8,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 9,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 10,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 11,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 12,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 13,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 14,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 15,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 16,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 17,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 18,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 19,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 20,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 21,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 22,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 23,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 24,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 25,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 26,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 27,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          },
+          {
+            "class_id": 28,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 29,
+            "leaky": true,
+            "metastable_almost_invariant": false,
+            "terminal_closed": false
+          },
+          {
+            "class_id": 30,
+            "leaky": false,
+            "metastable_almost_invariant": false,
+            "terminal_closed": true
+          }
+        ]
+      },
+      "must_basin_sizes": [
+        1,
+        1,
+        9,
+        9,
+        13
+      ],
+      "partition_signature": {
+        "boundary_count": 33,
+        "class_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3
+        ],
+        "scc_count": 31,
+        "state_count": 33,
+        "terminal_sizes": [
+          1,
+          1,
+          1,
+          1,
+          3
+        ]
+      },
+      "scc_count": 31,
+      "set_id": "G5",
+      "state_count": 33,
+      "terminal_cells": [
+        [
+          0
+        ],
+        [
+          5
+        ],
+        [
+          16
+        ],
+        [
+          27,
+          28,
+          30
+        ],
+        [
+          32
+        ]
+      ],
+      "terminal_class_count": 5,
+      "terminal_class_sizes": [
+        1,
+        1,
+        1,
+        1,
+        3
+      ],
+      "transition_graph_sha256": "6471f18ed67f03716176bdfed0192e89666504344dccf528da6d689f01166075"
+    }
+  },
+  "sweep_signature_sha256": "febc5d9e0a281d18f6656b445eef84b9085dd0bb48b45994b09303dd58850bde",
+  "tool_calls": [
+    {
+      "boundary_case": "G4 uses only the conditioned-shell state set",
+      "demotion_condition": "demote if rows are copied rather than recomputed from explicit edges",
+      "gates": [
+        "partition_fate_table",
+        "sub_basin_answer",
+        "all_pass"
+      ],
+      "input_object": "finite cells and generator-labelled G0-G5 transition rows",
+      "negative/erased_control": "rotations-only, chirality-only, conditioned, and composite rows recompute different basin landscapes",
+      "output_object": "partition fate table with terminal classes, may/must basin sizes, metastable rows, and Morse ordering",
+      "positive_case": "G0 re-derives the committed one-terminal-class anchor",
+      "qualified_api/function": "networkx.DiGraph/networkx.strongly_connected_components",
+      "receipt_id": "jax_networkx_generating_set_sweep",
+      "tool": "networkx"
+    },
+    {
+      "boundary_case": "single-terminal and multi-terminal rows both encoded",
+      "demotion_condition": "demote if solver does not bind computed count rows",
+      "gates": [
+        "proof",
+        "identity",
+        "all_pass"
+      ],
+      "input_object": "computed terminal-class counts for G0-G5",
+      "negative/erased_control": "G5 expected count is decremented",
+      "output_object": "UNSAT partition identity proof and SAT erased flip",
+      "positive_case": "all computed terminal counts equal expected sweep counts",
+      "qualified_api/function": "z3.Solver/z3.Int/check",
+      "receipt_id": "jax_z3_partition_identity",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "single-terminal and multi-terminal rows both encoded",
+      "demotion_condition": "demote if solver does not bind computed count rows",
+      "gates": [
+        "proof",
+        "identity",
+        "all_pass"
+      ],
+      "input_object": "computed terminal-class counts for G0-G5",
+      "negative/erased_control": "G5 expected count is decremented",
+      "output_object": "UNSAT partition identity proof and SAT erased flip",
+      "positive_case": "all computed terminal counts equal expected sweep counts",
+      "qualified_api/function": "cvc5.Solver/mkConst/assertFormula/checkSat",
+      "receipt_id": "jax_cvc5_partition_identity",
+      "tool": "cvc5"
+    }
+  ]
+}

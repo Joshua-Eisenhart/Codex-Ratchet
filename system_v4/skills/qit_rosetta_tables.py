@@ -1,3 +1,16 @@
+"""qit_rosetta_tables.py -- FENCED LEGACY.
+
+WARNING (no-equals discipline): the `kernel_identity` field on each QITOperator and the AXIS enum
+comments (e.g. "Type 1 (Left) vs Type 2 (Right)") are LEGACY de-facto EQUALS-SIGN strings -- they
+assert "jungian_tag = kernel meaning" with NO probe family and NO erasure record. This system has
+no equals sign and no universals. These strings are NOT admissible as correspondences and must NOT
+be promoted. `seed_correspondences()` below re-expresses each row as a probe-relative ~_M
+correspondence candidate with an EXPLICIT, still-unpinned probe family (claim_ceiling
+"needs_probe_family") so the no-= lint can drive the migration. `get_qit_meaning` /
+`get_kernel_translation` (the de-facto '=' accessors) are DEPRECATED in favour of the plural
+perspective fan in rosetta_reattach.RosettaCarrier.perspectives().
+"""
+
 from enum import Enum
 from pydantic import BaseModel
 from typing import Dict, List, Optional
@@ -84,8 +97,45 @@ class RosettaTranslator:
         
     @staticmethod
     def get_qit_meaning(jungian_tag: str) -> str:
-        # Extend this as needed for full terrain definitions
+        # DEPRECATED: returns the legacy kernel_identity (a de-facto '='). Prefer
+        # seed_correspondences() + rosetta_reattach.RosettaCarrier.perspectives() (plural ~_M).
         if jungian_tag in OPERATORS:
             op = OPERATORS[jungian_tag]
             return f"{op.name} ({op.polarity.value}): {op.kernel_identity}"
         return "Unknown tag"
+
+
+# Per-tag probe families under which the jungian tag is *indistinguishable* from the kernel object.
+# These are CANDIDATES still to be pinned by a sim; until then claim_ceiling = needs_probe_family.
+_OPERATOR_PROBE_M: Dict[str, str] = {
+    "Ti": "M={z-basis dephasing channel D_z; purity + z-expectation readout}",
+    "Te": "M={x-basis dephasing channel D_x; purity + x-expectation readout}",
+    "Fi": "M={x-axis unitary rotation R_x; orbit-on-Bloch readout}",
+    "Fe": "M={z-axis unitary rotation R_z; orbit-on-Bloch readout}",
+}
+
+
+def seed_correspondences() -> List[dict]:
+    """Re-express each legacy `kernel_identity` row as a probe-relative ~_M correspondence CANDIDATE
+    (never an identity). Each carries a named probe family, what it preserves, what the jargon
+    erases, and a needs_probe_family ceiling. Output is lint-clean under rosetta_reattach.validate_no_equals."""
+    out = []
+    for tag, op in OPERATORS.items():
+        out.append({
+            "object_id": f"L0::{op.name.replace(' ', '_')}",
+            "perspective_label": op.jungian_tag,
+            "jargon_type": "jungian_function",
+            "model": "jung_mbti_igt",
+            "relation_symbol": "~_M",
+            "probe_family_M": _OPERATOR_PROBE_M.get(tag, "M={UNPINNED}"),
+            "preserves": f"the {op.name} channel action ({op.polarity.value})",
+            "erases": f"the felt/jungian semantics behind '{op.kernel_identity}' and the type narrative",
+            "hypothesis_id": "H0",
+            "claim_ceiling": "needs_probe_family" if _OPERATOR_PROBE_M.get(tag) else "unpinned_probe",
+        })
+    return out
+
+
+if __name__ == "__main__":
+    import json
+    print(json.dumps(seed_correspondences(), indent=2))

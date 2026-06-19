@@ -1,0 +1,1527 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs": "load_bearing",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JSON": "supportive result serialization",
+    "Julia": "load-bearing density-matrix, entropy, mutual-information, Lindblad, and parity arithmetic",
+    "LinearAlgebra": "load-bearing complex matrix, eigensystem, tensor product, and trace arithmetic",
+    "canonical_qit_engine_specs": "load-bearing mirrored H0, Type1/2 signs, Se/Ne/Ni/Si Lindblad, operator slots, and 32-substage schedule metadata",
+    "owner_julia_carrier": "load-bearing direct include of density_matrix_spinor_lift.jl; owner-erased ablation changes the result"
+  },
+  "all_pass": true,
+  "backend": "julia",
+  "carrier_anchors": {
+    "density_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.45359612142557726
+    ],
+    "density_bloch_norm": 1.0,
+    "psi_2pi_sign_residual": 1.1837022226239788e-16,
+    "rho_2pi_return_residual": 1.7554167342883506e-16,
+    "rho_reconstruction_residual": 0.0,
+    "spinor_norm_residual": 0.0
+  },
+  "claim_ceiling": "Finite density-carrier inheritance diagnostic only; no physics, dark-matter, Standard Model, M(C), Axis0, bridge, engine admission, manifold closure, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "construction": {
+    "controls": [
+      "random inheritance applies an order/sign-scrambled correlation vector before the same density and QIT evolution",
+      "no inheritance replaces the previous rho correlation by zero before the same density and QIT evolution",
+      "owner-erased ablation replaces density_matrix_spinor_lift with a fixed computational-basis carrier"
+    ],
+    "memory_carrier": "two-qubit density matrix whose inherited state is previous-iteration rho correlation and mutual information",
+    "positive": "preserved rho correlation vector is passed to the next finite iteration",
+    "stability_measure": "density entropy basin score plus mutual information, purity, and owner-density-axis alignment"
+  },
+  "controls": {
+    "no_inheritance_does_not_raise_stability": true,
+    "owner_carrier_erasure_changes_result": true,
+    "random_inheritance_does_not_raise_stability": true,
+    "real_vs_erased_structure_flip": true,
+    "real_vs_scrambled_structure_flip": true
+  },
+  "divergence_log": [
+    "Positive: preserved rho correlation and mutual information raise the density stability window monotonically.",
+    "Control: scrambled inheritance uses the same carrier/evolution after a wrong order/sign correlation flip and does not raise the window.",
+    "Control: erased inheritance uses the same carrier/evolution from zero correlation and does not raise the window.",
+    "Owner-carrier ablation: replacing density_matrix_spinor_lift with a fixed carrier changes the final stability window."
+  ],
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T03:45:40Z",
+  "jax_reference_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_sequential_universe_toy_results.json",
+  "object_id": "mp_sequential_universe_density_carrier",
+  "owner_erased_ablation": {
+    "no_inheritance_control": {
+      "entropy_basin_scores": [
+        0.07406162497948476,
+        0.07406162497948476,
+        0.07406162497948476,
+        0.07406162497948476,
+        0.07406162497948476,
+        0.07406162497948476
+      ],
+      "final_mutual_information_bits": 0.003931545697953398,
+      "final_window": 0.16736585636514997,
+      "mode": "none",
+      "monotonic_strict_increase": false,
+      "mutual_information_bits": [
+        0.003931545697953398,
+        0.003931545697953398,
+        0.003931545697953398,
+        0.003931545697953398,
+        0.003931545697953398,
+        0.003931545697953398
+      ],
+      "net_increase": 0.0,
+      "purities": [
+        0.3045632480384772,
+        0.3045632480384772,
+        0.3045632480384772,
+        0.3045632480384772,
+        0.3045632480384772,
+        0.3045632480384772
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07406162497948476,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003931545697953398,
+          "next_rho_correlation_vector": [
+            -0.0004123102011793962,
+            -0.0007586401990677854,
+            0.16137373104794686
+          ],
+          "out_density_bloch": [
+            -0.004647887247376843,
+            -0.008551993369333091,
+            0.3132352288746343
+          ],
+          "stability_window": 0.16736585636514997,
+          "two_qubit_purity": 0.3045632480384772,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.16736585636514997,
+        0.16736585636514997,
+        0.16736585636514997,
+        0.16736585636514997,
+        0.16736585636514997,
+        0.16736585636514997
+      ],
+      "window_diffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "preserved": {
+      "entropy_basin_scores": [
+        0.12329758110105948,
+        0.1286705900964823,
+        0.12992212549243698,
+        0.1302142069881358,
+        0.1302824054973657,
+        0.1302983314210986
+      ],
+      "final_mutual_information_bits": 0.04803338537909996,
+      "final_window": 0.20210641115706818,
+      "mode": "preserved",
+      "monotonic_strict_increase": true,
+      "mutual_information_bits": [
+        0.041457786853322354,
+        0.04648778317533453,
+        0.04767534877330726,
+        0.04795329363080736,
+        0.048018223831910234,
+        0.04803338537909996
+      ],
+      "net_increase": 0.004437750623745823,
+      "purities": [
+        0.3461554848610475,
+        0.3507192275679751,
+        0.3517829635298727,
+        0.35203125252627127,
+        0.3520892274568096,
+        0.35210276592882345
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": 0.18,
+          "entropy_basin_score": 0.12329758110105948,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.18
+          ],
+          "mutual_information_bits": 0.041457786853322354,
+          "next_rho_correlation_vector": [
+            -0.0004160189711779446,
+            -0.0007816200730619979,
+            0.19610822650819965
+          ],
+          "out_density_bloch": [
+            -0.005392619166032001,
+            -0.010131699942949433,
+            0.3723535970907329
+          ],
+          "stability_window": 0.19766866053332235,
+          "two_qubit_purity": 0.3461554848610475,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": 0.19610822650819965,
+          "entropy_basin_score": 0.1286705900964823,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            -0.0004160189711779446,
+            -0.0007816200730619979,
+            0.19610822650819965
+          ],
+          "mutual_information_bits": 0.04648778317533453,
+          "next_rho_correlation_vector": [
+            -0.0005363013881070837,
+            -0.001008283346981705,
+            0.1998006872969759
+          ],
+          "out_density_bloch": [
+            -0.005598867685525625,
+            -0.010528023584229492,
+            0.3773662304177685
+          ],
+          "stability_window": 0.20107289307963272,
+          "two_qubit_purity": 0.3507192275679751,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": 0.1998006872969759,
+          "entropy_basin_score": 0.12992212549243698,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            -0.0005363013881070837,
+            -0.001008283346981705,
+            0.1998006872969759
+          ],
+          "mutual_information_bits": 0.04767534877330726,
+          "next_rho_correlation_vector": [
+            -0.0005707026830864827,
+            -0.001073217976628058,
+            0.20065916463153358
+          ],
+          "out_density_bloch": [
+            -0.005653998059669243,
+            -0.010633275836110321,
+            0.37850874151097214
+          ],
+          "stability_window": 0.2018674769127534,
+          "two_qubit_purity": 0.3517829635298727,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": 0.20065916463153358,
+          "entropy_basin_score": 0.1302142069881358,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            -0.0005707026830864827,
+            -0.001073217976628058,
+            0.20065916463153358
+          ],
+          "mutual_information_bits": 0.04795329363080736,
+          "next_rho_correlation_vector": [
+            -0.0005805147383435831,
+            -0.0010917501744649408,
+            0.20085938841638404
+          ],
+          "out_density_bloch": [
+            -0.005668999096644918,
+            -0.010661720124685282,
+            0.37877398840905074
+          ],
+          "stability_window": 0.20205298435798807,
+          "two_qubit_purity": 0.35203125252627127,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": 0.20085938841638404,
+          "entropy_basin_score": 0.1302824054973657,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            -0.0005805147383435831,
+            -0.0010917501744649408,
+            0.20085938841638404
+          ],
+          "mutual_information_bits": 0.048018223831910234,
+          "next_rho_correlation_vector": [
+            -0.0005833108774313432,
+            -0.0010970300387795108,
+            0.20090611978575593
+          ],
+          "out_density_bloch": [
+            -0.0056731156221504235,
+            -0.010669473492693766,
+            0.37883582265248683
+          ],
+          "stability_window": 0.202096297823431,
+          "two_qubit_purity": 0.3520892274568096,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": 0.20090611978575593,
+          "entropy_basin_score": 0.1302983314210986,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            -0.0005833108774313432,
+            -0.0010970300387795108,
+            0.20090611978575593
+          ],
+          "mutual_information_bits": 0.04803338537909996,
+          "next_rho_correlation_vector": [
+            -0.0005841073600566097,
+            -0.001098532627372679,
+            0.20091702809334466
+          ],
+          "out_density_bloch": [
+            -0.005674251894048689,
+            -0.010671599807003579,
+            0.37885025035709075
+          ],
+          "stability_window": 0.20210641115706818,
+          "two_qubit_purity": 0.35210276592882345,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.19766866053332235,
+        0.20107289307963272,
+        0.2018674769127534,
+        0.20205298435798807,
+        0.202096297823431,
+        0.20210641115706818
+      ],
+      "window_diffs": [
+        0.003404232546310365,
+        0.0007945838331206712,
+        0.00018550744523468388,
+        4.331346544292347e-5,
+        1.0113333637179478e-5
+      ]
+    },
+    "random_inheritance_control": {
+      "entropy_basin_scores": [
+        0.05757164186066288,
+        0.05789092487341563,
+        0.05791767339544296,
+        0.057919974726041934,
+        0.057920192130654025,
+        0.057920218065011464
+      ],
+      "final_mutual_information_bits": 0.007440147275829201,
+      "final_window": 0.1594525221385728,
+      "mode": "random",
+      "monotonic_strict_increase": false,
+      "mutual_information_bits": [
+        0.0075396975728350135,
+        0.007448327107142827,
+        0.007440819834847012,
+        0.007440202047419575,
+        0.007440151378999005,
+        0.007440147275829201
+      ],
+      "net_increase": 0.00017368572758383327,
+      "purities": [
+        0.29254704780610175,
+        0.2927798834464923,
+        0.29279938985033327,
+        0.29280106823590085,
+        0.29280122682957854,
+        0.2928012457579595
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": -0.11159999999999999,
+          "entropy_basin_score": 0.05757164186066288,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            -0.11159999999999999
+          ],
+          "mutual_information_bits": 0.0075396975728350135,
+          "next_rho_correlation_vector": [
+            -0.0005098839008914907,
+            -0.0009309008704766798,
+            0.17602769423417092
+          ],
+          "out_density_bloch": [
+            -0.004071888558927832,
+            -0.007434093520824109,
+            0.27108233518154795
+          ],
+          "stability_window": 0.15927883641098897,
+          "two_qubit_purity": 0.29254704780610175,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10913717042518596,
+          "entropy_basin_score": 0.05789092487341563,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            -0.0005771585396955414,
+            -0.10913717042518596
+          ],
+          "mutual_information_bits": 0.007448327107142827,
+          "next_rho_correlation_vector": [
+            -0.0005083801087896786,
+            -0.0011956577176735267,
+            0.17569875432443
+          ],
+          "out_density_bloch": [
+            -0.004093746750011225,
+            -0.007680161151661943,
+            0.27198518213114364
+          ],
+          "stability_window": 0.15943807521178618,
+          "two_qubit_purity": 0.2927798834464923,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10893322768114659,
+          "entropy_basin_score": 0.05791767339544296,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            -0.0007413077849575865,
+            -0.10893322768114659
+          ],
+          "mutual_information_bits": 0.007440819834847012,
+          "next_rho_correlation_vector": [
+            -0.0005084889431146465,
+            -0.0012716748276706573,
+            0.17567123830804235
+          ],
+          "out_density_bloch": [
+            -0.004097438532065488,
+            -0.007745328589070981,
+            0.2720592152902719
+          ],
+          "stability_window": 0.15945130673642738,
+          "two_qubit_purity": 0.29279938985033327,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10891616775098625,
+          "entropy_basin_score": 0.057919974726041934,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            -0.0007884383931558075,
+            -0.10891616775098625
+          ],
+          "mutual_information_bits": 0.007440202047419575,
+          "next_rho_correlation_vector": [
+            -0.000508564880649719,
+            -0.0012936116242720076,
+            0.17566885419621325
+          ],
+          "out_density_bloch": [
+            -0.004098287347185173,
+            -0.007763633591732736,
+            0.2720651853709589
+          ],
+          "stability_window": 0.15945241593260714,
+          "two_qubit_purity": 0.29280106823590085,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10891468960165222,
+          "entropy_basin_score": 0.057920192130654025,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            -0.0008020392070486448,
+            -0.10891468960165222
+          ],
+          "mutual_information_bits": 0.007440151378999005,
+          "next_rho_correlation_vector": [
+            -0.0005085905070279789,
+            -0.0012999524735924656,
+            0.1756686241174757
+          ],
+          "out_density_bloch": [
+            -0.004098514762902763,
+            -0.007768882226408346,
+            0.27206563905847736
+          ],
+          "stability_window": 0.15945251264053753,
+          "two_qubit_purity": 0.29280122682957854,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10891454695283492,
+          "entropy_basin_score": 0.057920218065011464,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            -0.0008059705336273287,
+            -0.10891454695283492
+          ],
+          "mutual_information_bits": 0.007440147275829201,
+          "next_rho_correlation_vector": [
+            -0.0005085982211743606,
+            -0.0013017861884342488,
+            0.17566859544447327
+          ],
+          "out_density_bloch": [
+            -0.0040985790490632905,
+            -0.007770396557011572,
+            0.2720656653441679
+          ],
+          "stability_window": 0.1594525221385728,
+          "two_qubit_purity": 0.2928012457579595,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.15927883641098897,
+        0.15943807521178618,
+        0.15945130673642738,
+        0.15945241593260714,
+        0.15945251264053753,
+        0.1594525221385728
+      ],
+      "window_diffs": [
+        0.0001592388007972123,
+        1.3231524641194037e-5,
+        1.1091961797660144e-6,
+        9.670793038596415e-8,
+        9.498035274946304e-9
+      ]
+    }
+  },
+  "owner_source_refs": {
+    "canonical_qit_engine_specs": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83"
+    },
+    "density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "sha256": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424"
+    },
+    "jax_density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+      "sha256": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a"
+    }
+  },
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "parity_max_diff": 6.661338147750939e-16,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_sequential_universe_toy_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 1.1102230246251565e-16,
+        "jax": 0.2021064111570683,
+        "julia": 0.20210641115706818,
+        "key": "owner_erased_preserved_window_final"
+      },
+      {
+        "abs_diff": 8.326672684688674e-17,
+        "jax": 0.15956350877482972,
+        "julia": 0.1595635087748298,
+        "key": "random_window_final"
+      },
+      {
+        "abs_diff": 2.498001805406602e-16,
+        "jax": 0.20082514334819185,
+        "julia": 0.2008251433481916,
+        "key": "preserved_window_final"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_final"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.681632986593423,
+        "julia": 0.681632986593423,
+        "key": "owner_axis_x"
+      },
+      {
+        "abs_diff": 1.1752064935111686e-17,
+        "jax": 1.1752064935111686e-17,
+        "julia": 0.0,
+        "key": "owner_rho_reconstruction_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "qit_total_substages_per_engine"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "qit_stage_count_per_universe"
+      },
+      {
+        "abs_diff": 8.326672684688674e-17,
+        "jax": 0.2007830073404632,
+        "julia": 0.20078300734046312,
+        "key": "preserved_window_3"
+      },
+      {
+        "abs_diff": 1.6653345369377348e-16,
+        "jax": 0.20081741623946026,
+        "julia": 0.2008174162394601,
+        "key": "preserved_window_4"
+      },
+      {
+        "abs_diff": 1.942890293094024e-16,
+        "jax": 0.15956349733462266,
+        "julia": 0.15956349733462247,
+        "key": "random_window_4"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.1999474096381669,
+        "julia": 0.19994740963816687,
+        "key": "preserved_window_1"
+      },
+      {
+        "abs_diff": 2.498001805406602e-16,
+        "jax": 0.20082514334819185,
+        "julia": 0.2008251433481916,
+        "key": "preserved_window_5"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_3"
+      },
+      {
+        "abs_diff": 8.326672684688674e-17,
+        "jax": 0.1595621914421686,
+        "julia": 0.15956219144216852,
+        "key": "random_window_2"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.15956339004221784,
+        "julia": 0.15956339004221784,
+        "key": "random_window_3"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.00018785212834754317,
+        "julia": 0.00018785212834757092,
+        "key": "random_net_increase"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": -0.5741315443479861,
+        "julia": -0.5741315443479861,
+        "key": "owner_axis_y"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "no_inherit_net_increase"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.003916494833059003,
+        "julia": 0.003916494833059003,
+        "key": "preserved_net_increase"
+      },
+      {
+        "abs_diff": 1.3877787807814457e-16,
+        "jax": 0.0012812678088764407,
+        "julia": 0.0012812678088765794,
+        "key": "owner_erased_result_delta"
+      },
+      {
+        "abs_diff": 8.326672684688674e-17,
+        "jax": 0.15956350877482972,
+        "julia": 0.1595635087748298,
+        "key": "random_window_5"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_1"
+      },
+      {
+        "abs_diff": 5.551115123125783e-17,
+        "jax": 0.20062977993147327,
+        "julia": 0.20062977993147332,
+        "key": "preserved_window_2"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_4"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 6.0,
+        "julia": 6.0,
+        "key": "universe_count"
+      },
+      {
+        "abs_diff": 6.661338147750939e-16,
+        "jax": 0.04393994715737626,
+        "julia": 0.04393994715737559,
+        "key": "preserved_final_mutual_information_bits"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_2"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "owner_density_bloch_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.45359612142557726,
+        "julia": 0.45359612142557726,
+        "key": "owner_axis_z"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_5"
+      },
+      {
+        "abs_diff": 5.551115123125783e-17,
+        "jax": 0.15937565664648218,
+        "julia": 0.15937565664648223,
+        "key": "random_window_0"
+      },
+      {
+        "abs_diff": 1.2369968304501057e-17,
+        "jax": 1.3074019056689894e-16,
+        "julia": 1.1837022226239788e-16,
+        "key": "owner_psi_2pi_sign_residual"
+      },
+      {
+        "abs_diff": 2.498001805406602e-16,
+        "jax": 0.19690864851513284,
+        "julia": 0.1969086485151326,
+        "key": "preserved_window_0"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.15954793723773922,
+        "julia": 0.15954793723773925,
+        "key": "random_window_1"
+      },
+      {
+        "abs_diff": 2.7755575615628914e-17,
+        "jax": 0.16764031026614237,
+        "julia": 0.1676403102661424,
+        "key": "no_inherit_window_0"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "parity_stop_condition_fired": false,
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_sequential_universe_toy_julia_results.json",
+  "sequences": {
+    "no_inheritance_control": {
+      "entropy_basin_scores": [
+        0.07469778173737118,
+        0.07469778173737118,
+        0.07469778173737118,
+        0.07469778173737118,
+        0.07469778173737118,
+        0.07469778173737118
+      ],
+      "final_mutual_information_bits": 0.003636587327005225,
+      "final_window": 0.1676403102661424,
+      "mode": "none",
+      "monotonic_strict_increase": false,
+      "mutual_information_bits": [
+        0.003636587327005225,
+        0.003636587327005225,
+        0.003636587327005225,
+        0.003636587327005225,
+        0.003636587327005225,
+        0.003636587327005225
+      ],
+      "net_increase": 0.0,
+      "purities": [
+        0.3050464969433198,
+        0.3050464969433198,
+        0.3050464969433198,
+        0.3050464969433198,
+        0.3050464969433198,
+        0.3050464969433198
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": 0.0,
+          "entropy_basin_score": 0.07469778173737118,
+          "inheritance_mode": "none",
+          "inherited_rho_correlation_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mutual_information_bits": 0.003636587327005225,
+          "next_rho_correlation_vector": [
+            0.1101354617562771,
+            -0.09281000230072257,
+            0.072563085320988
+          ],
+          "out_density_bloch": [
+            0.21694624802833481,
+            -0.18322999876950952,
+            0.1361609304293655
+          ],
+          "stability_window": 0.1676403102661424,
+          "two_qubit_purity": 0.3050464969433198,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.1676403102661424,
+        0.1676403102661424,
+        0.1676403102661424,
+        0.1676403102661424,
+        0.1676403102661424,
+        0.1676403102661424
+      ],
+      "window_diffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "preserved": {
+      "entropy_basin_scores": [
+        0.12272800644240789,
+        0.12757470129454218,
+        0.12866096783498682,
+        0.12890480432545204,
+        0.12895956009352416,
+        0.12897185751942197
+      ],
+      "final_mutual_information_bits": 0.04393994715737559,
+      "final_window": 0.2008251433481916,
+      "mode": "preserved",
+      "monotonic_strict_increase": true,
+      "mutual_information_bits": [
+        0.03834107221973282,
+        0.04267370485030275,
+        0.04365757403531867,
+        0.04387902234600993,
+        0.04392877414758556,
+        0.04393994715737559
+      ],
+      "net_increase": 0.003916494833059003,
+      "purities": [
+        0.3457967653305244,
+        0.3499314270631877,
+        0.3508586657904552,
+        0.3510668296565681,
+        0.3511135753106409,
+        0.3511240735929612
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": 0.18000000000000002,
+          "entropy_basin_score": 0.12272800644240789,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.12269393758681613,
+            -0.1033436779826375,
+            0.0816473018566039
+          ],
+          "mutual_information_bits": 0.03834107221973282,
+          "next_rho_correlation_vector": [
+            0.13312702189004066,
+            -0.11217984169481822,
+            0.08789445883222126
+          ],
+          "out_density_bloch": [
+            0.25757767155074296,
+            -0.21758612679382325,
+            0.16234972285720584
+          ],
+          "stability_window": 0.1969086485151326,
+          "two_qubit_purity": 0.3457967653305244,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": 0.19501834090525064,
+          "entropy_basin_score": 0.12757470129454218,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.13312702189004066,
+            -0.11217984169481822,
+            0.08789445883222126
+          ],
+          "mutual_information_bits": 0.04267370485030275,
+          "next_rho_correlation_vector": [
+            0.1354436975742911,
+            -0.11414490650470203,
+            0.0892409975188099
+          ],
+          "out_density_bloch": [
+            0.2608528826368934,
+            -0.22036608132262964,
+            0.16425270598200786
+          ],
+          "stability_window": 0.19994740963816687,
+          "two_qubit_purity": 0.3499314270631877,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": 0.19833645389050317,
+          "entropy_basin_score": 0.12866096783498682,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.1354436975742911,
+            -0.11414490650470203,
+            0.0892409975188099
+          ],
+          "mutual_information_bits": 0.04365757403531867,
+          "next_rho_correlation_vector": [
+            0.13596503622307504,
+            -0.1145878714236243,
+            0.08953359102066098
+          ],
+          "out_density_bloch": [
+            0.26157627725170707,
+            -0.2209807365169369,
+            0.16466118035885313
+          ],
+          "stability_window": 0.20062977993147332,
+          "two_qubit_purity": 0.3508586657904552,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": 0.19907885492128716,
+          "entropy_basin_score": 0.12890480432545204,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.13596503622307504,
+            -0.1145878714236243,
+            0.08953359102066098
+          ],
+          "mutual_information_bits": 0.04387902234600993,
+          "next_rho_correlation_vector": [
+            0.13608282884447795,
+            -0.11468815686378932,
+            0.08959684599359571
+          ],
+          "out_density_bloch": [
+            0.26173890003619293,
+            -0.2211190782420662,
+            0.164749802610588
+          ],
+          "stability_window": 0.20078300734046312,
+          "two_qubit_purity": 0.3510668296565681,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": 0.19924541550263436,
+          "entropy_basin_score": 0.12895956009352416,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.13608282884447795,
+            -0.11468815686378932,
+            0.08959684599359571
+          ],
+          "mutual_information_bits": 0.04392877414758556,
+          "next_rho_correlation_vector": [
+            0.1361095039451061,
+            -0.11471092159240057,
+            0.08961037840299663
+          ],
+          "out_density_bloch": [
+            0.2617756424532817,
+            -0.22115037810207303,
+            0.16476893758786715
+          ],
+          "stability_window": 0.2008174162394601,
+          "two_qubit_purity": 0.3511135753106409,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": 0.1992828063283552,
+          "entropy_basin_score": 0.12897185751942197,
+          "inheritance_mode": "preserved",
+          "inherited_rho_correlation_vector": [
+            0.1361095039451061,
+            -0.11471092159240057,
+            0.08961037840299663
+          ],
+          "mutual_information_bits": 0.04393994715737559,
+          "next_rho_correlation_vector": [
+            0.13611555814646964,
+            -0.11471610296984609,
+            0.08961322948385438
+          ],
+          "out_density_bloch": [
+            0.2617839651578745,
+            -0.22115747955524462,
+            0.16477302487763146
+          ],
+          "stability_window": 0.2008251433481916,
+          "two_qubit_purity": 0.3511240735929612,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.1969086485151326,
+        0.19994740963816687,
+        0.20062977993147332,
+        0.20078300734046312,
+        0.2008174162394601,
+        0.2008251433481916
+      ],
+      "window_diffs": [
+        0.003038761123034278,
+        0.0006823702933064502,
+        0.00015322740898979226,
+        3.440889899697375e-5,
+        7.727108731508947e-6
+      ]
+    },
+    "random_inheritance_control": {
+      "entropy_basin_scores": [
+        0.057908194826131076,
+        0.05825129197908474,
+        0.058279751243644706,
+        0.058282160578434605,
+        0.058282380800786515,
+        0.05828240548414221
+      ],
+      "final_mutual_information_bits": 0.006858865619241206,
+      "final_window": 0.1595635087748298,
+      "mode": "random",
+      "monotonic_strict_increase": false,
+      "mutual_information_bits": [
+        0.006954907343385219,
+        0.006866630687075714,
+        0.006859480404457274,
+        0.0068589102465874685,
+        0.006858867857300499,
+        0.006858865619241206
+      ],
+      "net_increase": 0.00018785212834757092,
+      "purities": [
+        0.2928040079327987,
+        0.29305447299395965,
+        0.29307527268233985,
+        0.2930770405228989,
+        0.29307720405115634,
+        0.293077222881525
+      ],
+      "rows": [
+        {
+          "alignment_with_owner_density_axis": -0.11160000000000002,
+          "entropy_basin_score": 0.057908194826131076,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.07607024130382602,
+            0.06407308034923527,
+            -0.05062132715109441
+          ],
+          "mutual_information_bits": 0.006954907343385219,
+          "next_rho_correlation_vector": [
+            0.12011302658011457,
+            -0.10122407489391796,
+            0.07900257143076524
+          ],
+          "out_density_bloch": [
+            0.18789177637592797,
+            -0.15869312074911912,
+            0.1176169915498475
+          ],
+          "stability_window": 0.15937565664648223,
+          "two_qubit_purity": 0.2928040079327987,
+          "universe_index": 0
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10901100118784261,
+          "entropy_basin_score": 0.05825129197908474,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.07407287613640556,
+            0.06261042921376332,
+            -0.04976643740622316
+          ],
+          "mutual_information_bits": 0.006866630687075714,
+          "next_rho_correlation_vector": [
+            0.1199866025645565,
+            -0.10101396079662729,
+            0.07870377622873137
+          ],
+          "out_density_bloch": [
+            0.18863995692550228,
+            -0.1592324877022922,
+            0.11791849507729457
+          ],
+          "stability_window": 0.15954793723773925,
+          "two_qubit_purity": 0.29305447299395965,
+          "universe_index": 1
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10879875022961122,
+          "entropy_basin_score": 0.058279751243644706,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.07385677396489183,
+            0.06251176377201265,
+            -0.04974813555835688
+          ],
+          "mutual_information_bits": 0.006859480404457274,
+          "next_rho_correlation_vector": [
+            0.12000052970129502,
+            -0.10098663158148362,
+            0.07865535203224573
+          ],
+          "out_density_bloch": [
+            0.1887219640994099,
+            -0.1592672191414618,
+            0.11792424054710604
+          ],
+          "stability_window": 0.15956219144216852,
+          "two_qubit_purity": 0.29307527268233985,
+          "universe_index": 2
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10878128954384603,
+          "entropy_basin_score": 0.058282160578434605,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.07382398129971052,
+            0.06250967929200522,
+            -0.049761558605818976
+          ],
+          "mutual_information_bits": 0.0068589102465874685,
+          "next_rho_correlation_vector": [
+            0.12000866126991702,
+            -0.10098151036507656,
+            0.07864443953375497
+          ],
+          "out_density_bloch": [
+            0.1887346266263243,
+            -0.15926737029233554,
+            0.11791923843803875
+          ],
+          "stability_window": 0.15956339004221784,
+          "two_qubit_purity": 0.2930770405228989,
+          "universe_index": 3
+        },
+        {
+          "alignment_with_owner_density_axis": -0.1087798341722948,
+          "entropy_basin_score": 0.058282380800786515,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.0738169393837634,
+            0.06251123022188008,
+            -0.04976696913021943
+          ],
+          "mutual_information_bits": 0.006858867857300499,
+          "next_rho_correlation_vector": [
+            0.12001134414235484,
+            -0.100980261803185,
+            0.07864153743195809
+          ],
+          "out_density_bloch": [
+            0.18873737957493536,
+            -0.15926660871667098,
+            0.1179172475971344
+          ],
+          "stability_window": 0.15956349733462247,
+          "two_qubit_purity": 0.29307720405115634,
+          "universe_index": 4
+        },
+        {
+          "alignment_with_owner_density_axis": -0.10877970739064395,
+          "entropy_basin_score": 0.05828240548414221,
+          "inheritance_mode": "random",
+          "inherited_rho_correlation_vector": [
+            -0.07381510497617326,
+            0.06251185353477745,
+            -0.04976865730046804
+          ],
+          "mutual_information_bits": 0.006858865619241206,
+          "next_rho_correlation_vector": [
+            0.1200121460671486,
+            -0.10097992042426031,
+            0.07864071965675899
+          ],
+          "out_density_bloch": [
+            0.1887381004237511,
+            -0.15926632318851056,
+            0.11791662791161522
+          ],
+          "stability_window": 0.1595635087748298,
+          "two_qubit_purity": 0.293077222881525,
+          "universe_index": 5
+        }
+      ],
+      "stability_windows": [
+        0.15937565664648223,
+        0.15954793723773925,
+        0.15956219144216852,
+        0.15956339004221784,
+        0.15956349733462247,
+        0.1595635087748298
+      ],
+      "window_diffs": [
+        0.00017228059125701245,
+        1.425420442927039e-5,
+        1.1986000493235949e-6,
+        1.0729240462747924e-7,
+        1.1440207337010122e-8
+      ]
+    }
+  },
+  "shared_booleans": {
+    "all_pass": true,
+    "controls_fire": true,
+    "formal_admission_allowed": false,
+    "inherited_increases_stability": true,
+    "jax_enable_x64": true,
+    "no_inherit_fails": true,
+    "on_real_density_carrier": true,
+    "owner_carrier_load_bearing": true,
+    "promotion_allowed": false,
+    "random_inherit_fails": true
+  },
+  "shared_scalars": {
+    "no_inherit_net_increase": 0.0,
+    "no_inherit_window_0": 0.1676403102661424,
+    "no_inherit_window_1": 0.1676403102661424,
+    "no_inherit_window_2": 0.1676403102661424,
+    "no_inherit_window_3": 0.1676403102661424,
+    "no_inherit_window_4": 0.1676403102661424,
+    "no_inherit_window_5": 0.1676403102661424,
+    "no_inherit_window_final": 0.1676403102661424,
+    "owner_axis_x": 0.681632986593423,
+    "owner_axis_y": -0.5741315443479861,
+    "owner_axis_z": 0.45359612142557726,
+    "owner_density_bloch_norm": 1.0,
+    "owner_erased_preserved_window_final": 0.20210641115706818,
+    "owner_erased_result_delta": 0.0012812678088765794,
+    "owner_psi_2pi_sign_residual": 1.1837022226239788e-16,
+    "owner_rho_reconstruction_residual": 0.0,
+    "preserved_final_mutual_information_bits": 0.04393994715737559,
+    "preserved_net_increase": 0.003916494833059003,
+    "preserved_window_0": 0.1969086485151326,
+    "preserved_window_1": 0.19994740963816687,
+    "preserved_window_2": 0.20062977993147332,
+    "preserved_window_3": 0.20078300734046312,
+    "preserved_window_4": 0.2008174162394601,
+    "preserved_window_5": 0.2008251433481916,
+    "preserved_window_final": 0.2008251433481916,
+    "qit_stage_count_per_universe": 64.0,
+    "qit_total_substages_per_engine": 32.0,
+    "random_net_increase": 0.00018785212834757092,
+    "random_window_0": 0.15937565664648223,
+    "random_window_1": 0.15954793723773925,
+    "random_window_2": 0.15956219144216852,
+    "random_window_3": 0.15956339004221784,
+    "random_window_4": 0.15956349733462247,
+    "random_window_5": 0.1595635087748298,
+    "random_window_final": 0.1595635087748298,
+    "universe_count": 6.0
+  },
+  "tool_integration_depth": {
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs": "load_bearing",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "JSON": "supportive result serialization",
+    "Julia": "load-bearing density-matrix, entropy, mutual-information, Lindblad, and parity arithmetic",
+    "LinearAlgebra": "load-bearing complex matrix, eigensystem, tensor product, and trace arithmetic",
+    "canonical_qit_engine_specs": "load-bearing mirrored H0, Type1/2 signs, Se/Ne/Ni/Si Lindblad, operator slots, and 32-substage schedule metadata",
+    "owner_julia_carrier": "load-bearing direct include of density_matrix_spinor_lift.jl; owner-erased ablation changes the result"
+  }
+}

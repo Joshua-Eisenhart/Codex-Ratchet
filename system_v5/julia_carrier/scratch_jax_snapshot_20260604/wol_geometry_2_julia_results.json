@@ -1,0 +1,125 @@
+{
+  "F01": {
+    "codomain": "{F_eta_chi(i,j) real scalar curvature values}",
+    "domain": "{(eta_i, chi_j): i=1..200, j=1..400}",
+    "domain_size": 80000,
+    "finite_carrier": "midpoint grid over S2 base rectangle"
+  },
+  "L_details": {
+    "F_max": 1.9999383150535395,
+    "F_min": 0.015707801774628858,
+    "abs_c1_minus_1": 1.0000205615355617,
+    "c1": 2.0000205615355617,
+    "integer_error": 2.0561535561736122e-5,
+    "integral_F": 12.566499806297308,
+    "rounded": 2
+  },
+  "N01": {
+    "delta_L_sample": {
+      "Delta": 3.9999999994854964,
+      "F_chi_eta": -1.9999999997427482,
+      "F_eta_chi": 1.9999999997427482,
+      "chi": 1.0471975511965976,
+      "eta": 0.7853981633974483
+    },
+    "delta_trivial_sample": {
+      "Delta": 0.0,
+      "F_chi_eta": 0.0,
+      "F_eta_chi": 0.0,
+      "chi": 1.0471975511965976,
+      "eta": 0.7853981633974483
+    },
+    "operation": "commutator [dP/d_eta, dP/d_chi]",
+    "order_sensitive_pass": true
+  },
+  "R_details": {
+    "F_max": 1.9999383150535395,
+    "F_min": 0.015707801774628858,
+    "abs_c1_minus_1": 1.0000205615355617,
+    "c1": 2.0000205615355617,
+    "integer_error": 2.0561535561736122e-5,
+    "integral_F": 12.566499806297308,
+    "rounded": 2
+  },
+  "all_pass": false,
+  "c1_L": 2.0000205615355617,
+  "c1_R": 2.0000205615355617,
+  "c1_frozen_kill": 0.0,
+  "c1_trivial": 0.0,
+  "claim_ceiling": "scratch_diagnostic",
+  "controls": {
+    "boundary_integer_pass": true,
+    "kill_frozen_expected_c1": 0.0,
+    "kill_pass": true,
+    "negative_pass": true,
+    "negative_trivial_expected_c1": 0.0,
+    "positive_expected_abs_c1": 1.0,
+    "positive_pass": false
+  },
+  "created_at": "2026-06-03T19:15:38.448",
+  "diagnostic_note": "The locked formula over chi in [0,2pi] gives a raw pullback Chern number near +/-2 in this sign convention, so the requested |c1|=1 positive control is not forced here.",
+  "engine": "julia",
+  "fiber_phi_for_base_section": 0.0,
+  "formal_admission_allowed": false,
+  "frozen_kill_details": {
+    "F_max": 0.0,
+    "F_min": 0.0,
+    "abs_c1_minus_1": 1.0,
+    "c1": 0.0,
+    "integer_error": 0.0,
+    "integral_F": 0.0,
+    "rounded": 0
+  },
+  "grid": {
+    "N_chi": 400,
+    "N_eta": 200,
+    "chi_range": [
+      0.0,
+      6.283185307179586
+    ],
+    "eta_range": [
+      0.0,
+      1.5707963267948966
+    ],
+    "finite_difference": "central projector differences",
+    "h": 1.0e-5
+  },
+  "ground_truth_source": {
+    "first_token": "TiSe",
+    "lock_check_counts": {
+      "unique_A1_A2_A5_A6": 16,
+      "unique_A3_geometry_path_A4_A5_A6": 8,
+      "engine_recoverable_from_A3_geometry_path_A4": false,
+      "engine_recoverable_from_A3_chart_role_A3_geometry_path_A4": true
+    },
+    "path": "/tmp/16_token_axis_projection_matrix.json",
+    "sha256": "99bf8188604ce04cd2a757feb96a48682e6ee0690b016c830f119f3795da996c",
+    "signed_operator_count": 8,
+    "token_count": 16
+  },
+  "item": "3/7",
+  "object_id": "wol_geometry_2_u1_chern_locked_full_s2_base",
+  "promotion_allowed": false,
+  "psi_not_from_row_matrix": true,
+  "psi_source": "built directly from locked formula psi_s(phi,chi;eta)=[exp(i*(phi+chi))*cos(eta), exp(i*(phi-chi))*sin(eta)]",
+  "sample_psi_L_phi_0_217_chi_0_923_eta_0_371": [
+    {
+      "im": 0.846814856151127,
+      "re": 0.3891835721560261
+    },
+    {
+      "im": -0.23521909849155231,
+      "re": 0.27588534261617276
+    }
+  ],
+  "stage": "geometry",
+  "trivial_details": {
+    "F_max": 0.0,
+    "F_min": 0.0,
+    "abs_c1_minus_1": 1.0,
+    "c1": 0.0,
+    "integer_error": 0.0,
+    "integral_F": 0.0,
+    "rounded": 0
+  }
+}

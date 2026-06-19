@@ -1,0 +1,342 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "Julia JSON/Dates/SHA": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "load_bearing",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "Julia JSON/Dates/SHA": {
+      "reason": "supportive exact result writing, source fingerprinting, and peer parity parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing mirror finite linear algebra, G2/SU3 parity scalars, owner gravity readout scalars, and controls",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror constants": {
+      "reason": "load-bearing mirror readback of Hopf/Weyl/Clifford layer names and engine schedule counts used in the one-carrier boundary",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing source object set; erasing octonion nonassociativity changes the joint result and erasing Weyl/density/Hopf geometry changes the gravity readout",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite SU(3) stabilizer witness on owner octonion/Cl(6) carrier",
+    "finite knot-gravity 1/r^2 readout on owner Weyl/density/Hopf face",
+    "dual-backend parity witness",
+    "real-vs-erased diagnostic controls"
+  ],
+  "backend": "julia_float64_mirror",
+  "blocked_consumers": [
+    "physics",
+    "GR_admission",
+    "SM_admission",
+    "M(C)",
+    "Axis0",
+    "bridge",
+    "formal_admission",
+    "masses",
+    "couplings"
+  ],
+  "boundary": {
+    "claim_ceiling_blocks_physics": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "formal_admission_disallowed": {
+      "pass": true
+    },
+    "no_numpy_compute": {
+      "backend": "Julia Float64 mirror",
+      "numpy_imported": false,
+      "pass": true
+    },
+    "promotion_disallowed": {
+      "pass": true
+    }
+  },
+  "claim_ceiling": "finite joint witness/readout only: reproduces known SU(3)-from-G2-on-octonion/Cl(6) structure and a bounded knot-gravity 1/r^2 readout on the owner carrier; NO physics, GR, Standard Model validation, M(C), Axis0, bridge, formal admission, mass, or coupling claim.",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erase_octonion_nonassociativity": {
+      "control_meaning": "octonion product erasure kills the G2/SU3 face while the separate Weyl-density-Hopf readout remains finite",
+      "erased_spinor_su3_rank": 2,
+      "gravity_survives_erasure": true,
+      "gravity_total_under_octonion_erasure": 22.314872140214206,
+      "pass": true,
+      "real_gravity_total": 22.314872140214206,
+      "real_su3_rank": 2,
+      "su3_survives_erasure": false
+    },
+    "erase_owner_weyl_density_hopf_face": {
+      "erased_total_gravity": 0.0,
+      "pass": true,
+      "real_total_gravity": 22.314872140214206,
+      "real_vs_erased_delta": 22.314872140214206
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T04:21:39Z",
+  "graveyard_companions": {
+    "associative_octonion_erasure_kills_su3": {
+      "pass": true
+    },
+    "owner_weyl_geometry_erasure_kills_gravity_readout": {
+      "pass": true
+    },
+    "sedenion_break_boundary_present": {
+      "pass": true
+    }
+  },
+  "local_all_pass": true,
+  "name": "mp2_joint_gr_sm",
+  "nearby_variants": {
+    "all_pass": true,
+    "passed": 3,
+    "total": 3,
+    "variants": [
+      "associative_octonion_erasure",
+      "owner_weyl_density_hopf_erasure",
+      "sedenion_zero_divisor_boundary"
+    ]
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp2_joint_gr_sm",
+  "owner_julia_carrier": "load_bearing",
+  "parity": {
+    "boolean_mismatches": [],
+    "diffs": {
+      "assoc_erase.cl6_matrix_span_dim": 0.0,
+      "assoc_erase.g2_dim": 0.0,
+      "assoc_erase.spinor_su3_rank": 0.0,
+      "both_from_one_carrier": 0.0,
+      "cl6.matrix_span_dim": 0.0,
+      "cl6.table_dim": 0.0,
+      "embedded_source_norm_residual": 0.0,
+      "erase_octonion_kills_su3_not_gravity": 0.0,
+      "g2.anchor_constraint_residual": 0.0,
+      "g2.dim": 0.0,
+      "gravity.carrier_gain": 0.0,
+      "gravity.falloff_exponent": 0.0,
+      "gravity.octonion_erased_total_survives": 0.0,
+      "gravity.one_over_r2_sse": 1.3877787807814457e-17,
+      "gravity.owner_hopf_metric_det_min": 0.0,
+      "gravity.owner_weyl_erased_total": 0.0,
+      "gravity.owner_weyl_real_vs_erased_delta": 0.0,
+      "gravity.reference_total_L": 0.0,
+      "gravity_1overr2": 0.0,
+      "octonion.table.nonzero_entry_count": 0.0,
+      "octonion.table.weighted_checksum": 0.0,
+      "owner_carrier_load_bearing": 0.0,
+      "qit.manifold_layer_count": 0.0,
+      "qit.substage_count_per_engine": 0.0,
+      "qit.type_one_schedule_len": 0.0,
+      "qit.type_two_schedule_len": 0.0,
+      "sedenion.dim": 0.0,
+      "sedenion.left_ideal_rank": 0.0,
+      "sedenion.table.weighted_checksum": 0.0,
+      "sedenion.zero_divisor_product_norm": 0.0,
+      "su3.closure_residual": 1.5925758387731455e-15,
+      "su3.dim": 0.0,
+      "su3.rank": 0.0,
+      "su3_emerges": 0.0
+    },
+    "missing_keys": [],
+    "parity_max_diff": 1.5925758387731455e-15,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_joint_gr_sm_results.json",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true,
+    "worst_key": "su3.closure_residual"
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_joint_gr_sm_results.json",
+  "positive": {
+    "both_faces_from_one_carrier": {
+      "carrier_id": "owner_3qubit_Cl6_octonion_Weyl_density_Hopf_face",
+      "cl6_matrix_span_dim": 64,
+      "cl6_table_dim": 64,
+      "octonion_dim": 8,
+      "octonion_table_weighted_checksum": 6.4008272e7,
+      "pass": true,
+      "same_finite_carrier_for_su3_and_gravity_readout": true,
+      "source_spinor_embedded_in_cl6_octonion_carrier": true,
+      "three_qubit_dim": 8,
+      "weyl_density_embedded_dim": 8,
+      "weyl_density_face_dim": 2
+    },
+    "knot_gravity_1_over_r2_readout": {
+      "falloff_exponent": 2.0189823735647834,
+      "pass": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_full_carrier_gravity_julia.jl"
+    },
+    "su3_color_from_g2_stabilizer": {
+      "pass": true,
+      "source": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/su3_color_from_g2_octonion_cl6.jl"
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_joint_gr_sm_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "both_from_one_carrier": true,
+    "erase_octonion_kills_su3_not_gravity": true,
+    "gravity_1overr2": true,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "su3_emerges": true
+  },
+  "same_carrier": {
+    "carrier_id": "owner_3qubit_Cl6_octonion_Weyl_density_Hopf_face",
+    "cl6_matrix_span_dim": 64,
+    "cl6_table_dim": 64,
+    "octonion_dim": 8,
+    "octonion_table_weighted_checksum": 6.4008272e7,
+    "same_finite_carrier_for_su3_and_gravity_readout": true,
+    "source_spinor_embedded_in_cl6_octonion_carrier": true,
+    "three_qubit_dim": 8,
+    "weyl_density_embedded_dim": 8,
+    "weyl_density_face_dim": 2
+  },
+  "schema": "MP2_JOINT_GR_SM_DUAL_BACKEND_SCRATCH_v1",
+  "shared_booleans": {
+    "both_from_one_carrier": true,
+    "erase_octonion_kills_su3_not_gravity": true,
+    "gravity_1overr2": true,
+    "gravity_survives_octonion_erase": true,
+    "no_numpy_compute": true,
+    "octonion_erase_kills_su3": true,
+    "owner_carrier_load_bearing": true,
+    "owner_weyl_erasure_changes_gravity": true,
+    "qit_spec_ok": true,
+    "sedenion_break_ok": true,
+    "su3_emerges": true
+  },
+  "shared_scalars": {
+    "assoc_erase.cl6_matrix_span_dim": 7.0,
+    "assoc_erase.g2_dim": 0.0,
+    "assoc_erase.spinor_su3_rank": 2.0,
+    "both_from_one_carrier": 1.0,
+    "cl6.matrix_span_dim": 64.0,
+    "cl6.table_dim": 64.0,
+    "embedded_source_norm_residual": 0.0,
+    "erase_octonion_kills_su3_not_gravity": 1.0,
+    "g2.anchor_constraint_residual": 0.0,
+    "g2.dim": 14.0,
+    "gravity.carrier_gain": 1.023,
+    "gravity.falloff_exponent": 2.0189823735647834,
+    "gravity.octonion_erased_total_survives": 22.314872140214206,
+    "gravity.one_over_r2_sse": 0.0757767695194887,
+    "gravity.owner_hopf_metric_det_min": 0.08637287570313155,
+    "gravity.owner_weyl_erased_total": 0.0,
+    "gravity.owner_weyl_real_vs_erased_delta": 22.314872140214206,
+    "gravity.reference_total_L": 22.314872140214206,
+    "gravity_1overr2": 1.0,
+    "octonion.table.nonzero_entry_count": 64.0,
+    "octonion.table.weighted_checksum": 6.4008272e7,
+    "owner_carrier_load_bearing": 1.0,
+    "qit.manifold_layer_count": 13.0,
+    "qit.substage_count_per_engine": 32.0,
+    "qit.type_one_schedule_len": 8.0,
+    "qit.type_two_schedule_len": 8.0,
+    "sedenion.dim": 16.0,
+    "sedenion.left_ideal_rank": 12.0,
+    "sedenion.table.weighted_checksum": 2.56016928e8,
+    "sedenion.zero_divisor_product_norm": 0.0,
+    "su3.closure_residual": 1.1592709515130644e-15,
+    "su3.dim": 8.0,
+    "su3.rank": 2.0,
+    "su3_emerges": 1.0
+  },
+  "sim_class": "finite_joint_carrier_scout",
+  "sim_execution_kind": "scratch_diagnostic",
+  "source_dependencies": {
+    "canonical_qit_engine_specs": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+    "clifford_algebra_ladder_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+    "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+    "clifford_torus_nested_hopf_foliation_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+    "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+    "density_matrix_spinor_lift_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+    "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+    "division_algebra_ratchet_ladder_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+    "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+    "golden_weyl_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+    "knot_gravity_face": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp_full_carrier_gravity_julia.jl",
+    "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+    "octonion_G2_automorphism_jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+    "sedenion_break": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break.jl",
+    "su3_color_from_g2": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/su3_color_from_g2_octonion_cl6.jl"
+  },
+  "source_fingerprints": {
+    "canonical_qit_engine_specs": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83",
+    "clifford_algebra_ladder": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8",
+    "clifford_algebra_ladder_jax": "52e136238e1d3f1bbc94f115eeaaa049f5157de89fe75fe35e9392600486ff77",
+    "clifford_torus_nested_hopf_foliation": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af",
+    "clifford_torus_nested_hopf_foliation_jax": "a55594e5dbc0629d0b8419beed97811925f113c299c0b8b0a86f5912f9472a02",
+    "density_matrix_spinor_lift": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424",
+    "density_matrix_spinor_lift_jax": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a",
+    "division_algebra_ratchet_ladder": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878",
+    "division_algebra_ratchet_ladder_jax": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24",
+    "golden_weyl": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070",
+    "golden_weyl_jax": "2bad22d3ab60ece229a59e36bc75d247ea2ff5acea834868eb1c276cb4d590ab",
+    "knot_gravity_face": "98bcc141d10b498ec338136142d2298f41c561b66d45fa3e0357350fadcf6d15",
+    "octonion_G2_automorphism": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347",
+    "octonion_G2_automorphism_jax": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a",
+    "sedenion_break": "e2edeb045fb627c009cd4f486742f95008d9a59cc1647f71b720fbc2f257fcdf",
+    "su3_color_from_g2": "7d5585624e4c1f5aa41ebc13983e643c650b3f7fdd9708ec23fe81cd3e08f04e"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_joint_gr_sm_julia.jl",
+  "strict_stop_tol": 1.0e-6,
+  "summary": {
+    "all_pass": true,
+    "both_from_one_carrier": true,
+    "erase_octonion_kills_su3_not_gravity": true,
+    "gravity_1overr2": true,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "su3_emerges": true
+  },
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "Julia JSON/Dates/SHA": "supportive",
+    "Julia LinearAlgebra": "load_bearing",
+    "canonical_qit_engine_specs.py mirror constants": "load_bearing",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "Julia JSON/Dates/SHA": {
+      "reason": "supportive exact result writing, source fingerprinting, and peer parity parsing",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra": {
+      "reason": "load-bearing mirror finite linear algebra, G2/SU3 parity scalars, owner gravity readout scalars, and controls",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py mirror constants": {
+      "reason": "load-bearing mirror readback of Hopf/Weyl/Clifford layer names and engine schedule counts used in the one-carrier boundary",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing source object set; erasing octonion nonassociativity changes the joint result and erasing Weyl/density/Hopf geometry changes the gravity readout",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": "Scratch v5 dual-backend finite scout. It intentionally does not use formal_scout classification, does not promote a lego, and does not admit physics/SM/GR/M(C)/Axis0 claims."
+}

@@ -1,0 +1,68 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "gcm_substrate_check": "load_bearing",
+    "python_stdlib": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "G.2a idempotent builder/audit boundary from birth",
+      "tried": true,
+      "used": true
+    },
+    "gcm_substrate_check": {
+      "reason": "load-bearing frozen-object lineage gate and lineage-free negative",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "builds deterministic finite maps, trajectories, JSON receipts, and SHA-256 locks",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "builder_gates": {
+    "G_2a_idempotency_from_birth": true,
+    "file_disjoint_packet": true,
+    "lineage_free_negative_required": true,
+    "no_builder_audit_verdict": true,
+    "no_builder_audit_verdict_envelope_gate": true
+  },
+  "carrier_and_pins_relative": true,
+  "claim_ceiling": "scratch_diagnostic; carrier-and-pins-relative; CA run-surface on frozen carved substrate; not QCA/GNVW; not runtime flux",
+  "classification": "scratch_diagnostic",
+  "dynamic_admissibility_preserves_M_C": true,
+  "formal_admission_allowed": false,
+  "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+  "locality_removal_changes_periodicity": true,
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "periodicity_changed": true,
+  "phase_merge_changes_periodicity": true,
+  "promotion_allowed": false,
+  "qca_gnvw_index_row": "named_not_run_2Q_plus_ladder",
+  "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+  "result_path": "system_v6/sims/gcm_ring_checkerboard_runner_v0/results/gcm_ring_checkerboard_runner_v0_results.json",
+  "result_sha256": "81d1c529d0d0d2045611a78b62616697afb6fcf65b9bce16ba9cd487bd2b81c7",
+  "schema": "gcm_ring_checkerboard_runner_v0_envelope_v1",
+  "schema_version": "sim_packet_envelope_v1",
+  "sim_id": "gcm_ring_checkerboard_runner_v0",
+  "substrate_lineage_free_negative_ok": true,
+  "substrate_positive_ok": true,
+  "three_axis_declaration": {
+    "layer": {
+      "coordinate": "CA run-surface",
+      "declared_dimension": "layers 1-2 + 12 support",
+      "surface": "ring-checkerboard / block-partitioned CA runner"
+    },
+    "nesting": {
+      "coordinate": "integrated-onto-the-carve",
+      "lineage_basis": "same gcm_object_id plus survivor/class/region IDs from the frozen registry"
+    },
+    "qubit_depth": {
+      "coordinate": "1Q",
+      "fence": "classical/1Q rung; QCA/GNVW index named but not run"
+    }
+  }
+}

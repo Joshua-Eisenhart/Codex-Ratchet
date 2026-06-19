@@ -33,14 +33,28 @@
       "minLength": 1
     },
     "pool": {
-      "enum": ["codex-native", "claude-bridge", "gemini", "tmux", "tool"]
+      "enum": [
+        "codex-native",
+        "claude-bridge",
+        "gemini",
+        "tmux",
+        "tool"
+      ]
     },
     "launch_surface": {
       "type": "string",
       "minLength": 1
     },
     "terminal_status": {
-      "enum": ["completed", "failed", "timed_out", "blocked", "abandoned", "not_launched", "superseded"]
+      "enum": [
+        "completed",
+        "failed",
+        "timed_out",
+        "blocked",
+        "abandoned",
+        "not_launched",
+        "superseded"
+      ]
     },
     "artifact_path": {
       "type": "string"
@@ -74,7 +88,10 @@
       "type": "string"
     },
     "cost_usd": {
-      "type": ["number", "string"]
+      "type": [
+        "number",
+        "string"
+      ]
     },
     "prompt_hash": {
       "type": "string"
@@ -96,6 +113,45 @@
     },
     "parent_receipt_id": {
       "type": "string"
+    },
+    "saliency_preload_before_rules": {
+      "type": "boolean"
+    },
+    "slices_loaded": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "compact_mmm_loaded": {
+      "type": "boolean"
+    },
+    "full_mmm_loaded": {
+      "type": "boolean"
+    },
+    "required_mini_mmms_loaded": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "optional_mini_mmms_loaded": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "mini_mmm_sha256": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 8
+      }
     }
   },
   "allOf": [
@@ -106,10 +162,17 @@
             "const": true
           }
         },
-        "required": ["counts_toward_topology"]
+        "required": [
+          "counts_toward_topology"
+        ]
       },
       "then": {
-        "required": ["artifact_path", "accepted_conclusion"],
+        "required": [
+          "artifact_path",
+          "accepted_conclusion",
+          "saliency_preload_before_rules",
+          "slices_loaded"
+        ],
         "properties": {
           "terminal_status": {
             "const": "completed"
@@ -121,6 +184,17 @@
           "accepted_conclusion": {
             "type": "string",
             "minLength": 1
+          },
+          "saliency_preload_before_rules": {
+            "const": true
+          },
+          "slices_loaded": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
           }
         }
       }
@@ -129,10 +203,16 @@
       "if": {
         "properties": {
           "pool": {
-            "enum": ["claude-bridge", "gemini", "tmux"]
+            "enum": [
+              "claude-bridge",
+              "gemini",
+              "tmux"
+            ]
           }
         },
-        "required": ["pool"]
+        "required": [
+          "pool"
+        ]
       },
       "then": {
         "properties": {
@@ -140,7 +220,9 @@
             "const": true
           }
         },
-        "required": ["external_worker"]
+        "required": [
+          "external_worker"
+        ]
       }
     },
     {
@@ -156,10 +238,16 @@
             "const": true
           }
         },
-        "required": ["pool", "counts_toward_topology", "controller_marker"]
+        "required": [
+          "pool",
+          "counts_toward_topology",
+          "controller_marker"
+        ]
       },
       "then": {
-        "required": ["controller_marker_justification"],
+        "required": [
+          "controller_marker_justification"
+        ],
         "properties": {
           "controller_marker_justification": {
             "type": "string",
@@ -167,7 +255,9 @@
           }
         },
         "not": {
-          "required": ["child_id"]
+          "required": [
+            "child_id"
+          ]
         }
       }
     },
@@ -181,12 +271,17 @@
             "const": true
           }
         },
-        "required": ["pool", "counts_toward_topology"]
+        "required": [
+          "pool",
+          "counts_toward_topology"
+        ]
       },
       "then": {
         "anyOf": [
           {
-            "required": ["child_id"]
+            "required": [
+              "child_id"
+            ]
           },
           {
             "properties": {
@@ -194,7 +289,9 @@
                 "const": true
               }
             },
-            "required": ["controller_marker"]
+            "required": [
+              "controller_marker"
+            ]
           }
         ]
       }

@@ -1,0 +1,178 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "sympy": "load_bearing",
+    "torch": "load_bearing",
+    "torch.func": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "sympy": {
+      "reason": "load-bearing exact algebraic crossing sample coordinates and circle/line incidence checks",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "load-bearing integer tensor recomputation of the exact crossing signs",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing vmap application over the integer crossing-sign tensor",
+      "tried": true,
+      "used": true
+    }
+  },
+  "X_receipts": {
+    "X4_crossing_count_exact_integer_pytorch": {
+      "all_circle_equation_residuals_zero": true,
+      "all_projection_matches_exact": true,
+      "crossing_sign_source": "computed from exact projected tangent orientation determinant plus exact z-order",
+      "pass": true,
+      "records": [
+        {
+          "circle_parameter": "pi/3",
+          "circle_point": [
+            "1/2",
+            "sqrt(3)/2",
+            "0"
+          ],
+          "circle_projected_tangent": [
+            "-sqrt(3)/2",
+            "1/2"
+          ],
+          "circle_unit_equation_residual": "0",
+          "computed_sign": 1,
+          "index": 0,
+          "line_parameter": "sqrt(3)/2",
+          "line_point": [
+            "1/2",
+            "sqrt(3)/2",
+            "sqrt(3)/2"
+          ],
+          "line_projected_tangent": [
+            "0",
+            "1"
+          ],
+          "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+          "over_curve_from_z_order": "line",
+          "projection": "xy",
+          "projection_match": true,
+          "segment_pair": [
+            "C(t)=(cos(t),sin(t),0)",
+            "L(u)=(1/2,u,u)"
+          ],
+          "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+          "under_curve_from_z_order": "circle",
+          "z_delta_line_minus_circle": "sqrt(3)/2"
+        },
+        {
+          "circle_parameter": "5*pi/3",
+          "circle_point": [
+            "1/2",
+            "-sqrt(3)/2",
+            "0"
+          ],
+          "circle_projected_tangent": [
+            "sqrt(3)/2",
+            "1/2"
+          ],
+          "circle_unit_equation_residual": "0",
+          "computed_sign": 1,
+          "index": 1,
+          "line_parameter": "-sqrt(3)/2",
+          "line_point": [
+            "1/2",
+            "-sqrt(3)/2",
+            "-sqrt(3)/2"
+          ],
+          "line_projected_tangent": [
+            "0",
+            "1"
+          ],
+          "orientation_determinant_ordered_over_under": "sqrt(3)/2",
+          "over_curve_from_z_order": "circle",
+          "projection": "xy",
+          "projection_match": true,
+          "segment_pair": [
+            "C(t)=(cos(t),sin(t),0)",
+            "L(u)=(1/2,u,u)"
+          ],
+          "sign_rule": "sign(det(projected_tangent_over, projected_tangent_under)) with exact z-order selecting over/under",
+          "under_curve_from_z_order": "line",
+          "z_delta_line_minus_circle": "-sqrt(3)/2"
+        }
+      ],
+      "scrambled_control_signed_sum": 0,
+      "scrambled_control_signs": [
+        1,
+        -1
+      ],
+      "signed_sum": 2,
+      "signed_sum_over_2": "1",
+      "torch_integer_signs": [
+        1,
+        1
+      ]
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "sympy"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "torch",
+    "sympy"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "scrambled_crossing_control": {
+      "must_not_equal_two": true,
+      "pass": true,
+      "signed_sum": 0
+    }
+  },
+  "convention_pin": {
+    "bloch_basis": [
+      "sigma_x",
+      "-sigma_y_standard",
+      "sigma_z"
+    ],
+    "component_rule": "r_i = Tr(rho * basis_i)",
+    "density_matrix": "rho = psi * psi^dagger",
+    "derived_pinned_y_component": "Tr(rho * (-sigma_y_standard)) = +2 Im(z1 * conj(z2))",
+    "derived_standard_sigma_y_component": "Tr(rho * sigma_y_standard) = -2 Im(z1 * conj(z2))",
+    "hopf_y_convention": "Hopf_y = +2 Im(z1 * conj(z2))",
+    "pin_name": "X1_option_A_pinned_minus_sigma_y",
+    "pinned_keystone_identity": "Bloch_pinned(rho) = (x, y, z)",
+    "sigma_y_standard": "[[0,-i],[i,0]]",
+    "standard_bloch_relative_to_hopf": "Bloch_standard(rho) = (x, -y, z)"
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T21:27:04.734907+00:00",
+  "lineage": {
+    "commit": "013fb0fa1",
+    "modified_lineage_packet": false,
+    "packet": "system_v6/sims/geo_s1_spinor_hopf_free_v0"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "pin_sha256": "0ea918ccbdb024b60aca2691941e147c60ced32672ce94c9ddcf0002508d64f6",
+  "pin_spec": "geo_s1_exact_closure_v0|lineage=geo_s1_spinor_hopf_free_v0@013fb0fa1|convention_pin=X1_option_A_pinned_minus_sigma_y|sigma_y_standard=[[0,-i],[i,0]]|bloch_basis=(sigma_x,-sigma_y_standard,sigma_z)|r_i=Tr(rho*basis_i)|rho=psi*psi_dagger|Hopf_y=+2Im(z1*conj(z2))|derived_standard_y=-Hopf_y|derived_pinned_identity=Bloch_pinned(rho)=(x,y,z)|exact_strength=symbolic_closed_form_interval|seed_ledger=jax.random.PRNGKey[60610:haar_joint_n20000,60611:nonhaar_eta_n20000,60612:nonhaar_phi_n20000,60613:nonhaar_chi_n20000]|rerun=SIM_PY geo_s1_exact_closure_v0_{jax,julia,pytorch,envelope}|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "pytorch_role": "independent exact-rational crossing-count recomputation via integer tensors; no density-keystone or Gauss-float role",
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/geo_s1_exact_closure_v0/results/geo_s1_exact_closure_v0_pytorch_results.json",
+  "role_id": "pytorch_graph_network_sim_builder",
+  "schema_version": "geo_s1_exact_closure_v0_leg_v1",
+  "shared_scalars": {
+    "classification_bare_float_rows": 0,
+    "linking_crossing_signed_sum": 2,
+    "linking_number_exact": 1
+  },
+  "sim_id": "geo_s1_exact_closure_v0",
+  "source_path": "system_v6/sims/geo_s1_exact_closure_v0/geo_s1_exact_closure_v0_pytorch.py",
+  "source_sha256": "f9e9eb3ebf4f2441529ed33ec961c1c0cfa1284396ccc57df6aa2b61b03f147c"
+}

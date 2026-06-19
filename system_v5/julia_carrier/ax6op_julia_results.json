@@ -1,0 +1,504 @@
+{
+  "claim_ceiling": "bounded finite-map receipt; not layer-complete; not bridge; no manifold admission",
+  "commuting_control_zero": {
+    "description": "Ti with pure z-dephase terrain (both z-diagonal) -> Delta~0",
+    "pass_1e8": true,
+    "value": 3.925231146709438e-17
+  },
+  "core_fact": "Axis-6 up/down is the SAME operator; up=T(O(r)) operator-first, down=O(T(r)) terrain-first. NOT a +/- variant.",
+  "downstream_blocks": [
+    "layer_completion",
+    "Axis0",
+    "flux",
+    "bridge",
+    "physics",
+    "coupling"
+  ],
+  "engine": "julia_linearalgebra",
+  "fi_fe_norm_preserving": {
+    "fe_max_err": 1.1102230246251565e-16,
+    "fi_max_err": 1.1102230246251565e-16,
+    "pass_1e12": true
+  },
+  "four_operators_exact": {
+    "Fe": {
+      "map": "R_z(phi) on Bloch sphere",
+      "phi": 0.4487989505128276
+    },
+    "Fi": {
+      "map": "R_x(theta) on Bloch sphere",
+      "theta": 0.6283185307179586
+    },
+    "Te": {
+      "lambda2": 0.4,
+      "map": "(rx, lambda2*ry, lambda2*rz)",
+      "q2": 0.3
+    },
+    "Ti": {
+      "lambda1": 0.4,
+      "map": "(lambda1*rx, lambda1*ry, rz)",
+      "q1": 0.3
+    }
+  },
+  "generated_at": "2026-06-04T21:03:30Z",
+  "noncommute_delta": {
+    "description": "max ||T(O(r))-O(T(r))|| over all 16 placements and 8 samples",
+    "value": 0.12034693118606632
+  },
+  "object_id": "ax6op_axis6_operator_placement_julia",
+  "op_bloch_checks": {
+    "Fe": {
+      "max_norm_diff": 1.1102230246251565e-16,
+      "norm_diffs": [
+        1.1102230246251565e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.1102230246251565e-16
+      ],
+      "rotation": "R_z(0.4488)"
+    },
+    "Fi": {
+      "max_norm_diff": 1.1102230246251565e-16,
+      "norm_diffs": [
+        1.1102230246251565e-16,
+        1.1102230246251565e-16,
+        1.1102230246251565e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": "R_x(0.6283)"
+    },
+    "Te": {
+      "bloch_map": "(rx, lambda2*ry, lambda2*rz)",
+      "lambda2": 0.4,
+      "per_sample": {
+        "s1_rx_diff": 2.7755575615628914e-17,
+        "s1_ry_ratio": "~0",
+        "s1_rz_ratio": 0.7,
+        "s2_rx_diff": 0.0,
+        "s2_ry_ratio": 0.7,
+        "s2_rz_ratio": 0.7,
+        "s3_rx_diff": 1.0691694292593332e-17,
+        "s3_ry_ratio": 0.7,
+        "s3_rz_ratio": 0.6999999999999998,
+        "s4_rx_diff": 5.551115123125783e-17,
+        "s4_ry_ratio": 0.7,
+        "s4_rz_ratio": 0.6999999999999998,
+        "s5_rx_diff": 0.0,
+        "s5_ry_ratio": "~0",
+        "s5_rz_ratio": 0.6999999999999993,
+        "s6_rx_diff": 0.0,
+        "s6_ry_ratio": 0.7,
+        "s6_rz_ratio": 0.7,
+        "s7_rx_diff": 2.1431885188423658e-17,
+        "s7_ry_ratio": 0.7,
+        "s7_rz_ratio": 0.7,
+        "s8_rx_diff": 2.7755575615628914e-17,
+        "s8_ry_ratio": 0.7000000000000001,
+        "s8_rz_ratio": 0.7
+      }
+    },
+    "Ti": {
+      "bloch_map": "(lambda1*rx, lambda1*ry, rz)",
+      "lambda1": 0.4,
+      "per_sample": {
+        "s1_rx_ratio": 0.7,
+        "s1_ry_ratio": "~0",
+        "s1_rz_diff": 1.1102230246251565e-16,
+        "s2_rx_ratio": 0.7,
+        "s2_ry_ratio": 0.7,
+        "s2_rz_diff": 0.0,
+        "s3_rx_ratio": "~0",
+        "s3_ry_ratio": 0.7,
+        "s3_rz_diff": 0.0,
+        "s4_rx_ratio": 0.7,
+        "s4_ry_ratio": 0.7,
+        "s4_rz_diff": 0.0,
+        "s5_rx_ratio": 0.7,
+        "s5_ry_ratio": "~0",
+        "s5_rz_diff": 0.0,
+        "s6_rx_ratio": 0.7,
+        "s6_ry_ratio": 0.7,
+        "s6_rz_diff": 0.0,
+        "s7_rx_ratio": "~0",
+        "s7_ry_ratio": 0.7,
+        "s7_rz_diff": 0.0,
+        "s8_rx_ratio": 0.6999999999999998,
+        "s8_ry_ratio": 0.7000000000000001,
+        "s8_rz_diff": 1.1102230246251565e-16
+      }
+    }
+  },
+  "parity_scalars": {
+    "commuting_control_max": 3.925231146709438e-17,
+    "fe_max_norm_err": 1.1102230246251565e-16,
+    "fi_fe_norm_preserving": true,
+    "fi_max_norm_err": 1.1102230246251565e-16,
+    "noncommute_delta_max": 0.12034693118606632,
+    "te_up_ascent_test": "partial — TeNi_up=partial, TeSi_up=partial",
+    "te_up_teni_label": "partial",
+    "te_up_tesi_label": "partial",
+    "te_vx_descent_all": true,
+    "ti_te_gradient_descent": true,
+    "ti_vz_descent_all": true
+  },
+  "placement_results": {
+    "FeNi": {
+      "down_formula": "O(T(r)) — op Fe applied after terrain Ni_in",
+      "max_delta_norm": 2.2971826326221923e-16,
+      "op": "Fe",
+      "order": "up",
+      "per_sample_delta_norms": [
+        1.1943164844637274e-16,
+        4.835946615683127e-17,
+        5.1925927263190304e-17,
+        2.2971826326221923e-16,
+        7.97218214573518e-17,
+        8.107024768935705e-17,
+        5.737965581206797e-17,
+        1.1242293031246443e-16
+      ],
+      "terrain": "Ni_in",
+      "up_formula": "T(O(r)) — terrain Ni_in applied after op Fe"
+    },
+    "FeSi": {
+      "down_formula": "O(T(r)) — op Fe applied after terrain Si_out",
+      "max_delta_norm": 0.04212698240753887,
+      "op": "Fe",
+      "order": "up",
+      "per_sample_delta_norms": [
+        0.008379577801244776,
+        0.02386301864455667,
+        0.035713531218037595,
+        0.042126982407538816,
+        0.04212698240753887,
+        0.03571353121803755,
+        0.02386301864455667,
+        0.00837957780124479
+      ],
+      "terrain": "Si_out",
+      "up_formula": "T(O(r)) — terrain Si_out applied after op Fe"
+    },
+    "FiNe": {
+      "down_formula": "O(T(r)) — op Fi applied after terrain Ne_in",
+      "max_delta_norm": 0.12034693118606632,
+      "op": "Fi",
+      "order": "up",
+      "per_sample_delta_norms": [
+        0.11712682055187562,
+        0.11913593347281354,
+        0.09633058734182819,
+        0.10790050624606146,
+        0.12034693118606632,
+        0.10563706498066698,
+        0.11693239975982882,
+        0.11899480963211978
+      ],
+      "terrain": "Ne_in",
+      "up_formula": "T(O(r)) — terrain Ne_in applied after op Fi"
+    },
+    "FiSe": {
+      "down_formula": "O(T(r)) — op Fi applied after terrain Se_out",
+      "max_delta_norm": 2.5018537765542007e-16,
+      "op": "Fi",
+      "order": "up",
+      "per_sample_delta_norms": [
+        1.4355295331320574e-16,
+        6.206335383118183e-17,
+        2.5018537765542007e-16,
+        2.7755575615628914e-17,
+        1.2719202621569003e-16,
+        1.790718670647276e-16,
+        1.7690777709386487e-17,
+        8.886119947416683e-17
+      ],
+      "terrain": "Se_out",
+      "up_formula": "T(O(r)) — terrain Se_out applied after op Fi"
+    },
+    "NeFi": {
+      "down_formula": "O(T(r)) — op Fi applied after terrain Ne_in",
+      "max_delta_norm": 0.12034693118606632,
+      "op": "Fi",
+      "order": "down",
+      "per_sample_delta_norms": [
+        0.11712682055187562,
+        0.11913593347281354,
+        0.09633058734182819,
+        0.10790050624606146,
+        0.12034693118606632,
+        0.10563706498066698,
+        0.11693239975982882,
+        0.11899480963211978
+      ],
+      "terrain": "Ne_in",
+      "up_formula": "T(O(r)) — terrain Ne_in applied after op Fi"
+    },
+    "NeTi": {
+      "down_formula": "O(T(r)) — op Ti applied after terrain Ne_in",
+      "max_delta_norm": 8.092071311423672e-17,
+      "op": "Ti",
+      "order": "down",
+      "per_sample_delta_norms": [
+        3.925231146709438e-17,
+        2.943923360032078e-17,
+        8.092071311423672e-17,
+        3.925231146709438e-17,
+        4.3885418357208765e-17,
+        0.0,
+        0.0,
+        4.415885040048117e-17
+      ],
+      "terrain": "Ne_in",
+      "up_formula": "T(O(r)) — terrain Ne_in applied after op Ti"
+    },
+    "NiFe": {
+      "down_formula": "O(T(r)) — op Fe applied after terrain Ni_in",
+      "max_delta_norm": 2.2971826326221923e-16,
+      "op": "Fe",
+      "order": "down",
+      "per_sample_delta_norms": [
+        1.1943164844637274e-16,
+        4.835946615683127e-17,
+        5.1925927263190304e-17,
+        2.2971826326221923e-16,
+        7.97218214573518e-17,
+        8.107024768935705e-17,
+        5.737965581206797e-17,
+        1.1242293031246443e-16
+      ],
+      "terrain": "Ni_in",
+      "up_formula": "T(O(r)) — terrain Ni_in applied after op Fe"
+    },
+    "NiTe": {
+      "down_formula": "O(T(r)) — op Te applied after terrain Ni_in",
+      "max_delta_norm": 0.03241252809195596,
+      "op": "Te",
+      "order": "down",
+      "per_sample_delta_norms": [
+        0.03039437090354199,
+        0.028766693297748207,
+        0.02604712712897979,
+        0.023923587108400052,
+        0.02396706434881332,
+        0.0265948942375674,
+        0.02998329415470413,
+        0.03241252809195596
+      ],
+      "terrain": "Ni_in",
+      "up_formula": "T(O(r)) — terrain Ni_in applied after op Te"
+    },
+    "SeFi": {
+      "down_formula": "O(T(r)) — op Fi applied after terrain Se_out",
+      "max_delta_norm": 2.5018537765542007e-16,
+      "op": "Fi",
+      "order": "down",
+      "per_sample_delta_norms": [
+        1.4355295331320574e-16,
+        6.206335383118183e-17,
+        2.5018537765542007e-16,
+        2.7755575615628914e-17,
+        1.2719202621569003e-16,
+        1.790718670647276e-16,
+        1.7690777709386487e-17,
+        8.886119947416683e-17
+      ],
+      "terrain": "Se_out",
+      "up_formula": "T(O(r)) — terrain Se_out applied after op Fi"
+    },
+    "SeTi": {
+      "down_formula": "O(T(r)) — op Ti applied after terrain Se_out",
+      "max_delta_norm": 1.1274368112207335e-16,
+      "op": "Ti",
+      "order": "down",
+      "per_sample_delta_norms": [
+        1.1274368112207335e-16,
+        0.0,
+        0.0,
+        5.551115123125783e-17,
+        5.551115123125783e-17,
+        5.887846720064156e-17,
+        0.0,
+        1.1156308648295148e-16
+      ],
+      "terrain": "Se_out",
+      "up_formula": "T(O(r)) — terrain Se_out applied after op Ti"
+    },
+    "SiFe": {
+      "down_formula": "O(T(r)) — op Fe applied after terrain Si_out",
+      "max_delta_norm": 0.04212698240753887,
+      "op": "Fe",
+      "order": "down",
+      "per_sample_delta_norms": [
+        0.008379577801244776,
+        0.02386301864455667,
+        0.035713531218037595,
+        0.042126982407538816,
+        0.04212698240753887,
+        0.03571353121803755,
+        0.02386301864455667,
+        0.00837957780124479
+      ],
+      "terrain": "Si_out",
+      "up_formula": "T(O(r)) — terrain Si_out applied after op Fe"
+    },
+    "SiTe": {
+      "down_formula": "O(T(r)) — op Te applied after terrain Si_out",
+      "max_delta_norm": 2.220446049250313e-16,
+      "op": "Te",
+      "order": "down",
+      "per_sample_delta_norms": [
+        1.2566871346510768e-16,
+        1.2566871346510768e-16,
+        5.551115123125783e-17,
+        2.1854762094519229e-16,
+        2.220446049250313e-16,
+        1.316562550716263e-16,
+        1.2412670766236366e-16,
+        1.2605126751125787e-16
+      ],
+      "terrain": "Si_out",
+      "up_formula": "T(O(r)) — terrain Si_out applied after op Te"
+    },
+    "TeNi": {
+      "down_formula": "O(T(r)) — op Te applied after terrain Ni_in",
+      "max_delta_norm": 0.03241252809195596,
+      "op": "Te",
+      "order": "up",
+      "per_sample_delta_norms": [
+        0.03039437090354199,
+        0.028766693297748207,
+        0.02604712712897979,
+        0.023923587108400052,
+        0.02396706434881332,
+        0.0265948942375674,
+        0.02998329415470413,
+        0.03241252809195596
+      ],
+      "terrain": "Ni_in",
+      "up_formula": "T(O(r)) — terrain Ni_in applied after op Te"
+    },
+    "TeSi": {
+      "down_formula": "O(T(r)) — op Te applied after terrain Si_out",
+      "max_delta_norm": 2.220446049250313e-16,
+      "op": "Te",
+      "order": "up",
+      "per_sample_delta_norms": [
+        1.2566871346510768e-16,
+        1.2566871346510768e-16,
+        5.551115123125783e-17,
+        2.1854762094519229e-16,
+        2.220446049250313e-16,
+        1.316562550716263e-16,
+        1.2412670766236366e-16,
+        1.2605126751125787e-16
+      ],
+      "terrain": "Si_out",
+      "up_formula": "T(O(r)) — terrain Si_out applied after op Te"
+    },
+    "TiNe": {
+      "down_formula": "O(T(r)) — op Ti applied after terrain Ne_in",
+      "max_delta_norm": 8.092071311423672e-17,
+      "op": "Ti",
+      "order": "up",
+      "per_sample_delta_norms": [
+        3.925231146709438e-17,
+        2.943923360032078e-17,
+        8.092071311423672e-17,
+        3.925231146709438e-17,
+        4.3885418357208765e-17,
+        0.0,
+        0.0,
+        4.415885040048117e-17
+      ],
+      "terrain": "Ne_in",
+      "up_formula": "T(O(r)) — terrain Ne_in applied after op Ti"
+    },
+    "TiSe": {
+      "down_formula": "O(T(r)) — op Ti applied after terrain Se_out",
+      "max_delta_norm": 1.1274368112207335e-16,
+      "op": "Ti",
+      "order": "up",
+      "per_sample_delta_norms": [
+        1.1274368112207335e-16,
+        0.0,
+        0.0,
+        5.551115123125783e-17,
+        5.551115123125783e-17,
+        5.887846720064156e-17,
+        0.0,
+        1.1156308648295148e-16
+      ],
+      "terrain": "Se_out",
+      "up_formula": "T(O(r)) — terrain Se_out applied after op Ti"
+    }
+  },
+  "promotion_allowed": false,
+  "root_constraints": [
+    "F01: finite carrier/probe/operator/terrain set",
+    "N01: noncommuting/order-sensitive operator control"
+  ],
+  "run_command": "julia /Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/ax6op_julia.jl",
+  "sixteen_placements": {
+    "all_nonzero": false,
+    "count": 16,
+    "global_max_delta_norm": 0.12034693118606632,
+    "token_list": [
+      "TiSe",
+      "TiNe",
+      "SeTi",
+      "NeTi",
+      "TeNi",
+      "TeSi",
+      "NiTe",
+      "SiTe",
+      "FiNe",
+      "FiSe",
+      "NeFi",
+      "SeFi",
+      "FeNi",
+      "FeSi",
+      "NiFe",
+      "SiFe"
+    ]
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/ax6op_julia.jl",
+  "source_sha256": "b9cc47f769cc60aa76c633a6c3141fea7b54d3dfc186abe013eb4a2370e59b83",
+  "te_up_ascent_test": {
+    "TeNi_up_label": "partial",
+    "TeSi_up_label": "partial",
+    "honest_note": "If partial/none: ascent needs a different functional; V_Ni and V_Si may not be monotone under the discrete Lindblad step chosen.",
+    "summary": "partial — TeNi_up=partial, TeSi_up=partial",
+    "vni_diffs": [
+      0.08848392498120075,
+      0.009481800417287634,
+      -0.19436009866135195,
+      -0.3124504349006927,
+      -0.41378293171835856,
+      -0.695866711309302,
+      -0.8727782067639824,
+      -0.9178697757182672
+    ],
+    "vsi_diffs": [
+      1.3877787807814457e-17,
+      0.0,
+      -8.718220127475739e-34,
+      5.551115123125783e-17,
+      0.0,
+      0.0,
+      -3.5031240261524045e-33,
+      0.0
+    ]
+  },
+  "ti_te_gradient_descent": {
+    "both": true,
+    "te_vx_descent_all": true,
+    "ti_vz_descent_all": true
+  }
+}

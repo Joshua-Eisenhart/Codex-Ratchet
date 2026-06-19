@@ -1,0 +1,165 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "python_stdlib": "supportive",
+    "sympy": "load_bearing",
+    "torch": "load_bearing",
+    "torch.func": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "python_stdlib": {
+      "reason": "supportive result serialization, hashing, and deterministic paths",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact integer sidecar for carrier, Clifford algebra dimension, and chirality split scalar pins",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "load-bearing exact int64 Gaussian-integer tensor arithmetic for the Cl(6) anticommutation table",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "supportive vmap check that all gamma_i squares equal identity in the exact integer-pair tensor representation",
+      "tried": true,
+      "used": true
+    }
+  },
+  "aligned_packages_load_bearing": [
+    "torch",
+    "sympy"
+  ],
+  "all_pass": true,
+  "claim_path_tools": [
+    "torch",
+    "sympy"
+  ],
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "corrupted_gamma_control": {
+      "all_36_pairs_pass_after_corruption": false,
+      "delta_nonzero_entries": 22,
+      "fired": true
+    }
+  },
+  "engine": "pytorch",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-10T19:22:30.156169+00:00",
+  "non_conflation": {
+    "merged": false,
+    "octonionic_structure_used_in_quotient_computations": false,
+    "present": true
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "sympy"
+  ],
+  "pin_sha256": "77a6788ab9b4f664f6019d94ef0f0fa03cd5d28ee45332de4928d4a6b7535e0f",
+  "pin_spec": "geo_s1_three_qubit_floor_exact_v0|three_spinor_C2x3_to_C8|S15_to_CP7_density_quotient|Cl6_Jordan_Wigner_gamma7_minus_i_product|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "reads_peer_result": false,
+  "receipts": {
+    "Y4": {
+      "all_36_pairs_exact": true,
+      "all_delta_entries_zero": true,
+      "anticommutation_pairs_checked": 36,
+      "convention": [
+        "gamma_1 = X\u2297I\u2297I",
+        "gamma_2 = Y\u2297I\u2297I",
+        "gamma_3 = Z\u2297X\u2297I",
+        "gamma_4 = Z\u2297Y\u2297I",
+        "gamma_5 = Z\u2297Z\u2297X",
+        "gamma_6 = Z\u2297Z\u2297Y",
+        "gamma_7 = -i gamma_1 gamma_2 gamma_3 gamma_4 gamma_5 gamma_6"
+      ],
+      "corrupted_gamma_control": {
+        "all_36_pairs_pass_after_corruption": false,
+        "delta_nonzero_entries": 22,
+        "fired": true
+      },
+      "gamma7_diagonal_pairs": [
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gamma7_eigenspace_split": {
+        "minus_one": 4,
+        "plus_one": 4
+      },
+      "gamma7_squared_identity": true,
+      "pass": true,
+      "representation": "Gaussian integers as torch.int64 tensor[...,2] = [real, imag]",
+      "torch_func_square_identity_pass": true
+    },
+    "Y7": {
+      "bare_float_rows": [],
+      "classification_table": [
+        {
+          "achieved_strength": "exact-integer",
+          "bare_float": false,
+          "claim": "Y4 PyTorch exact anticommutation tensor route"
+        },
+        {
+          "achieved_strength": "exact-integer",
+          "bare_float": false,
+          "claim": "Y6 PyTorch chirality split support"
+        }
+      ],
+      "pass": true
+    },
+    "sympy_dimension_sidecar": {
+      "algebra_delta": "0",
+      "cl6_algebra_dim": "64",
+      "dimension_delta": "0",
+      "gamma7_split": {
+        "minus_one": "4",
+        "plus_one": "4"
+      },
+      "hilbert_dim": "8",
+      "pass": true,
+      "strength_label": "exact_integer_combinatorial",
+      "tool": "sympy"
+    }
+  },
+  "result_path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/results/geo_s1_three_qubit_floor_exact_v0_pytorch_results.json",
+  "role_id": "pytorch_graph_network_sim_builder",
+  "schema_version": "geo_s1_three_qubit_floor_exact_v0_leg_v1",
+  "shared_scalars": {
+    "exact_failure_count": 0
+  },
+  "sim_id": "geo_s1_three_qubit_floor_exact_v0",
+  "source_path": "system_v6/sims/geo_s1_three_qubit_floor_exact_v0/geo_s1_three_qubit_floor_exact_v0_pytorch.py",
+  "source_sha256": "4fe66c4781905b16c41af911ccdfacfe8745f7ddb2e12fb99de58e33a32cd3c4"
+}

@@ -1,0 +1,49 @@
+{
+  "aligned_packages_load_bearing": [],
+  "aligned_packages_supportive": [
+    "jax.numpy",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "claim_path_depth": "supportive",
+  "claim_values": {
+    "alternate_pin_delta_l1_scaled": 18050542,
+    "alternate_pin_delta_rational": "9025271/500000000",
+    "alternate_pin_nested_count": 549,
+    "alternate_probe_delta_l1_scaled": 28880866,
+    "alternate_probe_delta_rational": "14440433/500000000",
+    "main_delta_l1_scaled": 28880866,
+    "main_delta_rational": "14440433/500000000",
+    "main_free_count": 554,
+    "main_nested_count": 546,
+    "same_input_null_delta_l1_scaled": 0,
+    "same_input_null_delta_rational": "0",
+    "same_input_stable_delta_l1_scaled": 28880866,
+    "same_input_stable_delta_rational": "14440433/500000000"
+  },
+  "contradiction_guards": {
+    "cvc5": "unsat",
+    "z3": "unsat"
+  },
+  "engine": "jax",
+  "engine_independence_ceiling": "supportive scaled-value and solver guard over packet values; not an independent geometry recompute",
+  "engine_role": "scaled_value_guard",
+  "package_observables": {
+    "cvc5": "supportive cvc5.Solver contradiction guard over recorded scaled delta values",
+    "jax.numpy": "jnp.array/device_get roundtrip for scaled packet values",
+    "sympy": "supportive sp.Rational exact guards for scaled main/null/alternate delta values",
+    "z3": "supportive z3.Solver contradiction guard over recorded scaled delta values"
+  },
+  "packages_used": [
+    "jax",
+    "jax.numpy",
+    "sympy",
+    "z3",
+    "cvc5"
+  ],
+  "ran": true,
+  "reads_peer_result": false,
+  "result_path": "system_v6/sims/gcm_nested_geometry_delta_4q_v0/results/gcm_nested_geometry_delta_4q_v0_jax_results.json",
+  "source_path": "system_v6/sims/gcm_nested_geometry_delta_4q_v0/gcm_nested_geometry_delta_4q_v0_jax.py"
+}

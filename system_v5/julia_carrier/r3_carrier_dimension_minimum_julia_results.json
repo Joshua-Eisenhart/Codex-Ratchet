@@ -1,0 +1,501 @@
+{
+  "SIM_TEMPLATE_surface": {
+    "identity": [
+      "sim_id",
+      "name",
+      "version",
+      "tier"
+    ],
+    "negatives": [
+      "positive",
+      "negative",
+      "boundary",
+      "probe"
+    ],
+    "promotion": [
+      "promotion_allowed",
+      "formal_admission_allowed",
+      "blocked_consumers"
+    ],
+    "tooling": [
+      "TOOL_MANIFEST",
+      "TOOL_INTEGRATION_DEPTH",
+      "classification"
+    ]
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "pytorch": null
+  },
+  "TOOL_MANIFEST": {
+    "JAX reference": {
+      "reason": "load-bearing same-run peer backend reference",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and current JAX-result parity read",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent Cayley-Dickson table construction and associator residual scan",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing vector norms for finite carrier associator residuals",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "not used: explicit no-torch fence for this row",
+      "tried": false,
+      "used": false
+    }
+  },
+  "actual_tools_used": [
+    "Julia",
+    "LinearAlgebra",
+    "JSON",
+    "JAX reference"
+  ],
+  "all_pass": true,
+  "allowed_claims": [
+    "Carrier-dimension minimum only: in the finite Cayley-Dickson R/C/H/O scan, the associator is zero through dimension 4 and first nonzero at dimension 8."
+  ],
+  "associator_needs_3_inputs": true,
+  "backend": "julia",
+  "blocked_consumers": [
+    "promotion",
+    "formal_admission",
+    "downstream interpretation"
+  ],
+  "boundary": {
+    "H_to_O_associator_boundary": {
+      "H_associator_max": 0.0,
+      "O_associator_max": 2.0,
+      "left": "H",
+      "left_dim": 4,
+      "pass": true,
+      "right": "O",
+      "right_dim": 8
+    },
+    "claim_ceiling": "Allowed only: bottom-up R3 algebraic carrier-dimension minimum for a nonzero associator. No promotion, no formal admission, no downstream interpretation."
+  },
+  "claim_ceiling": "Allowed only: bottom-up R3 algebraic carrier-dimension minimum for a nonzero associator. No promotion, no formal admission, no downstream interpretation.",
+  "classification": "scratch_diagnostic",
+  "construction": {
+    "method": "finite Cayley-Dickson doubling",
+    "rung_dims": {
+      "C": 2,
+      "H": 4,
+      "O": 8,
+      "R": 1
+    },
+    "rung_names": [
+      "R",
+      "C",
+      "H",
+      "O"
+    ]
+  },
+  "control_comparison_pairs": [
+    {
+      "control_can_fail": true,
+      "left_quantity": "H.associator_max",
+      "left_value": 0.0,
+      "name": "dimension_boundary_H_to_O",
+      "pass": true,
+      "right_quantity": "O.associator_max",
+      "right_value": 2.0
+    },
+    {
+      "control_can_fail": true,
+      "left_quantity": "two_input_parenthesization_count",
+      "left_value": 1,
+      "name": "two_input_bracketing_insufficient",
+      "pass": true,
+      "right_quantity": "three_input_parenthesization_count",
+      "right_value": 2
+    },
+    {
+      "control_can_fail": true,
+      "left_quantity": "max_associator_dim_le4",
+      "left_value": 0.0,
+      "name": "dim_le4_negative_control",
+      "pass": true,
+      "right_quantity": "O.associator_max",
+      "right_value": 2.0
+    }
+  ],
+  "core_pass": true,
+  "dimension_minimum_genuine": true,
+  "eligible_consumers": [],
+  "fail_rule": "any nonzero dim<=4 associator, missing dim 8 anchor, self-diff control, fence violation, or stale parity",
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T09:35:52.103Z",
+  "jax_reference": {
+    "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_carrier_dimension_minimum_results.json",
+    "run_token": "20260607T000000Z-codex2-r3-carrier",
+    "shared_value_digest": "7ec5f9a66c750e088a8d6dd8d3101e62dc2fccf8f4cc3471e8f62a064f19e1e3"
+  },
+  "min_nonassoc_algebra_dim": 8,
+  "name": "r3_carrier_dimension_minimum",
+  "negative": {
+    "dim_le4_associative_controls": {
+      "C_associator_max": 0.0,
+      "H_associator_max": 0.0,
+      "R_associator_max": 0.0,
+      "control_can_fail": true,
+      "pass": true
+    },
+    "two_input_bracketing_insufficient": {
+      "control_can_fail": true,
+      "pass": true,
+      "three_input_parenthesization_count": 2,
+      "two_input_parenthesization_count": 1
+    }
+  },
+  "no_self_diff": true,
+  "nonzero_tol": 1.0e-9,
+  "object_id": "r3_carrier_dimension_minimum",
+  "parity": {
+    "boolean_mismatches": [],
+    "missing_keys": [],
+    "numeric_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "two_input_parenthesization_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "max_associator_dim_le4"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "min_nonassoc_algebra_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "C.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "three_input_parenthesization_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "H.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "R.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 4.0,
+        "julia": 4.0,
+        "key": "H.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "O.octonion_associator_anchor"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "O.dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "R.associator_max"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 2.0,
+        "julia": 2.0,
+        "key": "C.dim"
+      }
+    ],
+    "parity_max_diff": 0.0,
+    "parity_within_run": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_carrier_dimension_minimum_results.json",
+    "status": "compared",
+    "string_mismatches": [],
+    "within_tolerance": true
+  },
+  "parity_within_run": true,
+  "pass_rule": "dim<=4 associator residuals are zero, dim 8 residual has 2.0 anchor, controls are non-tautological, three inputs are required, and same-run JAX parity passes",
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/r3_carrier_dimension_minimum_results.json",
+  "plain_numpy_imported": false,
+  "positive": {
+    "associator_needs_3_inputs": {
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "dual_backend_parity": {
+      "pass": true
+    },
+    "formal_admission_allowed_false": {
+      "pass": true
+    },
+    "no_self_diff_tautologies": {
+      "pass": true
+    },
+    "octonion_associator_anchor_2": {
+      "pass": true,
+      "residual": 2.0
+    },
+    "octonion_associator_nonzero": {
+      "pass": true,
+      "residual": 2.0
+    },
+    "promotion_allowed_false": {
+      "pass": true
+    }
+  },
+  "probe": {
+    "control_rule": "controls compare distinct computed quantities and can fail",
+    "expression": "(ab)c - a(bc)",
+    "measured_property": "basis-triple associator residual",
+    "question": "minimum Cayley-Dickson carrier dimension supporting a nonzero associator"
+  },
+  "promotion_allowed": false,
+  "promotion_status": "diagnostic_only",
+  "required_tools": [
+    "Julia",
+    "LinearAlgebra",
+    "JAX reference"
+  ],
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_carrier_dimension_minimum_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "associator_needs_3_inputs": true,
+    "dimension_minimum_genuine": true,
+    "min_nonassoc_algebra_dim": 8,
+    "no_self_diff": true,
+    "octonion_associator": 2.0,
+    "parity_within_run": true,
+    "quaternion_associator": 0.0,
+    "two_input_insufficient": true
+  },
+  "run_token": "20260607T000000Z-codex2-r3-carrier",
+  "rungs": {
+    "C": {
+      "associative": true,
+      "associator_check": {
+        "max_residual": 0.0,
+        "nonzero": false,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ],
+        "witness_vector": [
+          0.0,
+          0.0
+        ]
+      },
+      "associator_max": 0.0,
+      "dim": 2,
+      "name": "C"
+    },
+    "H": {
+      "associative": true,
+      "associator_check": {
+        "max_residual": 0.0,
+        "nonzero": false,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ],
+        "witness_vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "associator_max": 0.0,
+      "dim": 4,
+      "name": "H"
+    },
+    "O": {
+      "associative": false,
+      "associator_check": {
+        "max_residual": 2.0,
+        "nonzero": true,
+        "witness_basis_indices": [
+          1,
+          2,
+          4
+        ],
+        "witness_expression_ids": [
+          "(e1*e2)*e4",
+          "e1*(e2*e4)"
+        ],
+        "witness_vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.0
+        ]
+      },
+      "associator_max": 2.0,
+      "dim": 8,
+      "name": "O"
+    },
+    "R": {
+      "associative": true,
+      "associator_check": {
+        "max_residual": 0.0,
+        "nonzero": false,
+        "witness_basis_indices": [
+          0,
+          0,
+          0
+        ],
+        "witness_expression_ids": [
+          "(e0*e0)*e0",
+          "e0*(e0*e0)"
+        ],
+        "witness_vector": [
+          0.0
+        ]
+      },
+      "associator_max": 0.0,
+      "dim": 1,
+      "name": "R"
+    }
+  },
+  "schema": "codex_ratchet.formal_scout.scratch_diagnostic.v1",
+  "shared_booleans": {
+    "C.associative": true,
+    "C.associator_nonzero": false,
+    "H.associative": true,
+    "H.associator_nonzero": false,
+    "O.associative": false,
+    "O.associator_nonzero": true,
+    "R.associative": true,
+    "R.associator_nonzero": false,
+    "associator_needs_3_inputs": true,
+    "classification_is_scratch_diagnostic": true,
+    "dim_le4_associator_zero": true,
+    "dimension_minimum_genuine": true,
+    "formal_admission_false": true,
+    "jax_enable_x64": true,
+    "no_self_diff_tautologies": true,
+    "octonion_associator_anchor_2": true,
+    "plain_numpy_imported": false,
+    "promotion_false": true,
+    "torch_imported": false,
+    "two_input_insufficient": true
+  },
+  "shared_scalars": {
+    "C.associator_max": 0.0,
+    "C.dim": 2.0,
+    "H.associator_max": 0.0,
+    "H.dim": 4.0,
+    "O.associator_max": 2.0,
+    "O.dim": 8.0,
+    "O.octonion_associator_anchor": 2.0,
+    "R.associator_max": 0.0,
+    "R.dim": 1.0,
+    "max_associator_dim_le4": 0.0,
+    "min_nonassoc_algebra_dim": 8.0,
+    "three_input_parenthesization_count": 2.0,
+    "two_input_parenthesization_count": 1.0
+  },
+  "shared_strings": {
+    "allowed_claim": "Carrier-dimension minimum only: in the finite Cayley-Dickson R/C/H/O scan, the associator is zero through dimension 4 and first nonzero at dimension 8.",
+    "first_nonzero_rung": "O",
+    "object_id": "r3_carrier_dimension_minimum"
+  },
+  "sim_execution_kind": "classical",
+  "sim_id": "r3_carrier_dimension_minimum",
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/r3_carrier_dimension_minimum.jl",
+  "stop_condition_fired": false,
+  "tier": "R3_foundation_carrier_dimension_minimum",
+  "tol": 1.0e-12,
+  "tool_integration_depth": {
+    "JAX reference": "load_bearing",
+    "JSON": "supportive",
+    "Julia": "load_bearing",
+    "LinearAlgebra": "load_bearing",
+    "pytorch": null
+  },
+  "tool_manifest": {
+    "JAX reference": {
+      "reason": "load-bearing same-run peer backend reference",
+      "tried": true,
+      "used": true
+    },
+    "JSON": {
+      "reason": "supportive JSON receipt and current JAX-result parity read",
+      "tried": true,
+      "used": true
+    },
+    "Julia": {
+      "reason": "load-bearing independent Cayley-Dickson table construction and associator residual scan",
+      "tried": true,
+      "used": true
+    },
+    "LinearAlgebra": {
+      "reason": "load-bearing vector norms for finite carrier associator residuals",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "not used: explicit no-torch fence for this row",
+      "tried": false,
+      "used": false
+    }
+  },
+  "torch_imported": false,
+  "two_input_insufficient": true,
+  "version": "1.0"
+}

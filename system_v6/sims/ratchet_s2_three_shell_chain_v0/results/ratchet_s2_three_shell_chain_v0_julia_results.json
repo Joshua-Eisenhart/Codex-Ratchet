@@ -1,0 +1,186 @@
+{
+    "result_path": "system_v6/sims/ratchet_s2_three_shell_chain_v0/results/ratchet_s2_three_shell_chain_v0_julia_results.json",
+    "packages_used": [
+        "JSON3",
+        "Pkg",
+        "SHA",
+        "Dates",
+        "Z3"
+    ],
+    "source_sha256": "e2a93e2b956557719fb5ed8f63e20e9fe35bfedad5b32871bccdc57138c51d14",
+    "load_path": [
+        "@",
+        "@stdlib"
+    ],
+    "classification": "scratch_diagnostic",
+    "sim_id": "ratchet_s2_three_shell_chain_v0",
+    "reads_peer_result": false,
+    "formal_admission_allowed": false,
+    "aligned_packages_load_bearing": [
+        "Z3"
+    ],
+    "generated_at": "2026-06-11T06:43:50Z",
+    "all_pass": true,
+    "promotion_allowed": false,
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "tool_calls": [
+        {
+            "boundary_case": "adjacent pair eta=pi/6 to eta=pi/4 reproduces committed two-shell anchor",
+            "demotion_condition": "Z3.jl verdict not UNSAT or source not independently executable",
+            "output_object": {
+                "ran": true,
+                "positive_case": "negated chain additivity is UNSAT",
+                "bound_values": {
+                    "flux_12": [
+                        "1",
+                        "-1"
+                    ],
+                    "flux_13": [
+                        "1",
+                        "0"
+                    ],
+                    "flux_23": [
+                        "0",
+                        "1"
+                    ]
+                },
+                "load_bearing": true,
+                "verdict": "unsat",
+                "solver": "Z3.jl",
+                "orientation": "positive_chain_orientation",
+                "basis": "2*pi^{-1} flux represented as (sqrt3_coeff, rational_coeff)",
+                "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check"
+            },
+            "positive_case": "negated chain additivity is UNSAT",
+            "load_bearing": true,
+            "gates": [
+                "chain_additivity"
+            ],
+            "negative/erased_control": "wrong first-annulus orientation",
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "tool": "Z3",
+            "input_object": "Three-shell flux-chain identity in 2*pi^{-1} Q(sqrt3) coefficient basis"
+        }
+    ],
+    "crossover_proofs": {
+        "julia_z3": {
+            "ran": true,
+            "erased_flip": "flip first annulus orientation while keeping the total boundary target fixed",
+            "bound_values": {
+                "flux_12": [
+                    "1",
+                    "-1"
+                ],
+                "flux_13": [
+                    "1",
+                    "0"
+                ],
+                "flux_23": [
+                    "0",
+                    "1"
+                ]
+            },
+            "load_bearing": true,
+            "gates": [
+                "chain_additivity",
+                "holonomy_gap_additivity",
+                "proof",
+                "all_pass"
+            ],
+            "basis": "2*pi^{-1} flux represented as (sqrt3_coeff, rational_coeff)",
+            "erased_flip_verdict": "unsat",
+            "demotion_condition": "demote chain-additivity proof if Z3.jl does not make the negated identity UNSAT from bound coefficient rows",
+            "positive_case": "negated chain additivity is UNSAT",
+            "verdict": "unsat",
+            "solver": "Z3.jl",
+            "orientation": "positive_chain_orientation",
+            "erased_flip_detected": true,
+            "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
+            "identity": "flux_12 + flux_23 == flux_13 in Q(sqrt3) coefficient-pair basis"
+        }
+    },
+    "capability_receipts": {
+        "julia": {
+            "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+            "version": "1.12.6"
+        },
+        "Z3": {
+            "api_smoke": "unsat",
+            "package_version": "1.0.4"
+        }
+    },
+    "engine_values": {
+        "weight_eta_pi_over_6": "(sqrt(3) - 1)/2",
+        "flux_12": "pi*(-1/2 + sqrt(3)/2)",
+        "dchi_eta_pi_over_4": "0",
+        "dchi_eta_pi_over_12": "sqrt(3)/2",
+        "flux_23": "pi/2",
+        "weight_eta_pi_over_4": "(3 - sqrt(3))/3",
+        "weight_eta_pi_over_12": "(3 - sqrt(3))/6",
+        "gap_13_minus_gap_12_minus_gap_23": "0",
+        "dchi_eta_pi_over_6": "1/2",
+        "flux_13_total": "sqrt(3)*pi/2",
+        "julia_z3_chain_identity_verified": 1,
+        "chain_defect": "0"
+    },
+    "source_path": "system_v6/sims/ratchet_s2_three_shell_chain_v0/ratchet_s2_three_shell_chain_v0_julia.jl",
+    "exact_rows": {
+        "leaf_connection_coefficients": {
+            "eta_pi_over_12": "sqrt(3)/2",
+            "eta_pi_over_4": "0",
+            "eta_pi_over_6": "1/2"
+        },
+        "chain_fluxes": {
+            "chain_sum": "sqrt(3)*pi/2",
+            "flux_13_total_pi_over_12_to_pi_over_4": "sqrt(3)*pi/2",
+            "chain_defect": "0",
+            "flux_12_pi_over_12_to_pi_over_6": "pi*(-1/2 + sqrt(3)/2)",
+            "flux_23_pi_over_6_to_pi_over_4": "pi/2"
+        },
+        "pairwise_holonomy_gaps": {
+            "gap_12": "pi*(-1/2 + sqrt(3)/2)",
+            "gap_23": "pi/2",
+            "gap_13_minus_gap_12_minus_gap_23": "0",
+            "gap_13": "sqrt(3)*pi/2"
+        },
+        "weights": {
+            "sum": "1",
+            "eta_pi_over_12": {
+                "weight": "1/(3 + sqrt(3))",
+                "weight_rationalized": "(3 - sqrt(3))/6",
+                "rho_sin_2eta": "1/2"
+            },
+            "eta_pi_over_4": {
+                "weight": "2/(3 + sqrt(3))",
+                "weight_rationalized": "(3 - sqrt(3))/3",
+                "rho_sin_2eta": "1"
+            },
+            "eta_pi_over_6": {
+                "weight": "sqrt(3)/(3 + sqrt(3))",
+                "weight_rationalized": "(sqrt(3) - 1)/2",
+                "rho_sin_2eta": "sqrt(3)/2"
+            },
+            "equal_weight_subtlety_arises": false
+        },
+        "z4_survivors": {
+            "alpha_generator_gaps": {
+                "gap_12": "pi*(-1/2 + sqrt(3)/2)",
+                "gap_23": "pi/2",
+                "gap_13": "sqrt(3)*pi/2"
+            },
+            "chain_additivity_survives": true,
+            "flux_rows_survive": true,
+            "global_phase_gaps": {
+                "gap_12": "0",
+                "gap_23": "0",
+                "gap_13": "0"
+            },
+            "beta_generator_gaps": {
+                "gap_12": "pi*(1/2 - sqrt(3)/2)",
+                "gap_23": "-pi/2",
+                "gap_13": "-sqrt(3)*pi/2"
+            }
+        }
+    },
+    "schema_version": "ratchet_s2_three_shell_chain_v0_julia_result_v1"
+}

@@ -1,0 +1,443 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX mirror": "load_bearing",
+    "Julia ComplexF64": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX mirror": "independent backend parity check",
+    "Julia ComplexF64": "load-bearing finite density evolution and readout computation",
+    "canonical_qit_engine_specs.py": "source-hash lock for H0, Lindblad, operator, and schedule specs",
+    "julia_carrier source objects": "source-fingerprinted owner carrier object boundary"
+  },
+  "all_pass": true,
+  "backend": "julia",
+  "boundary": {
+    "blocked_consumers": [
+      "physics",
+      "SM",
+      "M(C)",
+      "Axis0",
+      "bridge",
+      "formal_admission"
+    ],
+    "eligible_consumers": [
+      "scratch_diagnostic_cross_backend_parity_review"
+    ],
+    "formal_admission_allowed": false,
+    "promotion_allowed": false
+  },
+  "claim_ceiling": "finite cross-model readout witness only; classification=scratch_diagnostic; promotion_allowed=false; formal_admission_allowed=false; NO physics/SM/M(C)/Axis0 admission",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "erased_control": {
+      "delta": 1.93,
+      "fires": true
+    },
+    "random_permutation_control": {
+      "gate": "natural_score > mean(fixed random permuted correspondence scores)",
+      "natural_beats_permuted": true,
+      "natural_score": -0.8868878596557455,
+      "permuted_max_score": -0.8716419235519248,
+      "permuted_mean_score": -0.9050043941721274,
+      "permuted_scores": [
+        -0.9221207187325879,
+        -0.8938055199555657,
+        -0.9156655141025818,
+        -0.8864073862005741,
+        -0.8716419235519248,
+        -0.9403853024895299
+      ]
+    },
+    "wrong_structure_control": {
+      "delta": 3.38,
+      "fires": true,
+      "map": {
+        "Ne": "Se",
+        "Ni": "Ne",
+        "Se": "Si",
+        "Si": "Ni"
+      }
+    }
+  },
+  "created_at": "2026-06-07T03:53:45.435",
+  "engine_state": {
+    "engine_type": "type_one_left_weyl",
+    "final_min_eigenvalue": 0.07201726019203002,
+    "final_trace_residual": 0.0,
+    "n_qubits": 3,
+    "state_source": "canonical 3-qubit engine evolved from mixed q0⊗Bell seed",
+    "trajectory_state_count": 33
+  },
+  "formal_admission_allowed": false,
+  "object_id": "mp_cross_model_convergence",
+  "parity": {
+    "boolean_mismatches": [],
+    "diffs": {
+      "final_min_eigenvalue": 6.938893903907228e-17,
+      "final_trace_residual": 2.220446049250313e-16,
+      "natural_score": 1.1102230246251565e-16,
+      "permuted_max_score": 0.0,
+      "permuted_mean_score": 1.1102230246251565e-16,
+      "physics_igt_perception_rank": 0.0,
+      "readout_rank": 0.0,
+      "real_vs_erased_delta": 0.0,
+      "real_vs_wrong_structure_delta": 0.0
+    },
+    "missing_from_peer": [],
+    "missing_from_self": [],
+    "parity_max_diff": 2.220446049250313e-16,
+    "peer_available": true,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp_cross_model_convergence_results.json",
+    "within_1e_9": true,
+    "worst_key": "final_trace_residual"
+  },
+  "positive": {
+    "co_varies_as_one_state": true,
+    "readout_components": [
+      "physics",
+      "igt",
+      "perception",
+      "operator"
+    ],
+    "readout_rank": 3,
+    "readout_rank_gt_1": true
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "classification is scratch_diagnostic by user fence",
+    "cross-backend parity is diagnostic, not formal admission",
+    "physics/SM/M(C)/Axis0 claims explicitly blocked"
+  ],
+  "readouts": {
+    "erased": {
+      "per_key": {
+        "Ne": {
+          "igt_scalar": 0.0,
+          "igt_terrain": "WinLose",
+          "operator_scalar": 0.0,
+          "perception_scalar": 0.0,
+          "physics_faces": {
+            "dark_energy": 0.9772407636528232,
+            "gravity": 0.05006460941117019,
+            "mass": 0.033376406274113424
+          },
+          "physics_scalar": 0.05006460941117019,
+          "used_key": "Ne"
+        },
+        "Ni": {
+          "igt_scalar": 0.0,
+          "igt_terrain": "LoseLose",
+          "operator_scalar": 0.0,
+          "perception_scalar": 0.0,
+          "physics_faces": {
+            "dark_energy": 0.9772407636528232,
+            "gravity": 0.05006460941117019,
+            "mass": 0.033376406274113424
+          },
+          "physics_scalar": 0.27768659718731925,
+          "used_key": "Ni"
+        },
+        "Se": {
+          "igt_scalar": 0.0,
+          "igt_terrain": "LoseWin",
+          "operator_scalar": 0.0,
+          "perception_scalar": 0.0,
+          "physics_faces": {
+            "dark_energy": 0.9772407636528232,
+            "gravity": 0.05006460941117019,
+            "mass": 0.033376406274113424
+          },
+          "physics_scalar": 0.9772407636528232,
+          "used_key": "Se"
+        },
+        "Si": {
+          "igt_scalar": 0.0,
+          "igt_terrain": "WinWin",
+          "operator_scalar": 0.0,
+          "perception_scalar": 0.0,
+          "physics_faces": {
+            "dark_energy": 0.9772407636528232,
+            "gravity": 0.05006460941117019,
+            "mass": 0.033376406274113424
+          },
+          "physics_scalar": 0.033376406274113424,
+          "used_key": "Si"
+        }
+      },
+      "vectors": {
+        "igt": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "operator": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "perception": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physics": [
+          0.033376406274113424,
+          0.05006460941117019,
+          0.9772407636528232,
+          0.27768659718731925
+        ]
+      }
+    },
+    "perception_order": [
+      "Si",
+      "Ne",
+      "Se",
+      "Ni"
+    ],
+    "physics_faces": [
+      "mass",
+      "gravity",
+      "dark_energy"
+    ],
+    "real": {
+      "per_key": {
+        "Ne": {
+          "igt_scalar": 0.4,
+          "igt_terrain": "WinLose",
+          "operator_scalar": 0.021721972236336796,
+          "perception_scalar": 0.5861550472236108,
+          "physics_faces": {
+            "dark_energy": 0.9624765230598095,
+            "gravity": 0.049168952787854214,
+            "mass": 0.032779301858569476
+          },
+          "physics_scalar": 0.049168952787854214,
+          "used_key": "Ne"
+        },
+        "Ni": {
+          "igt_scalar": -1.45,
+          "igt_terrain": "LoseLose",
+          "operator_scalar": 0.019306078250207366,
+          "perception_scalar": 0.24685716241654698,
+          "physics_faces": {
+            "dark_energy": 0.9833940638676905,
+            "gravity": 0.036846011585158045,
+            "mass": 0.024564007723438697
+          },
+          "physics_scalar": 0.2704125236903613,
+          "used_key": "Ni"
+        },
+        "Se": {
+          "igt_scalar": -0.09000000000000002,
+          "igt_terrain": "LoseWin",
+          "operator_scalar": 0.021721972236336796,
+          "perception_scalar": 0.21615723888751875,
+          "physics_faces": {
+            "dark_energy": 0.980400587717235,
+            "gravity": 0.03776595332206789,
+            "mass": 0.025177302214711927
+          },
+          "physics_scalar": 0.980400587717235,
+          "used_key": "Se"
+        },
+        "Si": {
+          "igt_scalar": 1.93,
+          "igt_terrain": "WinWin",
+          "operator_scalar": 0.019306078250207366,
+          "perception_scalar": 0.7389857532778764,
+          "physics_faces": {
+            "dark_energy": 0.988512372812583,
+            "gravity": 0.042589409632133646,
+            "mass": 0.028392939754755764
+          },
+          "physics_scalar": 0.028392939754755764,
+          "used_key": "Si"
+        }
+      },
+      "vectors": {
+        "igt": [
+          1.93,
+          0.4,
+          -0.09000000000000002,
+          -1.45
+        ],
+        "operator": [
+          0.019306078250207366,
+          0.021721972236336796,
+          0.021721972236336796,
+          0.019306078250207366
+        ],
+        "perception": [
+          0.7389857532778764,
+          0.5861550472236108,
+          0.21615723888751875,
+          0.24685716241654698
+        ],
+        "physics": [
+          0.028392939754755764,
+          0.049168952787854214,
+          0.980400587717235,
+          0.2704125236903613
+        ]
+      }
+    },
+    "wrong_structure": {
+      "per_key": {
+        "Ne": {
+          "igt_scalar": -0.09000000000000002,
+          "igt_terrain": "LoseWin",
+          "operator_scalar": 0.021721972236336796,
+          "perception_scalar": 0.21615723888751875,
+          "physics_faces": {
+            "dark_energy": 0.980400587717235,
+            "gravity": 0.03776595332206789,
+            "mass": 0.025177302214711927
+          },
+          "physics_scalar": 0.03776595332206789,
+          "used_key": "Se"
+        },
+        "Ni": {
+          "igt_scalar": 0.4,
+          "igt_terrain": "WinLose",
+          "operator_scalar": 0.021721972236336796,
+          "perception_scalar": 0.5861550472236108,
+          "physics_faces": {
+            "dark_energy": 0.9624765230598095,
+            "gravity": 0.049168952787854214,
+            "mass": 0.032779301858569476
+          },
+          "physics_scalar": 0.2733984326235218,
+          "used_key": "Ne"
+        },
+        "Se": {
+          "igt_scalar": 1.93,
+          "igt_terrain": "WinWin",
+          "operator_scalar": 0.019306078250207366,
+          "perception_scalar": 0.7389857532778764,
+          "physics_faces": {
+            "dark_energy": 0.988512372812583,
+            "gravity": 0.042589409632133646,
+            "mass": 0.028392939754755764
+          },
+          "physics_scalar": 0.988512372812583,
+          "used_key": "Si"
+        },
+        "Si": {
+          "igt_scalar": -1.45,
+          "igt_terrain": "LoseLose",
+          "operator_scalar": 0.019306078250207366,
+          "perception_scalar": 0.24685716241654698,
+          "physics_faces": {
+            "dark_energy": 0.9833940638676905,
+            "gravity": 0.036846011585158045,
+            "mass": 0.024564007723438697
+          },
+          "physics_scalar": 0.024564007723438697,
+          "used_key": "Ni"
+        }
+      },
+      "vectors": {
+        "igt": [
+          -1.45,
+          -0.09000000000000002,
+          1.93,
+          0.4
+        ],
+        "operator": [
+          0.019306078250207366,
+          0.021721972236336796,
+          0.019306078250207366,
+          0.021721972236336796
+        ],
+        "perception": [
+          0.24685716241654698,
+          0.21615723888751875,
+          0.7389857532778764,
+          0.5861550472236108
+        ],
+        "physics": [
+          0.024564007723438697,
+          0.03776595332206789,
+          0.988512372812583,
+          0.2733984326235218
+        ]
+      }
+    }
+  },
+  "schema": "mp_cross_model_convergence.v1",
+  "shared_booleans": {
+    "controls_fire": true,
+    "natural_beats_permuted": true,
+    "physics_igt_perception_distinct": true,
+    "readout_rank_gt_1": true
+  },
+  "shared_scalars": {
+    "final_min_eigenvalue": 0.07201726019203002,
+    "final_trace_residual": 0.0,
+    "natural_score": -0.8868878596557455,
+    "permuted_max_score": -0.8716419235519248,
+    "permuted_mean_score": -0.9050043941721274,
+    "physics_igt_perception_rank": 3.0,
+    "readout_rank": 3.0,
+    "real_vs_erased_delta": 1.93,
+    "real_vs_wrong_structure_delta": 3.38
+  },
+  "source_math_lock": {
+    "canonical_qit_engine_spec": "H0=0.77*SZ+0.13*SX; Type1=+H0; Se/Ne/Ni/Si Lindblad; Ti/Te/Fi/Fe; 32 substages",
+    "carrier_objects": {
+      "canonical_qit_engine_specs": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+        "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83"
+      },
+      "clifford_algebra_ladder": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+        "sha256": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8"
+      },
+      "clifford_torus_nested_hopf_foliation": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+        "sha256": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af"
+      },
+      "density_matrix_spinor_lift": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+        "sha256": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424"
+      },
+      "division_algebra_ratchet_ladder": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+        "sha256": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878"
+      },
+      "golden_weyl": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+        "sha256": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070"
+      },
+      "octonion_G2_automorphism": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+        "sha256": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347"
+      },
+      "sedenion_break": {
+        "exists": true,
+        "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl",
+        "sha256": "1d58801c3f3f4eb2c686b7a29bf83fa8aabe723d95e059e6df454c7aae076c83"
+      }
+    }
+  },
+  "tool_integration_depth": {
+    "JAX mirror": "load_bearing",
+    "Julia ComplexF64": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX mirror": "independent backend parity check",
+    "Julia ComplexF64": "load-bearing finite density evolution and readout computation",
+    "canonical_qit_engine_specs.py": "source-hash lock for H0, Lindblad, operator, and schedule specs",
+    "julia_carrier source objects": "source-fingerprinted owner carrier object boundary"
+  }
+}

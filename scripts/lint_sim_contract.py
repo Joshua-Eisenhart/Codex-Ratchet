@@ -54,6 +54,7 @@ VALID_CLASSIFICATIONS = {
     "controller_routing_surface",
     "diagnostic_only",
     "formal_scout",
+    "scratch_diagnostic",
     "supporting",
     "tool_lego_fit_probe",
 }
@@ -380,6 +381,22 @@ def _effective_classification(assigns: dict) -> object:
     return "__MISSING__"
 
 
+def _bool_false(value: object) -> bool:
+    if value is False:
+        return True
+    if isinstance(value, str):
+        return value.strip().lower() == "false"
+    return False
+
+
+def _is_fenced_scratch_diagnostic(assigns: dict, cls: object) -> bool:
+    if cls != "scratch_diagnostic":
+        return False
+    promotion = assigns.get("promotion_allowed", assigns.get("PROMOTION_ALLOWED"))
+    formal = assigns.get("formal_admission_allowed", assigns.get("FORMAL_ADMISSION_ALLOWED"))
+    return _bool_false(promotion) and _bool_false(formal)
+
+
 def _emitted_classification_literals(tree: ast.Module) -> set[str]:
     values: set[str] = set()
     for node in ast.walk(tree):
@@ -503,6 +520,7 @@ def lint_sim(path: Path) -> list[dict]:
 
     # C1: classification
     cls = _effective_classification(assigns)
+    fenced_scratch_diagnostic = _is_fenced_scratch_diagnostic(assigns, cls)
     if cls == "__MISSING__":
         violations.append({"sim": rel, "rule": "C1_classification_missing", "detail": None})
     elif cls not in VALID_CLASSIFICATIONS:
@@ -578,6 +596,8 @@ def lint_sim(path: Path) -> list[dict]:
         for tool, lvl in depth.items():
             if lvl != "load_bearing":
                 continue
+            if fenced_scratch_diagnostic:
+                continue
             canon = canonical(str(tool))
             static_rule = _c5_static_overclaim_rule(canon)
             if static_rule:
@@ -598,7 +618,7 @@ def lint_sim(path: Path) -> list[dict]:
     execution_kind = _normalized_execution_kind(
         assigns.get("sim_execution_kind") or assigns.get("SIM_EXECUTION_KIND")
     )
-    if execution_kind in {"bridge", "nonclassical"} and isinstance(depth, dict):
+    if execution_kind in {"bridge", "nonclassical"} and isinstance(depth, dict) and not fenced_scratch_diagnostic:
         role_sources = _role_sources(assigns)
         load_bearing = {canonical(str(tool)) for tool, lvl in depth.items() if lvl == "load_bearing"}
         local_load_bearing = {

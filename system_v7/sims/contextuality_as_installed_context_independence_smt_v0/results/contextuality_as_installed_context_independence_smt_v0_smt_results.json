@@ -1,0 +1,43 @@
+{
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "contextuality_as_installed_context_independence_smt_v0",
+  "engine": "smt",
+  "computation_style": "noncontextual_vs_context_indexed_classical_model_z3",
+  "classification": "broken",
+  "graveyard_keep": true,
+  "refuted_by": "REFUTED_20260615.md (deep audit wf w2qgptvqb): by-construction tautology + carrier smuggle",
+  "promotion_allowed": false,
+  "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
+  "reads_peer_result": false,
+  "generated_at": "2026-06-16T07:01:56Z",
+  "source_sha256": "a3ab0c924335848cc759d97a8fc6e70fd447cc3af9b7e868bad2879ce609db4c",
+  "result_path": "system_v7/sims/contextuality_as_installed_context_independence_smt_v0/results/contextuality_as_installed_context_independence_smt_v0_smt_results.json",
+  "noncontextual_model_smt": "unsat",
+  "context_indexed_model_smt": "sat",
+  "accepted_claims": [],
+  "rejected_claims": [
+    "context_indexed_classical_model_is_sat is a BY-CONSTRUCTION TAUTOLOGY (18 independent variables; SAT for all 64 sign combos; z3 adds nothing)",
+    "calling the context-indexed model 'classical' is CIRCULAR (the context-label carries the non-classical structure)",
+    "'contextuality = failure of context-independence, not beyond quotient' / the deflationary thesis -- RETRACTED"
+  ],
+  "honest_scope": {
+    "earns": "NOTHING. This sim is REFUTED (classification=broken). The only non-trivial fact (noncontextual UNSAT) is a third copy of finite_contextuality_assignment_smt_lift_discriminator_v0.",
+    "does_not_earn": "anything. See REFUTED_20260615.md. The question 'is any carrier forced beyond every quotient?' is UNRESOLVED."
+  },
+  "thesis_candidate_fenced": "RETRACTED -- REFUTED_20260615.md. The context_indexed() SAT is a by-construction tautology (18 independent vars) and the carrier is smuggled via context-labels (a_R1 != a_C1 = the non-classical structure relabeled). This sim does NOT earn the deflationary thesis. The question 'is any carrier forced beyond every quotient?' is UNRESOLVED.",
+  "REFUTED": "see REFUTED_20260615.md (deep audit wf w2qgptvqb): by-construction tautology + carrier smuggle. Do not cite. GRAVEYARD_KEEP.",
+  "packages_used": [
+    "z3"
+  ],
+  "TOOL_MANIFEST": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "ran, but the context_indexed SAT is by-construction -- z3 not load-bearing here (REFUTED)"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "z3": "decorative_refuted"
+  }
+}

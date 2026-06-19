@@ -131,50 +131,87 @@ def claim_ceiling_ok(payload: dict[str, Any], rows: list[dict[str, Any]]) -> boo
     ) or payload.get("promotion_allowed") is False
 
 
-def micro_receipt_status(tool: str) -> dict[str, Any]:
-    receipt_name = two_root_constraints.TWO_ROOT_TOOL_MICRO_RECEIPTS.get(tool)
-    if not receipt_name:
+def micro_receipt_status(tool: str, consumer_name: str = "") -> dict[str, Any]:
+    receipt_names = two_root_constraints.micro_receipt_names(
+        tool,
+        include_aggregate=consumer_name == two_root_constraints.WAVE_A_TOOL_CAPABILITY_OBJECT_ID,
+    )
+    if not receipt_names:
         return {
             "micro_receipt": None,
+            "micro_receipt_candidates": [],
             "micro_receipt_exists": False,
             "micro_receipt_all_pass": False,
             "micro_receipt_tool_load_bearing": False,
             "micro_receipt_admits_tool": False,
             "micro_receipt_reason": "missing required two-root tool micro receipt mapping",
         }
-    path = RESULT_DIR / receipt_name
-    if not path.exists():
-        return {
+    candidates = [rel(RESULT_DIR / name) for name in receipt_names]
+    last_status: dict[str, Any] | None = None
+    missing_count = 0
+    for receipt_name in receipt_names:
+        path = RESULT_DIR / receipt_name
+        if not path.exists():
+            missing_count += 1
+            last_status = {
+                "micro_receipt": rel(path),
+                "micro_receipt_candidates": candidates,
+                "micro_receipt_exists": False,
+                "micro_receipt_all_pass": False,
+                "micro_receipt_tool_load_bearing": False,
+                "micro_receipt_admits_tool": False,
+                "micro_receipt_reason": "required two-root tool micro receipt is missing",
+            }
+            continue
+        try:
+            receipt = load_json(path)
+        except json.JSONDecodeError:
+            last_status = {
+                "micro_receipt": rel(path),
+                "micro_receipt_candidates": candidates,
+                "micro_receipt_exists": True,
+                "micro_receipt_all_pass": False,
+                "micro_receipt_tool_load_bearing": False,
+                "micro_receipt_admits_tool": False,
+                "micro_receipt_reason": "required two-root tool micro receipt is not valid JSON",
+            }
+            continue
+        receipt_tools = set(two_root_constraints.load_bearing_tools(receipt))
+        all_pass = result_all_pass(receipt)
+        tool_load_bearing = tool in receipt_tools
+        admits_tool = two_root_constraints.receipt_admits_tool(receipt, tool)
+        status = {
             "micro_receipt": rel(path),
+            "micro_receipt_candidates": candidates,
+            "micro_receipt_exists": True,
+            "micro_receipt_all_pass": all_pass,
+            "micro_receipt_tool_load_bearing": tool_load_bearing,
+            "micro_receipt_admits_tool": admits_tool,
+            "micro_receipt_reason": "micro receipt passes and marks tool load-bearing"
+            if admits_tool
+            else "micro receipt does not pass or does not mark tool load-bearing",
+        }
+        if admits_tool:
+            return status
+        last_status = status
+    if missing_count == len(receipt_names):
+        return {
+            "micro_receipt": candidates[0] if candidates else None,
+            "micro_receipt_candidates": candidates,
             "micro_receipt_exists": False,
             "micro_receipt_all_pass": False,
             "micro_receipt_tool_load_bearing": False,
             "micro_receipt_admits_tool": False,
-            "micro_receipt_reason": "required two-root tool micro receipt is missing",
+            "micro_receipt_reason": "required two-root tool micro receipts are missing",
         }
-    try:
-        receipt = load_json(path)
-    except json.JSONDecodeError:
-        return {
-            "micro_receipt": rel(path),
-            "micro_receipt_exists": True,
-            "micro_receipt_all_pass": False,
-            "micro_receipt_tool_load_bearing": False,
-            "micro_receipt_admits_tool": False,
-            "micro_receipt_reason": "required two-root tool micro receipt is not valid JSON",
-        }
-    receipt_tools = set(two_root_constraints.load_bearing_tools(receipt))
-    all_pass = result_all_pass(receipt)
-    tool_load_bearing = tool in receipt_tools
-    return {
-        "micro_receipt": rel(path),
-        "micro_receipt_exists": True,
-        "micro_receipt_all_pass": all_pass,
-        "micro_receipt_tool_load_bearing": tool_load_bearing,
-        "micro_receipt_admits_tool": bool(all_pass and tool_load_bearing),
-        "micro_receipt_reason": "micro receipt passes and marks tool load-bearing"
-        if all_pass and tool_load_bearing
-        else "micro receipt does not pass or does not mark tool load-bearing",
+    return last_status or {
+        "micro_receipt": None,
+        "micro_receipt_candidates": candidates,
+        "micro_receipt_exists": False,
+        "micro_receipt_all_pass": False,
+        "micro_receipt_tool_load_bearing": False,
+        "micro_receipt_admits_tool": False,
+        "micro_receipt_reason": "no usable micro receipt status was produced",
     }
 
 
@@ -277,7 +314,7 @@ def audit_receipt(receipt: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
     for tool in load_bearing:
         canonical = two_root_constraints.canonical_tool_name(tool)
         meta = two_root_constraints.TWO_ROOT_TOOL_ADMISSIBILITY.get(canonical)
-        receipt_status = micro_receipt_status(canonical)
+        receipt_status = micro_receipt_status(canonical, consumer_name=path.name.removesuffix("_results.json"))
         two_root_tool_status[canonical] = {
             "tool": canonical,
             "two_root_tool_admissible": bool(

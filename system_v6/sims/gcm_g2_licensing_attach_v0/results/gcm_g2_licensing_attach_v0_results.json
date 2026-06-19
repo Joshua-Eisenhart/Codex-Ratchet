@@ -1,0 +1,1106 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "builder_audit_boundary": "load_bearing",
+    "gcm_substrate_check": "load_bearing",
+    "numpy": "load_bearing",
+    "octonion_structure_constants_v1": "load_bearing",
+    "python_stdlib": "supportive",
+    "upstream_3q_v1": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "builder_audit_boundary": {
+      "reason": "G.2a builder/audit boundary from birth; builder emits no audit verdict",
+      "tried": true,
+      "used": true
+    },
+    "gcm_substrate_check": {
+      "reason": "hardened substrate-first helper on inherited 1Q/2Q lineage, with lineage-free negative red",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "load-bearing Pauli readout expectations, 3-form tensor transport, and random-subspace control ranks",
+      "tried": true,
+      "used": true
+    },
+    "octonion_structure_constants_v1": {
+      "reason": "canon compact octonion multiplication table consumed read-only for associator rows",
+      "tried": true,
+      "used": true
+    },
+    "python_stdlib": {
+      "reason": "source locks, hashes, deterministic JSON, and finite exact combinatorics",
+      "tried": true,
+      "used": true
+    },
+    "upstream_3q_v1": {
+      "reason": "state-artifacted 3Q survivor carve and quotient classes consumed read-only",
+      "tried": true,
+      "used": true
+    }
+  },
+  "W_A": {
+    "ambient_span": "63 traceless 3Q Pauli strings",
+    "basis_labels": [
+      "XII",
+      "ZII",
+      "IXI",
+      "IZI",
+      "IIX",
+      "IIZ",
+      "XXX"
+    ],
+    "dimension": 7,
+    "pinning_rule": "pinned convention: local X/Z pins for A,B,C plus XXX global parity pin",
+    "readout_summary": {
+      "active_axes": [
+        "XII",
+        "ZII",
+        "IXI",
+        "IZI",
+        "IIZ",
+        "XXX"
+      ],
+      "active_axis_count": 6,
+      "labels": [
+        "XII",
+        "ZII",
+        "IXI",
+        "IZI",
+        "IIX",
+        "IIZ",
+        "XXX"
+      ],
+      "max_abs_by_axis": {
+        "IIX": 0.0,
+        "IIZ": 1.0,
+        "IXI": 1.0,
+        "IZI": 1.0,
+        "XII": 0.75,
+        "XXX": 0.225375704198,
+        "ZII": 0.5
+      },
+      "readout_rank": 6,
+      "readout_shape": [
+        545,
+        7
+      ],
+      "survivor_count": 545,
+      "variance_by_axis": {
+        "IIX": 0.0,
+        "IIZ": 1.7810127e-05,
+        "IXI": 0.190825688073,
+        "IZI": 0.210052784423,
+        "XII": 0.188186179615,
+        "XXX": 9.3029372e-05,
+        "ZII": 0.187449002609
+      }
+    },
+    "source_status": "not natural from owner sources; convention-only attach"
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "explicit pinned-convention G2 licensing attach at layer 22 over the 3Q survivor carve",
+    "phi preservation/cross-product/associator/quotient-erasure controls run against packet-local W_A",
+    "compact-vs-split row consumed as existing feedstock only"
+  ],
+  "carrier_and_pins_relative": true,
+  "claim_ceiling": "scratch_diagnostic_carrier_and_pins_relative_g2_compatibility_layer",
+  "classification": "scratch_diagnostic",
+  "controls": {
+    "lineage_free_negative": {
+      "error_codes": [
+        "GCM_OBJECT_ID_MISMATCH",
+        "GCM2Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+        "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+        "GCM_LINEAGE_CONSUMPTION_MISSING"
+      ],
+      "errors": [
+        "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+        "lineage 2Q registry_body_sha256 mismatch: registry=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=[]",
+        "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+        "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+      ],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": false,
+      "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+      "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    },
+    "quotient_erasure": {
+      "all_classes_erase_associator_labels": true,
+      "class_rows": {
+        "Q0": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q1": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q2": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q3": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q4": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q5": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q6": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q7": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 11424,
+          "state_witness_retained": false
+        },
+        "Q8": {
+          "associator_triple_label_retained": false,
+          "retained_after_density_quotient": "class_id_only",
+          "score_count_before_erasure": 168,
+          "state_witness_retained": false
+        }
+      },
+      "computed": true,
+      "erasure_rule": "rho_ABC -> 3Q quotient class; associator triple and state witness labels are discarded",
+      "quotient_class_count": 9
+    },
+    "random_7_subspace": {
+      "control": "deterministic random-looking 7-subspace in the 63 Pauli span",
+      "labels": [
+        "YII",
+        "IYI",
+        "IIY",
+        "XXI",
+        "XIX",
+        "IXX",
+        "YYY"
+      ],
+      "pinned_active_axis_count": 6,
+      "pinned_outperforms_random": true,
+      "pinned_readout_rank": 6,
+      "random_active_axis_count": 4,
+      "random_readout_rank": 4,
+      "random_summary": {
+        "active_axes": [
+          "YII",
+          "IYI",
+          "XXI",
+          "YYY"
+        ],
+        "active_axis_count": 4,
+        "labels": [
+          "YII",
+          "IYI",
+          "IIY",
+          "XXI",
+          "XIX",
+          "IXX",
+          "YYY"
+        ],
+        "max_abs_by_axis": {
+          "IIY": 0.0,
+          "IXX": 0.0,
+          "IYI": 1.0,
+          "XIX": 0.0,
+          "XXI": 0.5,
+          "YII": 0.5,
+          "YYY": 0.083054799078
+        },
+        "readout_rank": 4,
+        "readout_shape": [
+          545,
+          7
+        ],
+        "survivor_count": 545,
+        "variance_by_axis": {
+          "IIY": 0.0,
+          "IXX": 0.0,
+          "IYI": 0.190825688073,
+          "XIX": 0.0,
+          "XXI": 0.035779816514,
+          "YII": 0.249706119014,
+          "YYY": 1.263384e-05
+        }
+      }
+    },
+    "scrambled_phi": {
+      "error": 2.0,
+      "red": true,
+      "scramble": "replace e167 with e137",
+      "tested_against": "pinned_even_parity_sign_map"
+    },
+    "substrate_positive": {
+      "error_codes": [],
+      "errors": [],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+      "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    }
+  },
+  "coordinates": {
+    "layer": "22 (the G2 compatibility layer)",
+    "nesting": "integrated",
+    "qubit_depth": "3Q"
+  },
+  "disallowed_claims": [
+    "natural W_A from owner sources",
+    "canonical G2 layer admission",
+    "compact or split G2 theorem",
+    "bridge, axis, Spin(7), triality, F4, or physics promotion"
+  ],
+  "divergence_log": [
+    "W_A is explicit and 7D, but only convention-pinned; no natural W_A source was found in inspected owner/canon sources.",
+    "The installed phi tests have teeth: scrambled phi and bad signed/permutation controls fail.",
+    "Random 7-subspace underperforms pinned W_A on survivor readout rank/active axes.",
+    "Associator is visible before quotient by state/W_A witness rows and erased by the density quotient to class-id-only rows."
+  ],
+  "formal_admission_allowed": false,
+  "gcm_lineage": {
+    "base_registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "candidate_region_ids": [
+      "creg_fb8dade30d57503aa616"
+    ],
+    "gcm_2q_candidate_region_ids": [
+      "gcm2qcreg_515f363fed16353edaf8"
+    ],
+    "gcm_2q_object_id": "gcm2qobj_715e9424ea66468243108751fb59395f",
+    "gcm_2q_quotient_class_ids": [
+      "gcm2qqcls_6195072db055551c2105"
+    ],
+    "gcm_2q_registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+    "gcm_2q_survivor_ids": [
+      "gcm2qsurv_d0e240413ea2b2160413"
+    ],
+    "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+    "object_maps": [
+      {
+        "gcm_2q_survivor_id": "gcm2qsurv_d0e240413ea2b2160413",
+        "role": "minimal resolved lineage witness for hardened substrate check",
+        "survivor_id": "surv_df8410cc012bfc835668"
+      }
+    ],
+    "quotient_class_ids": [
+      "qcls_830aa0cdc681784fa290"
+    ],
+    "registry_body_sha256": "0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed",
+    "survivor_ids": [
+      "surv_df8410cc012bfc835668"
+    ],
+    "three_q_quotient_class_count": 9,
+    "three_q_result_sha256": "05b11d6e81dea29be8142088a193a6d73f11d4bc3db49eb461bdf302a3204d02",
+    "three_q_source_result": "system_v6/sims/gcm_constraint_carve_3q_v1/results/gcm_constraint_carve_3q_v1_results.json",
+    "three_q_survivor_count": 545
+  },
+  "generated_at": "2026-06-13T01:59:20Z",
+  "layer_declaration": {
+    "layer": "22 (the G2 compatibility layer)",
+    "nesting": "integrated",
+    "qubit_depth": "3Q"
+  },
+  "licensing": {
+    "condition_source": "system_v6/receipts/nesting_law_final_object_spec_20260612.md",
+    "condition_verbatim_summary": "explicit 7D real readout space W_A in span{P_alpha}, pinned 3-form phi, 3-form preservation, cross-product closure, associator visibility/erasure, compact-vs-split branch",
+    "honest_boundary": "licensing attach exists; natural/canonical pinning remains open",
+    "licensing_condition_status": "met_by_explicit_pinned_convention_only",
+    "natural_W_A_from_owner_sources": false,
+    "pinned_convention_flagged": true,
+    "spec_commit_hint": "afe7aa57b"
+  },
+  "no_builder_audit_verdict": true,
+  "no_builder_audit_verdict_envelope_gate": true,
+  "not_THE_manifold": true,
+  "parent_3q_facts": {
+    "pauli_string_count_3q_traceless": 63,
+    "quotient_class_count": 9,
+    "state_artifact_count": 545,
+    "survivor_count": 545,
+    "tripartite_entangled_survivor_count": 1
+  },
+  "phi": {
+    "formula": "e123+e145+e167+e246-e257-e347-e356",
+    "tensor_sha256": "49f908d13e4bd269e54ca356fc5bbe40e05381fd48a5a187e8da2e5a3202f98f",
+    "terms": [
+      {
+        "coefficient": 1,
+        "term": "e1e2e3"
+      },
+      {
+        "coefficient": 1,
+        "term": "e1e4e5"
+      },
+      {
+        "coefficient": 1,
+        "term": "e1e6e7"
+      },
+      {
+        "coefficient": 1,
+        "term": "e2e4e6"
+      },
+      {
+        "coefficient": -1,
+        "term": "e2e5e7"
+      },
+      {
+        "coefficient": -1,
+        "term": "e3e4e7"
+      },
+      {
+        "coefficient": -1,
+        "term": "e3e5e6"
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "result_sha256": "fd892a97f52f078f721acb6efdc795b2d11ba4036a48ff17e60248b43683cad5",
+  "schema_version": "gcm_g2_licensing_attach_v0_result_v1",
+  "sim_id": "gcm_g2_licensing_attach_v0",
+  "source_locks": {
+    "build_card": {
+      "exists": true,
+      "git_last_commit": null,
+      "path": "system_v6/sims/gcm_g2_licensing_attach_v0/build_card.md",
+      "role": "packet build card",
+      "sha256": "5e12da2c5e8b71ccff7b3c05dfd95057d19fdbe2a7175244c350b99fe26b0992"
+    },
+    "builder_audit_boundary": {
+      "exists": true,
+      "git_last_commit": "aed311e85",
+      "path": "scripts/builder_audit_boundary.py",
+      "role": "G.2a boundary helper",
+      "sha256": "ed25d7cef8fda4a1f0e84d71d280b39c32682e14dafd833ccce8766c60d5f67b"
+    },
+    "nesting_law_g2_section": {
+      "exists": true,
+      "git_last_commit": "afe7aa57b",
+      "path": "system_v6/receipts/nesting_law_final_object_spec_20260612.md",
+      "role": "G2 licensing condition source at afe7aa57b",
+      "sha256": "91ace9d944a004cf1fa24654145bcdc18c1f49cdbe75be10dcc780ddb7875953"
+    },
+    "octonion_artifact": {
+      "exists": true,
+      "git_last_commit": "75dd0b158",
+      "path": "system_v5/julia_carrier/artifacts/algebra_structure_constants_v1.json",
+      "role": "canon octonion structure constants consumed read-only",
+      "sha256": "824a0a2c794a949a83e4bd650c9620464b96eb0d1dcb3d0fe4901a4e86d05f2c"
+    },
+    "orientation_receipt": {
+      "exists": true,
+      "git_last_commit": "8a8e58e75",
+      "path": "system_v6/receipts/octonion_orientation_reconciliation_20260610.md",
+      "role": "octonion convention map receipt",
+      "sha256": "e3443d33566ca3db3c951935ca1b941b6ed24a864f27a0ca81a2c8635d6cc757"
+    },
+    "s10_receipt": {
+      "exists": true,
+      "git_last_commit": "b184e7357",
+      "path": "system_v6/receipts/s10_g2_family_mine_20260610.md",
+      "role": "G2 feedstock mine",
+      "sha256": "7a55c3e623a80a525e444c33ff8db9b238201e0b9960a0808570a3338c6639ff"
+    },
+    "standards_codex": {
+      "exists": true,
+      "git_last_commit": "443e474b2",
+      "path": "system_v6/receipts/audit_standards_codex_v1.md",
+      "role": "G.2a standards reference if present",
+      "sha256": "6ed5b840a94eb43a08204b408c3efd1d86124f9af7fc4105bbc190924e8a3f27"
+    },
+    "three_q_v1_envelope": {
+      "exists": true,
+      "git_last_commit": "5544ad21c",
+      "path": "system_v6/sims/gcm_constraint_carve_3q_v1/results/gcm_constraint_carve_3q_v1_envelope_results.json",
+      "role": "3Q v1 envelope",
+      "sha256": "03c36a3d337a6e1905251f53cf053217f4127f219e844a3d56bfaabc8c287898"
+    },
+    "three_q_v1_result": {
+      "exists": true,
+      "git_last_commit": "5544ad21c",
+      "path": "system_v6/sims/gcm_constraint_carve_3q_v1/results/gcm_constraint_carve_3q_v1_results.json",
+      "role": "state-artifacted 3Q survivors",
+      "sha256": "05b11d6e81dea29be8142088a193a6d73f11d4bc3db49eb461bdf302a3204d02"
+    },
+    "two_q_registry": {
+      "exists": true,
+      "git_last_commit": "8326405e6",
+      "path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json",
+      "role": "hardened helper registry target",
+      "sha256": "e5abc5151265ca6d3c85e5e26957f93bc0ca6346eab4a95ad96bcc60b8996378"
+    }
+  },
+  "substrate_checks": {
+    "lineage_free_negative": {
+      "error_codes": [
+        "GCM_OBJECT_ID_MISMATCH",
+        "GCM2Q_LINEAGE_REGISTRY_BODY_SHA256_MISMATCH",
+        "GCM_LINEAGE_BASE_REGISTRY_BODY_SHA256_MISMATCH",
+        "GCM_LINEAGE_CONSUMPTION_MISSING"
+      ],
+      "errors": [
+        "gcm_object_id mismatch: cited=[] registry=['gcm2qobj_715e9424ea66468243108751fb59395f', 'gcmobj_a40e54e13cec01466c9d675028b3574b']",
+        "lineage 2Q registry_body_sha256 mismatch: registry=57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac cited=[]",
+        "lineage base registry_body_sha256 mismatch: expected=0fddf60cea951e88ddde9cde6cb3e6c49ee36c77ae02dfe059d8550f2c6221ed cited=None",
+        "missing lineage consumption: require at least one survivor_id, quotient_class_id, candidate_region_id, or region_id resolving against frozen registry"
+      ],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": false,
+      "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+      "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    },
+    "negative_failed_as_required": true,
+    "positive_payload_ok": {
+      "error_codes": [],
+      "errors": [],
+      "gcm_object_id": "gcmobj_a40e54e13cec01466c9d675028b3574b",
+      "ok": true,
+      "registry_body_sha256": "57c8b47b0c60867f9d58969803e905fb905e27a2915641121583175e32c598ac",
+      "registry_path": "system_v6/sims/gcm_2q_freeze_and_cut_v0/results/gcm_2q_freeze_and_cut_v0_registry.json"
+    }
+  },
+  "tests": {
+    "associator_rows": {
+      "computed_ordered_distinct_triples": 210,
+      "count_matches_feedstock": true,
+      "density_quotient_erasure": {
+        "all_classes_erase_associator_labels": true,
+        "class_rows": {
+          "Q0": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q1": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q2": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q3": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q4": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q5": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q6": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q7": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 11424,
+            "state_witness_retained": false
+          },
+          "Q8": {
+            "associator_triple_label_retained": false,
+            "retained_after_density_quotient": "class_id_only",
+            "score_count_before_erasure": 168,
+            "state_witness_retained": false
+          }
+        },
+        "computed": true,
+        "erasure_rule": "rho_ABC -> 3Q quotient class; associator triple and state witness labels are discarded",
+        "quotient_class_count": 9
+      },
+      "expected_nonzero_associator_count_from_3Q_v1_feedstock": 168,
+      "nonzero_associator_count": 168,
+      "octonion_artifact": "system_v5/julia_carrier/artifacts/algebra_structure_constants_v1.json",
+      "visibility_on_states": {
+        "sample_visible_rows": [
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              2,
+              5
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 14
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -2
+            ],
+            "max_abs_state_score": 0.450751408396,
+            "triple": [
+              1,
+              2,
+              6
+            ],
+            "witness_quotient_class_id": "Q8",
+            "witness_survivor_id": 544
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              2,
+              7
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              -2,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              3,
+              4
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            "max_abs_state_score": 0.450751408396,
+            "triple": [
+              1,
+              3,
+              5
+            ],
+            "witness_quotient_class_id": "Q8",
+            "witness_survivor_id": 544
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              3,
+              6
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 14
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              4,
+              3
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          },
+          {
+            "associator_vector": [
+              0,
+              -2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 1.0,
+            "triple": [
+              1,
+              4,
+              5
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              -2,
+              0,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              4,
+              6
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              -2,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 2.0,
+            "triple": [
+              1,
+              5,
+              2
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 14
+          },
+          {
+            "associator_vector": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -2
+            ],
+            "max_abs_state_score": 0.450751408396,
+            "triple": [
+              1,
+              5,
+              3
+            ],
+            "witness_quotient_class_id": "Q8",
+            "witness_survivor_id": 544
+          },
+          {
+            "associator_vector": [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "max_abs_state_score": 1.0,
+            "triple": [
+              1,
+              5,
+              4
+            ],
+            "witness_quotient_class_id": "Q0",
+            "witness_survivor_id": 0
+          }
+        ],
+        "visibility_rule": "nonzero dot(associator_vector, W_A readout(rho_ABC)) on a survivor",
+        "visible_nonzero_rows": 144
+      }
+    },
+    "compact_vs_split_branch": {
+      "compact_der_dim": 14,
+      "compact_split_divergence_real": true,
+      "compact_vs_split_status": "branch row present as feedstock; this packet does not promote split fixture or compact/split theorem",
+      "corrupt_der_dim": 3,
+      "gamma7_split_feedstock_consumed": true,
+      "source": "geo_s10_g2_family_v0 envelope plus s10_g2_family_mine receipt",
+      "source_path": "system_v6/sims/geo_s10_g2_family_v0/results/geo_s10_g2_family_v0_envelope_results.json",
+      "split_der_dim": 14
+    },
+    "cross_product_closure": {
+      "all_basis_pairs_closed_in_W_A": true,
+      "basis_pair_count": 21,
+      "definition": "g(x cross y, z)=phi(x,y,z) with standard metric on pinned W_A",
+      "nonzero_cross_product_rows": 21,
+      "sample_rows": [
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "ZII"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            3
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "IXI"
+          ],
+          "result_coefficients": [
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            2
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "IZI"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            5
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "IIX"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            4
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "IIZ"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "result_support_e": [
+            7
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "XII",
+            "XXX"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "result_support_e": [
+            6
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "ZII",
+            "IXI"
+          ],
+          "result_coefficients": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            1
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "ZII",
+            "IZI"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          "result_support_e": [
+            6
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "ZII",
+            "IIX"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "result_support_e": [
+            7
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "ZII",
+            "IIZ"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            4
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "ZII",
+            "XXX"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "result_support_e": [
+            5
+          ]
+        },
+        {
+          "closed_in_W_A": true,
+          "pair": [
+            "IXI",
+            "IZI"
+          ],
+          "result_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "result_support_e": [
+            7
+          ]
+        }
+      ],
+      "survivor_relevant_active_axes": [
+        "XII",
+        "ZII",
+        "IXI",
+        "IZI",
+        "IIZ",
+        "XXX"
+      ],
+      "survivor_relevant_rows_checked": 21
+    },
+    "phi_preservation": {
+      "failing_map_count": 2,
+      "phi_preservation_rows": [
+        {
+          "error": 0.0,
+          "map_id": "identity_committed_baseline",
+          "preserves_phi": true,
+          "source": "identity map on pinned W_A"
+        },
+        {
+          "error": 0.0,
+          "map_id": "pinned_even_parity_sign_map",
+          "preserves_phi": true,
+          "signs": [
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1
+          ],
+          "source": "finite signed diagonal map preserving every required phi triple"
+        },
+        {
+          "error": 2.0,
+          "map_id": "single_axis_sign_control",
+          "preserves_phi": false,
+          "signs": [
+            -1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "source": "designed-to-fail signed map control"
+        },
+        {
+          "error": 2.0,
+          "map_id": "basis_swap_12_control",
+          "preserves_phi": false,
+          "source": "designed-to-fail permutation control"
+        }
+      ],
+      "preserving_map_count": 2,
+      "scrambled_phi_control": {
+        "error": 2.0,
+        "red": true,
+        "scramble": "replace e167 with e137",
+        "tested_against": "pinned_even_parity_sign_map"
+      }
+    }
+  },
+  "tool_intent": {
+    "claim_classes": [
+      "G2_layer_22_licensing_attach",
+      "pinned_W_A_3Q_Pauli_readout",
+      "phi_preservation_control",
+      "associator_visibility_and_density_quotient_erasure",
+      "compact_split_feedstock_row"
+    ]
+  }
+}

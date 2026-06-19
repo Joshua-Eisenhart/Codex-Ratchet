@@ -1,0 +1,721 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "supportive",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend parity over the same finite carrier values",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, source hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Cl(6) multivector algebra, ladder CAR, ideal states, charge eigenvalues, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "supportive source-native schedule/operator anchor; not the source of the charge eigenvalues",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing owner carrier source set; Cl(6) ladder and octonion/G2 anchors are required and erasing the carrier changes the result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "allowed_claims": [
+    "finite Cl(6) ideal-state charge quantization witness",
+    "dual-backend parity witness",
+    "real-vs-erased and non-integer ladder controls"
+  ],
+  "backend": "julia_float64_complex",
+  "blocked_consumers": [
+    "physics_claims",
+    "Standard_Model_admission",
+    "M(C)_admission",
+    "Axis0",
+    "bridge",
+    "mass_or_coupling_claims",
+    "formal_admission"
+  ],
+  "blockers": [],
+  "boundary": {
+    "claim_ceiling_blocks_downstream": {
+      "claim_ceiling": "Scratch diagnostic only: finite Cl(0,6)/octonion owner-carrier witness that the modeled ideal-state charge spectrum is made of integer ladder occupation eigenvalues divided by 3. No physics validation, Standard Model admission, M(C), Axis0, bridge, basin, manifold, mass, coupling, or formal admission claim.",
+      "pass": true
+    },
+    "classification_is_scratch_diagnostic": {
+      "pass": true
+    },
+    "masses_and_couplings_not_claimed": {
+      "pass": true
+    }
+  },
+  "charge_witness": {
+    "car_residual": 0.0,
+    "charge_lattice_residual": 0.0,
+    "charges_integer_multiples": true,
+    "cl6_dim": 64,
+    "erased_car_residual": 1.0,
+    "erased_owner_changes": true,
+    "erased_required_charges_present": false,
+    "from_algebra": true,
+    "ideal_rank": 8,
+    "integer_eigenvalue_residual": 0.0,
+    "max_mode_number_residual": 0.0,
+    "max_total_number_residual": 0.0,
+    "nilpotent_residual": 0.0,
+    "non_integer_control_breaks_quantization": true,
+    "required_charge_values": [
+      -1.0,
+      -0.3333333333333333,
+      0.0,
+      0.3333333333333333,
+      0.6666666666666666
+    ],
+    "required_charges_present": true,
+    "state_rows": [
+      {
+        "integer_total_eigenvalue": 0.0,
+        "mask": 0,
+        "minus_ideal_charge": -0.0,
+        "minus_ideal_label": "anti_nu",
+        "mode_eigenvalues": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mode_occupancies": [
+          0,
+          0,
+          0
+        ],
+        "non_integer_ladder_control_charge": 0.0,
+        "plus_ideal_charge": 0.0,
+        "plus_ideal_label": "nu",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 1.0,
+        "mask": 1,
+        "minus_ideal_charge": -0.3333333333333333,
+        "minus_ideal_label": "down_color_1",
+        "mode_eigenvalues": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "mode_occupancies": [
+          1,
+          0,
+          0
+        ],
+        "non_integer_ladder_control_charge": 0.3333333333333333,
+        "plus_ideal_charge": 0.3333333333333333,
+        "plus_ideal_label": "anti_down_color_1",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 1.0,
+        "mask": 2,
+        "minus_ideal_charge": -0.3333333333333333,
+        "minus_ideal_label": "down_color_2",
+        "mode_eigenvalues": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "mode_occupancies": [
+          0,
+          1,
+          0
+        ],
+        "non_integer_ladder_control_charge": 0.47140452079103173,
+        "plus_ideal_charge": 0.3333333333333333,
+        "plus_ideal_label": "anti_down_color_2",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 2.0,
+        "mask": 3,
+        "minus_ideal_charge": -0.6666666666666666,
+        "minus_ideal_label": "anti_up_color_3",
+        "mode_eigenvalues": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "mode_occupancies": [
+          1,
+          1,
+          0
+        ],
+        "non_integer_ladder_control_charge": 0.8047378541243649,
+        "plus_ideal_charge": 0.6666666666666666,
+        "plus_ideal_label": "up_color_3",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 1.0,
+        "mask": 4,
+        "minus_ideal_charge": -0.3333333333333333,
+        "minus_ideal_label": "down_color_4",
+        "mode_eigenvalues": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mode_occupancies": [
+          0,
+          0,
+          1
+        ],
+        "non_integer_ladder_control_charge": 0.5393446629166316,
+        "plus_ideal_charge": 0.3333333333333333,
+        "plus_ideal_label": "anti_down_color_4",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 2.0,
+        "mask": 5,
+        "minus_ideal_charge": -0.6666666666666666,
+        "minus_ideal_label": "anti_up_color_5",
+        "mode_eigenvalues": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "mode_occupancies": [
+          1,
+          0,
+          1
+        ],
+        "non_integer_ladder_control_charge": 0.872677996249965,
+        "plus_ideal_charge": 0.6666666666666666,
+        "plus_ideal_label": "up_color_5",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 2.0,
+        "mask": 6,
+        "minus_ideal_charge": -0.6666666666666666,
+        "minus_ideal_label": "anti_up_color_6",
+        "mode_eigenvalues": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "mode_occupancies": [
+          0,
+          1,
+          1
+        ],
+        "non_integer_ladder_control_charge": 1.0107491837076632,
+        "plus_ideal_charge": 0.6666666666666666,
+        "plus_ideal_label": "up_color_6",
+        "state_norm": 0.3535533905932738
+      },
+      {
+        "integer_total_eigenvalue": 3.0,
+        "mask": 7,
+        "minus_ideal_charge": -1.0,
+        "minus_ideal_label": "electron",
+        "mode_eigenvalues": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mode_occupancies": [
+          1,
+          1,
+          1
+        ],
+        "non_integer_ladder_control_charge": 1.3440825170409967,
+        "plus_ideal_charge": 1.0,
+        "plus_ideal_label": "positron",
+        "state_norm": 0.3535533905932738
+      }
+    ],
+    "unique_charges": [
+      -1.0,
+      -0.666666666667,
+      -0.333333333333,
+      0.0,
+      0.333333333333,
+      0.666666666667,
+      1.0
+    ],
+    "unit_third": true,
+    "vacuum_annihilation_residual": 0.0,
+    "vacuum_idempotent_residual": 0.0,
+    "weighted_charge_lattice_residual": 0.41421356237309515
+  },
+  "claim_ceiling": "Scratch diagnostic only: finite Cl(0,6)/octonion owner-carrier witness that the modeled ideal-state charge spectrum is made of integer ladder occupation eigenvalues divided by 3. No physics validation, Standard Model admission, M(C), Axis0, bridge, basin, manifold, mass, coupling, or formal admission claim.",
+  "classification": "scratch_diagnostic",
+  "construction": {
+    "carrier": "owner Cl(0,6) table mirrored from clifford_algebra_ladder.jl with octonion/G2 owner anchors",
+    "charge_rule": "plus ideal Q=N/3; conjugate ideal Q=-N/3; N=sum_i alpha_i_dag alpha_i has integer eigenvalues 0..3",
+    "ladder_convention": "alpha_i=(e_{2i-1}+i e_{2i})/2, alpha_i_dag=(-e_{2i-1}+i e_{2i})/2 in Cl(0,6)",
+    "rung_spec_boundary": "demonstrates the finite ladder-number mechanism; does not claim physical derivation or admission"
+  },
+  "controls": {
+    "non_integer_ladder_structure_gives_non_quantized_charges": {
+      "pass": true,
+      "weighted_charge_lattice_residual": 0.41421356237309515
+    },
+    "real_vs_erased_owner_carrier_flip": {
+      "erased_car_residual": 1.0,
+      "erased_required_charges_present": false,
+      "pass": true,
+      "real_required_charges_present": true
+    }
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-07T04:21:11Z",
+  "graveyard_companions": {
+    "erased_owner_carrier": {
+      "pass": true
+    },
+    "non_integer_ladder_weights": {
+      "pass": true
+    },
+    "promotion_and_formal_admission_fenced": {
+      "formal_admission_allowed": false,
+      "pass": true,
+      "promotion_allowed": false
+    }
+  },
+  "local_all_pass": true,
+  "name": "mp2_charge_quantization",
+  "nearby_variants": {
+    "passed": 2,
+    "total": 2,
+    "variant_names": [
+      "erased_owner_carrier",
+      "non_integer_ladder_weights"
+    ]
+  },
+  "numpy_compute_used": false,
+  "object_id": "mp2_charge_quantization",
+  "owner_object_anchor": {
+    "canonical_qit_engine_specs": {
+      "h0_sx_coeff": 0.13,
+      "h0_sz_coeff": 0.77,
+      "operator_slot_sequence": [
+        "Ti",
+        "Te",
+        "Fi",
+        "Fe"
+      ],
+      "total_substages_per_engine": 32
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "clifford_hopf_equator_residual": 2.220446049250313e-16,
+      "clifford_target_radius_residual": 1.1102230246251565e-16,
+      "eta": 0.7853981633974483
+    },
+    "density_matrix_spinor_lift": {
+      "density_trace_real": 1.0,
+      "density_trace_residual": 0.0
+    },
+    "division_algebra_ratchet_ladder": {
+      "h_dim": 4,
+      "h_i_j_minus_k_residual": 0.0,
+      "o_dim": 8
+    },
+    "golden_weyl": {
+      "eta_sample": 0.7853981633974483,
+      "psi_norm_residual": 0.0
+    },
+    "octonion_G2_automorphism": {
+      "constraint_cols": 64,
+      "constraint_rows": 512,
+      "der_O_dim": 14
+    },
+    "sedenion_break": {
+      "sedenion_checksum": {
+        "dim": 16,
+        "nonzero_entry_count": 256,
+        "sum_abs_entries": 256.0,
+        "weighted_checksum": 2.56016928e8
+      },
+      "sedenion_dim": 16,
+      "zero_divisor_product_norm": 0.0,
+      "zero_divisor_witness": "(e1 + e10) * (e5 + e14) = 0"
+    }
+  },
+  "parity": {
+    "boolean_mismatches": [],
+    "max_diff_key": null,
+    "missing_keys": [],
+    "parity_max_diff": 0.0,
+    "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_charge_quantization_results.json",
+    "shared_scalar_rows": [
+      {
+        "abs_diff": 0.0,
+        "jax": 7.0,
+        "julia": 7.0,
+        "key": "unique_charge_count"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.41421356237309515,
+        "julia": 0.41421356237309515,
+        "key": "weighted_charge_lattice_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "sedenion_zero_divisor_product_norm"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "golden_weyl_psi_norm_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "integer_eigenvalue_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "max_mode_number_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "vacuum_annihilation_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "density_trace_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 32.0,
+        "julia": 32.0,
+        "key": "qit_total_substages_per_engine"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 1.0,
+        "julia": 1.0,
+        "key": "erased_car_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "nilpotent_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 14.0,
+        "julia": 14.0,
+        "key": "der_O_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 64.0,
+        "julia": 64.0,
+        "key": "cl6_dim"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 8.0,
+        "julia": 8.0,
+        "key": "cl6_ideal_rank"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "vacuum_idempotent_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "max_total_number_residual"
+      },
+      {
+        "abs_diff": 0.0,
+        "jax": 0.0,
+        "julia": 0.0,
+        "key": "charge_lattice_residual"
+      }
+    ],
+    "status": "compared",
+    "stop_condition_fired": false,
+    "strict_divergence_gt_1e_6": [],
+    "within_1e_9": true
+  },
+  "peer_result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/results/mp2_charge_quantization_results.json",
+  "positive": {
+    "charges_are_integer_multiples_of_one_third": {
+      "charge_lattice_residual": 0.0,
+      "pass": true
+    },
+    "cl6_ladder_car_holds": {
+      "pass": true
+    },
+    "ideal_states_are_number_eigenstates": {
+      "integer_eigenvalue_residual": 0.0,
+      "pass": true
+    },
+    "owner_carrier_declared_and_used_load_bearing": {
+      "owner_julia_carrier": "load_bearing",
+      "pass": true
+    },
+    "required_quark_lepton_charge_values_present": {
+      "pass": true,
+      "required_charge_values": [
+        -1.0,
+        -0.3333333333333333,
+        0.0,
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "unique_charges": [
+        -1.0,
+        -0.666666666667,
+        -0.333333333333,
+        0.0,
+        0.333333333333,
+        0.666666666667,
+        1.0
+      ]
+    }
+  },
+  "promotion_allowed": false,
+  "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_charge_quantization_julia_results.json",
+  "result_summary": {
+    "all_pass": true,
+    "charges_integer_multiples": true,
+    "claim_ceiling": "Scratch diagnostic only: finite Cl(0,6)/octonion owner-carrier witness that the modeled ideal-state charge spectrum is made of integer ladder occupation eigenvalues divided by 3. No physics validation, Standard Model admission, M(C), Axis0, bridge, basin, manifold, mass, coupling, or formal admission claim.",
+    "from_algebra": true,
+    "local_all_pass": true,
+    "owner_carrier_load_bearing": true,
+    "parity_within_1e_9": true,
+    "unit_third": true
+  },
+  "schema": "SCRATCH_DIAGNOSTIC_RESULT_v1",
+  "shared_booleans": {
+    "all_sources_present": true,
+    "charges_integer_multiples": true,
+    "erased_owner_changes": true,
+    "formal_admission_allowed": false,
+    "from_algebra": true,
+    "jax_enable_x64": true,
+    "non_integer_control_breaks_quantization": true,
+    "owner_anchor_ok": true,
+    "owner_carrier_load_bearing": true,
+    "promotion_allowed": false,
+    "required_charges_present": true,
+    "unit_third": true
+  },
+  "shared_scalars": {
+    "car_residual": 0.0,
+    "charge_lattice_residual": 0.0,
+    "cl6_dim": 64.0,
+    "cl6_ideal_rank": 8.0,
+    "density_trace_residual": 0.0,
+    "der_O_dim": 14.0,
+    "erased_car_residual": 1.0,
+    "golden_weyl_psi_norm_residual": 0.0,
+    "integer_eigenvalue_residual": 0.0,
+    "max_mode_number_residual": 0.0,
+    "max_total_number_residual": 0.0,
+    "nilpotent_residual": 0.0,
+    "qit_total_substages_per_engine": 32.0,
+    "sedenion_zero_divisor_product_norm": 0.0,
+    "unique_charge_count": 7.0,
+    "vacuum_annihilation_residual": 0.0,
+    "vacuum_idempotent_residual": 0.0,
+    "weighted_charge_lattice_residual": 0.41421356237309515
+  },
+  "sim_class": "finite_formal_scout",
+  "sim_execution_kind": "classical",
+  "source_dependencies": {
+    "canonical_qit_engine_specs": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+    "clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+    "clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+    "density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+    "division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+    "golden_weyl": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+    "golden_weyl_jax_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_jax_receipt.json",
+    "golden_weyl_jax_snapshot": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+    "golden_weyl_julia_receipt": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+    "jax_clifford_algebra_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+    "jax_clifford_torus_nested_hopf_foliation": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+    "jax_density_matrix_spinor_lift": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+    "jax_division_algebra_ratchet_ladder": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+    "jax_octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+    "jax_sedenion_break_prelim": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_sedenion_break_prelim.py",
+    "octonion_G2_automorphism": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+    "sedenion_break": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break.jl",
+    "sedenion_break_prelim": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/mp2_charge_quantization_julia.jl",
+  "source_refs": {
+    "canonical_qit_engine_specs": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/ops/formal_scouts/canonical_qit_engine_specs.py",
+      "sha256": "0b8df7def1c274cf118995663abd9ec95886197d1dfb01de4519c19ca9351f83"
+    },
+    "clifford_algebra_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_algebra_ladder.jl",
+      "sha256": "3348fc3a5c35faabb1a7dc47c5ce8f81c0241d1e38b76e2c31f2fbedf0467fb8"
+    },
+    "clifford_torus_nested_hopf_foliation": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/clifford_torus_nested_hopf_foliation.jl",
+      "sha256": "21e8427cc228f23a6444dd4d0ef0d36ea929a77ece06b0a47162fbcb120d30af"
+    },
+    "density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/density_matrix_spinor_lift.jl",
+      "sha256": "75756e99f580da1432b33c3867e2542c4318008c778df92140509a15b276e424"
+    },
+    "division_algebra_ratchet_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/division_algebra_ratchet_ladder.jl",
+      "sha256": "337584fbddce4fcec781e0f33a637504b9c6a534a20da61fd89ec8a261e43878"
+    },
+    "golden_weyl": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia.jl",
+      "sha256": "ceecb913eeac13b08881a906a8e505d2e449257ed8c149ced47182f54a201070"
+    },
+    "golden_weyl_jax_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_jax_receipt.json",
+      "sha256": "e379da0aef0ecf6f0bcb0f50b84bb3bb6cbf9f80d78575b95a901a2e0cd9a492"
+    },
+    "golden_weyl_jax_snapshot": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/scratch_jax_snapshot_20260604/golden_weyl_jax.py",
+      "sha256": "2bad22d3ab60ece229a59e36bc75d247ea2ff5acea834868eb1c276cb4d590ab"
+    },
+    "golden_weyl_julia_receipt": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/golden_weyl_julia_receipt.json",
+      "sha256": "2193864486f0e5d9198ed589c7e44f2ee49b0457b23676a2d25a51b40415488d"
+    },
+    "jax_clifford_algebra_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_algebra_ladder.py",
+      "sha256": "52e136238e1d3f1bbc94f115eeaaa049f5157de89fe75fe35e9392600486ff77"
+    },
+    "jax_clifford_torus_nested_hopf_foliation": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_clifford_torus_nested_hopf_foliation.py",
+      "sha256": "a55594e5dbc0629d0b8419beed97811925f113c299c0b8b0a86f5912f9472a02"
+    },
+    "jax_density_matrix_spinor_lift": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_density_matrix_spinor_lift.py",
+      "sha256": "74a6aa286763d3ea5c5215cd2abc1e2c1329f446b7c872929e9abaa65a9d100a"
+    },
+    "jax_division_algebra_ratchet_ladder": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_division_algebra_ratchet_ladder.py",
+      "sha256": "9b77b29c3b4be15d95bc16613af7dc69bde0a52e0d5961d5e8373acddc6dea24"
+    },
+    "jax_octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_octonion_G2_automorphism.py",
+      "sha256": "941ac49956aedc74d920ac34aadba4b81d8f49c0eb0ec8d3f7d21e7e235e3f6a"
+    },
+    "jax_sedenion_break_prelim": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/jax_sedenion_break_prelim.py",
+      "sha256": "b05730f4aa2146eb2707c440f97d394a9697ede2eafba88218896c18a3f2ea24"
+    },
+    "octonion_G2_automorphism": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/octonion_G2_automorphism.jl",
+      "sha256": "362f7af4ca9b46fd623c9ee9f911dd0abfd94058cd9c73920ae7d2ff37f74347"
+    },
+    "sedenion_break": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break.jl",
+      "sha256": "e2edeb045fb627c009cd4f486742f95008d9a59cc1647f71b720fbc2f257fcdf"
+    },
+    "sedenion_break_prelim": {
+      "exists": true,
+      "path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/sedenion_break_prelim.jl",
+      "sha256": "1d58801c3f3f4eb2c686b7a29bf83fa8aabe723d95e059e6df454c7aae076c83"
+    }
+  },
+  "stop_condition_fired": false,
+  "strict_stop_tol": 1.0e-6,
+  "tol": 1.0e-9,
+  "tool_integration_depth": {
+    "JAX jax.numpy x64": "load_bearing",
+    "Julia JSON/SHA/Dates": "supportive",
+    "Julia LinearAlgebra ComplexF64": "load_bearing",
+    "canonical_qit_engine_specs.py": "supportive",
+    "owner_julia_carrier": "load_bearing"
+  },
+  "tool_manifest": {
+    "JAX jax.numpy x64": {
+      "reason": "load-bearing peer backend parity over the same finite carrier values",
+      "tried": true,
+      "used": true
+    },
+    "Julia JSON/SHA/Dates": {
+      "reason": "supportive serialization, source hashes, and timestamps only",
+      "tried": true,
+      "used": true
+    },
+    "Julia LinearAlgebra ComplexF64": {
+      "reason": "load-bearing finite Cl(6) multivector algebra, ladder CAR, ideal states, charge eigenvalues, controls, and parity scalars",
+      "tried": true,
+      "used": true
+    },
+    "canonical_qit_engine_specs.py": {
+      "reason": "supportive source-native schedule/operator anchor; not the source of the charge eigenvalues",
+      "tried": true,
+      "used": true
+    },
+    "owner_julia_carrier": {
+      "reason": "load-bearing owner carrier source set; Cl(6) ladder and octonion/G2 anchors are required and erasing the carrier changes the result",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": [
+    "scratch diagnostic by request",
+    "finite Cl(6) ideal-state witness only",
+    "no formal theorem prover layer",
+    "no masses, couplings, M(C), Axis0, bridge, basin, manifold, or Standard Model admission"
+  ]
+}

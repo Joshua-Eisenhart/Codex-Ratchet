@@ -1,0 +1,7383 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "QuantumOptics": "load_bearing",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "hashlib": "supportive",
+    "jax": "load_bearing",
+    "jax.numpy": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "TOOL_MANIFEST": {
+    "QuantumOptics": {
+      "reason": "load-bearing Julia sidecar Pauli/channel basis and independent Choi/survival mirror",
+      "tried": true,
+      "used": true
+    },
+    "Z3": {
+      "reason": "load-bearing Julia-side computed identity proof control",
+      "tried": true,
+      "used": true
+    },
+    "cvc5": {
+      "reason": "load-bearing independent computed battery identity check with erased-flip control",
+      "tried": true,
+      "used": true
+    },
+    "hashlib": {
+      "reason": "supportive parent/source/result/PIN hashing",
+      "tried": true,
+      "used": true
+    },
+    "jax": {
+      "reason": "load-bearing Choi matrix eigenvalue computation for CPTP validity rows",
+      "tried": true,
+      "used": true
+    },
+    "jax.numpy": {
+      "reason": "load-bearing complex matrix arithmetic for normalized Choi positivity",
+      "tried": true,
+      "used": true
+    },
+    "json": {
+      "reason": "supportive deterministic result serialization",
+      "tried": true,
+      "used": true
+    },
+    "pathlib": {
+      "reason": "supportive deterministic path binding",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact/rational affine, fixed-row, commutator, and row-signature calculations",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "load-bearing computed battery identity check with erased-flip control",
+      "tried": true,
+      "used": true
+    }
+  },
+  "all_pass": true,
+  "alternative_sets": {
+    "A_y_frame": [
+      {
+        "M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "dephase_y",
+        "operator": "D_y",
+        "slot": 0
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "dephase_x",
+        "operator": "D_x",
+        "slot": 1
+      },
+      {
+        "M": [
+          [
+            "0",
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "-1",
+            "0",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_y",
+        "operator": "R_y",
+        "slot": 2
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_x",
+        "operator": "R_x",
+        "slot": 3
+      }
+    ],
+    "B_depolarizing": [
+      {
+        "M": [
+          [
+            "7/10",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "depolarizing_isotropic",
+        "operator": "Depol",
+        "slot": 0
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "dephase_x",
+        "operator": "D_x",
+        "slot": 1
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_x",
+        "operator": "R_x",
+        "slot": 2
+      },
+      {
+        "M": [
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_z",
+        "operator": "R_z",
+        "slot": 3
+      }
+    ],
+    "C_amplitude_damping": [
+      {
+        "M": [
+          [
+            "0.836660026534",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0.836660026534",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "3/10"
+        ],
+        "family": "amplitude_damping_nonunital",
+        "operator": "AD_z0",
+        "slot": 0
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "7/10",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "7/10"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "dephase_x",
+        "operator": "D_x",
+        "slot": 1
+      },
+      {
+        "M": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_x",
+        "operator": "R_x",
+        "slot": 2
+      },
+      {
+        "M": [
+          [
+            "0",
+            "-1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "rotation_z",
+        "operator": "R_z",
+        "slot": 3
+      }
+    ],
+    "D_random_hermitian": [
+      {
+        "M": [
+          [
+            "1/14",
+            "-0.65892658288",
+            "0.748808198111"
+          ],
+          [
+            "0.944640868594",
+            "2/7",
+            "0.161310186659"
+          ],
+          [
+            "-0.320236769539",
+            "0.695832670484",
+            "9/14"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "random_hermitian_unitary",
+        "operator": "U_rand_0",
+        "slot": 0
+      },
+      {
+        "M": [
+          [
+            "1/14",
+            "-0.65892658288",
+            "0.748808198111"
+          ],
+          [
+            "0.944640868594",
+            "2/7",
+            "0.161310186659"
+          ],
+          [
+            "-0.320236769539",
+            "0.695832670484",
+            "9/14"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "random_hermitian_unitary",
+        "operator": "U_rand_1",
+        "slot": 1
+      },
+      {
+        "M": [
+          [
+            "1/14",
+            "-0.65892658288",
+            "0.748808198111"
+          ],
+          [
+            "0.944640868594",
+            "2/7",
+            "0.161310186659"
+          ],
+          [
+            "-0.320236769539",
+            "0.695832670484",
+            "9/14"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "random_hermitian_unitary",
+        "operator": "U_rand_2",
+        "slot": 2
+      },
+      {
+        "M": [
+          [
+            "1/14",
+            "-0.65892658288",
+            "0.748808198111"
+          ],
+          [
+            "0.944640868594",
+            "2/7",
+            "0.161310186659"
+          ],
+          [
+            "-0.320236769539",
+            "0.695832670484",
+            "9/14"
+          ]
+        ],
+        "c": [
+          "0",
+          "0",
+          "0"
+        ],
+        "family": "random_hermitian_unitary",
+        "operator": "U_rand_3",
+        "slot": 3
+      }
+    ]
+  },
+  "battery_rows": {
+    "A_y_frame": {
+      "N01_order_structure": {
+        "N01_order_gap": 2,
+        "computed_gap_expression": "abs(len(shell-preserving slots that descend)-len(z-quotient slots preserving interval))",
+        "quotient_then_restrict_count": 2,
+        "quotient_then_restrict_slots": [
+          0,
+          1
+        ],
+        "restrict_then_quotient_count": 0,
+        "restrict_then_quotient_slots": []
+      },
+      "battery_signature_sha256": "de11db3e1ecfde55d281a936ba11c95d56b75e840ebe075b7fb73bde06946dda",
+      "commutator_structure": {
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_y",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_y",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_y",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_y",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_y",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_y",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_y",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_y",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_y",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_y",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_y",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_y",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_y",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_y",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "-1",
+                "-1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_y",
+            "right_slot": 0,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "-1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_y",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 3,
+            "zero_pinned": true
+          }
+        ],
+        "zero_signature": [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "cptp_choi_positivity": {
+        "all_cptp": true,
+        "rows": [
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_y",
+            "slot": 0,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_x",
+            "slot": 1,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -6.73112246716652e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_y",
+            "slot": 2,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -8.26104564709787e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_x",
+            "slot": 3,
+            "trace_preserving_residual": 0.0
+          }
+        ]
+      },
+      "exclusion_language": "excluded at z_probe_quotient_descent_mortality",
+      "first_failure_row": "z_probe_quotient_descent_mortality",
+      "fixed_axis_structure": {
+        "rows": [
+          {
+            "fixed_axes": [
+              "y"
+            ],
+            "fixed_axis_class": "axis:y",
+            "operator": "D_y",
+            "slot": 0,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "D_x",
+            "slot": 1,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "y"
+            ],
+            "fixed_axis_class": "axis:y",
+            "operator": "R_y",
+            "slot": 2,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "R_x",
+            "slot": 3,
+            "unital": true
+          }
+        ],
+        "slot_signature": [
+          "axis:y",
+          "axis:x",
+          "axis:y",
+          "axis:x"
+        ]
+      },
+      "operator_slots": [
+        {
+          "M": [
+            [
+              "7/10",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_y",
+          "operator": "D_y",
+          "slot": 0
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_x",
+          "operator": "D_x",
+          "slot": 1
+        },
+        {
+          "M": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "-1",
+              "0",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_y",
+          "operator": "R_y",
+          "slot": 2
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "-1"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_x",
+          "operator": "R_x",
+          "slot": 3
+        }
+      ],
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "set_id": "A_y_frame",
+      "shell_preservation_leakage": {
+        "rows": [
+          {
+            "family": "dephase_y",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "7/20"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-7/20"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_y",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 0
+          },
+          {
+            "family": "dephase_x",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "7/20"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-7/20"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_x",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 1
+          },
+          {
+            "family": "rotation_y",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_y",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 2
+          },
+          {
+            "family": "rotation_x",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_x",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 3
+          }
+        ],
+        "slot_signature": [
+          "leak",
+          "leak",
+          "preserve",
+          "preserve"
+        ]
+      },
+      "survives_same_battery_as_committed": false,
+      "z_probe_quotient_descent_mortality": {
+        "descended_slots": [
+          0,
+          1
+        ],
+        "excluded_slots": [
+          2,
+          3
+        ],
+        "rows": [
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_y",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 0,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_x",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 1,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "R_y",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 2,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "-1*x + 0*y + 0*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "R_x",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 3,
+            "witness_output_z": [
+              "1/2",
+              "-1/2"
+            ],
+            "z_output_formula": "0*x + 1*y + 0*z + 0"
+          }
+        ]
+      }
+    },
+    "B_depolarizing": {
+      "N01_order_structure": {
+        "N01_order_gap": 2,
+        "computed_gap_expression": "abs(len(shell-preserving slots that descend)-len(z-quotient slots preserving interval))",
+        "quotient_then_restrict_count": 3,
+        "quotient_then_restrict_slots": [
+          0,
+          1,
+          3
+        ],
+        "restrict_then_quotient_count": 1,
+        "restrict_then_quotient_slots": [
+          3
+        ]
+      },
+      "battery_signature_sha256": "ef66b76178798f5db04970821ff02fa526236d21d6190ba8da298bcaec966009",
+      "commutator_structure": {
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "Depol",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "Depol",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "Depol",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "Depol",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "Depol",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "Depol",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "Depol",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "Depol",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          }
+        ],
+        "zero_signature": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "cptp_choi_positivity": {
+        "all_cptp": true,
+        "rows": [
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.07500000000000001,
+            "normalized_choi_eigenvalues": [
+              "3/40",
+              "3/40",
+              "3/40",
+              "31/40"
+            ],
+            "operator": "Depol",
+            "slot": 0,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_x",
+            "slot": 1,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -8.26104564709787e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_x",
+            "slot": 2,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_z",
+            "slot": 3,
+            "trace_preserving_residual": 0.0
+          }
+        ]
+      },
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "fixed_axis_structure": {
+        "rows": [
+          {
+            "fixed_axes": [],
+            "fixed_axis_class": "origin_only_or_oblique_axis",
+            "operator": "Depol",
+            "slot": 0,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "D_x",
+            "slot": 1,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "R_x",
+            "slot": 2,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "z"
+            ],
+            "fixed_axis_class": "axis:z",
+            "operator": "R_z",
+            "slot": 3,
+            "unital": true
+          }
+        ],
+        "slot_signature": [
+          "origin_only_or_oblique_axis",
+          "axis:x",
+          "axis:x",
+          "axis:z"
+        ]
+      },
+      "operator_slots": [
+        {
+          "M": [
+            [
+              "7/10",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "depolarizing_isotropic",
+          "operator": "Depol",
+          "slot": 0
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_x",
+          "operator": "D_x",
+          "slot": 1
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "-1"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_x",
+          "operator": "R_x",
+          "slot": 2
+        },
+        {
+          "M": [
+            [
+              "0",
+              "-1",
+              "0"
+            ],
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_z",
+          "operator": "R_z",
+          "slot": 3
+        }
+      ],
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "set_id": "B_depolarizing",
+      "shell_preservation_leakage": {
+        "rows": [
+          {
+            "family": "depolarizing_isotropic",
+            "leak_count": 6,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "Depol",
+            "preserved_count": 0,
+            "preserved_points": [],
+            "preserves_fixed_purity_shell": false,
+            "slot": 0
+          },
+          {
+            "family": "dephase_x",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "7/20"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-7/20"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_x",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 1
+          },
+          {
+            "family": "rotation_x",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_x",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 2
+          },
+          {
+            "family": "rotation_z",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_z",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 3
+          }
+        ],
+        "slot_signature": [
+          "leak",
+          "leak",
+          "preserve",
+          "preserve"
+        ]
+      },
+      "survives_same_battery_as_committed": false,
+      "z_probe_quotient_descent_mortality": {
+        "descended_slots": [
+          0,
+          1,
+          3
+        ],
+        "excluded_slots": [
+          2
+        ],
+        "rows": [
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "Depol",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 0,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_x",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 1,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "R_x",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 2,
+            "witness_output_z": [
+              "1/2",
+              "-1/2"
+            ],
+            "z_output_formula": "0*x + 1*y + 0*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "R_z",
+            "quotient_map": "z -> 1*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 3,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 1*z + 0"
+          }
+        ]
+      }
+    },
+    "C_amplitude_damping": {
+      "N01_order_structure": {
+        "N01_order_gap": 1,
+        "computed_gap_expression": "abs(len(shell-preserving slots that descend)-len(z-quotient slots preserving interval))",
+        "quotient_then_restrict_count": 2,
+        "quotient_then_restrict_slots": [
+          1,
+          3
+        ],
+        "restrict_then_quotient_count": 1,
+        "restrict_then_quotient_slots": [
+          3
+        ]
+      },
+      "battery_signature_sha256": "388ca1766859959b2c0aa94b98eabda328b6afe93f46986cb000ab5765b2ee20",
+      "commutator_structure": {
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "AD_z0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 5.551115123125783e-17,
+            "right": "AD_z0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "9/100"
+            ],
+            "left": "AD_z0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.09,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "3/10",
+              "3/10"
+            ],
+            "left": "AD_z0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-0.136660026534"
+              ],
+              [
+                "0",
+                "-0.136660026534",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.1366600265340756,
+            "max_abs_shift": 0.3,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "AD_z0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "-9/100"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.09,
+            "right": "AD_z0",
+            "right_slot": 0,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "-3/10",
+              "-3/10"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0.136660026534"
+              ],
+              [
+                "0",
+                "0.136660026534",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.1366600265340756,
+            "max_abs_shift": 0.3,
+            "right": "AD_z0",
+            "right_slot": 0,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "AD_z0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          }
+        ],
+        "zero_signature": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "cptp_choi_positivity": {
+        "all_cptp": true,
+        "rows": [
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -3.526590784103438e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "AD_z0",
+            "slot": 0,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_x",
+            "slot": 1,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -8.26104564709787e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_x",
+            "slot": 2,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_z",
+            "slot": 3,
+            "trace_preserving_residual": 0.0
+          }
+        ]
+      },
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "fixed_axis_structure": {
+        "rows": [
+          {
+            "fixed_axes": [
+              "z"
+            ],
+            "fixed_axis_class": "axis:z",
+            "operator": "AD_z0",
+            "slot": 0,
+            "unital": false
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "D_x",
+            "slot": 1,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "R_x",
+            "slot": 2,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "z"
+            ],
+            "fixed_axis_class": "axis:z",
+            "operator": "R_z",
+            "slot": 3,
+            "unital": true
+          }
+        ],
+        "slot_signature": [
+          "axis:z",
+          "axis:x",
+          "axis:x",
+          "axis:z"
+        ]
+      },
+      "operator_slots": [
+        {
+          "M": [
+            [
+              "0.836660026534",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0.836660026534",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "3/10"
+          ],
+          "family": "amplitude_damping_nonunital",
+          "operator": "AD_z0",
+          "slot": 0
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_x",
+          "operator": "D_x",
+          "slot": 1
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "-1"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_x",
+          "operator": "R_x",
+          "slot": 2
+        },
+        {
+          "M": [
+            [
+              "0",
+              "-1",
+              "0"
+            ],
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_z",
+          "operator": "R_z",
+          "slot": 3
+        }
+      ],
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": true,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "set_id": "C_amplitude_damping",
+      "shell_preservation_leakage": {
+        "rows": [
+          {
+            "family": "amplitude_damping_nonunital",
+            "leak_count": 6,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0.418330013267",
+                  "0",
+                  "3/10"
+                ],
+                "output_norm2": "53/200"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-0.418330013267",
+                  "0",
+                  "3/10"
+                ],
+                "output_norm2": "53/200"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0.418330013267",
+                  "3/10"
+                ],
+                "output_norm2": "53/200"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-0.418330013267",
+                  "3/10"
+                ],
+                "output_norm2": "53/200"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "AD_z0",
+            "preserved_count": 0,
+            "preserved_points": [],
+            "preserves_fixed_purity_shell": false,
+            "slot": 0
+          },
+          {
+            "family": "dephase_x",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "7/20"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-7/20"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_x",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 1
+          },
+          {
+            "family": "rotation_x",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_x",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 2
+          },
+          {
+            "family": "rotation_z",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_z",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 3
+          }
+        ],
+        "slot_signature": [
+          "leak",
+          "leak",
+          "preserve",
+          "preserve"
+        ]
+      },
+      "survives_same_battery_as_committed": false,
+      "z_probe_quotient_descent_mortality": {
+        "descended_slots": [
+          0,
+          1,
+          3
+        ],
+        "excluded_slots": [
+          2
+        ],
+        "rows": [
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "AD_z0",
+            "quotient_map": "z -> 7/10*z + 3/10",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 0,
+            "witness_output_z": [
+              "3/10",
+              "3/10"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 3/10"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_x",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 1,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "R_x",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 2,
+            "witness_output_z": [
+              "1/2",
+              "-1/2"
+            ],
+            "z_output_formula": "0*x + 1*y + 0*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "R_z",
+            "quotient_map": "z -> 1*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 3,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 1*z + 0"
+          }
+        ]
+      }
+    },
+    "D_random_hermitian": {
+      "N01_order_structure": {
+        "N01_order_gap": 0,
+        "computed_gap_expression": "abs(len(shell-preserving slots that descend)-len(z-quotient slots preserving interval))",
+        "quotient_then_restrict_count": 0,
+        "quotient_then_restrict_slots": [],
+        "restrict_then_quotient_count": 0,
+        "restrict_then_quotient_slots": []
+      },
+      "battery_signature_sha256": "be04c46e7e1581355355ab1cf8b49ec9d5f59ab65a37394adcff64b5cc7ae879",
+      "commutator_structure": {
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_1",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_2",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_0",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_3",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_1",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_1",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_1",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_1",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_2",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_1",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_3",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_2",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_2",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_1",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_2",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_2",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_2",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_3",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_3",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_0",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_3",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_1",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_3",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_2",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "U_rand_3",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "U_rand_3",
+            "right_slot": 3,
+            "zero_pinned": true
+          }
+        ],
+        "zero_signature": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "cptp_choi_positivity": {
+        "all_cptp": true,
+        "rows": [
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -1.0304488574193621e-16,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "U_rand_0",
+            "slot": 0,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -1.0304488574193621e-16,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "U_rand_1",
+            "slot": 1,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -1.0304488574193621e-16,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "U_rand_2",
+            "slot": 2,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -1.0304488574193621e-16,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "U_rand_3",
+            "slot": 3,
+            "trace_preserving_residual": 0.0
+          }
+        ]
+      },
+      "exclusion_language": "excluded at shell_preservation_leakage",
+      "first_failure_row": "shell_preservation_leakage",
+      "fixed_axis_structure": {
+        "rows": [
+          {
+            "fixed_axes": [],
+            "fixed_axis_class": "origin_only_or_oblique_axis",
+            "operator": "U_rand_0",
+            "slot": 0,
+            "unital": true
+          },
+          {
+            "fixed_axes": [],
+            "fixed_axis_class": "origin_only_or_oblique_axis",
+            "operator": "U_rand_1",
+            "slot": 1,
+            "unital": true
+          },
+          {
+            "fixed_axes": [],
+            "fixed_axis_class": "origin_only_or_oblique_axis",
+            "operator": "U_rand_2",
+            "slot": 2,
+            "unital": true
+          },
+          {
+            "fixed_axes": [],
+            "fixed_axis_class": "origin_only_or_oblique_axis",
+            "operator": "U_rand_3",
+            "slot": 3,
+            "unital": true
+          }
+        ],
+        "slot_signature": [
+          "origin_only_or_oblique_axis",
+          "origin_only_or_oblique_axis",
+          "origin_only_or_oblique_axis",
+          "origin_only_or_oblique_axis"
+        ]
+      },
+      "operator_slots": [
+        {
+          "M": [
+            [
+              "1/14",
+              "-0.65892658288",
+              "0.748808198111"
+            ],
+            [
+              "0.944640868594",
+              "2/7",
+              "0.161310186659"
+            ],
+            [
+              "-0.320236769539",
+              "0.695832670484",
+              "9/14"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "random_hermitian_unitary",
+          "operator": "U_rand_0",
+          "slot": 0
+        },
+        {
+          "M": [
+            [
+              "1/14",
+              "-0.65892658288",
+              "0.748808198111"
+            ],
+            [
+              "0.944640868594",
+              "2/7",
+              "0.161310186659"
+            ],
+            [
+              "-0.320236769539",
+              "0.695832670484",
+              "9/14"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "random_hermitian_unitary",
+          "operator": "U_rand_1",
+          "slot": 1
+        },
+        {
+          "M": [
+            [
+              "1/14",
+              "-0.65892658288",
+              "0.748808198111"
+            ],
+            [
+              "0.944640868594",
+              "2/7",
+              "0.161310186659"
+            ],
+            [
+              "-0.320236769539",
+              "0.695832670484",
+              "9/14"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "random_hermitian_unitary",
+          "operator": "U_rand_2",
+          "slot": 2
+        },
+        {
+          "M": [
+            [
+              "1/14",
+              "-0.65892658288",
+              "0.748808198111"
+            ],
+            [
+              "0.944640868594",
+              "2/7",
+              "0.161310186659"
+            ],
+            [
+              "-0.320236769539",
+              "0.695832670484",
+              "9/14"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "random_hermitian_unitary",
+          "operator": "U_rand_3",
+          "slot": 3
+        }
+      ],
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": false,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "set_id": "D_random_hermitian",
+      "shell_preservation_leakage": {
+        "rows": [
+          {
+            "family": "random_hermitian_unitary",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "U_rand_0",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/28",
+                  "0.472320434297",
+                  "-0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/28",
+                  "-0.472320434297",
+                  "0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-0.32946329144",
+                  "1/7",
+                  "0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0.32946329144",
+                  "-1/7",
+                  "-0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0.374404099055",
+                  "0.0806550933295",
+                  "9/28"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "-0.374404099055",
+                  "-0.0806550933295",
+                  "-9/28"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 0
+          },
+          {
+            "family": "random_hermitian_unitary",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "U_rand_1",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/28",
+                  "0.472320434297",
+                  "-0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/28",
+                  "-0.472320434297",
+                  "0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-0.32946329144",
+                  "1/7",
+                  "0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0.32946329144",
+                  "-1/7",
+                  "-0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0.374404099055",
+                  "0.0806550933295",
+                  "9/28"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "-0.374404099055",
+                  "-0.0806550933295",
+                  "-9/28"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 1
+          },
+          {
+            "family": "random_hermitian_unitary",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "U_rand_2",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/28",
+                  "0.472320434297",
+                  "-0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/28",
+                  "-0.472320434297",
+                  "0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-0.32946329144",
+                  "1/7",
+                  "0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0.32946329144",
+                  "-1/7",
+                  "-0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0.374404099055",
+                  "0.0806550933295",
+                  "9/28"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "-0.374404099055",
+                  "-0.0806550933295",
+                  "-9/28"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 2
+          },
+          {
+            "family": "random_hermitian_unitary",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "U_rand_3",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/28",
+                  "0.472320434297",
+                  "-0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/28",
+                  "-0.472320434297",
+                  "0.16011838477"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-0.32946329144",
+                  "1/7",
+                  "0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0.32946329144",
+                  "-1/7",
+                  "-0.347916335242"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0.374404099055",
+                  "0.0806550933295",
+                  "9/28"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "-0.374404099055",
+                  "-0.0806550933295",
+                  "-9/28"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 3
+          }
+        ],
+        "slot_signature": [
+          "preserve",
+          "preserve",
+          "preserve",
+          "preserve"
+        ]
+      },
+      "survives_same_battery_as_committed": false,
+      "z_probe_quotient_descent_mortality": {
+        "descended_slots": [],
+        "excluded_slots": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "rows": [
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "U_rand_0",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 0,
+            "witness_output_z": [
+              "0.347916335242",
+              "-0.347916335242"
+            ],
+            "z_output_formula": "-0.320236769539*x + 0.695832670484*y + 9/14*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "U_rand_1",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 1,
+            "witness_output_z": [
+              "0.347916335242",
+              "-0.347916335242"
+            ],
+            "z_output_formula": "-0.320236769539*x + 0.695832670484*y + 9/14*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "U_rand_2",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 2,
+            "witness_output_z": [
+              "0.347916335242",
+              "-0.347916335242"
+            ],
+            "z_output_formula": "-0.320236769539*x + 0.695832670484*y + 9/14*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "U_rand_3",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 3,
+            "witness_output_z": [
+              "0.347916335242",
+              "-0.347916335242"
+            ],
+            "z_output_formula": "-0.320236769539*x + 0.695832670484*y + 9/14*z + 0"
+          }
+        ]
+      }
+    },
+    "committed_anchor": {
+      "N01_order_structure": {
+        "N01_order_gap": 2,
+        "computed_gap_expression": "abs(len(shell-preserving slots that descend)-len(z-quotient slots preserving interval))",
+        "quotient_then_restrict_count": 3,
+        "quotient_then_restrict_slots": [
+          0,
+          1,
+          3
+        ],
+        "restrict_then_quotient_count": 1,
+        "restrict_then_quotient_slots": [
+          3
+        ]
+      },
+      "battery_signature_sha256": "966603435f212f0ba3969d30b3d8005fe59b9a757c590bd0bf79cb12a37cd7a3",
+      "commutator_structure": {
+        "ordered_pair_count": 16,
+        "rows": [
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_z",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "3/10"
+              ],
+              [
+                "0",
+                "3/10",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_z",
+            "left_slot": 0,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_z",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "D_x",
+            "left_slot": 1,
+            "linear_commutator": [
+              [
+                "0",
+                "-3/10",
+                "0"
+              ],
+              [
+                "-3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "-3/10"
+              ],
+              [
+                "0",
+                "-3/10",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_z",
+            "right_slot": 0,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_x",
+            "left_slot": 2,
+            "linear_commutator": [
+              [
+                "0",
+                "-1",
+                "-1"
+              ],
+              [
+                "-1",
+                "0",
+                "-1"
+              ],
+              [
+                "1",
+                "-1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "D_z",
+            "right_slot": 0,
+            "zero_pinned": true
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "3/10",
+                "0"
+              ],
+              [
+                "3/10",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.30000000000000004,
+            "max_abs_shift": 0.0,
+            "right": "D_x",
+            "right_slot": 1,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "-1",
+                "1",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 1.0,
+            "max_abs_shift": 0.0,
+            "right": "R_x",
+            "right_slot": 2,
+            "zero_pinned": false
+          },
+          {
+            "affine_shift_commutator": [
+              "0",
+              "0",
+              "0"
+            ],
+            "left": "R_z",
+            "left_slot": 3,
+            "linear_commutator": [
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "max_abs_entry": 0.0,
+            "max_abs_shift": 0.0,
+            "right": "R_z",
+            "right_slot": 3,
+            "zero_pinned": true
+          }
+        ],
+        "zero_signature": [
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "cptp_choi_positivity": {
+        "all_cptp": true,
+        "rows": [
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_z",
+            "slot": 0,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "3/20",
+              "17/20"
+            ],
+            "operator": "D_x",
+            "slot": 1,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": -8.26104564709787e-17,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_x",
+            "slot": 2,
+            "trace_preserving_residual": 0.0
+          },
+          {
+            "choi_positive": true,
+            "cptp": true,
+            "min_eigenvalue": 0.0,
+            "normalized_choi_eigenvalues": [
+              "0",
+              "0",
+              "0",
+              "1"
+            ],
+            "operator": "R_z",
+            "slot": 3,
+            "trace_preserving_residual": 0.0
+          }
+        ]
+      },
+      "exclusion_language": "co-survivor: indistinguishable from committed under this battery",
+      "first_failure_row": null,
+      "fixed_axis_structure": {
+        "rows": [
+          {
+            "fixed_axes": [
+              "z"
+            ],
+            "fixed_axis_class": "axis:z",
+            "operator": "D_z",
+            "slot": 0,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "D_x",
+            "slot": 1,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "x"
+            ],
+            "fixed_axis_class": "axis:x",
+            "operator": "R_x",
+            "slot": 2,
+            "unital": true
+          },
+          {
+            "fixed_axes": [
+              "z"
+            ],
+            "fixed_axis_class": "axis:z",
+            "operator": "R_z",
+            "slot": 3,
+            "unital": true
+          }
+        ],
+        "slot_signature": [
+          "axis:z",
+          "axis:x",
+          "axis:x",
+          "axis:z"
+        ]
+      },
+      "operator_slots": [
+        {
+          "M": [
+            [
+              "7/10",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_z",
+          "operator": "D_z",
+          "slot": 0
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "7/10",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "7/10"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "dephase_x",
+          "operator": "D_x",
+          "slot": 1
+        },
+        {
+          "M": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "-1"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_x",
+          "operator": "R_x",
+          "slot": 2
+        },
+        {
+          "M": [
+            [
+              "0",
+              "-1",
+              "0"
+            ],
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "c": [
+            "0",
+            "0",
+            "0"
+          ],
+          "family": "rotation_z",
+          "operator": "R_z",
+          "slot": 3
+        }
+      ],
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": true,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": true,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "set_id": "committed_anchor",
+      "shell_preservation_leakage": {
+        "rows": [
+          {
+            "family": "dephase_z",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-7/20",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_z",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 0
+          },
+          {
+            "family": "dephase_x",
+            "leak_count": 4,
+            "leak_witnesses": [
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-7/20",
+                  "0"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "7/20"
+                ],
+                "output_norm2": "49/400"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-7/20"
+                ],
+                "output_norm2": "49/400"
+              }
+            ],
+            "leakage_class": "leaks_shell",
+            "operator": "D_x",
+            "preserved_count": 2,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": false,
+            "slot": 1
+          },
+          {
+            "family": "rotation_x",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_x",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 2
+          },
+          {
+            "family": "rotation_z",
+            "leak_count": 0,
+            "leak_witnesses": [],
+            "leakage_class": "preserves_all_shell",
+            "operator": "R_z",
+            "preserved_count": 6,
+            "preserved_points": [
+              {
+                "input": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "1/2",
+                  "0"
+                ],
+                "output": [
+                  "-1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "-1/2",
+                  "0"
+                ],
+                "output": [
+                  "1/2",
+                  "0",
+                  "0"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "1/2"
+                ],
+                "output_norm2": "1/4"
+              },
+              {
+                "input": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output": [
+                  "0",
+                  "0",
+                  "-1/2"
+                ],
+                "output_norm2": "1/4"
+              }
+            ],
+            "preserves_fixed_purity_shell": true,
+            "slot": 3
+          }
+        ],
+        "slot_signature": [
+          "leak",
+          "leak",
+          "preserve",
+          "preserve"
+        ]
+      },
+      "survives_same_battery_as_committed": true,
+      "z_probe_quotient_descent_mortality": {
+        "descended_slots": [
+          0,
+          1,
+          3
+        ],
+        "excluded_slots": [
+          2
+        ],
+        "rows": [
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_z",
+            "quotient_map": "z -> 1*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 0,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 1*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "D_x",
+            "quotient_map": "z -> 7/10*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 1,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 7/10*z + 0"
+          },
+          {
+            "branch_mortality_reason": "z output depends on x or y, so same-z representatives split",
+            "descends_to_z_quotient": false,
+            "excluded_on_quotient": true,
+            "operator": "R_x",
+            "quotient_map": null,
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 2,
+            "witness_output_z": [
+              "1/2",
+              "-1/2"
+            ],
+            "z_output_formula": "0*x + 1*y + 0*z + 0"
+          },
+          {
+            "branch_mortality_reason": null,
+            "descends_to_z_quotient": true,
+            "excluded_on_quotient": false,
+            "operator": "R_z",
+            "quotient_map": "z -> 1*z + 0",
+            "same_class_witness_pair": [
+              [
+                "0",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "-1/2",
+                "0"
+              ]
+            ],
+            "slot": 3,
+            "witness_output_z": [
+              "0",
+              "0"
+            ],
+            "z_output_formula": "0*x + 0*y + 1*z + 0"
+          }
+        ]
+      }
+    }
+  },
+  "blocked_until": [
+    "independent audit",
+    "source-backed strict validator",
+    "stage gate if any consumer wants to cite it"
+  ],
+  "build_gates": {
+    "all_alternatives_evaluated": true,
+    "classification_ceiling": true,
+    "committed_anchor_reproduces_parent_byte_exact": true,
+    "cptp_computed_per_channel": true,
+    "deliberate_non_cptp_fail_fires": true,
+    "julia_python_survival_hash_match": true,
+    "julia_sidecar_pass": true,
+    "null_model_dies": true,
+    "one_to_one_tool_calls": true,
+    "parent_lineage_hash_bound": true,
+    "same_battery_rows_present": true,
+    "smt_positive_and_erased_flip": true
+  },
+  "canon_runtime": {
+    "artifact_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0",
+    "consumer_policy": "scratch_diagnostic only; no promotion/admission",
+    "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+    "proof_tag": "s4_alternative_operator_set_survival_discriminator_v0",
+    "semantic_owner": "julia"
+  },
+  "capability_receipts": {
+    "cvc5": {
+      "package_version": "1.3.3"
+    },
+    "jax": {
+      "devices": [
+        "cpu:0"
+      ],
+      "enable_x64": true,
+      "version": "0.10.1"
+    },
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "julia_version": "1.12.6",
+      "quantumoptics": {
+        "basis": "Spin(1/2)",
+        "sigmax_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmay_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmaz_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+      }
+    },
+    "python": {
+      "executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "version": "3.13.6"
+    },
+    "sympy": {
+      "version": "1.14.0"
+    },
+    "z3": {
+      "package_version": "4.16.0.0"
+    }
+  },
+  "claim": "Builder-only scratch discriminator: test whether alternative four-operator S4 sets are indistinguishable from the committed D_z,D_x,R_x,R_z set under the same battery plus explicit Choi positivity.",
+  "claim_ceiling": "scratch_diagnostic builder output only; no audit verdict, no promotion, no formal admission, no S5/S6 mirror-law claim.",
+  "claim_path_tools": [
+    "sympy",
+    "z3",
+    "cvc5",
+    "jax",
+    "QuantumOptics",
+    "Z3"
+  ],
+  "classification": "scratch_diagnostic",
+  "co_survivors_named": [],
+  "committed_anchor_reproduction": {
+    "N01_order_gap_matches_mode_parent": true,
+    "affine_rows_byte_exact": {
+      "D_x": true,
+      "D_z": true,
+      "R_x": true,
+      "R_z": true
+    },
+    "all_pass": true,
+    "committed_survives_own_battery": true,
+    "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+    "pin_sha256_matches_parent": true,
+    "quotient_mortality_matches_mode_parent": true,
+    "shell_signature_matches_mode_parent": true
+  },
+  "controls": {
+    "committed_anchor_byte_exact": {
+      "N01_order_gap_matches_mode_parent": true,
+      "affine_rows_byte_exact": {
+        "D_x": true,
+        "D_z": true,
+        "R_x": true,
+        "R_z": true
+      },
+      "all_pass": true,
+      "committed_survives_own_battery": true,
+      "pin_sha256": "0d7ae0b81d7a92ba490818bb37afe2204cb905fdc43d4d58f35387e64fb72566",
+      "pin_sha256_matches_parent": true,
+      "quotient_mortality_matches_mode_parent": true,
+      "shell_signature_matches_mode_parent": true
+    },
+    "deliberate_non_cptp_fail": {
+      "control": "Bloch scaling diag(1.2,1.2,1.2)",
+      "cptp_row": {
+        "choi_positive": false,
+        "cptp": false,
+        "min_eigenvalue": -0.05000000000000005,
+        "normalized_choi_eigenvalues": [
+          "-1/20",
+          "-1/20",
+          "-1/20",
+          "23/20"
+        ],
+        "operator": "bad_scale_1p2",
+        "slot": 0,
+        "trace_preserving_residual": 0.0
+      },
+      "dies_as_expected": true
+    },
+    "null_model_dies": {
+      "dies": true,
+      "first_failure_row": "shell_preservation_leakage",
+      "set_id": "D_random_hermitian"
+    }
+  },
+  "crossover_proofs": {
+    "cvc5": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "excluded": 4,
+        "survivors": 0,
+        "tested_sets": 4
+      },
+      "claim": "same computed survival partition identity as z3",
+      "derived_expression": "tested_sets - survivors - excluded",
+      "erased_flip_control_verdict": "unsat",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "cvc5",
+      "verdict": "unsat"
+    },
+    "julia_z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "excluded": 4,
+        "survivors": 0,
+        "tested_sets": 4
+      },
+      "erased_flip_control_verdict": "unsat",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "Z3.jl",
+      "verdict": "unsat"
+    },
+    "z3": {
+      "asserted_precomputed_boolean": false,
+      "bound_raw_values": {
+        "excluded": 4,
+        "survivors": 0,
+        "tested_sets": 4
+      },
+      "claim": "computed survival partition identity tested_sets - survivors - excluded = 0",
+      "derived_expression": "tested_sets - survivors - excluded",
+      "erased_flip_control": "excluded erased to 0 while equality is forced",
+      "erased_flip_control_verdict": "unsat",
+      "erased_flip_detected": true,
+      "load_bearing": true,
+      "ran": true,
+      "solver": "z3",
+      "verdict": "unsat"
+    }
+  },
+  "demotion_condition": "Any anchor mismatch, surviving null model, non-CPTP control survival, missing Choi row, or solver erasure non-flip demotes the packet.",
+  "divergence": {
+    "engine_values": {
+      "jax": 0.0,
+      "julia": 0.0
+    },
+    "julia_authoritative": true,
+    "max_divergence": 0.0,
+    "survival_matrix_sha256": "79079c93c089397ffad7845674b6dbaecd1f852fd0932f4e7dd291bb0811556f"
+  },
+  "engine_contract": {
+    "lanes": [
+      "julia",
+      "jax"
+    ],
+    "mode": "julia_jax_builder_packet",
+    "omitted_lanes": {
+      "pytorch": "not required by request; Choi/CPTP and survival battery covered by JAX plus Julia sidecar"
+    }
+  },
+  "engines": {
+    "jax": {
+      "aligned_packages_load_bearing": [
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "jax",
+        "jax.numpy",
+        "sympy",
+        "z3",
+        "cvc5",
+        "json",
+        "hashlib",
+        "pathlib"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/results/geo_s4_alternative_operator_sets_v0_envelope_results.json",
+      "result_sha256": "4199f3e6205758cd92c1167f9e6163970abb0a4b928d990664b96d5664680bdc",
+      "role_id": "python_jax_sympy_smt_alternative_operator_builder",
+      "source_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/geo_s4_alternative_operator_sets_v0.py",
+      "source_sha256": "f3af3a1b6ae8a6cfccc495d41a94b6632f6629c7fff716081ad3fc8512acea00",
+      "tool_calls": [
+        {
+          "boundary_case": "pin q=3/10 and pi/2 rotations",
+          "demotion_condition": "demote if rows become label-only status assertions",
+          "gates": [
+            "same_battery_rows_present",
+            "committed_anchor_reproduces_parent_byte_exact"
+          ],
+          "input_object": "candidate affine Bloch matrices",
+          "load_bearing": true,
+          "negative/erased_control": "depolarizing/amplitude/random sets fail at named rows",
+          "output_object": "fixed-axis, commutator, and exact row signatures",
+          "positive_case": "committed S4 anchor reproduces fixed axes and N01 zero pattern",
+          "qualified_api/function": "sympy.Matrix/sympy.simplify",
+          "tool": "sympy"
+        },
+        {
+          "boundary_case": "normalized Choi convention trace=1",
+          "demotion_condition": "demote if CPTP is inferred from labels instead of Choi eigenvalues",
+          "gates": [
+            "cptp_computed_per_channel",
+            "deliberate_non_cptp_fail_fires"
+          ],
+          "input_object": "normalized Choi matrix per channel",
+          "load_bearing": true,
+          "negative/erased_control": "diag(1.2,1.2,1.2) non-CPTP control has negative Choi eigenvalue",
+          "output_object": "per-channel Choi eigenvalues and CPTP booleans",
+          "positive_case": "committed and physical alternatives have nonnegative Choi spectra",
+          "qualified_api/function": "jax.numpy.linalg.eigvalsh",
+          "tool": "jax"
+        },
+        {
+          "boundary_case": "four alternative sets only",
+          "demotion_condition": "demote if solver binds a precomputed boolean",
+          "gates": [
+            "smt_positive_and_erased_flip"
+          ],
+          "input_object": "computed survival partition counts",
+          "load_bearing": true,
+          "negative/erased_control": "excluded erased to 0 fails",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "excluded": 4,
+              "survivors": 0,
+              "tested_sets": 4
+            },
+            "claim": "computed survival partition identity tested_sets - survivors - excluded = 0",
+            "derived_expression": "tested_sets - survivors - excluded",
+            "erased_flip_control": "excluded erased to 0 while equality is forced",
+            "erased_flip_control_verdict": "unsat",
+            "erased_flip_detected": true,
+            "load_bearing": true,
+            "ran": true,
+            "solver": "z3",
+            "verdict": "unsat"
+          },
+          "positive_case": "tested-survivors-excluded=0 is unsat to violate",
+          "qualified_api/function": "z3.Solver.check",
+          "tool": "z3"
+        },
+        {
+          "boundary_case": "QF_LIA integer identity",
+          "demotion_condition": "demote if cvc5 disagrees with z3",
+          "gates": [
+            "smt_positive_and_erased_flip"
+          ],
+          "input_object": "same computed survival partition counts",
+          "load_bearing": true,
+          "negative/erased_control": "excluded erased to 0 fails",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "excluded": 4,
+              "survivors": 0,
+              "tested_sets": 4
+            },
+            "claim": "same computed survival partition identity as z3",
+            "derived_expression": "tested_sets - survivors - excluded",
+            "erased_flip_control_verdict": "unsat",
+            "erased_flip_detected": true,
+            "load_bearing": true,
+            "ran": true,
+            "solver": "cvc5",
+            "verdict": "unsat"
+          },
+          "positive_case": "agrees with z3",
+          "qualified_api/function": "cvc5.Solver.checkSat",
+          "tool": "cvc5"
+        }
+      ],
+      "tool_integration_depth": {
+        "cvc5": "load_bearing",
+        "hashlib": "supportive",
+        "jax": "load_bearing",
+        "jax.numpy": "load_bearing",
+        "json": "supportive",
+        "pathlib": "supportive",
+        "sympy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "cvc5": {
+          "reason": "load-bearing independent computed battery identity check with erased-flip control",
+          "tried": true,
+          "used": true
+        },
+        "hashlib": {
+          "reason": "supportive parent/source/result/PIN hashing",
+          "tried": true,
+          "used": true
+        },
+        "jax": {
+          "reason": "load-bearing Choi matrix eigenvalue computation for CPTP validity rows",
+          "tried": true,
+          "used": true
+        },
+        "jax.numpy": {
+          "reason": "load-bearing complex matrix arithmetic for normalized Choi positivity",
+          "tried": true,
+          "used": true
+        },
+        "json": {
+          "reason": "supportive deterministic result serialization",
+          "tried": true,
+          "used": true
+        },
+        "pathlib": {
+          "reason": "supportive deterministic path binding",
+          "tried": true,
+          "used": true
+        },
+        "sympy": {
+          "reason": "load-bearing exact/rational affine, fixed-row, commutator, and row-signature calculations",
+          "tried": true,
+          "used": true
+        },
+        "z3": {
+          "reason": "load-bearing computed battery identity check with erased-flip control",
+          "tried": true,
+          "used": true
+        }
+      }
+    },
+    "julia": {
+      "aligned_packages_load_bearing": [
+        "QuantumOptics",
+        "Z3"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "packages_used": [
+        "QuantumOptics",
+        "Z3",
+        "LinearAlgebra",
+        "JSON",
+        "SHA",
+        "Dates"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/results/geo_s4_alternative_operator_sets_v0_julia_results.json",
+      "result_sha256": "c29b0dccdd743ec945b393bc255271494498b5e7e54be12936062bc97cbeba9c",
+      "role_id": "julia_quantumoptics_z3_alternative_operator_mirror",
+      "source_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/geo_s4_alternative_operator_sets_v0_julia.jl",
+      "source_sha256": "8739d95299159e78807494e3220264c56add24a6c4d6a8c86ce32a9b362744d2",
+      "tool_calls": [
+        {
+          "boundary_case": "same slot-order sets as Python",
+          "demotion_condition": "demote if package route is absent",
+          "gates": [
+            "julia_sidecar_pass"
+          ],
+          "input_object": "one-qubit Pauli basis",
+          "negative/erased_control": "survival matrix excludes random and nonmatching alternatives",
+          "output_object": {
+            "basis": "Spin(1/2)",
+            "sigmax_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+            "sigmay_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+            "sigmaz_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+          },
+          "positive_case": "basis operators construct under carrier project",
+          "qualified_api/function": "QuantumOptics.SpinBasis/sigmax/sigmay/sigmaz",
+          "tool": "QuantumOptics"
+        },
+        {
+          "boundary_case": "four alternatives",
+          "demotion_condition": "demote if proof binds a boolean",
+          "gates": [
+            "julia_sidecar_pass"
+          ],
+          "input_object": "survival partition counts",
+          "negative/erased_control": "excluded erased to zero fails",
+          "output_object": {
+            "asserted_precomputed_boolean": false,
+            "bound_raw_values": {
+              "excluded": 4,
+              "survivors": 0,
+              "tested_sets": 4
+            },
+            "erased_flip_control_verdict": "unsat",
+            "erased_flip_detected": true,
+            "load_bearing": true,
+            "ran": true,
+            "solver": "Z3.jl",
+            "verdict": "unsat"
+          },
+          "positive_case": "partition identity violation unsat",
+          "qualified_api/function": "Z3.Solver/Z3.add/Z3.check",
+          "tool": "Z3"
+        }
+      ],
+      "tool_integration_depth": {
+        "JSON": "supportive",
+        "LinearAlgebra": "load_bearing",
+        "QuantumOptics": "load_bearing",
+        "SHA": "supportive",
+        "Z3": "load_bearing"
+      },
+      "tool_manifest": {
+        "JSON": {
+          "reason": "supportive result serialization",
+          "tried": true,
+          "used": true
+        },
+        "LinearAlgebra": {
+          "reason": "load-bearing eigenvalue and matrix arithmetic for Choi positivity",
+          "tried": true,
+          "used": true
+        },
+        "QuantumOptics": {
+          "reason": "load-bearing Pauli basis route for independent affine/Choi survival mirror",
+          "tried": true,
+          "used": true
+        },
+        "SHA": {
+          "reason": "supportive source and survival hashing",
+          "tried": true,
+          "used": true
+        },
+        "Z3": {
+          "reason": "load-bearing Julia survival partition identity proof with erased control",
+          "tried": true,
+          "used": true
+        }
+      }
+    }
+  },
+  "foreign_runtime_manifest": {
+    "julia": {
+      "active_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
+      "julia_version": "1.12.6",
+      "quantumoptics": {
+        "basis": "Spin(1/2)",
+        "sigmax_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmay_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}",
+        "sigmaz_type": "Operator{SpinBasis{1//2, Int64}, SpinBasis{1//2, Int64}, SparseArrays.SparseMatrixCSC{ComplexF64, Int64}}"
+      }
+    },
+    "python": {
+      "executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+      "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+      "version": "3.13.6"
+    },
+    "tensor_exchange": "none_no_cross_engine_tensor_exchange"
+  },
+  "formal_admission_allowed": false,
+  "generated_at": "2026-06-11T09:21:49Z",
+  "name": "S4 Alternative Operator Sets Uniqueness Discriminator",
+  "next_lego_target": "If needed, split one failed alternative row into a micro receipt for a single operator/function surface.",
+  "object_id": "geo_s4_alternative_operator_sets_v0",
+  "out_of_scope": [
+    "audit_verdict.md",
+    "git add",
+    "git commit",
+    "S5 terrain mirror admission",
+    "physics or bridge claims"
+  ],
+  "parent_lineage": {
+    "system_v6/receipts/stack_uniqueness_map_20260611.md": "655b7a52f6cebde2a8db7cddaf267929f25acd9a297b918596516854ad74ae82",
+    "system_v6/sims/geo_s3_s4_mode_sweep_v0/results/geo_s3_s4_mode_sweep_v0_envelope_results.json": "55c098fd6a6d1ddaa0e5257f9429a41a56d1cdd17e5fd4f2998ea2f76ae4e889",
+    "system_v6/sims/geo_s4_operator_stage_v0/results/geo_s4_operator_stage_v0_envelope_results.json": "e93d2d7e3cd49eb2d4d80d2665c0bed6acc73334e85379bac8100316a4f2c661",
+    "system_v6/sims/terrain_exact_mirror_finder_v0/results/terrain_exact_mirror_finder_v0_envelope_results.json": "8f39bfd83253e0d847d95c268da9bb7f5d86ffb0953ede963c185bc3ee449b06"
+  },
+  "pin_sha256": "be1bd647093295559ca91cfcd3b1b0fb6299cec9c6ec207c069b7e1d4cca027c",
+  "pin_spec": "geo_s4_alternative_operator_sets_v0|parents=geo_s4_operator_stage_v0,geo_s3_s4_mode_sweep_v0,terrain_exact_mirror_finder_v0|committed_anchor=(D_z,D_x,R_x,R_z)|alternatives=A_y_frame,B_depolarizing,C_amplitude_damping,D_random_hermitian_unitary|null_and_non_cptp_controls|classification=scratch_diagnostic|promotion_allowed=false|formal_admission_allowed=false",
+  "promotion_allowed": false,
+  "promotion_condition": "Not promotion-eligible from this packet; would need independent audit and stage-specific admission gates.",
+  "result_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/results/geo_s4_alternative_operator_sets_v0_envelope_results.json",
+  "schema_version": "three_engine_sim_result_v1",
+  "seeds": {
+    "global_seed": 20260611,
+    "random_hermitian_axis_seed": 20260611
+  },
+  "sim_id": "geo_s4_alternative_operator_sets_v0",
+  "source_path": "system_v6/sims/geo_s4_alternative_operator_sets_v0/geo_s4_alternative_operator_sets_v0.py",
+  "source_sha256": "f3af3a1b6ae8a6cfccc495d41a94b6632f6629c7fff716081ad3fc8512acea00",
+  "survival_matrix": {
+    "A_y_frame": {
+      "exclusion_language": "excluded at z_probe_quotient_descent_mortality",
+      "first_failure_row": "z_probe_quotient_descent_mortality",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "survives": false
+    },
+    "B_depolarizing": {
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "survives": false
+    },
+    "C_amplitude_damping": {
+      "exclusion_language": "excluded at commutator_N01_structure",
+      "first_failure_row": "commutator_N01_structure",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": true,
+        "shell_preservation_leakage": true,
+        "z_probe_quotient_descent_mortality": true
+      },
+      "survives": false
+    },
+    "D_random_hermitian": {
+      "exclusion_language": "excluded at shell_preservation_leakage",
+      "first_failure_row": "shell_preservation_leakage",
+      "row_passes_vs_committed": {
+        "commutator_N01_structure": false,
+        "cptp_choi_positivity": true,
+        "fixed_axis_structure": false,
+        "shell_preservation_leakage": false,
+        "z_probe_quotient_descent_mortality": false
+      },
+      "survives": false
+    }
+  },
+  "tool_calls": [
+    {
+      "boundary_case": "pin q=3/10 and pi/2 rotations",
+      "demotion_condition": "demote if rows become label-only status assertions",
+      "gates": [
+        "same_battery_rows_present",
+        "committed_anchor_reproduces_parent_byte_exact"
+      ],
+      "input_object": "candidate affine Bloch matrices",
+      "load_bearing": true,
+      "negative/erased_control": "depolarizing/amplitude/random sets fail at named rows",
+      "output_object": "fixed-axis, commutator, and exact row signatures",
+      "positive_case": "committed S4 anchor reproduces fixed axes and N01 zero pattern",
+      "qualified_api/function": "sympy.Matrix/sympy.simplify",
+      "tool": "sympy"
+    },
+    {
+      "boundary_case": "normalized Choi convention trace=1",
+      "demotion_condition": "demote if CPTP is inferred from labels instead of Choi eigenvalues",
+      "gates": [
+        "cptp_computed_per_channel",
+        "deliberate_non_cptp_fail_fires"
+      ],
+      "input_object": "normalized Choi matrix per channel",
+      "load_bearing": true,
+      "negative/erased_control": "diag(1.2,1.2,1.2) non-CPTP control has negative Choi eigenvalue",
+      "output_object": "per-channel Choi eigenvalues and CPTP booleans",
+      "positive_case": "committed and physical alternatives have nonnegative Choi spectra",
+      "qualified_api/function": "jax.numpy.linalg.eigvalsh",
+      "tool": "jax"
+    },
+    {
+      "boundary_case": "four alternative sets only",
+      "demotion_condition": "demote if solver binds a precomputed boolean",
+      "gates": [
+        "smt_positive_and_erased_flip"
+      ],
+      "input_object": "computed survival partition counts",
+      "load_bearing": true,
+      "negative/erased_control": "excluded erased to 0 fails",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "excluded": 4,
+          "survivors": 0,
+          "tested_sets": 4
+        },
+        "claim": "computed survival partition identity tested_sets - survivors - excluded = 0",
+        "derived_expression": "tested_sets - survivors - excluded",
+        "erased_flip_control": "excluded erased to 0 while equality is forced",
+        "erased_flip_control_verdict": "unsat",
+        "erased_flip_detected": true,
+        "load_bearing": true,
+        "ran": true,
+        "solver": "z3",
+        "verdict": "unsat"
+      },
+      "positive_case": "tested-survivors-excluded=0 is unsat to violate",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "QF_LIA integer identity",
+      "demotion_condition": "demote if cvc5 disagrees with z3",
+      "gates": [
+        "smt_positive_and_erased_flip"
+      ],
+      "input_object": "same computed survival partition counts",
+      "load_bearing": true,
+      "negative/erased_control": "excluded erased to 0 fails",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "excluded": 4,
+          "survivors": 0,
+          "tested_sets": 4
+        },
+        "claim": "same computed survival partition identity as z3",
+        "derived_expression": "tested_sets - survivors - excluded",
+        "erased_flip_control_verdict": "unsat",
+        "erased_flip_detected": true,
+        "load_bearing": true,
+        "ran": true,
+        "solver": "cvc5",
+        "verdict": "unsat"
+      },
+      "positive_case": "agrees with z3",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_case": "same slot-order candidate sets",
+      "demotion_condition": "demote if Julia reads peer result or does not reproduce survival hash",
+      "gates": [
+        "julia_sidecar_pass",
+        "julia_python_survival_hash_match"
+      ],
+      "input_object": "Julia carrier Pauli basis for independent alternative-set mirror",
+      "load_bearing": true,
+      "negative/erased_control": "Julia Z3 identity erasure detects partition failure",
+      "output_object": {
+        "julia_result": "system_v6/sims/geo_s4_alternative_operator_sets_v0/results/geo_s4_alternative_operator_sets_v0_julia_results.json",
+        "survival_matrix_sha256": "8063dba4c14a0589595ec3d373359258927004eb54cd644ee77c99bc9a566e57"
+      },
+      "positive_case": "Julia survival matrix matches Python hash",
+      "qualified_api/function": "QuantumOptics.sigmax/sigmay/sigmaz",
+      "tool": "QuantumOptics"
+    },
+    {
+      "boundary_case": "four alternatives",
+      "demotion_condition": "demote if Julia proof binds a boolean",
+      "gates": [
+        "julia_sidecar_pass"
+      ],
+      "input_object": "Julia survival partition counts",
+      "load_bearing": true,
+      "negative/erased_control": "excluded erased to 0 fails",
+      "output_object": {
+        "asserted_precomputed_boolean": false,
+        "bound_raw_values": {
+          "excluded": 4,
+          "survivors": 0,
+          "tested_sets": 4
+        },
+        "erased_flip_control_verdict": "unsat",
+        "erased_flip_detected": true,
+        "load_bearing": true,
+        "ran": true,
+        "solver": "Z3.jl",
+        "verdict": "unsat"
+      },
+      "positive_case": "Julia partition identity violation is unsat",
+      "qualified_api/function": "Z3.Solver/Z3.check",
+      "tool": "Z3"
+    }
+  ],
+  "uniqueness_answer": {
+    "anti_collapse": "No tested alternative is indistinguishable from the committed set under the declared battery.",
+    "committed_pattern_unique_among_tested_alternatives": true,
+    "shared_with": []
+  }
+}

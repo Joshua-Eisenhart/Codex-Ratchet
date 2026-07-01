@@ -1025,27 +1025,32 @@ def derive_result_path(sim_path: Path, override: Path | None) -> Path:
     Sims write `<stem>_results.json` in one of three layouts: next to the sim
     file (system_v4/probes), in a sibling results/ dir (system_v5/legos,
     system_v5/ops/formal_scouts), or under a2_state/sim_results/ (SIM_TEMPLATE
-    probes). An existing result file wins, checked in that order. With no
-    existing file, a sibling results/ dir is preferred only when it already
-    holds *_results.json files — system_v4/probes has a results/ dir that is
-    not a sim-results dir, and its sibling-writing sims must keep the sibling
-    default.
+    probes). Formal scouts additionally strip their `sim_` filename prefix in
+    the result name (sim_foo_probe.py -> foo_probe_results.json). An existing
+    result file wins, exact stem before stripped stem, sibling before
+    results/ before a2_state. With no existing file, a sibling results/ dir
+    is preferred only when it already holds *_results.json files —
+    system_v4/probes has a results/ dir that is not a sim-results dir, and
+    its sibling-writing sims must keep the sibling default.
     """
 
     if override is not None:
         return override.resolve()
-    result_name = f"{sim_path.stem}_results.json"
+    stems = [sim_path.stem]
+    if sim_path.stem.startswith("sim_"):
+        stems.append(sim_path.stem[len("sim_"):])
     candidates = [
-        sim_path.with_name(result_name),
-        sim_path.parent / "results" / result_name,
-        sim_path.parent / "a2_state" / "sim_results" / result_name,
+        parent / f"{stem}_results.json"
+        for parent in (sim_path.parent, sim_path.parent / "results", sim_path.parent / "a2_state" / "sim_results")
+        for stem in stems
     ]
     for candidate in candidates:
         if candidate.exists():
             return candidate.resolve()
-    results_dir_candidate = candidates[1]
-    if results_dir_candidate.parent.is_dir() and any(results_dir_candidate.parent.glob("*_results.json")):
-        return results_dir_candidate.resolve()
+    results_dir = sim_path.parent / "results"
+    if results_dir.is_dir() and any(results_dir.glob("*_results.json")):
+        # Scout convention: sim_-prefixed sims write the stripped name.
+        return (results_dir / f"{stems[-1]}_results.json").resolve()
     return candidates[0].resolve()
 
 

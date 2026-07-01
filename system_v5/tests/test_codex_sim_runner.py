@@ -515,6 +515,28 @@ def test_derive_result_path_finds_a2_state_stem_named_result(tmp_path: Path) -> 
     assert runner.derive_result_path(sim_path, None) == existing.resolve()
 
 
+def test_derive_result_path_strips_scout_sim_prefix(tmp_path: Path) -> None:
+    runner = _load_runner()
+    sim_path = tmp_path / "sim_rosetta_probe.py"
+    sim_path.write_text("print('ok')\n", encoding="utf-8")
+    results_dir = tmp_path / "results"
+    results_dir.mkdir()
+    existing = results_dir / "rosetta_probe_results.json"
+    existing.write_text("{}\n", encoding="utf-8")
+
+    assert runner.derive_result_path(sim_path, None) == existing.resolve()
+
+    # Exact stem wins over the stripped stem when both exist.
+    exact = results_dir / "sim_rosetta_probe_results.json"
+    exact.write_text("{}\n", encoding="utf-8")
+    assert runner.derive_result_path(sim_path, None) == exact.resolve()
+
+    # Never-run scout in a real results dir falls back to the stripped name.
+    unrun = tmp_path / "sim_new_probe.py"
+    unrun.write_text("print('ok')\n", encoding="utf-8")
+    assert runner.derive_result_path(unrun, None) == (results_dir / "new_probe_results.json").resolve()
+
+
 def test_canonical_result_hash_ignores_wall_clock_timing_fields(tmp_path: Path) -> None:
     runner = _load_runner()
     a = tmp_path / "a.json"

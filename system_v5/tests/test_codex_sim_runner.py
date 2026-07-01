@@ -470,3 +470,85 @@ def test_model_quality_swarm_report_blocks_promotion_leak(tmp_path: Path) -> Non
     assert "bad_child:proposal_only_not_true" in report["boundary_errors"]
     assert "bad_child:promotion_allowed_not_false" in report["boundary_errors"]
     assert "bad_child:model_outputs_are_sim_evidence_not_false" in report["boundary_errors"]
+
+
+def test_derive_result_path_watches_lego_style_results_subdir(tmp_path: Path) -> None:
+    runner = _load_runner()
+    sim_path = tmp_path / "lego_sim.py"
+    sim_path.write_text("print('ok')\n", encoding="utf-8")
+    results_dir = tmp_path / "results"
+    results_dir.mkdir()
+    existing = results_dir / "lego_sim_results.json"
+    existing.write_text("{}\n", encoding="utf-8")
+
+    assert runner.derive_result_path(sim_path, None) == existing.resolve()
+
+    unrun_sim = tmp_path / "new_lego.py"
+    unrun_sim.write_text("print('ok')\n", encoding="utf-8")
+
+    assert runner.derive_result_path(unrun_sim, None) == (results_dir / "new_lego_results.json").resolve()
+
+
+def test_derive_result_path_keeps_sibling_default_and_override(tmp_path: Path) -> None:
+    runner = _load_runner()
+    sim_path = tmp_path / "probe_sim.py"
+    sim_path.write_text("print('ok')\n", encoding="utf-8")
+    results_dir = tmp_path / "results"
+    results_dir.mkdir()
+    (results_dir / "not_a_sim_result.json").write_text("{}\n", encoding="utf-8")
+
+    assert runner.derive_result_path(sim_path, None) == (tmp_path / "probe_sim_results.json").resolve()
+
+    override = tmp_path / "custom_results.json"
+    assert runner.derive_result_path(sim_path, override) == override.resolve()
+
+
+def test_derive_result_path_finds_a2_state_stem_named_result(tmp_path: Path) -> None:
+    runner = _load_runner()
+    sim_path = tmp_path / "sim_probe.py"
+    sim_path.write_text("print('ok')\n", encoding="utf-8")
+    sim_results_dir = tmp_path / "a2_state" / "sim_results"
+    sim_results_dir.mkdir(parents=True)
+    existing = sim_results_dir / "sim_probe_results.json"
+    existing.write_text("{}\n", encoding="utf-8")
+
+    assert runner.derive_result_path(sim_path, None) == existing.resolve()
+
+
+def test_canonical_result_hash_ignores_wall_clock_timing_fields(tmp_path: Path) -> None:
+    runner = _load_runner()
+    a = tmp_path / "a.json"
+    b = tmp_path / "b.json"
+    a.write_text(json.dumps({"summary": {"elapsed_seconds": 0.07, "all_pass": True}, "value": 1.2345}), encoding="utf-8")
+    b.write_text(json.dumps({"summary": {"elapsed_seconds": 0.03, "all_pass": True}, "value": 1.2345}), encoding="utf-8")
+
+    hash_a, stripped_a = runner.canonical_result_hash(a)
+    hash_b, stripped_b = runner.canonical_result_hash(b)
+
+    assert hash_a == hash_b
+    assert stripped_a == ["elapsed_seconds"]
+    assert stripped_b == ["elapsed_seconds"]
+
+
+def test_canonical_result_hash_still_detects_real_numeric_nondeterminism(tmp_path: Path) -> None:
+    runner = _load_runner()
+    a = tmp_path / "a.json"
+    b = tmp_path / "b.json"
+    a.write_text(json.dumps({"summary": {"elapsed_seconds": 0.07}, "value": 1.2345}), encoding="utf-8")
+    b.write_text(json.dumps({"summary": {"elapsed_seconds": 0.07}, "value": 9.9999}), encoding="utf-8")
+
+    hash_a, _ = runner.canonical_result_hash(a)
+    hash_b, _ = runner.canonical_result_hash(b)
+
+    assert hash_a != hash_b
+
+
+def test_canonical_result_hash_falls_back_to_byte_hash_for_non_json(tmp_path: Path) -> None:
+    runner = _load_runner()
+    bad = tmp_path / "bad.json"
+    bad.write_text("not json{", encoding="utf-8")
+
+    digest, stripped = runner.canonical_result_hash(bad)
+
+    assert digest == runner.sha256(bad)
+    assert stripped == []

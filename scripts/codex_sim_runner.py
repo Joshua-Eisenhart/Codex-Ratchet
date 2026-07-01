@@ -69,6 +69,64 @@ def sha256_if_exists(path: Path) -> str | None:
     return sha256(path) if path.exists() else None
 
 
+# Wall-clock/timing metadata a deterministic same-source rerun is EXPECTED to
+# vary. The determinism gate tests scientific reproducibility, not wall-clock
+# identity, so these named keys are normalized out of the stability hash
+# (the raw byte hash is still recorded for transparency). Narrow + named on
+# purpose: a scientific field is never silently dropped.
+VOLATILE_RESULT_FIELDS = frozenset({
+    "elapsed_seconds",
+    "elapsed",
+    "elapsed_ms",
+    "wall_clock_seconds",
+    "wall_time_seconds",
+    "runtime_seconds",
+    "duration_seconds",
+    "duration_ms",
+    "timestamp",
+    "iso_timestamp",
+    "generated_at",
+    "created_at",
+    "run_started_at",
+    "run_finished_at",
+    "started_at",
+    "finished_at",
+})
+
+
+def _strip_volatile(obj: Any, stripped: set[str]) -> Any:
+    if isinstance(obj, dict):
+        out: dict[str, Any] = {}
+        for key, value in obj.items():
+            if key in VOLATILE_RESULT_FIELDS:
+                stripped.add(key)
+                continue
+            out[key] = _strip_volatile(value, stripped)
+        return out
+    if isinstance(obj, list):
+        return [_strip_volatile(value, stripped) for value in obj]
+    return obj
+
+
+def canonical_result_hash(path: Path) -> tuple[str, list[str]]:
+    """Hash a result file with wall-clock/timing fields normalized out.
+
+    Returns (hash, sorted list of volatile fields that were normalized). Falls
+    back to the raw byte hash for non-JSON/unreadable files so the gate never
+    silently weakens for a payload it cannot canonicalize.
+    """
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return sha256(path), []
+    stripped: set[str] = set()
+    normalized = _strip_volatile(data, stripped)
+    payload = json.dumps(normalized, sort_keys=True, separators=(",", ":"))
+    digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    return digest, sorted(stripped)
+
+
 def write_json_atomic(path: Path, payload: dict[str, Any]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_name(f"{path.name}.tmp")
@@ -226,6 +284,8 @@ def seat_certify(
 ) -> dict[str, Any]:
     run_reports: list[dict[str, Any]] = []
     result_hashes: list[str] = []
+    canonical_hashes: list[str] = []
+    normalized_fields: set[str] = set()
     for index in range(runs):
         command = [str(python), str(sim_path)]
         before_stat = result_path.stat() if result_path.exists() else None
@@ -238,10 +298,14 @@ def seat_certify(
         if result_path.exists():
             after_stat = result_path.stat()
             digest = sha256(result_path)
+            canonical_digest, stripped = canonical_result_hash(result_path)
             report["result_sha256_after_run"] = digest
+            report["result_canonical_sha256_after_run"] = canonical_digest
             report["result_mtime_ns_after_run"] = after_stat.st_mtime_ns
             report["result_written_after_run"] = after_stat.st_mtime_ns >= run_started_at_ns
             result_hashes.append(digest)
+            canonical_hashes.append(canonical_digest)
+            normalized_fields.update(stripped)
         else:
             report["result_mtime_ns_after_run"] = None
             report["result_written_after_run"] = False
@@ -250,7 +314,11 @@ def seat_certify(
     all_exited_zero = all(item.get("returncode") == 0 for item in run_reports)
     all_result_exists = all(item.get("result_exists_after_run") is True for item in run_reports)
     all_result_fresh = all(item.get("result_written_after_run") is True for item in run_reports)
-    stable_result_hash = len(set(result_hashes)) == 1 if result_hashes else False
+    # Determinism gate compares CANONICAL hashes (wall-clock/timing fields
+    # normalized out) so a same-source rerun that differs only in
+    # elapsed_seconds is still certified stable. Raw hashes stay in the
+    # receipt for transparency.
+    stable_result_hash = len(set(canonical_hashes)) == 1 if canonical_hashes else False
     return {
         "ok": all_exited_zero and all_result_exists and all_result_fresh and stable_result_hash,
         "runs_requested": runs,
@@ -259,6 +327,8 @@ def seat_certify(
         "all_result_fresh": all_result_fresh,
         "stable_result_hash": stable_result_hash,
         "result_hashes": result_hashes,
+        "canonical_result_hashes": canonical_hashes,
+        "normalized_volatile_fields": sorted(normalized_fields),
         "run_reports": run_reports,
     }
 
@@ -949,6 +1019,36 @@ def admission_basename_from_result(result_payload: dict[str, Any], fallback: str
     return fallback
 
 
+def derive_result_path(sim_path: Path, override: Path | None) -> Path:
+    """Derive the watched result path when --result-path is not given.
+
+    Sims write `<stem>_results.json` in one of three layouts: next to the sim
+    file (system_v4/probes), in a sibling results/ dir (system_v5/legos,
+    system_v5/ops/formal_scouts), or under a2_state/sim_results/ (SIM_TEMPLATE
+    probes). An existing result file wins, checked in that order. With no
+    existing file, a sibling results/ dir is preferred only when it already
+    holds *_results.json files — system_v4/probes has a results/ dir that is
+    not a sim-results dir, and its sibling-writing sims must keep the sibling
+    default.
+    """
+
+    if override is not None:
+        return override.resolve()
+    result_name = f"{sim_path.stem}_results.json"
+    candidates = [
+        sim_path.with_name(result_name),
+        sim_path.parent / "results" / result_name,
+        sim_path.parent / "a2_state" / "sim_results" / result_name,
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate.resolve()
+    results_dir_candidate = candidates[1]
+    if results_dir_candidate.parent.is_dir() and any(results_dir_candidate.parent.glob("*_results.json")):
+        return results_dir_candidate.resolve()
+    return candidates[0].resolve()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sim-path", required=True, type=Path)
@@ -978,7 +1078,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     sim_path = args.sim_path.resolve()
-    result_path = (args.result_path or sim_path.with_name(f"{sim_path.stem}_results.json")).resolve()
+    result_path = derive_result_path(sim_path, args.result_path)
     basename = args.basename or basename_from_paths(sim_path, result_path)
     receipt_dir = args.receipt_dir.resolve()
     receipt_path = receipt_dir / f"{basename}_codex_sim_runner_receipt.json"

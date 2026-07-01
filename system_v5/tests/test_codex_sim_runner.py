@@ -552,6 +552,45 @@ def test_canonical_result_hash_ignores_wall_clock_timing_fields(tmp_path: Path) 
     assert stripped_b == ["elapsed_seconds"]
 
 
+def test_canonical_result_hash_normalizes_time_suffix_fields_not_science(tmp_path: Path) -> None:
+    runner = _load_runner()
+    a = tmp_path / "a.json"
+    b = tmp_path / "b.json"
+    # elapsed_s + stage_seconds vary (timing); runtime_purity is identical science.
+    a.write_text(json.dumps({"summary": {"elapsed_s": 0.10, "stage_seconds": 1.2}, "runtime_purity": 0.9}), encoding="utf-8")
+    b.write_text(json.dumps({"summary": {"elapsed_s": 0.03, "stage_seconds": 0.7}, "runtime_purity": 0.9}), encoding="utf-8")
+
+    hash_a, stripped_a = runner.canonical_result_hash(a)
+    hash_b, _ = runner.canonical_result_hash(b)
+
+    assert hash_a == hash_b
+    assert set(stripped_a) == {"elapsed_s", "stage_seconds"}
+
+
+def test_canonical_result_hash_keeps_runtime_science_fields(tmp_path: Path) -> None:
+    runner = _load_runner()
+    a = tmp_path / "a.json"
+    b = tmp_path / "b.json"
+    # runtime_purity has a "runtime" stem but is NOT a time-suffix field: it must
+    # still gate (a change to it is real nondeterminism, not wall-clock drift).
+    a.write_text(json.dumps({"elapsed_s": 0.1, "runtime_purity": 0.9, "runtime_entropy": 0.4}), encoding="utf-8")
+    b.write_text(json.dumps({"elapsed_s": 0.1, "runtime_purity": 0.7, "runtime_entropy": 0.4}), encoding="utf-8")
+
+    hash_a, _ = runner.canonical_result_hash(a)
+    hash_b, _ = runner.canonical_result_hash(b)
+
+    assert hash_a != hash_b
+
+
+def test_canonical_result_hash_ignores_boolean_and_count_fields(tmp_path: Path) -> None:
+    runner = _load_runner()
+    # A boolean or an integer count is never treated as volatile even if oddly named.
+    assert runner._is_volatile_field("all_pass", True) is False
+    assert runner._is_volatile_field("tests_passed", 6) is False
+    assert runner._is_volatile_field("stage_seconds", 1.2) is True
+    assert runner._is_volatile_field("runtime_purity", 0.9) is False
+
+
 def test_canonical_result_hash_still_detects_real_numeric_nondeterminism(tmp_path: Path) -> None:
     runner = _load_runner()
     a = tmp_path / "a.json"

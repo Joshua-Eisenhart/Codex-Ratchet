@@ -77,6 +77,7 @@ def sha256_if_exists(path: Path) -> str | None:
 VOLATILE_RESULT_FIELDS = frozenset({
     "elapsed_seconds",
     "elapsed",
+    "elapsed_s",
     "elapsed_ms",
     "wall_clock_seconds",
     "wall_time_seconds",
@@ -84,21 +85,48 @@ VOLATILE_RESULT_FIELDS = frozenset({
     "duration_seconds",
     "duration_ms",
     "timestamp",
+    "timestamp_utc",
     "iso_timestamp",
     "generated_at",
     "created_at",
+    "run_at",
     "run_started_at",
     "run_finished_at",
     "started_at",
     "finished_at",
+    "date",
+    "datetime",
 })
+
+# A numeric field whose key ENDS in a time unit is wall-clock metadata, not
+# science — so it is normalized out of the determinism hash even though it is
+# not in the exact-name set. This catches the corpus's many timing variants
+# (stage_seconds, runtime_seconds, timeout_seconds, duration_sec, ...) WITHOUT
+# touching scientific fields that merely start with "runtime" (runtime_purity,
+# runtime_entropy) — those do not end in a time unit. Suffix-only + numeric-only
+# on purpose: a non-numeric or non-time-suffixed field is never dropped here.
+_VOLATILE_TIME_SUFFIXES = (
+    "_seconds", "_second", "_secs", "_sec",
+    "_ms", "_us", "_ns", "_millis", "_micros", "_nanos",
+    "_minutes", "_hours",
+)
+
+
+def _is_volatile_field(key: str, value: Any) -> bool:
+    if key in VOLATILE_RESULT_FIELDS:
+        return True
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, (int, float)) and key.endswith(_VOLATILE_TIME_SUFFIXES):
+        return True
+    return False
 
 
 def _strip_volatile(obj: Any, stripped: set[str]) -> Any:
     if isinstance(obj, dict):
         out: dict[str, Any] = {}
         for key, value in obj.items():
-            if key in VOLATILE_RESULT_FIELDS:
+            if _is_volatile_field(key, value):
                 stripped.add(key)
                 continue
             out[key] = _strip_volatile(value, stripped)

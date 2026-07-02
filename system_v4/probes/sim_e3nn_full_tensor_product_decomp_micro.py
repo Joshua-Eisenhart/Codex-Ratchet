@@ -142,7 +142,8 @@ def _full_tensor_product():
 def _counts_by_l_and_parity(irreps: Any) -> dict[str, int]:
     counts: dict[str, int] = {}
     for mul, ir in irreps:
-        key = f"{ir.l}{ir.p}"
+        parity = "e" if int(ir.p) == 1 else "o"
+        key = f"{ir.l}{parity}"
         counts[key] = counts.get(key, 0) + int(mul)
     return counts
 

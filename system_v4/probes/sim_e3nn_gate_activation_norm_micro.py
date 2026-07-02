@@ -5,9 +5,11 @@ Tool-stage scope:
   - one tool: e3nn
   - one API surface: e3nn.nn.Gate on one scalar slot, one gate scalar, and
     one vector irrep
-  - one tiny claim: Gate applies scalar activation to 0e scalars and gates
-    the 1o vector sector by the activated gate scalar, so the vector norm
-    scales while the scalar output remains scalar-slot local.
+  - one tiny claim: Gate applies its e3nn Activation module to 0e scalars
+    and gates the 1o vector sector by its e3nn Activation module on the gate
+    scalar, so the vector norm scales while the scalar output remains
+    scalar-slot local. e3nn normalizes activation functions internally; this
+    probe tests actual Gate behavior, not raw torch activation values.
 
 This is pre-lego tool-lego fit evidence. It does not promote a lego, coupling,
 bridge, axis, GStack, QIT, nonclassical carrier, or broad e3nn claim.
@@ -122,6 +124,14 @@ def _norms(tensor: torch.Tensor) -> torch.Tensor:
     return torch.linalg.norm(tensor, dim=-1, keepdim=True)
 
 
+def _activated_scalar(gate: Gate, scalar: torch.Tensor) -> torch.Tensor:
+    return gate.act_scalars(scalar)
+
+
+def _activated_gate(gate: Gate, gate_scalar: torch.Tensor) -> torch.Tensor:
+    return gate.act_gates(gate_scalar)
+
+
 def _flatten_sections(*sections: dict[str, Any]) -> list[dict[str, Any]]:
     flat = []
     for section in sections:
@@ -137,9 +147,10 @@ def run_positive_tests() -> dict[str, Any]:
     scalar, gate_scalar, vector = _split_input(x)
     out_scalar, out_vector = _split_output(gate(x))
 
-    expected_scalar = torch.tanh(scalar)
-    expected_vector = torch.sigmoid(gate_scalar) * vector
-    expected_norm = torch.sigmoid(gate_scalar).abs() * _norms(vector)
+    expected_scalar = _activated_scalar(gate, scalar)
+    expected_gate = _activated_gate(gate, gate_scalar)
+    expected_vector = expected_gate * vector
+    expected_norm = expected_gate.abs() * _norms(vector)
 
     scalar_error = _max_abs(out_scalar - expected_scalar)
     vector_error = _max_abs(out_vector - expected_vector)
@@ -149,14 +160,14 @@ def run_positive_tests() -> dict[str, Any]:
         "scalar_slot_uses_scalar_activation": {
             "passed": scalar_error < TOLERANCE,
             "max_abs_error": scalar_error,
-            "expected_activation": "torch.tanh on the 0e scalar slot",
+            "expected_activation": "gate.act_scalars on the 0e scalar slot",
             "carrier_slice": "input[:, 0:1] -> output[:, 0:1]",
         },
         "vector_sector_norm_scales_by_gate_scalar": {
             "passed": vector_error < TOLERANCE and norm_error < TOLERANCE,
             "max_abs_vector_error": vector_error,
             "max_abs_norm_error": norm_error,
-            "expected_gate": "torch.sigmoid(input[:, 1:2]) multiplies the 1x1o vector sector",
+            "expected_gate": "gate.act_gates(input[:, 1:2]) multiplies the 1x1o vector sector",
             "carrier_slice": "input[:, 2:5] -> output[:, 1:4]",
         },
         "declared_gate_dimensions_match_fixture": {
@@ -178,7 +189,7 @@ def run_negative_tests() -> dict[str, Any]:
     scalar, gate_scalar, vector = _split_input(x)
     out_scalar, out_vector = _split_output(gate(x))
 
-    scalar_as_gated_vector = torch.sigmoid(gate_scalar) * scalar
+    scalar_as_gated_vector = _activated_gate(gate, gate_scalar) * scalar
     scalar_gate_error = _max_abs(out_scalar - scalar_as_gated_vector)
 
     altered_vector = vector * torch.tensor([[10.0, 10.0, 10.0], [0.1, 0.1, 0.1]], dtype=DTYPE)
@@ -199,7 +210,7 @@ def run_negative_tests() -> dict[str, Any]:
     return {
         "scalar_slot_is_excluded_from_vector_norm_gate_rule": {
             "passed": scalar_gate_error > 0.05,
-            "excluded_reading": "scalar output equals sigmoid(gate_scalar) times scalar input",
+            "excluded_reading": "scalar output equals gate.act_gates(gate_scalar) times scalar input",
             "observed_disagreement": scalar_gate_error,
             "exclusion_note": (
                 "The scalar slot is admitted through its scalar activation, "
@@ -234,7 +245,8 @@ def run_boundary_tests() -> dict[str, Any]:
 
     zero_gate = torch.tensor([[0.5, 0.0, 2.0, 0.0, 0.0]], dtype=DTYPE)
     _, zero_gate_out_vector = _split_output(gate(zero_gate))
-    zero_gate_expected_norm = float((torch.sigmoid(zero_gate[:, 1:2]) * _norms(zero_gate[:, 2:5])).item())
+    zero_gate_expected_factor = float(_activated_gate(gate, zero_gate[:, 1:2]).abs().item())
+    zero_gate_expected_norm = float((zero_gate_expected_factor * _norms(zero_gate[:, 2:5])).item())
     zero_gate_norm_error = abs(float(_norms(zero_gate_out_vector).item()) - zero_gate_expected_norm)
 
     empty = torch.empty(0, gate.irreps_in.dim, dtype=DTYPE)
@@ -243,16 +255,17 @@ def run_boundary_tests() -> dict[str, Any]:
     return {
         "zero_vector_has_zero_gated_vector_norm": {
             "passed": zero_vector_norm < TOLERANCE
-            and abs(float(zero_out_scalar.item()) - float(torch.tanh(zero_vector[:, 0:1]).item())) < TOLERANCE,
+            and abs(float(zero_out_scalar.item()) - float(_activated_scalar(gate, zero_vector[:, 0:1]).item())) < TOLERANCE,
             "output_vector_norm": zero_vector_norm,
             "scalar_output": float(zero_out_scalar.item()),
             "boundary_note": "A zero 1o vector remains zero after Gate even when the gate scalar is nonzero.",
         },
-        "zero_gate_scalar_halves_vector_norm_under_sigmoid": {
+        "zero_gate_scalar_uses_e3nn_activated_gate_norm_factor": {
             "passed": zero_gate_norm_error < TOLERANCE,
             "observed_output_norm": float(_norms(zero_gate_out_vector).item()),
             "expected_output_norm": zero_gate_expected_norm,
-            "boundary_note": "Gate scalar zero maps through sigmoid to 0.5 in this bounded fixture.",
+            "expected_gate_factor": zero_gate_expected_factor,
+            "boundary_note": "Gate scalar zero maps through e3nn's normalized gate activation in this bounded fixture.",
         },
         "zero_batch_preserves_declared_output_width": {
             "passed": tuple(empty_out.shape) == (0, gate.irreps_out.dim),
@@ -275,7 +288,7 @@ if __name__ == "__main__":
         "probe_family": PROBE_FAMILY,
         "constraint_set": CONSTRAINT_SET,
         "classification": classification,
-        "tool_function_surface": "e3nn.nn.Gate scalar activation and vector norm gating",
+        "tool_function_surface": "e3nn.nn.Gate e3nn-normalized scalar activation and vector norm gating",
         "tool_function_scope": "tool_lego_fit_probe_only",
         "tool_manifest": TOOL_MANIFEST,
         "TOOL_MANIFEST": TOOL_MANIFEST,
@@ -286,13 +299,13 @@ if __name__ == "__main__":
         "boundary": boundary,
         "finite_map": (
             "Gate: R^5 carrier with [0e scalar, 0e gate scalar, 1o vector] "
-            "to R^4 output with [activated 0e scalar, gated 1o vector]"
+            "to R^4 output with [e3nn-activated 0e scalar, e3nn-activated gated 1o vector]"
         ),
         "domain": "finite two-row e3nn Gate input tensor with one scalar slot, one gate scalar, and one 1x1o vector sector",
-        "codomain_or_output": "finite two-row tensor with one activated scalar and one gated vector sector",
+        "codomain_or_output": "finite two-row tensor with one e3nn-activated scalar and one gated vector sector",
         "carrier": "finite one-row/two-row scalar-plus-vector e3nn Gate carrier: 1x0e scalar, 1x0e gate, 1x1o vector",
         "carrier_topology": "finite tensor fixture only; no graph, cell complex, bridge, axis, GStack, QIT, or nonclassical carrier",
-        "one_variable": "Only e3nn.nn.Gate scalar-vs-vector activation norm behavior is under test; carrier size, activations, irreps, and tolerances are pinned.",
+        "one_variable": "Only e3nn.nn.Gate scalar-vs-vector e3nn-normalized activation norm behavior is under test; carrier size, activations, irreps, and tolerances are pinned.",
         "ledger_loopback": {
             "tool_depth_row": "e3nn load-bearing micro receipts",
             "threshold": "shallow-tool checker threshold is >=10 load-bearing receipts for e3nn",
@@ -303,8 +316,8 @@ if __name__ == "__main__":
             "This receipt does not decide learned networks, convolutions, coupling, bridge, axis, GStack, QIT, or broad e3nn behavior.",
         ],
         "claim_ceiling": (
-            "local tool-lego fit only: e3nn.nn.Gate fits one tiny scalar-vs-vector "
-            "activation norm fixture; promotion_allowed=false; no QIT, GStack, "
+            "local tool-lego fit only: e3nn.nn.Gate fits one tiny e3nn-normalized "
+            "scalar-vs-vector activation norm fixture; promotion_allowed=false; no QIT, GStack, "
             "axis, bridge, nonclassical, coupling, or scientific lego promotion claim"
         ),
         "next_lego_target": "minimal scalar-gated vector fixture before any downstream equivariant operator-family use",
@@ -322,8 +335,8 @@ if __name__ == "__main__":
         "demotion_condition": (
             "Demote this surface if e3nn/torch imports fail, Gate dimensions "
             "do not match the declared carrier, scalar activation diverges "
-            "from tanh on the scalar slot, vector-sector norm does not scale "
-            "by sigmoid of the gate scalar, wrong-width input is accepted, or "
+            "from gate.act_scalars on the scalar slot, vector-sector norm does not scale "
+            "by gate.act_gates of the gate scalar, wrong-width input is accepted, or "
             "the result is cited outside the stated claim ceiling."
         ),
         "out_of_scope": [
@@ -341,8 +354,8 @@ if __name__ == "__main__":
         ],
         "criteria_checked": [
             "e3nn.nn.Gate declares the pinned scalar-plus-vector carrier dimensions",
-            "scalar slot output follows scalar activation only",
-            "1x1o vector output norm scales by the activated gate scalar",
+            "scalar slot output follows e3nn Gate scalar activation only",
+            "1x1o vector output norm scales by the e3nn Gate activated gate scalar",
             "scalar slot is excluded from the vector norm gate rule",
             "wrong input width is rejected",
             "zero-vector, zero-gate, and zero-batch boundaries preserve the declared semantics",

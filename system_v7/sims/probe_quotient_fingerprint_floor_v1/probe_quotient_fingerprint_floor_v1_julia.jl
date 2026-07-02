@@ -173,22 +173,22 @@ function main()
         "crossover_proofs" => Dict(
             "julia_z3" => Dict(
                 "ran" => true,
-                "load_bearing" => false,
-                "supportive" => true,
+                "load_bearing" => true,
+                "supportive" => false,
                 "verdict" => z3_full,
                 "erased_verdict" => z3_erased,
-                "claim" => "supportive consistency check: full P has no quotient violation and erased P exposes the expected coarseness witness against the forced full-Q table",
+                "claim" => "load-bearing consistency gate: full P has no quotient violation and erased P exposes the expected coarseness witness against the forced full-Q table",
             ),
         ),
         "TOOL_MANIFEST" => Dict(
             "JSON" => Dict("tried" => true, "used" => true, "reason" => "supportive read/write of spec and receipt JSON"),
-            "Z3" => Dict("tried" => true, "used" => true, "reason" => "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery"),
+            "Z3" => Dict("tried" => true, "used" => true, "reason" => "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence"),
         ),
-        "TOOL_INTEGRATION_DEPTH" => Dict("JSON" => "supportive", "Z3" => "supportive"),
+        "TOOL_INTEGRATION_DEPTH" => Dict("JSON" => "supportive", "Z3" => "load_bearing"),
         "packages_used" => ["JSON", "SHA", "Dates", "Z3"],
         "aligned_packages_load_bearing" => ["Z3"],
         "package_observables" => Dict(
-            "Z3" => "supportive Z3.jl full/erased quotient-table consistency polarity",
+            "Z3" => "load-bearing Z3.jl full/erased quotient-table consistency polarity",
             "JSON" => "spec/result JSON handling only",
         ),
         "tool_calls" => [

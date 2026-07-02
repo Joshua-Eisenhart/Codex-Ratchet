@@ -1,27 +1,34 @@
 {
   "TOOL_INTEGRATION_DEPTH": {
     "cvc5": "load_bearing",
-    "jax": "load_bearing",
+    "torch": "load_bearing",
+    "torch.func": "load_bearing",
     "z3": "load_bearing"
   },
   "TOOL_MANIFEST": {
     "cvc5": {
-      "reason": "load-bearing independent consistency gate agreeing with z3 on the same forced/trivial quotient-table polarity",
+      "reason": "load-bearing independent consistency gate agreeing with z3 over torch-derived rows",
       "tried": true,
       "used": true
     },
-    "jax": {
-      "reason": "load-bearing vectorized finite table equality matrix and class-count computation",
+    "torch": {
+      "reason": "load-bearing complex128 finite table representation and equality computation",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing vmap pairwise equality matrix and quotient class-count computation",
       "tried": true,
       "used": true
     },
     "z3": {
-      "reason": "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence",
+      "reason": "load-bearing consistency gate over torch-derived rows: full-P UNSAT and erased-P SAT polarity",
       "tried": true,
       "used": true
     }
   },
   "aligned_packages_load_bearing": [
+    "torch.func",
     "z3",
     "cvc5"
   ],
@@ -35,17 +42,19 @@
   },
   "claim_ceiling": "Q=X/~_P is the FORCED floor, trivially well-defined for the exact supplied finite probe table. The z3/cvc5/Z3.jl checks are consistency checks, not load-bearing structural discovery; the load-bearing forced-vs-installed content lives in the cross-type discriminator, not here. No carrier ontology, no rung above 0, no geometry, no physics, no canonical consumer.",
   "claim_path_tools": [
-    "jax",
-    "jax.numpy"
+    "torch",
+    "torch.func"
   ],
   "classification": "scratch_diagnostic",
-  "computation_style": "jax_vmap_integer_fingerprint_table_plus_z3_cvc5",
+  "computation_style": "torch_complex128_vmap_fingerprint_table_plus_z3_cvc5",
   "criteria_checked": [
     "full class count",
     "erased class count",
     "merge pair",
     "added probe split",
     "persistent indistinguishable pair",
+    "torch.func full equality matrix",
+    "torch.func erased equality matrix",
     "z3 full UNSAT",
     "z3 erased SAT",
     "cvc5 full UNSAT",
@@ -70,7 +79,7 @@
     }
   },
   "does_not_self_upgrade": true,
-  "engine": "jax_python_smt",
+  "engine": "pytorch_smt",
   "fingerprints_erased": {
     "x0": [
       0,
@@ -145,7 +154,154 @@
     "tautology_guard_tripped": false
   },
   "formal_admission_allowed": false,
-  "jax_observables": {
+  "negative_tests": {
+    "erased_merge_pair": [
+      "x0",
+      "x2"
+    ],
+    "erased_table_exposes_over_refinement": true
+  },
+  "package_observables": {
+    "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity over torch-derived rows",
+    "torch": "torch complex128 tensor held the finite table rows",
+    "torch.func": "torch.func.vmap computed pairwise equality over the finite table rows",
+    "z3": "load-bearing SMT full/erased quotient-table consistency polarity over torch-derived rows"
+  },
+  "packages_used": [
+    "torch",
+    "torch.func",
+    "z3",
+    "cvc5"
+  ],
+  "positive_tests": {
+    "full_table_partition_well_defined": true,
+    "specific_full_class_count": true
+  },
+  "probe_order_erased": [
+    "p_left",
+    "p_mid"
+  ],
+  "probe_order_full": [
+    "p_left",
+    "p_mid",
+    "p_split"
+  ],
+  "promotion_allowed": false,
+  "quotient_class_count_erased": 4,
+  "quotient_class_count_full": 5,
+  "quotient_classes_erased": [
+    [
+      "x0",
+      "x2"
+    ],
+    [
+      "x1"
+    ],
+    [
+      "x3"
+    ],
+    [
+      "x4",
+      "x5"
+    ]
+  ],
+  "quotient_classes_full": [
+    [
+      "x0"
+    ],
+    [
+      "x1"
+    ],
+    [
+      "x2"
+    ],
+    [
+      "x3"
+    ],
+    [
+      "x4",
+      "x5"
+    ]
+  ],
+  "reads_peer_result": false,
+  "schema": "codex_ratchet.engine_leg_result.v1",
+  "sim_id": "probe_quotient_fingerprint_floor_v1",
+  "smt_flip": {
+    "cvc5_erased_P": "sat",
+    "cvc5_full_P": "unsat",
+    "encoding": "SMT variables are equal to torch complex128-derived table entries and full-P class ids; the asserted violation is soundness-or-coarseness failure for the active probe list.",
+    "real_vs_erased_flip_confirmed": true,
+    "z3_erased_P": "sat",
+    "z3_full_P": "unsat"
+  },
+  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_pytorch.py",
+  "source_sha256": "d39cac5bd1efdfb02c2d1df68bd419fb1d51d80160a121a2cb707980a6fc2d62",
+  "spec_sha256": "138c42d1f25688a592c134a16faef4630f3f5828865d8e0d62ee37e1811904d5",
+  "support": [
+    "x0",
+    "x1",
+    "x2",
+    "x3",
+    "x4",
+    "x5"
+  ],
+  "surviving_alternatives": [
+    {
+      "reading": "Rung-0.5 Boolean lattice reading",
+      "statement": "The Boolean lattice of P-invariant subsets is FORCED as the exclusion-composition surface needed after Q is admitted.",
+      "status": "live"
+    },
+    {
+      "reading": "Rung-0.5 dual reading",
+      "statement": "The Boolean lattice of P-invariant subsets is merely DERIVED or dual to Q; counting and cardinality are not claimed forced, so the individuation objection stays open.",
+      "status": "live"
+    }
+  ],
+  "tool_calls": [
+    {
+      "boundary_case": "x4 and x5 remain indistinguishable under full P",
+      "demotion_condition": "class counts or pairwise matrices disagree with table grouping",
+      "gates": [
+        "quotient",
+        "divergence",
+        "all_pass"
+      ],
+      "input_object": "finite torch complex128 probe table",
+      "negative/erased_control": "erased-P class count is 4",
+      "output_object": "pairwise equality matrices and class counts",
+      "positive_case": "full-P class count is 5",
+      "qualified_api/function": "torch.func.vmap",
+      "tool": "torch.func"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to plain torch table computation if full is not unsat or erased is not sat",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "torch complex128-derived rows and full-P class ids",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "UNSAT full-P and SAT erased-P verdicts",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to single-solver consistency check if cvc5 disagrees with z3",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "same torch complex128-derived rows and class ids as z3",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "matching UNSAT/SAT polarity",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
+    }
+  ],
+  "torch_observables": {
+    "dtype": "torch.complex128",
     "erased_equality_matrix": [
       [
         true,
@@ -247,151 +403,5 @@
       ]
     ]
   },
-  "negative_tests": {
-    "erased_merge_pair": [
-      "x0",
-      "x2"
-    ],
-    "erased_table_exposes_over_refinement": true
-  },
-  "package_observables": {
-    "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity",
-    "jax": "jax.vmap computed pairwise equality over the finite table rows",
-    "jax.numpy": "integer array support for the JAX vmap equality matrix",
-    "z3": "load-bearing SMT full/erased quotient-table consistency polarity"
-  },
-  "packages_used": [
-    "jax",
-    "jax.numpy",
-    "z3",
-    "cvc5"
-  ],
-  "positive_tests": {
-    "full_table_partition_well_defined": true,
-    "specific_full_class_count": true
-  },
-  "probe_order_erased": [
-    "p_left",
-    "p_mid"
-  ],
-  "probe_order_full": [
-    "p_left",
-    "p_mid",
-    "p_split"
-  ],
-  "promotion_allowed": false,
-  "quotient_class_count_erased": 4,
-  "quotient_class_count_full": 5,
-  "quotient_classes_erased": [
-    [
-      "x0",
-      "x2"
-    ],
-    [
-      "x1"
-    ],
-    [
-      "x3"
-    ],
-    [
-      "x4",
-      "x5"
-    ]
-  ],
-  "quotient_classes_full": [
-    [
-      "x0"
-    ],
-    [
-      "x1"
-    ],
-    [
-      "x2"
-    ],
-    [
-      "x3"
-    ],
-    [
-      "x4",
-      "x5"
-    ]
-  ],
-  "reads_peer_result": false,
-  "schema": "codex_ratchet.engine_leg_result.v1",
-  "sim_id": "probe_quotient_fingerprint_floor_v1",
-  "smt_flip": {
-    "cvc5_erased_P": "sat",
-    "cvc5_full_P": "unsat",
-    "encoding": "SMT variables are equal to measured table entries and full-P class ids; the asserted violation is soundness-or-coarseness failure for the active probe list.",
-    "real_vs_erased_flip_confirmed": true,
-    "z3_erased_P": "sat",
-    "z3_full_P": "unsat"
-  },
-  "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_jax.py",
-  "source_sha256": "151a62f10bf5fe0f9b031e7e47f90659eaf51c83cac8ec516b62b64f1b174d97",
-  "spec_sha256": "138c42d1f25688a592c134a16faef4630f3f5828865d8e0d62ee37e1811904d5",
-  "support": [
-    "x0",
-    "x1",
-    "x2",
-    "x3",
-    "x4",
-    "x5"
-  ],
-  "surviving_alternatives": [
-    {
-      "reading": "Rung-0.5 Boolean lattice reading",
-      "statement": "The Boolean lattice of P-invariant subsets is FORCED as the exclusion-composition surface needed after Q is admitted.",
-      "status": "live"
-    },
-    {
-      "reading": "Rung-0.5 dual reading",
-      "statement": "The Boolean lattice of P-invariant subsets is merely DERIVED or dual to Q; counting and cardinality are not claimed forced, so the individuation objection stays open.",
-      "status": "live"
-    }
-  ],
-  "tool_calls": [
-    {
-      "boundary_case": "x4 and x5 remain indistinguishable under full P",
-      "demotion_condition": "class counts or pairwise matrices disagree with table grouping",
-      "gates": [
-        "quotient",
-        "divergence",
-        "all_pass"
-      ],
-      "input_object": "finite integer probe table",
-      "negative/erased_control": "erased-P class count is 4",
-      "output_object": "pairwise equality matrices and class counts",
-      "positive_case": "full-P class count is 5",
-      "qualified_api/function": "jax.vmap",
-      "tool": "jax"
-    },
-    {
-      "boundary_case": "x4/x5 same-class row remains allowed",
-      "demotion_condition": "demote to plain table computation if full is not unsat or erased is not sat",
-      "gates": [
-        "consistency_check"
-      ],
-      "input_object": "measured rows and full-P class ids",
-      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
-      "output_object": "UNSAT full-P and SAT erased-P verdicts",
-      "positive_case": "full P has no soundness/coarseness violation",
-      "qualified_api/function": "z3.Solver.check",
-      "tool": "z3"
-    },
-    {
-      "boundary_case": "x4/x5 same-class row remains allowed",
-      "demotion_condition": "demote to single-solver consistency check if cvc5 disagrees with z3",
-      "gates": [
-        "consistency_check"
-      ],
-      "input_object": "same measured rows and class ids as z3",
-      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
-      "output_object": "matching UNSAT/SAT polarity",
-      "positive_case": "full P has no soundness/coarseness violation",
-      "qualified_api/function": "cvc5.Solver.checkSat",
-      "tool": "cvc5"
-    }
-  ],
   "written_at": "2026-07-02T07:08:16Z"
 }

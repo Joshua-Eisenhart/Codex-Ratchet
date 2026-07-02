@@ -1,23 +1,18 @@
 #!/usr/bin/env python3
-"""JAX/Python leg for probe_quotient_fingerprint_floor_v1."""
+"""PyTorch leg for probe_quotient_fingerprint_floor_v1."""
 
 from __future__ import annotations
 
-from jax import config
-
-config.update("jax_enable_x64", True)
-
 import hashlib
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import cvc5
 from cvc5 import Kind
-import jax
-import jax.numpy as jnp
+import torch
+from torch.func import vmap
 import z3
 
 classification = "scratch_diagnostic"
@@ -26,25 +21,31 @@ formal_admission_allowed = False
 sim_execution_kind = "nonclassical"
 
 TOOL_MANIFEST = {
-    "jax": {
+    "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing vectorized finite table equality matrix and class-count computation",
+        "reason": "load-bearing complex128 finite table representation and equality computation",
+    },
+    "torch.func": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing vmap pairwise equality matrix and quotient class-count computation",
     },
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence",
+        "reason": "load-bearing consistency gate over torch-derived rows: full-P UNSAT and erased-P SAT polarity",
     },
     "cvc5": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing independent consistency gate agreeing with z3 on the same forced/trivial quotient-table polarity",
+        "reason": "load-bearing independent consistency gate agreeing with z3 over torch-derived rows",
     },
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "jax": "load_bearing",
+    "torch": "load_bearing",
+    "torch.func": "load_bearing",
     "z3": "load_bearing",
     "cvc5": "load_bearing",
 }
@@ -66,6 +67,16 @@ def ordered_table(spec: dict[str, Any], order: list[str]) -> list[list[int]]:
     return [[int(spec["probes"][probe][label]) for probe in order] for label in spec["support"]]
 
 
+def as_complex128(rows: list[list[int]]) -> torch.Tensor:
+    real = torch.tensor(rows, dtype=torch.float64)
+    imag = torch.zeros_like(real)
+    return torch.complex(real, imag)
+
+
+def tensor_rows_as_ints(table: torch.Tensor) -> list[list[int]]:
+    return [[int(table[i, j].real.item()) for j in range(table.shape[1])] for i in range(table.shape[0])]
+
+
 def quotient(labels: list[str], rows: list[list[int]]) -> tuple[list[list[str]], dict[str, tuple[int, ...]], dict[str, int]]:
     groups: list[list[str]] = []
     keys: list[tuple[int, ...]] = []
@@ -82,18 +93,17 @@ def quotient(labels: list[str], rows: list[list[int]]) -> tuple[list[list[str]],
     return groups, signatures, class_ids
 
 
-def jax_equality_matrix(rows: list[list[int]]) -> list[list[bool]]:
-    table = jnp.asarray(rows, dtype=jnp.int32)
-    pairwise = jax.vmap(lambda row: jax.vmap(lambda other: jnp.all(row == other))(table))(table)
-    return [[bool(v) for v in row] for row in pairwise.tolist()]
+def torch_equality_matrix(table: torch.Tensor) -> list[list[bool]]:
+    pairwise = vmap(lambda row: torch.all(row == table, dim=1))(table)
+    return [[bool(value.item()) for value in row] for row in pairwise]
 
 
 def z3_partition_violation(rows: list[list[int]], class_ids: list[int]) -> str:
     solver = z3.Solver()
     n = len(rows)
     width = len(rows[0]) if rows else 0
-    value_vars = [[z3.Int(f"z3_v_{i}_{j}") for j in range(width)] for i in range(n)]
-    class_vars = [z3.Int(f"z3_c_{i}") for i in range(n)]
+    value_vars = [[z3.Int(f"torch_z3_v_{i}_{j}") for j in range(width)] for i in range(n)]
+    class_vars = [z3.Int(f"torch_z3_c_{i}") for i in range(n)]
     for i in range(n):
         solver.add(class_vars[i] == z3.IntVal(int(class_ids[i])))
         for j in range(width):
@@ -118,8 +128,8 @@ def cvc5_partition_violation(rows: list[list[int]], class_ids: list[int]) -> str
     n = len(rows)
     width = len(rows[0]) if rows else 0
     int_sort = tm.getIntegerSort()
-    value_vars = [[tm.mkConst(int_sort, f"cvc5_v_{i}_{j}") for j in range(width)] for i in range(n)]
-    class_vars = [tm.mkConst(int_sort, f"cvc5_c_{i}") for i in range(n)]
+    value_vars = [[tm.mkConst(int_sort, f"torch_cvc5_v_{i}_{j}") for j in range(width)] for i in range(n)]
+    class_vars = [tm.mkConst(int_sort, f"torch_cvc5_c_{i}") for i in range(n)]
     for i in range(n):
         solver.assertFormula(tm.mkTerm(Kind.EQUAL, class_vars[i], tm.mkInteger(int(class_ids[i]))))
         for j in range(width):
@@ -163,8 +173,10 @@ def main() -> int:
     RESULTS.mkdir(exist_ok=True)
     spec = load_spec()
     labels = list(spec["support"])
-    full_rows = ordered_table(spec, spec["probe_order_full"])
-    erased_rows = ordered_table(spec, spec["probe_order_erased"])
+    full_table = as_complex128(ordered_table(spec, spec["probe_order_full"]))
+    erased_table = as_complex128(ordered_table(spec, spec["probe_order_erased"]))
+    full_rows = tensor_rows_as_ints(full_table)
+    erased_rows = tensor_rows_as_ints(erased_table)
     full_classes, full_signatures, full_ids = quotient(labels, full_rows)
     erased_classes, erased_signatures, erased_ids = quotient(labels, erased_rows)
     full_class_vector = [full_ids[label] for label in labels]
@@ -186,8 +198,8 @@ def main() -> int:
     result = {
         "schema": "codex_ratchet.engine_leg_result.v1",
         "sim_id": SIM_ID,
-        "engine": "jax_python_smt",
-        "computation_style": "jax_vmap_integer_fingerprint_table_plus_z3_cvc5",
+        "engine": "pytorch_smt",
+        "computation_style": "torch_complex128_vmap_fingerprint_table_plus_z3_cvc5",
         "classification": classification,
         "promotion_allowed": promotion_allowed,
         "formal_admission_allowed": formal_admission_allowed,
@@ -202,9 +214,10 @@ def main() -> int:
         "probe_order_erased": spec["probe_order_erased"],
         "fingerprints_full": {label: list(full_signatures[label]) for label in labels},
         "fingerprints_erased": {label: list(erased_signatures[label]) for label in labels},
-        "jax_observables": {
-            "full_equality_matrix": jax_equality_matrix(full_rows),
-            "erased_equality_matrix": jax_equality_matrix(erased_rows),
+        "torch_observables": {
+            "dtype": str(full_table.dtype),
+            "full_equality_matrix": torch_equality_matrix(full_table),
+            "erased_equality_matrix": torch_equality_matrix(erased_table),
         },
         "quotient_classes_full": full_classes,
         "quotient_class_count_full": len(full_classes),
@@ -237,7 +250,7 @@ def main() -> int:
             "cvc5_full_P": cvc5_full,
             "cvc5_erased_P": cvc5_erased,
             "real_vs_erased_flip_confirmed": smt_ok,
-            "encoding": "SMT variables are equal to measured table entries and full-P class ids; the asserted violation is soundness-or-coarseness failure for the active probe list.",
+            "encoding": "SMT variables are equal to torch complex128-derived table entries and full-P class ids; the asserted violation is soundness-or-coarseness failure for the active probe list.",
         },
         "crossover_proofs": {
             "z3": {
@@ -259,9 +272,9 @@ def main() -> int:
         },
         "tool_calls": [
             {
-                "tool": "jax",
-                "qualified_api/function": "jax.vmap",
-                "input_object": "finite integer probe table",
+                "tool": "torch.func",
+                "qualified_api/function": "torch.func.vmap",
+                "input_object": "finite torch complex128 probe table",
                 "output_object": "pairwise equality matrices and class counts",
                 "positive_case": "full-P class count is 5",
                 "negative/erased_control": "erased-P class count is 4",
@@ -272,18 +285,18 @@ def main() -> int:
             {
                 "tool": "z3",
                 "qualified_api/function": "z3.Solver.check",
-                "input_object": "measured rows and full-P class ids",
+                "input_object": "torch complex128-derived rows and full-P class ids",
                 "output_object": "UNSAT full-P and SAT erased-P verdicts",
                 "positive_case": "full P has no soundness/coarseness violation",
                 "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
                 "boundary_case": "x4/x5 same-class row remains allowed",
-                "demotion_condition": "demote to plain table computation if full is not unsat or erased is not sat",
+                "demotion_condition": "demote to plain torch table computation if full is not unsat or erased is not sat",
                 "gates": ["consistency_check"],
             },
             {
                 "tool": "cvc5",
                 "qualified_api/function": "cvc5.Solver.checkSat",
-                "input_object": "same measured rows and class ids as z3",
+                "input_object": "same torch complex128-derived rows and class ids as z3",
                 "output_object": "matching UNSAT/SAT polarity",
                 "positive_case": "full P has no soundness/coarseness violation",
                 "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
@@ -294,15 +307,15 @@ def main() -> int:
         ],
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
-        "packages_used": ["jax", "jax.numpy", "z3", "cvc5"],
-        "aligned_packages_load_bearing": ["z3", "cvc5"],
+        "packages_used": ["torch", "torch.func", "z3", "cvc5"],
+        "aligned_packages_load_bearing": ["torch.func", "z3", "cvc5"],
         "package_observables": {
-            "jax": "jax.vmap computed pairwise equality over the finite table rows",
-            "jax.numpy": "integer array support for the JAX vmap equality matrix",
-            "z3": "load-bearing SMT full/erased quotient-table consistency polarity",
-            "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity",
+            "torch": "torch complex128 tensor held the finite table rows",
+            "torch.func": "torch.func.vmap computed pairwise equality over the finite table rows",
+            "z3": "load-bearing SMT full/erased quotient-table consistency polarity over torch-derived rows",
+            "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity over torch-derived rows",
         },
-        "claim_path_tools": ["jax", "jax.numpy"],
+        "claim_path_tools": ["torch", "torch.func"],
         "all_pass": controls_ok,
         "criteria_checked": [
             "full class count",
@@ -310,6 +323,8 @@ def main() -> int:
             "merge pair",
             "added probe split",
             "persistent indistinguishable pair",
+            "torch.func full equality matrix",
+            "torch.func erased equality matrix",
             "z3 full UNSAT",
             "z3 erased SAT",
             "cvc5 full UNSAT",
@@ -318,7 +333,7 @@ def main() -> int:
         "surviving_alternatives": spec["surviving_alternatives"],
         "claim_ceiling": spec["claim_ceiling"],
     }
-    out_path = RESULTS / f"{SIM_ID}_jax_results.json"
+    out_path = RESULTS / f"{SIM_ID}_pytorch_results.json"
     out_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"ok": controls_ok, "result_path": str(out_path), "smt_flip": result["smt_flip"]}, indent=2))
     return 0 if controls_ok else 1

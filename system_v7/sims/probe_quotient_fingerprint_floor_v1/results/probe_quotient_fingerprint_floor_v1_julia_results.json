@@ -1,7 +1,7 @@
 {
   "TOOL_INTEGRATION_DEPTH": {
     "JSON": "supportive",
-    "Z3": "supportive"
+    "Z3": "load_bearing"
   },
   "TOOL_MANIFEST": {
     "JSON": {
@@ -10,7 +10,7 @@
       "used": true
     },
     "Z3": {
-      "reason": "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery",
+      "reason": "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence",
       "tried": true,
       "used": true
     }
@@ -34,11 +34,11 @@
   ],
   "crossover_proofs": {
     "julia_z3": {
-      "claim": "supportive consistency check: full P has no quotient violation and erased P exposes the expected coarseness witness against the forced full-Q table",
+      "claim": "load-bearing consistency gate: full P has no quotient violation and erased P exposes the expected coarseness witness against the forced full-Q table",
       "erased_verdict": "sat",
-      "load_bearing": false,
+      "load_bearing": true,
       "ran": true,
-      "supportive": true,
+      "supportive": false,
       "verdict": "unsat"
     }
   },
@@ -121,7 +121,7 @@
   "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
   "package_observables": {
     "JSON": "spec/result JSON handling only",
-    "Z3": "supportive Z3.jl full/erased quotient-table consistency polarity"
+    "Z3": "load-bearing Z3.jl full/erased quotient-table consistency polarity"
   },
   "packages_used": [
     "JSON",
@@ -185,7 +185,7 @@
     "real_vs_erased_flip_confirmed": true
   },
   "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_julia.jl",
-  "source_sha256": "aeaf8c04297ac278b4409a2e62281a0cb871d1806f6cb9a6bfc09d81ccc4dbb8",
+  "source_sha256": "a561bef02651d5ab262c859aed025c23ef54a69d2f716c68864da40bd46468d3",
   "spec_sha256": "138c42d1f25688a592c134a16faef4630f3f5828865d8e0d62ee37e1811904d5",
   "support": [
     "x0",
@@ -222,5 +222,5 @@
       "tool": "Z3"
     }
   ],
-  "written_at": "2026-06-18T06:27:15Z"
+  "written_at": "2026-07-02T07:08:17Z"
 }

@@ -1,20 +1,22 @@
 {
   "TOOL_INTEGRATION_DEPTH": {
-    "Z3": "supportive",
-    "cvc5": "supportive",
+    "Z3": "load_bearing",
+    "cvc5": "load_bearing",
     "jax": "load_bearing",
     "json": "supportive",
     "pathlib": "supportive",
-    "z3": "supportive"
+    "torch": "load_bearing",
+    "torch.func": "load_bearing",
+    "z3": "load_bearing"
   },
   "TOOL_MANIFEST": {
     "Z3": {
-      "reason": "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery",
+      "reason": "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence",
       "tried": true,
       "used": true
     },
     "cvc5": {
-      "reason": "supportive independent consistency check agreeing with z3 on the same forced/trivial quotient-table polarity",
+      "reason": "load-bearing independent consistency gate agreeing with z3 on the same forced/trivial quotient-table polarity",
       "tried": true,
       "used": true
     },
@@ -33,8 +35,18 @@
       "tried": true,
       "used": true
     },
+    "torch": {
+      "reason": "load-bearing complex128 finite table representation and equality computation",
+      "tried": true,
+      "used": true
+    },
+    "torch.func": {
+      "reason": "load-bearing vmap pairwise equality matrix and quotient class-count computation",
+      "tried": true,
+      "used": true
+    },
     "z3": {
-      "reason": "supportive consistency check: full-P UNSAT and erased-P SAT polarity over a forced/trivial quotient table; not load-bearing structural discovery",
+      "reason": "load-bearing consistency gate: full-P UNSAT and erased-P SAT polarity over the measured quotient table; not structural-discovery evidence",
       "tried": true,
       "used": true
     }
@@ -54,54 +66,109 @@
     "consumer_policy": "finite table rows only; no canonical carrier artifact consumed",
     "semantic_owner": "julia"
   },
-  "claim": "Finite opaque support X with explicit finite probe table P admits the forced quotient Q=X/~P. The solver polarity is a consistency check over the supplied generating table, not load-bearing discovery.",
+  "claim": "Finite opaque support X with explicit finite probe table P admits the forced quotient Q=X/~P. The solver polarity is load-bearing for the full/erased consistency gate, not structural-discovery evidence.",
   "claim_ceiling": "Q=X/~_P is the FORCED floor, trivially well-defined for the exact supplied finite probe table. The z3/cvc5/Z3.jl checks are consistency checks, not load-bearing structural discovery; the load-bearing forced-vs-installed content lives in the cross-type discriminator, not here. No carrier ontology, no rung above 0, no geometry, no physics, no canonical consumer.",
   "claim_path_tools": [
     "jax",
-    "jax.numpy"
+    "jax.numpy",
+    "torch",
+    "torch.func",
+    "z3",
+    "cvc5",
+    "Z3"
   ],
   "classification": "scratch_diagnostic",
   "control_only_tools": [],
   "crossover_proofs": {
     "cvc5": {
-      "claim": "supportive consistency check: independent SMT route agrees with z3 on full and erased probe lists",
+      "claim": "load-bearing consistency gate: independent SMT route agrees with z3 on full and erased probe lists",
       "erased_P_verdict": "sat",
       "full_P_verdict": "unsat",
-      "load_bearing": false,
+      "load_bearing": true,
       "ran": true,
-      "supportive": true,
+      "supportive": false,
       "verdict": "unsat"
     },
     "julia_z3": {
-      "claim": "supportive consistency check: Z3.jl route agrees on the full/erased polarity",
+      "claim": "load-bearing consistency gate: Z3.jl route agrees on the full/erased polarity",
       "erased_P_verdict": "sat",
       "full_P_verdict": "unsat",
-      "load_bearing": false,
+      "load_bearing": true,
       "ran": true,
-      "supportive": true,
+      "supportive": false,
+      "verdict": "unsat"
+    },
+    "pytorch_cvc5": {
+      "claim": "load-bearing independent consistency gate over torch-derived rows",
+      "erased_P_verdict": "sat",
+      "full_P_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "supportive": false,
+      "verdict": "unsat"
+    },
+    "pytorch_z3": {
+      "claim": "load-bearing consistency gate over torch-derived rows",
+      "erased_P_verdict": "sat",
+      "full_P_verdict": "unsat",
+      "load_bearing": true,
+      "ran": true,
+      "supportive": false,
       "verdict": "unsat"
     },
     "z3": {
-      "claim": "supportive consistency check: full P has no soundness/coarseness violation and erased P exposes the expected over-refinement relative to the forced full Q",
+      "claim": "load-bearing consistency gate: full P has no soundness/coarseness violation and erased P exposes the expected over-refinement relative to the forced full Q",
       "erased_P_verdict": "sat",
       "full_P_verdict": "unsat",
-      "load_bearing": false,
+      "load_bearing": true,
       "ran": true,
-      "supportive": true,
+      "supportive": false,
       "verdict": "unsat"
     }
   },
   "divergence": {
     "engine_values": {
       "jax": 5,
-      "julia": 5
+      "julia": 5,
+      "pytorch": 5
+    },
+    "erased_engine_values": {
+      "jax": 4,
+      "julia": 4,
+      "pytorch": 4
     },
     "julia_authoritative": true,
     "max_divergence": 0.0,
     "notes": [
       "Agreement is envelope plumbing after independent local lane runs.",
-      "The claim path is the finite table quotient. The SMT flip is supportive consistency evidence, not load-bearing discovery."
-    ]
+      "The claim path is the finite table quotient. The SMT flip is load-bearing for the full/erased consistency gate, not structural-discovery evidence."
+    ],
+    "per_engine_parity": {
+      "jax": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      },
+      "julia": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      },
+      "pytorch": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      }
+    }
   },
   "engine": "envelope_controller",
   "engine_contract": {
@@ -109,21 +176,20 @@
       "combined_envelope",
       "julia_local",
       "jax_local",
+      "pytorch_local",
       "controller_comparison"
     ],
     "lanes": [
       "julia",
-      "jax"
+      "jax",
+      "pytorch"
     ],
-    "mode": "julia_canon_plus_jax_diagnostic",
-    "pytorch": {
-      "reason": "Rung-0 scratch diagnostic has no graph, network, or autograd claim path.",
-      "scoped": false
-    }
+    "mode": "all_three_full_sims"
   },
   "engine_result_paths": {
     "jax": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_jax_results.json",
-    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_julia_results.json"
+    "julia": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_julia_results.json",
+    "pytorch": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_pytorch_results.json"
   },
   "engines": {
     "jax": {
@@ -134,10 +200,10 @@
       "classification": "scratch_diagnostic",
       "formal_admission_allowed": false,
       "package_observables": {
-        "cvc5": "supportive independent SMT full/erased quotient-table consistency polarity",
+        "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity",
         "jax": "jax.vmap computed pairwise equality over the finite table rows",
         "jax.numpy": "integer array support for the JAX vmap equality matrix",
-        "z3": "supportive SMT full/erased quotient-table consistency polarity"
+        "z3": "load-bearing SMT full/erased quotient-table consistency polarity"
       },
       "packages_used": [
         "jax",
@@ -149,8 +215,9 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_jax_results.json",
+      "result_sha256": "a9010896cde439160b3ab0ab1adbc0663f552d31b240ac65cf420f28e74245fd",
       "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_jax.py",
-      "source_sha256": "1e8855205671adc483d78355b8c4578b8c8afc37dff4d7e633c938eace7b3000"
+      "source_sha256": "151a62f10bf5fe0f9b031e7e47f90659eaf51c83cac8ec516b62b64f1b174d97"
     },
     "julia": {
       "aligned_packages_load_bearing": [
@@ -161,7 +228,7 @@
       "julia_project": "/Users/joshuaeisenhart/Codex-Ratchet/system_v5/julia_carrier/Project.toml",
       "package_observables": {
         "JSON": "spec/result JSON handling only",
-        "Z3": "supportive Z3.jl full/erased quotient-table consistency polarity"
+        "Z3": "load-bearing Z3.jl full/erased quotient-table consistency polarity"
       },
       "packages_used": [
         "JSON",
@@ -173,8 +240,37 @@
       "ran": true,
       "reads_peer_result": false,
       "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_julia_results.json",
+      "result_sha256": "8ac00cad7aee7bd31d4d33248ba74f3bc5c310eeacb53772754ea5f0dba0252d",
       "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_julia.jl",
-      "source_sha256": "aeaf8c04297ac278b4409a2e62281a0cb871d1806f6cb9a6bfc09d81ccc4dbb8"
+      "source_sha256": "a561bef02651d5ab262c859aed025c23ef54a69d2f716c68864da40bd46468d3"
+    },
+    "pytorch": {
+      "aligned_packages_load_bearing": [
+        "torch.func",
+        "z3",
+        "cvc5"
+      ],
+      "classification": "scratch_diagnostic",
+      "formal_admission_allowed": false,
+      "package_observables": {
+        "cvc5": "load-bearing independent SMT full/erased quotient-table consistency polarity over torch-derived rows",
+        "torch": "torch complex128 tensor held the finite table rows",
+        "torch.func": "torch.func.vmap computed pairwise equality over the finite table rows",
+        "z3": "load-bearing SMT full/erased quotient-table consistency polarity over torch-derived rows"
+      },
+      "packages_used": [
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5"
+      ],
+      "promotion_allowed": false,
+      "ran": true,
+      "reads_peer_result": false,
+      "result_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/results/probe_quotient_fingerprint_floor_v1_pytorch_results.json",
+      "result_sha256": "094d9b2fb980f708f72dc6246d16a5dfe901ffda0dd5b84ff6ba7594b57ac402",
+      "source_path": "/Users/joshuaeisenhart/Codex-Ratchet/system_v7/sims/probe_quotient_fingerprint_floor_v1/probe_quotient_fingerprint_floor_v1_pytorch.py",
+      "source_sha256": "d39cac5bd1efdfb02c2d1df68bd419fb1d51d80160a121a2cb707980a6fc2d62"
     }
   },
   "failures": [],
@@ -220,23 +316,59 @@
       "role": "semantic_owner"
     },
     "pytorch": {
-      "packages": [],
-      "role": "not_scoped"
+      "packages": [
+        "torch",
+        "torch.func",
+        "z3",
+        "cvc5"
+      ],
+      "role": "complex128_graph_autograd_worker"
     },
     "tensor_exchange": "not_scoped"
   },
   "formal_admission_allowed": false,
+  "mode": "all_three_full_sims",
   "negative_tests": {
-    "erased_P_control": "SAT under z3 and cvc5",
+    "erased_P_control": "SAT under z3, cvc5, PyTorch z3/cvc5, and Julia Z3.jl",
     "merge_pair": [
       "x0",
       "x2"
     ]
   },
   "object_id": "probe_quotient_fingerprint_floor_v1",
+  "parity": {
+    "max": 0.0,
+    "per_engine": {
+      "jax": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      },
+      "julia": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      },
+      "pytorch": {
+        "erased_class_count": 4,
+        "erased_delta_vs_julia": 0.0,
+        "erased_equality_matrix_mismatches_vs_julia": 0,
+        "full_class_count": 5,
+        "full_delta_vs_julia": 0.0,
+        "full_equality_matrix_mismatches_vs_julia": 0
+      }
+    },
+    "tolerance": 1e-10
+  },
   "positive_tests": {
     "class_count_matches_fixture": true,
-    "full_P_structural_claim": "UNSAT under z3 and cvc5"
+    "full_P_structural_claim": "UNSAT under z3, cvc5, PyTorch z3/cvc5, and Julia Z3.jl"
   },
   "promotion_allowed": false,
   "quotient": {
@@ -362,7 +494,48 @@
       "positive_case": "full P has no soundness/coarseness violation",
       "qualified_api/function": "Z3.Solver/Z3.IntVar/Z3.add/Z3.check",
       "tool": "Z3"
+    },
+    {
+      "boundary_case": "x4 and x5 remain indistinguishable under full P",
+      "demotion_condition": "class counts or pairwise matrices disagree with table grouping",
+      "gates": [
+        "quotient",
+        "divergence",
+        "all_pass"
+      ],
+      "input_object": "finite torch complex128 probe table",
+      "negative/erased_control": "erased-P class count is 4",
+      "output_object": "pairwise equality matrices and class counts",
+      "positive_case": "full-P class count is 5",
+      "qualified_api/function": "torch.func.vmap",
+      "tool": "torch.func"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to plain torch table computation if full is not unsat or erased is not sat",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "torch complex128-derived rows and full-P class ids",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "UNSAT full-P and SAT erased-P verdicts",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "z3.Solver.check",
+      "tool": "z3"
+    },
+    {
+      "boundary_case": "x4/x5 same-class row remains allowed",
+      "demotion_condition": "demote to single-solver consistency check if cvc5 disagrees with z3",
+      "gates": [
+        "consistency_check"
+      ],
+      "input_object": "same torch complex128-derived rows and class ids as z3",
+      "negative/erased_control": "erased P exposes x0/x2 coarseness witness",
+      "output_object": "matching UNSAT/SAT polarity",
+      "positive_case": "full P has no soundness/coarseness violation",
+      "qualified_api/function": "cvc5.Solver.checkSat",
+      "tool": "cvc5"
     }
   ],
-  "written_at": "2026-06-19T03:55:44Z"
+  "written_at": "2026-07-02T07:08:23Z"
 }

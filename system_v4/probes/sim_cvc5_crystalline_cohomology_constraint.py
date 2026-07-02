@@ -29,6 +29,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Crystalline cohomology is p-adic algebra; no gradient descent on slopes and ranks"},
     "pyg":       {"tried": False, "used": False, "reason": "Crystalline cohomology slopes and ranks are not graph structure"},

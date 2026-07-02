@@ -27,6 +27,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Holonomy computation via torch autograd through parallel transport ODE integration; phase accumulation as torch tensor; winding number tracking"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for holonomy on principal bundles"},

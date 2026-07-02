@@ -8,6 +8,8 @@ import json
 import os
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "PyG not needed; no graph message passing in this constraint sim"},

@@ -28,6 +28,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Coherent sheaf properties are combinatorial algebraic; no gradient descent on rank/Chern classes"},
     "pyg":       {"tried": False, "used": False, "reason": "Coherent sheaf rank and Chern classes are not graph structure"},

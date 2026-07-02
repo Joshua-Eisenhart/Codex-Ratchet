@@ -38,6 +38,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Gauge anomaly from group theory; no gradient descent"},
     "pyg": {"tried": False, "used": False, "reason": "Anomaly coefficient from rep theory, not graph learning"},

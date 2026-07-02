@@ -22,6 +22,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure symbolic type constraint proof via cvc5 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "no graph message passing; type theory is algebraic"},

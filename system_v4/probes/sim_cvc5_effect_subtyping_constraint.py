@@ -31,6 +31,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Effect subtyping is type-level relation; no gradient descent on subtyping constraints"},
     "pyg":       {"tried": False, "used": False, "reason": "Effect subtyping constraints are not graph structure"},

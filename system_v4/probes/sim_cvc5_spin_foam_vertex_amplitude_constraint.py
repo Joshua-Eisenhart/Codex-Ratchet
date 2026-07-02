@@ -21,6 +21,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure symbolic constraint via cvc5; numerical 6j computation via sympy"},
     "pyg": {"tried": False, "used": False, "reason": "no message passing; vertex amplitude is local algebraic constraint"},

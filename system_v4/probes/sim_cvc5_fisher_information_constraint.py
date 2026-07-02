@@ -50,6 +50,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Fisher information is statistical property, not neural network training"},
     "pyg": {"tried": False, "used": False, "reason": "Fisher information applies to all probability distributions, not graph structures"},

@@ -30,6 +30,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Torelli constraints are algebraic geometry; no gradient descent on period matrices"},
     "pyg":       {"tried": False, "used": False, "reason": "Period matrix and Jacobian are continuous algebro-geometric objects; not graph structure"},

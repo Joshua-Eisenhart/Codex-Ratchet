@@ -30,6 +30,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Gamma matrices, D² spectrum, eigenvalues, heat kernel — all torch float64 with autograd via torch.linalg.eigvalsh"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

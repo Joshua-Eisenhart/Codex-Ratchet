@@ -59,6 +59,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Itô calculus is mathematical constraint, not neural network training"},
     "pyg": {"tried": False, "used": False, "reason": "Itô's lemma applies to continuous stochastic processes, not graph structures"},

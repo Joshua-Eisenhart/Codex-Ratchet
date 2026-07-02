@@ -31,6 +31,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Effect row types are type-level constraints; no gradient descent on row membership"},
     "pyg":       {"tried": False, "used": False, "reason": "Effect rows are algebraic row constraints; not graph structure"},

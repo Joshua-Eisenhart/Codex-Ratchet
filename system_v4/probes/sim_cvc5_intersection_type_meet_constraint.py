@@ -20,6 +20,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure symbolic lattice computation via cvc5"},
     "pyg": {"tried": False, "used": False, "reason": "pure symbolic lattice computation via cvc5"},

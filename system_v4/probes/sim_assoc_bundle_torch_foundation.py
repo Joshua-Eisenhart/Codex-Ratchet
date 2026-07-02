@@ -27,6 +27,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Transition functions g(θ)=e^{iθ} as cos/sin pairs, holonomy products, winding number tracking — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

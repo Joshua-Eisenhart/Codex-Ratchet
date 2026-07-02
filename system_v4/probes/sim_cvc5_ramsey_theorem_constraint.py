@@ -58,6 +58,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Ramsey theorem is combinatorial, not neural network learning"},
     "pyg": {"tried": False, "used": False, "reason": "Graph structure is abstract; pigeonhole principle is algebraic, not message passing"},

@@ -56,6 +56,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Brownian motion is stochastic process property, not neural network training"},
     "pyg": {"tried": False, "used": False, "reason": "Brownian variance applies to continuous stochastic processes, not graph structures"},

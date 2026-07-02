@@ -30,6 +30,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "K3 surface algebraic invariants are discrete; no gradient descent"},
     "pyg":       {"tried": False, "used": False, "reason": "K3 surface is smooth algebraic variety; not a graph problem"},

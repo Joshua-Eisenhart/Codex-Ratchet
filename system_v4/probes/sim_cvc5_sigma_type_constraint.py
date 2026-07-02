@@ -23,6 +23,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure symbolic dependent pair constraint; no tensor computation"},
     "pyg": {"tried": False, "used": False, "reason": "no graph message passing; dependent pair types are algebraic"},

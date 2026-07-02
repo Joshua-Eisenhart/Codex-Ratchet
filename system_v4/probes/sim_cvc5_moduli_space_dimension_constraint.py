@@ -25,6 +25,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Moduli dimension is combinatorial; no gradient descent needed"},
     "pyg":       {"tried": False, "used": False, "reason": "Moduli space is algebraic variety; not a graph problem"},

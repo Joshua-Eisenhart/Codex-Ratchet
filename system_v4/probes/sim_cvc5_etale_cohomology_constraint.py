@@ -29,6 +29,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Étale cohomology is topological algebra; no gradient descent on Betti numbers"},
     "pyg":       {"tried": False, "used": False, "reason": "Étale cohomology Betti numbers and Frobenius eigenvalues are not graph structure"},

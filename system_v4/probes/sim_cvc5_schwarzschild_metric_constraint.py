@@ -91,6 +91,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Schwarzschild metric is a deterministic constraint on spacetime geometry, not a neural optimization problem"},
     "pyg": {"tried": False, "used": False, "reason": "General relativity is continuous curved spacetime, not graph-structured neural learning"},

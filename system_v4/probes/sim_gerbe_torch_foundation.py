@@ -29,6 +29,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "B-field tensor, holonomy exp, DD class computation — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

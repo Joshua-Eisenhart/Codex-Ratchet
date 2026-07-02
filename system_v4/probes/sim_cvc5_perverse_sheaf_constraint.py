@@ -29,6 +29,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Perverse sheaf constraints are combinatorial homological; no gradient descent on support dimensions"},
     "pyg":       {"tried": False, "used": False, "reason": "Perverse sheaf is homological algebra on variety; support conditions are not graph structure"},

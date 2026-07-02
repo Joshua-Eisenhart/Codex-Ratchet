@@ -53,6 +53,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Hahn-Banach is functional analysis theorem, not neural network learning"},
     "pyg": {"tried": False, "used": False, "reason": "Extension norm is scalar property, not graph structure"},

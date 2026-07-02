@@ -27,6 +27,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Deformation obstruction space is cohomological, discrete; no gradient descent"},
     "pyg":       {"tried": False, "used": False, "reason": "Deformation theory of varieties is algebraic, not graph structure"},

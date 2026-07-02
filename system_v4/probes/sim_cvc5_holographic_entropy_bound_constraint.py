@@ -21,6 +21,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure symbolic constraint via cvc5 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "no graph analysis; entropy bound is bulk-to-boundary algebraic"},

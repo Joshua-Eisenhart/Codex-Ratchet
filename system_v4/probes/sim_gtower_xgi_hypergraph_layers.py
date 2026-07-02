@@ -18,6 +18,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":    {"tried": False, "used": False, "reason": "not needed; no autograd"},
     "pyg":        {"tried": False, "used": False, "reason": "not needed; hypergraph not message-passing"},

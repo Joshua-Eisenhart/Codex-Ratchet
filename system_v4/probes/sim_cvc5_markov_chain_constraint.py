@@ -60,6 +60,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Markov chain is discrete stochastic process, not neural network training"},
     "pyg": {"tried": False, "used": False, "reason": "Markov transition matrix is algebraic constraint, not graph-dependent topology"},

@@ -5,6 +5,8 @@ cvc5 load-bearing: cross-solver exclusion witness.
 """
 import json, os
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {t:{"tried":False,"used":False,"reason":"n/a"} for t in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
 

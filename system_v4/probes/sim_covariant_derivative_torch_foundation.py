@@ -26,6 +26,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Covariant derivative ∇_X s = ds(X) + A(X)s as torch float64 operator; Leibniz rule via chain rule; commutator brackets [∇_X,∇_Y] via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for covariant calculus on bundles"},

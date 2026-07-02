@@ -11,6 +11,8 @@ mis-rotates Y_lm (mixing irreps).
 import json, os, numpy as np
 import torch
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {k:{"tried":False,"used":False,"reason":""} for k in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
 TOOL_INTEGRATION_DEPTH = {

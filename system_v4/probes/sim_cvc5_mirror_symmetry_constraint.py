@@ -44,6 +44,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Mirror symmetry from string duality; no learning"},
     "pyg": {"tried": False, "used": False, "reason": "Mirror symmetry from Hodge theory, not graph structure"},

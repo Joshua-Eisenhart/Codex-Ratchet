@@ -62,6 +62,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Density matrix constraints are mathematical axioms, not neural network training"},
     "pyg": {"tried": False, "used": False, "reason": "Density matrix theory is operator algebra, not graph learning"},

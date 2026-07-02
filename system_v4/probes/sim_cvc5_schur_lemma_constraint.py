@@ -21,6 +21,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation"},
     "pyg": {"tried": False, "used": False, "reason": "no graph message passing needed for representation theory"},

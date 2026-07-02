@@ -10,6 +10,8 @@ pytorch load_bearing: autograd through unrolled iterative solver; IFT cross-chec
 import json, os
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"}
                  for k in ["pytorch","pyg","z3","cvc5","sympy","clifford",
                            "geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}

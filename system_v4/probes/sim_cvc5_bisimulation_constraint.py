@@ -16,6 +16,8 @@ import numpy as np
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},

@@ -18,6 +18,8 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from _fence_unsat_common import fresh_manifest
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = fresh_manifest()
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 

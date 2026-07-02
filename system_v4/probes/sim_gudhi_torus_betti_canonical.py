@@ -4,6 +4,8 @@ Derived from SIM_TEMPLATE. Canonical. Gudhi is load-bearing; numpy only samples 
 """
 import json, os, numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not required for PH on point cloud"},
     "pyg": {"tried": False, "used": False, "reason": "no graph MP in this test"},

@@ -33,6 +33,8 @@ import os
 import torch
 import numpy as np
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Contact form α evaluation, kernel computation, Reeb field, Lie bracket — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

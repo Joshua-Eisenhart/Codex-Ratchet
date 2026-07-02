@@ -29,6 +29,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Intersection cohomology is combinatorial algebraic; no gradient descent on ranks"},
     "pyg":       {"tried": False, "used": False, "reason": "Intersection cohomology rank constraints are not graph structure"},

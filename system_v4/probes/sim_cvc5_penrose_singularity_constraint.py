@@ -82,6 +82,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "Penrose theorem is a logical proof about spacetime structure, not a neural optimization"},
     "pyg": {"tried": False, "used": False, "reason": "Singularity theorem is geometric/topological, not graph neural learning"},

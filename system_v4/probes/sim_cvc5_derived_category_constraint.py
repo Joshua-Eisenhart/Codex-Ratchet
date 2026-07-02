@@ -28,6 +28,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "Derived category is homological algebra; no gradient descent on sheaf complexes"},
     "pyg":       {"tried": False, "used": False, "reason": "Derived category on variety is not graph structure; Ext spaces are vector spaces"},

@@ -7,6 +7,8 @@ random SO(3) element acts consistently on l=1 vectors (equivariance).
 """
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
+classification = "tool_lego_fit_probe"
+
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
 TOOL_INTEGRATION_DEPTH = {

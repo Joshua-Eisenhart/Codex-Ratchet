@@ -23,6 +23,7 @@ cvc5 proves LTL constraints via QF_UF (uninterpreted functions over time):
 classification: canonical
 cvc5=load_bearing, sympy=supportive
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -12,6 +12,7 @@ References:
 - Unitarity: h ≥ 0 for primaries, h ≥ c/24 for lowest primary
 - Conformal blocks must satisfy crossing
 """
+classification = 'diagnostic_only'
 
 import json
 import os

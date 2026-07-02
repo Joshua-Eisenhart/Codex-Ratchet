@@ -13,6 +13,7 @@ Key constraints:
 Load-bearing: cvc5 enforces cup product graded-commutativity and nilpotency.
 Supporting: sympy derives exterior algebra and cohomology ring structure.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

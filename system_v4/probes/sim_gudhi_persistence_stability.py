@@ -3,6 +3,8 @@
 Bottleneck distance between clean and noisy H1 diagrams should be bounded by ~2*noise,
 while a naive pairwise-distance summary (sorted edge lengths L2) changes much more.
 """
+classification = 'diagnostic_only'
+
 import json, os, numpy as np
 import gudhi
 

@@ -41,6 +41,7 @@ Supporting: sympy derives KKLT superpotential W = ∫G3∧Ω, flux quantization 
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

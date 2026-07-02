@@ -26,6 +26,7 @@ Supporting: sympy derives E8 Cartan matrix, root enumeration, and lattice proper
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -8,6 +8,7 @@ Q_9 > 0 iff ALL 9 shells active simultaneously.
 
 H_symp = log(3)  (2 known Lagrangians → n=2, log(1+2)=log(3))
 """
+classification = 'diagnostic_only'
 
 import json, os, itertools
 import numpy as np

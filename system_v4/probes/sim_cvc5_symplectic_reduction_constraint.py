@@ -21,6 +21,7 @@ Supporting: sympy derives Marsden-Weinstein formula and dimensional counting.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

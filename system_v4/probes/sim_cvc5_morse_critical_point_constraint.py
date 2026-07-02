@@ -19,6 +19,7 @@ Load-bearing: cvc5 enforces Morse index constraints {0..n}, integrality, and Mor
              via QF_LIA integer arithmetic.
 Supporting: sympy derives Morse inequalities and Euler characteristic formula.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -41,6 +41,7 @@ Supporting: sympy derives special Lagrangian T^3 fibration structure,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

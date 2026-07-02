@@ -55,6 +55,7 @@ Supporting: sympy derives minimal polynomial (max block size for each eigenvalue
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

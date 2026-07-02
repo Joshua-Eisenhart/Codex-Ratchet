@@ -13,6 +13,7 @@ classification: canonical
 Required tools: pytorch (load_bearing: numerical), clifford (load_bearing),
 z3 (load_bearing: UNSAT proofs), sympy (supportive)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

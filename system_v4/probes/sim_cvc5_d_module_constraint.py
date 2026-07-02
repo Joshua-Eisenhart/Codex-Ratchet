@@ -28,6 +28,7 @@ Supporting: sympy derives vanishing cycle bounds, Kashiwara-Schapira theory,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

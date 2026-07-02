@@ -55,6 +55,7 @@ Supporting: sympy derives principal curvature formulas, computes χ for standard
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

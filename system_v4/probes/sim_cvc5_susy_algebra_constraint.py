@@ -30,6 +30,7 @@ Supporting: sympy derives Witten index, boson-fermion counting, ground state deg
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -13,6 +13,7 @@ that coupling is:
 This is the step-2 "pairwise coupling" lego: shell-local objects survive
 the coupling probe, and correlation emerges.
 """
+classification = 'comparison_surface'
 
 import json, os
 

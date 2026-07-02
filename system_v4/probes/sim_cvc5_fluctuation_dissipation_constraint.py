@@ -16,6 +16,7 @@ cvc5 UNSAT: χ''(ω) = -0.1 AND χ'' ≥ 0 (direct contradiction).
 Load-bearing: cvc5 enforces χ'' ≥ 0 via QF_LRA.
 Supporting: sympy derives Einstein relation D = μ k T symbolically (mobility × diffusion).
 """
+classification = 'diagnostic_only'
 
 import json
 import os

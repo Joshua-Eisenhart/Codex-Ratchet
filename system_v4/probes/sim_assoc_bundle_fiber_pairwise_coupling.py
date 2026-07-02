@@ -14,6 +14,7 @@ winding-holonomy incompatibility under triviality).
 
 Supporting: sympy (symbolic constraint algebra), e3nn (equivariant structure group reps).
 """
+classification = 'comparison_surface'
 
 import json
 import os

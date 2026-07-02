@@ -46,6 +46,7 @@ Supporting: sympy derives partition function from probability definition, proves
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

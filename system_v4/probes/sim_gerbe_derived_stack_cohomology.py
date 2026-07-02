@@ -6,6 +6,7 @@ Gerbe on derived stack X = BU(1).
 Claim: H²(BU(1), U(1)) is nontrivial; c₁ generates H²; trivial gerbe (DD=0) with
 nontrivial holonomy is excluded (z3 UNSAT).
 """
+classification = 'diagnostic_only'
 
 import json
 import os

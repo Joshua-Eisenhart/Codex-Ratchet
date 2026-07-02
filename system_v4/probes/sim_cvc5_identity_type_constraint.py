@@ -10,6 +10,7 @@ Classification: canonical
 Load-bearing tools: cvc5
 Supportive tools: sympy (for alternative proof verification)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

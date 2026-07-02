@@ -22,6 +22,7 @@ Supporting: sympy derives Spin(7) exceptional structure and root systems.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

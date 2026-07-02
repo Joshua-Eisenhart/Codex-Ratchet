@@ -21,6 +21,7 @@ cvc5 proves modal K constraints via QF_UF (uninterpreted functions):
 classification: canonical
 cvc5=load_bearing, sympy=supportive
 """
+classification = 'diagnostic_only'
 
 import json
 import os

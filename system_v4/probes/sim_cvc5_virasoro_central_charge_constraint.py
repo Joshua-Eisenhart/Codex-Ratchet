@@ -11,6 +11,7 @@ References:
 - Virasoro algebra axioms for CFT
 - Unitarity requires c ≥ 0
 """
+classification = 'diagnostic_only'
 
 import json
 import os

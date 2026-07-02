@@ -6,6 +6,7 @@ G2 and F4 exceptional Lie algebra spectral triples.
 Claim: spectral gap of G2 proxy (rank 2, 14-dim) differs from F4 proxy (rank 4, 52-dim).
 z3 UNSAT: equal spectral gaps for G2/F4 at same matrix scale is excluded when dimensions differ.
 """
+classification = 'comparison_surface'
 
 import json
 import os

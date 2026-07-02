@@ -17,6 +17,7 @@ cvc5 UNSAT proves ind(signature_op) ≠ σ(M) is inadmissible.
 Load-bearing: cvc5 enforces integer-valuedness and Hirzebruch signature constraint.
 Supporting: sympy derives index formulas symbolically.
 """
+classification = 'companion_index'
 
 import json
 import os

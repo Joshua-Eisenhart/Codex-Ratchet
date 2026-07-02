@@ -48,6 +48,7 @@ Supporting: sympy derives geodesic equation from Euler-Lagrange, computes Christ
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

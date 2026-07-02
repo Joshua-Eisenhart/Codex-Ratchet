@@ -15,6 +15,7 @@ Theory:
   cvc5 UNSAT proves that rank(L) ≠ rank(M) is inadmissible under the
   Riemann-Hilbert correspondence.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

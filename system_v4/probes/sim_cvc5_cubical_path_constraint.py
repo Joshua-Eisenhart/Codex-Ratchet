@@ -9,6 +9,7 @@ Classification: canonical
 Load-bearing tools: cvc5
 Supportive tools: sympy (for symbolic path verification)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

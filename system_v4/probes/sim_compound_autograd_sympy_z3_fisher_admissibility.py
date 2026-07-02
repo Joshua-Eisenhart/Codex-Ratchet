@@ -15,6 +15,8 @@ Three irreducible tools:
    symbolic SAT/UNSAT certificates.
 Ablate any one and the admissibility chain collapses.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 import torch
 import sympy as sp

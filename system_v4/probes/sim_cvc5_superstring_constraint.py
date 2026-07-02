@@ -32,6 +32,7 @@ Supporting: sympy derives Virasoro central charge formula, worldsheet CFT struct
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

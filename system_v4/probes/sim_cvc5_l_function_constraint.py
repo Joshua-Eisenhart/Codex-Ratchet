@@ -29,6 +29,7 @@ Supporting: sympy derives Euler product, root number from character, GRH predict
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

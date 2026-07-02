@@ -20,6 +20,7 @@ Supporting: sympy derives Yau theorem and SU(n) algebra structure.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

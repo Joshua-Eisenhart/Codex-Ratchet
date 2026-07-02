@@ -7,6 +7,8 @@ Four-way coexistence axiom (interacting):
   free_energy_consensus_quad. A candidate admissible at the triple-joint layer but
   lacking this atom is 'excluded by 4-way coexistence coupling'.
 """
+classification = 'diagnostic_only'
+
 from _quad_common import run_kwise, write_results
 
 NAME = "sim_quad_holodeck_igt_leviathan_fep"

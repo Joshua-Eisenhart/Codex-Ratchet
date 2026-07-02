@@ -24,6 +24,7 @@ Supporting: sympy derives Weyl law spectral asymptotics, heat kernel expansion.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

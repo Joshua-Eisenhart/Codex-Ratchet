@@ -59,6 +59,7 @@ Supporting: sympy derives Ford-Fulkerson algorithm (find augmenting paths,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

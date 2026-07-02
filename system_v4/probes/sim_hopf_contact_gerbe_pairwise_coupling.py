@@ -15,6 +15,7 @@ z3 (UNSAT proof of coaction-contact-gerbe incompatibility).
 
 Supporting: sympy (symbolic Hopf algebra axioms), geomstats (Reeb flow).
 """
+classification = 'comparison_surface'
 
 import json
 import os

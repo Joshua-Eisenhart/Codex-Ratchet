@@ -43,6 +43,7 @@ Supporting: sympy derives closed graph criterion, inverse boundedness,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

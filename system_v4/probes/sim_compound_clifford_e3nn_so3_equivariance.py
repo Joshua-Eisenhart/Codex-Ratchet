@@ -17,6 +17,7 @@ Neither alone is a proof of SO(3) equivariance consistency -- the claim
 is that the two independent implementations agree. Ablating either
 leaves only one witness and the cross-check vanishes.
 """
+classification = 'comparison_surface'
 
 import json
 import os

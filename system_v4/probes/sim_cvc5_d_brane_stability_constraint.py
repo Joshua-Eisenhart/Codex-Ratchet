@@ -37,6 +37,7 @@ Supporting: sympy derives Chern character ch(E) from K-theory,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

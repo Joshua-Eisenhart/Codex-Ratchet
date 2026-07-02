@@ -9,6 +9,7 @@ Exclusion: holonomy²≠1 AND truncation-stable is excluded by cvc5/z3 UNSAT.
 Load-bearing: cvc5 (linear arithmetic proof of h²=1 persistence), z3 (symbolic proof).
 Supporting: sympy (symbolic constraint algebra), geomstats (Riemannian baseline).
 """
+classification = 'comparison_surface'
 
 import json
 import os

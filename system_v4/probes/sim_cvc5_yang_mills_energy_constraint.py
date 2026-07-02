@@ -13,6 +13,7 @@ cvc5 proves that Yang-Mills energy E = ∫|F|² dμ satisfies fundamental bounds
 Load-bearing: cvc5 enforces E ≥ 0 constraint and implies F = 0 from E = 0.
 Supporting: sympy derives instanton bounds and self-duality identities symbolically.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

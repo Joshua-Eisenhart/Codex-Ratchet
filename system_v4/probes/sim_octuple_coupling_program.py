@@ -8,6 +8,7 @@ Q_8 > 0 iff ALL 8 shells active simultaneously.
 
 H_contact = log(17)  (same construction as H_gerbe: 16 nonzero cells on ±1 grid, seed=0)
 """
+classification = 'diagnostic_only'
 
 import json, os, itertools
 import numpy as np

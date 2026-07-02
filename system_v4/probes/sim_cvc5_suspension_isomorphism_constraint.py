@@ -54,6 +54,7 @@ Supporting: sympy derives suspension construction, Mayer-Vietoris sequence,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

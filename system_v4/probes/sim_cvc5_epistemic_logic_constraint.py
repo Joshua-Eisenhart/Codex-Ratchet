@@ -23,6 +23,7 @@ cvc5 proves epistemic logic constraints via QF_UF (uninterpreted functions):
 classification: canonical
 cvc5=load_bearing, sympy=supportive
 """
+classification = 'diagnostic_only'
 
 import json
 import os

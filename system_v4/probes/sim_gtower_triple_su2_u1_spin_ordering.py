@@ -12,6 +12,7 @@ load_bearing: clifford (Cl(3) rotors realize Spin reduction at each step;
               orderings of the three-group chain).
 classification: canonical
 """
+classification = 'comparison_surface'
 
 import json
 import os

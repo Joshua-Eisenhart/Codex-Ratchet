@@ -26,6 +26,7 @@ Supporting: sympy derives string theory expansion and conifold wall-crossing.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

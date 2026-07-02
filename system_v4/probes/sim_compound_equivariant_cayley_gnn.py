@@ -18,6 +18,8 @@ Ablate any one:
   - e3nn: no equivariant layer -> equivariance fails generically
   - pytorch: no autograd step -> cannot show preservation under training
 """
+classification = 'comparison_surface'
+
 import json, os, math, numpy as np
 
 TOOL_MANIFEST = {

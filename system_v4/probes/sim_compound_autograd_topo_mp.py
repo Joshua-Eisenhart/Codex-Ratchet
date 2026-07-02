@@ -14,6 +14,7 @@ Ablate toponetx => no chain structure / no Laplacian.
 Ablate pyg      => no message-passing step.
 Ablate pytorch  => no autograd optimization.
 """
+classification = 'comparison_surface'
 
 import json, os, numpy as np
 

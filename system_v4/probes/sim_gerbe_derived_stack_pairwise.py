@@ -18,6 +18,7 @@ failing tool.
 
 classification: canonical (if both tools load_bearing) else classical_baseline
 """
+classification = 'diagnostic_only'
 
 import json
 import os

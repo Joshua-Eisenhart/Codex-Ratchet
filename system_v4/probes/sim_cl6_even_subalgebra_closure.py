@@ -7,6 +7,8 @@ odd*even is odd (leaves subalgebra). Boundary: scalar and pseudoscalar edges.
 Ablation: numpy flat vector multiply has no grade structure -- can't detect
 chirality preservation.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 
 TOOL_MANIFEST = {k:{"tried":False,"used":False,"reason":""} for k in

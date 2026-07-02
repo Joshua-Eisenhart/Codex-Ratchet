@@ -12,6 +12,7 @@ CLAIM: A torus-triangulated spinor field is admissible iff
 Ablating any ONE of {z3, clifford, gudhi} removes a necessary witness,
 so the joint admissibility claim cannot be established.
 """
+classification = 'comparison_surface'
 
 import json, os, itertools, numpy as np
 

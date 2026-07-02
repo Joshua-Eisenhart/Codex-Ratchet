@@ -7,6 +7,8 @@ system_v4/probes/sim_compound_torus_spinor_admissibility.py in cvc5;
 asserts z3<->cvc5 parity on both SAT (clean) and UNSAT (sabotaged).
 Does not modify parent.
 """
+classification = 'comparison_surface'
+
 import os, sys
 from _cvc5_parity_helper import write_results, all_pass
 

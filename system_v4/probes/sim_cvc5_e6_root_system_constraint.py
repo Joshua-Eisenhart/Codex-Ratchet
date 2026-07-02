@@ -24,6 +24,7 @@ Supporting: sympy derives E6 Cartan matrix, root enumeration, and embeddings.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

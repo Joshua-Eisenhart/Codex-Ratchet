@@ -15,6 +15,8 @@ chain close:
    neither gudhi nor toponetx gives a message-passing numerical witness.
 Ablating ANY of the three breaks the multi-route admissibility.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np, torch
 import gudhi
 from toponetx.classes import SimplicialComplex

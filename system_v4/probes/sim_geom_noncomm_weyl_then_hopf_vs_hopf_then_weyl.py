@@ -16,6 +16,7 @@ classification: canonical
 Required tools: pytorch (load_bearing: numerical), z3 (load_bearing: UNSAT),
 sympy (load_bearing: symbolic ordering)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

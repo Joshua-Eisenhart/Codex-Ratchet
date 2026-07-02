@@ -6,6 +6,8 @@ Scope: variational free energy F(mu; s) = KL(q(eta|mu) || p(eta|s)). Under
 Gaussian q,p, gradient descent on mu reduces F monotonically; candidates that
 increase F under this flow are EXCLUDED. Autograd computes the flow.
 """
+classification = 'diagnostic_only'
+
 import json, os
 import torch
 

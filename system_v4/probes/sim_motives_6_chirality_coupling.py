@@ -6,6 +6,8 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 
 No strong load-bearing tool per cut list; sympy for motivic weight filtration symbolics; z3 for realization-functor consistency.
 """
+classification = 'diagnostic_only'
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

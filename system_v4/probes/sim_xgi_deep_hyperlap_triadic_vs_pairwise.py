@@ -12,6 +12,8 @@ them; xgi preserves cardinality and separates.
 
 Classification: canonical.
 """
+classification = 'diagnostic_only'
+
 import json, os
 import numpy as np
 

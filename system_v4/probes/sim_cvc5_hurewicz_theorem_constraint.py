@@ -51,6 +51,7 @@ Supporting: sympy derives homotopy groups, Hurewicz map definition, simply conne
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

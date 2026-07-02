@@ -14,6 +14,7 @@ which implies its spectrum is purely real. Key geometric facts:
 Load-bearing: cvc5 enumerates real eigenvalue solutions and excludes complex/non-self-adjoint.
 Supporting: sympy derives characteristic polynomial and spectral bounds symbolically.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

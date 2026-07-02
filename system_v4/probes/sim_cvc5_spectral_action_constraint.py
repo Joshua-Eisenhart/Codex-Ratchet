@@ -24,6 +24,7 @@ Supporting: sympy derives heat kernel expansion coefficients, Dirac determinant 
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

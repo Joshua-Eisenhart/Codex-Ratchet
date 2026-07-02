@@ -25,6 +25,7 @@ Test Goals:
   - Boundary: Multiple sequencing chains
   - Boundary: Complex nested sessions
 """
+classification = 'comparison_surface'
 
 import json
 import os

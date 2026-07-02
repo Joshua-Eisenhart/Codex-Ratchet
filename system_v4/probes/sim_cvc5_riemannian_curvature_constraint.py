@@ -16,6 +16,7 @@ Key constraints:
 Load-bearing: cvc5 enforces metric positivity (det(g) > 0) and Gauss equation constraints.
 Supporting: sympy derives Theorema Egregium and Ricci scalar relationships.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

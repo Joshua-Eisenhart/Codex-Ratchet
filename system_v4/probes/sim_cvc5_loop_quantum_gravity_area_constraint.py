@@ -12,6 +12,7 @@ sympy derives minimum area eigenvalue and spin quantum numbers.
 Load-bearing: cvc5 enforces area positivity via QF_LRA.
 Supporting: sympy derives spin-dependent eigenvalues.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

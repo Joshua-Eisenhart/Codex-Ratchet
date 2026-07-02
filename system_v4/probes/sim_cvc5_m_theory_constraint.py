@@ -31,6 +31,7 @@ Supporting: sympy derives M2/M5 brane equations, BPS mass spectra, compactificat
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

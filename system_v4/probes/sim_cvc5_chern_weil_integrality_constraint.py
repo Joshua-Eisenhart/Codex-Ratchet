@@ -14,6 +14,7 @@ for principal U(1) bundles. This is a fundamental topological constraint:
 Load-bearing: cvc5 enforces integer partition and excludes rational non-integers.
 Supporting: sympy derives Chern class properties and topological invariants.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

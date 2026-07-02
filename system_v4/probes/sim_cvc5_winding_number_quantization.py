@@ -12,6 +12,7 @@ Key constraints:
 Load-bearing: cvc5 enforces integer partition and excludes all non-integer rationals.
 Supporting: sympy derives homotopy group π₁(S¹) = ℤ and covering space structure.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

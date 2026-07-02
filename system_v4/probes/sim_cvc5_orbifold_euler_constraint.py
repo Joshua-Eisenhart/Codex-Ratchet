@@ -20,6 +20,7 @@ Supporting: sympy derives Chen-Ruan formula and orbifold cohomology structure.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

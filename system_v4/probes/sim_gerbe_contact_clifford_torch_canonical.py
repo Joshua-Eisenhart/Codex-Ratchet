@@ -20,6 +20,7 @@ Uses torch-native MI dephasing primitive from sim_torch_mi_dephasing_primitive.p
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import math

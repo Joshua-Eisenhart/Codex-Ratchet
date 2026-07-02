@@ -44,6 +44,7 @@ Supporting: sympy derives stabilizer generators, CSS codes, distance definition,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

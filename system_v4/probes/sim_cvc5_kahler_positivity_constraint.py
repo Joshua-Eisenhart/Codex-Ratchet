@@ -17,6 +17,7 @@ Key constraints:
 Load-bearing: cvc5 enforces Kähler non-degeneracy and positivity constraints via QF_NRA.
 Supporting: sympy derives Kähler identities and Fubini-Study metric formulas.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -15,6 +15,7 @@ cvc5 UNSAT: f ≠ 1 in totally ramified extension
 Load-bearing: cvc5 proves ramification index/residue degree constraints.
 Supporting: sympy derives symbolic relationships.
 """
+classification = 'companion_index'
 
 import json
 import os

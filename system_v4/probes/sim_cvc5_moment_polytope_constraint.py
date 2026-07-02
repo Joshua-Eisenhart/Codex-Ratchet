@@ -21,6 +21,7 @@ Supporting: sympy derives AGS convexity theorem and polytope structure.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

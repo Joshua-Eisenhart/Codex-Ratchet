@@ -5,6 +5,8 @@ geomstats load-bearing: intrinsic FrechetMean on Hypersphere uses geodesic dista
 and exp/log on the sphere. Numpy Euclidean averaging does not produce an on-manifold
 mean and cannot diagnose the cut-locus degeneracy at antipodal pairs.
 """
+classification = 'diagnostic_only'
+
 import json, os, numpy as np
 
 TOOL_MANIFEST = {

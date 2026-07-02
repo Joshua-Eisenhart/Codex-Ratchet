@@ -55,6 +55,7 @@ Supporting: sympy derives weak homotopy equivalence, Whitehead's theorem proof v
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

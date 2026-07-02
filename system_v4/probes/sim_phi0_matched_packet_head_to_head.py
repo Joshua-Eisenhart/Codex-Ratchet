@@ -20,6 +20,7 @@ Candidates:
 
 No final winner is promoted unless the margin is strong.
 """
+classification = 'diagnostic_only'
 
 import json
 import math

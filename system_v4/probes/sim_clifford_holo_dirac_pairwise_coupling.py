@@ -16,6 +16,7 @@ z3 (UNSAT proof of grading-holonomy incompatibility).
 
 Supporting: sympy (symbolic constraint verification), e3nn (equivariant spinor reps).
 """
+classification = 'comparison_surface'
 
 import json
 import os

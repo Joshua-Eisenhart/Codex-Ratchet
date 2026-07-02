@@ -27,6 +27,7 @@ Supporting: sympy derives genus expansion and CP¹ GW generating function.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

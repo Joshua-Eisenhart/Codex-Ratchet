@@ -16,6 +16,8 @@ identity (up to sign). Three irreducible tools:
    produces gradient-based admissibility witnesses.
 Ablate any one and the higher-order rotor admissibility breaks.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 import torch
 import xgi

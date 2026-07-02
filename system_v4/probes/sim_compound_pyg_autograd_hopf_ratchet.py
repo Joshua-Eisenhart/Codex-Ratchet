@@ -21,6 +21,7 @@ Ablation tests:
       ignores edge structure -> forward output differs, so the
       downstream "PyG-structured gradient" claim fails.
 """
+classification = 'comparison_surface'
 
 import json
 import os

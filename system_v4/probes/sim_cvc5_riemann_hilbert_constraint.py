@@ -33,6 +33,7 @@ Supporting: sympy derives Euler characteristic additivity, kernel-cokernel
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

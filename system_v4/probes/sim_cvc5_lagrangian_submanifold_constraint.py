@@ -22,6 +22,7 @@ Supporting: sympy derives Arnold-Liouville action-angle theorem and isotropic co
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

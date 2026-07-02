@@ -20,6 +20,7 @@ Disqualification rules:
 - arbitrary candidates are rejected if mild weight perturbations scramble their
   induced ranking too easily
 """
+classification = 'diagnostic_only'
 
 import json
 import math

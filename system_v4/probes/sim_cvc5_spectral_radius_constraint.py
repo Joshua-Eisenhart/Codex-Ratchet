@@ -48,6 +48,7 @@ Supporting: sympy derives eigenvalues from characteristic polynomial, computes
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

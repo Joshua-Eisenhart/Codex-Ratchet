@@ -22,6 +22,7 @@ Supporting: sympy derives Kobayashi-Ochiai classification bounds.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

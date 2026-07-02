@@ -22,6 +22,7 @@ cvc5 proves Hodge constraints via QF_LIA:
 classification: canonical
 cvc5=load_bearing, sympy=supportive
 """
+classification = 'diagnostic_only'
 
 import json
 import os

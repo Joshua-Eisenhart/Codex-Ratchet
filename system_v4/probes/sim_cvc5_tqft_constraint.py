@@ -30,6 +30,7 @@ Supporting: sympy derives Frobenius algebra structure on Z(S^1), semisimplicity
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -48,6 +48,7 @@ Supporting: sympy derives KL divergence and its Hessian, proves Hessian = Fisher
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

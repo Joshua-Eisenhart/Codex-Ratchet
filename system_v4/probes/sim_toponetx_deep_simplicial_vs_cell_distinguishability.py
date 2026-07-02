@@ -13,6 +13,8 @@ different decomposition" cannot be tested; toponetx is load_bearing.
 
 Classification: canonical.
 """
+classification = 'comparison_surface'
+
 import json, os, sys
 import numpy as np
 

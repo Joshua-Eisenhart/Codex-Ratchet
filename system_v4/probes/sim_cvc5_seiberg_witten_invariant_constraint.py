@@ -13,6 +13,7 @@ classification: canonical
 Required tools: cvc5 (load_bearing: UNSAT on SW constraint), sympy (supportive),
 pytorch (supportive: numerical verification)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -43,6 +43,7 @@ Supporting: sympy derives beta function β(g) from Feynman diagrams (one-loop, t
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

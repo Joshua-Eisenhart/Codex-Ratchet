@@ -14,6 +14,8 @@ Boundary: same formula with unit clause p1=1 added still UNSAT.
 Classification: canonical. Both solvers load-bearing (agreement itself
 is the evidence; a single verdict would not suffice).
 """
+classification = 'diagnostic_only'
+
 import json, os
 
 TOOL_MANIFEST = {

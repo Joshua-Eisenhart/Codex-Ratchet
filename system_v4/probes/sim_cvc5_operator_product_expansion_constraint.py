@@ -12,6 +12,7 @@ References:
 - Unitarity requires real OPE coefficients
 - Scaling dimensions constrain allowed operator content
 """
+classification = 'diagnostic_only'
 
 import json
 import os

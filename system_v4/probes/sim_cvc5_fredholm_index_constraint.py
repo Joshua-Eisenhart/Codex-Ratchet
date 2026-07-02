@@ -17,6 +17,7 @@ Key constraints:
 Load-bearing: cvc5 enforces index integrality and stability constraints via QF_LIA.
 Supporting: sympy derives Fredholm determinant and trace formula for index computation.
 """
+classification = 'companion_index'
 
 import json
 import os

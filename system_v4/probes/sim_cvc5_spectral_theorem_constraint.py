@@ -45,6 +45,7 @@ Supporting: sympy derives Hermitian inner product property ⟨Av,v⟩ = ⟨v,Av�
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -13,6 +13,7 @@ Exclusion language: clusters are similarity-admitted under the verdict-
 key signature; they are candidates, not theorems. Reports only -- no
 file is merged or deleted.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

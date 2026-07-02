@@ -50,6 +50,7 @@ Supporting: sympy derives A†A eigenvalue relation, singular value computation,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -19,6 +19,7 @@ Load-bearing claims:
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

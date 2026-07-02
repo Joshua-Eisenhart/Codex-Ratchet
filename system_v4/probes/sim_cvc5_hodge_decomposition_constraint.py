@@ -20,6 +20,7 @@ Load-bearing: cvc5 enforces decomposition uniqueness, non-negative dimension cou
              and mutual orthogonality constraints via QF_LIA.
 Supporting: sympy derives Hodge star identity, Laplacian eigenvalue structure.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

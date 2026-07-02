@@ -7,6 +7,8 @@ monotonically decrease F.
 pytorch load_bearing: reparameterized ELBO with autograd through sampling;
 analytic closed form exists but FEP engine uses autograd for scalability.
 """
+classification = 'diagnostic_only'
+
 import json, os
 import numpy as np
 

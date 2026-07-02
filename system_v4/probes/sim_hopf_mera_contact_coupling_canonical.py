@@ -27,6 +27,7 @@ Steps 1-6:
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import math

@@ -5,6 +5,8 @@ This fixture proves only the finite local bit-flip action on two computational
 basis qubits. It does not claim full local-unitary equivalence or a continuous
 U(2) x U(2) orbit cardinality.
 """
+classification = 'diagnostic_only'
+
 import json, os, sympy as sp
 from itertools import product
 

@@ -18,6 +18,8 @@ Both tools are load_bearing:
 
 Classification: canonical.
 """
+classification = 'comparison_surface'
+
 import json, os, sys
 import numpy as np
 

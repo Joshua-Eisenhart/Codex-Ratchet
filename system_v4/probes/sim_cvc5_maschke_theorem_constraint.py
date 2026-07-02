@@ -55,6 +55,7 @@ Supporting: sympy derives averaging projection formula, invariant complement exi
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

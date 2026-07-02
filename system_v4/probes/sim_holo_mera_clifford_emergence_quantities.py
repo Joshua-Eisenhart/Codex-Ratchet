@@ -31,6 +31,7 @@ Tests:
 
 Classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import math

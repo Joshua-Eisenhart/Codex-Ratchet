@@ -48,6 +48,7 @@ Supporting: sympy derives Landau free energy F = a(T-T_c)m² + bm⁴,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

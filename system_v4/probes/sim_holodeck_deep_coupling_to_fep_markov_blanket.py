@@ -11,6 +11,8 @@ Indistinguishability language: mu and eta are INDISTINGUISHABLE from each
 other's perspective except through the blanket; direct mu-eta coupling is
 EXCLUDED by construction.
 """
+classification = 'diagnostic_only'
+
 import json, os, math
 import torch
 

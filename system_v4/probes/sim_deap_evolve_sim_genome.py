@@ -10,6 +10,7 @@ Language discipline: genomes "survive" into later generations under
 coupling with the tournament operator; low-diversity genomes are
 "excluded" by the selector. We do not claim evolution "creates" diversity.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

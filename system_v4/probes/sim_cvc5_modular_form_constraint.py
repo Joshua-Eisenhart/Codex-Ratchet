@@ -29,6 +29,7 @@ Supporting: sympy derives eta function, Eisenstein series, modular relation E₄
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

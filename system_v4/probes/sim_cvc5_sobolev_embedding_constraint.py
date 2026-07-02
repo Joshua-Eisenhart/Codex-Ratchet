@@ -41,6 +41,7 @@ Supporting: sympy derives Sobolev embedding theorem conditions, Morrey inequalit
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -23,6 +23,7 @@ Supporting: sympy derives Euler characteristic formula and proves rank lower bou
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -7,6 +7,8 @@ D^l(R, +1) equals D^l(R, -1) (both project to SO(3)). Fence: difference must
 vanish for l=1, l=2. Exclusion: half-integer would NOT satisfy this (not
 supported by e3nn.o3; omitted from positive claim).
 """
+classification = 'comparison_surface'
+
 import os, json, torch
 from e3nn.o3 import Irreps, rand_matrix
 

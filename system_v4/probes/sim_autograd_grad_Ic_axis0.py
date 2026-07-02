@@ -7,6 +7,8 @@ pytorch load_bearing: autograd differentiates through eigendecomposition of a
 parameterized Hermitian density matrix. Finite-difference (numpy) is decorative,
 noisy cross-check only.
 """
+classification = 'diagnostic_only'
+
 import json, os
 import numpy as np
 

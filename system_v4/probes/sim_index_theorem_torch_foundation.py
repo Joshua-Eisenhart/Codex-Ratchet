@@ -19,6 +19,7 @@ Load-bearing claims:
 
 classification: canonical
 """
+classification = 'companion_index'
 
 import json
 import math

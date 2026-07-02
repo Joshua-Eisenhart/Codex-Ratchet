@@ -21,6 +21,7 @@ Supporting: sympy derives Ambrose-Singer holonomy theorem and Cartan structure e
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

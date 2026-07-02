@@ -12,6 +12,7 @@ The point is not to crown a final winner. The point is to map regimes where:
 - MI has better hit-count on packet discrimination
 - Ic carries signed orientation that MI cannot supply
 """
+classification = 'diagnostic_only'
 
 import json
 import math

@@ -55,6 +55,7 @@ Compare Type 2 I_c trajectory to Type 1 result:
 
 classification = "canonical"
 """
+classification = 'diagnostic_only'
 
 import json
 import math

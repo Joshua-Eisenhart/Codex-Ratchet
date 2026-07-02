@@ -13,6 +13,8 @@ Any one ablation breaks proof certainty:
   - without cvc5: single-solver unsat is not cross-checked
 We also include a FALSE candidate where all three agree on refutation.
 """
+classification = 'comparison_surface'
+
 import json, os
 
 TOOL_MANIFEST = {

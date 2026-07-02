@@ -34,6 +34,7 @@ Supporting: sympy derives E8 root system, SO(32) dimension formula, anomaly poly
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

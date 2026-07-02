@@ -10,6 +10,8 @@ differently on both. Boundary: R = 1 vs R = -1 (identity double cover).
 Ablation: numpy 3x3 rotation matrices cannot represent the sign distinction
 at all -- they collapse R and -R into the same SO(3) element.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 from clifford import Cl
 

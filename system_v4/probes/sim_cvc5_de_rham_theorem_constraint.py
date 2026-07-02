@@ -60,6 +60,7 @@ Supporting: sympy derives de Rham complex, closed/exact forms, integration pairi
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

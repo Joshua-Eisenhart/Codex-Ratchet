@@ -16,6 +16,7 @@ cvc5 UNSAT: σ² = 1 AND σ ∉ {-1, +1} (square is 1 but value not in domain).
 Load-bearing: cvc5 enforces σ_i² = 1 via QF_LRA.
 Supporting: sympy derives mean-field critical temperature T_c = J/(2k_B) symbolically.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

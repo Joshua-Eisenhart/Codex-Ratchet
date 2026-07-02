@@ -20,6 +20,7 @@ Type 2 Schedule:
 
 For each axis, measure characteristic invariant across all engine states.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -51,6 +51,7 @@ Supporting: sympy derives deletion-contraction recurrence chi(G, k) = chi(G-e, k
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

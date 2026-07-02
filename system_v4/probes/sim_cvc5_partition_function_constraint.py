@@ -15,6 +15,7 @@ cvc5 UNSAT: Z < 0 (negative partition function is impossible).
 Load-bearing: cvc5 enforces Z > 0 via QF_LRA.
 Supporting: sympy derives free energy F = -kT ln Z symbolically.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

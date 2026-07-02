@@ -22,6 +22,7 @@ Bridge claims (require evidence from Steps 1-4):
 pytorch + z3 + sympy are load_bearing.
 Classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import math

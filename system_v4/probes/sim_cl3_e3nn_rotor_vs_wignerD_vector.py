@@ -11,6 +11,8 @@ Ablation: numpy rotation matrix without rotor sandwich is OK for vectors but
 fails for spinors (tested indirectly via R vs -R equivalence on vectors,
 distinctness on scalar part).
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 import torch
 from clifford import Cl

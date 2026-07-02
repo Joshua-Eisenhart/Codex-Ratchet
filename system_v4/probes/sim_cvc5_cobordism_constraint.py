@@ -32,6 +32,7 @@ Supporting: sympy derives Stiefel-Whitney classes, signature formula σ(M)=0,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

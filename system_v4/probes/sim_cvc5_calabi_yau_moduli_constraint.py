@@ -42,6 +42,7 @@ Supporting: sympy derives Hodge diamond, computes Euler characteristic,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

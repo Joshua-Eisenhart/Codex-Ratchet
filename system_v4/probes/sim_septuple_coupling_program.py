@@ -6,6 +6,7 @@ sim_septuple_coupling_program.py — canonical
 Q_7 = MI × H_weyl × H_hopf × H_gerbe × H_dirac × H_clifford × H_st
 Q_7 > 0 iff ALL 7 shells active simultaneously.
 """
+classification = 'diagnostic_only'
 
 import json, os
 import numpy as np

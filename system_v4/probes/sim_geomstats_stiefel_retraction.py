@@ -4,6 +4,8 @@
 geomstats load-bearing: Stiefel exp/projection returns a point on the manifold
 (Q^T Q = I_k) after tangent-space update; naive Euclidean X + V does not.
 """
+classification = 'diagnostic_only'
+
 import json, os, numpy as np
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

@@ -62,6 +62,7 @@ Supporting: sympy derives regular representation decomposition (each irrep appea
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

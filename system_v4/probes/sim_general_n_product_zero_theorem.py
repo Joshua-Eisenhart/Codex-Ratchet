@@ -7,6 +7,7 @@ if any xi=0 then Q=0, for N in 2..10.
 Also prove contrapositive: Q≠0 requires all xi≠0.
 z3 UNSAT for N=6: x1*...*x6≠0 with any xi=0 is impossible.
 """
+classification = 'diagnostic_only'
 
 import json, os
 import numpy as np

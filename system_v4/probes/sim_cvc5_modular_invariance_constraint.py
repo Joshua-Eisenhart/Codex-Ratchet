@@ -32,6 +32,7 @@ Supporting: sympy derives modular S and T matrices (generators of SL(2,ℤ)), th
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

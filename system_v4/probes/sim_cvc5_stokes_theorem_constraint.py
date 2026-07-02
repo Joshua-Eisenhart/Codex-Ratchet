@@ -56,6 +56,7 @@ Supporting: sympy derives exterior derivative, differential forms, orientation c
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

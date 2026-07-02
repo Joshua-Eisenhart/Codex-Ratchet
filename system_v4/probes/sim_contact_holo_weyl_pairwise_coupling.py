@@ -15,6 +15,7 @@ geomstats (Reeb vector field on contact manifolds).
 
 Supporting: sympy (symbolic contact algebra), clifford (spinor representation).
 """
+classification = 'comparison_surface'
 
 import json
 import os

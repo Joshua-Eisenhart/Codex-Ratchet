@@ -56,6 +56,7 @@ Supporting: sympy derives spectral triple axioms, Dirac operators, bounded commu
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

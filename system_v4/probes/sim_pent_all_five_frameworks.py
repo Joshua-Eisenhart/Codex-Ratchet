@@ -9,6 +9,8 @@ Five-way coexistence axiom (interacting):
   self-similar-frameworks doctrine. A candidate admissible at every embedded 4-way
   (quad) layer but lacking this atom is 'excluded by 5-way coexistence coupling'.
 """
+classification = 'diagnostic_only'
+
 from _quad_common import run_kwise, write_results
 
 NAME = "sim_pent_all_five_frameworks"

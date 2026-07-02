@@ -44,6 +44,7 @@ Supporting: sympy derives Gaussian kernel K_t(x,y) = (4πt)^{-n/2} exp(-|x-y|²/
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

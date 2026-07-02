@@ -32,6 +32,7 @@ Supporting: sympy derives elliptic fibration Weierstrass equation, j-invariant m
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

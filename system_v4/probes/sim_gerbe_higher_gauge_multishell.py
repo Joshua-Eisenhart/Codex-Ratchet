@@ -9,6 +9,7 @@ configurations from excluded ones. We realize B as a clifford 2-blade
 test: sum of B-fluxes over the three pairwise-overlap 2-cells is
 integer-quantized (mod 2pi) iff the shells coexist; otherwise excluded.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

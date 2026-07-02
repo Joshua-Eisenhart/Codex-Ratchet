@@ -82,6 +82,7 @@ Supporting: sympy derives four-momentum p^μ, invariant mass p^μ p_μ = -(mc)²
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

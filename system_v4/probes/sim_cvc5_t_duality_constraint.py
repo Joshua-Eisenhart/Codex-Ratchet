@@ -32,6 +32,7 @@ Supporting: sympy derives mode spectrum, level matching formula, compactificatio
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

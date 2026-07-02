@@ -16,6 +16,7 @@ z3 (UNSAT proof that rank(G2)=2 AND rank(E6)=6 has no admissible reduction).
 Supporting: pytorch (tensor representation of root vectors), clifford (geometric algebra
 for root reflection group realization).
 """
+classification = 'diagnostic_only'
 
 import json
 import os

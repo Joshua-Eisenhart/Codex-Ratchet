@@ -27,6 +27,7 @@ Supporting: sympy derives A∞ axiom and Stasheff relation constraints.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

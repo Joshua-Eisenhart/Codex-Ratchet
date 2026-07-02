@@ -42,6 +42,7 @@ Supporting: sympy derives elliptic symbol condition σ_2(L) ≠ 0, Gårding ineq
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

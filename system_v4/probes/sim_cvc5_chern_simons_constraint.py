@@ -30,6 +30,7 @@ Supporting: sympy derives Chern-Simons action, Wilson loop formulas, linking
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -53,6 +53,7 @@ Supporting: sympy derives Banach *-algebras, C*-axioms, spectral theory, Gelfand
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

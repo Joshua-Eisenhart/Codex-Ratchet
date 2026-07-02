@@ -51,6 +51,7 @@ Supporting: sympy derives Fredholm alternative, Hilbert-Schmidt theory, trace fo
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -8,6 +8,7 @@ Tests Q_10 = MI × H_weyl × H_hopf × H_gerbe × H_dirac × H_clifford
 
 Confirms Q_10>0 iff ALL shells active; =0 for any missing shell.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

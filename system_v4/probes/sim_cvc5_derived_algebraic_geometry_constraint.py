@@ -31,6 +31,7 @@ Supporting: sympy derives explicit vanishing bounds and Serre duality consequenc
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

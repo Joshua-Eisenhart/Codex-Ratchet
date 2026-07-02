@@ -66,6 +66,7 @@ Supporting: sympy derives time dilation t' = γt, length contraction L' = L/γ,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -20,6 +20,7 @@ Classification: canonical
 Load-bearing tools: cvc5 (proves typing rules and beta reduction type preservation)
                    sympy (validates rank computations)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

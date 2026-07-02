@@ -9,6 +9,7 @@ are inadmissible.
 
 Classification: canonical (cvc5 load-bearing proof)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

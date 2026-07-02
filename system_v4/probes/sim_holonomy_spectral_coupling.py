@@ -19,6 +19,8 @@ load_bearing tools:
 
 classification="canonical"
 """
+classification = 'comparison_surface'
+
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""}
                  for k in ["pytorch", "pyg", "z3", "cvc5", "sympy", "clifford",
                            "geomstats", "e3nn", "rustworkx", "xgi", "toponetx", "gudhi"]}

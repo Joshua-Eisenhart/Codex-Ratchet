@@ -74,6 +74,7 @@ Supporting: sympy derives Morse function, critical points, Hessian and Morse ind
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

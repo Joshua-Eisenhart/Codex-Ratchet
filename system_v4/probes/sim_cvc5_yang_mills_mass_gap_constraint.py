@@ -30,6 +30,7 @@ Supporting: sympy derives beta function β(g)=β₀g³+..., running coupling,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

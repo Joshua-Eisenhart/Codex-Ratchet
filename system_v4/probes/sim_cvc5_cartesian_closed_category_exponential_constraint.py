@@ -14,6 +14,7 @@ Classification: canonical
 Load-bearing tools: cvc5 (proves universal property + rank formula)
                    sympy (validates combinatorial rank independently)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

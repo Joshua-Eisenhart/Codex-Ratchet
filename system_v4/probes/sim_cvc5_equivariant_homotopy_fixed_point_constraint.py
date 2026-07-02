@@ -12,6 +12,7 @@ cvc5 proves via QF_LIA:
 
 Classification: canonical (cvc5 load_bearing, sympy supportive)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -31,6 +31,7 @@ Supporting: sympy derives Frobenius eigenvalue equations and weight constraints.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

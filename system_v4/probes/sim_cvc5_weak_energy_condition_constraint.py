@@ -68,6 +68,7 @@ Supporting: sympy derives energy density ρ, pressure p, perfect fluid T_μν,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -31,6 +31,7 @@ Supporting: sympy derives Frobenius eigenvalues and Hodge-Tate weight bounds.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

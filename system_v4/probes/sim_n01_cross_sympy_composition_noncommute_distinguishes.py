@@ -4,6 +4,8 @@ verification that noncommuting operators A,B yield distinguishable compositions
 AB != BA acting on a generic state => probe 'outcome' distinguishes them. This
 is the N01-level reason ordering matters.
 """
+classification = 'diagnostic_only'
+
 import json, os
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

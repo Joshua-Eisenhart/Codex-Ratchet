@@ -21,6 +21,7 @@ Supporting: sympy derives Gromov non-squeezing theorem and capacity monotonicity
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

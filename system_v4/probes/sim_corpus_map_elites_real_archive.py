@@ -12,6 +12,7 @@ Exclusion language: candidates that "survive" MAP-Elites insertion are
 archive-admitted under the chosen behavior descriptors; thin cells
 indicate shell-local regions where coupling candidates are under-sampled.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

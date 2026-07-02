@@ -3,6 +3,8 @@
 agree on the equivalence-closure of the probe-agreement relation. Both tools
 load-bearing: each independently certifies UNSAT of non-transitive closure.
 """
+classification = 'comparison_surface'
+
 import json, os
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

@@ -2,6 +2,8 @@
 """Lego 07: composition order ABC vs ACB distinguishable iff [B,C]!=0 (N01).
 sympy load-bearing.
 """
+classification = 'diagnostic_only'
+
 import json, os, sympy as sp
 
 TOOL_MANIFEST = {t:{"tried":False,"used":False,"reason":"n/a"} for t in

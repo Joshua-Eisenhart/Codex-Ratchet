@@ -8,6 +8,8 @@ Claim (admissibility):
 
 scope_note: LADDERS_FENCES_ADMISSION_REFERENCE.md -- Pin/Spin parity fence.
 """
+classification = 'comparison_surface'
+
 import json, os
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

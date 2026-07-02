@@ -12,6 +12,8 @@ break equivariance when we perturb the weights (negative test).
 
 Classification: canonical (e3nn's equivariance guarantee is the proof).
 """
+classification = 'diagnostic_only'
+
 import json, os
 import numpy as np
 

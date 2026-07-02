@@ -52,6 +52,7 @@ Supporting: sympy derives spectral theorem, projection-valued measure, Rayleigh
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

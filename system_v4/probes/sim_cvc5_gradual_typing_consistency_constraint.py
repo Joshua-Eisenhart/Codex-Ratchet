@@ -23,6 +23,7 @@ Test Goals:
   - Boundary: Consistency chains
   - Boundary: Multiple unknown types
 """
+classification = 'comparison_surface'
 
 import json
 import os

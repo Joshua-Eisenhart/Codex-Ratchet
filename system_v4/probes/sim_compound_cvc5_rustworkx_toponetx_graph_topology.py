@@ -15,6 +15,8 @@ the graph is connected. Three irreducible tools:
    certificates.
 Ablate any one and the Euler admissibility chain collapses.
 """
+classification = 'comparison_surface'
+
 import json, os, numpy as np
 import rustworkx as rx
 from toponetx.classes import SimplicialComplex

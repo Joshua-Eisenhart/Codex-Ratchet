@@ -28,6 +28,7 @@ Supporting: sympy derives explicit KS formula coefficients and primitive cases.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -17,6 +17,7 @@ cvc5 UNSAT: Reeb field with α(R) ≠ 1 violates Reeb definition.
 Load-bearing: cvc5 enforces contact form semantics and Reeb uniqueness.
 Supporting: sympy derives contact forms and dα symbolically.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

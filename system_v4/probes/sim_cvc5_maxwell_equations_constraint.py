@@ -73,6 +73,7 @@ Supporting: sympy derives Gauss's law ∇·E = ρ/ε_0, Ampère-Maxwell law
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -32,6 +32,7 @@ Supporting: sympy derives Pontryagin/Chern classes, instanton moduli counting,
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

@@ -12,6 +12,7 @@ Theory:
   cvc5 UNSAT proves that dim(Ch(M)) ≠ n is inadmissible for a holonomic
   D-module on an n-dimensional manifold.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

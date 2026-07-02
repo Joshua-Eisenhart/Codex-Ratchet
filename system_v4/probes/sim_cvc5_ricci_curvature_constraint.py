@@ -54,6 +54,7 @@ Supporting: sympy derives Ricci from Riemann contraction, proves Bianchi
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

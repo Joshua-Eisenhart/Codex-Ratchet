@@ -20,6 +20,7 @@ Supporting: sympy derives SW-Donaldson duality and blowup formula structure.
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

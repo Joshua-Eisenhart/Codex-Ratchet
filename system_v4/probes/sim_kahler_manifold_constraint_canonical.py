@@ -15,6 +15,7 @@ Z3 proves:
 
 Sympy derives Hodge decomposition H^{p,q}.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

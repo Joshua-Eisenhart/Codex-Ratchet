@@ -58,6 +58,7 @@ Supporting: sympy derives Clausius inequality δS ≥ δQ/T, Boltzmann S = k_B l
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

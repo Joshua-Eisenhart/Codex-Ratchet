@@ -21,6 +21,7 @@ Classification: canonical
 Load-bearing tools: cvc5 (proves Curry-Howard structural constraints via UNSAT)
                    sympy (validates rank formulas for proof terms)
 """
+classification = 'diagnostic_only'
 
 import json
 import os

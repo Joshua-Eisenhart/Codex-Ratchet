@@ -16,6 +16,7 @@ Key constraints:
 Load-bearing: cvc5 enforces w₂ integrality and obstruction conditions via QF_LIA.
 Supporting: sympy derives Stiefel-Whitney classes and spin lift formulas.
 """
+classification = 'diagnostic_only'
 
 import json
 import os

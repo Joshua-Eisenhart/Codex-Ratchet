@@ -29,6 +29,7 @@ Supporting: sympy derives Regge slope formula m² = n/α', mass spectrum for fir
 
 classification: canonical
 """
+classification = 'diagnostic_only'
 
 import json
 import os

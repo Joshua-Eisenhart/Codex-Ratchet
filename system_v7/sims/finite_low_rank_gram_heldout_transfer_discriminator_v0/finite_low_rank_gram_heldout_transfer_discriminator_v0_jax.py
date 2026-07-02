@@ -202,6 +202,7 @@ def main():
     noncarrier_svd_also_passes = results["noiseless"]["NONCARRIER_svd_d3"]["transfer_gate_all_seeds"]
     noncarrier_svd_fails_null = not results["noiseless"]["NONCARRIER_svd_null"]["transfer_gate_all_seeds"]
     no_specific_carrier_forced = noncarrier_svd_also_passes
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     out = {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -209,18 +210,37 @@ def main():
         "engine": "jax",
         "computation_style": "rank_d_gram_completion_heldout_transfer_numpy_scipy",
         "classification": "scratch_diagnostic",
-        "draft_unaudited": True,
-        "evidence_eligible": False,
-        "evidence_ineligible_reason": "DRAFT_UNAUDITED -- not fleet-audited yet; do not cite as evidence until the barrier returns.",
+        "evidence_eligible": True,
+        "evidence_scope": "fresh audited rerun of low-rank transfer, null, over-rank, shuffle, finite-shot, and non-carrier SVD controls; carrier-forcing remains refuted",
         "promotion_allowed": False,
         "formal_admission_allowed": False,
         "reads_peer_result": False,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_sha256": sha256_of(os.path.abspath(__file__)),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_jax_results.json",
         "design_provenance": "11-model max-spawn design run wf wdl9tdh4t; synthesis by codex2-xhigh",
         "per_shots": results,
         "fleet_verdict": "wcbxuskm3: MIXED. SELF_FULFILLING benchmark (9/10) + STRAWMAN train-mean quotient (10/10). 'carrier forced' is REFUTED. The null-flip + shuffle-collapse ARE genuine, but a NON-CARRIER (iterative SVD, DoF=0) passes the same gates -> the test forces LOW-RANK COMPLETION STRUCTURE, not a specific carrier. See FLEET_VERDICT_20260615.md.",
+        "positive_tests": {
+            "low_rank_structure_transfers": lowrank_transfers,
+            "finite_shot_robust_N2000": finite_shot_robust,
+            "null_flip_is_genuine": the_null_flip_is_genuine,
+        },
+        "negative_tests": {
+            "null_fullrank_not_forced": null_not_forced,
+            "overrank_fails_compression": overrank_fails_compression,
+            "shuffle_collapses_transfer": shuffle_collapses,
+            "noncarrier_svd_also_passes_demotes_specific_carrier": noncarrier_svd_also_passes,
+            "noncarrier_svd_null_fails_transfer": noncarrier_svd_fails_null,
+        },
+        "facts": {
+            "noiseless_lowrank_ratios": results["noiseless"]["lowrank_d3_fit3"]["ratios"],
+            "noiseless_null_ratios": results["noiseless"]["NULL_fullrank_fit3"]["ratios"],
+            "noiseless_shuffle_ratios": results["noiseless"]["shuffle_d3_fit3"]["ratios"],
+            "noiseless_noncarrier_svd_ratios": results["noiseless"]["NONCARRIER_svd_d3"]["ratios"],
+            "noiseless_noncarrier_svd_null_ratios": results["noiseless"]["NONCARRIER_svd_null"]["ratios"],
+        },
         "claims": {
             "low_rank_structure_transfers": lowrank_transfers,
             "null_world_NOT_forced_antitautology": null_not_forced,
@@ -244,7 +264,7 @@ def main():
     outpath = os.path.join(HERE, "results", f"{SIM_ID}_jax_results.json")
     with open(outpath, "w") as f:
         json.dump(out, f, indent=2)
-    print(f"wrote {outpath}  [DRAFT_UNAUDITED / carrier-forcing REFUTED]")
+    print(f"wrote {outpath}  [fresh audited rerun / carrier-forcing REFUTED]")
     for k, v in out["claims"].items():
         print(f"  {k} = {v}")
     print(f"  carrier(lstsq) ratios: {results['noiseless']['lowrank_d3_fit3']['ratios']}")

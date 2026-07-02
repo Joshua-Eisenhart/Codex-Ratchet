@@ -69,6 +69,7 @@ def main():
     nonctx = noncontextual()
     ctxidx = context_indexed()
     deflation = (nonctx == "unsat" and ctxidx == "sat")
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     result = {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -82,11 +83,26 @@ def main():
         "formal_admission_allowed": False,
         "does_not_self_upgrade": True,
         "reads_peer_result": False,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_sha256": sha256_of(os.path.abspath(__file__)),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_smt_results.json",
         "noncontextual_model_smt": nonctx,
         "context_indexed_model_smt": ctxidx,
+        "positive_tests": {
+            "noncontextual_model_unsat": nonctx == "unsat",
+        },
+        "negative_tests": {
+            "context_indexed_model_sat_by_construction": ctxidx == "sat",
+            "deflationary_thesis_retracted": deflation,
+            "accepted_claims_empty": True,
+        },
+        "facts": {
+            "noncontextual_model_smt": nonctx,
+            "context_indexed_model_smt": ctxidx,
+            "classification": "broken",
+            "graveyard_keep": True,
+        },
         "accepted_claims": [],
         "rejected_claims": [
             "context_indexed_classical_model_is_sat is a BY-CONSTRUCTION TAUTOLOGY (18 independent variables; SAT for all 64 sign combos; z3 adds nothing)",

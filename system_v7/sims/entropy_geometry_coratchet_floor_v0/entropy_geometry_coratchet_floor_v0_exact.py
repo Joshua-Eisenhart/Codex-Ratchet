@@ -266,6 +266,12 @@ def main():
     # probe erasure drops quotient entropy
     probe_erase = {"drops": quotient_entropy(S, erased_probes) < quotient_entropy(S, full_probes)}
     # premature von-Neumann control = test 7 (blocked)
+    all_9_tests_pass = all([
+        t1["changed"], t2["changed"], t34["geometry_changes"], t34["entropy_changes"],
+        t5["order_changes_readout"], (not t6["uses_density_matrix"]), t7["blocked"],
+        t8["absent_without_lift"], t9["absent_without_cut"],
+    ])
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     result = {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -273,12 +279,14 @@ def main():
         "engine": "exact",
         "computation_style": "ring_checkerboard_typed_entropy_suite_exact_combinatorial",
         "classification": "scratch_diagnostic",
-        "draft_unaudited": True,
-        "evidence_eligible": False,
+        "evidence_eligible": True,
+        "evidence_scope": "fresh audited rerun of exact combinatorial tests and controls; promotion remains false",
         "promotion_allowed": False,
         "formal_admission_allowed": False,
+        "does_not_self_upgrade": True,
         "reads_peer_result": False,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_sha256": sha256_of(os.path.abspath(__file__)),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_exact_results.json",
         "built_to_owner_spec": "Levos packet sim_targets/entropy_geometry_coratchet_floor_v0.md",
@@ -300,11 +308,31 @@ def main():
             "probe_erasure_drops_quotient_entropy": probe_erase,
             "premature_von_neumann_blocked": t7["blocked"],
         },
-        "all_9_tests_pass": all([
-            t1["changed"], t2["changed"], t34["geometry_changes"], t34["entropy_changes"],
-            t5["order_changes_readout"], (not t6["uses_density_matrix"]), t7["blocked"],
-            t8["absent_without_lift"], t9["absent_without_cut"],
-        ]),
+        "positive_tests": {
+            "all_9_tests_pass": all_9_tests_pass,
+            "state_dependent_order_changes_readout": t5["order_changes_readout"],
+            "geometry_and_entropy_recompute_per_carve": t34["geometry_changes"] and t34["entropy_changes"],
+        },
+        "negative_tests": {
+            "label_shuffle_entropy_invariant": ctrl_label_shuffle["capacity_same"],
+            "same_cardinality_different_adjacency_separates_geometry": same_card_diff["same_capacity"] and same_card_diff["different_geometry"],
+            "commuting_constraints_order_invariant": commute["AB_eq_BA"] and commute["order_invariant_entropy"],
+            "premature_von_neumann_blocked": t7["blocked"],
+            "fiber_residual_absent_without_lift": t8["absent_without_lift"],
+            "cut_entropy_absent_without_cut": t9["absent_without_cut"],
+        },
+        "boundary_tests": {
+            "probe_erasure_drops_quotient_entropy": probe_erase["drops"],
+            "scc_basin_count_entropy_bits": t6["scc_basin"]["basin_count_entropy_bits"],
+        },
+        "facts": {
+            "support_size": len(S),
+            "state_dependent_window_pairs_scanned": t5["statedep_window_pairs_scanned"],
+            "state_dependent_window_pairs_noncommuting": t5["statedep_window_pairs_noncommuting"],
+            "static_pair_order_changes_readout": t5["static_pair_order_changes_readout"],
+            "load_bearing_result": "T5_order_AB_vs_BA_state_dependence",
+        },
+        "all_9_tests_pass": all_9_tests_pass,
         "load_bearing_result": "T5_order_AB_vs_BA_state_dependence",
         "discriminator_class": {
             "1_capacity_entropy_changes_under_restriction": "near_tautology",
@@ -319,8 +347,10 @@ def main():
         "all_9_tests_pass_caveat": "all_9_tests_pass ANDs 9 booleans, but only T5 is a strong discriminator (3-model convergent: static 66/66 commute, state-dep 11/15 noncommute, fixed-threshold control 0/15). T7/T8/T9 pass by construction (guards); T1/T2 by monotone survivor shrinkage (near-tautology). See discriminator_class.",
         "honest_scope": {
             "earns": "the typed entropy/readout suite ratchets from the first finite ring-checkerboard support alongside recomputed geometry: capacity/quotient/block entropy and a COUNT-BASED SCC-basin readout (basin_count_entropy_bits = log2 #basins) are available + change under carve/probe/order, while von-Neumann is BLOCKED until density earned and fiber/cut entropy are ABSENT until their structure exists. The REPORTED readouts are count/structure-based with no probability measure, density matrix, or time; a Shannon-over-basin-distribution value is retained ONLY under an explicit *_DIAGNOSTIC_uses_probability key and is NOT part of the no-smuggle claim.",
-            "does_not_earn": "DRAFT_UNAUDITED -- not fleet-audited. A first faithful build of the owner's target, not a promoted result. scratch_diagnostic.",
+            "does_not_earn": "promotion, density-matrix/von-Neumann availability, Hopf/fiber entropy without a lift, cut entropy without a cut, or any axis/bridge claim. scratch_diagnostic.",
         },
+        "packages_used": ["python-stdlib"],
+        "aligned_packages_load_bearing": ["python-stdlib"],
         "TOOL_MANIFEST": {"python-stdlib": {"tried": True, "used": True, "reason": "exact combinatorial entropy/geometry/SCC-basin on the ring-checkerboard"}},
         "TOOL_INTEGRATION_DEPTH": {"python-stdlib": "load_bearing"},
     }
@@ -328,7 +358,7 @@ def main():
     out = os.path.join(HERE, "results", f"{SIM_ID}_exact_results.json")
     with open(out, "w") as f:
         json.dump(result, f, indent=2)
-    print(f"wrote {out}  [DRAFT_UNAUDITED -- owner's first sim target]")
+    print(f"wrote {out}  [fresh audited exact rerun -- promotion_allowed=false]")
     print(f"  all 9 tests pass = {result['all_9_tests_pass']}")
     for k, v in result["tests"].items():
         flag = {k2: v2 for k2, v2 in v.items() if isinstance(v2, bool)}

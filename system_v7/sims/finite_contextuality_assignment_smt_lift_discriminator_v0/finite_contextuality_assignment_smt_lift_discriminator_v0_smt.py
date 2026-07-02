@@ -93,6 +93,7 @@ def main():
     contextual_unsat = pm_z3 == "unsat" and pm_cvc5 == "unsat"
     control_sat = ct_z3 == "sat" and ct_cvc5 == "sat"
     flip_confirmed = contextual_unsat and control_sat
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     result = {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -104,7 +105,8 @@ def main():
         "formal_admission_allowed": False,
         "does_not_self_upgrade": True,
         "reads_peer_result": False,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_sha256": sha256_of(os.path.abspath(__file__)),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_smt_results.json",
         "smt_flip": {
@@ -120,6 +122,18 @@ def main():
                 "sign removed) is SAT -> a classical measure on the quotient suffices -> the rho lift is REJECTED. "
                 "The UNSAT/SAT FLIP is the load-bearing structural fact; it is not a definitional restatement."
             ),
+        },
+        "positive_tests": {
+            "contextual_peres_mermin_unsat": contextual_unsat,
+            "real_vs_control_flip_confirmed": flip_confirmed,
+        },
+        "negative_tests": {
+            "noncontextual_control_is_sat": control_sat,
+            "frustrating_sign_removed_rejects_rho_lift": control_sat,
+        },
+        "facts": {
+            "contextual_peres_mermin": {"z3": pm_z3, "cvc5": pm_cvc5},
+            "noncontextual_control": {"z3": ct_z3, "cvc5": ct_cvc5},
         },
         "claims": {
             "rho_forced_when_contextual": contextual_unsat,

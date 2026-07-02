@@ -33,8 +33,12 @@
     "z3",
     "cvc5"
   ],
-  "all_pass": false,
-  "build_status": "BUILD FAILED",
+  "all_pass": true,
+  "boundary_tests": {
+    "accepted_witness_shape": "four-probe chordless cycle",
+    "two_probe_only_h1": 0
+  },
+  "build_status": "PASS",
   "claim_ceiling": {
     "candidate_only": true,
     "canon_claim": false,
@@ -107,7 +111,7 @@
     "noncommuting_cycle": {
       "betti": {
         "H0": 1,
-        "H1": 0,
+        "H1": 1,
         "H2": 0
       },
       "cycle_basis": [
@@ -198,12 +202,47 @@
   "decisive_flip_control": {
     "failure_condition": "BUILD FAILED if fully_commuting_h1 != 0, noncommuting_cycle_h1 == 0, or target_restored_h1 != 0",
     "fully_commuting_h1": 0,
-    "noncommuting_cycle_h1": 0,
-    "pass": false,
+    "noncommuting_cycle_h1": 1,
+    "pass": true,
     "target_restored_h1": 0
   },
   "does_not_self_upgrade": true,
   "engine": "python",
+  "facts": {
+    "cvc5_statuses": {
+      "all_unsat": true,
+      "free_variables": [
+        "x_guard__x_probe",
+        "x_guard__z_guard",
+        "x_guard__z_probe",
+        "x_probe__z_guard",
+        "x_probe__z_probe",
+        "z_guard__z_probe"
+      ],
+      "fully_commuting_no_hole": "unsat",
+      "noncommuting_cycle_hole": "unsat",
+      "relation_h1_equals_not_target_when_cycle_and_guard_fixed": "unsat",
+      "target_restored_no_hole": "unsat"
+    },
+    "fully_commuting_h1": 0,
+    "noncommuting_cycle_h1": 1,
+    "target_restored_h1": 0,
+    "z3_statuses": {
+      "all_unsat": true,
+      "free_variables": [
+        "x_guard__x_probe",
+        "x_guard__z_guard",
+        "x_guard__z_probe",
+        "x_probe__z_guard",
+        "x_probe__z_probe",
+        "z_guard__z_probe"
+      ],
+      "fully_commuting_no_hole": "unsat",
+      "noncommuting_cycle_hole": "unsat",
+      "relation_h1_equals_not_target_when_cycle_and_guard_fixed": "unsat",
+      "target_restored_no_hole": "unsat"
+    }
+  },
   "fixture_boundary": {
     "accepted_witness_shape": "four-probe chordless cycle",
     "boundary_note": "The target relation is necessary for this fixture; a bare two-probe relation is not enough for H1.",
@@ -227,13 +266,24 @@
     }
   },
   "formal_admission_allowed": false,
-  "generated_at": "2026-06-19T03:56:21Z",
+  "generated_at": "2026-07-02T21:09:13Z",
+  "negative_tests": {
+    "cvc5_target_restored_rejects_hole": true,
+    "fully_commuting_h1_zero": true,
+    "pair_only_noncommuting_h1_zero": true,
+    "target_restored_h1_zero": true,
+    "z3_target_restored_rejects_hole": true
+  },
   "packages_used": [
     "networkx",
     "gudhi",
     "z3",
     "cvc5"
   ],
+  "positive_tests": {
+    "noncommuting_cycle_h1_nonzero": true,
+    "smt_structural_checks_pass": true
+  },
   "promotion_allowed": false,
   "reads_peer_result": false,
   "result_path": "system_v7/sims/pcg_noncommutation_topology_v0/results/pcg_noncommutation_topology_v0_results.json",
@@ -274,7 +324,7 @@
     }
   },
   "source_path": "system_v7/sims/pcg_noncommutation_topology_v0/pcg_noncommutation_topology_v0.py",
-  "source_sha256": "ac48d4e54a9567e1117c5ae761232043beb56737670c58920554c1934780d5ff",
+  "source_sha256": "449d6aca15f09443cb53e7ac333b8a82f840f95c34ebdc7250b86c9513742877",
   "tables": {
     "fully_commuting": {
       "x_guard__x_probe": true,
@@ -361,5 +411,6 @@
       "qualified_api": "cvc5.Solver.checkSat",
       "tool": "cvc5"
     }
-  ]
+  ],
+  "written_at": "2026-07-02T21:09:13Z"
 }

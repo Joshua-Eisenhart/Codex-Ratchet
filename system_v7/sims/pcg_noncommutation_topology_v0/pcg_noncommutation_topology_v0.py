@@ -112,7 +112,7 @@ def complex_summary(table: dict[str, bool]) -> dict:
             continue
         simplex.insert([node_index[node] for node in clique])
         inserted.add(key)
-    simplex.compute_persistence(homology_coeff_field=2)
+    simplex.compute_persistence(homology_coeff_field=2, persistence_dim_max=True)
     betti = list(simplex.betti_numbers())
     while len(betti) <= 2:
         betti.append(0)
@@ -301,6 +301,7 @@ def build_result() -> dict:
     build_status = "PASS" if all_pass else "BUILD FAILED"
 
     source_path = os.path.abspath(__file__)
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return {
         "schema": "codex_ratchet.engine_leg_result.v1",
         "sim_id": SIM_ID,
@@ -311,7 +312,8 @@ def build_result() -> dict:
         "formal_admission_allowed": formal_admission_allowed,
         "does_not_self_upgrade": bool(1),
         "reads_peer_result": bool(0),
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_path": f"system_v7/sims/{SIM_ID}/{SIM_ID}.py",
         "source_sha256": sha256_of(source_path),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_results.json",
@@ -338,6 +340,28 @@ def build_result() -> dict:
             "target_restored_h1": restored_h1,
             "pass": flip_control_pass,
             "failure_condition": "BUILD FAILED if fully_commuting_h1 != 0, noncommuting_cycle_h1 == 0, or target_restored_h1 != 0",
+        },
+        "positive_tests": {
+            "noncommuting_cycle_h1_nonzero": non_h1 != 0,
+            "smt_structural_checks_pass": smt_pass,
+        },
+        "negative_tests": {
+            "fully_commuting_h1_zero": fully_h1 == 0,
+            "target_restored_h1_zero": restored_h1 == 0,
+            "pair_only_noncommuting_h1_zero": pair_summary["betti"]["H1"] == 0,
+            "z3_target_restored_rejects_hole": z3_result["target_restored_no_hole"] == "unsat",
+            "cvc5_target_restored_rejects_hole": cvc5_result["target_restored_no_hole"] == "unsat",
+        },
+        "boundary_tests": {
+            "two_probe_only_h1": pair_summary["betti"]["H1"],
+            "accepted_witness_shape": "four-probe chordless cycle",
+        },
+        "facts": {
+            "fully_commuting_h1": fully_h1,
+            "noncommuting_cycle_h1": non_h1,
+            "target_restored_h1": restored_h1,
+            "z3_statuses": z3_result,
+            "cvc5_statuses": cvc5_result,
         },
         "smt_structural_checks": {
             "z3": z3_result,

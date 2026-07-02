@@ -115,6 +115,7 @@ def main():
         pm["all_marginals_feasible"] and pm["global_infeasible"] and pm["nonclassical_carrier_required_on_fixed_cover"]
         and ctrl["all_marginals_feasible"] and (not ctrl["global_infeasible"]) and (not ctrl["nonclassical_carrier_required_on_fixed_cover"])
     )
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     result = {
         "schema": "codex_ratchet.engine_leg_result.v1",
@@ -126,7 +127,8 @@ def main():
         "formal_admission_allowed": False,
         "does_not_self_upgrade": True,
         "reads_peer_result": False,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": timestamp,
+        "written_at": timestamp,
         "source_sha256": sha256_of(os.path.abspath(__file__)),
         "result_path": f"system_v7/sims/{SIM_ID}/results/{SIM_ID}_smt_results.json",
         "lineage": "sharpens finite_contextuality_assignment_smt_lift_discriminator_v0; built per the codex2-xhigh next_required_discriminator from MASS run wf wohhmsn1o.",
@@ -148,6 +150,21 @@ def main():
                 "rejected. This is the executable density_rho evidence the mass-run ledger asked for: same marginals, "
                 "global gluing flips."
             ),
+        },
+        "positive_tests": {
+            "peres_mermin_all_marginals_feasible": pm["all_marginals_feasible"],
+            "peres_mermin_global_infeasible": pm["global_infeasible"],
+            "marginal_gluing_flip_confirmed": flip_confirmed,
+        },
+        "negative_tests": {
+            "noncontextual_control_all_marginals_feasible": ctrl["all_marginals_feasible"],
+            "noncontextual_control_global_feasible": not ctrl["global_infeasible"],
+            "noncontextual_control_rejects_nonclassical_carrier": not ctrl["nonclassical_carrier_required_on_fixed_cover"],
+        },
+        "facts": {
+            "peres_mermin_global": {"z3": pm["global_z3"], "cvc5": pm["global_cvc5"]},
+            "noncontextual_control_global": {"z3": ctrl["global_z3"], "cvc5": ctrl["global_cvc5"]},
+            "per_context_marginals_all_sat": pm["all_marginals_feasible"] and ctrl["all_marginals_feasible"],
         },
         "claims": {
             "nonclassical_carrier_forced_for_contextuality_class": pm["nonclassical_carrier_required_on_fixed_cover"],

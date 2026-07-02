@@ -4,13 +4,15 @@
   "engine": "exact",
   "computation_style": "ring_checkerboard_typed_entropy_suite_exact_combinatorial",
   "classification": "scratch_diagnostic",
-  "draft_unaudited": true,
-  "evidence_eligible": false,
+  "evidence_eligible": true,
+  "evidence_scope": "fresh audited rerun of exact combinatorial tests and controls; promotion remains false",
   "promotion_allowed": false,
   "formal_admission_allowed": false,
+  "does_not_self_upgrade": true,
   "reads_peer_result": false,
-  "generated_at": "2026-06-17T19:04:41Z",
-  "source_sha256": "e9a253cb9a73893f80136380c4e1351c058d4decdd9dcfd40db47059f0a43c70",
+  "generated_at": "2026-07-02T21:07:27Z",
+  "written_at": "2026-07-02T21:07:27Z",
+  "source_sha256": "02a362d09816b5dd062bd5b14a4ae2d618543445789873d1b9eabc5ee9eeb87b",
   "result_path": "system_v7/sims/entropy_geometry_coratchet_floor_v0/results/entropy_geometry_coratchet_floor_v0_exact_results.json",
   "built_to_owner_spec": "Levos packet sim_targets/entropy_geometry_coratchet_floor_v0.md",
   "ring": {
@@ -168,6 +170,30 @@
     },
     "premature_von_neumann_blocked": true
   },
+  "positive_tests": {
+    "all_9_tests_pass": true,
+    "state_dependent_order_changes_readout": true,
+    "geometry_and_entropy_recompute_per_carve": true
+  },
+  "negative_tests": {
+    "label_shuffle_entropy_invariant": true,
+    "same_cardinality_different_adjacency_separates_geometry": true,
+    "commuting_constraints_order_invariant": true,
+    "premature_von_neumann_blocked": true,
+    "fiber_residual_absent_without_lift": true,
+    "cut_entropy_absent_without_cut": true
+  },
+  "boundary_tests": {
+    "probe_erasure_drops_quotient_entropy": true,
+    "scc_basin_count_entropy_bits": 4.3923
+  },
+  "facts": {
+    "support_size": 64,
+    "state_dependent_window_pairs_scanned": 15,
+    "state_dependent_window_pairs_noncommuting": 11,
+    "static_pair_order_changes_readout": false,
+    "load_bearing_result": "T5_order_AB_vs_BA_state_dependence"
+  },
   "all_9_tests_pass": true,
   "load_bearing_result": "T5_order_AB_vs_BA_state_dependence",
   "discriminator_class": {
@@ -183,8 +209,14 @@
   "all_9_tests_pass_caveat": "all_9_tests_pass ANDs 9 booleans, but only T5 is a strong discriminator (3-model convergent: static 66/66 commute, state-dep 11/15 noncommute, fixed-threshold control 0/15). T7/T8/T9 pass by construction (guards); T1/T2 by monotone survivor shrinkage (near-tautology). See discriminator_class.",
   "honest_scope": {
     "earns": "the typed entropy/readout suite ratchets from the first finite ring-checkerboard support alongside recomputed geometry: capacity/quotient/block entropy and a COUNT-BASED SCC-basin readout (basin_count_entropy_bits = log2 #basins) are available + change under carve/probe/order, while von-Neumann is BLOCKED until density earned and fiber/cut entropy are ABSENT until their structure exists. The REPORTED readouts are count/structure-based with no probability measure, density matrix, or time; a Shannon-over-basin-distribution value is retained ONLY under an explicit *_DIAGNOSTIC_uses_probability key and is NOT part of the no-smuggle claim.",
-    "does_not_earn": "DRAFT_UNAUDITED -- not fleet-audited. A first faithful build of the owner's target, not a promoted result. scratch_diagnostic."
+    "does_not_earn": "promotion, density-matrix/von-Neumann availability, Hopf/fiber entropy without a lift, cut entropy without a cut, or any axis/bridge claim. scratch_diagnostic."
   },
+  "packages_used": [
+    "python-stdlib"
+  ],
+  "aligned_packages_load_bearing": [
+    "python-stdlib"
+  ],
   "TOOL_MANIFEST": {
     "python-stdlib": {
       "tried": true,

@@ -8,8 +8,9 @@
   "formal_admission_allowed": false,
   "does_not_self_upgrade": true,
   "reads_peer_result": false,
-  "generated_at": "2026-06-15T03:25:16Z",
-  "source_sha256": "78cbf5c5e3ea3c903111aaf51434f90f9d6c8bd5272442886169bbe7d8c5ace7",
+  "generated_at": "2026-07-02T21:07:27Z",
+  "written_at": "2026-07-02T21:07:27Z",
+  "source_sha256": "576236c0c9ff8850ca2ada00e04ddb6dde759cf0aad17648f4b4b522b7f71675",
   "result_path": "system_v7/sims/finite_contextuality_assignment_smt_lift_discriminator_v0/results/finite_contextuality_assignment_smt_lift_discriminator_v0_smt_results.json",
   "smt_flip": {
     "question": "does a single noncontextual {-1,+1} assignment satisfy all 6 measurement-context product constraints?",
@@ -27,6 +28,24 @@
     "control_is_sat": true,
     "real_vs_control_flip_confirmed": true,
     "interpretation": "Contextual statistics (Peres-Mermin) admit NO noncontextual assignment -> UNSAT -> no classical measure on a quotient reproduces them -> the quantum/rho carrier is FORCED. The control (frustrating sign removed) is SAT -> a classical measure on the quotient suffices -> the rho lift is REJECTED. The UNSAT/SAT FLIP is the load-bearing structural fact; it is not a definitional restatement."
+  },
+  "positive_tests": {
+    "contextual_peres_mermin_unsat": true,
+    "real_vs_control_flip_confirmed": true
+  },
+  "negative_tests": {
+    "noncontextual_control_is_sat": true,
+    "frustrating_sign_removed_rejects_rho_lift": true
+  },
+  "facts": {
+    "contextual_peres_mermin": {
+      "z3": "unsat",
+      "cvc5": "unsat"
+    },
+    "noncontextual_control": {
+      "z3": "sat",
+      "cvc5": "sat"
+    }
   },
   "claims": {
     "rho_forced_when_contextual": true,
